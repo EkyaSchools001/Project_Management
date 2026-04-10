@@ -1,0 +1,331 @@
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
+export const lmsService = {
+  async getCourses(options: { 
+    status?: string; 
+    category?: string; 
+    search?: string;
+    limit?: number;
+    offset?: number;
+  } = {}) {
+    const { status, category, search, limit = 20, offset = 0 } = options;
+    
+    const where: any = {};
+    if (status) where.status = status;
+    if (category) where.category = category;
+    if (search) {
+      where.OR = [
+        { title: { contains: search, mode: 'insensitive' } },
+        { description: { contains: search, mode: 'insensitive' } },
+      ];
+    }
+
+    const [courses, total] = await Promise.all([
+      prisma.course.findMany({
+        where,
+        include: {
+          instructor: { select: { id: true, name: true } },
+          _count: { select: { enrollments: true, lessons: true } },
+        },
+        orderBy: { createdAt: 'desc' },
+        take: limit,
+        skip: offset,
+      }),
+      prisma.course.count({ where }),
+    ]);
+
+    return { courses, total };
+  },
+
+  async getCourseById(id: string) {
+    return prisma.course.findUnique({
+      where: { id },
+      include: {
+        instructor: { select: { id: true, name: true, email: true } },
+        lessons: { orderBy: { order: 'asc' } },
+        quizzes: { include: { lesson: true } },
+        _count: { select: { enrollments: true } },
+      },
+    });
+  },
+
+  async createCourse(data: {
+    title: string;
+    description?: string;
+    instructorId: string;
+    thumbnail?: string;
+    duration?: number;
+    category?: string;
+    status?: string;
+  }) {
+    return prisma.course.create({ data });
+  },
+
+  async updateCourse(id: string, data: Partial<{
+    title: string;
+    description: string;
+    thumbnail: string;
+    duration: number;
+    category: string;
+    status: string;
+  }>) {
+    return prisma.course.update({ where: { id }, data });
+  },
+
+  async deleteCourse(id: string) {
+    return prisma.course.delete({ where: { id } });
+  },
+
+  async getLessons(courseId: string) {
+    return prisma.lesson.findMany({
+      where: { courseId },
+      orderBy: { order: 'asc' },
+      include: { quizzes: true },
+    });
+  },
+
+  async getLessonById(id: string) {
+    return prisma.lesson.findUnique({
+      where: { id },
+      include: { quizzes: true, course: true },
+    });
+  },
+
+  async createLesson(data: {
+    courseId: string;
+    title: string;
+    content?: string;
+    videoUrl?: string;
+    duration?: number;
+    order: number;
+    type?: string;
+  }) {
+    return prisma.lesson.create({ data });
+  },
+
+  async updateLesson(id: string, data: Partial<{
+    title: string;
+    content: string;
+    videoUrl: string;
+    duration: number;
+    order: number;
+    type: string;
+  }>) {
+    return prisma.lesson.update({ where: { id }, data });
+  },
+
+  async deleteLesson(id: string) {
+    return prisma.lesson.delete({ where: { id } });
+  },
+
+  async getQuizzes(lessonId: string) {
+    return prisma.quiz.findMany({ where: { lessonId } });
+  },
+
+  async getQuizById(id: string) {
+    return prisma.quiz.findUnique({
+      where: { id },
+      include: { lesson: { include: { course: true } } },
+    });
+  },
+
+  async createQuiz(data: {
+    lessonId: string;
+    title: string;
+    questions: any;
+    timeLimit?: number;
+    passingScore?: number;
+  }) {
+    return prisma.quiz.create({ data });
+  },
+
+  async updateQuiz(id: string, data: Partial<{
+    title: string;
+    questions: any;
+    timeLimit: number;
+    passingScore: number;
+  }>) {
+    return prisma.quiz.update({ where: { id }, data });
+  },
+
+  async deleteQuiz(id: string) {
+    return prisma.quiz.delete({ where: { id } });
+  },
+
+  async submitQuizAttempt(data: {
+    userId: string;
+    quizId: string;
+    answers: any;
+  }) {
+    const quiz = await prisma.quiz.findUnique({ where: { id: data.quizId } });
+    if (!quiz) throw new Error('Quiz not found');
+
+    const questions = quiz.questions as any[];
+    let correct = 0;
+    questions.forEach((q, i) => {
+      if (data.answers[i] === q.correctAnswer) correct++;
+    });
+    const score = (correct / questions.length) * 100;
+    const passed = score >= (quiz.passingScore || 70);
+
+    return prisma.quizAttempt.create({
+      data: {
+        userId: data.userId,
+        quizId: data.quizId,
+        answers: data.answers,
+        score,
+        passed,
+        completedAt: new Date(),
+      },
+    });
+  },
+
+  async getQuizAttempts(userId: string, quizId: string) {
+    return prisma.quizAttempt.findMany({
+      where: { userId, quizId },
+      orderBy: { createdAt: 'desc' },
+    });
+  },
+
+  async enrollInCourse(userId: string, courseId: string) {
+    return prisma.enrollment.create({
+      data: { userId, courseId },
+    });
+  },
+
+  async getEnrollments(userId: string) {
+    return prisma.enrollment.findMany({
+      where: { userId },
+      include: { course: { include: { instructor: { select: { name: true } } } } },
+      orderBy: { enrolledAt: 'desc' },
+    });
+  },
+
+  async getEnrollment(userId: string, courseId: string) {
+    return prisma.enrollment.findUnique({
+      where: { userId_courseId: { userId, courseId } },
+      include: { course: { include: { lessons: true } } },
+    });
+  },
+
+  async updateProgress(userId: string, courseId: string, progress: number) {
+    const enrollment = await prisma.enrollment.update({
+      where: { userId_courseId: { userId, courseId } },
+      data: { progress },
+    });
+
+    if (progress >= 100) {
+      await prisma.enrollment.update({
+        where: { userId_courseId: { userId, courseId } },
+        data: { completedAt: new Date(), status: 'completed' },
+      });
+    }
+
+    return enrollment;
+  },
+
+  async getMyCourses(userId: string) {
+    return prisma.enrollment.findMany({
+      where: { userId },
+      include: { 
+        course: { 
+          include: { 
+            instructor: { select: { name: true } },
+            lessons: true,
+          } 
+        } 
+      },
+    });
+  },
+
+  async generateCertificate(userId: string, courseId: string) {
+    const existing = await prisma.certificate.findUnique({
+      where: { userId_courseId: { userId, courseId } },
+    });
+    if (existing) return existing;
+
+    const certNumber = `CERT-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+    
+    return prisma.certificate.create({
+      data: { userId, courseId, certificateNumber: certNumber },
+    });
+  },
+
+  async getCertificates(userId: string) {
+    return prisma.certificate.findMany({
+      where: { userId },
+      include: { course: { select: { title: true, thumbnail: true } } },
+      orderBy: { issuedAt: 'desc' },
+    });
+  },
+
+  async getCertificateById(id: string) {
+    return prisma.certificate.findUnique({
+      where: { id },
+      include: { 
+        user: { select: { name: true, email: true } },
+        course: { include: { instructor: { select: { name: true } } } },
+      },
+    });
+  },
+
+  async getLearningPaths() {
+    return prisma.learningPath.findMany({
+      include: { 
+        enrollments: { where: { userId: undefined as any } },
+        _count: { select: { enrollments: true } },
+      },
+    });
+  },
+
+  async getLearningPathById(id: string) {
+    return prisma.learningPath.findUnique({
+      where: { id },
+      include: { enrollments: true },
+    });
+  },
+
+  async createLearningPath(data: {
+    title: string;
+    description?: string;
+    courses: string[];
+    thumbnail?: string;
+  }) {
+    return prisma.learningPath.create({ data });
+  },
+
+  async updateLearningPath(id: string, data: Partial<{
+    title: string;
+    description: string;
+    courses: string[];
+    thumbnail: string;
+  }>) {
+    return prisma.learningPath.update({ where: { id }, data });
+  },
+
+  async enrollInLearningPath(userId: string, learningPathId: string) {
+    return prisma.learningPathEnrollment.create({
+      data: { userId, learningPathId },
+    });
+  },
+
+  async getMyLearningPaths(userId: string) {
+    return prisma.learningPathEnrollment.findMany({
+      where: { userId },
+      include: { learningPath: true },
+    });
+  },
+
+  async getCategories() {
+    const courses = await prisma.course.findMany({
+      select: { category: true },
+      distinct: ['category'],
+      where: { category: { not: null } },
+    });
+    return courses.map(c => c.category).filter(Boolean);
+  },
+};
+
+export default lmsService;

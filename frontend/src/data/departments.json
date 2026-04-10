@@ -1,0 +1,68 @@
+[
+    {
+        "id": "hr",
+        "name": "Human Resource",
+        "path": "/departments/hr"
+    },
+    {
+        "id": "pd",
+        "name": "Teacher Development",
+        "path": "/departments/pd"
+    },
+
+    {
+        "id": "ops",
+        "name": "Operations",
+        "path": "/departments/ops"
+    },
+    {
+        "id": "tech",
+        "name": "Technology",
+        "path": "/departments/tech"
+    },
+    {
+        "id": "elc",
+        "name": "Ekya Learning Centre",
+        "path": "/departments/elc"
+    },
+    {
+        "id": "sd",
+        "name": "Student Development",
+        "path": "/departments/sd"
+    },
+    {
+        "id": "mkt",
+        "name": "Marketing",
+        "path": "/departments/mkt"
+    },
+    {
+        "id": "adm",
+        "name": "Admissions",
+        "path": "/departments/adm"
+    },
+    {
+        "id": "bg",
+        "name": "Brand Growth",
+        "path": "/departments/bg"
+    },
+    {
+        "id": "qa",
+        "name": "Quality Assurance",
+        "path": "/departments/qa"
+    },
+    {
+        "id": "fin",
+        "name": "Finance & Accounts",
+        "path": "/departments/fin"
+    },
+    {
+        "id": "si",
+        "name": "Strategic Innovation",
+        "path": "/departments/si"
+    },
+    {
+        "id": "wb",
+        "name": "Well Being",
+        "path": "/departments/wb"
+    }
+]

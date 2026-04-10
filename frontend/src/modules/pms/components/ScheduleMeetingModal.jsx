@@ -1,0 +1,446 @@
+import { useState, useEffect } from 'react';
+import { X, Calendar, Clock, Video, MapPin, Users, Info, AlertCircle } from 'lucide-react';
+import api from '../../../services/api';
+import clsx from 'clsx';
+
+// Helper to parse ISO string to 12h format components
+const parseDateTime = (isoString) => {
+    if (!isoString) return { date: '', hour: '12', minute: '00', ampm: 'AM' };
+    const date = new Date(isoString);
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+
+    let hours = date.getHours();
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+
+    return {
+        date: `${yyyy}-${mm}-${dd}`,
+        hour: String(hours).padStart(2, '0'),
+        minute: minutes,
+        ampm
+    };
+};
+
+const TimePicker = ({ label, value, onChange }) => {
+    const { date, hour, minute, ampm } = parseDateTime(value);
+
+    return (
+        <div className="space-y-2">
+            <label className="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                <Clock size={14} /> {label}
+            </label>
+            <div className="flex gap-2">
+                {/* Date Picker */}
+                <input
+                    type="date"
+                    required
+                    className="flex-[2] p-3 bg-[#0f172a] border border-neutral-800 rounded-xl text-sm focus:bg-[#111c2a] focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+                    value={date}
+                    onChange={(e) => onChange('date', e.target.value)}
+                />
+
+                {/* Hour */}
+                <select
+                    className="flex-1 p-3 bg-[#0f172a] border border-neutral-800 rounded-xl text-sm focus:bg-[#111c2a] focus:ring-2 focus:ring-primary/20 transition-all outline-none appearance-none text-center"
+                    value={hour}
+                    onChange={(e) => onChange('hour', e.target.value)}
+                >
+                    {Array.from({ length: 12 }, (_, i) => i + 1).map(h => (
+                        <option key={h} value={String(h).padStart(2, '0')}>{String(h).padStart(2, '0')}</option>
+                    ))}
+                </select>
+
+                <span className="self-center font-bold text-gray-300">:</span>
+
+                {/* Minute */}
+                <select
+                    className="flex-1 p-3 bg-[#0f172a] border border-neutral-800 rounded-xl text-sm focus:bg-[#111c2a] focus:ring-2 focus:ring-primary/20 transition-all outline-none appearance-none text-center"
+                    value={minute}
+                    onChange={(e) => onChange('minute', e.target.value)}
+                >
+                    {Array.from({ length: 60 }, (_, i) => String(i).padStart(2, '0')).map(m => (
+                        <option key={m} value={m}>{m}</option>
+                    ))}
+                </select>
+
+                {/* AM/PM */}
+                <select
+                    className="flex-1 p-3 bg-[#0f172a] border border-neutral-800 rounded-xl text-sm focus:bg-[#111c2a] focus:ring-2 focus:ring-primary/20 transition-all outline-none appearance-none text-center"
+                    value={ampm}
+                    onChange={(e) => onChange('ampm', e.target.value)}
+                >
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+        </div>
+    );
+};
+
+const ScheduleMeetingModal = ({ isOpen, onClose, onSuccess, initialDate, meetingData }) => {
+    const [formData, setFormData] = useState({
+        title: '',
+        description: '',
+        startTime: '',
+        endTime: '',
+        isOnline: false,
+        meetingLink: '',
+        roomId: '',
+        projectId: '',
+        participantIds: []
+    });
+
+    const [rooms, setRooms] = useState([]);
+    const [projects, setProjects] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        if (isOpen) {
+            fetchInitialData();
+            if (meetingData) {
+                // Formatting dates for datetime-local input
+                const start = new Date(meetingData.start || meetingData.startTime).toISOString().slice(0, 16);
+                const end = new Date(meetingData.end || meetingData.endTime).toISOString().slice(0, 16);
+
+                setFormData({
+                    title: meetingData.title || '',
+                    description: meetingData.extendedProps?.description || meetingData.description || '',
+                    startTime: start,
+                    endTime: end,
+                    isOnline: meetingData.extendedProps?.isOnline || meetingData.isOnline || false,
+                    meetingLink: meetingData.extendedProps?.meetingLink || meetingData.meetingLink || '',
+                    roomId: meetingData.extendedProps?.roomId || meetingData.roomId || '',
+                    projectId: meetingData.extendedProps?.projectId || meetingData.projectId || '',
+                    participantIds: meetingData.extendedProps?.participantIds || meetingData.participants?.map(p => p.userId) || []
+                });
+            } else if (initialDate) {
+                const date = new Date(initialDate);
+                const startStr = date.toISOString().slice(0, 16);
+                const endStr = new Date(date.getTime() + 60 * 60 * 1000).toISOString().slice(0, 16);
+                setFormData({
+                    title: '',
+                    description: '',
+                    startTime: startStr,
+                    endTime: endStr,
+                    isOnline: false,
+                    meetingLink: '',
+                    roomId: '',
+                    projectId: '',
+                    participantIds: []
+                });
+            }
+        }
+    }, [isOpen, initialDate, meetingData]);
+
+    const fetchInitialData = async () => {
+        setLoading(true);
+        try {
+            const results = await Promise.allSettled([
+                api.get('projects'),
+                api.get('users'),
+                api.get('rooms', { params: formData.startTime && formData.endTime ? { startTime: formData.startTime, endTime: formData.endTime } : {} })
+            ]);
+
+            const [projectsRes, usersRes, roomsRes] = results.map(r => r.status === 'fulfilled' ? r.value.data : []);
+
+            setProjects(Array.isArray(projectsRes) ? projectsRes : []);
+            setUsers(Array.isArray(usersRes) ? usersRes : []);
+            setRooms(Array.isArray(roomsRes) ? roomsRes : []);
+
+            console.log('Modal Data Loaded:', {
+                projects: Array.isArray(projectsRes) ? projectsRes.length : 'failed',
+                users: Array.isArray(usersRes) ? usersRes.length : 'failed',
+                rooms: Array.isArray(roomsRes) ? roomsRes.length : 'failed'
+            });
+        } catch (err) {
+            console.error('Failed to fetch initial data:', err);
+            setError('Failed to fetch required data. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const fetchAvailableRooms = async (start, end) => {
+        if (!start || !end) return;
+        try {
+            const roomsRes = await api.get('rooms', {
+                params: { startTime: start, endTime: end }
+            });
+            setRooms(Array.isArray(roomsRes.data) ? roomsRes.data : []);
+        } catch (err) {
+            console.error('Failed to fetch available rooms:', err);
+        }
+    };
+
+    // Re-fetch rooms when time changes
+    useEffect(() => {
+        if (isOpen && formData.startTime && formData.endTime) {
+            fetchAvailableRooms(formData.startTime, formData.endTime);
+        }
+    }, [formData.startTime, formData.endTime]);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError('');
+        try {
+            if (meetingData?.id) {
+                await api.put(`meetings/${meetingData.id}`, formData);
+            } else {
+                await api.post('meetings', formData);
+            }
+            onSuccess(formData);
+            onClose();
+        } catch (err) {
+            setError(err.response?.data?.message || `Failed to ${meetingData?.id ? 'update' : 'schedule'} meeting`);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Helper to update specific component of date-time
+    const updateDateTime = (field, type, value) => {
+        const currentIso = formData[field];
+        let { date, hour, minute, ampm } = parseDateTime(currentIso);
+
+        if (type === 'date') date = value;
+        if (type === 'hour') hour = value;
+        if (type === 'minute') minute = value;
+        if (type === 'ampm') ampm = value;
+
+        // Convert back to 24h for ISO string
+        let hours24 = parseInt(hour, 10);
+        if (ampm === 'PM' && hours24 !== 12) hours24 += 12;
+        if (ampm === 'AM' && hours24 === 12) hours24 = 0;
+
+        const newDate = new Date(`${date}T${String(hours24).padStart(2, '0')}:${minute}:00`);
+        // Handle invalid date (e.g. while typing)
+        if (isNaN(newDate.getTime())) return;
+
+        // Construct ISO-like string manually to preserve local time selection
+        const localIso = (`${date}T${String(hours24).padStart(2, '0')}:${minute}`);
+
+        setFormData(prev => ({ ...prev, [field]: localIso }));
+    };
+
+
+    const handleParticipantToggle = (userId) => {
+        setFormData(prev => ({
+            ...prev,
+            participantIds: prev.participantIds.includes(userId)
+                ? prev.participantIds.filter(id => id !== userId)
+                : [...prev.participantIds, userId]
+        }));
+    };
+
+    if (!isOpen) return null;
+
+    // Group rooms by type
+    const groupedRooms = rooms.reduce((acc, room) => {
+        const type = room.type === 'INTERVIEW' ? 'Interview Rooms' : 'Meeting Rooms';
+        if (!acc[type]) acc[type] = [];
+        acc[type].push(room);
+        return acc;
+    }, {});
+
+    return (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[110] p-4">
+            <div className="bg-[#111c2a] rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col animate-in zoom-in-95 duration-200">
+                {/* Header */}
+                <div className="bg-gradient-to-r from-brand-600 to-brand-700 p-6 text-white flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="p-2 bg-[#111c2a]/20 rounded-xl">
+                            <Calendar size={24} />
+                        </div>
+                        <div>
+                            <h2 className="text-xl font-bold">{meetingData?.id ? 'Edit Meeting' : 'Schedule Meeting'}</h2>
+                            <p className="text-white/70 text-sm">{meetingData?.id ? 'Update your meeting details' : 'Create a new internal or online session'}</p>
+                        </div>
+                    </div>
+                    <button onClick={onClose} className="p-2 hover:bg-[#111c2a]/20 rounded-xl transition-all">
+                        <X size={24} />
+                    </button>
+                </div>
+
+                {/* Form Body */}
+                <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-8 space-y-6 custom-scrollbar">
+                    {error && (
+                        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm flex items-center gap-2">
+                            <AlertCircle size={18} />
+                            {error}
+                        </div>
+                    )}
+
+                    {/* Title & Description */}
+                    <div className="space-y-4">
+                        <input
+                            type="text"
+                            placeholder="Meeting Title"
+                            required
+                            className="w-full text-2xl font-bold border-none focus:ring-0 placeholder:text-gray-300 p-0"
+                            value={formData.title}
+                            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                        />
+                        <textarea
+                            placeholder="Add description or agenda..."
+                            className="w-full text-sm text-gray-300 border-none focus:ring-0 placeholder:text-gray-400 p-0 resize-none h-20"
+                            value={formData.description}
+                            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                        />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-neutral-800">
+                        <TimePicker
+                            label="Start Time"
+                            value={formData.startTime}
+                            onChange={(type, val) => updateDateTime('startTime', type, val)}
+                        />
+                        <TimePicker
+                            label="End Time"
+                            value={formData.endTime}
+                            onChange={(type, val) => updateDateTime('endTime', type, val)}
+                        />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Type Selection */}
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                                <Video size={14} /> Meeting Type
+                            </label>
+                            <div className="flex bg-[#0f172a] p-1 rounded-xl border border-neutral-800">
+                                <button
+                                    type="button"
+                                    onClick={() => setFormData({ ...formData, isOnline: false })}
+                                    className={clsx(
+                                        "flex-1 py-2 rounded-lg text-sm font-medium transition-all",
+                                        !formData.isOnline ? "bg-[#111c2a] text-brand-600 shadow-sm" : "text-gray-400"
+                                    )}
+                                >
+                                    In-Person
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setFormData({ ...formData, isOnline: true })}
+                                    className={clsx(
+                                        "flex-1 py-2 rounded-lg text-sm font-medium transition-all",
+                                        formData.isOnline ? "bg-[#111c2a] text-brand-600 shadow-sm" : "text-gray-400"
+                                    )}
+                                >
+                                    Online
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Project Context */}
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                                <Info size={14} /> Project (Optional)
+                            </label>
+                            <select
+                                className="w-full p-3 bg-[#0f172a] border border-neutral-800 rounded-xl text-sm focus:bg-[#111c2a] focus:ring-2 focus:ring-brand-600/20 transition-all outline-none"
+                                value={formData.projectId}
+                                onChange={(e) => setFormData({ ...formData, projectId: e.target.value })}
+                            >
+                                <option value="">General Meeting</option>
+                                {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+                            </select>
+                        </div>
+                    </div>
+
+                    {/* Conditional: Room or Link */}
+                    {formData.isOnline ? (
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                                <Video size={14} /> Meeting Link
+                            </label>
+                            <input
+                                type="url"
+                                placeholder="https://zoom.us/j/..."
+                                className="w-full p-3 bg-[#0f172a] border border-neutral-800 rounded-xl text-sm focus:bg-[#111c2a] focus:ring-2 focus:ring-brand-600/20 transition-all outline-none"
+                                value={formData.meetingLink}
+                                onChange={(e) => setFormData({ ...formData, meetingLink: e.target.value })}
+                            />
+                        </div>
+                    ) : (
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                                <MapPin size={14} /> Meeting Venue
+                            </label>
+                            <select
+                                className="w-full p-3 bg-[#0f172a] border border-neutral-800 rounded-xl text-sm focus:bg-[#111c2a] focus:ring-2 focus:ring-brand-600/20 transition-all outline-none"
+                                value={formData.roomId}
+                                onChange={(e) => setFormData({ ...formData, roomId: e.target.value })}
+                                disabled={loading || rooms.length === 0}
+                            >
+                                <option value="">{rooms.length === 0 ? 'No venues available for this time' : 'Select a Venue'}</option>
+                                {Object.entries(groupedRooms).map(([type, typeRooms]) => (
+                                    <optgroup key={type} label={type}>
+                                        {typeRooms.map(r => (
+                                            <option key={r.id} value={r.id}>{r.name} (Cap: {r.capacity})</option>
+                                        ))}
+                                    </optgroup>
+                                ))}
+                            </select>
+                            {rooms.length > 0 && <p className="text-[10px] text-gray-400 font-medium">Only available venues are shown for the selected time slot.</p>}
+                        </div>
+                    )}
+
+                    {/* Participants */}
+                    <div className="space-y-4 pt-4 border-t border-neutral-800">
+                        <label className="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                            <Users size={14} /> Invite Participants ({formData.participantIds.length})
+                        </label>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                            {users.map(u => (
+                                <button
+                                    key={u.id}
+                                    type="button"
+                                    onClick={() => handleParticipantToggle(u.id)}
+                                    className={clsx(
+                                        "flex items-center gap-2 p-2 rounded-xl border text-left transition-all",
+                                        formData.participantIds.includes(u.id)
+                                            ? "bg-neutral-800/10 border-brand-600/30 ring-1 ring-brand-600"
+                                            : "bg-[#0f172a] border-neutral-800 hover:bg-[#1e293b]"
+                                    )}
+                                >
+                                    <div className="w-6 h-6 rounded-full bg-neutral-800 text-white text-[10px] font-bold flex items-center justify-center shrink-0">
+                                        {u.name?.charAt(0) || 'U'}
+                                    </div>
+                                    <span className="text-xs font-medium truncate">{u.name}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </form>
+
+                {/* Footer Actions */}
+                <div className="p-6 bg-[#0f172a] border-t border-neutral-800 flex gap-3">
+                    <button
+                        type="button"
+                        onClick={onClose}
+                        className="flex-1 px-4 py-3 border border-neutral-700 text-gray-300 rounded-xl font-semibold hover:bg-[#1e293b] transition-all"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        onClick={handleSubmit}
+                        disabled={loading || !formData.title}
+                        className="flex-[2] px-4 py-3 bg-neutral-800 text-white rounded-xl font-bold shadow-lg shadow-brand-600/20 hover:shadow-brand-600/30 transition-all disabled:opacity-50"
+                    >
+                        {loading ? 'Saving...' : (meetingData?.id ? 'Update Meeting' : 'Confirm & Schedule')}
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default ScheduleMeetingModal;

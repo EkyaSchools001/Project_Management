@@ -1,0 +1,66 @@
+[
+    {
+        "role": "SuperAdmin",
+        "permissions": [
+            "*"
+        ],
+        "label": "Super Admin"
+    },
+    {
+        "role": "ManagementAdmin",
+        "permissions": [
+            "departments",
+            "schools",
+            "analytics",
+            "reports",
+            "growth_hub",
+            "growth_admin",
+            "pm_tools",
+            "projects",
+            "tasks",
+            "calendar",
+            "chat",
+            "users"
+        ],
+        "label": "Management Admin"
+    },
+    {
+        "role": "Admin",
+        "permissions": [
+            "departments",
+            "schools",
+            "projects",
+            "tasks",
+            "reports",
+            "calendar",
+            "chat",
+            "pm_tools",
+            "growth_hub",
+            "growth_leader",
+            "users"
+        ],
+        "label": "Admin"
+    },
+    {
+        "role": "TeacherStaff",
+        "permissions": [
+            "schools",
+            "projects",
+            "tasks",
+            "calendar",
+            "chat",
+            "growth_hub",
+            "growth_teacher",
+            "pm_tools"
+        ],
+        "label": "Teacher / Staff"
+    },
+    {
+        "role": "Guest",
+        "permissions": [
+            "viewOnly",
+            "schools"
+        ],
+        "label": "Guest"
+    }
+]

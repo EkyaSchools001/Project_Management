@@ -1,0 +1,17 @@
+{
+  "data": {
+    "directory": ".opencode"
+  },
+  "autoCompact": true,
+  "shell": {
+    "path": "powershell",
+    "args": ["-Command"]
+  },
+  "lsp": {
+    "typescript": {
+      "disabled": false,
+      "command": "typescript-language-server",
+      "args": ["--stdio"]
+    }
+  }
+}

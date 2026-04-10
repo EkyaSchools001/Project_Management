@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Notification Digest</title>
+</head>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px; text-align: center; border-radius: 10px 10px 0 0;">
+        <h1 style="color: white; margin: 0; font-size: 28px;">Your Notification Digest</h1>
+    </div>
+    <div style="background: #f9f9f9; padding: 40px; border-radius: 0 0 10px 10px;">
+        <p>Hello {{name}},</p>
+        <p>Here's a summary of your recent notifications:</p>
+        <div style="margin: 20px 0;">
+            {{#each notifications}}
+            <div style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid {{color}};">
+                <p style="margin: 0; font-weight: bold;">{{title}}</p>
+                <p style="margin: 5px 0 0 0; color: #666; font-size: 14px;">{{message}}</p>
+            </div>
+            {{/each}}
+        </div>
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{appUrl}}/notifications" style="background-color: #BAFF00; color: #000; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">View All Notifications</a>
+        </div>
+    </div>
+    <div style="text-align: center; padding: 20px; color: #999; font-size: 12px;">
+        <p>You can update your notification preferences in your profile settings.</p>
+        <p>© {{year}} SchoolOS. All rights reserved.</p>
+    </div>
+</body>
+</html>

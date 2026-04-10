@@ -1,0 +1,61 @@
+[
+    {
+        "category": "Progressive Schools",
+        "schools": [
+            {
+                "id": "btm",
+                "name": "BTM Layout"
+            },
+            {
+                "id": "jpn",
+                "name": "JP Nagar"
+            },
+            {
+                "id": "itpl",
+                "name": "ITPL"
+            },
+            {
+                "id": "byr",
+                "name": "Byrathi"
+            },
+            {
+                "id": "kop",
+                "name": "Koppa"
+            },
+            {
+                "id": "nr",
+                "name": "Nice Road"
+            }
+        ]
+    },
+    {
+        "category": "Purpose Based Schools",
+        "schools": [
+            {
+                "id": "kala",
+                "name": "Kala"
+            },
+            {
+                "id": "nava",
+                "name": "Nava"
+            },
+            {
+                "id": "other",
+                "name": "Other"
+            }
+        ]
+    },
+    {
+        "category": "World School",
+        "schools": [
+            {
+                "id": "l1",
+                "name": "L1"
+            },
+            {
+                "id": "kn",
+                "name": "Kasturi Nagar"
+            }
+        ]
+    }
+]

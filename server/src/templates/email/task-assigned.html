@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>New Task Assigned</title>
+</head>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <div style="background: #f9f9f9; padding: 40px; border-radius: 10px;">
+        <h2 style="color: #333; margin-top: 0;">New Task Assigned</h2>
+        <p>Hello {{name}},</p>
+        <p>You have been assigned a new task:</p>
+        <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #BAFF00; margin: 20px 0;">
+            <h3 style="margin-top: 0; color: #333;">{{taskTitle}}</h3>
+            <p style="color: #666;"><strong>Description:</strong> {{taskDescription}}</p>
+            <p style="color: #666;"><strong>Priority:</strong> <span style="text-transform: uppercase;">{{priority}}</span></p>
+            {{#if dueDate}}
+            <p style="color: #666;"><strong>Due Date:</strong> {{dueDate}}</p>
+            {{/if}}
+            {{#if projectName}}
+            <p style="color: #666;"><strong>Project:</strong> {{projectName}}</p>
+            {{/if}}
+        </div>
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{appUrl}}/tasks/{{taskId}}" style="background-color: #BAFF00; color: #000; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">View Task</a>
+        </div>
+    </div>
+    <div style="text-align: center; padding: 20px; color: #999; font-size: 12px;">
+        <p>© {{year}} SchoolOS. All rights reserved.</p>
+    </div>
+</body>
+</html>

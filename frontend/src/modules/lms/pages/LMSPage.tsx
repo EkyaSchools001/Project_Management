@@ -95,12 +95,12 @@ export default function LMSPage() {
           onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
           className="md:w-80"
         />
-        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+        <Select value={selectedCategory || "all"} onValueChange={(val) => setSelectedCategory(val === 'all' ? '' : val)}>
           <SelectTrigger className="md:w-48">
             <SelectValue placeholder="All Categories" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Categories</SelectItem>
+            <SelectItem value="all">All Categories</SelectItem>
             {categories.map((cat) => (
               <SelectItem key={cat} value={cat}>{cat}</SelectItem>
             ))}

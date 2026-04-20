@@ -5,7 +5,7 @@ export const AnalyticsService = {
         const [projectsCount, tasksCount, usersCount] = await Promise.all([
             prisma.project.count(),
             prisma.task.count(),
-            prisma.profile.count()
+            prisma.user.count()
         ]);
 
         return {
@@ -13,7 +13,7 @@ export const AnalyticsService = {
             tasks: tasksCount,
             users: usersCount,
             systemHealth: "99.9%",
-            upTime: "12 days" // In a real app, calculate this
+            upTime: "12 days"
         };
     },
 
@@ -21,7 +21,7 @@ export const AnalyticsService = {
         return await prisma.department.findMany({
             include: {
                 _count: {
-                    select: { projects: true, profiles: true }
+                    select: { projects: true, users: true }
                 }
             }
         });
@@ -29,7 +29,7 @@ export const AnalyticsService = {
 
     async getRoleDistribution() {
         // Useful for SuperAdmins to see user breakdown
-        const roles = await prisma.profile.groupBy({
+        const roles = await prisma.user.groupBy({
             by: ['role'],
             _count: { role: true }
         });

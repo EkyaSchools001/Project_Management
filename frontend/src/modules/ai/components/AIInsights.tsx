@@ -10,7 +10,7 @@ export default function AIInsights({ tasks = [], project = null }) {
 
     useEffect(() => {
         loadInsights();
-    }, [tasks, project]);
+    }, []);
 
     const loadInsights = async () => {
         try {

@@ -101,7 +101,7 @@ export function TimeReport({ className }) {
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {statCards.map((stat, idx) => (
-                    <Card key={idx} className="bg-[#0B0E14] border-white/5">
+                    <Card key={idx} className="bg-[#18181b] border-white/5">
                         <CardContent className="p-4">
                             <div className="flex items-center justify-between">
                                 <div>
@@ -121,7 +121,7 @@ export function TimeReport({ className }) {
                 ))}
             </div>
 
-            <Card className="bg-[#0B0E14] border-white/5">
+            <Card className="bg-[#18181b] border-white/5">
                 <CardHeader className="border-b border-white/5">
                     <div className="flex items-center justify-between">
                         <CardTitle className="text-white text-sm">Filter by Date Range</CardTitle>
@@ -217,7 +217,7 @@ export function TimeReport({ className }) {
                 </CardContent>
             </Card>
 
-            <Card className="bg-[#0B0E14] border-white/5">
+            <Card className="bg-[#18181b] border-white/5">
                 <CardHeader className="border-b border-white/5">
                     <CardTitle className="text-white text-sm">Summary</CardTitle>
                 </CardHeader>

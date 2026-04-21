@@ -341,7 +341,7 @@ const ProjectsPage = () => {
                                                 {project.name}
                                             </h3>
                                             {(viewMode === 'grid' || window.innerWidth > 1024) && (
-                                                <p className="text-slate-400 font-bold uppercase tracking-widest text-xs leading-relaxed border-l-4 border-slate-50 pl-6 group-hover:border-indigo-400 transition-all line-clamp-3">
+                                                <p className="text-zinc-400 font-bold uppercase tracking-widest text-xs leading-relaxed border-l-4 border-slate-50 pl-6 group-hover:border-indigo-400 transition-all line-clamp-3">
                                                     {project.description || 'Global infrastructure node executing prioritized mission protocols with nested resource clustering.'}
                                                 </p>
                                             )}
@@ -445,7 +445,7 @@ const TabButton = ({ active, onClick, label }) => (
         onClick={onClick}
         className={`px-10 py-5 rounded-[2.5rem] text-sm font-bold uppercase tracking-[0.3em] transition-all whitespace-nowrap flex items-center gap-5 ${active
             ? 'bg-slate-950 text-white shadow-2xl scale-105 active:scale-95'
-            : 'text-slate-400 hover:text-slate-950'
+            : 'text-zinc-400 hover:text-slate-950'
             }`}
     >
         {label}

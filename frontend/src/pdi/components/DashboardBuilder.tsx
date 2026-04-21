@@ -39,7 +39,7 @@ interface CanvasWidget {
 
 const WIDGET_OPTIONS = [
   // UI Builder
-  { id: 'heading', type: 'heading', name: 'Heading', icon: Type, color: 'bg-slate-800', defaultContent: 'Heading Text', category: 'UI Elements' },
+  { id: 'heading', type: 'heading', name: 'Heading', icon: Type, color: 'bg-zinc-800', defaultContent: 'Heading Text', category: 'UI Elements' },
   { id: 'hero', type: 'hero', name: 'Hero Section', icon: Sparkles, color: 'bg-indigo-600', defaultContent: 'Premium Title', category: 'UI Elements' },
   { id: 'card', type: 'card', name: 'Feature Card', icon: Layers, color: 'bg-white border border-slate-200', defaultContent: 'Feature Name', category: 'UI Elements' },
   { id: 'text', type: 'text', name: 'Paragraph', icon: AlignLeft, color: 'bg-slate-700', defaultContent: 'Add your custom text here...', category: 'UI Elements' },
@@ -73,7 +73,7 @@ const WIDGET_OPTIONS = [
   // Special
   { id: 'observation', type: 'observation', name: 'Observation', icon: Eye, color: 'bg-purple-500', defaultContent: 'obs', category: 'Special' },
   { id: 'growth', type: 'growth', name: 'Growth', icon: TrendingUp, color: 'bg-green-500', defaultContent: 'growth', category: 'Special' },
-  { id: 'security_feed', type: 'security_feed', name: 'Security Center', icon: ShieldCheck, color: 'bg-slate-900 text-white', defaultContent: 'Active Logs', category: 'Special' },
+  { id: 'security_feed', type: 'security_feed', name: 'Security Center', icon: ShieldCheck, color: 'bg-zinc-900 text-white', defaultContent: 'Active Logs', category: 'Special' },
   { id: 'chat_mini', type: 'chat_mini', name: 'Chat Widget', icon: MessageSquare, color: 'bg-indigo-50 text-indigo-600', defaultContent: 'Hello Admin!', category: 'Special' },
   { id: 'sparkline', type: 'sparkline', name: 'Growth Sparkline', icon: TrendingUp, color: 'bg-white', defaultContent: '82%', category: 'Charts' },
   { id: 'file_grid', type: 'file_grid', name: 'Document Hub', icon: BookOpen, color: 'bg-white', defaultContent: 'Resource Library', category: 'Lists & Tables' },
@@ -148,7 +148,7 @@ const ROLE_TEMPLATES: Record<string, { name: string; description: string; widget
     description: "High-level institutional performance and corporate overview",
     widgets: [
       { id: 'm1', type: 'hero', name: 'Governance Hub', content: 'Executive Insights, Global', x: 0, y: 0, width: 12, height: 5, 
-        styles: { backgroundGradient: 'linear-gradient(135deg, #312e81 0%, #4338ca 100%)', color: '#ffffff', textAlign: 'left', borderRadius: '24px', badge: 'CORPORATE BOARD' } },
+        styles: { backgroundGradient: 'linear-gradient(135deg, #312e81 0%, #047857 100%)', color: '#ffffff', textAlign: 'left', borderRadius: '24px', badge: 'CORPORATE BOARD' } },
       { id: 'm2', type: 'chart_line', name: 'Multi-Year Revenue Matrix', content: 'Revenue', x: 0, y: 5, width: 12, height: 10, styles: { borderRadius: '20px' } },
       { id: 'm3', type: 'stats_premium', name: 'Group ROI', content: '+24%', x: 0, y: 15, width: 6, height: 4, styles: { borderRadius: '24px', trendValue: '+3.2%', trendUp: true } },
       { id: 'm4', type: 'stats_premium', name: 'Global Enrollment', content: '48k', x: 6, y: 15, width: 6, height: 4, styles: { borderRadius: '24px', trendValue: '+8.5%', trendUp: true } },
@@ -810,7 +810,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
         <div style={{ ...widget.styles, height: '100%' }} className="bg-slate-50 border border-slate-100 p-6 flex flex-col justify-between group hover:bg-white hover:shadow-2xl transition-all duration-300 rounded-[24px]">
           <div className="flex justify-between items-start">
             <div className="flex flex-col gap-1">
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.15em] mb-1">{widget.name}</span>
+              <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-[0.15em] mb-1">{widget.name}</span>
               <span className="text-4xl font-black text-slate-900 tabular-nums tracking-tight">{widget.content}</span>
             </div>
             <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-red-500 border border-slate-100 group-hover:scale-110 group-hover:bg-red-50 group-hover:text-red-600 transition-all duration-500">
@@ -872,7 +872,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
       return (
         <div style={{ ...widget.styles, height: '100%' }} className="bg-white p-6 flex items-center justify-between group hover:shadow-xl transition-all rounded-[24px] border border-slate-100">
           <div className="flex flex-col gap-1">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{widget.name}</span>
+            <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">{widget.name}</span>
             <span className="text-2xl font-black text-slate-800">{widget.content}</span>
           </div>
           <div className="w-24 h-12 relative overflow-hidden">
@@ -890,7 +890,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
         <div style={{ ...widget.styles, height: '100%' }} className="bg-slate-50 p-6 flex flex-col gap-4 rounded-[24px] border border-slate-100 overflow-hidden">
           <div className="flex justify-between items-center">
             <span className="text-xs font-black text-slate-900 uppercase tracking-widest">{widget.name}</span>
-            <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+            <ExternalLink className="w-3.5 h-3.5 text-zinc-400" />
           </div>
           <div className="grid grid-cols-1 gap-2 overflow-y-auto pr-1">
             {['Strategy_Q1.pdf', 'Teacher_Handbook.docx', 'Campus_Map_v2.png'].map((file, idx) => (
@@ -930,17 +930,17 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
   return (
     <div className="h-screen flex flex-col bg-slate-50 font-sans">
       {/* Top Navbar / Super Admin Panel */}
-      <div className="bg-slate-900 text-white px-6 py-3 flex items-center justify-between shadow-md z-20 relative">
+      <div className="bg-zinc-900 text-white px-6 py-3 flex items-center justify-between shadow-md z-20 relative">
         <div className="flex items-center gap-4">
           <div className="bg-indigo-600 p-2 rounded-lg shadow-sm">
             <LayoutDashboard className="w-5 h-5 text-white" />
           </div>
           <div>
             <h1 className="text-xl font-bold tracking-tight">Website Editor</h1>
-            <p className="text-xs text-slate-400 font-medium">Super Admin Control Panel</p>
+            <p className="text-xs text-zinc-400 font-medium">Super Admin Control Panel</p>
           </div>
           <Separator orientation="vertical" className="h-8 bg-slate-700 mx-2" />
-          <div className="flex gap-1 bg-slate-800 p-1 rounded-lg">
+          <div className="flex gap-1 bg-zinc-800 p-1 rounded-lg">
             <Button variant={!isEditing ? "secondary" : "ghost"} size="sm" onClick={() => { setIsEditing(false); setSelectedWidget(null); }} className={!isEditing ? "bg-white text-slate-900 hover:bg-white" : "text-slate-300 hover:text-white"}>
               <Eye className="w-4 h-4 mr-1.5" /> Preview Live
             </Button>
@@ -955,7 +955,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700"
+                className="bg-zinc-800 border-slate-700 text-slate-300 hover:bg-slate-700"
                 onClick={handleCloneDashboard}
               >
                 <Copy className="w-4 h-4 mr-2" /> Clone
@@ -963,7 +963,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700"
+                className="bg-zinc-800 border-slate-700 text-slate-300 hover:bg-slate-700"
                 onClick={() => { loadData(); toast.info("Changes discarded."); }}
               >
                 <Trash2 className="w-4 h-4 mr-2" /> Discard
@@ -980,7 +980,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700"
+                className="bg-zinc-800 border-slate-700 text-slate-300 hover:bg-slate-700"
                 onClick={handleSetDefault} 
                 disabled={selectedDashboard.isDefault}
               >
@@ -989,7 +989,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700"
+                className="bg-zinc-800 border-slate-700 text-slate-300 hover:bg-slate-700"
                 onClick={() => window.open(`/${selectedDashboard.role.toLowerCase()}`, '_blank')}
               >
                 <ExternalLink className="w-4 h-4 mr-2" /> View Site
@@ -1056,7 +1056,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
                   <div key={category}>
                     <div className="flex items-center gap-2 mb-2">
                       <div className="h-px bg-slate-200 flex-1"></div>
-                      <span className="text-[10px] font-bold text-slate-400 capitalize tracking-wider">{category}</span>
+                      <span className="text-[10px] font-bold text-zinc-400 capitalize tracking-wider">{category}</span>
                       <div className="h-px bg-slate-200 flex-1"></div>
                     </div>
                     <div className="grid grid-cols-2 gap-2">
@@ -1112,7 +1112,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
                 }}
               >
                 {canvasWidgets.length === 0 && isEditing ? (
-                  <div className="col-span-12 flex flex-col items-center justify-center text-slate-400 py-32 h-full border-2 border-dashed border-slate-300 rounded-2xl bg-slate-50/50 mt-4 mr-4 ml-4">
+                  <div className="col-span-12 flex flex-col items-center justify-center text-zinc-400 py-32 h-full border-2 border-dashed border-slate-300 rounded-2xl bg-slate-50/50 mt-4 mr-4 ml-4">
                     <MousePointerClick className="w-16 h-16 mb-4 opacity-50 text-indigo-400" />
                     <h2 className="text-2xl font-bold text-slate-600">Drag Elements Here</h2>
                     <p className="text-sm mt-2 text-slate-500 max-w-sm text-center">Start dragging text, images, buttons or components from the left panel onto this canvas to build your page.</p>
@@ -1177,7 +1177,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
             <div className="flex-1 overflow-y-auto p-5 custom-scrollbar">
               {!selectedWidget ? (
                 <div className="text-center py-10 opacity-50">
-                  <MousePointerClick className="w-12 h-12 mx-auto mb-3 text-slate-400" />
+                  <MousePointerClick className="w-12 h-12 mx-auto mb-3 text-zinc-400" />
                   <p className="text-sm font-medium">Select an element on the canvas to edit its properties, content, and styling.</p>
                 </div>
               ) : (
@@ -1400,7 +1400,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
                           <SelectItem value="none">None</SelectItem>
                           <SelectItem value="1px solid #e2e8f0">Solid Low</SelectItem>
                           <SelectItem value="1px solid #cbd5e1">Solid Mid</SelectItem>
-                          <SelectItem value="2px solid #6366f1">Solid Indigo</SelectItem>
+                          <SelectItem value="2px solid #10b981">Solid Indigo</SelectItem>
                           <SelectItem value="1px dashed #cbd5e1">Dashed</SelectItem>
                         </SelectContent>
                       </Select>

@@ -59,7 +59,7 @@ const ReportsPage = () => {
             className="space-y-16 p-6 sm:p-10 lg:p-16 max-w-[1700px] mx-auto pb-40"
         >
             {/* Header Section */}
-            <header className="relative overflow-hidden p-12 sm:p-20 bg-slate-900 rounded-[5rem] text-white shadow-2xl group border border-white/5">
+            <header className="relative overflow-hidden p-12 sm:p-20 bg-zinc-900 rounded-[5rem] text-white shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-violet-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-[600px] h-[600px] bg-indigo-500 rounded-full blur-[200px] opacity-10 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 
@@ -127,7 +127,7 @@ const ReportsPage = () => {
                                     </div>
                                     <button
                                         onClick={() => setAiInsights(null)}
-                                        className="text-[11px] font-black uppercase tracking-widest text-slate-400 hover:text-rose-600 bg-slate-50 hover:bg-rose-50 py-4 px-10 rounded-[1.5rem] border border-slate-100 hover:border-rose-100 transition-all active:scale-95 shadow-sm"
+                                        className="text-[11px] font-black uppercase tracking-widest text-zinc-400 hover:text-rose-600 bg-slate-50 hover:bg-rose-50 py-4 px-10 rounded-[1.5rem] border border-slate-100 hover:border-rose-100 transition-all active:scale-95 shadow-sm"
                                     >
                                         DISMISS PROTOCOL
                                     </button>
@@ -158,7 +158,7 @@ const ReportsPage = () => {
                         onClick={() => setActiveTab(tab.id)}
                         className={`flex items-center gap-5 px-12 py-5 rounded-[2.5rem] text-[11px] font-black uppercase tracking-[0.3em] transition-all whitespace-nowrap active:scale-95 ${activeTab === tab.id
                             ? 'bg-slate-950 text-white shadow-2xl shadow-indigo-600/20 translate-y-[-4px]'
-                            : 'text-slate-400 hover:text-slate-950'
+                            : 'text-zinc-400 hover:text-slate-950'
                             }`}
                     >
                         <tab.icon size={24} className={activeTab === tab.id ? 'text-indigo-400' : 'text-slate-300'} />
@@ -194,7 +194,7 @@ const ReportsPage = () => {
                         className="h-full w-40 bg-gradient-to-r from-transparent via-indigo-600 to-transparent relative" 
                     />
                 </div>
-                <p className="text-[9px] font-black text-slate-400 uppercase tracking-[1em]">Secure End-to-End Encryption // Analytics Node 0x77-A</p>
+                <p className="text-[9px] font-black text-zinc-400 uppercase tracking-[1em]">Secure End-to-End Encryption // Analytics Node 0x77-A</p>
             </div>
         </motion.div>
     );
@@ -206,7 +206,7 @@ const InsightMetric = ({ icon: Icon, label, value, color }) => (
             <Icon size={24} />
         </div>
         <div className="space-y-1">
-            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{label}</p>
+            <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">{label}</p>
             <p className="text-xl font-black text-slate-950 uppercase tracking-tighter">{value}</p>
         </div>
     </div>

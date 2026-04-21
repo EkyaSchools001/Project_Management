@@ -48,7 +48,7 @@ export default function Departments() {
             className="max-w-[1800px] mx-auto space-y-12 sm:space-y-16 p-4 sm:p-10 lg:p-16 pb-32"
         >
             {/* Vibrant Header Section */}
-            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-10 relative overflow-hidden p-10 sm:p-16 lg:p-20 bg-slate-900 rounded-[4rem] sm:rounded-[5rem] text-white shadow-2xl group border border-white/5">
+            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-10 relative overflow-hidden p-10 sm:p-16 lg:p-20 bg-zinc-900 rounded-[4rem] sm:rounded-[5rem] text-white shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-violet-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-96 h-96 bg-amber-500 rounded-full blur-[140px] opacity-20 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 
@@ -101,7 +101,7 @@ export default function Departments() {
                                 </div>
                             </div>
                             <div className="min-w-0 space-y-2">
-                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mb-2 truncate group-hover:text-slate-950 transition-colors">{stat.label}</p>
+                                <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.4em] mb-2 truncate group-hover:text-slate-950 transition-colors">{stat.label}</p>
                                 <div className="flex items-baseline gap-4">
                                     <p className="text-4xl sm:text-6xl font-black text-slate-900 tracking-tighter truncate group-hover:scale-105 transition-transform duration-700 origin-left">{stat.value}</p>
                                     <ArrowUpRight size={24} className="text-emerald-500 opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-2 group-hover:translate-y-0" />
@@ -147,7 +147,7 @@ export default function Departments() {
                                     <div className="flex flex-col items-center gap-3">
                                         <div className="flex items-center gap-3 px-6 py-2 bg-slate-50 rounded-2xl border border-slate-100 group-hover:bg-indigo-50 transition-colors group-hover:border-indigo-100">
                                             <Cpu size={16} className="text-indigo-400" />
-                                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest group-hover:text-indigo-600 transition-colors">Core Lead: {dept.head}</span>
+                                            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest group-hover:text-indigo-600 transition-colors">Core Lead: {dept.head}</span>
                                         </div>
                                     </div>
                                 </div>

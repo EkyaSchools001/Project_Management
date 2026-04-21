@@ -31,7 +31,7 @@ const PRIORITY_OPTIONS = [
 
 const STATUS_OPTIONS = [
     { value: 'TODO', label: 'To Do', color: '#94a3b8' },
-    { value: 'IN_PROGRESS', label: 'In Progress', color: '#6366f1' },
+    { value: 'IN_PROGRESS', label: 'In Progress', color: '#10b981' },
     { value: 'IN_REVIEW', label: 'In Review', color: '#f59e0b' },
     { value: 'DONE', label: 'Done', color: '#10b981' }
 ];
@@ -161,11 +161,11 @@ export const TaskDetailModal = ({
                     <div className="flex flex-col h-full max-h-[90vh]">
                         <div className="flex items-center justify-between p-6 border-b border-slate-100">
                             <div className="flex items-center gap-4">
-                                <div className="text-sm font-bold text-slate-400 uppercase tracking-wider">
+                                <div className="text-sm font-bold text-zinc-400 uppercase tracking-wider">
                                     Task Details
                                 </div>
                                 {task?.id && (
-                                    <span className="text-xs text-slate-400 font-mono">
+                                    <span className="text-xs text-zinc-400 font-mono">
                                         #{task.id}
                                     </span>
                                 )}
@@ -178,7 +178,7 @@ export const TaskDetailModal = ({
                                     <Trash2 size={18} />
                                 </button>
                                 <Dialog.Close asChild>
-                                    <button className="p-2 text-slate-400 hover:bg-slate-100 rounded-xl transition-colors">
+                                    <button className="p-2 text-zinc-400 hover:bg-slate-100 rounded-xl transition-colors">
                                         <X size={18} />
                                     </button>
                                 </Dialog.Close>
@@ -210,7 +210,7 @@ export const TaskDetailModal = ({
                             {activeTab === 'details' && (
                                 <div className="space-y-6">
                                     <div>
-                                        <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                        <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
                                             Title
                                         </label>
                                         <input
@@ -223,7 +223,7 @@ export const TaskDetailModal = ({
                                     </div>
 
                                     <div>
-                                        <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                        <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
                                             Description
                                         </label>
                                         <textarea
@@ -237,7 +237,7 @@ export const TaskDetailModal = ({
 
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
-                                            <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                            <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
                                                 Status
                                             </label>
                                             <select
@@ -254,7 +254,7 @@ export const TaskDetailModal = ({
                                         </div>
 
                                         <div>
-                                            <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                            <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
                                                 Priority
                                             </label>
                                             <select
@@ -273,7 +273,7 @@ export const TaskDetailModal = ({
 
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
-                                            <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                            <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
                                                 Start Date
                                             </label>
                                             <input
@@ -285,7 +285,7 @@ export const TaskDetailModal = ({
                                         </div>
 
                                         <div>
-                                            <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                            <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
                                                 End Date
                                             </label>
                                             <input
@@ -299,7 +299,7 @@ export const TaskDetailModal = ({
 
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
-                                            <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                            <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
                                                 Assignee
                                             </label>
                                             <select
@@ -317,7 +317,7 @@ export const TaskDetailModal = ({
                                         </div>
 
                                         <div>
-                                            <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                            <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
                                                 Estimated Hours
                                             </label>
                                             <input
@@ -331,7 +331,7 @@ export const TaskDetailModal = ({
                                     </div>
 
                                     <div>
-                                        <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                        <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
                                             Tags
                                         </label>
                                         <div className="flex flex-wrap gap-2 mb-2">
@@ -343,7 +343,7 @@ export const TaskDetailModal = ({
                                                     {tag}
                                                     <button
                                                         onClick={() => handleRemoveTag(idx)}
-                                                        className="text-slate-400 hover:text-rose-500"
+                                                        className="text-zinc-400 hover:text-rose-500"
                                                     >
                                                         <X size={12} />
                                                     </button>
@@ -402,12 +402,12 @@ export const TaskDetailModal = ({
                                                 >
                                                     {subtask.done && <CheckCircle2 size={12} className="text-white" />}
                                                 </button>
-                                                <span className={`flex-1 text-sm ${subtask.done ? 'text-slate-400 line-through' : 'text-slate-700'}`}>
+                                                <span className={`flex-1 text-sm ${subtask.done ? 'text-zinc-400 line-through' : 'text-slate-700'}`}>
                                                     {subtask.title}
                                                 </span>
                                                 <button
                                                     onClick={() => handleDeleteSubtask(idx)}
-                                                    className="text-slate-400 hover:text-rose-500"
+                                                    className="text-zinc-400 hover:text-rose-500"
                                                 >
                                                     <Trash2 size={14} />
                                                 </button>
@@ -438,7 +438,7 @@ export const TaskDetailModal = ({
                                 <div className="space-y-6">
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="p-4 bg-slate-50 rounded-xl">
-                                            <div className="flex items-center gap-2 text-slate-400 mb-2">
+                                            <div className="flex items-center gap-2 text-zinc-400 mb-2">
                                                 <Clock3 size={16} />
                                                 <span className="text-xs font-bold uppercase tracking-wider">Estimated</span>
                                             </div>
@@ -447,7 +447,7 @@ export const TaskDetailModal = ({
                                             </div>
                                         </div>
                                         <div className="p-4 bg-slate-50 rounded-xl">
-                                            <div className="flex items-center gap-2 text-slate-400 mb-2">
+                                            <div className="flex items-center gap-2 text-zinc-400 mb-2">
                                                 <Clock size={16} />
                                                 <span className="text-xs font-bold uppercase tracking-wider">Logged</span>
                                             </div>
@@ -465,14 +465,14 @@ export const TaskDetailModal = ({
                                                     <div key={idx} className="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
                                                         <div>
                                                             <div className="text-sm font-medium text-slate-700">{entry.description}</div>
-                                                            <div className="text-xs text-slate-400">{entry.date}</div>
+                                                            <div className="text-xs text-zinc-400">{entry.date}</div>
                                                         </div>
                                                         <div className="text-sm font-bold text-slate-700">{entry.hours}h</div>
                                                     </div>
                                                 ))}
                                             </div>
                                         ) : (
-                                            <div className="text-center py-8 text-slate-400 text-sm">
+                                            <div className="text-center py-8 text-zinc-400 text-sm">
                                                 No time entries yet
                                             </div>
                                         )}
@@ -492,7 +492,7 @@ export const TaskDetailModal = ({
                                                     <div className="flex-1">
                                                         <div className="flex items-center gap-2 mb-1">
                                                             <span className="text-sm font-semibold text-slate-700">{comment.author?.name || 'User'}</span>
-                                                            <span className="text-xs text-slate-400">
+                                                            <span className="text-xs text-zinc-400">
                                                                 {comment.createdAt ? format(parseISO(comment.createdAt), 'MMM d, h:mm a') : ''}
                                                             </span>
                                                         </div>
@@ -501,7 +501,7 @@ export const TaskDetailModal = ({
                                                 </div>
                                             ))
                                         ) : (
-                                            <div className="text-center py-8 text-slate-400 text-sm">
+                                            <div className="text-center py-8 text-zinc-400 text-sm">
                                                 No comments yet
                                             </div>
                                         )}
@@ -528,7 +528,7 @@ export const TaskDetailModal = ({
                         </div>
 
                         <div className="flex items-center justify-between p-6 border-t border-slate-100 bg-slate-50">
-                            <div className="text-sm text-slate-400">
+                            <div className="text-sm text-zinc-400">
                                 Created {task?.createdAt ? format(parseISO(task.createdAt), 'MMM d, yyyy') : 'recently'}
                             </div>
                             <div className="flex gap-3">

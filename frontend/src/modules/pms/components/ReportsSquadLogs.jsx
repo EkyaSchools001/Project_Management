@@ -33,7 +33,7 @@ const LogWorkModal = ({ isOpen, onClose, onAdd }) => {
                         exit={{ opacity: 0, scale: 0.9, y: 40 }}
                         className="bg-white/90 border border-white/20 rounded-[4rem] shadow-[0_60px_150px_rgba(0,0,0,0.2)] w-full max-w-2xl overflow-hidden backdrop-blur-2xl"
                     >
-                        <div className="bg-slate-900 p-10 sm:p-14 text-white relative overflow-hidden">
+                        <div className="bg-zinc-900 p-10 sm:p-14 text-white relative overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-transparent pointer-events-none" />
                             <div className="absolute -right-10 -top-10 w-40 h-40 bg-indigo-500 rounded-full blur-[80px] opacity-20 pointer-events-none" />
                             
@@ -115,7 +115,7 @@ const LogWorkModal = ({ isOpen, onClose, onAdd }) => {
                                 <button
                                     type="button"
                                     onClick={onClose}
-                                    className="flex-1 h-20 bg-slate-50 border border-slate-100 text-slate-400 rounded-[1.75rem] text-[11px] font-black uppercase tracking-[0.3em] hover:bg-slate-100 hover:text-slate-950 transition-all active:scale-95"
+                                    className="flex-1 h-20 bg-slate-50 border border-slate-100 text-zinc-400 rounded-[1.75rem] text-[11px] font-black uppercase tracking-[0.3em] hover:bg-slate-100 hover:text-slate-950 transition-all active:scale-95"
                                 >
                                     Abort Cycle
                                 </button>
@@ -137,7 +137,7 @@ const LogWorkModal = ({ isOpen, onClose, onAdd }) => {
 
 const FormGroup = ({ label, children }) => (
     <div className="space-y-4">
-        <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] px-2">{label}</label>
+        <label className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.4em] px-2">{label}</label>
         {children}
     </div>
 );
@@ -169,14 +169,14 @@ const ReportsSquadLogs = () => {
                             </div>
                             <div className="space-y-2">
                                 <h2 className="text-4xl sm:text-5xl font-black text-slate-950 uppercase tracking-tighter leading-none">Squad Audit <br />Infrastructure</h2>
-                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Autonomous performance monitoring across global deployment</p>
+                                <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.4em]">Autonomous performance monitoring across global deployment</p>
                             </div>
                         </div>
                     </div>
                     
                     <div className="flex flex-col sm:flex-row items-center gap-6">
                         <div className="relative group w-full sm:w-auto">
-                            <Search className="absolute left-7 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-600 transition-colors" size={24} />
+                            <Search className="absolute left-7 top-1/2 -translate-y-1/2 text-zinc-400 group-focus-within:text-indigo-600 transition-colors" size={24} />
                             <input
                                 type="text"
                                 placeholder="QUERY AUDIT LOGS..."
@@ -197,7 +197,7 @@ const ReportsSquadLogs = () => {
             <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse min-w-[1100px]">
                     <thead>
-                        <tr className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] border-b border-slate-100 bg-slate-50/30">
+                        <tr className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.4em] border-b border-slate-100 bg-slate-50/30">
                             <th className="px-12 py-10">Operational Identity</th>
                             <th className="px-12 py-10">Cluster Target</th>
                             <th className="px-12 py-10 text-center">Time Delta</th>
@@ -225,7 +225,7 @@ const ReportsSquadLogs = () => {
                                             </div>
                                             <div className="flex flex-col">
                                                 <span className="text-base font-black text-slate-950 uppercase tracking-tighter leading-none">{log.name}</span>
-                                                <span className="text-[9px] font-black text-slate-400 mt-2 uppercase tracking-widest">Active Operator</span>
+                                                <span className="text-[9px] font-black text-zinc-400 mt-2 uppercase tracking-widest">Active Operator</span>
                                             </div>
                                         </div>
                                     </td>
@@ -248,7 +248,7 @@ const ReportsSquadLogs = () => {
                                         </div>
                                     </td>
                                     <td className="px-12 py-10">
-                                        <p className="text-sm text-slate-400 font-bold max-w-sm line-clamp-2 italic leading-relaxed group-hover:text-slate-950 transition-colors" title={log.notes}>
+                                        <p className="text-sm text-zinc-400 font-bold max-w-sm line-clamp-2 italic leading-relaxed group-hover:text-slate-950 transition-colors" title={log.notes}>
                                             "{log.notes || 'No contextual output available for this unit.'}"
                                         </p>
                                     </td>
@@ -271,11 +271,11 @@ const ReportsSquadLogs = () => {
                             <img key={i} src={l.avatar} className="w-12 h-12 rounded-2xl border-4 border-slate-50 shadow-xl" alt="" />
                         ))}
                     </div>
-                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Infrastructure Scan: <span className="text-slate-950 bg-white px-4 py-2 rounded-xl shadow-inner border border-slate-100 ml-2">{logs.length} Units Deployed</span></span>
+                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.4em]">Infrastructure Scan: <span className="text-slate-950 bg-white px-4 py-2 rounded-xl shadow-inner border border-slate-100 ml-2">{logs.length} Units Deployed</span></span>
                 </div>
                 
                 <div className="flex gap-4">
-                    <button className="h-16 px-8 rounded-2xl border border-slate-200 text-[10px] font-black uppercase text-slate-400 hover:bg-white hover:text-slate-950 transition-all disabled:opacity-30 active:scale-95 shadow-sm" disabled>Back</button>
+                    <button className="h-16 px-8 rounded-2xl border border-slate-200 text-[10px] font-black uppercase text-zinc-400 hover:bg-white hover:text-slate-950 transition-all disabled:opacity-30 active:scale-95 shadow-sm" disabled>Back</button>
                     <button className="h-16 px-10 rounded-2xl bg-slate-950 text-white text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 transition-all shadow-2xl shadow-slate-950/20 active:scale-95 flex items-center gap-3">
                         Next Cycle
                         <ChevronRight size={20} />

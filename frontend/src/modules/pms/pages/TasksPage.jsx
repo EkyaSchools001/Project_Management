@@ -24,7 +24,7 @@ import { KanbanBoard } from '../components/KanbanBoard';
 import { TaskDetailModal } from '../components/TaskDetailModal';
 
 const statusConfig = {
-    'TODO': { color: 'text-slate-400', bg: 'bg-slate-100', glow: 'shadow-slate-500/10', label: 'Queued', icon: Circle },
+    'TODO': { color: 'text-zinc-400', bg: 'bg-slate-100', glow: 'shadow-slate-500/10', label: 'Queued', icon: Circle },
     'IN_PROGRESS': { color: 'text-indigo-400', bg: 'bg-indigo-500/10', glow: 'shadow-indigo-500/20', label: 'Active', icon: Clock },
     'IN_REVIEW': { color: 'text-violet-400', bg: 'bg-violet-500/10', glow: 'shadow-violet-500/20', label: 'Audit', icon: AlertCircle },
     'DONE': { color: 'text-emerald-400', bg: 'bg-emerald-500/10', glow: 'shadow-emerald-500/20', label: 'Resolved', icon: CheckCircle2 }
@@ -238,7 +238,7 @@ const TasksPage = () => {
                                 </div>
 
                                 <div className={`${viewMode === 'list' && window.innerWidth > 1024 ? 'ml-28' : ''} relative z-10`}>
-                                    <p className={`text-base sm:text-lg text-slate-400 font-black uppercase tracking-widest leading-relaxed mb-12 border-l-4 border-slate-100 pl-8 group-hover:border-indigo-400 transition-all ${viewMode === 'list' ? 'max-w-5xl' : 'line-clamp-3'}`}>
+                                    <p className={`text-base sm:text-lg text-zinc-400 font-black uppercase tracking-widest leading-relaxed mb-12 border-l-4 border-slate-100 pl-8 group-hover:border-indigo-400 transition-all ${viewMode === 'list' ? 'max-w-5xl' : 'line-clamp-3'}`}>
                                         Node synchronization status: {task.description}. All systems initialized and operating within standard deviation.
                                     </p>
 
@@ -271,7 +271,7 @@ const TasksPage = () => {
                                 <Sparkles size={80} className="text-indigo-200" />
                             </div>
                             <h3 className="text-5xl font-black text-slate-950 uppercase tracking-tighter">Queue Empty</h3>
-                            <p className="text-slate-400 font-black mt-6 text-xs uppercase tracking-[0.8em] animate-pulse">All mission-critical nodes successfully synchronized.</p>
+                            <p className="text-zinc-400 font-black mt-6 text-xs uppercase tracking-[0.8em] animate-pulse">All mission-critical nodes successfully synchronized.</p>
                         </div>
                     )}
                 </AnimatePresence>
@@ -312,7 +312,7 @@ const TabButton = ({ active, onClick, icon: Icon, label }) => (
         onClick={onClick}
         className={`px-10 py-5 rounded-[2.5rem] text-[10px] font-black uppercase tracking-[0.3em] transition-all whitespace-nowrap flex items-center gap-5 ${active
             ? 'bg-slate-950 text-white shadow-2xl shadow-slate-950/30 scale-105 active:scale-95'
-            : 'text-slate-400 hover:text-slate-950'
+            : 'text-zinc-400 hover:text-slate-950'
             }`}
     >
         <Icon size={18} />

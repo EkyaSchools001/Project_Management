@@ -135,7 +135,7 @@ const MatrixSection = ({
                                 <button type="button" onClick={() => !readOnly && setMatrix(field, row, v)}
                                     disabled={readOnly}
                                     className={cn("w-8 h-8 rounded-full border-2 text-xs font-bold transition-all",
-                                        val === v ? "text-white border-transparent scale-110" : "border-slate-200 text-slate-400 hover:border-slate-400", readOnly && "cursor-default")}
+                                        val === v ? "text-white border-transparent scale-110" : "border-slate-200 text-zinc-400 hover:border-slate-400", readOnly && "cursor-default")}
                                     style={val === v ? { background: ACCENT } : {}}>
                                     {v === "NA" ? "NA" : v[0]}
                                 </button>

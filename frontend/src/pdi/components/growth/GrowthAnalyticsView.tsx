@@ -67,7 +67,7 @@ const TeacherTable = ({
                             </TableRow>
                         ) : filtered.map((t, i) => (
                             <TableRow key={t.id} className="hover:bg-zinc-50 transition-colors border-zinc-50 group">
-                                <TableCell className="text-center font-medium text-slate-400">{i + 1}</TableCell>
+                                <TableCell className="text-center font-medium text-zinc-400">{i + 1}</TableCell>
                                 <TableCell>
                                     <div className="flex flex-col">
                                         <span className="font-bold text-sm text-zinc-800">{t.name}</span>

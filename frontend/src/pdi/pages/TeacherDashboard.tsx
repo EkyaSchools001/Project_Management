@@ -3240,7 +3240,7 @@ function ObservationDetailView({ observations }: { observations: Observation[] }
                 <div className={cn(
                   "w-20 h-20 rounded-2xl flex flex-col items-center justify-center font-black border-4 shadow-xl",
                   (observation.type === "Quick Feedback" || String(observation.domain).toUpperCase() === "QUICK FEEDBACK" || String(observation.domain).toUpperCase() === "QUICK_FEEDBACK")
-                    ? "bg-slate-100 text-slate-400 border-slate-200"
+                    ? "bg-slate-100 text-zinc-400 border-slate-200"
                     : observation.score >= 4
                       ? "bg-success/10 text-success border-success/20"
                       : "bg-warning/10 text-warning border-warning/20"

@@ -93,7 +93,7 @@ export default function AIChatbot({ isOpen, onClose, embedded = false }) {
 
     const containerClass = embedded 
         ? 'h-full flex flex-col' 
-        : 'fixed bottom-6 right-6 z-50 w-[380px] h-[500px] bg-[#0B0E14] rounded-2xl border border-white/10 shadow-2xl flex flex-col overflow-hidden';
+        : 'fixed bottom-6 right-6 z-50 w-[380px] h-[500px] bg-[#18181b] rounded-2xl border border-white/10 shadow-2xl flex flex-col overflow-hidden';
 
     if (!isOpen && !embedded) return null;
 

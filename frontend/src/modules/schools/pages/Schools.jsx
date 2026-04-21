@@ -20,7 +20,7 @@ import {
 import { Card } from '../../../components/ui/CardLegacy';
 
 const CATEGORIES = [
-    { id: 'all', name: 'All Schools', icon: LayoutGrid, color: 'text-white', bg: 'bg-slate-900', activeBg: 'bg-indigo-600', activeText: 'text-white', count: (s) => Object.values(s).flat().length },
+    { id: 'all', name: 'All Schools', icon: LayoutGrid, color: 'text-white', bg: 'bg-zinc-900', activeBg: 'bg-indigo-600', activeText: 'text-white', count: (s) => Object.values(s).flat().length },
     { id: 'progressive', name: 'Progressive', icon: Sparkles, color: 'text-blue-500', bg: 'bg-blue-50', activeBg: 'bg-blue-600', activeText: 'text-white', count: (s) => s.progressive.length },
     { id: 'icse_cbse', name: 'Regulatory', icon: ShieldCheck, color: 'text-indigo-500', bg: 'bg-indigo-50', activeBg: 'bg-indigo-600', activeText: 'text-white', count: (s) => s.icse_cbse.length },
     { id: 'purpose_based', name: 'Specialized', icon: Trophy, color: 'text-purple-500', bg: 'bg-purple-50', activeBg: 'bg-purple-600', activeText: 'text-white', count: (s) => s.purpose_based.length }
@@ -51,7 +51,7 @@ export default function Schools() {
                     <h2 className="text-xl sm:text-2xl font-black text-slate-950 uppercase tracking-[0.4em] whitespace-nowrap">{title}</h2>
                 </div>
                 <div className="flex-1 h-[2px] bg-slate-100 group-hover:bg-indigo-50 transition-colors hidden sm:block" />
-                <div className="px-8 py-3 bg-white border border-slate-100 rounded-[1.5rem] text-[11px] font-black text-slate-400 uppercase tracking-widest shadow-sm group-hover:border-indigo-100 group-hover:text-indigo-600 transition-all">
+                <div className="px-8 py-3 bg-white border border-slate-100 rounded-[1.5rem] text-[11px] font-black text-zinc-400 uppercase tracking-widest shadow-sm group-hover:border-indigo-100 group-hover:text-indigo-600 transition-all">
                     {schoolsList.length} Network Nodes
                 </div>
             </div>
@@ -87,7 +87,7 @@ export default function Schools() {
                                 </h3>
                                 <div className="flex items-center justify-center gap-3 px-6 py-2 bg-slate-50 rounded-2xl border border-slate-100 group-hover:bg-indigo-50 transition-colors group-hover:border-indigo-100">
                                     <MapPin size={16} className="text-indigo-400 group-hover:scale-110 transition-transform" />
-                                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest group-hover:text-indigo-600 transition-colors">Regional Node</span>
+                                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest group-hover:text-indigo-600 transition-colors">Regional Node</span>
                                 </div>
                             </div>
 
@@ -111,7 +111,7 @@ export default function Schools() {
             animate="visible"
             className="max-w-[1800px] mx-auto space-y-16 p-6 sm:p-10 lg:p-20 pb-40"
         >
-            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-slate-900 rounded-[5rem] text-white shadow-2xl group border border-white/5">
+            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-zinc-900 rounded-[5rem] text-white shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-violet-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-96 h-96 bg-indigo-500 rounded-full blur-[140px] opacity-20 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 
@@ -157,19 +157,19 @@ export default function Schools() {
                             "group flex items-center gap-5 px-10 h-20 rounded-[2.5rem] text-[11px] font-black uppercase tracking-[0.2em] transition-all border shadow-2xl whitespace-nowrap",
                             filter === cat.id
                                 ? `bg-slate-950 text-white border-transparent shadow-slate-900/30 scale-105`
-                                : `bg-white border-slate-100 text-slate-400 hover:border-indigo-400 hover:text-slate-950 shadow-slate-200/50`
+                                : `bg-white border-slate-100 text-zinc-400 hover:border-indigo-400 hover:text-slate-950 shadow-slate-200/50`
                         )}
                     >
                         <div className={cn(
                             "w-10 h-10 rounded-xl flex items-center justify-center transition-all",
-                            filter === cat.id ? "bg-indigo-500 text-white rotate-12" : "bg-slate-50 text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600"
+                            filter === cat.id ? "bg-indigo-500 text-white rotate-12" : "bg-slate-50 text-zinc-400 group-hover:bg-indigo-50 group-hover:text-indigo-600"
                         )}>
                             <cat.icon size={20} />
                         </div>
                         {cat.name}
                         <div className={cn(
                             "ml-4 px-4 py-1.5 rounded-xl text-[10px] font-black transition-all",
-                            filter === cat.id ? "bg-white/10 text-indigo-100" : "bg-slate-50 text-slate-400 group-hover:bg-indigo-100 group-hover:text-indigo-600"
+                            filter === cat.id ? "bg-white/10 text-indigo-100" : "bg-slate-50 text-zinc-400 group-hover:bg-indigo-100 group-hover:text-indigo-600"
                         )}>
                             {cat.count(SCHOOLS)}
                         </div>

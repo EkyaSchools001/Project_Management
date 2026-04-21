@@ -80,7 +80,7 @@ const TeamMembersPage = () => {
             className="max-w-[1800px] mx-auto space-y-16 p-6 sm:p-10 lg:p-16 pb-40"
         >
             {/* High-Vibrancy Header */}
-            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-slate-900 rounded-[5rem] text-white shadow-2xl group border border-white/5">
+            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-zinc-900 rounded-[5rem] text-white shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-violet-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-[600px] h-[600px] bg-indigo-500 rounded-full blur-[200px] opacity-10 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 
@@ -140,7 +140,7 @@ const TeamMembersPage = () => {
                                 <h3 className="text-3xl font-black text-slate-950 uppercase tracking-tighter leading-[0.85] group-hover:text-indigo-600 transition-colors animate-gradient-shift">
                                     {member.name}
                                 </h3>
-                                <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em] mb-4">{member.role}</p>
+                                <p className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.4em] mb-4">{member.role}</p>
                                 <div className="pt-6 flex justify-center">
                                     <span className="text-[10px] font-black text-indigo-600 bg-indigo-50/50 px-6 py-2.5 rounded-full border border-indigo-100 uppercase tracking-widest shadow-inner group-hover:bg-indigo-600 group-hover:text-white transition-all duration-500">
                                         {DEPARTMENTS.find(d => d.id === member.departmentId)?.name || 'General Context'}
@@ -151,21 +151,21 @@ const TeamMembersPage = () => {
                             <div className="flex gap-6 w-full pt-10 border-t border-slate-50 mt-auto">
                                 <a
                                     href={`mailto:${member.email}`}
-                                    className="flex-1 h-18 flex items-center justify-center bg-slate-50 border border-slate-100 rounded-2xl text-slate-400 hover:bg-indigo-600 hover:text-white hover:border-indigo-500 hover:shadow-2xl transition-all active:scale-90"
+                                    className="flex-1 h-18 flex items-center justify-center bg-slate-50 border border-slate-100 rounded-2xl text-zinc-400 hover:bg-indigo-600 hover:text-white hover:border-indigo-500 hover:shadow-2xl transition-all active:scale-90"
                                     title="Communication Stream"
                                 >
                                     <Mail size={22} />
                                 </a>
                                 <a
                                     href={`tel:${member.phone}`}
-                                    className="flex-1 h-18 flex items-center justify-center bg-slate-50 border border-slate-100 rounded-2xl text-slate-400 hover:bg-indigo-600 hover:text-white hover:border-indigo-500 hover:shadow-2xl transition-all active:scale-90"
+                                    className="flex-1 h-18 flex items-center justify-center bg-slate-50 border border-slate-100 rounded-2xl text-zinc-400 hover:bg-indigo-600 hover:text-white hover:border-indigo-500 hover:shadow-2xl transition-all active:scale-90"
                                     title="Audio Uplink"
                                 >
                                     <Phone size={22} />
                                 </a>
                                 <button
                                     onClick={() => setActiveInfoId(activeInfoId === member.id ? null : member.id)}
-                                    className={`w-18 h-18 flex items-center justify-center rounded-2xl border transition-all active:scale-90 ${activeInfoId === member.id ? 'bg-slate-950 text-white border-slate-950' : 'bg-slate-50 border-slate-100 text-slate-400 hover:bg-slate-950 hover:text-white hover:border-slate-950'}`}
+                                    className={`w-18 h-18 flex items-center justify-center rounded-2xl border transition-all active:scale-90 ${activeInfoId === member.id ? 'bg-slate-950 text-white border-slate-950' : 'bg-slate-50 border-slate-100 text-zinc-400 hover:bg-slate-950 hover:text-white hover:border-slate-950'}`}
                                 >
                                     <MoreHorizontal size={28} />
                                 </button>
@@ -188,23 +188,23 @@ const TeamMembersPage = () => {
                                                 <h4 className="font-black text-slate-950 text-xl uppercase tracking-tighter">Identity Protocol</h4>
                                                 <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.4em]">Integrated heuristical stream</p>
                                             </div>
-                                            <button onClick={() => setActiveInfoId(null)} className="w-12 h-12 flex items-center justify-center bg-slate-50 rounded-2xl text-slate-400 hover:text-rose-600 transition-all active:scale-90"><X size={24} /></button>
+                                            <button onClick={() => setActiveInfoId(null)} className="w-12 h-12 flex items-center justify-center bg-slate-50 rounded-2xl text-zinc-400 hover:text-rose-600 transition-all active:scale-90"><X size={24} /></button>
                                         </div>
                                         <div className="space-y-8 relative z-10">
                                             <div className="space-y-2">
-                                                <p className="text-[11px] uppercase font-black text-slate-400 tracking-[0.4em]">Operational Vector</p>
+                                                <p className="text-[11px] uppercase font-black text-zinc-400 tracking-[0.4em]">Operational Vector</p>
                                                 <p className="font-black text-slate-950 break-all text-base">{member.email}</p>
                                             </div>
                                             <div className="space-y-2">
-                                                <p className="text-[11px] uppercase font-black text-slate-400 tracking-[0.4em]">Audio Identifier</p>
+                                                <p className="text-[11px] uppercase font-black text-zinc-400 tracking-[0.4em]">Audio Identifier</p>
                                                 <p className="font-black text-slate-950 text-base">{member.phone}</p>
                                             </div>
                                             <div className="space-y-2">
-                                                <p className="text-[11px] uppercase font-black text-slate-400 tracking-[0.4em]">Deployment Cluster</p>
+                                                <p className="text-[11px] uppercase font-black text-zinc-400 tracking-[0.4em]">Deployment Cluster</p>
                                                 <p className="font-black text-slate-950 text-base">{DEPARTMENTS.find(d => d.id === member.departmentId)?.name || 'General'}</p>
                                             </div>
                                             <div className="pt-4">
-                                                <p className="text-[11px] uppercase font-black text-slate-400 tracking-[0.4em] mb-4">Sync Reliability</p>
+                                                <p className="text-[11px] uppercase font-black text-zinc-400 tracking-[0.4em] mb-4">Sync Reliability</p>
                                                 <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
                                                     <motion.div initial={{ width: 0 }} animate={{ width: "94%" }} className="h-full bg-emerald-500 rounded-full" />
                                                 </div>
@@ -254,7 +254,7 @@ const TeamMembersPage = () => {
                             <form onSubmit={handleInviteSubmit} className="p-12 sm:p-16 space-y-12">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                                     <div className="space-y-4">
-                                        <label className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em] px-4">Operational Name</label>
+                                        <label className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.4em] px-4">Operational Name</label>
                                         <input
                                             type="text"
                                             required
@@ -266,7 +266,7 @@ const TeamMembersPage = () => {
                                     </div>
 
                                     <div className="space-y-4">
-                                        <label className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em] px-4">Identity Vector (Email)</label>
+                                        <label className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.4em] px-4">Identity Vector (Email)</label>
                                         <input
                                             type="email"
                                             required
@@ -280,7 +280,7 @@ const TeamMembersPage = () => {
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                                     <div className="space-y-4">
-                                        <label className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em] px-4">Permission Layer</label>
+                                        <label className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.4em] px-4">Permission Layer</label>
                                         <select
                                             value={inviteData.role}
                                             onChange={(e) => setInviteData({ ...inviteData, role: e.target.value })}
@@ -296,7 +296,7 @@ const TeamMembersPage = () => {
                                         </select>
                                     </div>
                                     <div className="space-y-4">
-                                        <label className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em] px-4">Sector Cluster</label>
+                                        <label className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.4em] px-4">Sector Cluster</label>
                                         <select
                                             value={inviteData.departmentId}
                                             onChange={(e) => setInviteData({ ...inviteData, departmentId: e.target.value })}
@@ -315,7 +315,7 @@ const TeamMembersPage = () => {
                                     <button
                                         type="button"
                                         onClick={() => setIsInviteModalOpen(false)}
-                                        className="h-22 px-12 bg-slate-50 border border-slate-100 text-slate-400 font-black uppercase tracking-[0.4em] rounded-[2rem] hover:bg-rose-50 hover:text-rose-600 hover:border-rose-100 transition-all active:scale-95 text-[11px] flex-1"
+                                        className="h-22 px-12 bg-slate-50 border border-slate-100 text-zinc-400 font-black uppercase tracking-[0.4em] rounded-[2rem] hover:bg-rose-50 hover:text-rose-600 hover:border-rose-100 transition-all active:scale-95 text-[11px] flex-1"
                                     >
                                         Terminate Protocol
                                     </button>

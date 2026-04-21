@@ -441,7 +441,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                 </div>
                 <div className="space-y-4">
                     <h2 className="text-4xl font-black text-slate-950 uppercase tracking-tighter">Archives Unlinked</h2>
-                    <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em] leading-relaxed">Select an active neural node to begin <br />secure synchronization protocol.</p>
+                    <p className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.4em] leading-relaxed">Select an active neural node to begin <br />secure synchronization protocol.</p>
                 </div>
                 <div className="flex justify-center flex-wrap gap-4">
                     <div className="px-6 py-2 bg-indigo-50 text-indigo-600 rounded-full text-[10px] font-black uppercase tracking-widest border border-indigo-100 flex items-center gap-3">
@@ -605,7 +605,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                                             ${attachments.length > 0 ? 'p-3' : ''}
                                         `}>
                                             {msg.replyTo && (
-                                                <div className={`mb-4 p-4 rounded-2xl border-l-4 text-[10px] ${isSelf ? 'bg-white/5 border-indigo-400/50 text-indigo-100' : 'bg-slate-50 border-indigo-600 text-slate-400'}`}>
+                                                <div className={`mb-4 p-4 rounded-2xl border-l-4 text-[10px] ${isSelf ? 'bg-white/5 border-indigo-400/50 text-indigo-100' : 'bg-slate-50 border-indigo-600 text-zinc-400'}`}>
                                                     <p className="font-black uppercase tracking-widest mb-1">{msg.replyTo.sender.name}</p>
                                                     <p className="opacity-60 truncate italic">{msg.replyTo.content}</p>
                                                 </div>
@@ -696,7 +696,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
             {/* Neural Uplink Input Terminal */}
             <div className="bg-white px-8 py-8 border-t border-slate-100 relative z-40">
                 <div className="max-w-5xl mx-auto flex items-end gap-6">
-                    <button onClick={handleFileSelect} className="w-16 h-16 flex items-center justify-center rounded-2xl bg-slate-50 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 border border-slate-100 transition-all active:scale-90 shadow-sm shrink-0">
+                    <button onClick={handleFileSelect} className="w-16 h-16 flex items-center justify-center rounded-2xl bg-slate-50 text-zinc-400 hover:text-indigo-600 hover:bg-indigo-50 border border-slate-100 transition-all active:scale-90 shadow-sm shrink-0">
                         <Paperclip size={24} className={isUploading ? 'animate-pulse' : ''} />
                         <input type="file" ref={fileInputRef} className="hidden" onChange={handleFileChange} />
                     </button>
@@ -755,11 +755,11 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                             <div className="w-24 h-24 bg-rose-50 rounded-[3rem] flex items-center justify-center mx-auto text-rose-600 border border-rose-100/50 shadow-2xl shadow-rose-600/10"><Trash2 size={40} /></div>
                             <div className="space-y-4">
                                 <h3 className="text-3xl font-black text-slate-950 uppercase tracking-tighter">Purge Data Unit</h3>
-                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-relaxed">This action will permanently un-sync this packet from the neural network.</p>
+                                <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest leading-relaxed">This action will permanently un-sync this packet from the neural network.</p>
                             </div>
                             <div className="grid grid-cols-1 gap-4">
                                 <ModalButton onClick={() => handleDeleteMessage(deleteTargetId, true)} label="Purge Globally" color="bg-rose-600" />
-                                <button onClick={() => setShowDeleteOptions(false)} className="py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Abort Sequence</button>
+                                <button onClick={() => setShowDeleteOptions(false)} className="py-4 text-[10px] font-black uppercase tracking-widest text-zinc-400">Abort Sequence</button>
                             </div>
                         </motion.div>
                     </motion.div>
@@ -785,7 +785,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                             <div className="p-6 border-b border-slate-100">
                                 <form onSubmit={handleSearch} className="flex gap-4">
                                     <div className="flex-1 relative">
-                                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+                                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
                                         <input
                                             type="text"
                                             value={searchQuery}
@@ -797,7 +797,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                                     <button type="submit" className="px-8 bg-indigo-600 text-white rounded-2xl font-black uppercase">
                                         Search
                                     </button>
-                                    <button type="button" onClick={() => setShowSearch(false)} className="px-4 text-slate-400">
+                                    <button type="button" onClick={() => setShowSearch(false)} className="px-4 text-zinc-400">
                                         <X size={24} />
                                     </button>
                                 </form>
@@ -809,7 +809,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                                     </div>
                                 ) : searchResults.length === 0 ? (
                                     <div className="text-center py-12">
-                                        <p className="text-slate-400 font-black uppercase tracking-wider">No results found</p>
+                                        <p className="text-zinc-400 font-black uppercase tracking-wider">No results found</p>
                                     </div>
                                 ) : (
                                     <div className="space-y-4">
@@ -820,7 +820,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                                                         <img src={`https://ui-avatars.com/api/?name=${result.sender?.name}&background=random`} alt="" className="w-full h-full" />
                                                     </div>
                                                     <span className="font-black text-slate-900">{result.sender?.name}</span>
-                                                    <span className="text-slate-400 text-sm">{new Date(result.createdAt).toLocaleString()}</span>
+                                                    <span className="text-zinc-400 text-sm">{new Date(result.createdAt).toLocaleString()}</span>
                                                 </div>
                                                 <p className="text-slate-700">{result.content}</p>
                                             </div>
@@ -843,7 +843,7 @@ const OptionButton = ({ icon: Icon, label, onClick, color = "text-slate-900" }) 
 );
 
 const BubbleAction = ({ icon: Icon, onClick }) => (
-    <button onClick={onClick} className="w-10 h-10 flex items-center justify-center bg-white/90 backdrop-blur-md rounded-xl text-slate-400 hover:text-indigo-600 hover:shadow-xl transition-all active:scale-90 border border-slate-100">
+    <button onClick={onClick} className="w-10 h-10 flex items-center justify-center bg-white/90 backdrop-blur-md rounded-xl text-zinc-400 hover:text-indigo-600 hover:shadow-xl transition-all active:scale-90 border border-slate-100">
         <Icon size={18} />
     </button>
 );

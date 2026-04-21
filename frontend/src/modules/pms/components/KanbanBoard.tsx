@@ -338,7 +338,7 @@ const KanbanColumn = ({
                     </button>
 
                     {showWipLimit && limit && !isCollapsed && (
-                        <div className={`text-xs font-medium ${currentCount >= limit ? 'text-rose-600' : 'text-slate-400'}`}>
+                        <div className={`text-xs font-medium ${currentCount >= limit ? 'text-rose-600' : 'text-zinc-400'}`}>
                             {currentCount}/{limit}
                         </div>
                     )}
@@ -363,7 +363,7 @@ const KanbanColumn = ({
                             </SortableContext>
 
                             {tasks.length === 0 && (
-                                <div className="text-center py-8 text-slate-400 text-sm">
+                                <div className="text-center py-8 text-zinc-400 text-sm">
                                     No tasks
                                 </div>
                             )}
@@ -390,7 +390,7 @@ const KanbanColumn = ({
                                         </button>
                                         <button
                                             onClick={onQuickAdd}
-                                            className="p-2 text-slate-400 hover:text-slate-600"
+                                            className="p-2 text-zinc-400 hover:text-slate-600"
                                         >
                                             <X size={16} />
                                         </button>
@@ -487,7 +487,7 @@ export const TaskCard = ({
                         onClick={(e) => e.stopPropagation()}
                         className={`opacity-0 group-hover:opacity-100 p-1 rounded hover:bg-slate-100 transition-all ${showQuickActions ? 'opacity-100' : ''}`}
                     >
-                        <MoreHorizontal size={16} className="text-slate-400" />
+                        <MoreHorizontal size={16} className="text-zinc-400" />
                     </button>
                 )}
             </div>
@@ -517,7 +517,7 @@ export const TaskCard = ({
                             style={{ width: `${progress}%` }}
                         />
                     </div>
-                    <span className="text-[10px] text-slate-400 mt-1 block">{progress}% complete</span>
+                    <span className="text-[10px] text-zinc-400 mt-1 block">{progress}% complete</span>
                 </div>
             )}
 
@@ -525,7 +525,7 @@ export const TaskCard = ({
                 <div className="flex items-center gap-3">
                     {task.dueDate && (
                         <div className={`flex items-center gap-1 text-[10px] ${
-                            new Date(task.dueDate) < new Date() ? 'text-rose-500' : 'text-slate-400'
+                            new Date(task.dueDate) < new Date() ? 'text-rose-500' : 'text-zinc-400'
                         }`}>
                             <Calendar size={12} />
                             {new Date(task.dueDate).toLocaleDateString()}

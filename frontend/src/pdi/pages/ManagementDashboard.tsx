@@ -86,7 +86,7 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
                         <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                             Hi, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400">{(userName || "Manager").split(' ')[0]}</span>
                         </h1>
-                        <p className="text-slate-400 text-lg font-medium max-w-xl leading-relaxed">
+                        <p className="text-zinc-400 text-lg font-medium max-w-xl leading-relaxed">
                             A strategic overview of Teacher Development progress across the organization.
                         </p>
                     </div>

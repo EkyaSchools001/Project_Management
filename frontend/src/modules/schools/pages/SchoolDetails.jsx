@@ -78,7 +78,7 @@ export default function SchoolDetails() {
             className="max-w-[1800px] mx-auto space-y-16 p-6 sm:p-10 lg:p-16 pb-40"
         >
             {/* High-Vibrancy Header */}
-            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-slate-900 rounded-[5rem] text-white shadow-2xl group border border-white/5">
+            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-zinc-900 rounded-[5rem] text-white shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-rose-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-[500px] h-[500px] bg-rose-500 rounded-full blur-[180px] opacity-10 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 
@@ -142,7 +142,7 @@ export default function SchoolDetails() {
                             
                             <div className="space-y-4 w-full">
                                 <h3 className="text-3xl font-black text-slate-900 uppercase tracking-tighter group-hover:text-indigo-600 transition-colors leading-none">{item.label}</h3>
-                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mb-10">{item.desc}</p>
+                                <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.4em] mb-10">{item.desc}</p>
                             </div>
 
                             <div className="w-full pt-10 border-t border-slate-50 mt-auto flex items-center justify-between">

@@ -20,7 +20,7 @@ export default function AICenterPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-[#0B0E14] p-6">
+        <div className="min-h-screen bg-[#18181b] p-6">
             <div className="max-w-7xl mx-auto">
                 <div className="flex items-center justify-between mb-8">
                     <div>

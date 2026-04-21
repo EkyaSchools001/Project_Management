@@ -87,7 +87,7 @@ const ThreadView = ({ message, roomId, onClose }) => {
                         </div>
                         <div>
                             <p className="text-xs font-black text-slate-900 uppercase">{message.sender?.name}</p>
-                            <p className="text-[9px] text-slate-400">{format(new Date(message.createdAt), 'HH:mm')}</p>
+                            <p className="text-[9px] text-zinc-400">{format(new Date(message.createdAt), 'HH:mm')}</p>
                         </div>
                     </div>
                     <p className="text-sm text-slate-700 font-medium">{message.content}</p>
@@ -101,7 +101,7 @@ const ThreadView = ({ message, roomId, onClose }) => {
                     </div>
                 ) : threadMessages.length === 0 ? (
                     <div className="text-center py-12">
-                        <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest">No replies yet</p>
+                        <p className="text-[10px] text-zinc-400 font-black uppercase tracking-widest">No replies yet</p>
                     </div>
                 ) : (
                     <div className="space-y-4">
@@ -120,7 +120,7 @@ const ThreadView = ({ message, roomId, onClose }) => {
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2 mb-1">
                                             <span className="text-xs font-black text-slate-900 uppercase">{reply.sender?.name}</span>
-                                            <span className="text-[9px] text-slate-400">{format(new Date(reply.createdAt), 'HH:mm')}</span>
+                                            <span className="text-[9px] text-zinc-400">{format(new Date(reply.createdAt), 'HH:mm')}</span>
                                         </div>
                                         <p className="text-sm text-slate-700">{reply.content}</p>
                                     </div>

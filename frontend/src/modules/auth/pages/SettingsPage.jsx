@@ -227,7 +227,7 @@ export default function SettingsPage() {
                                         type={showCurrentPassword ? 'text' : 'password'}
                                         value={passwordData.currentPassword}
                                         onChange={(e) => setPasswordData(prev => ({ ...prev, currentPassword: e.target.value }))}
-                                        className="w-full px-4 h-12 bg-[#0B0E14] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none pr-12"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none pr-12"
                                         required
                                     />
                                     <button
@@ -249,7 +249,7 @@ export default function SettingsPage() {
                                         type={showNewPassword ? 'text' : 'password'}
                                         value={passwordData.newPassword}
                                         onChange={(e) => setPasswordData(prev => ({ ...prev, newPassword: e.target.value }))}
-                                        className="w-full px-4 h-12 bg-[#0B0E14] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none pr-12"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none pr-12"
                                         required
                                     />
                                     <button
@@ -270,7 +270,7 @@ export default function SettingsPage() {
                                     type="password"
                                     value={passwordData.confirmPassword}
                                     onChange={(e) => setPasswordData(prev => ({ ...prev, confirmPassword: e.target.value }))}
-                                    className="w-full px-4 h-12 bg-[#0B0E14] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none"
+                                    className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none"
                                     required
                                 />
                             </div>
@@ -352,7 +352,7 @@ export default function SettingsPage() {
                                             type="text"
                                             value={twoFactorCode}
                                             onChange={(e) => setTwoFactorCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                                            className="w-full px-4 h-12 bg-[#0B0E14] border border-white/5 rounded-xl text-white text-center text-xl tracking-widest focus:border-[#BAFF00]/50 outline-none"
+                                            className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white text-center text-xl tracking-widest focus:border-[#BAFF00]/50 outline-none"
                                             placeholder="000000"
                                             maxLength={6}
                                             required
@@ -410,7 +410,7 @@ export default function SettingsPage() {
                                             type="text"
                                             value={twoFactorCode}
                                             onChange={(e) => setTwoFactorCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                                            className="w-full px-4 h-12 bg-[#0B0E14] border border-white/5 rounded-xl text-white text-center text-xl tracking-widest focus:border-[#BAFF00]/50 outline-none"
+                                            className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white text-center text-xl tracking-widest focus:border-[#BAFF00]/50 outline-none"
                                             placeholder="000000"
                                             maxLength={6}
                                             required
@@ -463,7 +463,7 @@ export default function SettingsPage() {
                             {sessions.map((session) => (
                                 <div
                                     key={session.id}
-                                    className="flex items-center justify-between p-4 bg-[#0B0E14] rounded-xl"
+                                    className="flex items-center justify-between p-4 bg-[#18181b] rounded-xl"
                                 >
                                     <div className="flex items-center gap-4">
                                         <div className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center">

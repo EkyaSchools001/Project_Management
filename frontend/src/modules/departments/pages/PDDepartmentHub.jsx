@@ -35,7 +35,7 @@ const PDHubLanding = ({ role, navigate }) => (
         className="max-w-[1800px] mx-auto space-y-16 p-6 sm:p-10 lg:p-16 pb-40"
     >
         {/* Header */}
-        <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-slate-900 rounded-[5rem] text-white shadow-2xl group border border-white/5">
+        <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-zinc-900 rounded-[5rem] text-white shadow-2xl group border border-white/5">
             <div className="absolute inset-0 bg-gradient-to-br from-[#BAFF00]/10 via-indigo-600/10 to-transparent pointer-events-none" />
             <div className="absolute -right-20 -top-20 w-[600px] h-[600px] bg-[#BAFF00] rounded-full blur-[250px] opacity-5 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
 
@@ -104,7 +104,7 @@ const PDHubLanding = ({ role, navigate }) => (
                 { label: 'Completion Rate', value: '87%', icon: Zap, color: 'from-amber-400/20 to-orange-600/10', text: 'text-amber-400' },
             ].map((stat, i) => (
                 <motion.div key={i} variants={itemVariants}>
-                    <div className="p-12 flex flex-col gap-10 group cursor-pointer hover:shadow-[0_45px_100px_rgba(0,0,0,0.4)] hover:border-[#BAFF00]/30 transition-all duration-700 bg-slate-900 border border-white/5 rounded-[4rem] relative overflow-hidden">
+                    <div className="p-12 flex flex-col gap-10 group cursor-pointer hover:shadow-[0_45px_100px_rgba(0,0,0,0.4)] hover:border-[#BAFF00]/30 transition-all duration-700 bg-zinc-900 border border-white/5 rounded-[4rem] relative overflow-hidden">
                         <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-30 group-hover:opacity-60 transition-opacity duration-700`} />
                         <div className="flex items-center justify-between relative z-10">
                             <div className={`w-20 h-20 rounded-[2.5rem] flex items-center justify-center bg-white/5 shadow-inner group-hover:scale-110 transition-all duration-700 ${stat.text}`}>
@@ -123,7 +123,7 @@ const PDHubLanding = ({ role, navigate }) => (
 
         {/* Enter Hub CTA */}
         <motion.div variants={itemVariants}>
-            <div className="relative overflow-hidden bg-slate-900 border border-white/5 rounded-[4rem] p-16 sm:p-24 flex flex-col sm:flex-row items-center justify-between gap-12 group shadow-2xl">
+            <div className="relative overflow-hidden bg-zinc-900 border border-white/5 rounded-[4rem] p-16 sm:p-24 flex flex-col sm:flex-row items-center justify-between gap-12 group shadow-2xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#BAFF00]/5 via-indigo-600/5 to-transparent pointer-events-none" />
                 <div className="absolute -left-20 -bottom-20 w-96 h-96 bg-[#BAFF00] rounded-full blur-[200px] opacity-5 pointer-events-none" />
                 <div className="space-y-6 relative z-10">
@@ -189,7 +189,7 @@ const PDDepartmentHub = () => {
     );
 
     return (
-        <div className="min-h-screen bg-[#0B0E14] text-white">
+        <div className="min-h-screen bg-[#18181b] text-white">
             <Routes>
                 {/* Landing hub page */}
                 <Route index element={<PDHubLanding role={role} navigate={navigate} />} />

@@ -49,7 +49,7 @@ export default function ForgotPasswordPage() {
 
     if (success) {
         return (
-            <div className="min-h-screen w-full flex items-center justify-center bg-[#0B0E14] p-4 relative overflow-hidden">
+            <div className="min-h-screen w-full flex items-center justify-center bg-[#18181b] p-4 relative overflow-hidden">
                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/grid-me.png')] opacity-[0.03] pointer-events-none" />
                 <div className="absolute -top-1/4 -left-1/4 w-[100%] h-[100%] bg-[#BAFF00]/5 rounded-full blur-[150px] pointer-events-none" />
 
@@ -97,7 +97,7 @@ export default function ForgotPasswordPage() {
     }
 
     return (
-        <div className="min-h-screen w-full flex items-center justify-center bg-[#0B0E14] p-4 relative overflow-hidden">
+        <div className="min-h-screen w-full flex items-center justify-center bg-[#18181b] p-4 relative overflow-hidden">
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/grid-me.png')] opacity-[0.03] pointer-events-none" />
             <div className="absolute -top-1/4 -left-1/4 w-[100%] h-[100%] bg-[#BAFF00]/5 rounded-full blur-[150px] pointer-events-none" />
 
@@ -120,7 +120,7 @@ export default function ForgotPasswordPage() {
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                        className="w-16 h-16 mx-auto mb-6 bg-[#0B0E14] border border-white/10 rounded-2xl flex items-center justify-center"
+                        className="w-16 h-16 mx-auto mb-6 bg-[#18181b] border border-white/10 rounded-2xl flex items-center justify-center"
                     >
                         <Lock size={28} className="text-[#BAFF00]" />
                     </motion.div>
@@ -161,7 +161,7 @@ export default function ForgotPasswordPage() {
                                         if (validationError) validateEmail(e.target.value);
                                     }}
                                     onBlur={() => validateEmail(email)}
-                                    className={`w-full px-6 h-14 bg-[#0B0E14] rounded-xl border ${
+                                    className={`w-full px-6 h-14 bg-[#18181b] rounded-xl border ${
                                         validationError ? 'border-red-500/50' : 'border-white/5 focus:border-[#BAFF00]/50'
                                     } outline-none transition-all text-white font-medium placeholder:text-white/20`}
                                     placeholder="you@example.com"

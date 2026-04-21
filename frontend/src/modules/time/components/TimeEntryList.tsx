@@ -91,7 +91,7 @@ export function TimeEntryList({ filters = {}, onEdit, onDelete, className }) {
             </div>
 
             {showFilters && (
-                <div className="grid grid-cols-2 gap-3 p-4 bg-[#0B0E14] rounded-xl border border-white/5">
+                <div className="grid grid-cols-2 gap-3 p-4 bg-[#18181b] rounded-xl border border-white/5">
                     <div>
                         <label className="text-[10px] uppercase tracking-widest text-white/40 mb-1 block">
                             Start Date
@@ -132,7 +132,7 @@ export function TimeEntryList({ filters = {}, onEdit, onDelete, className }) {
                 </div>
             )}
 
-            <div className="bg-[#0B0E14] rounded-xl border border-white/5 overflow-hidden">
+            <div className="bg-[#18181b] rounded-xl border border-white/5 overflow-hidden">
                 <div className="flex items-center justify-between px-4 py-3 border-b border-white/5">
                     <span className="text-white/60 text-sm">
                         {entries.length} entries

@@ -38,7 +38,7 @@ export function DashboardLayout({ children, role, userName }: DashboardLayoutPro
   const mainOffset = "ml-0";
 
   return (
-    <div className="min-h-screen bg-[#0B0E14] text-white flex flex-col md:flex-row overflow-x-hidden font-sans">
+    <div className="min-h-screen bg-[#18181b] text-white flex flex-col md:flex-row overflow-x-hidden font-sans">
       
       {/* Mobile Header */}
       <div className="md:hidden flex items-center justify-between p-4 border-b border-white/10 bg-[#0f0f0f] h-16 sticky top-0 z-50">
@@ -90,7 +90,7 @@ export function DashboardLayout({ children, role, userName }: DashboardLayoutPro
       {/* Content Main */}
       <main className={cn("flex-1 transition-all duration-300 min-h-screen flex flex-col relative", mainOffset)}>
         {!isMobile && (
-          <header className="h-16 border-b border-white/5 bg-[#0B0E14]/80 backdrop-blur-xl flex items-center justify-between px-8 sticky top-0 z-40 w-full gap-8">
+          <header className="h-16 border-b border-white/5 bg-[#18181b]/80 backdrop-blur-xl flex items-center justify-between px-8 sticky top-0 z-40 w-full gap-8">
             <div className="flex items-center gap-3 font-semibold text-[11px] tracking-tight text-white/60">
               <div className="w-2 h-2 rounded-full bg-[#BAFF00] animate-pulse" />
               <span>Project Ecosystem // Active Hub</span>

@@ -129,7 +129,7 @@ export default function ProfilePage() {
                                         name="firstName"
                                         value={formData.firstName}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#0B0E14] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
                                     />
                                 </div>
 
@@ -142,7 +142,7 @@ export default function ProfilePage() {
                                         name="lastName"
                                         value={formData.lastName}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#0B0E14] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
                                     />
                                 </div>
 
@@ -170,7 +170,7 @@ export default function ProfilePage() {
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#0B0E14] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
                                         placeholder="+1 (555) 000-0000"
                                     />
                                 </div>
@@ -184,7 +184,7 @@ export default function ProfilePage() {
                                         value={formData.bio}
                                         onChange={handleChange}
                                         rows={3}
-                                        className="w-full px-4 py-3 bg-[#0B0E14] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all resize-none"
+                                        className="w-full px-4 py-3 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all resize-none"
                                         placeholder="Tell us about yourself..."
                                     />
                                 </div>
@@ -207,7 +207,7 @@ export default function ProfilePage() {
                                         name="address"
                                         value={formData.address}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#0B0E14] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
                                         placeholder="123 Main Street"
                                     />
                                 </div>
@@ -221,7 +221,7 @@ export default function ProfilePage() {
                                         name="city"
                                         value={formData.city}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#0B0E14] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
                                     />
                                 </div>
 
@@ -234,7 +234,7 @@ export default function ProfilePage() {
                                         name="country"
                                         value={formData.country}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#0B0E14] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
                                     />
                                 </div>
 
@@ -247,7 +247,7 @@ export default function ProfilePage() {
                                         name="postalCode"
                                         value={formData.postalCode}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#0B0E14] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
                                     />
                                 </div>
                             </div>
@@ -268,7 +268,7 @@ export default function ProfilePage() {
                                         name="timezone"
                                         value={formData.timezone}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#0B0E14] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
                                     >
                                         {timezones.map(tz => (
                                             <option key={tz.value} value={tz.value}>{tz.label}</option>
@@ -284,7 +284,7 @@ export default function ProfilePage() {
                                         name="language"
                                         value={formData.language}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#0B0E14] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
                                     >
                                         {languages.map(lang => (
                                             <option key={lang.value} value={lang.value}>{lang.label}</option>
@@ -310,7 +310,7 @@ export default function ProfilePage() {
                                         name="emailNotifications"
                                         checked={formData.emailNotifications}
                                         onChange={handleChange}
-                                        className="w-5 h-5 rounded bg-[#0B0E14] border border-white/10 text-[#BAFF00] focus:ring-[#BAFF00] focus:ring-offset-0 cursor-pointer"
+                                        className="w-5 h-5 rounded bg-[#18181b] border border-white/10 text-[#BAFF00] focus:ring-[#BAFF00] focus:ring-offset-0 cursor-pointer"
                                     />
                                 </label>
 
@@ -321,7 +321,7 @@ export default function ProfilePage() {
                                         name="pushNotifications"
                                         checked={formData.pushNotifications}
                                         onChange={handleChange}
-                                        className="w-5 h-5 rounded bg-[#0B0E14] border border-white/10 text-[#BAFF00] focus:ring-[#BAFF00] focus:ring-offset-0 cursor-pointer"
+                                        className="w-5 h-5 rounded bg-[#18181b] border border-white/10 text-[#BAFF00] focus:ring-[#BAFF00] focus:ring-offset-0 cursor-pointer"
                                     />
                                 </label>
                             </div>
@@ -335,7 +335,7 @@ export default function ProfilePage() {
 
                             <div className="text-center">
                                 <div className="relative inline-block mb-4">
-                                    <div className="w-24 h-24 rounded-full bg-[#0B0E14] border-2 border-[#BAFF00]/20 overflow-hidden flex items-center justify-center">
+                                    <div className="w-24 h-24 rounded-full bg-[#18181b] border-2 border-[#BAFF00]/20 overflow-hidden flex items-center justify-center">
                                         {avatarUrl ? (
                                             <img src={avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
                                         ) : (

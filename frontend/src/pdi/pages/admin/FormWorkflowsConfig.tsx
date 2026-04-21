@@ -216,7 +216,7 @@ export function FormWorkflowsConfig() {
                                                                         <HoverCardTrigger asChild>
                                                                             <SelectItem value={t.id} className="pl-4 pr-10 cursor-pointer relative data-[highlighted]:bg-green-50">
                                                                                 <span className="flex-1 text-left block w-full pr-6 truncate">{t.name}</span>
-                                                                                <Info className="w-4 h-4 text-slate-400 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+                                                                                <Info className="w-4 h-4 text-zinc-400 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
                                                                             </SelectItem>
                                                                         </HoverCardTrigger>
                                                                         <HoverCardContent side="right" align="start" sideOffset={10} className="w-[320px] max-w-[90vw] z-[100] max-h-[350px] overflow-y-auto pointer-events-none shadow-2xl border-green-200 bg-white/95 backdrop-blur-sm">
@@ -232,7 +232,7 @@ export function FormWorkflowsConfig() {
                                                                                         <span className="break-words mt-0.5">{f.label || f.id || 'Unnamed field'}</span>
                                                                                     </li>
                                                                                 ))}
-                                                                                {fields.length === 0 && <li className="text-slate-400 italic text-center py-4 bg-slate-50 rounded-md">No fields defined for this template.</li>}
+                                                                                {fields.length === 0 && <li className="text-zinc-400 italic text-center py-4 bg-slate-50 rounded-md">No fields defined for this template.</li>}
                                                                             </ul>
                                                                         </HoverCardContent>
                                                                     </HoverCard>

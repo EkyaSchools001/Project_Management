@@ -94,7 +94,7 @@ export default function ResetPasswordPage() {
 
     if (!token) {
         return (
-            <div className="min-h-screen w-full flex items-center justify-center bg-[#0B0E14] p-4">
+            <div className="min-h-screen w-full flex items-center justify-center bg-[#18181b] p-4">
                 <Card className="p-10 max-w-md text-center bg-[#161B22] border-white/5 rounded-3xl">
                     <AlertCircle size={48} className="text-red-400 mx-auto mb-4" />
                     <h2 className="text-2xl font-bold text-white mb-2">Invalid Link</h2>
@@ -114,7 +114,7 @@ export default function ResetPasswordPage() {
 
     if (success) {
         return (
-            <div className="min-h-screen w-full flex items-center justify-center bg-[#0B0E14] p-4 relative overflow-hidden">
+            <div className="min-h-screen w-full flex items-center justify-center bg-[#18181b] p-4 relative overflow-hidden">
                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/grid-me.png')] opacity-[0.03] pointer-events-none" />
 
                 <motion.div
@@ -155,7 +155,7 @@ export default function ResetPasswordPage() {
     }
 
     return (
-        <div className="min-h-screen w-full flex items-center justify-center bg-[#0B0E14] p-4 relative overflow-hidden">
+        <div className="min-h-screen w-full flex items-center justify-center bg-[#18181b] p-4 relative overflow-hidden">
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/grid-me.png')] opacity-[0.03] pointer-events-none" />
             <div className="absolute -top-1/4 -left-1/4 w-[100%] h-[100%] bg-[#BAFF00]/5 rounded-full blur-[150px] pointer-events-none" />
 
@@ -178,7 +178,7 @@ export default function ResetPasswordPage() {
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                        className="w-16 h-16 mx-auto mb-6 bg-[#0B0E14] border border-white/10 rounded-2xl flex items-center justify-center"
+                        className="w-16 h-16 mx-auto mb-6 bg-[#18181b] border border-white/10 rounded-2xl flex items-center justify-center"
                     >
                         <Lock size={28} className="text-[#BAFF00]" />
                     </motion.div>
@@ -215,7 +215,7 @@ export default function ResetPasswordPage() {
                                     type={showPassword ? 'text' : 'password'}
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full px-6 h-14 bg-[#0B0E14] rounded-xl border border-white/5 focus:border-[#BAFF00]/50 outline-none transition-all text-white font-medium pr-12"
+                                    className="w-full px-6 h-14 bg-[#18181b] rounded-xl border border-white/5 focus:border-[#BAFF00]/50 outline-none transition-all text-white font-medium pr-12"
                                     placeholder="Enter new password"
                                     disabled={isLoading}
                                 />
@@ -256,7 +256,7 @@ export default function ResetPasswordPage() {
                                     type={showConfirmPassword ? 'text' : 'password'}
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
-                                    className={`w-full px-6 h-14 bg-[#0B0E14] rounded-xl border ${
+                                    className={`w-full px-6 h-14 bg-[#18181b] rounded-xl border ${
                                         confirmPassword && password !== confirmPassword ? 'border-red-500/50' : 'border-white/5 focus:border-[#BAFF00]/50'
                                     } outline-none transition-all text-white font-medium pr-12`}
                                     placeholder="Confirm new password"

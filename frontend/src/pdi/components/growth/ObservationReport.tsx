@@ -48,7 +48,7 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
                                         <Users className="w-4 h-4 text-[#B69D74]" />
                                     </div>
                                     <div className="flex flex-col">
-                                        <span className="text-[10px] font-bold text-slate-400 capitalize tracking-wider">Observer</span>
+                                        <span className="text-[10px] font-bold text-zinc-400 capitalize tracking-wider">Observer</span>
                                         <span className="font-bold text-slate-700">{data.observerName || "N/A"}</span>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
                                         <Calendar className="w-4 h-4 text-[#1F2839]" />
                                     </div>
                                     <div className="flex flex-col">
-                                        <span className="text-[10px] font-bold text-slate-400 capitalize tracking-wider">Date</span>
+                                        <span className="text-[10px] font-bold text-zinc-400 capitalize tracking-wider">Date</span>
                                         <span className="font-bold text-slate-700">{data.observationDate || data.date || "N/A"}</span>
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
                                         <MapPin className="w-4 h-4 text-[#B69D74]" />
                                     </div>
                                     <div className="flex flex-col">
-                                        <span className="text-[10px] font-bold text-slate-400 capitalize tracking-wider">Campus</span>
+                                        <span className="text-[10px] font-bold text-zinc-400 capitalize tracking-wider">Campus</span>
                                         <span className="font-bold text-slate-700">{data.campus || "N/A"}</span>
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
                                         <BookOpen className="w-4 h-4 text-[#1F2839]" />
                                     </div>
                                     <div className="flex flex-col">
-                                        <span className="text-[10px] font-bold text-slate-400 capitalize tracking-wider">Context</span>
+                                        <span className="text-[10px] font-bold text-zinc-400 capitalize tracking-wider">Context</span>
                                         <span className="font-bold text-slate-700 line-clamp-1">{data.grade || "N/A"} - {data.section || "N/A"} ({data.learningArea || data.block || "N/A"})</span>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
                         </div>
 
                         <div className="flex flex-col items-center justify-center bg-slate-50 rounded-[2.5rem] p-10 border border-slate-100 min-w-[240px] shadow-inner">
-                            <span className="text-[10px] font-black text-slate-400 capitalize tracking-[0.3em] mb-4">Final Rating</span>
+                            <span className="text-[10px] font-black text-zinc-400 capitalize tracking-[0.3em] mb-4">Final Rating</span>
                             <div className={cn(
                                 "text-7xl font-black rounded-3xl px-8 py-4 shadow-2xl transition-transform hover:scale-105",
                                 getRatingColor(overallRating)
@@ -110,7 +110,7 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
                         </div>
                         <div>
                             <CardTitle className="text-xl font-black text-slate-800 tracking-tight">Key Strengths</CardTitle>
-                            <p className="text-xs text-slate-400 font-bold capitalize tracking-wider">Areas of Excellence</p>
+                            <p className="text-xs text-zinc-400 font-bold capitalize tracking-wider">Areas of Excellence</p>
                         </div>
                     </CardHeader>
                     <CardContent className="pt-4">
@@ -130,7 +130,7 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
                         </div>
                         <div>
                             <CardTitle className="text-xl font-black text-slate-800 tracking-tight">Growth Areas</CardTitle>
-                            <p className="text-xs text-slate-400 font-bold capitalize tracking-wider">Opportunity for Growth</p>
+                            <p className="text-xs text-zinc-400 font-bold capitalize tracking-wider">Opportunity for Growth</p>
                         </div>
                     </CardHeader>
                     <CardContent className="pt-4">
@@ -152,7 +152,7 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
                         </div>
                         <div>
                             <CardTitle className="text-2xl font-black text-slate-800 tracking-tight">Observation Matrix</CardTitle>
-                            <p className="text-xs text-slate-400 font-bold capitalize tracking-widest mt-1">Detailed Indicator Performance</p>
+                            <p className="text-xs text-zinc-400 font-bold capitalize tracking-widest mt-1">Detailed Indicator Performance</p>
                         </div>
                     </div>
                 </CardHeader>
@@ -178,8 +178,8 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
                                 {domain.evidence && (
                                     <div className="mt-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 shadow-inner">
                                         <div className="flex items-center gap-2 mb-2">
-                                            <MessageSquare className="w-3.5 h-3.5 text-slate-400" />
-                                            <span className="text-[10px] font-black text-slate-400 capitalize tracking-widest">Observer Evidence</span>
+                                            <MessageSquare className="w-3.5 h-3.5 text-zinc-400" />
+                                            <span className="text-[10px] font-black text-zinc-400 capitalize tracking-widest">Observer Evidence</span>
                                         </div>
                                         <p className="text-sm text-slate-600 leading-relaxed italic">&ldquo;{domain.evidence}&rdquo;</p>
                                     </div>
@@ -217,8 +217,8 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
                                     {evidence && (
                                         <div className="mt-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 shadow-inner">
                                             <div className="flex items-center gap-2 mb-2">
-                                                <MessageSquare className="w-3.5 h-3.5 text-slate-400" />
-                                                <span className="text-[10px] font-black text-slate-400 capitalize tracking-widest">Observer Evidence</span>
+                                                <MessageSquare className="w-3.5 h-3.5 text-zinc-400" />
+                                                <span className="text-[10px] font-black text-zinc-400 capitalize tracking-widest">Observer Evidence</span>
                                             </div>
                                             <p className="text-sm text-slate-600 leading-relaxed italic">&ldquo;{evidence}&rdquo;</p>
                                         </div>
@@ -247,7 +247,7 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
                                     </div>
                                 ))
                             ) : (
-                                <div className="text-xs text-slate-400 italic flex items-center gap-2">
+                                <div className="text-xs text-zinc-400 italic flex items-center gap-2">
                                     <AlertCircle className="w-3.5 h-3.5" /> No specific tools or routines logged.
                                 </div>
                             )}
@@ -270,7 +270,7 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
                                     </div>
                                 ))
                             ) : (
-                                <div className="text-xs text-slate-400 italic flex items-center gap-2">
+                                <div className="text-xs text-zinc-400 italic flex items-center gap-2">
                                     <AlertCircle className="w-3.5 h-3.5" /> No focus tags assigned.
                                 </div>
                             )}
@@ -290,7 +290,7 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
                         </div>
                         <div className="h-px w-8 bg-slate-200" />
                     </div>
-                    <p className="max-w-md text-slate-400 text-xs leading-relaxed font-medium">
+                    <p className="max-w-md text-zinc-400 text-xs leading-relaxed font-medium">
                         This comprehensive dashboard reflects the finalized insights from the session on {data.observationDate || data.date || "the observation date"}.
                     </p>
                 </div>

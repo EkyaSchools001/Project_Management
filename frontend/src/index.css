@@ -25,58 +25,95 @@
   --radius-lg:                 16px;
   --radius-md:                 12px;
   --radius-sm:                 8px;
+
+  /* Color overrides to eliminate blue and slate/black themes */
+  --color-blue-50: var(--color-emerald-50);
+  --color-blue-100: var(--color-emerald-100);
+  --color-blue-200: var(--color-emerald-200);
+  --color-blue-300: var(--color-emerald-300);
+  --color-blue-400: var(--color-emerald-400);
+  --color-blue-500: var(--color-emerald-500);
+  --color-blue-600: var(--color-emerald-600);
+  --color-blue-700: var(--color-emerald-700);
+  --color-blue-800: var(--color-emerald-800);
+  --color-blue-900: var(--color-emerald-900);
+  --color-blue-950: var(--color-emerald-950);
+
+  --color-indigo-50: var(--color-teal-50);
+  --color-indigo-100: var(--color-teal-100);
+  --color-indigo-200: var(--color-teal-200);
+  --color-indigo-300: var(--color-teal-300);
+  --color-indigo-400: var(--color-teal-400);
+  --color-indigo-500: var(--color-teal-500);
+  --color-indigo-600: var(--color-teal-600);
+  --color-indigo-700: var(--color-teal-700);
+  --color-indigo-800: var(--color-teal-800);
+  --color-indigo-900: var(--color-teal-900);
+  --color-indigo-950: var(--color-teal-950);
+
+  --color-slate-50: var(--color-zinc-50);
+  --color-slate-100: var(--color-zinc-100);
+  --color-slate-200: var(--color-zinc-200);
+  --color-slate-300: var(--color-zinc-300);
+  --color-slate-400: var(--color-zinc-400);
+  --color-slate-500: var(--color-zinc-500);
+  --color-slate-600: var(--color-zinc-600);
+  --color-slate-700: var(--color-zinc-700);
+  --color-slate-800: var(--color-zinc-800);
+  --color-slate-900: var(--color-zinc-900);
+  --color-slate-950: var(--color-zinc-950);
 }
 
 /* ─── DARK MODE (DEFAULT) ────────────────────────────────────────────────────── */
 :root {
-  /* Core backgrounds — deep navy/slate system */
-  --background:         222 25% 7%;       /* #0B0E14 */
-  --foreground:         215 25% 95%;      /* near-white */
+  /* Core backgrounds — slate/zinc grey */
+  --background:         240 5% 10%;       /* Charcoal */
+  --foreground:         0 0% 96%;
 
-  --card:               224 22% 10%;      /* #111520 */
-  --card-foreground:    215 25% 95%;
+  --card:               240 5% 13%;
+  --card-foreground:    0 0% 96%;
 
-  --popover:            224 22% 10%;
-  --popover-foreground: 215 25% 95%;
+  --popover:            240 5% 13%;
+  --popover-foreground: 0 0% 96%;
 
-  /* Primary — Indigo */
-  --primary:            239 84% 67%;      /* #6366f1 */
+  /* Primary — Professional Emerald Green */
+  --primary:            152 76% 40%;
   --primary-foreground: 0 0% 100%;
 
-  /* Secondary — subtle slate */
-  --secondary:          224 20% 15%;
-  --secondary-foreground: 215 25% 80%;
+  /* Secondary — subtle zinc */
+  --secondary:          240 5% 18%;
+  --secondary-foreground: 0 0% 86%;
 
   /* Muted */
-  --muted:              224 18% 14%;
-  --muted-foreground:   215 16% 50%;
+  --muted:              240 5% 18%;
+  --muted-foreground:   240 5% 65%;
 
-  /* Accent — same as secondary for consistency */
-  --accent:             224 20% 16%;
-  --accent-foreground:  215 25% 90%;
+  /* Accent */
+  --accent:             152 76% 40%;
+  --accent-foreground:  0 0% 100%;
 
   /* Danger */
-  --destructive:        0 72% 51%;
+  --destructive:        0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
   /* Borders */
-  --border:             223 18% 16%;
-  --input:              223 18% 16%;
-  --ring:               239 84% 67%;
+  --border:             240 5% 22%;
+  --input:              240 5% 22%;
+  --ring:               152 76% 40%;
   --radius:             1rem;
 
   /* Sidebar */
-  --sidebar-background: 222 28% 8%;
-  --sidebar-foreground: 215 20% 70%;
-  --sidebar-primary:    239 84% 67%;
+  --sidebar-background: 240 5% 11%;
+  --sidebar-foreground: 240 5% 75%;
+  --sidebar-primary:    152 76% 40%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent:     224 20% 13%;
-  --sidebar-accent-foreground: 215 20% 90%;
-  --sidebar-border:     223 18% 14%;
-  --sidebar-ring:       239 84% 67%;
+  --sidebar-accent:     240 5% 16%;
+  --sidebar-accent-foreground: 0 0% 96%;
+  --sidebar-border:     240 5% 16%;
+  --sidebar-ring:       152 76% 40%;
 
   /* Custom semantic colors */
-  --success:            160 84% 39%;
+  --success:            152 76% 40%;
   --warning:            38 92% 50%;
   --info:               199 89% 48%;
 }
@@ -105,7 +142,7 @@ code, pre, .mono {
 }
 
 ::selection {
-  background-color: hsla(239, 84%, 67%, 0.25);
+  background-color: hsla(152, 76%, 40%, 0.25);
   color: hsl(215, 25%, 95%);
 }
 
@@ -127,8 +164,8 @@ code, pre, .mono {
 }
 
 .dashboard-card:hover {
-  border-color: hsla(239, 84%, 67%, 0.3);
-  box-shadow: 0 0 20px hsla(239, 84%, 67%, 0.08);
+  border-color: hsla(152, 76%, 40%, 0.3);
+  box-shadow: 0 0 20px hsla(152, 76%, 40%, 0.08);
   transform: translateY(-1px);
 }
 
@@ -161,9 +198,9 @@ code, pre, .mono {
 }
 
 .nav-item.active {
-  background: linear-gradient(135deg, hsla(239, 84%, 67%, 0.2), hsla(239, 84%, 67%, 0.08));
+  background: linear-gradient(135deg, hsla(152, 76%, 40%, 0.2), hsla(152, 76%, 40%, 0.08));
   color: hsl(var(--primary));
-  border: 1px solid hsla(239, 84%, 67%, 0.2);
+  border: 1px solid hsla(152, 76%, 40%, 0.2);
 }
 
 .nav-item.active svg { color: hsl(var(--primary)); }
@@ -180,7 +217,7 @@ code, pre, .mono {
   text-transform: uppercase;
 }
 
-.badge-blue    { background: hsla(239, 84%, 67%, 0.12); color: hsl(239, 84%, 72%); border: 1px solid hsla(239, 84%, 67%, 0.2); }
+.badge-blue    { background: hsla(152, 76%, 40%, 0.12); color: hsl(152, 76%, 48%); border: 1px solid hsla(152, 76%, 40%, 0.2); }
 .badge-green   { background: hsla(160, 84%, 39%, 0.12); color: hsl(160, 70%, 55%); border: 1px solid hsla(160, 84%, 39%, 0.2); }
 .badge-amber   { background: hsla(38, 92%, 50%, 0.12);  color: hsl(38, 92%, 65%);  border: 1px solid hsla(38, 92%, 50%, 0.2); }
 .badge-red     { background: hsla(0, 72%, 51%, 0.12);   color: hsl(0, 80%, 65%);   border: 1px solid hsla(0, 72%, 51%, 0.2); }
@@ -195,7 +232,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, hsl(239, 84%, 70%), hsl(284, 80%, 65%));
+  background: linear-gradient(135deg, hsl(152, 76%, 45%), hsl(284, 80%, 65%));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -210,7 +247,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ─── BUTTONS ────────────────────────────────────────────────────────────────── */
 .btn-primary {
-  background: linear-gradient(135deg, hsl(239, 84%, 67%), hsl(250, 80%, 60%));
+  background: linear-gradient(135deg, hsl(152, 76%, 40%), hsl(250, 80%, 60%));
   color: white;
   padding: 0.625rem 1.25rem;
   border-radius: var(--radius-md);
@@ -219,12 +256,12 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.2s ease;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 14px hsla(239, 84%, 67%, 0.25);
+  box-shadow: 0 4px 14px hsla(152, 76%, 40%, 0.25);
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px hsla(239, 84%, 67%, 0.35);
+  box-shadow: 0 6px 20px hsla(152, 76%, 40%, 0.35);
 }
 
 .btn-primary:active { transform: translateY(0); }
@@ -243,7 +280,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-secondary:hover {
   background: hsl(var(--accent));
-  border-color: hsla(239, 84%, 67%, 0.2);
+  border-color: hsla(152, 76%, 40%, 0.2);
 }
 
 /* ─── INPUTS ─────────────────────────────────────────────────────────────────── */
@@ -258,7 +295,7 @@ input, select, textarea {
 input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: hsl(var(--primary));
-  box-shadow: 0 0 0 3px hsla(239, 84%, 67%, 0.12);
+  box-shadow: 0 0 0 3px hsla(152, 76%, 40%, 0.12);
 }
 
 input::placeholder, textarea::placeholder {
@@ -315,8 +352,8 @@ input::placeholder, textarea::placeholder {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 8px hsla(239, 84%, 67%, 0.2); }
-  50%       { box-shadow: 0 0 20px hsla(239, 84%, 67%, 0.5); }
+  0%, 100% { box-shadow: 0 0 8px hsla(152, 76%, 40%, 0.2); }
+  50%       { box-shadow: 0 0 20px hsla(152, 76%, 40%, 0.5); }
 }
 
 @keyframes float {
@@ -356,7 +393,7 @@ input::placeholder, textarea::placeholder {
 }
 
 .stat-card:hover {
-  border-color: hsla(239, 84%, 67%, 0.25);
+  border-color: hsla(152, 76%, 40%, 0.25);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.2);
 }
@@ -371,7 +408,7 @@ input::placeholder, textarea::placeholder {
   flex-shrink: 0;
 }
 
-.stat-icon.indigo  { background: hsla(239, 84%, 67%, 0.12); color: hsl(239, 84%, 70%); }
+.stat-icon.indigo  { background: hsla(152, 76%, 40%, 0.12); color: hsl(152, 76%, 45%); }
 .stat-icon.emerald { background: hsla(160, 84%, 39%, 0.12); color: hsl(160, 70%, 55%); }
 .stat-icon.amber   { background: hsla(38, 92%, 50%, 0.12);  color: hsl(38, 92%, 60%); }
 .stat-icon.rose    { background: hsla(350, 89%, 60%, 0.12); color: hsl(350, 80%, 65%); }

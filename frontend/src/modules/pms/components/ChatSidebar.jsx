@@ -214,7 +214,7 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
             <div className="p-6 bg-slate-50/50 border-b border-slate-100 shadow-sm relative z-10">
                 <div className="relative group/search">
                     <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none">
-                        <Search className="h-4 w-4 text-slate-400 group-focus-within/search:text-indigo-600 transition-colors" />
+                        <Search className="h-4 w-4 text-zinc-400 group-focus-within/search:text-indigo-600 transition-colors" />
                     </div>
                     <input
                         type="text"
@@ -253,7 +253,7 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                             <div className="w-20 h-20 bg-slate-50 rounded-[2.5rem] border border-slate-100 flex items-center justify-center mx-auto text-slate-200">
                                 <Search size={32} />
                             </div>
-                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 leading-relaxed">No signals detected in <br />current temporal slice</p>
+                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400 leading-relaxed">No signals detected in <br />current temporal slice</p>
                         </motion.div>
                     ) : (
                         filteredChats.map((chat, i) => {
@@ -302,7 +302,7 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                                                 <h3 className={`text-sm font-black truncate tracking-tighter uppercase leading-none ${isActive ? 'text-white' : 'text-slate-950 group-hover:text-indigo-600'}`}>
                                                     {name}
                                                 </h3>
-                                                <span className={`text-[9px] font-black uppercase tracking-widest ${isActive ? 'text-white/40' : 'text-slate-400'}`}>
+                                                <span className={`text-[9px] font-black uppercase tracking-widest ${isActive ? 'text-white/40' : 'text-zinc-400'}`}>
                                                     {lastMsg.time}
                                                 </span>
                                             </div>
@@ -404,7 +404,7 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                                                                     <div className="font-black text-slate-950 text-sm uppercase tracking-tighter truncate leading-none mb-1.5">{user.name}</div>
                                                                     <div className="flex items-center gap-2">
                                                                         <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                                                                        <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest truncate">Node ID: {user.id.slice(0, 8)}</div>
+                                                                        <div className="text-[9px] font-black text-zinc-400 uppercase tracking-widest truncate">Node ID: {user.id.slice(0, 8)}</div>
                                                                     </div>
                                                                 </div>
                                                                 <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-slate-300 group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-sm">
@@ -458,7 +458,7 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                                         </div>
                                         <div className="flex-1">
                                             <p className="font-black text-slate-900">{p.user.name}</p>
-                                            <p className="text-[9px] text-slate-400 uppercase">{p.user.role}</p>
+                                            <p className="text-[9px] text-zinc-400 uppercase">{p.user.role}</p>
                                         </div>
                                     </div>
                                 ))}

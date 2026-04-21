@@ -110,7 +110,7 @@ const MatrixTable = ({
                         <button type="button" onClick={() => !readOnly && setMatrix(field, row, val)}
                             disabled={readOnly}
                             className={cn("w-8 h-8 rounded-full border-2 text-xs font-bold transition-all",
-                                (form[field] as Record<string, MatrixVal>)[row] === val ? "text-white border-transparent scale-110" : "border-slate-200 text-slate-400 hover:border-slate-400", readOnly && "cursor-default")}
+                                (form[field] as Record<string, MatrixVal>)[row] === val ? "text-white border-transparent scale-110" : "border-slate-200 text-zinc-400 hover:border-slate-400", readOnly && "cursor-default")}
                             style={(form[field] as Record<string, MatrixVal>)[row] === val ? { background: ACCENT } : {}}>
                             {val === "NA" ? "NA" : val[0]}
                         </button>

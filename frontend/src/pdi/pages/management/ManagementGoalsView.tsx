@@ -140,8 +140,8 @@ export function ManagementGoalsView() {
                             <CardTitle className="text-lg flex justify-between items-center text-slate-800">
                                 <span className="font-black">{stat.campus}</span>
                                 <div className="flex gap-2">
-                                    <Badge variant="outline" className="bg-white shadow-sm border-slate-200 text-slate-400">{stat.totalGoals} Goals Active</Badge>
-                                    <Badge variant="secondary" className="bg-slate-800 shadow-sm border-slate-800 text-white hover:bg-slate-700">{stat.totalTeachers} Total Teachers</Badge>
+                                    <Badge variant="outline" className="bg-white shadow-sm border-slate-200 text-zinc-400">{stat.totalGoals} Goals Active</Badge>
+                                    <Badge variant="secondary" className="bg-zinc-800 shadow-sm border-zinc-800 text-white hover:bg-slate-700">{stat.totalTeachers} Total Teachers</Badge>
                                 </div>
                             </CardTitle>
                         </CardHeader>
@@ -174,7 +174,7 @@ export function ManagementGoalsView() {
                     </Card>
                 ))}
                 {filteredCampusStats.length === 0 && !isLoading && (
-                    <div className="col-span-full p-12 text-center text-slate-400 border-2 border-dashed border-slate-200 rounded-3xl bg-slate-50">No campus data available.</div>
+                    <div className="col-span-full p-12 text-center text-zinc-400 border-2 border-dashed border-slate-200 rounded-3xl bg-slate-50">No campus data available.</div>
                 )}
             </div>
         </div>

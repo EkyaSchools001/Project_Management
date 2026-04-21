@@ -104,7 +104,7 @@ const ReportsGantt = () => {
 
         return (
             <div className={`flex group hover:bg-slate-50 transition-colors ${isTask ? 'bg-white' : 'bg-white'}`}>
-                <div className={`w-72 p-4 text-[11px] flex items-center gap-3 border-r border-slate-100 sticky left-0 z-10 truncate ${isTask ? 'pl-10 text-slate-400 bg-white group-hover:bg-slate-50' : 'font-black text-slate-900 bg-white group-hover:bg-slate-50 uppercase tracking-tighter'}`}>
+                <div className={`w-72 p-4 text-[11px] flex items-center gap-3 border-r border-slate-100 sticky left-0 z-10 truncate ${isTask ? 'pl-10 text-zinc-400 bg-white group-hover:bg-slate-50' : 'font-black text-slate-900 bg-white group-hover:bg-slate-50 uppercase tracking-tighter'}`}>
                     {!isTask && (
                         <button onClick={() => toggleProject(item.id)} className="text-slate-300 hover:text-blue-600 transition-colors active:scale-90">
                             {expandedProjects.includes(item.id) ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
@@ -149,17 +149,17 @@ const ReportsGantt = () => {
                         <Calendar className="w-8 h-8 text-blue-600" />
                         Project Timeline Vector
                     </h2>
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-12">Visualize project scopes and task dependencies across the timeline.</p>
+                    <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest ml-12">Visualize project scopes and task dependencies across the timeline.</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-6">
-                    <div className="flex gap-4 text-[9px] font-black uppercase tracking-widest text-slate-400 bg-slate-50 px-4 py-2 rounded-full border border-slate-100">
+                    <div className="flex gap-4 text-[9px] font-black uppercase tracking-widest text-zinc-400 bg-slate-50 px-4 py-2 rounded-full border border-slate-100">
                         <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-600"></span> Executed</span>
                         <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-blue-600"></span> Active</span>
                         <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-200"></span> Backlog</span>
                     </div>
                     <button
                         onClick={() => setIsModalOpen(true)}
-                        className="flex items-center gap-2 h-14 px-8 bg-slate-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-slate-900/10 active:scale-95"
+                        className="flex items-center gap-2 h-14 px-8 bg-zinc-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-slate-900/10 active:scale-95"
                     >
                         <Plus size={18} />
                         Inject Task Unit
@@ -172,10 +172,10 @@ const ReportsGantt = () => {
                     <div className="min-w-[1200px]">
                         {/* Header */}
                         <div className="flex border-b border-slate-100 bg-slate-50 sticky top-0 z-30">
-                            <div className="w-72 p-5 font-black text-[10px] text-slate-400 uppercase tracking-widest border-r border-slate-100 sticky left-0 bg-slate-50 z-20">Deployment Cluster / Node</div>
+                            <div className="w-72 p-5 font-black text-[10px] text-zinc-400 uppercase tracking-widest border-r border-slate-100 sticky left-0 bg-slate-50 z-20">Deployment Cluster / Node</div>
                             <div className="flex-1 flex">
                                 {dates.map((date, i) => (
-                                    <div key={i} className={`flex-1 min-w-[3.5rem] text-center py-4 border-r border-slate-100/50 ${isSameDay(date, today) ? 'bg-blue-600 text-white shadow-xl' : 'text-slate-400'}`}>
+                                    <div key={i} className={`flex-1 min-w-[3.5rem] text-center py-4 border-r border-slate-100/50 ${isSameDay(date, today) ? 'bg-blue-600 text-white shadow-xl' : 'text-zinc-400'}`}>
                                         <span className="text-xs font-black block leading-none">{format(date, 'dd')}</span>
                                         <span className={`text-[8px] font-black uppercase tracking-wider mt-1 block opacity-60 ${isSameDay(date, today) ? 'text-white' : ''}`}>{format(date, 'EEE')}</span>
                                     </div>

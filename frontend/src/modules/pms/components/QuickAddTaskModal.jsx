@@ -75,7 +75,7 @@ const QuickAddTaskModal = ({ isOpen, onClose, onAdd, projects }) => {
                         {/* Formation Protocol */}
                         <form onSubmit={handleSubmit} className="p-12 sm:p-16 space-y-12 bg-white">
                             <div className="space-y-6">
-                                <label className="text-[11px] font-black text-slate-400 uppercase tracking-[0.5em] px-4">Designation Identifier</label>
+                                <label className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.5em] px-4">Designation Identifier</label>
                                 <div className="relative group">
                                     <input
                                         type="text"
@@ -93,7 +93,7 @@ const QuickAddTaskModal = ({ isOpen, onClose, onAdd, projects }) => {
                             </div>
 
                             <div className="space-y-6">
-                                <label className="text-[11px] font-black text-slate-400 uppercase tracking-[0.5em] px-4">Parent Cluster</label>
+                                <label className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.5em] px-4">Parent Cluster</label>
                                 <select
                                     className="w-full h-20 px-8 bg-slate-50 border border-slate-100 rounded-[2rem] text-sm font-black uppercase tracking-widest text-slate-950 focus:bg-white focus:ring-8 focus:ring-indigo-600/5 focus:border-indigo-600 outline-none transition-all appearance-none cursor-pointer"
                                     value={formData.projectId}
@@ -105,7 +105,7 @@ const QuickAddTaskModal = ({ isOpen, onClose, onAdd, projects }) => {
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                                 <div className="space-y-6">
-                                    <label className="text-[11px] font-black text-slate-400 uppercase tracking-[0.5em] px-4">Initial Cycle</label>
+                                    <label className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.5em] px-4">Initial Cycle</label>
                                     <input
                                         type="date"
                                         required
@@ -115,7 +115,7 @@ const QuickAddTaskModal = ({ isOpen, onClose, onAdd, projects }) => {
                                     />
                                 </div>
                                 <div className="space-y-6">
-                                    <label className="text-[11px] font-black text-slate-400 uppercase tracking-[0.5em] px-4">Termination Cycle</label>
+                                    <label className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.5em] px-4">Termination Cycle</label>
                                     <input
                                         type="date"
                                         required
@@ -130,7 +130,7 @@ const QuickAddTaskModal = ({ isOpen, onClose, onAdd, projects }) => {
                                 <button
                                     type="button"
                                     onClick={onClose}
-                                    className="h-22 bg-slate-50 border border-slate-100 text-slate-400 font-black uppercase tracking-[0.3em] rounded-[2rem] hover:bg-rose-50 hover:text-rose-600 hover:border-rose-100 transition-all active:scale-95 text-[11px] flex-1"
+                                    className="h-22 bg-slate-50 border border-slate-100 text-zinc-400 font-black uppercase tracking-[0.3em] rounded-[2rem] hover:bg-rose-50 hover:text-rose-600 hover:border-rose-100 transition-all active:scale-95 text-[11px] flex-1"
                                 >
                                     Terminate Protocol
                                 </button>

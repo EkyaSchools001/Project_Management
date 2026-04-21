@@ -55,7 +55,7 @@ export function TimerWidget({ tasks = [], onTaskSelect, className }) {
         return (
             <div
                 className={cn(
-                    "fixed bottom-6 right-6 z-50 bg-[#0B0E14] border border-[#BAFF00]/20 rounded-2xl shadow-2xl",
+                    "fixed bottom-6 right-6 z-50 bg-[#18181b] border border-[#BAFF00]/20 rounded-2xl shadow-2xl",
                     className
                 )}
             >
@@ -84,7 +84,7 @@ export function TimerWidget({ tasks = [], onTaskSelect, className }) {
     return (
         <div
             className={cn(
-                "fixed bottom-6 right-6 z-50 bg-[#0B0E14] border border-white/10 rounded-2xl shadow-2xl w-80 overflow-hidden",
+                "fixed bottom-6 right-6 z-50 bg-[#18181b] border border-white/10 rounded-2xl shadow-2xl w-80 overflow-hidden",
                 className
             )}
         >

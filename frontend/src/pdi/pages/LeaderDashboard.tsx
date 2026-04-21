@@ -1073,7 +1073,7 @@ function PDParticipationView({ team, training }: { team: any[], training: any[] 
               <Trophy className="w-5 h-5 text-yellow-500" />
               Teacher Leaderboard
             </CardTitle>
-            <CardDescription className="text-slate-400">Top performers by Training hours completed.</CardDescription>
+            <CardDescription className="text-zinc-400">Top performers by Training hours completed.</CardDescription>
           </CardHeader>
           <CardContent className="p-0 relative z-10">
             <div className="divide-y divide-white/10">
@@ -1084,7 +1084,7 @@ function PDParticipationView({ team, training }: { team: any[], training: any[] 
                       "w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs ring-2 ring-offset-2 ring-offset-slate-900",
                       idx === 0 ? "bg-yellow-500 text-white ring-yellow-500/50" :
                         idx === 1 ? "bg-slate-300 text-slate-800 ring-slate-300/50" :
-                          idx === 2 ? "bg-amber-700 text-white ring-amber-700/50" : "bg-slate-800 text-slate-400 ring-slate-800/20"
+                          idx === 2 ? "bg-amber-700 text-white ring-amber-700/50" : "bg-zinc-800 text-zinc-400 ring-slate-800/20"
                     )}>
                       {idx + 1}
                     </div>
@@ -1101,7 +1101,7 @@ function PDParticipationView({ team, training }: { team: any[], training: any[] 
               ))}
             </div>
             <div className="p-4 bg-white/5 flex justify-center">
-              <Button variant="link" className="text-slate-400 hover:text-white text-xs gap-2" onClick={() => {
+              <Button variant="link" className="text-zinc-400 hover:text-white text-xs gap-2" onClick={() => {
                 // Focus on the registry table
                 const element = document.getElementById('staff-td-registry');
                 element?.scrollIntoView({ behavior: 'smooth' });
@@ -2969,7 +2969,7 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
               <Button
                 variant="ghost"
                 onClick={() => setShowClosedPopup(false)}
-                className="w-full h-12 text-slate-400 font-bold hover:bg-slate-50 rounded-xl transition-all"
+                className="w-full h-12 text-zinc-400 font-bold hover:bg-slate-50 rounded-xl transition-all"
               >
                 I'll check later
               </Button>

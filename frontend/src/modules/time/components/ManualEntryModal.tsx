@@ -103,7 +103,7 @@ export function ManualEntryModal({ isOpen, onClose, tasks = [], existingEntry, o
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="bg-[#0B0E14] border border-white/10 max-w-md">
+            <DialogContent className="bg-[#18181b] border border-white/10 max-w-md">
                 <DialogHeader>
                     <DialogTitle className="text-white">
                         {existingEntry ? 'Edit Time Entry' : 'Add Manual Entry'}

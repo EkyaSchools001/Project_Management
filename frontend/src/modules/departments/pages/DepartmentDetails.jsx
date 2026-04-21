@@ -89,7 +89,7 @@ export default function DepartmentDetails() {
             className="max-w-[1800px] mx-auto space-y-16 p-6 sm:p-10 lg:p-16 pb-40"
         >
             {/* High-Vibrancy Header */}
-            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-slate-900 rounded-[5rem] text-white shadow-2xl group border border-white/5">
+            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-zinc-900 rounded-[5rem] text-white shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-violet-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-[600px] h-[600px] bg-indigo-500 rounded-full blur-[200px] opacity-10 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 
@@ -162,7 +162,7 @@ export default function DepartmentDetails() {
                             </div>
                             
                             <div className="relative z-10 space-y-2">
-                                <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em] mb-4 group-hover:text-slate-900 transition-colors uppercase">{stat.label}</p>
+                                <p className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.4em] mb-4 group-hover:text-slate-900 transition-colors uppercase">{stat.label}</p>
                                 <p className="text-5xl sm:text-7xl font-black text-slate-950 tracking-tighter leading-none group-hover:scale-105 transition-transform origin-left duration-700">{stat.value}</p>
                             </div>
                         </Card>
@@ -181,10 +181,10 @@ export default function DepartmentDetails() {
                                 </div>
                                 Active Clusters
                             </h2>
-                            <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em] pl-20">Monitoring cluster velocity and synchronicity</p>
+                            <p className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.4em] pl-20">Monitoring cluster velocity and synchronicity</p>
                         </div>
                         <div className="relative group w-full sm:w-auto">
-                            <Search className="absolute left-7 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-600 transition-colors" size={24} />
+                            <Search className="absolute left-7 top-1/2 -translate-y-1/2 text-zinc-400 group-focus-within:text-indigo-600 transition-colors" size={24} />
                             <input 
                                 type="text" 
                                 placeholder="QUERY PORTFOLIO..." 
@@ -220,7 +220,7 @@ export default function DepartmentDetails() {
                                     </h3>
 
                                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 pt-10 border-t border-slate-50">
-                                        <div className="flex items-center gap-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                                        <div className="flex items-center gap-4 text-[10px] font-black text-zinc-400 uppercase tracking-widest">
                                             <Calendar size={20} className="text-indigo-400 group-hover:scale-110 transition-transform" />
                                             Cycle: {project.endDate}
                                         </div>
@@ -252,7 +252,7 @@ export default function DepartmentDetails() {
                                     </div>
                                     System SLAs
                                 </h2>
-                                <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em] pl-20">Immediate operational priority</p>
+                                <p className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.4em] pl-20">Immediate operational priority</p>
                             </div>
                             <button className="w-16 h-16 flex items-center justify-center text-slate-300 hover:text-indigo-600 bg-slate-50 rounded-[1.75rem] transition-all hover:bg-white hover:shadow-2xl border border-transparent hover:border-slate-100"><MoreVertical size={28} /></button>
                         </div>
@@ -281,7 +281,7 @@ export default function DepartmentDetails() {
                                                 </p>
                                                 <div className="flex items-center gap-4 mt-3">
                                                     <div className="px-3 py-1 bg-rose-500/10 text-rose-600 rounded-lg text-[9px] font-black uppercase tracking-widest border border-rose-200/20 animate-pulse">EXPIRES</div>
-                                                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">{task.dueDate}</span>
+                                                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em]">{task.dueDate}</span>
                                                 </div>
                                             </div>
                                             <ChevronRight size={32} className="text-slate-200 group-hover/item:text-rose-600 group-hover/item:translate-x-3 transition-all" />

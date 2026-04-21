@@ -133,7 +133,7 @@ const CalendarPage = () => {
                     <div className="h-8 w-[2px] bg-slate-100 mx-2" />
                     <div className="flex items-center gap-4">
                         <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Network Operational</span>
+                        <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em]">Network Operational</span>
                     </div>
                 </div>
 
@@ -160,7 +160,7 @@ const CalendarPage = () => {
                 <div className="grid grid-cols-7 border-b border-slate-100 bg-slate-50/50 relative z-10">
                     {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map(day => (
                         <div key={day} className="py-8 text-center border-r border-slate-100 last:border-r-0">
-                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">{day}</span>
+                            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.4em]">{day}</span>
                         </div>
                     ))}
                 </div>
@@ -267,7 +267,7 @@ const TabButton = ({ active, onClick, label }) => (
         onClick={onClick}
         className={`px-12 py-5 rounded-[2.5rem] text-[11px] font-black uppercase tracking-[0.3em] transition-all whitespace-nowrap flex items-center gap-5 ${active
             ? 'bg-slate-950 text-white shadow-2xl scale-105 active:scale-95 translate-y-[-4px]'
-            : 'text-slate-400 hover:text-slate-950'
+            : 'text-zinc-400 hover:text-slate-950'
             }`}
     >
         {label}

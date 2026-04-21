@@ -10,7 +10,7 @@ const ReportsDashboard = () => {
                 <div className="flex items-center justify-between mb-12">
                     <div className="space-y-1">
                         <h2 className="text-2xl sm:text-3xl font-black text-slate-900 uppercase tracking-tighter leading-none">Operational Velocity</h2>
-                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2 flex items-center gap-2">
+                        <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mt-2 flex items-center gap-2">
                             <TrendingUp className="text-emerald-500" size={14} />
                             Completion rate variance / Real-time
                         </p>
@@ -33,14 +33,14 @@ const ReportsDashboard = () => {
                         </div>
                     ))}
                 </div>
-                <div className="flex justify-between mt-8 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] px-4 border-t border-slate-50 pt-8">
+                <div className="flex justify-between mt-8 text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em] px-4 border-t border-slate-50 pt-8">
                     <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
                 </div>
             </Card>
 
             <div className="space-y-8 flex flex-col">
                 <div className="flex items-center justify-between px-2">
-                    <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-3">
+                    <h3 className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.2em] flex items-center gap-3">
                         <FileText className="text-blue-600" size={16} />
                         Intelligence Archives
                     </h3>
@@ -54,12 +54,12 @@ const ReportsDashboard = () => {
                     ].map((report, i) => (
                         <Card key={i} className="flex items-center justify-between p-6 bg-white border border-slate-100 rounded-[2rem] hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-600/5 group cursor-pointer transition-all duration-300">
                             <div className="flex items-center gap-6">
-                                <div className="w-14 h-14 bg-slate-50 text-slate-400 border border-slate-100 rounded-2xl flex items-center justify-center group-hover:bg-blue-50 group-hover:text-blue-600 group-hover:border-blue-100 transition-all duration-500 shadow-sm">
+                                <div className="w-14 h-14 bg-slate-50 text-zinc-400 border border-slate-100 rounded-2xl flex items-center justify-center group-hover:bg-blue-50 group-hover:text-blue-600 group-hover:border-blue-100 transition-all duration-500 shadow-sm">
                                     <FileText size={24} />
                                 </div>
                                 <div className="min-w-0">
                                     <h4 className="text-sm font-black text-slate-900 group-hover:text-blue-600 transition-colors uppercase tracking-tight truncate">{report.title}</h4>
-                                    <p className="text-[9px] text-slate-400 uppercase font-black tracking-widest mt-1.5 flex items-center gap-2">
+                                    <p className="text-[9px] text-zinc-400 uppercase font-black tracking-widest mt-1.5 flex items-center gap-2">
                                         {report.date} <span className="text-slate-200">/</span> {report.type} <span className="text-slate-200">/</span> {report.size}
                                     </p>
                                 </div>
@@ -70,7 +70,7 @@ const ReportsDashboard = () => {
                         </Card>
                     ))}
                 </div>
-                <button className="w-full mt-auto h-16 border-2 border-dashed border-slate-200 text-[10px] font-black text-slate-400 uppercase tracking-widest rounded-3xl hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 transition-all">
+                <button className="w-full mt-auto h-16 border-2 border-dashed border-slate-200 text-[10px] font-black text-zinc-400 uppercase tracking-widest rounded-3xl hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 transition-all">
                     Generate Custom Dataset
                 </button>
             </div>

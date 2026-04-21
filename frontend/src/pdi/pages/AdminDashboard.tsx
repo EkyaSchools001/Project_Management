@@ -148,7 +148,7 @@ const AdminOverview = ({ userName }: { userName: string }) => {
                         <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                             Welcome, <span className="text-primary">{userName}</span>
                         </h1>
-                        <p className="text-slate-400 max-w-xl text-lg leading-relaxed">
+                        <p className="text-zinc-400 max-w-xl text-lg leading-relaxed">
                             {selectedCampus === "all" 
                                 ? "Oversee the Teacher Development ecosystem, manage workflows, and configure system-wide parameters from your central command center."
                                 : `Reviewing academic performance and teacher development metrics for ${selectedCampus}.`}
@@ -267,7 +267,7 @@ const AdminOverview = ({ userName }: { userName: string }) => {
                     </CardContent>
                 </Card>
 
-                <div className="rounded-[2rem] overflow-hidden shadow-xl bg-slate-900">
+                <div className="rounded-[2rem] overflow-hidden shadow-xl bg-zinc-900">
                     <SecurityFeed />
                 </div>
             </div>

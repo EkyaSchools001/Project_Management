@@ -78,7 +78,7 @@ export function TimeTrackingPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-[#0B0E14] p-6 lg:p-8">
+        <div className="min-h-screen bg-[#18181b] p-6 lg:p-8">
             <div className="max-w-7xl mx-auto space-y-8">
                 <div className="flex items-center justify-between">
                     <div>
@@ -96,7 +96,7 @@ export function TimeTrackingPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {summaryCards.map((card, idx) => (
-                        <Card key={idx} className="bg-[#0B0E14] border-white/5">
+                        <Card key={idx} className="bg-[#18181b] border-white/5">
                             <CardContent className="p-4">
                                 <div className="flex items-center justify-between">
                                     <div>

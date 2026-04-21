@@ -382,7 +382,7 @@ export function MeetingDetailsView() {
                                         <div key={i} className="flex items-center justify-between p-3 rounded-xl border border-slate-100 group hover:border-primary/30 transition-all bg-slate-50/30">
                                             <div className="flex items-center gap-3 min-w-0">
                                                 <div className="p-2 rounded-lg bg-white shadow-sm">
-                                                    <Paperclip className="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" />
+                                                    <Paperclip className="w-4 h-4 text-zinc-400 group-hover:text-primary transition-colors" />
                                                 </div>
                                                 <span className="text-sm font-medium text-slate-700 truncate">{file.name || file.fileName}</span>
                                             </div>
@@ -394,7 +394,7 @@ export function MeetingDetailsView() {
                                 </div>
                             ) : (
                                 <div className="text-center py-6">
-                                    <p className="text-sm text-slate-400 italic">No resources attached.</p>
+                                    <p className="text-sm text-zinc-400 italic">No resources attached.</p>
                                 </div>
                             )}
                         </CardContent>

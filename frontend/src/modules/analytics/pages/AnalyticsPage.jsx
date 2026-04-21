@@ -47,7 +47,7 @@ const distributionData = [
     { name: 'Science', value: 200 },
 ];
 
-const COLORS = ['#2563eb', '#4f46e5', '#7c3aed', '#db2777', '#dc2626', '#ea580c'];
+const COLORS = ['#2563eb', '#059669', '#7c3aed', '#db2777', '#dc2626', '#ea580c'];
 
 const StatCard = ({ title, value, change, trend, icon: Icon, delay }) => (
     <motion.div
@@ -58,7 +58,7 @@ const StatCard = ({ title, value, change, trend, icon: Icon, delay }) => (
         <Card className="p-8 sm:p-10 relative overflow-hidden group border border-slate-100 bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:border-blue-500 transition-all duration-500 hover:-translate-y-2">
             <div className="flex justify-between items-start relative z-10">
                 <div className="space-y-4">
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] leading-none">{title}</p>
+                    <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em] leading-none">{title}</p>
                     <h3 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tighter leading-none tabular-nums">{value}</h3>
                     <div className="flex items-center gap-3">
                         <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${trend === 'up' ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : 'bg-rose-50 text-rose-600 border border-rose-100'}`}>
@@ -95,7 +95,7 @@ export default function AnalyticsPage() {
                     <button className="h-16 px-8 bg-white border border-slate-200 rounded-2xl text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-600 hover:text-blue-600 hover:border-blue-500 transition-all shadow-sm flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95">
                         <Calendar size={18} className="text-blue-600" /> Last 30 Operational Cycles
                     </button>
-                    <button className="h-16 px-10 bg-slate-900 text-white rounded-2xl text-[10px] sm:text-xs font-black uppercase tracking-widest hover:bg-black transition-all shadow-2xl shadow-slate-900/20 flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95 leading-none">
+                    <button className="h-16 px-10 bg-zinc-900 text-white rounded-2xl text-[10px] sm:text-xs font-black uppercase tracking-widest hover:bg-black transition-all shadow-2xl shadow-slate-900/20 flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95 leading-none">
                         <Download size={18} /> Export Intelligence
                     </button>
                 </div>
@@ -144,7 +144,7 @@ export default function AnalyticsPage() {
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 relative z-10">
                         <div>
                             <h3 className="text-2xl sm:text-3xl font-black text-slate-900 uppercase tracking-tighter leading-none">System Trajectory</h3>
-                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2">Node interaction across the ecosystem</p>
+                            <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mt-2">Node interaction across the ecosystem</p>
                         </div>
                         <div className="flex gap-6">
                             <div className="flex items-center gap-3">
@@ -153,7 +153,7 @@ export default function AnalyticsPage() {
                             </div>
                             <div className="flex items-center gap-3">
                                 <div className="w-2.5 h-2.5 rounded-full bg-slate-200" />
-                                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Standby</span>
+                                <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Standby</span>
                             </div>
                         </div>
                     </div>
@@ -204,7 +204,7 @@ export default function AnalyticsPage() {
                     </div>
                     <div className="relative z-10">
                         <h3 className="text-2xl sm:text-3xl font-black text-slate-900 uppercase tracking-tighter leading-none">Sector Distribution</h3>
-                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2">Resource allocation by instructional HQ</p>
+                        <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mt-2">Resource allocation by instructional HQ</p>
                     </div>
                     <div className="h-[350px] sm:h-[450px] w-full flex items-center justify-center relative z-10">
                         <ResponsiveContainer width="100%" height="100%">
@@ -230,7 +230,7 @@ export default function AnalyticsPage() {
                         </ResponsiveContainer>
                         <div className="absolute flex flex-col items-center pointer-events-none translate-y-1">
                             <span className="text-4xl sm:text-6xl font-black text-slate-900 tracking-tighter leading-none tabular-nums">1,200</span>
-                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mt-3">Total Units</span>
+                            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em] mt-3">Total Units</span>
                         </div>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
@@ -239,7 +239,7 @@ export default function AnalyticsPage() {
                                 <div className="w-4 h-4 rounded-full shrink-0 shadow-[0_0_15px_rgba(0,0,0,0.05)] transition-transform group-hover/item:scale-125" style={{ backgroundColor: COLORS[idx] }} />
                                 <div className="flex flex-col min-w-0">
                                     <span className="text-[11px] font-black text-slate-900 uppercase tracking-tighter truncate">{dept.name}</span>
-                                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-[0.1em] mt-1">{dept.value} Operational Nodes</span>
+                                    <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-[0.1em] mt-1">{dept.value} Operational Nodes</span>
                                 </div>
                             </div>
                         ))}
@@ -247,7 +247,7 @@ export default function AnalyticsPage() {
                 </Card>
             </div>
 
-            <Card className="p-10 sm:p-20 bg-slate-900 text-white relative overflow-hidden rounded-[3rem] sm:rounded-[4.5rem] shadow-2xl shadow-slate-900/30 border-none group">
+            <Card className="p-10 sm:p-20 bg-zinc-900 text-white relative overflow-hidden rounded-[3rem] sm:rounded-[4.5rem] shadow-2xl shadow-slate-900/30 border-none group">
                 <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none group-hover:scale-125 transition-transform duration-1000">
                     <Activity size={300} />
                 </div>

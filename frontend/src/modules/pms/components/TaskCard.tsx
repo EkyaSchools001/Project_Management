@@ -23,7 +23,7 @@ const PRIORITY_CONFIG = {
 
 const STATUS_CONFIG = {
     'TODO': { label: 'To Do', color: '#94a3b8', icon: 'circle' },
-    'IN_PROGRESS': { label: 'In Progress', color: '#6366f1', icon: 'clock' },
+    'IN_PROGRESS': { label: 'In Progress', color: '#10b981', icon: 'clock' },
     'IN_REVIEW': { label: 'In Review', color: '#f59e0b', icon: 'alert' },
     'DONE': { label: 'Done', color: '#10b981', icon: 'check' }
 };
@@ -108,7 +108,7 @@ export const TaskCard = ({
                         {isSelected && <CheckCircle2 size={12} className="text-white" />}
                     </button>
                     <span className={`text-sm font-semibold truncate ${
-                        task.status === 'DONE' ? 'text-slate-400 line-through' : 'text-slate-800'
+                        task.status === 'DONE' ? 'text-zinc-400 line-through' : 'text-slate-800'
                     }`}>
                         {task.title}
                     </span>
@@ -120,7 +120,7 @@ export const TaskCard = ({
                             onClick={(e) => e.stopPropagation()}
                             className="p-1 rounded hover:bg-slate-100 transition-colors"
                         >
-                            <MoreHorizontal size={16} className="text-slate-400" />
+                            <MoreHorizontal size={16} className="text-zinc-400" />
                         </button>
                         <AnimatePresence>
                             {showQuickActions && (
@@ -187,7 +187,7 @@ export const TaskCard = ({
                             style={{ width: `${progress}%` }}
                         />
                     </div>
-                    <span className="text-[10px] text-slate-400 mt-1 block">{progress}% complete</span>
+                    <span className="text-[10px] text-zinc-400 mt-1 block">{progress}% complete</span>
                 </div>
             )}
 
@@ -195,26 +195,26 @@ export const TaskCard = ({
                 <div className="flex items-center gap-3">
                     {task.dueDate && (
                         <div className={`flex items-center gap-1 text-[10px] ${
-                            isOverdue ? 'text-rose-500 font-medium' : 'text-slate-400'
+                            isOverdue ? 'text-rose-500 font-medium' : 'text-zinc-400'
                         }`}>
                             <Calendar size={12} />
                             {new Date(task.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                         </div>
                     )}
                     {task.estimatedHours && (
-                        <div className="flex items-center gap-1 text-[10px] text-slate-400">
+                        <div className="flex items-center gap-1 text-[10px] text-zinc-400">
                             <Clock size={12} />
                             {task.estimatedHours}h
                         </div>
                     )}
                     {task.comments?.length > 0 && (
-                        <div className="flex items-center gap-1 text-[10px] text-slate-400">
+                        <div className="flex items-center gap-1 text-[10px] text-zinc-400">
                             <MessageSquare size={12} />
                             {task.comments.length}
                         </div>
                     )}
                     {task.attachments?.length > 0 && (
-                        <div className="flex items-center gap-1 text-[10px] text-slate-400">
+                        <div className="flex items-center gap-1 text-[10px] text-zinc-400">
                             <Paperclip size={12} />
                             {task.attachments.length}
                         </div>
@@ -242,7 +242,7 @@ export const TaskCard = ({
                         </span>
                     </div>
                 ) : (
-                    <button className="text-[10px] text-slate-400 hover:text-indigo-600 flex items-center gap-1">
+                    <button className="text-[10px] text-zinc-400 hover:text-indigo-600 flex items-center gap-1">
                         <User size={12} />
                         Assign
                     </button>
@@ -251,7 +251,7 @@ export const TaskCard = ({
 
             {task.subtasks && task.subtasks.length > 0 && (
                 <div className="mt-3 pt-3 border-t border-slate-100">
-                    <div className="flex items-center justify-between text-[10px] text-slate-400 mb-2">
+                    <div className="flex items-center justify-between text-[10px] text-zinc-400 mb-2">
                         <span className="flex items-center gap-1">
                             <CheckCircle2 size={10} />
                             Subtasks
@@ -266,13 +266,13 @@ export const TaskCard = ({
                                 <div className={`w-3 h-3 rounded border ${subtask.done ? 'bg-emerald-500 border-emerald-500' : 'border-slate-300'}`}>
                                     {subtask.done && <CheckCircle2 size={8} className="text-white" />}
                                 </div>
-                                <span className={subtask.done ? 'text-slate-400 line-through' : 'text-slate-600'}>
+                                <span className={subtask.done ? 'text-zinc-400 line-through' : 'text-slate-600'}>
                                     {subtask.title}
                                 </span>
                             </div>
                         ))}
                         {task.subtasks.length > 3 && (
-                            <div className="text-[10px] text-slate-400 flex items-center gap-1">
+                            <div className="text-[10px] text-zinc-400 flex items-center gap-1">
                                 <ChevronRight size={10} />
                                 +{task.subtasks.length - 3} more
                             </div>

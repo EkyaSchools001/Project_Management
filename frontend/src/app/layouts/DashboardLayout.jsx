@@ -37,7 +37,7 @@ export function DashboardLayout() {
         <div className="h-screen w-full flex bg-background text-foreground font-sans selection:bg-primary/20 selection:text-primary overflow-hidden">
             {mobileOpen && (
                 <div
-                    className="fixed inset-0 bg-slate-900/10 backdrop-blur-[2px] z-40 lg:hidden transition-opacity"
+                    className="fixed inset-0 bg-zinc-900/10 backdrop-blur-[2px] z-40 lg:hidden transition-opacity"
                     onClick={() => setMobileOpen(false)}
                 />
             )}

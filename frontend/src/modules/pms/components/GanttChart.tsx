@@ -280,7 +280,7 @@ export const GanttChart = ({
                                     <div
                                         key={idx}
                                         className={`flex items-center justify-center border-r border-slate-100 text-xs font-medium ${
-                                            isWeekend(date) ? 'bg-slate-50 text-slate-400' : 'text-slate-600'
+                                            isWeekend(date) ? 'bg-slate-50 text-zinc-400' : 'text-slate-600'
                                         }`}
                                         style={{ width: columnWidth }}
                                     >
@@ -380,7 +380,7 @@ const GanttTaskRow = ({ task, index, rowHeight, isExpanded, onToggle, onClick })
             onClick={onClick}
         >
             {task.subtasks?.length > 0 && (
-                <button onClick={(e) => { e.stopPropagation(); onToggle(); }} className="mr-2 text-slate-400 hover:text-indigo-600">
+                <button onClick={(e) => { e.stopPropagation(); onToggle(); }} className="mr-2 text-zinc-400 hover:text-indigo-600">
                     {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
                 </button>
             )}
@@ -463,7 +463,7 @@ const TaskTooltip = ({ task, position }) => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="absolute z-50 bg-slate-900 text-white p-4 rounded-2xl shadow-2xl w-72 pointer-events-none"
+            className="absolute z-50 bg-zinc-900 text-white p-4 rounded-2xl shadow-2xl w-72 pointer-events-none"
             style={{
                 left: position.left + position.width / 2,
                 top: 80
@@ -472,12 +472,12 @@ const TaskTooltip = ({ task, position }) => {
             <div className="font-bold text-sm mb-2">{task.title}</div>
             <div className="space-y-2 text-xs">
                 <div className="flex items-center gap-2">
-                    <Circle size={12} className="text-slate-400" />
+                    <Circle size={12} className="text-zinc-400" />
                     <span className="text-slate-300">{task.status}</span>
                 </div>
                 {task.startDate && (
                     <div className="flex items-center gap-2">
-                        <Calendar size={12} className="text-slate-400" />
+                        <Calendar size={12} className="text-zinc-400" />
                         <span className="text-slate-300">
                             {format(parseISO(task.startDate), 'MMM d')} - {format(parseISO(task.endDate), 'MMM d, yyyy')}
                         </span>
@@ -485,7 +485,7 @@ const TaskTooltip = ({ task, position }) => {
                 )}
                 {task.assignee && (
                     <div className="flex items-center gap-2">
-                        <User size={12} className="text-slate-400" />
+                        <User size={12} className="text-zinc-400" />
                         <span className="text-slate-300">{task.assignee.name}</span>
                     </div>
                 )}

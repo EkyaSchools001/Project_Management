@@ -715,7 +715,7 @@ export function SuperAdminView() {
                                                                             <HoverCardTrigger asChild>
                                                                                 <SelectItem value={t.name} className="pl-4 pr-10 cursor-pointer relative data-[highlighted]:bg-primary/5">
                                                                                     <span className="flex-1 text-left block w-full pr-6 truncate">{t.name}</span>
-                                                                                    <Info className="w-4 h-4 text-slate-400 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+                                                                                    <Info className="w-4 h-4 text-zinc-400 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
                                                                                 </SelectItem>
                                                                             </HoverCardTrigger>
                                                                             <HoverCardContent side="right" align="start" sideOffset={10} className="w-[320px] max-w-[90vw] z-[100] max-h-[350px] overflow-y-auto pointer-events-none shadow-2xl border-slate-200 bg-white/95 backdrop-blur-sm">
@@ -731,7 +731,7 @@ export function SuperAdminView() {
                                                                                             <span className="break-words mt-0.5">{f.label || f.id || 'Unnamed field'}</span>
                                                                                         </li>
                                                                                     ))}
-                                                                                    {fields.length === 0 && <li className="text-slate-400 italic text-center py-4 bg-slate-50 rounded-md">No fields defined for this template.</li>}
+                                                                                    {fields.length === 0 && <li className="text-zinc-400 italic text-center py-4 bg-slate-50 rounded-md">No fields defined for this template.</li>}
                                                                                 </ul>
                                                                             </HoverCardContent>
                                                                         </HoverCard>
@@ -1007,7 +1007,7 @@ export function SuperAdminView() {
                                                         <td className="p-4">
                                                             <div className="flex flex-wrap gap-1.5">
                                                                 {currentAccess.length === 0 ? (
-                                                                    <span className="text-[10px] capitalize font-bold text-slate-400 tracking-wider">Default only</span>
+                                                                    <span className="text-[10px] capitalize font-bold text-zinc-400 tracking-wider">Default only</span>
                                                                 ) : currentAccess.map(c => (
                                                                     <Badge key={c} variant="secondary" className="text-[9px] font-bold bg-blue-100 text-blue-700 border-blue-200 capitalize tracking-tighter">
                                                                         {c}

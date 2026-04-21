@@ -24,7 +24,7 @@ const iconMap = {
 };
 
 const categoryColors = {
-  Academic: 'bg-blue-500/10 border-blue-500/30 text-blue-400',
+  Academic: 'bg-backgroundackgroundlue-500/10 border-blue-500/30 text-blue-400',
   Behavior: 'bg-green-500/10 border-green-500/30 text-green-400',
   Achievement: 'bg-purple-500/10 border-purple-500/30 text-purple-400',
   Participation: 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400',
@@ -58,17 +58,17 @@ export function BadgeCard({ badge, earned = false, progress = null, onClick }) {
             </div>
           )}
           {!earned && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/40 rounded-full">
-              <Lock size={16} className="text-white/40" />
+            <div className="absolute inset-0 flex items-center justify-center bg-backgroundackgroundlack/40 rounded-full">
+              <Lock size={16} className="text-foreground/40" />
             </div>
           )}
         </div>
 
         <div className="space-y-2">
-          <h3 className={`font-bold text-sm ${earned ? 'text-white' : 'text-white/60'}`}>
+          <h3 className={`font-bold text-sm ${earned ? 'text-foreground' : 'text-foreground/60'}`}>
             {badge.name}
           </h3>
-          <p className={`text-xs ${earned ? 'text-white/60' : 'text-white/40'}`}>
+          <p className={`text-xs ${earned ? 'text-foreground/60' : 'text-foreground/40'}`}>
             {badge.description}
           </p>
         </div>
@@ -82,7 +82,7 @@ export function BadgeCard({ badge, earned = false, progress = null, onClick }) {
 
         <div className="flex items-center gap-2 text-[#BAFF00]">
           <span className="text-xs font-bold">+{badge.points}</span>
-          <span className="text-[10px] text-white/40">points</span>
+          <span className="text-[10px] text-foreground/40">points</span>
         </div>
 
         {progress !== null && !earned && (
@@ -93,7 +93,7 @@ export function BadgeCard({ badge, earned = false, progress = null, onClick }) {
                 style={{ width: `${Math.min(100, progress)}%` }}
               />
             </div>
-            <p className="text-[10px] text-white/40 text-center">
+            <p className="text-[10px] text-foreground/40 text-center">
               {progress.toFixed(0)}% complete
             </p>
           </div>

@@ -59,9 +59,9 @@ export function PointsHistory({ limit = 20, filterable = true }) {
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center">
-            <History size={20} className="text-white/60" />
+            <History size={20} className="text-foreground/60" />
           </div>
-          <h2 className="text-lg font-bold text-white">Points History</h2>
+          <h2 className="text-lg font-bold text-foreground">Points History</h2>
         </div>
       </div>
 
@@ -71,7 +71,7 @@ export function PointsHistory({ limit = 20, filterable = true }) {
             onClick={() => setSourceFilter('')}
             className={`
               px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all whitespace-nowrap
-              ${!sourceFilter ? 'bg-[#BAFF00] text-black' : 'bg-white/5 text-white/40 hover:text-white'}
+              ${!sourceFilter ? 'bg-[#BAFF00] text-black' : 'bg-white/5 text-foreground/40 hover:text-foreground'}
             `}
           >
             All
@@ -80,7 +80,7 @@ export function PointsHistory({ limit = 20, filterable = true }) {
             onClick={() => setSourceFilter('badge')}
             className={`
               px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all whitespace-nowrap
-              ${sourceFilter === 'badge' ? 'bg-[#BAFF00] text-black' : 'bg-white/5 text-white/40 hover:text-white'}
+              ${sourceFilter === 'badge' ? 'bg-[#BAFF00] text-black' : 'bg-white/5 text-foreground/40 hover:text-foreground'}
             `}
           >
             Badges
@@ -89,7 +89,7 @@ export function PointsHistory({ limit = 20, filterable = true }) {
             onClick={() => setSourceFilter('achievement')}
             className={`
               px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all whitespace-nowrap
-              ${sourceFilter === 'achievement' ? 'bg-[#BAFF00] text-black' : 'bg-white/5 text-white/40 hover:text-white'}
+              ${sourceFilter === 'achievement' ? 'bg-[#BAFF00] text-black' : 'bg-white/5 text-foreground/40 hover:text-foreground'}
             `}
           >
             Achievements
@@ -98,7 +98,7 @@ export function PointsHistory({ limit = 20, filterable = true }) {
             onClick={() => setSourceFilter('challenge')}
             className={`
               px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all whitespace-nowrap
-              ${sourceFilter === 'challenge' ? 'bg-[#BAFF00] text-black' : 'bg-white/5 text-white/40 hover:text-white'}
+              ${sourceFilter === 'challenge' ? 'bg-[#BAFF00] text-black' : 'bg-white/5 text-foreground/40 hover:text-foreground'}
             `}
           >
             Challenges
@@ -111,7 +111,7 @@ export function PointsHistory({ limit = 20, filterable = true }) {
           <div className="w-6 h-6 border-2 border-[#BAFF00] border-t-transparent rounded-full animate-spin" />
         </div>
       ) : history.length === 0 ? (
-        <div className="text-center py-12 text-white/40 text-sm">
+        <div className="text-center py-12 text-foreground/40 text-sm">
           No points history yet
         </div>
       ) : (
@@ -126,10 +126,10 @@ export function PointsHistory({ limit = 20, filterable = true }) {
               </div>
 
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-bold text-white truncate">
+                <p className="text-sm font-bold text-foreground truncate">
                   {item.description || sourceLabels[item.source] || sourceLabels.default}
                 </p>
-                <p className="text-[10px] text-white/40">
+                <p className="text-[10px] text-foreground/40">
                   {formatDate(item.createdAt)}
                 </p>
               </div>

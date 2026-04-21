@@ -61,17 +61,17 @@ const TeacherTable = ({
                     <TableBody>
                         {filtered.length === 0 ? (
                             <TableRow>
-                                <TableCell colSpan={6} className="text-center py-12 text-zinc-400 font-medium">
+                                <TableCell colSpan={6} className="text-center py-12 text-muted-foreground font-medium">
                                     No {label} teachers found.
                                 </TableCell>
                             </TableRow>
                         ) : filtered.map((t, i) => (
                             <TableRow key={t.id} className="hover:bg-zinc-50 transition-colors border-zinc-50 group">
-                                <TableCell className="text-center font-medium text-zinc-400">{i + 1}</TableCell>
+                                <TableCell className="text-center font-medium text-muted-foreground">{i + 1}</TableCell>
                                 <TableCell>
                                     <div className="flex flex-col">
                                         <span className="font-bold text-sm text-zinc-800">{t.name}</span>
-                                        <span className="text-[10px] text-zinc-400">{t.email}</span>
+                                        <span className="text-[10px] text-muted-foreground">{t.email}</span>
                                     </div>
                                 </TableCell>
                                 <TableCell className="font-medium text-zinc-600 text-sm">{t.campusId}</TableCell>
@@ -79,7 +79,7 @@ const TeacherTable = ({
                                     <Badge
                                         variant="secondary"
                                         className={t.academics === 'CORE'
-                                            ? 'bg-blue-50 text-blue-700 border-none font-bold text-[10px]'
+                                            ? 'bg-backgroundackgroundlue-50 text-blue-700 border-none font-bold text-[10px]'
                                             : 'bg-purple-50 text-purple-700 border-none font-bold text-[10px]'}
                                     >
                                         {t.academics === 'CORE' ? 'Core' : 'Non-Core'}
@@ -88,7 +88,7 @@ const TeacherTable = ({
                                 <TableCell className="text-center font-mono font-bold text-zinc-700">{t.observationCount}</TableCell>
                                 <TableCell className="text-center">
                                     <div className="flex items-center justify-center gap-2">
-                                        <div className={`w-2 h-2 rounded-full ${t.avgScore >= 4 ? 'bg-emerald-500' : t.avgScore >= 3 ? 'bg-amber-500' : t.avgScore > 0 ? 'bg-rose-500' : 'bg-zinc-200'}`} />
+                                        <div className={`w-2 h-2 rounded-full ${t.avgScore >= 4 ? 'bg-backgroundmerald-500' : t.avgScore >= 3 ? 'bg-amber-500' : t.avgScore > 0 ? 'bg-rose-500' : 'bg-zinc-200'}`} />
                                         <span className="font-mono font-bold text-zinc-700">{t.avgScore > 0 ? t.avgScore : '--'}</span>
                                     </div>
                                 </TableCell>
@@ -136,7 +136,7 @@ const GrowthAnalyticsView = () => {
     }, []);
 
     if (loading || !data) {
-        return <div className="p-12 text-center animate-pulse text-zinc-400 font-medium">Crunching growth data insights...</div>;
+        return <div className="p-12 text-center animate-pulse text-muted-foreground font-medium">Crunching growth data insights...</div>;
     }
 
     const toolData = data.toolUsage ? [
@@ -150,8 +150,8 @@ const GrowthAnalyticsView = () => {
     const nonCoreTeachers = allTeachers.filter(t => t.academics === 'NON_CORE');
 
     const stats = [
-        { title: "Total Teachers", value: data.totalTeachers || allTeachers.length, icon: Users, color: "text-blue-600", bg: "bg-blue-100", trend: "All Staff" },
-        { title: "Core Teachers", value: data.totalCore || coreTeachers.length, icon: BookOpen, color: "text-emerald-600", bg: "bg-emerald-100", trend: "Academic Core" },
+        { title: "Total Teachers", value: data.totalTeachers || allTeachers.length, icon: Users, color: "text-blue-600", bg: "bg-backgroundackgroundlue-100", trend: "All Staff" },
+        { title: "Core Teachers", value: data.totalCore || coreTeachers.length, icon: BookOpen, color: "text-emerald-600", bg: "bg-backgroundmerald-100", trend: "Academic Core" },
         { title: "Non-Core Teachers", value: data.totalNonCore || nonCoreTeachers.length, icon: Palette, color: "text-purple-600", bg: "bg-purple-100", trend: "Non-Core" },
         { title: "Target Completion", value: `${Math.round(data.observationCompletionRate)}%`, icon: Target, color: "text-amber-600", bg: "bg-amber-100", trend: "Annual Goal" },
     ];
@@ -184,7 +184,7 @@ const GrowthAnalyticsView = () => {
                                     {stat.trend}
                                 </Badge>
                             </div>
-                            <h3 className="text-sm font-bold text-zinc-400 tracking-wider">{stat.title}</h3>
+                            <h3 className="text-sm font-bold text-muted-foreground tracking-wider">{stat.title}</h3>
                             <p className="text-3xl font-black text-zinc-900 mt-1">{stat.value}</p>
                         </CardContent>
                     </Card>
@@ -217,21 +217,21 @@ const GrowthAnalyticsView = () => {
                                 </PieChart>
                             </ResponsiveContainer>
                         ) : (
-                            <div className="flex items-center justify-center h-full text-zinc-400 text-sm font-medium">No tool usage data available</div>
+                            <div className="flex items-center justify-center h-full text-muted-foreground text-sm font-medium">No tool usage data available</div>
                         )}
                         {data.toolUsage?.percentages && (
                             <div className="grid grid-cols-3 gap-1 pt-2">
                                 <div className="text-center">
                                     <p className="text-[10px] font-black text-blue-600">{data.toolUsage.percentages.instructional}%</p>
-                                    <p className="text-[8px] font-bold text-zinc-400">Inst.</p>
+                                    <p className="text-[8px] font-bold text-muted-foreground">Inst.</p>
                                 </div>
                                 <div className="text-center">
                                     <p className="text-[10px] font-black text-emerald-600">{data.toolUsage.percentages.la}%</p>
-                                    <p className="text-[8px] font-bold text-zinc-400">LA</p>
+                                    <p className="text-[8px] font-bold text-muted-foreground">LA</p>
                                 </div>
                                 <div className="text-center">
                                     <p className="text-[10px] font-black text-amber-600">{data.toolUsage.percentages.cultural}%</p>
-                                    <p className="text-[8px] font-bold text-zinc-400">Cult.</p>
+                                    <p className="text-[8px] font-bold text-muted-foreground">Cult.</p>
                                 </div>
                             </div>
                         )}
@@ -285,7 +285,7 @@ const GrowthAnalyticsView = () => {
                                 </SelectContent>
                             </Select>
                             <div className="relative">
-                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                                 <Input
                                     placeholder="Search teacher..."
                                     className="pl-9 h-9 rounded-xl w-[180px]"
@@ -308,7 +308,7 @@ const GrowthAnalyticsView = () => {
                                     }`}
                             >
                                 {tab.label}
-                                <span className={`text-[10px] font-black px-1.5 py-0.5 rounded-full ${activeTab === tab.key ? `${tab.color} bg-zinc-50` : 'text-zinc-400'
+                                <span className={`text-[10px] font-black px-1.5 py-0.5 rounded-full ${activeTab === tab.key ? `${tab.color} bg-zinc-50` : 'text-muted-foreground'
                                     }`}>
                                     {tab.count}
                                 </span>
@@ -377,12 +377,12 @@ const GrowthAnalyticsView = () => {
                                         <TableCell className="font-medium text-slate-500 text-center">{index + 1}</TableCell>
                                         <TableCell className="font-black text-zinc-800">
                                             <div className="flex items-center gap-2">
-                                                {expandedCampus === campus.campusId ? <ChevronDown className="w-4 h-4 text-zinc-400" /> : <ChevronRight className="w-4 h-4 text-zinc-400" />}
+                                                {expandedCampus === campus.campusId ? <ChevronDown className="w-4 h-4 text-muted-foreground" /> : <ChevronRight className="w-4 h-4 text-muted-foreground" />}
                                                 {campus.campusId}
                                             </div>
                                         </TableCell>
                                         <TableCell className="text-center">
-                                            <Badge variant="secondary" className="bg-blue-50 text-blue-700 border-none font-bold">
+                                            <Badge variant="secondary" className="bg-backgroundackgroundlue-50 text-blue-700 border-none font-bold">
                                                 {campus.coreCount} Core
                                             </Badge>
                                         </TableCell>
@@ -393,21 +393,21 @@ const GrowthAnalyticsView = () => {
                                         </TableCell>
                                         <TableCell className="font-mono font-bold text-zinc-700">
                                             <div className="flex items-center gap-2">
-                                                <div className={`w-2 h-2 rounded-full ${campus.avgScore >= 4 ? 'bg-emerald-500' : campus.avgScore >= 3 ? 'bg-amber-500' : 'bg-rose-500'}`} />
+                                                <div className={`w-2 h-2 rounded-full ${campus.avgScore >= 4 ? 'bg-backgroundmerald-500' : campus.avgScore >= 3 ? 'bg-amber-500' : 'bg-rose-500'}`} />
                                                 {campus.avgScore}
                                             </div>
                                         </TableCell>
                                         <TableCell className="font-medium text-zinc-600">{campus.avgObsPerTeacher}</TableCell>
                                         <TableCell className="w-[200px]">
                                             <div className="space-y-1">
-                                                <div className="flex justify-between text-[10px] font-bold text-zinc-400">
+                                                <div className="flex justify-between text-[10px] font-bold text-muted-foreground">
                                                     <span>{campus.targetCompletion}%</span>
                                                 </div>
                                                 <Progress value={campus.targetCompletion} className="h-2 rounded-full bg-zinc-100" />
                                             </div>
                                         </TableCell>
                                         <TableCell className="text-right">
-                                            <Badge variant="secondary" className="bg-blue-50 text-blue-600 border-none font-bold">
+                                            <Badge variant="secondary" className="bg-backgroundackgroundlue-50 text-blue-600 border-none font-bold">
                                                 {campus.observationCount} Obs
                                             </Badge>
                                         </TableCell>
@@ -427,11 +427,11 @@ const GrowthAnalyticsView = () => {
                                                                     <div key={teacher.id} className="p-3 bg-white rounded-xl border border-blue-50 shadow-sm flex items-center justify-between">
                                                                         <div>
                                                                             <p className="font-bold text-zinc-800 text-sm">{teacher.name}</p>
-                                                                            <p className="text-[10px] text-zinc-400 font-bold">{teacher.observationCount} Obs</p>
+                                                                            <p className="text-[10px] text-muted-foreground font-bold">{teacher.observationCount} Obs</p>
                                                                         </div>
                                                                         <div className="text-right">
                                                                             <p className="text-lg font-black text-zinc-900 leading-none">{teacher.avgScore || '--'}</p>
-                                                                            <p className="text-[9px] text-zinc-400 font-bold">Avg</p>
+                                                                            <p className="text-[9px] text-muted-foreground font-bold">Avg</p>
                                                                         </div>
                                                                     </div>
                                                                 ))}
@@ -449,11 +449,11 @@ const GrowthAnalyticsView = () => {
                                                                     <div key={teacher.id} className="p-3 bg-white rounded-xl border border-purple-50 shadow-sm flex items-center justify-between">
                                                                         <div>
                                                                             <p className="font-bold text-zinc-800 text-sm">{teacher.name}</p>
-                                                                            <p className="text-[10px] text-zinc-400 font-bold">{teacher.observationCount} Obs</p>
+                                                                            <p className="text-[10px] text-muted-foreground font-bold">{teacher.observationCount} Obs</p>
                                                                         </div>
                                                                         <div className="text-right">
                                                                             <p className="text-lg font-black text-zinc-900 leading-none">{teacher.avgScore || '--'}</p>
-                                                                            <p className="text-[9px] text-zinc-400 font-bold">Avg</p>
+                                                                            <p className="text-[9px] text-muted-foreground font-bold">Avg</p>
                                                                         </div>
                                                                     </div>
                                                                 ))}
@@ -461,7 +461,7 @@ const GrowthAnalyticsView = () => {
                                                         </div>
                                                     )}
                                                     {(!campus.coreTeachers?.length && !campus.nonCoreTeachers?.length) && (
-                                                        <p className="text-xs text-zinc-400 font-medium">No teacher data available for this campus.</p>
+                                                        <p className="text-xs text-muted-foreground font-medium">No teacher data available for this campus.</p>
                                                     )}
                                                 </div>
                                             </TableCell>
@@ -490,16 +490,16 @@ const GrowthAnalyticsView = () => {
                                     </div>
                                     <div>
                                         <p className="font-black text-zinc-900 text-sm leading-none">{observer.name}</p>
-                                        <p className="text-[10px] font-bold text-zinc-400 mt-1">{observer.observationCount} Observations</p>
+                                        <p className="text-[10px] font-bold text-muted-foreground mt-1">{observer.observationCount} Observations</p>
                                     </div>
                                 </div>
                                 <div className="text-right">
                                     <p className="text-lg font-black text-zinc-900 leading-none">{observer.avgScore}</p>
-                                    <p className="text-[9px] font-bold text-zinc-400">Avg Score</p>
+                                    <p className="text-[9px] font-bold text-muted-foreground">Avg Score</p>
                                 </div>
                             </div>
                             <div className="space-y-1">
-                                <div className="flex justify-between text-[9px] font-black text-zinc-400">
+                                <div className="flex justify-between text-[9px] font-black text-muted-foreground">
                                     <span>Workload Completion</span>
                                     <span>{observer.targetCompletion}%</span>
                                 </div>
@@ -508,7 +508,7 @@ const GrowthAnalyticsView = () => {
                         </div>
                     ))}
                     {(!data.observerMetrics || data.observerMetrics.length === 0) && (
-                        <p className="text-sm text-zinc-400 font-medium col-span-full text-center py-8">No observer data available yet.</p>
+                        <p className="text-sm text-muted-foreground font-medium col-span-full text-center py-8">No observer data available yet.</p>
                     )}
                 </CardContent>
             </Card>

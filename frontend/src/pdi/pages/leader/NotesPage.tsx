@@ -237,7 +237,7 @@ const NotesPage = () => {
                                         value={selectedTeacherId} 
                                         onValueChange={setSelectedTeacherId}
                                     >
-                                        <SelectTrigger className="h-12 border-primary/20 bg-background/50">
+                                        <SelectTrigger className="h-12 border-primary/20 bg-backgroundackgroundackground/50">
                                             <SelectValue placeholder="Select Teacher" />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -350,7 +350,7 @@ const NotesPage = () => {
                                                     </Button>
                                                     <Button 
                                                         size="sm" 
-                                                        className="flex-1 text-[10px] font-black uppercase tracking-tighter bg-primary/10 text-primary hover:bg-primary hover:text-white rounded-xl h-8"
+                                                        className="flex-1 text-[10px] font-black uppercase tracking-tighter bg-primary/10 text-primary hover:bg-primary hover:text-foreground rounded-xl h-8"
                                                         onClick={() => resumeObservation(obs)}
                                                     >
                                                         Resume
@@ -461,7 +461,7 @@ const NotesPage = () => {
                                                     </div>
                                                 ) : (
                                                     notes.map((note) => (
-                                                        <div key={note.id} className="group flex gap-4 bg-background border p-4 rounded-[1.5rem] shadow-sm hover:shadow-md hover:border-primary/20 transition-all animate-in slide-in-from-left-2 duration-300">
+                                                        <div key={note.id} className="group flex gap-4 bg-backgroundackgroundackground border p-4 rounded-[1.5rem] shadow-sm hover:shadow-md hover:border-primary/20 transition-all animate-in slide-in-from-left-2 duration-300">
                                                             <div className="flex flex-col items-center gap-1 shrink-0">
                                                                 <div className="px-2 py-1 rounded-lg bg-primary/5 text-primary text-[11px] font-mono font-black border border-primary/10">
                                                                     {note.timestamp}

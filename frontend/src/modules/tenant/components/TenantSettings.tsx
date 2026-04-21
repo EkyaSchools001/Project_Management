@@ -74,8 +74,8 @@ export const TenantSettingsPage = ({ activeTab: initialTab }: TenantSettingsProp
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl font-bold text-white">Tenant Settings</h1>
-                    <p className="text-white/60">Manage your organization settings and branding</p>
+                    <h1 className="text-2xl font-bold text-foreground">Tenant Settings</h1>
+                    <p className="text-foreground/60">Manage your organization settings and branding</p>
                 </div>
             </div>
 
@@ -89,7 +89,7 @@ export const TenantSettingsPage = ({ activeTab: initialTab }: TenantSettingsProp
                             className={`flex items-center gap-2 px-4 py-3 border-b-2 transition-colors ${
                                 activeTab === tab.id
                                     ? 'border-[#BAFF00] text-[#BAFF00]'
-                                    : 'border-transparent text-white/60 hover:text-white'
+                                    : 'border-transparent text-foreground/60 hover:text-foreground'
                             }`}
                         >
                             <Icon className="w-4 h-4" />
@@ -104,28 +104,28 @@ export const TenantSettingsPage = ({ activeTab: initialTab }: TenantSettingsProp
                     <div className="space-y-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="p-6 bg-white/5 rounded-xl border border-white/10">
-                                <h3 className="text-lg font-semibold text-white mb-4">Organization Name</h3>
+                                <h3 className="text-lg font-semibold text-foreground mb-4">Organization Name</h3>
                                 <input
                                     type="text"
                                     defaultValue={tenant?.name}
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white"
+                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-foreground"
                                     readOnly
                                 />
                             </div>
 
                             <div className="p-6 bg-white/5 rounded-xl border border-white/10">
-                                <h3 className="text-lg font-semibold text-white mb-4">Slug</h3>
+                                <h3 className="text-lg font-semibold text-foreground mb-4">Slug</h3>
                                 <input
                                     type="text"
                                     defaultValue={tenant?.slug}
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white"
+                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-foreground"
                                     readOnly
                                 />
                             </div>
                         </div>
 
                         <div className="p-6 bg-white/5 rounded-xl border border-white/10">
-                            <h3 className="text-lg font-semibold text-white mb-4">Status</h3>
+                            <h3 className="text-lg font-semibold text-foreground mb-4">Status</h3>
                             <div className="flex items-center gap-3">
                                 <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                                     tenant?.status === 'Active'
@@ -145,22 +145,22 @@ export const TenantSettingsPage = ({ activeTab: initialTab }: TenantSettingsProp
 
                 {activeTab === 'integrations' && (
                     <div className="p-6 bg-white/5 rounded-xl border border-white/10">
-                        <h3 className="text-lg font-semibold text-white mb-4">Integrations</h3>
-                        <p className="text-white/60">Configure third-party integrations</p>
+                        <h3 className="text-lg font-semibold text-foreground mb-4">Integrations</h3>
+                        <p className="text-foreground/60">Configure third-party integrations</p>
                     </div>
                 )}
 
                 {activeTab === 'billing' && (
                     <div className="p-6 bg-white/5 rounded-xl border border-white/10">
-                        <h3 className="text-lg font-semibold text-white mb-4">Billing</h3>
-                        <p className="text-white/60">Manage your subscription and billing</p>
+                        <h3 className="text-lg font-semibold text-foreground mb-4">Billing</h3>
+                        <p className="text-foreground/60">Manage your subscription and billing</p>
                     </div>
                 )}
 
                 {activeTab === 'users' && (
                     <div className="p-6 bg-white/5 rounded-xl border border-white/10">
-                        <h3 className="text-lg font-semibold text-white mb-4">Users</h3>
-                        <p className="text-white/60">Manage tenant users and roles</p>
+                        <h3 className="text-lg font-semibold text-foreground mb-4">Users</h3>
+                        <p className="text-foreground/60">Manage tenant users and roles</p>
                     </div>
                 )}
             </div>

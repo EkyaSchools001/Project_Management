@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 
 const PRIORITY_CONFIG = {
-    'LOW': { color: '#10b981', bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-600', label: 'Low' },
+    'LOW': { color: '#10b981', bg: 'bg-backgroundmerald-50', border: 'border-emerald-200', text: 'text-emerald-600', label: 'Low' },
     'MEDIUM': { color: '#f59e0b', bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-600', label: 'Medium' },
     'HIGH': { color: '#f97316', bg: 'bg-orange-50', border: 'border-orange-200', text: 'text-orange-600', label: 'High' },
     'CRITICAL': { color: '#ef4444', bg: 'bg-rose-50', border: 'border-rose-200', text: 'text-rose-600', label: 'Critical' }
@@ -65,7 +65,7 @@ export const TaskCard = ({
                         isSelected ? 'bg-indigo-600 border-indigo-600' : 'border-slate-300'
                     }`}
                 >
-                    {isSelected && <CheckCircle2 size={10} className="text-white" />}
+                    {isSelected && <CheckCircle2 size={10} className="text-foreground" />}
                 </button>
                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: priorityConfig.color }} />
                 <span className="text-sm text-slate-700 truncate flex-1">{task.title}</span>
@@ -105,10 +105,10 @@ export const TaskCard = ({
                                 : 'border-slate-300 hover:border-indigo-400'
                         }`}
                     >
-                        {isSelected && <CheckCircle2 size={12} className="text-white" />}
+                        {isSelected && <CheckCircle2 size={12} className="text-foreground" />}
                     </button>
                     <span className={`text-sm font-semibold truncate ${
-                        task.status === 'DONE' ? 'text-zinc-400 line-through' : 'text-slate-800'
+                        task.status === 'DONE' ? 'text-muted-foreground line-through' : 'text-slate-800'
                     }`}>
                         {task.title}
                     </span>
@@ -120,7 +120,7 @@ export const TaskCard = ({
                             onClick={(e) => e.stopPropagation()}
                             className="p-1 rounded hover:bg-slate-100 transition-colors"
                         >
-                            <MoreHorizontal size={16} className="text-zinc-400" />
+                            <MoreHorizontal size={16} className="text-muted-foreground" />
                         </button>
                         <AnimatePresence>
                             {showQuickActions && (
@@ -187,7 +187,7 @@ export const TaskCard = ({
                             style={{ width: `${progress}%` }}
                         />
                     </div>
-                    <span className="text-[10px] text-zinc-400 mt-1 block">{progress}% complete</span>
+                    <span className="text-[10px] text-muted-foreground mt-1 block">{progress}% complete</span>
                 </div>
             )}
 
@@ -195,26 +195,26 @@ export const TaskCard = ({
                 <div className="flex items-center gap-3">
                     {task.dueDate && (
                         <div className={`flex items-center gap-1 text-[10px] ${
-                            isOverdue ? 'text-rose-500 font-medium' : 'text-zinc-400'
+                            isOverdue ? 'text-rose-500 font-medium' : 'text-muted-foreground'
                         }`}>
                             <Calendar size={12} />
                             {new Date(task.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                         </div>
                     )}
                     {task.estimatedHours && (
-                        <div className="flex items-center gap-1 text-[10px] text-zinc-400">
+                        <div className="flex items-center gap-1 text-[10px] text-muted-foreground">
                             <Clock size={12} />
                             {task.estimatedHours}h
                         </div>
                     )}
                     {task.comments?.length > 0 && (
-                        <div className="flex items-center gap-1 text-[10px] text-zinc-400">
+                        <div className="flex items-center gap-1 text-[10px] text-muted-foreground">
                             <MessageSquare size={12} />
                             {task.comments.length}
                         </div>
                     )}
                     {task.attachments?.length > 0 && (
-                        <div className="flex items-center gap-1 text-[10px] text-zinc-400">
+                        <div className="flex items-center gap-1 text-[10px] text-muted-foreground">
                             <Paperclip size={12} />
                             {task.attachments.length}
                         </div>
@@ -242,7 +242,7 @@ export const TaskCard = ({
                         </span>
                     </div>
                 ) : (
-                    <button className="text-[10px] text-zinc-400 hover:text-indigo-600 flex items-center gap-1">
+                    <button className="text-[10px] text-muted-foreground hover:text-indigo-600 flex items-center gap-1">
                         <User size={12} />
                         Assign
                     </button>
@@ -251,7 +251,7 @@ export const TaskCard = ({
 
             {task.subtasks && task.subtasks.length > 0 && (
                 <div className="mt-3 pt-3 border-t border-slate-100">
-                    <div className="flex items-center justify-between text-[10px] text-zinc-400 mb-2">
+                    <div className="flex items-center justify-between text-[10px] text-muted-foreground mb-2">
                         <span className="flex items-center gap-1">
                             <CheckCircle2 size={10} />
                             Subtasks
@@ -263,16 +263,16 @@ export const TaskCard = ({
                     <div className="space-y-1">
                         {task.subtasks.slice(0, 3).map((subtask, idx) => (
                             <div key={idx} className="flex items-center gap-2 text-xs">
-                                <div className={`w-3 h-3 rounded border ${subtask.done ? 'bg-emerald-500 border-emerald-500' : 'border-slate-300'}`}>
-                                    {subtask.done && <CheckCircle2 size={8} className="text-white" />}
+                                <div className={`w-3 h-3 rounded border ${subtask.done ? 'bg-backgroundmerald-500 border-emerald-500' : 'border-slate-300'}`}>
+                                    {subtask.done && <CheckCircle2 size={8} className="text-foreground" />}
                                 </div>
-                                <span className={subtask.done ? 'text-zinc-400 line-through' : 'text-slate-600'}>
+                                <span className={subtask.done ? 'text-muted-foreground line-through' : 'text-slate-600'}>
                                     {subtask.title}
                                 </span>
                             </div>
                         ))}
                         {task.subtasks.length > 3 && (
-                            <div className="text-[10px] text-zinc-400 flex items-center gap-1">
+                            <div className="text-[10px] text-muted-foreground flex items-center gap-1">
                                 <ChevronRight size={10} />
                                 +{task.subtasks.length - 3} more
                             </div>

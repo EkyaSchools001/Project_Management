@@ -48,19 +48,19 @@ export default function Departments() {
             className="max-w-[1800px] mx-auto space-y-12 sm:space-y-16 p-4 sm:p-10 lg:p-16 pb-32"
         >
             {/* Vibrant Header Section */}
-            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-10 relative overflow-hidden p-10 sm:p-16 lg:p-20 bg-zinc-900 rounded-[4rem] sm:rounded-[5rem] text-white shadow-2xl group border border-white/5">
+            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-10 relative overflow-hidden p-10 sm:p-16 lg:p-20 bg-backgroundackgroundackground rounded-[4rem] sm:rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-violet-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-96 h-96 bg-amber-500 rounded-full blur-[140px] opacity-20 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 
                 <div className="space-y-8 relative z-10 max-w-2xl">
                     <motion.div variants={itemVariants} className="inline-flex items-center gap-4 px-6 py-2 bg-white/5 rounded-full border border-white/10 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] backdrop-blur-md">
-                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse-glow shadow-[0_0_10px_rgba(52,211,153,0.4)]" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-backgroundmerald-400 animate-pulse-glow shadow-[0_0_10px_rgba(52,211,153,0.4)]" />
                         Infrastructure Matrix: Nominal
                     </motion.div>
-                    <motion.h1 variants={itemVariants} className="text-4xl sm:text-7xl lg:text-9xl font-black text-white tracking-tighter uppercase leading-[0.85]">
+                    <motion.h1 variants={itemVariants} className="text-4xl sm:text-7xl lg:text-9xl font-black text-foreground tracking-tighter uppercase leading-[0.85]">
                         System <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-rose-400 to-amber-400 animate-gradient-shift">Nodes</span>
                     </motion.h1>
-                    <motion.p variants={itemVariants} className="text-white/40 font-black text-xs sm:text-base uppercase tracking-widest flex items-center gap-4">
+                    <motion.p variants={itemVariants} className="text-foreground/40 font-black text-xs sm:text-base uppercase tracking-widest flex items-center gap-4">
                         <Globe size={24} className="text-indigo-400" />
                         Global Logistical Unit & Cluster Orchestration
                     </motion.p>
@@ -68,7 +68,7 @@ export default function Departments() {
 
                 <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 w-full xl:w-auto relative z-10 lg:pb-6">
                     <div className="relative flex-1 sm:w-[450px] group/search">
-                        <Search className="absolute left-7 top-1/2 -translate-y-1/2 text-white/40 w-6 h-6 group-focus-within/search:text-indigo-400 transition-colors" />
+                        <Search className="absolute left-7 top-1/2 -translate-y-1/2 text-foreground/40 w-6 h-6 group-focus-within/search:text-indigo-400 transition-colors" />
                         <input
                             type="text"
                             placeholder="QUERY INFRASTRUCTURE..."
@@ -78,7 +78,7 @@ export default function Departments() {
                         />
                     </div>
 
-                    <button className="h-20 px-12 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-black rounded-[2.5rem] text-[11px] uppercase tracking-[0.3em] shadow-2xl shadow-indigo-600/40 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-4 shrink-0 group/deploy">
+                    <button className="h-20 px-12 bg-gradient-to-r from-indigo-600 to-violet-600 text-foreground font-black rounded-[2.5rem] text-[11px] uppercase tracking-[0.3em] shadow-2xl shadow-indigo-600/40 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-4 shrink-0 group/deploy">
                         <Plus size={24} className="group-hover/deploy:rotate-90 transition-transform" />
                         Deploy Unit
                     </button>
@@ -101,7 +101,7 @@ export default function Departments() {
                                 </div>
                             </div>
                             <div className="min-w-0 space-y-2">
-                                <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.4em] mb-2 truncate group-hover:text-slate-950 transition-colors">{stat.label}</p>
+                                <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.4em] mb-2 truncate group-hover:text-slate-950 transition-colors">{stat.label}</p>
                                 <div className="flex items-baseline gap-4">
                                     <p className="text-4xl sm:text-6xl font-black text-slate-900 tracking-tighter truncate group-hover:scale-105 transition-transform duration-700 origin-left">{stat.value}</p>
                                     <ArrowUpRight size={24} className="text-emerald-500 opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-2 group-hover:translate-y-0" />
@@ -132,10 +132,10 @@ export default function Departments() {
                                 
                                 <div className="relative">
                                     <div className="absolute inset-0 bg-indigo-600/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000 scale-150" />
-                                    <div className="w-24 h-24 sm:w-28 sm:h-28 bg-slate-950 text-white rounded-[2.5rem] flex items-center justify-center font-black text-3xl sm:text-4xl shadow-2xl relative z-10 group-hover:scale-110 group-hover:bg-indigo-600 transition-all duration-700 border-4 border-white">
+                                    <div className="w-24 h-24 sm:w-28 sm:h-28 bg-slate-950 text-foreground rounded-[2.5rem] flex items-center justify-center font-black text-3xl sm:text-4xl shadow-2xl relative z-10 group-hover:scale-110 group-hover:bg-indigo-600 transition-all duration-700 border-4 border-white">
                                         {index + 1}
                                     </div>
-                                    <div className="absolute -bottom-2 -right-2 bg-emerald-500 text-[9px] font-black p-2 rounded-xl text-white border-4 border-white shadow-xl z-20 group-hover:animate-bounce">
+                                    <div className="absolute -bottom-2 -right-2 bg-backgroundmerald-500 text-[9px] font-black p-2 rounded-xl text-foreground border-4 border-white shadow-xl z-20 group-hover:animate-bounce">
                                         SYNC
                                     </div>
                                 </div>
@@ -147,13 +147,13 @@ export default function Departments() {
                                     <div className="flex flex-col items-center gap-3">
                                         <div className="flex items-center gap-3 px-6 py-2 bg-slate-50 rounded-2xl border border-slate-100 group-hover:bg-indigo-50 transition-colors group-hover:border-indigo-100">
                                             <Cpu size={16} className="text-indigo-400" />
-                                            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest group-hover:text-indigo-600 transition-colors">Core Lead: {dept.head}</span>
+                                            <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest group-hover:text-indigo-600 transition-colors">Core Lead: {dept.head}</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="w-full pt-10 border-t border-slate-50 mt-auto">
-                                    <button className="w-full h-18 bg-slate-950 group-hover:bg-indigo-600 text-white text-[11px] font-black uppercase tracking-[0.3em] rounded-[1.75rem] transition-all shadow-xl shadow-slate-900/10 flex items-center justify-center gap-4 active:scale-95 group-hover:shadow-indigo-600/30">
+                                    <button className="w-full h-18 bg-slate-950 group-hover:bg-indigo-600 text-foreground text-[11px] font-black uppercase tracking-[0.3em] rounded-[1.75rem] transition-all shadow-xl shadow-slate-900/10 flex items-center justify-center gap-4 active:scale-95 group-hover:shadow-indigo-600/30">
                                         ACCESS NODE
                                         <ArrowUpRight size={22} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                                     </button>

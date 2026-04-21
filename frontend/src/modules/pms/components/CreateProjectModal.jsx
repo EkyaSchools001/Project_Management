@@ -69,21 +69,21 @@ const CreateProjectModal = ({ isOpen, onClose, onAdd }) => {
     };
 
     return (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center z-[110] p-4">
+        <div className="fixed inset-0 bg-backgroundackgroundlack/40 backdrop-blur-[2px] flex items-center justify-center z-[110] p-4">
             <motion.div
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 className="bg-[#111c2a] rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col"
             >
                 {/* Header */}
-                <div className="bg-neutral-800 p-6 text-white flex items-center justify-between">
+                <div className="bg-neutral-800 p-6 text-foreground flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className="p-2 bg-[#111c2a]/20 rounded-xl">
                             <Briefcase size={24} />
                         </div>
                         <div>
                             <h2 className="text-xl font-bold">Launch New Project</h2>
-                            <p className="text-white/70 text-sm">Initiate a strategic work stream</p>
+                            <p className="text-foreground/70 text-sm">Initiate a strategic work stream</p>
                         </div>
                     </div>
                     <button onClick={onClose} className="p-2 hover:bg-[#111c2a]/20 rounded-xl transition-all">
@@ -129,7 +129,7 @@ const CreateProjectModal = ({ isOpen, onClose, onAdd }) => {
                         </div>
                         
                         {aiTasks && (
-                            <div className="bg-emerald-500/5 border border-emerald-500/20 p-4 rounded-2xl">
+                            <div className="bg-backgroundmerald-500/5 border border-emerald-500/20 p-4 rounded-2xl">
                                 <p className="text-[10px] font-bold text-emerald-400 uppercase tracking-[0.2em] mb-2">AI Blueprint Generated</p>
                                 <p className="text-xs text-emerald-300/60 leading-relaxed italic">
                                     "{aiTasks.length} task milestones have been optimized for this roadmap based on industry benchmarks."
@@ -223,7 +223,7 @@ const CreateProjectModal = ({ isOpen, onClose, onAdd }) => {
                                         type="button"
                                         onClick={() => setFormData({ ...formData, status })}
                                         className={`py-2 px-3 rounded-xl border text-[10px] font-bold transition-all ${formData.status === status
-                                                ? 'bg-neutral-800 text-white border-brand-600 shadow-md shadow-brand-500/20'
+                                                ? 'bg-neutral-800 text-foreground border-brand-600 shadow-md shadow-brand-500/20'
                                                 : 'bg-[#0f172a] text-gray-400 border-neutral-800 hover:bg-[#1e293b]'
                                             }`}
                                     >
@@ -244,7 +244,7 @@ const CreateProjectModal = ({ isOpen, onClose, onAdd }) => {
                         </button>
                         <button
                             type="submit"
-                            className="flex-[2] px-6 py-3 bg-neutral-800 text-white rounded-2xl font-bold shadow-lg shadow-brand-600/20 hover:shadow-brand-600/30 transition-all"
+                            className="flex-[2] px-6 py-3 bg-neutral-800 text-foreground rounded-2xl font-bold shadow-lg shadow-brand-600/20 hover:shadow-brand-600/30 transition-all"
                         >
                             Initiate Project
                         </button>

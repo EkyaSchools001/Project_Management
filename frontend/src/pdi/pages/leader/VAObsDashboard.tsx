@@ -16,7 +16,7 @@ import { MessageSquare } from "lucide-react";
 
 const RATING_COLORS: Record<string, string> = {
     "Highly Effective": "bg-green-100 text-green-700",
-    "Effective": "bg-blue-100 text-blue-700",
+    "Effective": "bg-backgroundackgroundlue-100 text-blue-700",
     "Developing": "bg-yellow-100 text-yellow-700",
     "Needs Improvement": "bg-red-100 text-red-700",
 };
@@ -117,7 +117,7 @@ const VAObsDashboard: React.FC = () => {
             <div className="animate-in fade-in duration-500" style={{ background: "#F5F5EF", minHeight: "100vh", padding: "0 0 40px" }}>
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                     <div className="flex items-center gap-3">
-                        <div className="p-3 rounded-xl text-white" style={{ background: "#1F2839" }}>
+                        <div className="p-3 rounded-xl text-foreground" style={{ background: "#1F2839" }}>
                             <Palette className="w-6 h-6" />
                         </div>
                         <div>
@@ -164,7 +164,7 @@ const VAObsDashboard: React.FC = () => {
 
                 <Card className="  shadow-sm overflow-hidden">
                     <CardHeader className="py-3 px-4 border-b" style={{ background: "#1F2839" }}>
-                        <div className="grid grid-cols-10 gap-2 text-xs font-semibold text-white capitalize tracking-wider">
+                        <div className="grid grid-cols-10 gap-2 text-xs font-semibold text-foreground capitalize tracking-wider">
                             <span>Sr.</span>
                             <span>Date</span>
                             <span className="col-span-2">Teacher</span>
@@ -199,7 +199,7 @@ const VAObsDashboard: React.FC = () => {
                                     <span className="col-span-2" onClick={(e) => e.stopPropagation()}>
                                         <Dialog>
                                             <DialogTrigger asChild>
-                                                <Button variant="outline" size="sm" className="h-7 text-xs gap-1 bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 hover:text-blue-800">
+                                                <Button variant="outline" size="sm" className="h-7 text-xs gap-1 bg-backgroundackgroundlue-50 text-blue-700 border-blue-200 hover:bg-backgroundackgroundlue-100 hover:text-blue-800">
                                                     <MessageSquare className="w-3 h-3" /> View Comment
                                                 </Button>
                                             </DialogTrigger>

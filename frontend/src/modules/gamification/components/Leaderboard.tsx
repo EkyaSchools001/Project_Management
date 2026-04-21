@@ -43,7 +43,7 @@ export function Leaderboard({ limit = 10, showPeriodSelector = true, onViewAll }
 
   const getRankDisplay = (rank) => {
     if (rankIcons[rank]) return rankIcons[rank];
-    return <span className="font-bold text-white/60">#{rank}</span>;
+    return <span className="font-bold text-foreground/60">#{rank}</span>;
   };
 
   return (
@@ -53,7 +53,7 @@ export function Leaderboard({ limit = 10, showPeriodSelector = true, onViewAll }
           <div className="w-10 h-10 bg-[#BAFF00]/10 rounded-xl flex items-center justify-center">
             <Trophy size={20} className="text-[#BAFF00]" />
           </div>
-          <h2 className="text-lg font-bold text-white">Leaderboard</h2>
+          <h2 className="text-lg font-bold text-foreground">Leaderboard</h2>
         </div>
         
         {showPeriodSelector && (
@@ -64,7 +64,7 @@ export function Leaderboard({ limit = 10, showPeriodSelector = true, onViewAll }
                 onClick={() => setPeriod(opt.value)}
                 className={`
                   px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-md transition-all
-                  ${period === opt.value ? 'bg-[#BAFF00] text-black' : 'text-white/40 hover:text-white'}
+                  ${period === opt.value ? 'bg-[#BAFF00] text-black' : 'text-foreground/40 hover:text-foreground'}
                 `}
               >
                 {opt.label}
@@ -79,7 +79,7 @@ export function Leaderboard({ limit = 10, showPeriodSelector = true, onViewAll }
           <div className="w-6 h-6 border-2 border-[#BAFF00] border-t-transparent rounded-full animate-spin" />
         </div>
       ) : entries.length === 0 ? (
-        <div className="text-center py-12 text-white/40 text-sm">
+        <div className="text-center py-12 text-foreground/40 text-sm">
           No leaderboard data available
         </div>
       ) : (
@@ -96,22 +96,22 @@ export function Leaderboard({ limit = 10, showPeriodSelector = true, onViewAll }
                 {getRankDisplay(entry.rank)}
               </div>
 
-              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white font-bold text-sm">
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-foreground font-bold text-sm">
                 {entry.userName?.charAt(0).toUpperCase() || '?'}
               </div>
 
               <div className="flex-1 min-w-0">
-                <p className="font-bold text-sm text-white truncate">
+                <p className="font-bold text-sm text-foreground truncate">
                   {entry.userName}
                 </p>
-                <p className="text-[10px] text-white/40">Level {entry.level}</p>
+                <p className="text-[10px] text-foreground/40">Level {entry.level}</p>
               </div>
 
               <div className="text-right">
                 <p className="font-black text-lg text-[#BAFF00]">
                   {entry.score.toLocaleString()}
                 </p>
-                <p className="text-[10px] text-white/40">points</p>
+                <p className="text-[10px] text-foreground/40">points</p>
               </div>
             </div>
           ))}
@@ -121,7 +121,7 @@ export function Leaderboard({ limit = 10, showPeriodSelector = true, onViewAll }
       {onViewAll && (
         <button 
           onClick={onViewAll}
-          className="w-full mt-4 py-3 flex items-center justify-center gap-2 text-xs font-bold text-white/60 hover:text-[#BAFF00] transition-colors"
+          className="w-full mt-4 py-3 flex items-center justify-center gap-2 text-xs font-bold text-foreground/60 hover:text-[#BAFF00] transition-colors"
         >
           View Full Leaderboard
           <ChevronRight size={14} />

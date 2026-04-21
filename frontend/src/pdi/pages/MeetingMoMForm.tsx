@@ -291,15 +291,15 @@ export function MeetingMoMForm() {
                 <div className="flex items-center gap-3">
                     {isPublished ? (
                         <Badge className={cn(
-                            "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
-                            "bg-black hover:bg-black/90"
+                            "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
+                            "bg-backgroundackgroundlack hover:bg-backgroundackgroundlack/90"
                         )}>
                             <CheckCircle2 className="w-3 h-3 mr-1" />
                             PUBLISHED
                         </Badge>
                     ) : (
                         <Badge className={cn(
-                            "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
+                            "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
                             "bg-amber-500 hover:bg-amber-600"
                         )}>
                             <HistoryIcon className="w-3 h-3 mr-1" />
@@ -319,7 +319,7 @@ export function MeetingMoMForm() {
                         "hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300",
                         isSaving
                             ? "bg-amber-50 text-amber-600 border-amber-100"
-                            : "bg-emerald-50 text-emerald-600 border-emerald-100"
+                            : "bg-backgroundmerald-50 text-emerald-600 border-emerald-100"
                     )}>
                         <Cloud className={cn("w-3.5 h-3.5", isSaving ? "animate-pulse fill-amber-600/20" : "fill-emerald-600/20")} />
                         <span className="text-[10px] font-bold uppercase tracking-wider">
@@ -557,7 +557,7 @@ export function MeetingMoMForm() {
                                 Section 4: Action Item Tracking
                             </h3>
                             {canEdit && (
-                                <Button size="sm" variant="outline" onClick={handleAddActionItem} className="bg-white border-blue-200 text-blue-700 hover:bg-blue-50">
+                                <Button size="sm" variant="outline" onClick={handleAddActionItem} className="bg-white border-blue-200 text-blue-700 hover:bg-backgroundackgroundlue-50">
                                     <Plus className="w-4 h-4 mr-2" />
                                     Add New Task
                                 </Button>
@@ -638,8 +638,8 @@ export function MeetingMoMForm() {
                                                         </Select>
                                                     ) : (
                                                         <Badge variant={item.priority === 'High' ? 'destructive' : 'secondary'} className={cn(
-                                                            item.priority === 'Medium' && 'bg-blue-600 text-white',
-                                                            item.priority === 'Low' && 'bg-gray-400 text-white'
+                                                            item.priority === 'Medium' && 'bg-backgroundackgroundlue-600 text-foreground',
+                                                            item.priority === 'Low' && 'bg-gray-400 text-foreground'
                                                         )}>
                                                             {item.priority}
                                                         </Badge>
@@ -647,8 +647,8 @@ export function MeetingMoMForm() {
                                                 </TableCell>
                                                 <TableCell>
                                                     <Badge className={cn(
-                                                        "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
-                                                        item.status === 'Completed' ? 'bg-emerald-600' : 
+                                                        "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
+                                                        item.status === 'Completed' ? 'bg-backgroundmerald-600' : 
                                                         item.status === 'Pending' ? 'bg-amber-500' : 
                                                         'bg-slate-400'
                                                     )}>
@@ -809,7 +809,7 @@ export function MeetingMoMForm() {
                                             onChange={(e) => setReplyText(e.target.value)}
                                             className="min-h-[80px] bg-gray-50 border-gray-200 resize-none"
                                         />
-                                        <Button onClick={handleSendReply} className="w-full bg-gray-900 hover:bg-black text-white">
+                                        <Button onClick={handleSendReply} className="w-full bg-gray-900 hover:bg-backgroundackgroundlack text-foreground">
                                             Post Reply
                                         </Button>
                                     </div>

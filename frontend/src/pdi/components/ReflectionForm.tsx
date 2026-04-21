@@ -254,7 +254,7 @@ export function ReflectionForm({ observation, isOpen, onClose, onSubmit, teacher
                             </DialogDescription>
                         </div>
                         <div className="flex items-center gap-6">
-                            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100 animate-in fade-in duration-1000">
+                            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-backgroundmerald-50 text-emerald-600 border border-emerald-100 animate-in fade-in duration-1000">
                                 <Cloud className="w-3.5 h-3.5 fill-emerald-600/20" />
                                 <span className="text-[10px] font-bold uppercase tracking-wider">All changes auto-saved</span>
                             </div>
@@ -321,7 +321,7 @@ export function ReflectionForm({ observation, isOpen, onClose, onSubmit, teacher
                                                             <RadioGroupItem value={option} id={`${indicator}-${option}`} className="peer sr-only" />
                                                             <Label
                                                                 htmlFor={`${indicator}-${option}`}
-                                                                className="flex flex-col items-center justify-center h-24 rounded-xl border-2 bg-background cursor-pointer transition-all hover:bg-muted/50 hover:border-primary/30 peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5 peer-data-[state=checked]:shadow-sm"
+                                                                className="flex flex-col items-center justify-center h-24 rounded-xl border-2 bg-backgroundackgroundackground cursor-pointer transition-all hover:bg-muted/50 hover:border-primary/30 peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5 peer-data-[state=checked]:shadow-sm"
                                                             >
                                                                 <div className="flex gap-0.5 mb-2">
                                                                     {[...Array(4)].map((_, i) => (
@@ -375,7 +375,7 @@ export function ReflectionForm({ observation, isOpen, onClose, onSubmit, teacher
                                             <Textarea
                                                 id="strengths"
                                                 placeholder="Identify areas where you excelled..."
-                                                className="bg-background"
+                                                className="bg-backgroundackgroundackground"
                                                 value={formData.strengths}
                                                 onChange={(e) => setFormData(prev => ({ ...prev, strengths: e.target.value }))}
                                             />
@@ -385,7 +385,7 @@ export function ReflectionForm({ observation, isOpen, onClose, onSubmit, teacher
                                             <Textarea
                                                 id="improvements"
                                                 placeholder="Identify areas for growth..."
-                                                className="bg-background"
+                                                className="bg-backgroundackgroundackground"
                                                 value={formData.improvements}
                                                 onChange={(e) => setFormData(prev => ({ ...prev, improvements: e.target.value }))}
                                             />
@@ -395,7 +395,7 @@ export function ReflectionForm({ observation, isOpen, onClose, onSubmit, teacher
                                             <Input
                                                 id="goal"
                                                 placeholder="Define a SMART goal..."
-                                                className="bg-background h-12"
+                                                className="bg-backgroundackgroundackground h-12"
                                                 value={formData.goal}
                                                 onChange={(e) => setFormData(prev => ({ ...prev, goal: e.target.value }))}
                                             />
@@ -405,7 +405,7 @@ export function ReflectionForm({ observation, isOpen, onClose, onSubmit, teacher
                                             <Textarea
                                                 id="comments"
                                                 placeholder="Additional context or feedback..."
-                                                className="bg-background"
+                                                className="bg-backgroundackgroundackground"
                                                 value={formData.comments}
                                                 onChange={(e) => setFormData(prev => ({ ...prev, comments: e.target.value }))}
                                             />
@@ -422,11 +422,11 @@ export function ReflectionForm({ observation, isOpen, onClose, onSubmit, teacher
                     </div>
                 </ScrollArea>
 
-                <DialogFooter className="px-6 py-4 border-t bg-background shrink-0 gap-2 sm:justify-between">
+                <DialogFooter className="px-6 py-4 border-t bg-backgroundackgroundackground shrink-0 gap-2 sm:justify-between">
                     <Button variant="ghost" onClick={step === 0 ? onClose : handleBack} disabled={false}>
                         {step === 0 ? "Cancel" : "Back"}
                     </Button>
-                    <Button onClick={isFinalStep ? handleFinalSubmit : handleNext} className={cn("gap-2", isFinalStep && "bg-success hover:bg-success/90 text-white")}>
+                    <Button onClick={isFinalStep ? handleFinalSubmit : handleNext} className={cn("gap-2", isFinalStep && "bg-success hover:bg-success/90 text-foreground")}>
                         {isFinalStep ? (
                             <>Simulate Submit <Save className="w-4 h-4" /></>
                         ) : (

@@ -10,7 +10,7 @@ import api from "@pdi/lib/api";
 import { useGoogleLogin } from "@react-oauth/google";
 
 const MetaBadge = ({ text }: { text: string }) => (
-    <div className="font-mono text-[8px] tracking-[0.2em] border border-white/20 px-2 py-1 uppercase text-white/40">
+    <div className="font-mono text-[8px] tracking-[0.2em] border border-white/20 px-2 py-1 uppercase text-foreground/40">
         [ {text} ]
     </div>
 );
@@ -63,7 +63,7 @@ export default function Auth() {
     });
 
     return (
-        <div className="min-h-screen flex bg-black overflow-hidden relative industrial-grid scanlines">
+        <div className="min-h-screen flex bg-backgroundackgroundlack overflow-hidden relative industrial-grid scanlines">
             <div className="neon-frame" />
 
             {/* Technical Background Elements */}
@@ -101,16 +101,16 @@ export default function Auth() {
 
                             <form onSubmit={handleLogin} className="space-y-8">
                                 <div className="space-y-3">
-                                    <Label className="font-mono text-[10px] uppercase tracking-widest text-white/40 flex justify-between">
+                                    <Label className="font-mono text-[10px] uppercase tracking-widest text-foreground/40 flex justify-between">
                                         <span>User_Identifier</span>
                                         <span className="text-[#00f0ff]/40">PROTOCOL_SMTP</span>
                                     </Label>
                                     <div className="relative group">
-                                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-white/20 group-focus-within:text-[#00f0ff] transition-colors" />
+                                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/20 group-focus-within:text-[#00f0ff] transition-colors" />
                                         <Input
                                             type="email"
                                             placeholder="USER@SYSTEM.LOG"
-                                            className="bg-black/50 border-white/10 rounded-none h-14 pl-12 focus:border-[#00f0ff] focus:ring-1 focus:ring-[#00f0ff]/20 text-white font-mono placeholder:text-white/10"
+                                            className="bg-backgroundackgroundlack/50 border-white/10 rounded-none h-14 pl-12 focus:border-[#00f0ff] focus:ring-1 focus:ring-[#00f0ff]/20 text-foreground font-mono placeholder:text-foreground/10"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
                                             required
@@ -119,16 +119,16 @@ export default function Auth() {
                                 </div>
 
                                 <div className="space-y-3">
-                                    <Label className="font-mono text-[10px] uppercase tracking-widest text-white/40 flex justify-between">
+                                    <Label className="font-mono text-[10px] uppercase tracking-widest text-foreground/40 flex justify-between">
                                         <span>Crypt_Token</span>
                                         <ShieldAlert className="w-3 h-3 text-[#ff0055]" />
                                     </Label>
                                     <div className="relative group">
-                                        <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-white/20 group-focus-within:text-[#00f0ff] transition-colors" />
+                                        <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/20 group-focus-within:text-[#00f0ff] transition-colors" />
                                         <Input
                                             type={showPassword ? "text" : "password"}
                                             placeholder="••••••••"
-                                            className="bg-black/50 border-white/10 rounded-none h-14 pl-12 pr-12 focus:border-[#00f0ff] focus:ring-1 focus:ring-[#00f0ff]/20 text-white font-mono placeholder:text-white/10"
+                                            className="bg-backgroundackgroundlack/50 border-white/10 rounded-none h-14 pl-12 pr-12 focus:border-[#00f0ff] focus:ring-1 focus:ring-[#00f0ff]/20 text-foreground font-mono placeholder:text-foreground/10"
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
                                             required
@@ -136,7 +136,7 @@ export default function Auth() {
                                         <button
                                             type="button"
                                             onClick={() => setShowPassword(!showPassword)}
-                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-white/20 hover:text-[#00f0ff] transition-colors"
+                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-foreground/20 hover:text-[#00f0ff] transition-colors"
                                         >
                                             {showPassword ? <EyeOff className="h-4 h-4" /> : <Eye className="h-4 h-4" />}
                                         </button>
@@ -158,7 +158,7 @@ export default function Auth() {
 
                             <div className="my-10 flex items-center gap-4">
                                 <div className="flex-1 h-px bg-white/10" />
-                                <span className="font-mono text-[8px] text-white/20 uppercase tracking-[0.3em]">EXT_MODULES</span>
+                                <span className="font-mono text-[8px] text-foreground/20 uppercase tracking-[0.3em]">EXT_MODULES</span>
                                 <div className="flex-1 h-px bg-white/10" />
                             </div>
 
@@ -168,16 +168,16 @@ export default function Auth() {
                                 disabled={isLoading}
                                 className="w-full h-14 flex items-center justify-center gap-4 border border-white/10 hover:border-[#00f0ff]/50 hover:bg-white/5 transition-all group"
                             >
-                                <Cpu className="w-5 h-5 text-white/40 group-hover:text-[#00f0ff]" />
+                                <Cpu className="w-5 h-5 text-foreground/40 group-hover:text-[#00f0ff]" />
                                 <span className="font-mono text-[10px] uppercase tracking-widest">Federated_Identity_Protocol</span>
                             </button>
                         </div>
                     </div>
 
-                    <div className="mt-8 flex justify-between items-center font-mono text-[9px] text-white/20 uppercase tracking-widest">
-                        <Link to="#" className="hover:text-white transition-colors underline decoration-white/10 underline-offset-4">Reset_Access</Link>
+                    <div className="mt-8 flex justify-between items-center font-mono text-[9px] text-foreground/20 uppercase tracking-widest">
+                        <Link to="#" className="hover:text-foreground transition-colors underline decoration-white/10 underline-offset-4">Reset_Access</Link>
                         <span>[ STATUS: ACTIVE ]</span>
-                        <Link to="#" className="hover:text-white transition-colors underline decoration-white/10 underline-offset-4">Tech_Support</Link>
+                        <Link to="#" className="hover:text-foreground transition-colors underline decoration-white/10 underline-offset-4">Tech_Support</Link>
                     </div>
                 </div>
             </div>
@@ -188,7 +188,7 @@ export default function Auth() {
                     <div className="p-4 border border-[#00f0ff]/20 bg-[#00f0ff]/5 mb-12">
                         <Layers className="text-[#00f0ff] w-8 h-8 mb-4" />
                         <h3 className="text-xl font-black uppercase tracking-tighter mb-2">Technical Core</h3>
-                        <p className="text-[10px] font-mono text-white/40 leading-relaxed uppercase tracking-widest">
+                        <p className="text-[10px] font-mono text-foreground/40 leading-relaxed uppercase tracking-widest">
                             Distributed architecture for educational data handling. Neural processing enabled.
                         </p>
                     </div>
@@ -197,7 +197,7 @@ export default function Auth() {
                 <div className="space-y-4">
                     <div className="flex justify-between font-mono text-[8px] uppercase tracking-widest border-b border-white/5 pb-2">
                         <span>Cluster_ID</span>
-                        <span className="text-white/60">0x-PD4-META</span>
+                        <span className="text-foreground/60">0x-PD4-META</span>
                     </div>
                     <div className="flex justify-between font-mono text-[8px] uppercase tracking-widest border-b border-white/5 pb-2">
                         <span>Node_Status</span>
@@ -205,7 +205,7 @@ export default function Auth() {
                     </div>
                     <div className="flex justify-between font-mono text-[8px] uppercase tracking-widest border-b border-white/5 pb-2">
                         <span>Latency</span>
-                        <span className="text-white/60">4.2MS</span>
+                        <span className="text-foreground/60">4.2MS</span>
                     </div>
                 </div>
             </div>

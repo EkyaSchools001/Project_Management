@@ -131,7 +131,7 @@ export const AssessmentAssignmentModal: React.FC<AssessmentAssignmentModalProps>
                                         <div key={role.value} className="flex items-center space-x-3 p-2 hover:bg-white rounded-lg transition-colors cursor-pointer" onClick={() => toggleTarget(role.value)}>
                                             <Checkbox id={`role-${role.value}`} checked={selectedTargets.includes(role.value)} />
                                             <label className="text-sm font-medium leading-none cursor-pointer flex items-center gap-2">
-                                                <Shield className="w-4 h-4 text-zinc-400" />
+                                                <Shield className="w-4 h-4 text-muted-foreground" />
                                                 {role.label}
                                             </label>
                                         </div>
@@ -145,7 +145,7 @@ export const AssessmentAssignmentModal: React.FC<AssessmentAssignmentModalProps>
                                         <div key={campus} className="flex items-center space-x-3 p-2 hover:bg-white rounded-lg transition-colors cursor-pointer" onClick={() => toggleTarget(campus)}>
                                             <Checkbox id={`campus-${campus}`} checked={selectedTargets.includes(campus)} />
                                             <label className="text-sm font-medium leading-none cursor-pointer flex items-center gap-2">
-                                                <School className="w-4 h-4 text-zinc-400" />
+                                                <School className="w-4 h-4 text-muted-foreground" />
                                                 {campus}
                                             </label>
                                         </div>
@@ -165,7 +165,7 @@ export const AssessmentAssignmentModal: React.FC<AssessmentAssignmentModalProps>
                                                 <Checkbox id={`user-${user.id}`} checked={selectedTargets.includes(user.id)} />
                                                 <div className="flex flex-col">
                                                     <label className="text-sm font-medium leading-none cursor-pointer flex items-center gap-2">
-                                                        <UserIcon className="w-4 h-4 text-zinc-400" />
+                                                        <UserIcon className="w-4 h-4 text-muted-foreground" />
                                                         {user.fullName}
                                                     </label>
                                                     <span className="text-[10px] text-zinc-500 ml-6">{user.email} • {user.role}</span>

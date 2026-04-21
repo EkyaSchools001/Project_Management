@@ -83,8 +83,8 @@ export default function BudgetsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-black text-white">Budgets</h1>
-          <p className="text-white/40">Manage departmental and project budgets</p>
+          <h1 className="text-2xl font-black text-foreground">Budgets</h1>
+          <p className="text-foreground/40">Manage departmental and project budgets</p>
         </div>
         <button
           onClick={() => setShowForm(true)}
@@ -97,21 +97,21 @@ export default function BudgetsPage() {
       <div className="bg-[#1a1d24] rounded-2xl p-4 border border-white/5">
         <div className="flex gap-4">
           <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-foreground/40" />
             <input
               type="text"
               placeholder="Search budgets..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 text-sm focus:outline-none focus:border-[#BAFF00]/50"
+              className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground placeholder-white/40 text-sm focus:outline-none focus:border-[#BAFF00]/50"
             />
           </div>
           <div className="flex items-center gap-2">
-            <Filter className="w-4 h-4 text-white/40" />
+            <Filter className="w-4 h-4 text-foreground/40" />
             <select
               value={periodFilter}
               onChange={(e) => setPeriodFilter(e.target.value)}
-              className="px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-[#BAFF00]/50"
+              className="px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#BAFF00]/50"
             >
               <option value="">All Periods</option>
               <option value="Monthly">Monthly</option>
@@ -124,7 +124,7 @@ export default function BudgetsPage() {
 
       {filteredBudgets.length === 0 ? (
         <div className="bg-[#1a1d24] rounded-2xl p-12 border border-white/5 text-center">
-          <p className="text-white/40 mb-4">No budgets found</p>
+          <p className="text-foreground/40 mb-4">No budgets found</p>
           <button
             onClick={() => setShowForm(true)}
             className="px-4 py-2 bg-[#BAFF00] text-black rounded-xl font-bold text-sm hover:bg-[#BAFF00]/80"

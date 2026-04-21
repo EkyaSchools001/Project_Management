@@ -83,16 +83,16 @@ export const GoalGovernance = () => {
                     };
                     return (order[a.phase] ?? 99) - (order[b.phase] ?? 99);
                 }).map((win) => (
-                    <Card key={win.phase} className="shadow-lg bg-background/50 backdrop-blur-sm overflow-hidden group">
-                        <div className={`h-1 w-full ${win.status === 'OPEN' ? 'bg-emerald-500' : 'bg-muted'}`} />
+                    <Card key={win.phase} className="shadow-lg bg-backgroundackgroundackground/50 backdrop-blur-sm overflow-hidden group">
+                        <div className={`h-1 w-full ${win.status === 'OPEN' ? 'bg-backgroundmerald-500' : 'bg-muted'}`} />
                         <CardHeader className="pb-2">
                             <div className="flex justify-between items-start">
                                 <CardTitle className="text-base font-bold text-foreground">
                                     {(win.phase || 'Unknown').split('_').map((w: string) => w.charAt(0) + w.slice(1).toLowerCase()).join(' ')}
                                 </CardTitle>
                                 <Badge className={cn(
-                                    "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
-                                    win.status === 'OPEN' ? 'bg-emerald-600' : 'bg-rose-600'
+                                    "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
+                                    win.status === 'OPEN' ? 'bg-backgroundmerald-600' : 'bg-rose-600'
                                 )}>
                                     {win.status}
                                 </Badge>

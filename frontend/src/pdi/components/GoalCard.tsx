@@ -60,7 +60,7 @@ export function GoalCard({ goal, onReflect, className }: GoalCardProps) {
           </Badge>
         )}
         {goal.reflectionCompleted && (
-          <Badge variant="secondary" className="bg-emerald-100 text-emerald-700 hover:bg-emerald-200 border-none">
+          <Badge variant="secondary" className="bg-backgroundmerald-100 text-emerald-700 hover:bg-backgroundmerald-200 border-none">
             Reflected
           </Badge>
         )}
@@ -74,7 +74,7 @@ export function GoalCard({ goal, onReflect, className }: GoalCardProps) {
             variant="secondary"
             className={cn(
               "text-[10px] font-black capitalize tracking-wider",
-              goal.academics === "CORE" ? "bg-blue-100 text-blue-700" : "bg-purple-100 text-purple-700"
+              goal.academics === "CORE" ? "bg-backgroundackgroundlue-100 text-blue-700" : "bg-purple-100 text-purple-700"
             )}
           >
             {goal.academics === "NON_CORE" ? "Non-Core" : "Core"}
@@ -143,7 +143,7 @@ export function GoalCard({ goal, onReflect, className }: GoalCardProps) {
             size="sm"
             className={cn(
               "rounded-full px-5 font-bold shadow-sm transition-all hover:shadow-md active:scale-95",
-              goal.selfReflectionForm && "border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800"
+              goal.selfReflectionForm && "border-emerald-200 text-emerald-700 hover:bg-backgroundmerald-50 hover:text-emerald-800"
             )}
           >
             {goal.selfReflectionForm ? "View Reflection" : "Self Reflection"}

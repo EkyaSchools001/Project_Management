@@ -104,9 +104,9 @@ export function VideoConference({
     };
 
     return (
-        <div className="flex h-screen bg-background">
+        <div className="flex h-screen bg-backgroundackgroundackground">
             <div className="flex-1 flex flex-col">
-                <div className="flex-1 relative bg-black">
+                <div className="flex-1 relative bg-backgroundackgroundlack">
                     {meetingUrl ? (
                         <iframe
                             src={getEmbedUrl(meetingUrl, meetingType)}
@@ -116,7 +116,7 @@ export function VideoConference({
                         />
                     ) : (
                         <div className="flex items-center justify-center h-full">
-                            <div className="text-center text-white">
+                            <div className="text-center text-foreground">
                                 <VideoCamera className="w-16 h-16 mx-auto mb-4 opacity-50" />
                                 <p className="text-lg">Starting video conference...</p>
                                 <p className="text-sm text-muted-foreground mt-2">Meeting ID: {meetingId}</p>

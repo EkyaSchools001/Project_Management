@@ -132,7 +132,7 @@ export default function EventAttendanceView() {
                 <div className="ml-auto flex items-center gap-3">
                     <Button
                         variant="default"
-                        className="bg-primary hover:bg-primary/90 text-white font-bold"
+                        className="bg-primary hover:bg-primary/90 text-foreground font-bold"
                         onClick={async () => {
                             try {
                                 const response = await api.post(`/attendance/${id}/award`);

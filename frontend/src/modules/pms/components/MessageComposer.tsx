@@ -195,7 +195,7 @@ const MessageComposer = ({ roomId, onSend, disabled }) => {
                 <div className="flex gap-2">
                     <button
                         onClick={() => setShowAttachments(!showAttachments)}
-                        className="w-12 h-12 flex items-center justify-center rounded-2xl bg-slate-50 text-zinc-400 hover:text-indigo-600 hover:bg-indigo-50 border border-slate-100 transition-all"
+                        className="w-12 h-12 flex items-center justify-center rounded-2xl bg-slate-50 text-muted-foreground hover:text-indigo-600 hover:bg-indigo-50 border border-slate-100 transition-all"
                     >
                         <Paperclip size={20} />
                     </button>
@@ -211,7 +211,7 @@ const MessageComposer = ({ roomId, onSend, disabled }) => {
                             <div className="flex items-center gap-3">
                                 <button 
                                     onClick={toggleAudioPreview}
-                                    className="w-10 h-10 flex items-center justify-center bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all"
+                                    className="w-10 h-10 flex items-center justify-center bg-indigo-600 text-foreground rounded-xl hover:bg-indigo-700 transition-all"
                                 >
                                     {isPlayingPreview ? <Pause size={18} /> : <Play size={18} className="ml-0.5" />}
                                 </button>
@@ -238,7 +238,7 @@ const MessageComposer = ({ roomId, onSend, disabled }) => {
                 <div className="relative">
                     <button
                         onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-                        className="w-12 h-12 flex items-center justify-center rounded-2xl bg-slate-50 text-zinc-400 hover:text-amber-500 hover:bg-amber-50 border border-slate-100 transition-all"
+                        className="w-12 h-12 flex items-center justify-center rounded-2xl bg-slate-50 text-muted-foreground hover:text-amber-500 hover:bg-amber-50 border border-slate-100 transition-all"
                     >
                         <Smile size={20} />
                     </button>
@@ -279,10 +279,10 @@ const MessageComposer = ({ roomId, onSend, disabled }) => {
                     disabled={isUploading}
                     className={`w-12 h-12 flex items-center justify-center rounded-2xl transition-all ${
                         isRecording 
-                            ? 'bg-rose-600 text-white animate-pulse' 
+                            ? 'bg-rose-600 text-foreground animate-pulse' 
                             : message.trim() 
-                                ? 'bg-indigo-600 text-white hover:bg-indigo-700' 
-                                : 'bg-zinc-900 text-white hover:bg-black'
+                                ? 'bg-indigo-600 text-foreground hover:bg-indigo-700' 
+                                : 'bg-backgroundackgroundackground text-foreground hover:bg-backgroundackgroundlack'
                     }`}
                 >
                     {isUploading ? (
@@ -314,19 +314,19 @@ const MessageComposer = ({ roomId, onSend, disabled }) => {
                             <div className="flex gap-2">
                                 <button
                                     onClick={() => fileInputRef.current?.click()}
-                                    className="w-12 h-12 flex items-center justify-center bg-slate-50 hover:bg-indigo-50 rounded-2xl text-zinc-400 hover:text-indigo-600 transition-all"
+                                    className="w-12 h-12 flex items-center justify-center bg-slate-50 hover:bg-indigo-50 rounded-2xl text-muted-foreground hover:text-indigo-600 transition-all"
                                 >
                                     <Image size={20} />
                                 </button>
                                 <button
                                     onClick={() => fileInputRef.current?.click()}
-                                    className="w-12 h-12 flex items-center justify-center bg-slate-50 hover:bg-indigo-50 rounded-2xl text-zinc-400 hover:text-indigo-600 transition-all"
+                                    className="w-12 h-12 flex items-center justify-center bg-slate-50 hover:bg-indigo-50 rounded-2xl text-muted-foreground hover:text-indigo-600 transition-all"
                                 >
                                     <FileText size={20} />
                                 </button>
                                 <button
                                     onClick={() => fileInputRef.current?.click()}
-                                    className="w-12 h-12 flex items-center justify-center bg-slate-50 hover:bg-indigo-50 rounded-2xl text-zinc-400 hover:text-indigo-600 transition-all"
+                                    className="w-12 h-12 flex items-center justify-center bg-slate-50 hover:bg-indigo-50 rounded-2xl text-muted-foreground hover:text-indigo-600 transition-all"
                                 >
                                     <File size={20} />
                                 </button>

@@ -425,10 +425,10 @@ export function AdminCalendarView() {
 
             <div className="flex flex-col gap-8">
                 {/* Calendar Widget - Refactored to Horizontal Layout */}
-                <Card className="  shadow-2xl bg-zinc-950 text-white overflow-hidden relative">
+                <Card className="  shadow-2xl bg-zinc-950 text-foreground overflow-hidden relative">
                     {/* decorative gradient blob */}
                     <div className="absolute top-0 right-0 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl -translate-y-20 translate-x-20 pointer-events-none" />
-                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl translate-y-20 -translate-x-20 pointer-events-none" />
+                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-backgroundackgroundlue-500/10 rounded-full blur-3xl translate-y-20 -translate-x-20 pointer-events-none" />
 
                     <CardContent className="p-8 md:p-10 relative z-10">
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-10 items-start">
@@ -438,7 +438,7 @@ export function AdminCalendarView() {
                                     <h3 className="text-2xl font-bold bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">
                                         Activity Summary
                                     </h3>
-                                    <p className="text-zinc-400 text-sm capitalize tracking-widest font-bold mt-1">
+                                    <p className="text-muted-foreground text-sm capitalize tracking-widest font-bold mt-1">
                                         {formatDateStr(new Date())}
                                     </p>
                                 </div>
@@ -447,24 +447,24 @@ export function AdminCalendarView() {
                                     mode="single"
                                     selected={date}
                                     onSelect={setDate}
-                                    className="rounded-3xl border-none bg-zinc-900/50 p-8 w-full shadow-inner"
+                                    className="rounded-3xl border-none bg-backgroundackgroundackground/50 p-8 w-full shadow-inner"
                                     classNames={{
                                         months: "flex flex-col space-y-6",
                                         month: "space-y-6 w-full",
                                         caption: "flex justify-center pt-1 relative items-center mb-6",
-                                        caption_label: "text-lg font-bold text-white",
+                                        caption_label: "text-lg font-bold text-foreground",
                                         nav: "space-x-2 flex items-center",
-                                        nav_button: "h-9 w-9 bg-transparent p-0 text-zinc-400 hover:text-white border-zinc-700 hover:bg-zinc-800 rounded-xl transition-all",
+                                        nav_button: "h-9 w-9 bg-transparent p-0 text-muted-foreground hover:text-foreground border-zinc-700 hover:bg-card rounded-xl transition-all",
                                         nav_button_previous: "absolute left-2",
                                         nav_button_next: "absolute right-2",
                                         table: "w-full border-collapse",
                                         head_row: "flex w-full mt-2",
                                         head_cell: "text-zinc-500 rounded-md w-full font-bold text-[0.85rem] capitalize tracking-wider flex items-center justify-center",
                                         row: "flex w-full mt-4",
-                                        cell: "h-12 w-full text-center text-sm p-0 relative [&:has([aria-selected])]:bg-zinc-800/50 first:[&:has([aria-selected])]:rounded-l-xl last:[&:has([aria-selected])]:rounded-r-xl focus-within:relative focus-within:z-20",
-                                        day: "h-12 w-12 p-0 font-medium aria-selected:opacity-100 text-white hover:bg-zinc-800 rounded-2xl transition-all flex items-center justify-center mx-auto",
-                                        day_selected: "bg-gradient-to-br from-pink-500 to-red-600 text-white hover:bg-red-600 focus:bg-red-600 shadow-xl shadow-red-500/40 font-bold scale-110",
-                                        day_today: "bg-zinc-800/80 text-white font-black ring-2 ring-zinc-700/50",
+                                        cell: "h-12 w-full text-center text-sm p-0 relative [&:has([aria-selected])]:bg-card/50 first:[&:has([aria-selected])]:rounded-l-xl last:[&:has([aria-selected])]:rounded-r-xl focus-within:relative focus-within:z-20",
+                                        day: "h-12 w-12 p-0 font-medium aria-selected:opacity-100 text-foreground hover:bg-card rounded-2xl transition-all flex items-center justify-center mx-auto",
+                                        day_selected: "bg-gradient-to-br from-pink-500 to-red-600 text-foreground hover:bg-red-600 focus:bg-red-600 shadow-xl shadow-red-500/40 font-bold scale-110",
+                                        day_today: "bg-card/80 text-foreground font-black ring-2 ring-zinc-700/50",
                                         day_outside: "text-zinc-600 opacity-30",
                                     }}
                                     modifiers={{
@@ -484,9 +484,9 @@ export function AdminCalendarView() {
 
                             {/* Right side: Legend and Filters */}
                             <div className="lg:col-span-5 h-full flex flex-col justify-center pt-8 lg:pt-20">
-                                <div className="bg-zinc-900/40 rounded-3xl p-8 border border-zinc-800/50 backdrop-blur-sm space-y-8">
+                                <div className="bg-backgroundackgroundackground/40 rounded-3xl p-8 border border-zinc-800/50 backdrop-blur-sm space-y-8">
                                     <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
-                                        <h4 className="text-sm font-bold text-zinc-400 capitalize tracking-widest">Training Legend</h4>
+                                        <h4 className="text-sm font-bold text-muted-foreground capitalize tracking-widest">Training Legend</h4>
                                         <Badge variant="outline" className="bg-white/5 border-zinc-700 text-zinc-300">
                                             {training.length} Total
                                         </Badge>
@@ -494,15 +494,15 @@ export function AdminCalendarView() {
 
                                     <div className="space-y-5">
                                         <div className="flex items-center justify-between group cursor-default">
-                                            <span className="flex items-center gap-4 text-zinc-300 group-hover:text-white transition-colors font-medium">
-                                                <span className="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.5)]"></span> Pedagogy
+                                            <span className="flex items-center gap-4 text-zinc-300 group-hover:text-foreground transition-colors font-medium">
+                                                <span className="w-3 h-3 rounded-full bg-backgroundackgroundlue-500 shadow-[0_0_12px_rgba(59,130,246,0.5)]"></span> Pedagogy
                                             </span>
-                                            <span className="font-mono text-zinc-100 bg-blue-500/10 px-3 py-1 rounded-xl border border-blue-500/20">
+                                            <span className="font-mono text-zinc-100 bg-backgroundackgroundlue-500/10 px-3 py-1 rounded-xl border border-blue-500/20">
                                                 {training.filter((t: any) => (t.topic || t.type) === 'Pedagogy').length}
                                             </span>
                                         </div>
                                         <div className="flex items-center justify-between group cursor-default">
-                                            <span className="flex items-center gap-4 text-zinc-300 group-hover:text-white transition-colors font-medium">
+                                            <span className="flex items-center gap-4 text-zinc-300 group-hover:text-foreground transition-colors font-medium">
                                                 <span className="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_12px_rgba(16,185,129,0.5)]"></span> Technology
                                             </span>
                                             <span className="font-mono text-zinc-100 bg-green-500/10 px-3 py-1 rounded-xl border border-green-500/20">
@@ -510,7 +510,7 @@ export function AdminCalendarView() {
                                             </span>
                                         </div>
                                         <div className="flex items-center justify-between group cursor-default">
-                                            <span className="flex items-center gap-4 text-zinc-300 group-hover:text-white transition-colors font-medium">
+                                            <span className="flex items-center gap-4 text-zinc-300 group-hover:text-foreground transition-colors font-medium">
                                                 <span className="w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_12px_rgba(244,63,94,0.5)]"></span> Assessment
                                             </span>
                                             <span className="font-mono text-zinc-100 bg-rose-500/10 px-3 py-1 rounded-xl border border-rose-500/20">
@@ -520,12 +520,12 @@ export function AdminCalendarView() {
                                     </div>
 
                                     <div className="pt-6 border-t border-zinc-800 flex flex-col gap-4">
-                                        <div className="p-4 rounded-2xl bg-white/5 border border-white/5 text-xs text-zinc-400 italic">
+                                        <div className="p-4 rounded-2xl bg-white/5 border border-white/5 text-xs text-muted-foreground italic">
                                             Tip: Select a date on the calendar to filter the sessions list below.
                                         </div>
                                         <Button
                                             variant="outline"
-                                            className="w-full h-12 bg-zinc-800/50 border-zinc-700 text-zinc-300 hover:bg-zinc-700 hover:text-white rounded-2xl transition-all font-bold"
+                                            className="w-full h-12 bg-card/50 border-zinc-700 text-zinc-300 hover:bg-zinc-700 hover:text-foreground rounded-2xl transition-all font-bold"
                                             onClick={() => setDate(undefined)}
                                             disabled={!date}
                                         >
@@ -539,7 +539,7 @@ export function AdminCalendarView() {
                 </Card>
 
                 {/* Events List - Fixed duplication */}
-                <Card className="  shadow-2xl bg-background/60 backdrop-blur-xl rounded-[2rem] overflow-hidden border border-muted/20">
+                <Card className="  shadow-2xl bg-backgroundackgroundackground/60 backdrop-blur-xl rounded-[2rem] overflow-hidden border border-muted/20">
                     <CardHeader className="px-8 py-8 border-b bg-muted/5">
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div>
@@ -552,7 +552,7 @@ export function AdminCalendarView() {
                             </div>
                             <div className="flex flex-wrap items-center gap-4">
                                 <Select value={selectedCampus} onValueChange={setSelectedCampus}>
-                                    <SelectTrigger className="w-[180px] h-12 bg-muted/40 border-transparent focus:bg-background focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all font-medium">
+                                    <SelectTrigger className="w-[180px] h-12 bg-muted/40 border-transparent focus:bg-backgroundackgroundackground focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all font-medium">
                                         <div className="flex items-center gap-2">
                                             <MapPin className="w-4 h-4" />
                                             <SelectValue placeholder="All Campuses" />
@@ -565,7 +565,7 @@ export function AdminCalendarView() {
                                     </SelectContent>
                                 </Select>
                                 <Select value={selectedType} onValueChange={setSelectedType}>
-                                    <SelectTrigger className="w-[180px] h-12 bg-muted/40 border-transparent focus:bg-background focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all font-medium">
+                                    <SelectTrigger className="w-[180px] h-12 bg-muted/40 border-transparent focus:bg-backgroundackgroundackground focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all font-medium">
                                         <div className="flex items-center gap-2">
                                             <Filter className="w-4 h-4" />
                                             <SelectValue placeholder="All Types" />
@@ -583,7 +583,7 @@ export function AdminCalendarView() {
                                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                                     <Input
                                         placeholder="Search sessions..."
-                                        className="pl-12 w-[280px] h-12 bg-muted/40 border-transparent focus:bg-background focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all font-medium"
+                                        className="pl-12 w-[280px] h-12 bg-muted/40 border-transparent focus:bg-backgroundackgroundackground focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all font-medium"
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
                                     />
@@ -629,7 +629,7 @@ export function AdminCalendarView() {
                                                             {session.time}
                                                         </div>
                                                         <div className="text-sm font-medium text-muted-foreground flex items-center gap-2.5 pl-0.5">
-                                                            <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                                                            <div className="w-8 h-8 rounded-lg bg-backgroundackgroundlue-500/10 flex items-center justify-center">
                                                                 <MapPin className="w-4 h-4 text-blue-500" />
                                                             </div>
                                                             {session.location}
@@ -640,7 +640,7 @@ export function AdminCalendarView() {
                                                     <span className={cn(
                                                         "inline-flex items-center px-4 py-1.5 rounded-xl text-xs font-black capitalize tracking-widest border shadow-sm",
                                                         session.status === "Approved"
-                                                            ? "bg-emerald-500/5 text-emerald-600 border-emerald-500/20"
+                                                            ? "bg-backgroundmerald-500/5 text-emerald-600 border-emerald-500/20"
                                                             : "bg-amber-500/5 text-amber-600 border-amber-500/20"
                                                     )}>
                                                         {session.status}
@@ -657,7 +657,7 @@ export function AdminCalendarView() {
                                                             <Users className="w-4 h-4" />
                                                             Registrants
                                                         </Button>
-                                                        <Button variant="ghost" className="h-10 px-6 rounded-xl hover:bg-primary hover:text-white transition-all font-bold" onClick={() => handleManageSession(session)}>
+                                                        <Button variant="ghost" className="h-10 px-6 rounded-xl hover:bg-primary hover:text-foreground transition-all font-bold" onClick={() => handleManageSession(session)}>
                                                             Manage
                                                         </Button>
                                                     </div>
@@ -810,18 +810,18 @@ export function AdminCalendarView() {
             {/* Registrants Dialog */}
             <Dialog open={isRegistrantsOpen} onOpenChange={setIsRegistrantsOpen}>
                 <DialogContent className="sm:max-w-[700px] rounded-[2rem] overflow-hidden   shadow-2xl p-0">
-                    <div className="bg-zinc-950 text-white p-8 relative overflow-hidden">
+                    <div className="bg-zinc-950 text-foreground p-8 relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-20 translate-x-20 pointer-events-none" />
                         <div className="relative z-10">
                             <h2 className="text-2xl font-black tracking-tight bg-gradient-to-r from-primary to-info bg-clip-text text-transparent">
                                 Registered Participants
                             </h2>
-                            <p className="text-zinc-400 font-medium text-sm mt-1 capitalize tracking-[0.2em]">
+                            <p className="text-muted-foreground font-medium text-sm mt-1 capitalize tracking-[0.2em]">
                                 {currentEvent?.title}
                             </p>
                         </div>
                     </div>
-                    <div className="p-8 bg-background">
+                    <div className="p-8 bg-backgroundackgroundackground">
                         <div className="rounded-2xl border border-muted/20 overflow-hidden">
                             <Table>
                                 <TableHeader className="bg-muted/5">
@@ -837,7 +837,7 @@ export function AdminCalendarView() {
                                             <TableRow key={registrant.id} className="hover:bg-primary/5 transition-colors group">
                                                 <TableCell className="py-5">
                                                     <div className="flex items-center gap-3">
-                                                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-black text-sm group-hover:bg-primary group-hover:text-white transition-all">
+                                                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-black text-sm group-hover:bg-primary group-hover:text-foreground transition-all">
                                                             {(registrant.name || registrant.fullName || 'User').split(' ').map((n: string) => n[0]).join('')}
                                                         </div>
                                                         <span className="font-bold text-foreground">{registrant.name}</span>
@@ -870,7 +870,7 @@ export function AdminCalendarView() {
                         </div>
                         <div className="mt-8 flex justify-end">
                             <Button
-                                className="h-12 px-8 rounded-2xl bg-zinc-900 hover:bg-zinc-800 text-white font-black capitalize tracking-widest text-xs"
+                                className="h-12 px-8 rounded-2xl bg-backgroundackgroundackground hover:bg-card text-foreground font-black capitalize tracking-widest text-xs"
                                 onClick={() => setIsRegistrantsOpen(false)}
                             >
                                 Close View

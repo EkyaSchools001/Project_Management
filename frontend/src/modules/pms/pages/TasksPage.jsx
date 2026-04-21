@@ -24,14 +24,14 @@ import { KanbanBoard } from '../components/KanbanBoard';
 import { TaskDetailModal } from '../components/TaskDetailModal';
 
 const statusConfig = {
-    'TODO': { color: 'text-zinc-400', bg: 'bg-slate-100', glow: 'shadow-slate-500/10', label: 'Queued', icon: Circle },
+    'TODO': { color: 'text-muted-foreground', bg: 'bg-slate-100', glow: 'shadow-slate-500/10', label: 'Queued', icon: Circle },
     'IN_PROGRESS': { color: 'text-indigo-400', bg: 'bg-indigo-500/10', glow: 'shadow-indigo-500/20', label: 'Active', icon: Clock },
     'IN_REVIEW': { color: 'text-violet-400', bg: 'bg-violet-500/10', glow: 'shadow-violet-500/20', label: 'Audit', icon: AlertCircle },
-    'DONE': { color: 'text-emerald-400', bg: 'bg-emerald-500/10', glow: 'shadow-emerald-500/20', label: 'Resolved', icon: CheckCircle2 }
+    'DONE': { color: 'text-emerald-400', bg: 'bg-backgroundmerald-500/10', glow: 'shadow-emerald-500/20', label: 'Resolved', icon: CheckCircle2 }
 };
 
 const priorityConfig = {
-    'LOW': 'bg-emerald-50 text-emerald-600 border-emerald-100',
+    'LOW': 'bg-backgroundmerald-50 text-emerald-600 border-emerald-100',
     'MEDIUM': 'bg-amber-50 text-amber-600 border-amber-100',
     'HIGH': 'bg-orange-50 text-orange-600 border-orange-100',
     'CRITICAL': 'bg-rose-50 text-rose-600 border-rose-100'
@@ -120,7 +120,7 @@ const TasksPage = () => {
             <div className="absolute bottom-40 left-0 w-[400px] h-[400px] bg-rose-500/5 rounded-full blur-[120px] -z-10" />
 
             {/* Vibrant Terminal Header */}
-            <header className="relative overflow-hidden p-12 sm:p-20 bg-slate-950 rounded-[4rem] sm:rounded-[5rem] text-white shadow-2xl border border-white/5">
+            <header className="relative overflow-hidden p-12 sm:p-20 bg-slate-950 rounded-[4rem] sm:rounded-[5rem] text-foreground shadow-2xl border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 via-transparent to-rose-600/10" />
                 <div className="absolute -right-20 -top-20 w-80 h-80 bg-indigo-500 rounded-full blur-[120px] opacity-20 animate-pulse pointer-events-none" />
                 
@@ -136,13 +136,13 @@ const TasksPage = () => {
                         <div className="flex flex-wrap gap-6">
                             <MetricPill label="Inventory" value={stats.total} color="text-indigo-400" bg="bg-indigo-400/10" />
                             <MetricPill label="Operational" value={stats.pending} color="text-amber-400" bg="bg-amber-400/10" />
-                            <MetricPill label="Synchronized" value={stats.done} color="text-emerald-400" bg="bg-emerald-400/10" />
+                            <MetricPill label="Synchronized" value={stats.done} color="text-emerald-400" bg="bg-backgroundmerald-400/10" />
                         </div>
                     </div>
 
                     <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 w-full xl:w-auto pb-4">
                         <div className="relative group/search flex-1 sm:w-96">
-                            <Search className="absolute left-7 top-1/2 -translate-y-1/2 text-white/20 w-6 h-6 group-focus-within/search:text-indigo-400" />
+                            <Search className="absolute left-7 top-1/2 -translate-y-1/2 text-foreground/20 w-6 h-6 group-focus-within/search:text-indigo-400" />
                             <input
                                 type="text"
                                 placeholder="QUERY NODE CLUSTER..."
@@ -153,7 +153,7 @@ const TasksPage = () => {
                         </div>
                         <button 
                             onClick={() => setIsCreateModalOpen(true)}
-                            className="h-20 px-12 bg-white text-slate-950 font-black rounded-3xl text-xs uppercase tracking-[0.4em] shadow-[0_20px_50px_rgba(255,255,255,0.1)] hover:bg-indigo-600 hover:text-white hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-6 group/deploy"
+                            className="h-20 px-12 bg-white text-slate-950 font-black rounded-3xl text-xs uppercase tracking-[0.4em] shadow-[0_20px_50px_rgba(255,255,255,0.1)] hover:bg-indigo-600 hover:text-foreground hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-6 group/deploy"
                         >
                             <Plus size={28} className="group-hover/deploy:rotate-90 transition-transform duration-500" />
                             Deploy Node
@@ -214,7 +214,7 @@ const TasksPage = () => {
                                 
                                 <div className="flex justify-between items-start mb-10 sm:mb-14 relative z-10">
                                     <div className="flex items-center gap-8">
-                                        <div className={`w-18 h-18 rounded-3xl flex items-center justify-center transition-all duration-700 shadow-2xl ${task.status === 'DONE' ? 'bg-emerald-50 text-emerald-500' : 'bg-slate-50 text-slate-300 group-hover:bg-indigo-600 group-hover:text-white'}`}>
+                                        <div className={`w-18 h-18 rounded-3xl flex items-center justify-center transition-all duration-700 shadow-2xl ${task.status === 'DONE' ? 'bg-backgroundmerald-50 text-emerald-500' : 'bg-slate-50 text-slate-300 group-hover:bg-indigo-600 group-hover:text-foreground'}`}>
                                             {task.status === 'DONE' ? <CheckCircle2 size={36} /> : <Circle size={36} className="group-hover:rotate-12 transition-transform" />}
                                         </div>
                                         <div className="space-y-3">
@@ -238,13 +238,13 @@ const TasksPage = () => {
                                 </div>
 
                                 <div className={`${viewMode === 'list' && window.innerWidth > 1024 ? 'ml-28' : ''} relative z-10`}>
-                                    <p className={`text-base sm:text-lg text-zinc-400 font-black uppercase tracking-widest leading-relaxed mb-12 border-l-4 border-slate-100 pl-8 group-hover:border-indigo-400 transition-all ${viewMode === 'list' ? 'max-w-5xl' : 'line-clamp-3'}`}>
+                                    <p className={`text-base sm:text-lg text-muted-foreground font-black uppercase tracking-widest leading-relaxed mb-12 border-l-4 border-slate-100 pl-8 group-hover:border-indigo-400 transition-all ${viewMode === 'list' ? 'max-w-5xl' : 'line-clamp-3'}`}>
                                         Node synchronization status: {task.description}. All systems initialized and operating within standard deviation.
                                     </p>
 
                                     <div className="flex flex-wrap items-center gap-10 pt-12 border-t border-slate-50">
-                                        <div className="flex items-center gap-4 bg-slate-50 px-8 py-4 rounded-3xl border border-slate-100 shadow-inner group-hover:bg-indigo-600 group-hover:text-white transition-all">
-                                            <Calendar size={20} className="text-indigo-500 group-hover:text-white" />
+                                        <div className="flex items-center gap-4 bg-slate-50 px-8 py-4 rounded-3xl border border-slate-100 shadow-inner group-hover:bg-indigo-600 group-hover:text-foreground transition-all">
+                                            <Calendar size={20} className="text-indigo-500 group-hover:text-foreground" />
                                             <span className="text-[11px] font-black uppercase tracking-[0.2em]">{task.dueDate}</span>
                                         </div>
 
@@ -253,7 +253,7 @@ const TasksPage = () => {
                                                 <p className="text-[11px] font-black text-slate-950 leading-none truncate uppercase tracking-tighter mb-2">{task.assignee?.name || task.assignee}</p>
                                                 <p className="text-[8px] font-black text-indigo-500 uppercase tracking-widest opacity-60">Authorized Operator</p>
                                             </div>
-                                            <div className="w-14 h-14 rounded-2xl bg-slate-950 text-white flex items-center justify-center text-lg font-black border-4 border-white shadow-2xl group-hover:bg-indigo-600 group-hover:scale-115 transition-all duration-700">
+                                            <div className="w-14 h-14 rounded-2xl bg-slate-950 text-foreground flex items-center justify-center text-lg font-black border-4 border-white shadow-2xl group-hover:bg-indigo-600 group-hover:scale-115 transition-all duration-700">
                                                 {(task.assignee?.name || task.assignee || 'U').charAt(0)}
                                             </div>
                                         </div>
@@ -271,7 +271,7 @@ const TasksPage = () => {
                                 <Sparkles size={80} className="text-indigo-200" />
                             </div>
                             <h3 className="text-5xl font-black text-slate-950 uppercase tracking-tighter">Queue Empty</h3>
-                            <p className="text-zinc-400 font-black mt-6 text-xs uppercase tracking-[0.8em] animate-pulse">All mission-critical nodes successfully synchronized.</p>
+                            <p className="text-muted-foreground font-black mt-6 text-xs uppercase tracking-[0.8em] animate-pulse">All mission-critical nodes successfully synchronized.</p>
                         </div>
                     )}
                 </AnimatePresence>
@@ -311,8 +311,8 @@ const TabButton = ({ active, onClick, icon: Icon, label }) => (
         whileTap={{ scale: 0.9 }}
         onClick={onClick}
         className={`px-10 py-5 rounded-[2.5rem] text-[10px] font-black uppercase tracking-[0.3em] transition-all whitespace-nowrap flex items-center gap-5 ${active
-            ? 'bg-slate-950 text-white shadow-2xl shadow-slate-950/30 scale-105 active:scale-95'
-            : 'text-zinc-400 hover:text-slate-950'
+            ? 'bg-slate-950 text-foreground shadow-2xl shadow-slate-950/30 scale-105 active:scale-95'
+            : 'text-muted-foreground hover:text-slate-950'
             }`}
     >
         <Icon size={18} />
@@ -324,7 +324,7 @@ const ViewButton = ({ active, onClick, icon: Icon }) => (
     <button
         onClick={onClick}
         className={`p-5 rounded-2xl transition-all active:scale-75 ${active 
-            ? 'bg-slate-950 text-white shadow-2xl scale-110' 
+            ? 'bg-slate-950 text-foreground shadow-2xl scale-110' 
             : 'text-slate-300 hover:text-slate-600'}`}
     >
         <Icon size={24} />

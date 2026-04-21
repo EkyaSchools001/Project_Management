@@ -101,7 +101,7 @@ export const BrandingEditor = ({ onSave }: BrandingEditorProps) => {
 
     const ColorInput = ({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) => (
         <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium text-white/70">{label}</label>
+            <label className="text-sm font-medium text-foreground/70">{label}</label>
             <div className="flex items-center gap-3">
                 <input
                     type="color"
@@ -113,7 +113,7 @@ export const BrandingEditor = ({ onSave }: BrandingEditorProps) => {
                     type="text"
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
-                    className="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm"
+                    className="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-foreground text-sm"
                 />
             </div>
         </div>
@@ -124,7 +124,7 @@ export const BrandingEditor = ({ onSave }: BrandingEditorProps) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                     <div className="p-6 bg-white/5 rounded-xl border border-white/10">
-                        <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                        <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                             <Upload className="w-5 h-5 text-[#BAFF00]" />
                             Logo
                         </h3>
@@ -133,7 +133,7 @@ export const BrandingEditor = ({ onSave }: BrandingEditorProps) => {
                                 {colors.logo ? (
                                     <img src={colors.logo} alt="Logo" className="w-full h-full object-contain" />
                                 ) : (
-                                    <Upload className="w-8 h-8 text-white/30" />
+                                    <Upload className="w-8 h-8 text-foreground/30" />
                                 )}
                             </div>
                             <label className="px-4 py-2 bg-[#BAFF00]/10 border border-[#BAFF00]/20 text-[#BAFF00] rounded-lg cursor-pointer hover:bg-[#BAFF00]/20 transition-colors">
@@ -149,7 +149,7 @@ export const BrandingEditor = ({ onSave }: BrandingEditorProps) => {
                     </div>
 
                     <div className="p-6 bg-white/5 rounded-xl border border-white/10">
-                        <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                        <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                             <Upload className="w-5 h-5 text-[#BAFF00]" />
                             Favicon
                         </h3>
@@ -158,7 +158,7 @@ export const BrandingEditor = ({ onSave }: BrandingEditorProps) => {
                                 {colors.favicon ? (
                                     <img src={colors.favicon} alt="Favicon" className="w-full h-full object-contain" />
                                 ) : (
-                                    <Upload className="w-5 h-5 text-white/30" />
+                                    <Upload className="w-5 h-5 text-foreground/30" />
                                 )}
                             </div>
                             <label className="px-4 py-2 bg-[#BAFF00]/10 border border-[#BAFF00]/20 text-[#BAFF00] rounded-lg cursor-pointer hover:bg-[#BAFF00]/20 transition-colors">
@@ -176,7 +176,7 @@ export const BrandingEditor = ({ onSave }: BrandingEditorProps) => {
 
                 <div className="space-y-4">
                     <div className="p-6 bg-white/5 rounded-xl border border-white/10">
-                        <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                        <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                             <Palette className="w-5 h-5 text-[#BAFF00]" />
                             Colors
                         </h3>
@@ -230,7 +230,7 @@ export const BrandingEditor = ({ onSave }: BrandingEditorProps) => {
                         </div>
                         <div className="flex gap-4">
                             <button
-                                className="px-4 py-2 rounded-lg text-white"
+                                className="px-4 py-2 rounded-lg text-foreground"
                                 style={{ backgroundColor: colors.primaryColor }}
                             >
                                 Primary Button
@@ -255,7 +255,7 @@ export const BrandingEditor = ({ onSave }: BrandingEditorProps) => {
             <div className="flex items-center justify-between pt-4 border-t border-white/10">
                 <button
                     onClick={handleReset}
-                    className="flex items-center gap-2 px-4 py-2 text-white/60 hover:text-white transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 text-foreground/60 hover:text-foreground transition-colors"
                 >
                     <RotateCcw className="w-4 h-4" />
                     Reset
@@ -264,7 +264,7 @@ export const BrandingEditor = ({ onSave }: BrandingEditorProps) => {
                 <div className="flex items-center gap-3">
                     <button
                         onClick={() => setIsPreview(!isPreview)}
-                        className="flex items-center gap-2 px-4 py-2 bg-white/5 text-white rounded-lg hover:bg-white/10 transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 bg-white/5 text-foreground rounded-lg hover:bg-white/10 transition-colors"
                     >
                         <Eye className="w-4 h-4" />
                         {isPreview ? 'Hide' : 'Preview'}

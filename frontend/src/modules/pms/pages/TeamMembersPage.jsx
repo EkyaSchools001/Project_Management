@@ -27,7 +27,7 @@ const TeamMembersPage = () => {
 
     const getStatusColor = (status) => {
         switch (status) {
-            case 'Active': return 'bg-emerald-400 shadow-[0_0_20px_rgba(52,211,153,0.6)] animate-pulse-glow';
+            case 'Active': return 'bg-backgroundmerald-400 shadow-[0_0_20px_rgba(52,211,153,0.6)] animate-pulse-glow';
             case 'In Meeting': return 'bg-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.6)] animate-pulse';
             default: return 'bg-slate-400 opacity-50';
         }
@@ -80,19 +80,19 @@ const TeamMembersPage = () => {
             className="max-w-[1800px] mx-auto space-y-16 p-6 sm:p-10 lg:p-16 pb-40"
         >
             {/* High-Vibrancy Header */}
-            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-zinc-900 rounded-[5rem] text-white shadow-2xl group border border-white/5">
+            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-backgroundackgroundackground rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-violet-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-[600px] h-[600px] bg-indigo-500 rounded-full blur-[200px] opacity-10 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 
                 <div className="space-y-10 relative z-10 flex-1 w-full sm:w-auto">
                     <div className="inline-flex items-center gap-6 px-10 py-4 bg-white/5 rounded-full border border-white/10 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] backdrop-blur-md">
-                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse-glow shadow-[0_0_10px_rgba(52,211,153,0.4)]" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-backgroundmerald-400 animate-pulse-glow shadow-[0_0_10px_rgba(52,211,153,0.4)]" />
                         Team Synchronization Protocol: Operational
                     </div>
-                    <h1 className="text-5xl sm:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase leading-[0.85]">
+                    <h1 className="text-5xl sm:text-8xl lg:text-9xl font-black text-foreground tracking-tighter uppercase leading-[0.85]">
                         Team <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-rose-400 to-amber-400 animate-gradient-shift">Intelligence</span>
                     </h1>
-                    <p className="text-white/40 font-black text-xs sm:text-base uppercase tracking-widest flex items-center gap-6">
+                    <p className="text-foreground/40 font-black text-xs sm:text-base uppercase tracking-widest flex items-center gap-6">
                         <Globe size={32} className="text-indigo-400 animate-spin-slow" />
                         Collaborative Deployment Matrix // Unified Identity Synchronization
                     </p>
@@ -100,11 +100,11 @@ const TeamMembersPage = () => {
 
                 <div className="flex flex-col sm:flex-row gap-8 w-full xl:w-auto relative z-10 pb-4">
                     <div className="relative group flex-1 sm:flex-none">
-                        <Search className="absolute left-7 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-indigo-400 transition-colors" size={24} />
+                        <Search className="absolute left-7 top-1/2 -translate-y-1/2 text-foreground/40 group-focus-within:text-indigo-400 transition-colors" size={24} />
                         <input
                             type="text"
                             placeholder="IDENTIFY NODE UNIT..."
-                            className="w-full xl:w-80 h-20 pl-18 pr-8 bg-white/5 border border-white/10 rounded-[2.5rem] text-xs font-black uppercase tracking-[0.2em] text-white placeholder:text-white/20 focus:ring-8 focus:ring-indigo-600/5 focus:border-indigo-400 transition-all outline-none backdrop-blur-xl"
+                            className="w-full xl:w-80 h-20 pl-18 pr-8 bg-white/5 border border-white/10 rounded-[2.5rem] text-xs font-black uppercase tracking-[0.2em] text-foreground placeholder:text-foreground/20 focus:ring-8 focus:ring-indigo-600/5 focus:border-indigo-400 transition-all outline-none backdrop-blur-xl"
                         />
                     </div>
                     <button
@@ -140,9 +140,9 @@ const TeamMembersPage = () => {
                                 <h3 className="text-3xl font-black text-slate-950 uppercase tracking-tighter leading-[0.85] group-hover:text-indigo-600 transition-colors animate-gradient-shift">
                                     {member.name}
                                 </h3>
-                                <p className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.4em] mb-4">{member.role}</p>
+                                <p className="text-[11px] font-black text-muted-foreground uppercase tracking-[0.4em] mb-4">{member.role}</p>
                                 <div className="pt-6 flex justify-center">
-                                    <span className="text-[10px] font-black text-indigo-600 bg-indigo-50/50 px-6 py-2.5 rounded-full border border-indigo-100 uppercase tracking-widest shadow-inner group-hover:bg-indigo-600 group-hover:text-white transition-all duration-500">
+                                    <span className="text-[10px] font-black text-indigo-600 bg-indigo-50/50 px-6 py-2.5 rounded-full border border-indigo-100 uppercase tracking-widest shadow-inner group-hover:bg-indigo-600 group-hover:text-foreground transition-all duration-500">
                                         {DEPARTMENTS.find(d => d.id === member.departmentId)?.name || 'General Context'}
                                     </span>
                                 </div>
@@ -151,21 +151,21 @@ const TeamMembersPage = () => {
                             <div className="flex gap-6 w-full pt-10 border-t border-slate-50 mt-auto">
                                 <a
                                     href={`mailto:${member.email}`}
-                                    className="flex-1 h-18 flex items-center justify-center bg-slate-50 border border-slate-100 rounded-2xl text-zinc-400 hover:bg-indigo-600 hover:text-white hover:border-indigo-500 hover:shadow-2xl transition-all active:scale-90"
+                                    className="flex-1 h-18 flex items-center justify-center bg-slate-50 border border-slate-100 rounded-2xl text-muted-foreground hover:bg-indigo-600 hover:text-foreground hover:border-indigo-500 hover:shadow-2xl transition-all active:scale-90"
                                     title="Communication Stream"
                                 >
                                     <Mail size={22} />
                                 </a>
                                 <a
                                     href={`tel:${member.phone}`}
-                                    className="flex-1 h-18 flex items-center justify-center bg-slate-50 border border-slate-100 rounded-2xl text-zinc-400 hover:bg-indigo-600 hover:text-white hover:border-indigo-500 hover:shadow-2xl transition-all active:scale-90"
+                                    className="flex-1 h-18 flex items-center justify-center bg-slate-50 border border-slate-100 rounded-2xl text-muted-foreground hover:bg-indigo-600 hover:text-foreground hover:border-indigo-500 hover:shadow-2xl transition-all active:scale-90"
                                     title="Audio Uplink"
                                 >
                                     <Phone size={22} />
                                 </a>
                                 <button
                                     onClick={() => setActiveInfoId(activeInfoId === member.id ? null : member.id)}
-                                    className={`w-18 h-18 flex items-center justify-center rounded-2xl border transition-all active:scale-90 ${activeInfoId === member.id ? 'bg-slate-950 text-white border-slate-950' : 'bg-slate-50 border-slate-100 text-zinc-400 hover:bg-slate-950 hover:text-white hover:border-slate-950'}`}
+                                    className={`w-18 h-18 flex items-center justify-center rounded-2xl border transition-all active:scale-90 ${activeInfoId === member.id ? 'bg-slate-950 text-foreground border-slate-950' : 'bg-slate-50 border-slate-100 text-muted-foreground hover:bg-slate-950 hover:text-foreground hover:border-slate-950'}`}
                                 >
                                     <MoreHorizontal size={28} />
                                 </button>
@@ -188,25 +188,25 @@ const TeamMembersPage = () => {
                                                 <h4 className="font-black text-slate-950 text-xl uppercase tracking-tighter">Identity Protocol</h4>
                                                 <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.4em]">Integrated heuristical stream</p>
                                             </div>
-                                            <button onClick={() => setActiveInfoId(null)} className="w-12 h-12 flex items-center justify-center bg-slate-50 rounded-2xl text-zinc-400 hover:text-rose-600 transition-all active:scale-90"><X size={24} /></button>
+                                            <button onClick={() => setActiveInfoId(null)} className="w-12 h-12 flex items-center justify-center bg-slate-50 rounded-2xl text-muted-foreground hover:text-rose-600 transition-all active:scale-90"><X size={24} /></button>
                                         </div>
                                         <div className="space-y-8 relative z-10">
                                             <div className="space-y-2">
-                                                <p className="text-[11px] uppercase font-black text-zinc-400 tracking-[0.4em]">Operational Vector</p>
+                                                <p className="text-[11px] uppercase font-black text-muted-foreground tracking-[0.4em]">Operational Vector</p>
                                                 <p className="font-black text-slate-950 break-all text-base">{member.email}</p>
                                             </div>
                                             <div className="space-y-2">
-                                                <p className="text-[11px] uppercase font-black text-zinc-400 tracking-[0.4em]">Audio Identifier</p>
+                                                <p className="text-[11px] uppercase font-black text-muted-foreground tracking-[0.4em]">Audio Identifier</p>
                                                 <p className="font-black text-slate-950 text-base">{member.phone}</p>
                                             </div>
                                             <div className="space-y-2">
-                                                <p className="text-[11px] uppercase font-black text-zinc-400 tracking-[0.4em]">Deployment Cluster</p>
+                                                <p className="text-[11px] uppercase font-black text-muted-foreground tracking-[0.4em]">Deployment Cluster</p>
                                                 <p className="font-black text-slate-950 text-base">{DEPARTMENTS.find(d => d.id === member.departmentId)?.name || 'General'}</p>
                                             </div>
                                             <div className="pt-4">
-                                                <p className="text-[11px] uppercase font-black text-zinc-400 tracking-[0.4em] mb-4">Sync Reliability</p>
+                                                <p className="text-[11px] uppercase font-black text-muted-foreground tracking-[0.4em] mb-4">Sync Reliability</p>
                                                 <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-                                                    <motion.div initial={{ width: 0 }} animate={{ width: "94%" }} className="h-full bg-emerald-500 rounded-full" />
+                                                    <motion.div initial={{ width: 0 }} animate={{ width: "94%" }} className="h-full bg-backgroundmerald-500 rounded-full" />
                                                 </div>
                                             </div>
                                         </div>
@@ -235,7 +235,7 @@ const TeamMembersPage = () => {
                             exit={{ scale: 0.9, y: 40, opacity: 0 }}
                             className="bg-white rounded-[5rem] shadow-[0_60px_150px_rgba(0,0,0,0.4)] w-full max-w-2xl overflow-hidden border border-white/20 relative z-10"
                         >
-                            <div className="flex items-center justify-between p-12 sm:p-16 bg-slate-950 text-white relative overflow-hidden">
+                            <div className="flex items-center justify-between p-12 sm:p-16 bg-slate-950 text-foreground relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 via-rose-600/10 to-transparent pointer-events-none" />
                                 <div className="space-y-4 relative z-10">
                                     <div className="flex items-center gap-6">
@@ -244,9 +244,9 @@ const TeamMembersPage = () => {
                                         </div>
                                         <h2 className="text-4xl font-black uppercase tracking-tighter">Invite Node</h2>
                                     </div>
-                                    <p className="text-[11px] font-black uppercase tracking-[0.4em] text-white/40">Register new identity in collective deployment</p>
+                                    <p className="text-[11px] font-black uppercase tracking-[0.4em] text-foreground/40">Register new identity in collective deployment</p>
                                 </div>
-                                <button onClick={() => setIsInviteModalOpen(false)} className="w-20 h-20 flex items-center justify-center bg-white/5 border border-white/10 rounded-3xl text-white/40 hover:text-white hover:bg-white/10 transition-all active:scale-90 relative z-10">
+                                <button onClick={() => setIsInviteModalOpen(false)} className="w-20 h-20 flex items-center justify-center bg-white/5 border border-white/10 rounded-3xl text-foreground/40 hover:text-foreground hover:bg-white/10 transition-all active:scale-90 relative z-10">
                                     <X size={40} />
                                 </button>
                             </div>
@@ -254,7 +254,7 @@ const TeamMembersPage = () => {
                             <form onSubmit={handleInviteSubmit} className="p-12 sm:p-16 space-y-12">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                                     <div className="space-y-4">
-                                        <label className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.4em] px-4">Operational Name</label>
+                                        <label className="text-[11px] font-black text-muted-foreground uppercase tracking-[0.4em] px-4">Operational Name</label>
                                         <input
                                             type="text"
                                             required
@@ -266,7 +266,7 @@ const TeamMembersPage = () => {
                                     </div>
 
                                     <div className="space-y-4">
-                                        <label className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.4em] px-4">Identity Vector (Email)</label>
+                                        <label className="text-[11px] font-black text-muted-foreground uppercase tracking-[0.4em] px-4">Identity Vector (Email)</label>
                                         <input
                                             type="email"
                                             required
@@ -280,7 +280,7 @@ const TeamMembersPage = () => {
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                                     <div className="space-y-4">
-                                        <label className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.4em] px-4">Permission Layer</label>
+                                        <label className="text-[11px] font-black text-muted-foreground uppercase tracking-[0.4em] px-4">Permission Layer</label>
                                         <select
                                             value={inviteData.role}
                                             onChange={(e) => setInviteData({ ...inviteData, role: e.target.value })}
@@ -296,7 +296,7 @@ const TeamMembersPage = () => {
                                         </select>
                                     </div>
                                     <div className="space-y-4">
-                                        <label className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.4em] px-4">Sector Cluster</label>
+                                        <label className="text-[11px] font-black text-muted-foreground uppercase tracking-[0.4em] px-4">Sector Cluster</label>
                                         <select
                                             value={inviteData.departmentId}
                                             onChange={(e) => setInviteData({ ...inviteData, departmentId: e.target.value })}
@@ -315,13 +315,13 @@ const TeamMembersPage = () => {
                                     <button
                                         type="button"
                                         onClick={() => setIsInviteModalOpen(false)}
-                                        className="h-22 px-12 bg-slate-50 border border-slate-100 text-zinc-400 font-black uppercase tracking-[0.4em] rounded-[2rem] hover:bg-rose-50 hover:text-rose-600 hover:border-rose-100 transition-all active:scale-95 text-[11px] flex-1"
+                                        className="h-22 px-12 bg-slate-50 border border-slate-100 text-muted-foreground font-black uppercase tracking-[0.4em] rounded-[2rem] hover:bg-rose-50 hover:text-rose-600 hover:border-rose-100 transition-all active:scale-95 text-[11px] flex-1"
                                     >
                                         Terminate Protocol
                                     </button>
                                     <button
                                         type="submit"
-                                        className="h-22 px-16 bg-slate-950 text-white font-black uppercase tracking-[0.4em] rounded-[2rem] hover:bg-indigo-600 shadow-2xl shadow-indigo-600/20 transition-all active:scale-95 text-[11px] flex-[2] flex items-center justify-center gap-6 group/btn"
+                                        className="h-22 px-16 bg-slate-950 text-foreground font-black uppercase tracking-[0.4em] rounded-[2rem] hover:bg-indigo-600 shadow-2xl shadow-indigo-600/20 transition-all active:scale-95 text-[11px] flex-[2] flex items-center justify-center gap-6 group/btn"
                                     >
                                         Execute Deployment
                                         <Zap size={22} className="group-hover/btn:scale-125 transition-transform" />

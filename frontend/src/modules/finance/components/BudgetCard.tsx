@@ -35,8 +35,8 @@ export function BudgetCard({ budget, onClick }: BudgetCardProps) {
             <DollarSign className="w-5 h-5 text-[#BAFF00]" />
           </div>
           <div>
-            <p className="font-bold text-white">{budget.name}</p>
-            <p className="text-xs text-white/40">{budget.period}</p>
+            <p className="font-bold text-foreground">{budget.name}</p>
+            <p className="text-xs text-foreground/40">{budget.period}</p>
           </div>
         </div>
         {isOverBudget ? (
@@ -48,15 +48,15 @@ export function BudgetCard({ budget, onClick }: BudgetCardProps) {
 
       <div className="space-y-3">
         <div className="flex justify-between text-sm">
-          <span className="text-white/60">Spent</span>
-          <span className="font-bold text-white">${budget.spent.toLocaleString()}</span>
+          <span className="text-foreground/60">Spent</span>
+          <span className="font-bold text-foreground">${budget.spent.toLocaleString()}</span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-white/60">Budget</span>
-          <span className="font-bold text-white">${budget.total.toLocaleString()}</span>
+          <span className="text-foreground/60">Budget</span>
+          <span className="font-bold text-foreground">${budget.total.toLocaleString()}</span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-white/60">Remaining</span>
+          <span className="text-foreground/60">Remaining</span>
           <span className={`font-bold ${isOverBudget ? 'text-red-500' : 'text-green-500'}`}>
             ${remaining.toLocaleString()}
           </span>
@@ -65,8 +65,8 @@ export function BudgetCard({ budget, onClick }: BudgetCardProps) {
 
       <div className="mt-4">
         <div className="flex justify-between text-xs mb-2">
-          <span className="text-white/40">Usage</span>
-          <span className="text-white/60">{percentage.toFixed(1)}%</span>
+          <span className="text-foreground/40">Usage</span>
+          <span className="text-foreground/60">{percentage.toFixed(1)}%</span>
         </div>
         <div className="h-2 bg-white/10 rounded-full overflow-hidden">
           <div 
@@ -76,7 +76,7 @@ export function BudgetCard({ budget, onClick }: BudgetCardProps) {
         </div>
       </div>
 
-      <div className="mt-4 flex justify-between text-xs text-white/40">
+      <div className="mt-4 flex justify-between text-xs text-foreground/40">
         <span>{new Date(budget.startDate).toLocaleDateString()}</span>
         <span>{new Date(budget.endDate).toLocaleDateString()}</span>
       </div>

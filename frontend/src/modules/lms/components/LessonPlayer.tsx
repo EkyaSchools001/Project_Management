@@ -50,7 +50,7 @@ export function LessonPlayer({
       </div>
       
       {lesson.type === 'Video' && lesson.videoUrl && (
-        <div className="aspect-video bg-black rounded-lg overflow-hidden mb-6">
+        <div className="aspect-video bg-backgroundackgroundlack rounded-lg overflow-hidden mb-6">
           <video 
             src={lesson.videoUrl} 
             controls 

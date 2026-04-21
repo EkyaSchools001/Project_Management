@@ -59,7 +59,7 @@ const ReportsPage = () => {
             className="space-y-16 p-6 sm:p-10 lg:p-16 max-w-[1700px] mx-auto pb-40"
         >
             {/* Header Section */}
-            <header className="relative overflow-hidden p-12 sm:p-20 bg-zinc-900 rounded-[5rem] text-white shadow-2xl group border border-white/5">
+            <header className="relative overflow-hidden p-12 sm:p-20 bg-backgroundackgroundackground rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-violet-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-[600px] h-[600px] bg-indigo-500 rounded-full blur-[200px] opacity-10 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 
@@ -69,10 +69,10 @@ const ReportsPage = () => {
                             <div className="w-4 h-4 rounded-full bg-indigo-500 animate-pulse-glow shadow-[0_0_20px_rgba(79,70,229,0.8)]" />
                             <span className="text-[11px] font-black text-indigo-400 uppercase tracking-[0.5em]">Core Velocity Analytics Protocol</span>
                         </motion.div>
-                        <motion.h1 variants={itemVariants} className="text-5xl sm:text-8xl font-black text-white tracking-tighter uppercase leading-[0.85] drop-shadow-2xl">
+                        <motion.h1 variants={itemVariants} className="text-5xl sm:text-8xl font-black text-foreground tracking-tighter uppercase leading-[0.85] drop-shadow-2xl">
                             Intelligence Matrix
                         </motion.h1>
-                        <motion.p variants={itemVariants} className="text-white/40 max-w-2xl text-lg sm:text-xl font-black uppercase tracking-widest leading-relaxed border-l-8 border-white/10 pl-10">
+                        <motion.p variants={itemVariants} className="text-foreground/40 max-w-2xl text-lg sm:text-xl font-black uppercase tracking-widest leading-relaxed border-l-8 border-white/10 pl-10">
                             Heuristic analysis of system velocity and resource allocation across the deployment cloud.
                         </motion.p>
                     </div>
@@ -81,7 +81,7 @@ const ReportsPage = () => {
                         <button
                             onClick={handleAIAnalyze}
                             disabled={isAnalyzing}
-                            className="flex-1 sm:flex-none flex items-center justify-center gap-6 h-24 px-16 bg-white/5 backdrop-blur-2xl border border-white/10 text-white rounded-[2.5rem] text-xs font-black uppercase tracking-widest hover:bg-indigo-600/20 hover:border-indigo-500 hover:scale-105 shadow-2xl active:scale-95 transition-all disabled:opacity-70 group/ai"
+                            className="flex-1 sm:flex-none flex items-center justify-center gap-6 h-24 px-16 bg-white/5 backdrop-blur-2xl border border-white/10 text-foreground rounded-[2.5rem] text-xs font-black uppercase tracking-widest hover:bg-indigo-600/20 hover:border-indigo-500 hover:scale-105 shadow-2xl active:scale-95 transition-all disabled:opacity-70 group/ai"
                         >
                             <Sparkles size={28} className={isAnalyzing ? "animate-spin text-indigo-400" : "group-hover:rotate-12 transition-transform text-indigo-400"} />
                             {isAnalyzing ? 'SYNCHRONIZING...' : 'GENERATE NEURAL INSIGHTS'}
@@ -127,7 +127,7 @@ const ReportsPage = () => {
                                     </div>
                                     <button
                                         onClick={() => setAiInsights(null)}
-                                        className="text-[11px] font-black uppercase tracking-widest text-zinc-400 hover:text-rose-600 bg-slate-50 hover:bg-rose-50 py-4 px-10 rounded-[1.5rem] border border-slate-100 hover:border-rose-100 transition-all active:scale-95 shadow-sm"
+                                        className="text-[11px] font-black uppercase tracking-widest text-muted-foreground hover:text-rose-600 bg-slate-50 hover:bg-rose-50 py-4 px-10 rounded-[1.5rem] border border-slate-100 hover:border-rose-100 transition-all active:scale-95 shadow-sm"
                                     >
                                         DISMISS PROTOCOL
                                     </button>
@@ -157,8 +157,8 @@ const ReportsPage = () => {
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id)}
                         className={`flex items-center gap-5 px-12 py-5 rounded-[2.5rem] text-[11px] font-black uppercase tracking-[0.3em] transition-all whitespace-nowrap active:scale-95 ${activeTab === tab.id
-                            ? 'bg-slate-950 text-white shadow-2xl shadow-indigo-600/20 translate-y-[-4px]'
-                            : 'text-zinc-400 hover:text-slate-950'
+                            ? 'bg-slate-950 text-foreground shadow-2xl shadow-indigo-600/20 translate-y-[-4px]'
+                            : 'text-muted-foreground hover:text-slate-950'
                             }`}
                     >
                         <tab.icon size={24} className={activeTab === tab.id ? 'text-indigo-400' : 'text-slate-300'} />
@@ -194,7 +194,7 @@ const ReportsPage = () => {
                         className="h-full w-40 bg-gradient-to-r from-transparent via-indigo-600 to-transparent relative" 
                     />
                 </div>
-                <p className="text-[9px] font-black text-zinc-400 uppercase tracking-[1em]">Secure End-to-End Encryption // Analytics Node 0x77-A</p>
+                <p className="text-[9px] font-black text-muted-foreground uppercase tracking-[1em]">Secure End-to-End Encryption // Analytics Node 0x77-A</p>
             </div>
         </motion.div>
     );
@@ -206,7 +206,7 @@ const InsightMetric = ({ icon: Icon, label, value, color }) => (
             <Icon size={24} />
         </div>
         <div className="space-y-1">
-            <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">{label}</p>
+            <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">{label}</p>
             <p className="text-xl font-black text-slate-950 uppercase tracking-tighter">{value}</p>
         </div>
     </div>

@@ -241,7 +241,7 @@ export function LeaderPerformanceAnalytics({ team, observations, goals = [] }: L
                     <Button
                         onClick={() => setIsAIModalOpen(true)}
                         variant="outline"
-                        className="gap-2 bg-emerald-50 hover:bg-emerald-100 border-emerald-200 text-emerald-700 font-bold rounded-full px-5"
+                        className="gap-2 bg-backgroundmerald-50 hover:bg-backgroundmerald-100 border-emerald-200 text-emerald-700 font-bold rounded-full px-5"
                     >
                         <Sparkles className="w-4 h-4 text-emerald-600" />
                         AI Smart Insights
@@ -542,7 +542,7 @@ export function LeaderPerformanceAnalytics({ team, observations, goals = [] }: L
                                 variant={focusCategory === "all" ? "default" : "outline"}
                                 className={cn(
                                     "cursor-pointer font-bold px-3 py-1 transition-all",
-                                    focusCategory === "all" ? "bg-blue-600 text-white" : "bg-blue-50/50 text-blue-700 border-blue-100 hover:bg-blue-100"
+                                    focusCategory === "all" ? "bg-backgroundackgroundlue-600 text-foreground" : "bg-backgroundackgroundlue-50/50 text-blue-700 border-blue-100 hover:bg-backgroundackgroundlue-100"
                                 )}
                                 onClick={() => setFocusCategory("all")}
                             >
@@ -552,7 +552,7 @@ export function LeaderPerformanceAnalytics({ team, observations, goals = [] }: L
                                 variant={focusCategory === "core" ? "default" : "outline"}
                                 className={cn(
                                     "cursor-pointer font-bold px-3 py-1 transition-all",
-                                    focusCategory === "core" ? "bg-emerald-600 text-white" : "bg-emerald-50/50 text-emerald-700 border-emerald-100 hover:bg-emerald-100"
+                                    focusCategory === "core" ? "bg-backgroundmerald-600 text-foreground" : "bg-backgroundmerald-50/50 text-emerald-700 border-emerald-100 hover:bg-backgroundmerald-100"
                                 )}
                                 onClick={() => setFocusCategory("core")}
                             >
@@ -562,7 +562,7 @@ export function LeaderPerformanceAnalytics({ team, observations, goals = [] }: L
                                 variant={focusCategory === "non-core" ? "default" : "outline"}
                                 className={cn(
                                     "cursor-pointer font-bold px-3 py-1 transition-all",
-                                    focusCategory === "non-core" ? "bg-amber-600 text-white" : "bg-amber-50/50 text-amber-700 border-amber-100 hover:bg-amber-100"
+                                    focusCategory === "non-core" ? "bg-amber-600 text-foreground" : "bg-amber-50/50 text-amber-700 border-amber-100 hover:bg-amber-100"
                                 )}
                                 onClick={() => setFocusCategory("non-core")}
                             >

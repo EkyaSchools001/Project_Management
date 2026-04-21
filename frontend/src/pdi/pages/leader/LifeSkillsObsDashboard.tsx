@@ -17,7 +17,7 @@ import { MessageSquare } from "lucide-react";
 const RATING_COLORS: Record<number, string> = {
     1: "bg-red-100 text-red-700",
     2: "bg-yellow-100 text-yellow-700",
-    3: "bg-blue-100 text-blue-700",
+    3: "bg-backgroundackgroundlue-100 text-blue-700",
     4: "bg-green-100 text-green-700",
 };
 const RATING_LABELS: Record<number, string> = {
@@ -121,7 +121,7 @@ const LifeSkillsObsDashboard: React.FC = () => {
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                     <div className="flex items-center gap-3">
-                        <div className="p-3 rounded-xl text-white" style={{ background: "#1F2839" }}>
+                        <div className="p-3 rounded-xl text-foreground" style={{ background: "#1F2839" }}>
                             <Heart className="w-6 h-6" />
                         </div>
                         <div>
@@ -182,7 +182,7 @@ const LifeSkillsObsDashboard: React.FC = () => {
                 {/* Table */}
                 <Card className="  shadow-sm overflow-hidden">
                     <CardHeader className="py-3 px-4 border-b" style={{ background: "#1F2839" }}>
-                        <div className="grid grid-cols-11 gap-2 text-xs font-semibold text-white capitalize tracking-wider">
+                        <div className="grid grid-cols-11 gap-2 text-xs font-semibold text-foreground capitalize tracking-wider">
                             <span>Sr.</span>
                             <span>Date</span>
                             <span className="col-span-2">Teacher</span>
@@ -228,7 +228,7 @@ const LifeSkillsObsDashboard: React.FC = () => {
                                     <span className="col-span-2" onClick={(e) => e.stopPropagation()}>
                                         <Dialog>
                                             <DialogTrigger asChild>
-                                                <Button variant="outline" size="sm" className="h-7 text-xs gap-1 bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 hover:text-blue-800">
+                                                <Button variant="outline" size="sm" className="h-7 text-xs gap-1 bg-backgroundackgroundlue-50 text-blue-700 border-blue-200 hover:bg-backgroundackgroundlue-100 hover:text-blue-800">
                                                     <MessageSquare className="w-3 h-3" /> View Comment
                                                 </Button>
                                             </DialogTrigger>

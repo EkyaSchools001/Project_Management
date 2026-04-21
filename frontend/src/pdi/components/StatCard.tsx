@@ -31,7 +31,7 @@ export function StatCard({ title, value, subtitle, icon: Icon, trend, className,
       <div className="absolute top-0 right-0 w-32 h-32 bg-[#BAFF00]/5 translate-x-16 -translate-y-16 transition-transform group-hover:scale-150 group-hover:bg-[#BAFF00]/10 rounded-full" />
 
       <div className="flex flex-row items-center justify-between gap-6 relative z-10 w-full mb-6">
-        <div className="p-4 rounded-full bg-white/5 border border-white/5 text-white/50 group-hover:bg-[#BAFF00]/10 group-hover:text-[#BAFF00] group-hover:border-[#BAFF00]/30 transition-all duration-300">
+        <div className="p-4 rounded-full bg-white/5 border border-white/5 text-foreground/50 group-hover:bg-[#BAFF00]/10 group-hover:text-[#BAFF00] group-hover:border-[#BAFF00]/30 transition-all duration-300">
           {Icon && <Icon size={24} weight="bold" />}
         </div>
         
@@ -48,17 +48,17 @@ export function StatCard({ title, value, subtitle, icon: Icon, trend, className,
 
       <div className="relative z-10 space-y-2">
         <div className="flex items-center gap-2">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 truncate">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-foreground/30 truncate">
             {title}
           </p>
         </div>
 
-        <p className="text-5xl font-black text-white tracking-tight group-hover:text-[#BAFF00] transition-colors duration-300 leading-none">
+        <p className="text-5xl font-black text-foreground tracking-tight group-hover:text-[#BAFF00] transition-colors duration-300 leading-none">
           {value}
         </p>
 
         {subtitle && (
-          <p className="text-[11px] font-semibold text-white/40 pt-2 line-clamp-1 border-t border-white/5">{subtitle}</p>
+          <p className="text-[11px] font-semibold text-foreground/40 pt-2 line-clamp-1 border-t border-white/5">{subtitle}</p>
         )}
       </div>
     </div>

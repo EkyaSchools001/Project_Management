@@ -104,7 +104,7 @@ export const MoocResponsesView: React.FC<MoocResponsesViewProps> = ({ refresh, b
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
             placeholder="Search submissions..."
-            className="pl-10 w-[250px] bg-background border-muted-foreground/20 rounded-xl"
+            className="pl-10 w-[250px] bg-backgroundackgroundackground border-muted-foreground/20 rounded-xl"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -185,8 +185,8 @@ export const MoocResponsesView: React.FC<MoocResponsesViewProps> = ({ refresh, b
                     </td>
                     <td className="p-6">
                       <Badge className={cn(
-                        "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
-                        sub.status === 'APPROVED' ? "bg-emerald-600" : 
+                        "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
+                        sub.status === 'APPROVED' ? "bg-backgroundmerald-600" : 
                         sub.status === 'REJECTED' ? "bg-rose-600" : 
                         "bg-amber-500"
                       )}>
@@ -251,7 +251,7 @@ export const MoocResponsesView: React.FC<MoocResponsesViewProps> = ({ refresh, b
                 </div>
               </div>
 
-              <div className="h-px bg-border my-4" />
+              <div className="h-px bg-backgroundackgroundorder my-4" />
 
               {selectedSubmission.hasCertificate === 'yes' ? (
                 <div>
@@ -290,7 +290,7 @@ export const MoocResponsesView: React.FC<MoocResponsesViewProps> = ({ refresh, b
                     Reject Submission
                   </Button>
                   <Button
-                    className="bg-green-600 hover:bg-green-700 text-white"
+                    className="bg-green-600 hover:bg-green-700 text-foreground"
                     onClick={() => handleUpdateStatus('APPROVED')}
                     disabled={isUpdating}
                   >

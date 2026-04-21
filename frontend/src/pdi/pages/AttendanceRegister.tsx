@@ -102,7 +102,7 @@ export default function AttendanceRegister() {
             return <Badge variant="destructive" className="bg-red-500/10 text-red-500 hover:bg-red-500/20 border-red-500/20">Closed</Badge>;
         }
         if (event.attendanceEnabled) {
-            return <Badge variant="default" className="bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 border-blue-500/20 animate-pulse">Live</Badge>;
+            return <Badge variant="default" className="bg-backgroundackgroundlue-500/10 text-blue-500 hover:bg-backgroundackgroundlue-500/20 border-blue-500/20 animate-pulse">Live</Badge>;
         }
         return <Badge variant="secondary" className="bg-gray-500/10 text-gray-400 hover:bg-gray-500/20 border-gray-500/20">Not Enabled</Badge>;
     };
@@ -164,7 +164,7 @@ export default function AttendanceRegister() {
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-900" />
                         <Input
                             placeholder="Search events..."
-                            className="pl-10 rounded-xl bg-background border-border"
+                            className="pl-10 rounded-xl bg-backgroundackgroundackground border-border"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
@@ -211,7 +211,7 @@ export default function AttendanceRegister() {
                                 <div className="space-y-1.5">
                                     <Label className="text-[10px] font-bold text-zinc-900 ml-1">Event Status</Label>
                                     <Select value={statusFilter} onValueChange={setStatusFilter}>
-                                        <SelectTrigger className="rounded-xl bg-background border-border h-10">
+                                        <SelectTrigger className="rounded-xl bg-backgroundackgroundackground border-border h-10">
                                             <SelectValue placeholder="All Statuses" />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -299,7 +299,7 @@ export default function AttendanceRegister() {
                                             <TableCell>
                                                 <div className="flex flex-col gap-1">
                                                     {getStatusBadge(event)}
-                                                    <Badge variant="outline" className="w-fit bg-emerald-500/5 text-emerald-600 border-emerald-500/20">
+                                                    <Badge variant="outline" className="w-fit bg-backgroundmerald-500/5 text-emerald-600 border-emerald-500/20">
                                                         {event.attendanceCount || 0} Attended
                                                     </Badge>
                                                 </div>
@@ -314,7 +314,7 @@ export default function AttendanceRegister() {
                                                     variant="ghost"
                                                     size="sm"
                                                     onClick={() => handleExport(event)}
-                                                    className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                                                    className="text-blue-600 hover:text-blue-700 hover:bg-backgroundackgroundlue-50"
                                                 >
                                                     <Download className="w-4 h-4 mr-2" />
                                                     Export

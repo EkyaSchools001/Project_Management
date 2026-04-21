@@ -92,15 +92,15 @@ export const NotificationPreferences: React.FC = () => {
   };
 
   if (loading) {
-    return <div className="p-8 text-center text-white/50">Loading preferences...</div>;
+    return <div className="p-8 text-center text-foreground/50">Loading preferences...</div>;
   }
 
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-white">Notification Preferences</h2>
-          <p className="text-white/50">Manage how you receive notifications</p>
+          <h2 className="text-2xl font-bold text-foreground">Notification Preferences</h2>
+          <p className="text-foreground/50">Manage how you receive notifications</p>
         </div>
         <Button 
           onClick={handleSave} 
@@ -123,19 +123,19 @@ export const NotificationPreferences: React.FC = () => {
       <div className="grid gap-6">
         <Card className="bg-white/5 border-white/10">
           <CardHeader className="pb-4">
-            <CardTitle className="flex items-center gap-2 text-white">
+            <CardTitle className="flex items-center gap-2 text-foreground">
               <Bell className="w-5 h-5 text-[#BAFF00]" />
               Delivery Methods
             </CardTitle>
-            <CardDescription className="text-white/50">
+            <CardDescription className="text-foreground/50">
               Choose how you want to receive notifications
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-white/50" />
-                <Label htmlFor="email" className="text-white">Email Notifications</Label>
+                <Mail className="w-5 h-5 text-foreground/50" />
+                <Label htmlFor="email" className="text-foreground">Email Notifications</Label>
               </div>
               <Switch
                 id="email"
@@ -146,8 +146,8 @@ export const NotificationPreferences: React.FC = () => {
 
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <Bell className="w-5 h-5 text-white/50" />
-                <Label htmlFor="push" className="text-white">Push Notifications</Label>
+                <Bell className="w-5 h-5 text-foreground/50" />
+                <Label htmlFor="push" className="text-foreground">Push Notifications</Label>
               </div>
               <Switch
                 id="push"
@@ -158,8 +158,8 @@ export const NotificationPreferences: React.FC = () => {
 
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <Smartphone className="w-5 h-5 text-white/50" />
-                <Label htmlFor="sms" className="text-white">SMS Notifications</Label>
+                <Smartphone className="w-5 h-5 text-foreground/50" />
+                <Label htmlFor="sms" className="text-foreground">SMS Notifications</Label>
               </div>
               <Switch
                 id="sms"
@@ -172,14 +172,14 @@ export const NotificationPreferences: React.FC = () => {
 
         <Card className="bg-white/5 border-white/10">
           <CardHeader className="pb-4">
-            <CardTitle className="text-white">Notification Types</CardTitle>
-            <CardDescription className="text-white/50">
+            <CardTitle className="text-foreground">Notification Types</CardTitle>
+            <CardDescription className="text-foreground/50">
               Choose which types of notifications you want to receive
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between">
-              <Label htmlFor="tasks" className="text-white">Task Assignments</Label>
+              <Label htmlFor="tasks" className="text-foreground">Task Assignments</Label>
               <Switch
                 id="tasks"
                 checked={preferences.taskNotifications}
@@ -188,7 +188,7 @@ export const NotificationPreferences: React.FC = () => {
             </div>
 
             <div className="flex items-center justify-between">
-              <Label htmlFor="projects" className="text-white">Project Updates</Label>
+              <Label htmlFor="projects" className="text-foreground">Project Updates</Label>
               <Switch
                 id="projects"
                 checked={preferences.projectNotifications}
@@ -197,7 +197,7 @@ export const NotificationPreferences: React.FC = () => {
             </div>
 
             <div className="flex items-center justify-between">
-              <Label htmlFor="messages" className="text-white">Messages</Label>
+              <Label htmlFor="messages" className="text-foreground">Messages</Label>
               <Switch
                 id="messages"
                 checked={preferences.messageNotifications}
@@ -206,7 +206,7 @@ export const NotificationPreferences: React.FC = () => {
             </div>
 
             <div className="flex items-center justify-between">
-              <Label htmlFor="system" className="text-white">System Notifications</Label>
+              <Label htmlFor="system" className="text-foreground">System Notifications</Label>
               <Switch
                 id="system"
                 checked={preferences.systemNotifications}
@@ -215,7 +215,7 @@ export const NotificationPreferences: React.FC = () => {
             </div>
 
             <div className="flex items-center justify-between">
-              <Label htmlFor="alerts" className="text-white">Alerts</Label>
+              <Label htmlFor="alerts" className="text-foreground">Alerts</Label>
               <Switch
                 id="alerts"
                 checked={preferences.alertNotifications}
@@ -224,7 +224,7 @@ export const NotificationPreferences: React.FC = () => {
             </div>
 
             <div className="flex items-center justify-between">
-              <Label htmlFor="reminders" className="text-white">Reminders</Label>
+              <Label htmlFor="reminders" className="text-foreground">Reminders</Label>
               <Switch
                 id="reminders"
                 checked={preferences.reminderNotifications}
@@ -236,17 +236,17 @@ export const NotificationPreferences: React.FC = () => {
 
         <Card className="bg-white/5 border-white/10">
           <CardHeader className="pb-4">
-            <CardTitle className="flex items-center gap-2 text-white">
+            <CardTitle className="flex items-center gap-2 text-foreground">
               <Clock className="w-5 h-5 text-[#BAFF00]" />
               Quiet Hours
             </CardTitle>
-            <CardDescription className="text-white/50">
+            <CardDescription className="text-foreground/50">
               Set a time when you don't want to receive notifications
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between">
-              <Label htmlFor="quietHours" className="text-white">Enable Quiet Hours</Label>
+              <Label htmlFor="quietHours" className="text-foreground">Enable Quiet Hours</Label>
               <Switch
                 id="quietHours"
                 checked={preferences.quietHoursEnabled}
@@ -257,41 +257,41 @@ export const NotificationPreferences: React.FC = () => {
             {preferences.quietHoursEnabled && (
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label className="text-white/70">Start Time</Label>
+                  <Label className="text-foreground/70">Start Time</Label>
                   <Input
                     type="time"
                     value={preferences.quietHoursStart}
                     onChange={(e) => updatePreference('quietHoursStart', e.target.value)}
-                    className="bg-white/5 border-white/10 text-white"
+                    className="bg-white/5 border-white/10 text-foreground"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-white/70">End Time</Label>
+                  <Label className="text-foreground/70">End Time</Label>
                   <Input
                     type="time"
                     value={preferences.quietHoursEnd}
                     onChange={(e) => updatePreference('quietHoursEnd', e.target.value)}
-                    className="bg-white/5 border-white/10 text-white"
+                    className="bg-white/5 border-white/10 text-foreground"
                   />
                 </div>
               </div>
             )}
 
             <div className="space-y-2">
-              <Label className="text-white">Email Digest Frequency</Label>
+              <Label className="text-foreground">Email Digest Frequency</Label>
               <Select
                 value={preferences.digestFrequency}
                 onValueChange={(value) => updatePreference('digestFrequency', value)}
               >
-                <SelectTrigger className="bg-white/5 border-white/10 text-white">
+                <SelectTrigger className="bg-white/5 border-white/10 text-foreground">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-[#1a1a1a] border-white/10">
-                  <SelectItem value="realtime" className="text-white">Real-time</SelectItem>
-                  <SelectItem value="hourly" className="text-white">Hourly</SelectItem>
-                  <SelectItem value="daily" className="text-white">Daily Digest</SelectItem>
-                  <SelectItem value="weekly" className="text-white">Weekly Digest</SelectItem>
-                  <SelectItem value="never" className="text-white">Never</SelectItem>
+                  <SelectItem value="realtime" className="text-foreground">Real-time</SelectItem>
+                  <SelectItem value="hourly" className="text-foreground">Hourly</SelectItem>
+                  <SelectItem value="daily" className="text-foreground">Daily Digest</SelectItem>
+                  <SelectItem value="weekly" className="text-foreground">Weekly Digest</SelectItem>
+                  <SelectItem value="never" className="text-foreground">Never</SelectItem>
                 </SelectContent>
               </Select>
             </div>

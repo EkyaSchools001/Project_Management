@@ -106,9 +106,9 @@ export function MeetingsDashboard() {
                 <div className="flex justify-between items-start mb-4">
                     <div>
                         <Badge className={cn(
-                            "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm mb-2",
-                            meeting.status === 'Scheduled' ? "bg-blue-600" :
-                            meeting.status === 'Ongoing' ? "bg-emerald-600" :
+                            "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm mb-2",
+                            meeting.status === 'Scheduled' ? "bg-backgroundackgroundlue-600" :
+                            meeting.status === 'Ongoing' ? "bg-backgroundmerald-600" :
                             meeting.status === 'Completed' ? "bg-slate-600" :
                             meeting.status === 'Draft' ? "bg-amber-500" :
                             "bg-slate-400"
@@ -168,7 +168,7 @@ export function MeetingsDashboard() {
                                     variant="default"
                                     size="sm"
                                     onClick={() => navigate(`/meetings/${meeting.id}/mom`)}
-                                    className={`shadow-sm transition-all duration-300 ${meeting.momStatus === 'Published' ? 'bg-black hover:bg-black/90 text-white' : 'bg-yellow-500 hover:bg-yellow-600 text-black'}`}
+                                    className={`shadow-sm transition-all duration-300 ${meeting.momStatus === 'Published' ? 'bg-backgroundackgroundlack hover:bg-backgroundackgroundlack/90 text-foreground' : 'bg-yellow-500 hover:bg-yellow-600 text-black'}`}
                                 >
                                     <FileText className="w-4 h-4 mr-2" />
                                     {meeting.momStatus === 'Published'

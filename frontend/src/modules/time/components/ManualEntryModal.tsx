@@ -105,21 +105,21 @@ export function ManualEntryModal({ isOpen, onClose, tasks = [], existingEntry, o
         <Dialog open={isOpen} onOpenChange={onClose}>
             <DialogContent className="bg-[#18181b] border border-white/10 max-w-md">
                 <DialogHeader>
-                    <DialogTitle className="text-white">
+                    <DialogTitle className="text-foreground">
                         {existingEntry ? 'Edit Time Entry' : 'Add Manual Entry'}
                     </DialogTitle>
                 </DialogHeader>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label className="text-[10px] uppercase tracking-widest text-white/40 mb-2 block">
+                        <label className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2 block">
                             Task
                         </label>
                         <select
                             value={formData.taskId}
                             onChange={(e) => handleChange('taskId', e.target.value)}
                             required
-                            className="w-full bg-[#1a1d24] border border-white/10 rounded-xl px-3 py-2.5 text-white text-sm focus:border-[#BAFF00] focus:outline-none"
+                            className="w-full bg-[#1a1d24] border border-white/10 rounded-xl px-3 py-2.5 text-foreground text-sm focus:border-[#BAFF00] focus:outline-none"
                         >
                             <option value="">Select a task...</option>
                             {tasks.map(task => (
@@ -131,23 +131,23 @@ export function ManualEntryModal({ isOpen, onClose, tasks = [], existingEntry, o
                     </div>
 
                     <div>
-                        <label className="text-[10px] uppercase tracking-widest text-white/40 mb-2 block">
+                        <label className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2 block">
                             Date
                         </label>
                         <div className="relative">
-                            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+                            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-foreground/40" />
                             <Input
                                 type="date"
                                 value={formData.date}
                                 onChange={(e) => handleChange('date', e.target.value)}
                                 required
-                                className="pl-10 bg-[#1a1d24] border-white/10 text-white"
+                                className="pl-10 bg-[#1a1d24] border-white/10 text-foreground"
                             />
                         </div>
                     </div>
 
                     <div>
-                        <label className="text-[10px] uppercase tracking-widest text-white/40 mb-2 block">
+                        <label className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2 block">
                             Time Mode
                         </label>
                         <div className="flex items-center gap-3">
@@ -157,7 +157,7 @@ export function ManualEntryModal({ isOpen, onClose, tasks = [], existingEntry, o
                                 className={`flex-1 py-2 rounded-lg text-sm font-bold transition-colors ${
                                     !formData.useDuration 
                                         ? 'bg-[#BAFF00]/20 text-[#BAFF00]' 
-                                        : 'bg-white/5 text-white/60'
+                                        : 'bg-white/5 text-foreground/60'
                                 }`}
                             >
                                 Start/End
@@ -168,7 +168,7 @@ export function ManualEntryModal({ isOpen, onClose, tasks = [], existingEntry, o
                                 className={`flex-1 py-2 rounded-lg text-sm font-bold transition-colors ${
                                     formData.useDuration 
                                         ? 'bg-[#BAFF00]/20 text-[#BAFF00]' 
-                                        : 'bg-white/5 text-white/60'
+                                        : 'bg-white/5 text-foreground/60'
                                 }`}
                             >
                                 Duration
@@ -178,7 +178,7 @@ export function ManualEntryModal({ isOpen, onClose, tasks = [], existingEntry, o
 
                     {formData.useDuration ? (
                         <div>
-                            <label className="text-[10px] uppercase tracking-widest text-white/40 mb-2 block">
+                            <label className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2 block">
                                 Duration (minutes)
                             </label>
                             <Input
@@ -186,38 +186,38 @@ export function ManualEntryModal({ isOpen, onClose, tasks = [], existingEntry, o
                                 value={formData.duration}
                                 onChange={(e) => handleChange('duration', parseInt(e.target.value))}
                                 min={1}
-                                className="bg-[#1a1d24] border-white/10 text-white"
+                                className="bg-[#1a1d24] border-white/10 text-foreground"
                             />
                         </div>
                     ) : (
                         <div className="grid grid-cols-2 gap-3">
                             <div>
-                                <label className="text-[10px] uppercase tracking-widest text-white/40 mb-2 block">
+                                <label className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2 block">
                                     Start
                                 </label>
                                 <Input
                                     type="time"
                                     value={formData.startTime}
                                     onChange={(e) => handleChange('startTime', e.target.value)}
-                                    className="bg-[#1a1d24] border-white/10 text-white"
+                                    className="bg-[#1a1d24] border-white/10 text-foreground"
                                 />
                             </div>
                             <div>
-                                <label className="text-[10px] uppercase tracking-widest text-white/40 mb-2 block">
+                                <label className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2 block">
                                     End
                                 </label>
                                 <Input
                                     type="time"
                                     value={formData.endTime}
                                     onChange={(e) => handleChange('endTime', e.target.value)}
-                                    className="bg-[#1a1d24] border-white/10 text-white"
+                                    className="bg-[#1a1d24] border-white/10 text-foreground"
                                 />
                             </div>
                         </div>
                     )}
 
                     <div>
-                        <label className="text-[10px] uppercase tracking-widest text-white/40 mb-2 block">
+                        <label className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2 block">
                             Description
                         </label>
                         <Input
@@ -225,14 +225,14 @@ export function ManualEntryModal({ isOpen, onClose, tasks = [], existingEntry, o
                             value={formData.description}
                             onChange={(e) => handleChange('description', e.target.value)}
                             placeholder="What did you work on?"
-                            className="bg-[#1a1d24] border-white/10 text-white"
+                            className="bg-[#1a1d24] border-white/10 text-foreground"
                         />
                     </div>
 
                     <div className="flex items-center justify-between p-3 bg-[#1a1d24] rounded-xl">
                         <div className="flex items-center gap-2">
-                            <DollarSign className={`w-4 h-4 ${formData.billable ? 'text-green-400' : 'text-white/40'}`} />
-                            <span className="text-white text-sm">Billable</span>
+                            <DollarSign className={`w-4 h-4 ${formData.billable ? 'text-green-400' : 'text-foreground/40'}`} />
+                            <span className="text-foreground text-sm">Billable</span>
                         </div>
                         <Switch
                             checked={formData.billable}
@@ -240,7 +240,7 @@ export function ManualEntryModal({ isOpen, onClose, tasks = [], existingEntry, o
                         />
                     </div>
 
-                    <div className="text-center text-white/40 text-sm">
+                    <div className="text-center text-foreground/40 text-sm">
                         Duration: {calculateDuration()} minutes
                     </div>
 
@@ -249,7 +249,7 @@ export function ManualEntryModal({ isOpen, onClose, tasks = [], existingEntry, o
                             type="button"
                             onClick={onClose}
                             variant="outline"
-                            className="flex-1 border-white/10 text-white hover:bg-white/10"
+                            className="flex-1 border-white/10 text-foreground hover:bg-white/10"
                         >
                             Cancel
                         </Button>

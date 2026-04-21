@@ -449,8 +449,8 @@ export function UserManagementView() {
                                                     {formatRole(selectedUser.role)}
                                                 </Badge>
                                                 <Badge className={cn(
-                                                    "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
-                                                    selectedUser.status === "Active" ? "bg-emerald-600" : "bg-slate-500"
+                                                    "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
+                                                    selectedUser.status === "Active" ? "bg-backgroundmerald-600" : "bg-slate-500"
                                                 )}>
                                                     {selectedUser.status}
                                                 </Badge>
@@ -564,7 +564,7 @@ export function UserManagementView() {
                                                         {formatRole(user.role)}
                                                     </Badge>
                                                     {user.role === "TEACHER" && (
-                                                        <Badge variant="secondary" className={`w-fit text-[10px] ${user.academics === 'NON_CORE' ? 'bg-purple-100 text-purple-700 border-purple-200' : 'bg-blue-100 text-blue-700 border-blue-200'}`}>
+                                                        <Badge variant="secondary" className={`w-fit text-[10px] ${user.academics === 'NON_CORE' ? 'bg-purple-100 text-purple-700 border-purple-200' : 'bg-backgroundackgroundlue-100 text-blue-700 border-blue-200'}`}>
                                                             {user.academics === 'NON_CORE' ? 'Specialist' : 'Core'}
                                                         </Badge>
                                                     )}
@@ -573,8 +573,8 @@ export function UserManagementView() {
                                             <TableCell className="text-muted-foreground">{user.campusId || "N/A"}</TableCell>
                                             <TableCell>
                                                 <Badge className={cn(
-                                                    "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
-                                                    user.status === "Active" ? "bg-emerald-600" : "bg-slate-500"
+                                                    "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
+                                                    user.status === "Active" ? "bg-backgroundmerald-600" : "bg-slate-500"
                                                 )}>
                                                     {user.status === "Active" ? <UserCheck className="w-3 h-3 mr-1" /> : <UserX className="w-3 h-3 mr-1" />}
                                                     {user.status}

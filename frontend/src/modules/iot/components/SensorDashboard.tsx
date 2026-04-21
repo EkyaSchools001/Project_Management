@@ -25,7 +25,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-[#1a1d29] border border-white/10 p-3 rounded-lg">
-        <p className="text-xs text-white/50">{new Date(label).toLocaleString()}</p>
+        <p className="text-xs text-foreground/50">{new Date(label).toLocaleString()}</p>
         <p className="text-sm font-medium text-[#BAFF00]">
           {payload[0].value.toFixed(1)} {payload[0].payload.unit}
         </p>
@@ -77,7 +77,7 @@ export function SensorDashboard({
     <Card className="bg-[#1a1d29] border-white/10">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-sm font-medium text-white">
+          <CardTitle className="text-sm font-medium text-foreground">
             {title || sensorType}
           </CardTitle>
           {alerts.length > 0 && (
@@ -98,17 +98,17 @@ export function SensorDashboard({
 
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div>
-            <p className="text-xs text-white/50">Current</p>
-            <p className="text-2xl font-bold text-white">
+            <p className="text-xs text-foreground/50">Current</p>
+            <p className="text-2xl font-bold text-foreground">
               {latestValue?.toFixed(1)}
-              <span className="text-sm ml-1 text-white/50">{unit}</span>
+              <span className="text-sm ml-1 text-foreground/50">{unit}</span>
             </p>
           </div>
           <div>
-            <p className="text-xs text-white/50">Average</p>
-            <p className="text-2xl font-bold text-white/70">
+            <p className="text-xs text-foreground/50">Average</p>
+            <p className="text-2xl font-bold text-foreground/70">
               {averageValue?.toFixed(1)}
-              <span className="text-sm ml-1 text-white/50">{unit}</span>
+              <span className="text-sm ml-1 text-foreground/50">{unit}</span>
             </p>
           </div>
         </div>

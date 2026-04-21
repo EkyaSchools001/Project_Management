@@ -83,7 +83,7 @@ const CalendarPage = () => {
             <div className="absolute bottom-40 left-0 w-[400px] h-[400px] bg-rose-500/5 rounded-full blur-[120px] -z-10" />
 
             {/* Vibrant Mission Matrix Header */}
-            <header className="relative overflow-hidden p-12 sm:p-20 bg-slate-950 rounded-[4rem] sm:rounded-[5rem] text-white shadow-2xl border border-white/5">
+            <header className="relative overflow-hidden p-12 sm:p-20 bg-slate-950 rounded-[4rem] sm:rounded-[5rem] text-foreground shadow-2xl border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-transparent to-rose-600/10" />
                 <div className="absolute -right-20 -top-20 w-80 h-80 bg-indigo-500 rounded-full blur-[120px] opacity-20 animate-pulse pointer-events-none" />
                 
@@ -96,7 +96,7 @@ const CalendarPage = () => {
                         <motion.h1 variants={itemVariants} className="text-5xl sm:text-8xl lg:text-9xl font-black tracking-tighter uppercase leading-[0.8] mb-4">
                             Temporal <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-violet-400 to-rose-400 animate-gradient-shift">Matrix</span>
                         </motion.h1>
-                        <motion.p variants={itemVariants} className="text-white/40 font-black text-xs sm:text-sm uppercase tracking-[0.4em] flex items-center gap-4 border-l-4 border-white/10 pl-6">
+                        <motion.p variants={itemVariants} className="text-foreground/40 font-black text-xs sm:text-sm uppercase tracking-[0.4em] flex items-center gap-4 border-l-4 border-white/10 pl-6">
                             <Activity size={18} className="text-amber-400" />
                             Mission Flow Real-time Visualization // Layer 0
                         </motion.p>
@@ -107,7 +107,7 @@ const CalendarPage = () => {
                             <NavButton onClick={() => setCurrentDate(subMonths(currentDate, 1))} icon={ChevronLeft} />
                             <button 
                                 onClick={() => setCurrentDate(new Date())}
-                                className="px-8 text-[10px] font-black uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors"
+                                className="px-8 text-[10px] font-black uppercase tracking-[0.3em] text-foreground/60 hover:text-foreground transition-colors"
                             >
                                 Synchronize
                             </button>
@@ -115,7 +115,7 @@ const CalendarPage = () => {
                         </div>
                         <button 
                             onClick={() => setShowScheduleModal(true)}
-                            className="h-20 px-12 bg-white text-slate-950 font-black rounded-3xl text-xs uppercase tracking-[0.4em] shadow-[0_20px_50px_rgba(255,255,255,0.1)] hover:bg-indigo-600 hover:text-white hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-6 group/deploy"
+                            className="h-20 px-12 bg-white text-slate-950 font-black rounded-3xl text-xs uppercase tracking-[0.4em] shadow-[0_20px_50px_rgba(255,255,255,0.1)] hover:bg-indigo-600 hover:text-foreground hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-6 group/deploy"
                         >
                             <Plus size={28} className="group-hover/deploy:rotate-90 transition-transform duration-500" />
                             Deploy Node
@@ -132,8 +132,8 @@ const CalendarPage = () => {
                     </span>
                     <div className="h-8 w-[2px] bg-slate-100 mx-2" />
                     <div className="flex items-center gap-4">
-                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                        <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em]">Network Operational</span>
+                        <div className="w-2.5 h-2.5 rounded-full bg-backgroundmerald-500 animate-pulse" />
+                        <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em]">Network Operational</span>
                     </div>
                 </div>
 
@@ -160,7 +160,7 @@ const CalendarPage = () => {
                 <div className="grid grid-cols-7 border-b border-slate-100 bg-slate-50/50 relative z-10">
                     {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map(day => (
                         <div key={day} className="py-8 text-center border-r border-slate-100 last:border-r-0">
-                            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.4em]">{day}</span>
+                            <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.4em]">{day}</span>
                         </div>
                     ))}
                 </div>
@@ -185,7 +185,7 @@ const CalendarPage = () => {
                                 </div>
 
                                 <div className="flex justify-start mb-6">
-                                    <span className={`text-sm font-black w-10 h-10 flex items-center justify-center rounded-2xl transition-all duration-700 ${isTodayDate ? 'bg-indigo-600 text-white shadow-2xl shadow-indigo-600/40 scale-115 rotate-12' : 'text-slate-900 group-hover:scale-125 group-hover:text-indigo-600'}`}>
+                                    <span className={`text-sm font-black w-10 h-10 flex items-center justify-center rounded-2xl transition-all duration-700 ${isTodayDate ? 'bg-indigo-600 text-foreground shadow-2xl shadow-indigo-600/40 scale-115 rotate-12' : 'text-slate-900 group-hover:scale-125 group-hover:text-indigo-600'}`}>
                                         {format(day, 'd')}
                                     </span>
                                 </div>
@@ -196,7 +196,7 @@ const CalendarPage = () => {
                                             initial={{ opacity: 0, x: -10, scale: 0.9 }}
                                             animate={{ opacity: 1, x: 0, scale: 1 }}
                                             className={`
-                                                bg-gradient-to-r ${event.color} text-white text-[9px] font-black uppercase tracking-[0.2em]
+                                                bg-gradient-to-r ${event.color} text-foreground text-[9px] font-black uppercase tracking-[0.2em]
                                                 px-5 py-3 rounded-2xl shadow-2xl transition-all group-hover:scale-105 active:scale-95
                                                 truncate drop-shadow-2xl border border-white/20 backdrop-blur-xl flex items-center gap-3
                                             `}
@@ -255,7 +255,7 @@ const CalendarPage = () => {
 const NavButton = ({ onClick, icon: Icon }) => (
     <button 
         onClick={onClick}
-        className="w-14 h-14 flex items-center justify-center hover:bg-white/10 rounded-2xl text-white/40 hover:text-white transition-all active:scale-75"
+        className="w-14 h-14 flex items-center justify-center hover:bg-white/10 rounded-2xl text-foreground/40 hover:text-foreground transition-all active:scale-75"
     >
         <Icon size={24} />
     </button>
@@ -266,8 +266,8 @@ const TabButton = ({ active, onClick, label }) => (
         whileTap={{ scale: 0.9 }}
         onClick={onClick}
         className={`px-12 py-5 rounded-[2.5rem] text-[11px] font-black uppercase tracking-[0.3em] transition-all whitespace-nowrap flex items-center gap-5 ${active
-            ? 'bg-slate-950 text-white shadow-2xl scale-105 active:scale-95 translate-y-[-4px]'
-            : 'text-zinc-400 hover:text-slate-950'
+            ? 'bg-slate-950 text-foreground shadow-2xl scale-105 active:scale-95 translate-y-[-4px]'
+            : 'text-muted-foreground hover:text-slate-950'
             }`}
     >
         {label}

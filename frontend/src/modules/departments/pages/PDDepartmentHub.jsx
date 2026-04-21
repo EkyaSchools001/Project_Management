@@ -35,7 +35,7 @@ const PDHubLanding = ({ role, navigate }) => (
         className="max-w-[1800px] mx-auto space-y-16 p-6 sm:p-10 lg:p-16 pb-40"
     >
         {/* Header */}
-        <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-zinc-900 rounded-[5rem] text-white shadow-2xl group border border-white/5">
+        <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-backgroundackgroundackground rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
             <div className="absolute inset-0 bg-gradient-to-br from-[#BAFF00]/10 via-indigo-600/10 to-transparent pointer-events-none" />
             <div className="absolute -right-20 -top-20 w-[600px] h-[600px] bg-[#BAFF00] rounded-full blur-[250px] opacity-5 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
 
@@ -43,7 +43,7 @@ const PDHubLanding = ({ role, navigate }) => (
                 <motion.button
                     variants={itemVariants}
                     onClick={() => navigate('/departments/pd')}
-                    className="group flex items-center text-[10px] font-black text-white/40 hover:text-[#BAFF00] transition-all uppercase tracking-[0.4em]"
+                    className="group flex items-center text-[10px] font-black text-foreground/40 hover:text-[#BAFF00] transition-all uppercase tracking-[0.4em]"
                 >
                     <ArrowLeft className="w-5 h-5 mr-4 group-hover:-translate-x-3 transition-transform" />
                     Infrastructure Matrix Registry
@@ -51,7 +51,7 @@ const PDHubLanding = ({ role, navigate }) => (
 
                 <div className="space-y-6">
                     <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-6">
-                        <h1 className="text-5xl sm:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase leading-[0.85] drop-shadow-2xl">
+                        <h1 className="text-5xl sm:text-8xl lg:text-9xl font-black text-foreground tracking-tighter uppercase leading-[0.85] drop-shadow-2xl">
                             Teacher <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#BAFF00] via-emerald-400 to-indigo-400">
                                 Development
@@ -61,9 +61,9 @@ const PDHubLanding = ({ role, navigate }) => (
                             PD_HUB_ACTIVE
                         </div>
                     </motion.div>
-                    <motion.p variants={itemVariants} className="text-white/40 font-black text-xs sm:text-xl uppercase tracking-[0.3em] flex items-center gap-6">
+                    <motion.p variants={itemVariants} className="text-foreground/40 font-black text-xs sm:text-xl uppercase tracking-[0.3em] flex items-center gap-6">
                         <GraduationCap size={32} className="text-[#BAFF00]" />
-                        Lead Orchestrator: <span className="text-white font-black">Sharada</span>
+                        Lead Orchestrator: <span className="text-foreground font-black">Sharada</span>
                     </motion.p>
                 </div>
             </div>
@@ -104,17 +104,17 @@ const PDHubLanding = ({ role, navigate }) => (
                 { label: 'Completion Rate', value: '87%', icon: Zap, color: 'from-amber-400/20 to-orange-600/10', text: 'text-amber-400' },
             ].map((stat, i) => (
                 <motion.div key={i} variants={itemVariants}>
-                    <div className="p-12 flex flex-col gap-10 group cursor-pointer hover:shadow-[0_45px_100px_rgba(0,0,0,0.4)] hover:border-[#BAFF00]/30 transition-all duration-700 bg-zinc-900 border border-white/5 rounded-[4rem] relative overflow-hidden">
+                    <div className="p-12 flex flex-col gap-10 group cursor-pointer hover:shadow-[0_45px_100px_rgba(0,0,0,0.4)] hover:border-[#BAFF00]/30 transition-all duration-700 bg-backgroundackgroundackground border border-white/5 rounded-[4rem] relative overflow-hidden">
                         <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-30 group-hover:opacity-60 transition-opacity duration-700`} />
                         <div className="flex items-center justify-between relative z-10">
                             <div className={`w-20 h-20 rounded-[2.5rem] flex items-center justify-center bg-white/5 shadow-inner group-hover:scale-110 transition-all duration-700 ${stat.text}`}>
                                 <stat.icon size={36} />
                             </div>
-                            <ArrowUpRight size={28} className="text-white/10 group-hover:text-white/40 transition-colors" />
+                            <ArrowUpRight size={28} className="text-foreground/10 group-hover:text-foreground/40 transition-colors" />
                         </div>
                         <div className="relative z-10 space-y-2">
-                            <p className="text-[11px] font-black text-white/40 uppercase tracking-[0.4em] group-hover:text-white/60 transition-colors">{stat.label}</p>
-                            <p className="text-5xl sm:text-7xl font-black text-white tracking-tighter leading-none">{stat.value}</p>
+                            <p className="text-[11px] font-black text-foreground/40 uppercase tracking-[0.4em] group-hover:text-foreground/60 transition-colors">{stat.label}</p>
+                            <p className="text-5xl sm:text-7xl font-black text-foreground tracking-tighter leading-none">{stat.value}</p>
                         </div>
                     </div>
                 </motion.div>
@@ -123,7 +123,7 @@ const PDHubLanding = ({ role, navigate }) => (
 
         {/* Enter Hub CTA */}
         <motion.div variants={itemVariants}>
-            <div className="relative overflow-hidden bg-zinc-900 border border-white/5 rounded-[4rem] p-16 sm:p-24 flex flex-col sm:flex-row items-center justify-between gap-12 group shadow-2xl">
+            <div className="relative overflow-hidden bg-backgroundackgroundackground border border-white/5 rounded-[4rem] p-16 sm:p-24 flex flex-col sm:flex-row items-center justify-between gap-12 group shadow-2xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#BAFF00]/5 via-indigo-600/5 to-transparent pointer-events-none" />
                 <div className="absolute -left-20 -bottom-20 w-96 h-96 bg-[#BAFF00] rounded-full blur-[200px] opacity-5 pointer-events-none" />
                 <div className="space-y-6 relative z-10">
@@ -131,11 +131,11 @@ const PDHubLanding = ({ role, navigate }) => (
                         <div className="w-2 h-2 rounded-full bg-[#BAFF00] animate-pulse" />
                         PD System Online
                     </div>
-                    <h2 className="text-4xl sm:text-6xl font-black text-white uppercase tracking-tighter leading-none">
+                    <h2 className="text-4xl sm:text-6xl font-black text-foreground uppercase tracking-tighter leading-none">
                         Enter Your <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#BAFF00] to-emerald-400">Dashboard</span>
                     </h2>
-                    <p className="text-white/40 font-black text-xs uppercase tracking-[0.3em]">Access observations, goals, training events & more</p>
+                    <p className="text-foreground/40 font-black text-xs uppercase tracking-[0.3em]">Access observations, goals, training events & more</p>
                 </div>
                 <button
                     onClick={() => navigate(role === 'TEACHER' ? '/departments/pd/teacher' : '/departments/pd/leader')}
@@ -157,7 +157,7 @@ const HubAction = ({ onClick, icon: Icon, label, color, bg, border }) => (
         onClick={onClick}
         className={`flex flex-col items-center justify-end p-8 h-40 ${bg} backdrop-blur-xl border ${border || 'border-white/10'} rounded-[2.5rem] hover:bg-white/10 transition-all group flex-1 min-w-[120px] relative overflow-hidden`}
     >
-        <div className="absolute top-4 right-4 text-white/10 group-hover:text-white/30 transition-colors">
+        <div className="absolute top-4 right-4 text-foreground/10 group-hover:text-foreground/30 transition-colors">
             <ArrowUpRight size={24} />
         </div>
         <div className={`w-16 h-16 rounded-[1.5rem] flex items-center justify-center ${bg} ${color} transition-transform group-hover:scale-110 shadow-2xl mb-6`}>
@@ -189,7 +189,7 @@ const PDDepartmentHub = () => {
     );
 
     return (
-        <div className="min-h-screen bg-[#18181b] text-white">
+        <div className="min-h-screen bg-[#18181b] text-foreground">
             <Routes>
                 {/* Landing hub page */}
                 <Route index element={<PDHubLanding role={role} navigate={navigate} />} />

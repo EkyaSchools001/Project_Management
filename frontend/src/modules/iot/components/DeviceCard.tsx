@@ -66,8 +66,8 @@ export function DeviceCard({ device, onViewDetails, onStatusChange }: DeviceCard
             <Icon className="w-5 h-5 text-[#BAFF00]" />
           </div>
           <div>
-            <CardTitle className="text-sm font-medium text-white">{device.name}</CardTitle>
-            <p className="text-xs text-white/50">{device.location || device.type}</p>
+            <CardTitle className="text-sm font-medium text-foreground">{device.name}</CardTitle>
+            <p className="text-xs text-foreground/50">{device.location || device.type}</p>
           </div>
         </div>
         <DropdownMenu>
@@ -93,20 +93,20 @@ export function DeviceCard({ device, onViewDetails, onStatusChange }: DeviceCard
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className={`w-2 h-2 rounded-full ${getStatusColor(device.status)}`} />
-            <span className="text-xs text-white/70">{device.status}</span>
+            <span className="text-xs text-foreground/70">{device.status}</span>
           </div>
           {lastReading && (
             <div className="text-right">
-              <p className="text-lg font-semibold text-white">
+              <p className="text-lg font-semibold text-foreground">
                 {lastReading.value}
-                <span className="text-xs ml-1 text-white/50">{lastReading.unit}</span>
+                <span className="text-xs ml-1 text-foreground/50">{lastReading.unit}</span>
               </p>
-              <p className="text-xs text-white/30 capitalize">{lastReading.type}</p>
+              <p className="text-xs text-foreground/30 capitalize">{lastReading.type}</p>
             </div>
           )}
         </div>
         {device.lastSeen && (
-          <p className="text-xs text-white/30 mt-2">
+          <p className="text-xs text-foreground/30 mt-2">
             Last seen: {new Date(device.lastSeen).toLocaleTimeString()}
           </p>
         )}

@@ -197,9 +197,9 @@ const AnnouncementsPage: React.FC = () => {
 
     const getPriorityBadge = (priority: string) => {
         if (priority === 'High') {
-            return <Badge variant="destructive" className="bg-red-500 text-white font-bold capitalize tracking-wider text-[10px]">High Priority</Badge>;
+            return <Badge variant="destructive" className="bg-red-500 text-foreground font-bold capitalize tracking-wider text-[10px]">High Priority</Badge>;
         }
-        return <Badge variant="secondary" className="bg-blue-100 text-blue-700 font-bold capitalize tracking-wider text-[10px]">Normal</Badge>;
+        return <Badge variant="secondary" className="bg-backgroundackgroundlue-100 text-blue-700 font-bold capitalize tracking-wider text-[10px]">Normal</Badge>;
     };
 
     return (
@@ -384,7 +384,7 @@ const AnnouncementsPage: React.FC = () => {
                                                 </TableCell>
                                                 <TableCell>
                                                     {announcement.isAcknowledged ? (
-                                                        <Badge variant="outline" className="text-emerald-600 bg-emerald-50 border-emerald-100 font-bold capitalize tracking-wider text-[10px] gap-1 whitespace-nowrap">
+                                                        <Badge variant="outline" className="text-emerald-600 bg-backgroundmerald-50 border-emerald-100 font-bold capitalize tracking-wider text-[10px] gap-1 whitespace-nowrap">
                                                             <CheckCircle2 className="w-3 h-3" /> Acknowledged
                                                         </Badge>
                                                     ) : (
@@ -459,17 +459,17 @@ const AnnouncementsPage: React.FC = () => {
                     {selectedAnnouncement && (
                         <div className="flex flex-col">
                             <div className={cn(
-                                "p-8 text-white",
+                                "p-8 text-foreground",
                                 selectedAnnouncement.priority === 'High' ? "bg-destructive" : "bg-primary"
                             )}>
                                 <div className="flex justify-between items-start mb-4">
                                     {getPriorityBadge(selectedAnnouncement.priority)}
-                                    <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 -mt-2 -mr-2" onClick={() => setIsViewModalOpen(false)}>
+                                    <Button variant="ghost" size="icon" className="text-foreground hover:bg-white/10 -mt-2 -mr-2" onClick={() => setIsViewModalOpen(false)}>
                                         <XCircle className="w-5 h-5 transition-transform hover:rotate-90" />
                                     </Button>
                                 </div>
                                 <h2 className="text-3xl font-black tracking-tight">{selectedAnnouncement.title}</h2>
-                                <div className="flex flex-wrap items-center gap-4 mt-6 text-white/80 text-sm font-medium">
+                                <div className="flex flex-wrap items-center gap-4 mt-6 text-foreground/80 text-sm font-medium">
                                     <div className="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-full">
                                         <UserIcon className="w-4 h-4" />
                                         {selectedAnnouncement.createdBy?.fullName}
@@ -484,7 +484,7 @@ const AnnouncementsPage: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="p-8 bg-background">
+                            <div className="p-8 bg-backgroundackgroundackground">
                                 <ScrollArea className="max-h-[400px]">
                                     <div className="prose prose-slate max-w-none">
                                         <p className="text-gray-700 leading-relaxed whitespace-pre-wrap text-lg">
@@ -505,7 +505,7 @@ const AnnouncementsPage: React.FC = () => {
                                                         {announcementStats.count} <span className="text-base font-medium text-muted-foreground">users have acknowledged</span>
                                                     </div>
                                                     {announcementStats.users.length > 0 && (
-                                                        <div className="bg-background rounded-xl border shadow-sm overflow-hidden">
+                                                        <div className="bg-backgroundackgroundackground rounded-xl border shadow-sm overflow-hidden">
                                                             <ScrollArea className="h-[250px] w-full">
                                                                 <Table>
                                                                     <TableHeader className="bg-muted/30 sticky top-0 z-10">
@@ -544,7 +544,7 @@ const AnnouncementsPage: React.FC = () => {
                                         </span>
                                     </div>
                                     {!selectedAnnouncement.isAcknowledged && (user?.role === 'TEACHER' || user?.role === 'LEADER') && (
-                                        <Button className="w-full md:w-auto px-10 py-6 text-lg font-black capitalize tracking-widest gap-2 bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-500/20" onClick={() => {
+                                        <Button className="w-full md:w-auto px-10 py-6 text-lg font-black capitalize tracking-widest gap-2 bg-backgroundmerald-600 hover:bg-backgroundmerald-700 shadow-lg shadow-emerald-500/20" onClick={() => {
                                             handleAcknowledge(selectedAnnouncement.id);
                                             setIsViewModalOpen(false);
                                         }}>
@@ -552,7 +552,7 @@ const AnnouncementsPage: React.FC = () => {
                                         </Button>
                                     )}
                                     {selectedAnnouncement.isAcknowledged && (
-                                        <div className="flex items-center gap-2 text-emerald-600 font-bold bg-emerald-50 px-6 py-3 rounded-2xl border border-emerald-100">
+                                        <div className="flex items-center gap-2 text-emerald-600 font-bold bg-backgroundmerald-50 px-6 py-3 rounded-2xl border border-emerald-100">
                                             <CheckCircle2 className="w-5 h-5" />
                                             You have acknowledged this
                                         </div>

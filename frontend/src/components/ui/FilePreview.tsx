@@ -164,7 +164,7 @@ const FilePreview = ({
                     </div>
                 </DialogHeader>
 
-                <div className="flex-1 overflow-hidden relative bg-black/5 dark:bg-white/5">
+                <div className="flex-1 overflow-hidden relative bg-backgroundackgroundlack/5 dark:bg-white/5">
                     {showNavigation && (
                         <>
                             {hasPrevious && (
@@ -172,7 +172,7 @@ const FilePreview = ({
                                     type="button"
                                     variant="ghost"
                                     size="icon"
-                                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 hover:bg-background"
+                                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-backgroundackgroundackground/80 hover:bg-backgroundackgroundackground"
                                     onClick={handlePrevious}
                                 >
                                     <ChevronLeft className="w-6 h-6" />
@@ -183,7 +183,7 @@ const FilePreview = ({
                                     type="button"
                                     variant="ghost"
                                     size="icon"
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 hover:bg-background"
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-backgroundackgroundackground/80 hover:bg-backgroundackgroundackground"
                                     onClick={handleNext}
                                 >
                                     <ChevronRight className="w-6 h-6" />

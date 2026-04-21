@@ -316,7 +316,7 @@ const LeaderGrowthPage = () => {
                                                     variant="outline"
                                                     className={
                                                         targetPct >= 100
-                                                            ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                                                            ? "bg-backgroundmerald-50 text-emerald-700 border-emerald-200"
                                                             : targetPct >= 50
                                                                 ? "bg-amber-50 text-amber-700 border-amber-200"
                                                                 : "bg-red-50 text-red-700 border-red-200"
@@ -344,7 +344,7 @@ const LeaderGrowthPage = () => {
                             >
                                 <CardHeader className="pb-2">
                                     <CardTitle className="flex items-center gap-2 text-base font-semibold">
-                                        <div className="p-1.5 rounded-lg bg-blue-500/10 group-hover:bg-blue-500/20 transition-colors">
+                                        <div className="p-1.5 rounded-lg bg-backgroundackgroundlue-500/10 group-hover:bg-backgroundackgroundlue-500/20 transition-colors">
                                             <Wrench className="w-4 h-4 text-blue-600" />
                                         </div>
                                         Avg Tool Usage
@@ -358,7 +358,7 @@ const LeaderGrowthPage = () => {
                                     ) : (
                                         <div className="space-y-3 pt-1">
                                             {[
-                                                { label: "Instructional", value: avgInstructional, color: "bg-blue-500" },
+                                                { label: "Instructional", value: avgInstructional, color: "bg-backgroundackgroundlue-500" },
                                                 { label: "Learning", value: avgLearning, color: "bg-purple-500" },
                                                 { label: "Cultural", value: avgCultural, color: "bg-amber-500" },
                                             ].map(({ label, value, color }) => (
@@ -396,7 +396,7 @@ const LeaderGrowthPage = () => {
                             >
                                 <CardHeader className="pb-2">
                                     <CardTitle className="flex items-center gap-2 text-base font-semibold">
-                                        <div className="p-1.5 rounded-lg bg-emerald-500/10">
+                                        <div className="p-1.5 rounded-lg bg-backgroundmerald-500/10">
                                             <BarChart3 className="w-4 h-4 text-emerald-600" />
                                         </div>
                                         Avg Obs Score
@@ -516,7 +516,7 @@ const LeaderGrowthPage = () => {
                         {showToolAnalytics && (
                             <div className="mb-8 animate-in slide-in-from-top-2 duration-300">
                                 <Card className="border shadow-md bg-white">
-                                    <CardHeader className="pb-3 border-b bg-blue-50/50">
+                                    <CardHeader className="pb-3 border-b bg-backgroundackgroundlue-50/50">
                                         <div className="flex items-center justify-between">
                                             <div>
                                                 <CardTitle className="text-base font-bold flex items-center gap-2">
@@ -542,7 +542,7 @@ const LeaderGrowthPage = () => {
                                             {/* Tool Distribution Summary */}
                                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                                 {[
-                                                    { label: "Instructional Tools", value: avgInstructional, total: toolTotals.instructional, color: "text-blue-600", bg: "bg-blue-50" },
+                                                    { label: "Instructional Tools", value: avgInstructional, total: toolTotals.instructional, color: "text-blue-600", bg: "bg-backgroundackgroundlue-50" },
                                                     { label: "Learning Tools", value: avgLearning, total: toolTotals.learning, color: "text-purple-600", bg: "bg-purple-50" },
                                                     { label: "Cultural Tools", value: avgCultural, total: toolTotals.cultural, color: "text-amber-600", bg: "bg-amber-50" },
                                                 ].map(tool => (
@@ -562,7 +562,7 @@ const LeaderGrowthPage = () => {
                                             {/* Tool Usage Over Observations List */}
                                             <div className="bg-zinc-50 rounded-2xl p-6">
                                                 <h4 className="font-bold text-sm mb-4 flex items-center gap-2">
-                                                    <BarChart3 className="w-4 h-4 text-zinc-400" />
+                                                    <BarChart3 className="w-4 h-4 text-muted-foreground" />
                                                     Observation Tool Breakdown
                                                 </h4>
                                                 <div className="space-y-3">
@@ -576,7 +576,7 @@ const LeaderGrowthPage = () => {
                                                                     <p className="text-[10px] text-muted-foreground">{format(new Date(obs.observationDate || obs.createdAt), "MMM d, yyyy")}</p>
                                                                 </div>
                                                                 <div className="flex gap-2">
-                                                                    <Badge variant="outline" className="text-[9px] bg-blue-50 border-blue-100">{tools.instructional} Inst</Badge>
+                                                                    <Badge variant="outline" className="text-[9px] bg-backgroundackgroundlue-50 border-blue-100">{tools.instructional} Inst</Badge>
                                                                     <Badge variant="outline" className="text-[9px] bg-purple-50 border-purple-100">{tools.learning} Learn</Badge>
                                                                     <Badge variant="outline" className="text-[9px] bg-amber-50 border-amber-100">{tools.cultural} Cult</Badge>
                                                                 </div>
@@ -635,7 +635,7 @@ const LeaderGrowthPage = () => {
                                                                 <div className="flex-1">
                                                                     <div className="h-2 rounded-full bg-muted overflow-hidden">
                                                                         <div
-                                                                            className={`h-full rounded-full transition-all duration-500 ${score >= 3 ? 'bg-emerald-500' : score >= 2 ? 'bg-amber-500' : 'bg-red-500'}`}
+                                                                            className={`h-full rounded-full transition-all duration-500 ${score >= 3 ? 'bg-backgroundmerald-500' : score >= 2 ? 'bg-amber-500' : 'bg-red-500'}`}
                                                                             style={{ width: `${pct}%` }}
                                                                         />
                                                                     </div>
@@ -677,7 +677,7 @@ const LeaderGrowthPage = () => {
                                 </p>
                             </div>
                             <div className={`px-4 py-2 rounded-xl text-sm font-bold shadow-sm ${selectedTeacher.academics === 'CORE'
-                                ? 'bg-blue-100 text-blue-700 border border-blue-200'
+                                ? 'bg-backgroundackgroundlue-100 text-blue-700 border border-blue-200'
                                 : 'bg-purple-100 text-purple-700 border border-purple-200'
                                 }`}>
                                 {selectedTeacher.academics === 'CORE' ? 'Ekya ED Track' : 'Specialist Track'}

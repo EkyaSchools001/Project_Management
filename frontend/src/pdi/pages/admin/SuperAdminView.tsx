@@ -473,7 +473,7 @@ export function SuperAdminView() {
                                 </AlertDialogHeader>
                                 <AlertDialogFooter className="mt-4">
                                     <AlertDialogCancel className="font-bold">Abort Mission</AlertDialogCancel>
-                                    <AlertDialogAction onClick={handleSave} className="bg-primary text-white hover:bg-primary/90 font-bold">
+                                    <AlertDialogAction onClick={handleSave} className="bg-primary text-foreground hover:bg-primary/90 font-bold">
                                         Proceed & Broadcast Sync
                                     </AlertDialogAction>
                                 </AlertDialogFooter>
@@ -531,7 +531,7 @@ export function SuperAdminView() {
                                 <p className="text-xs text-zinc-900 font-bold mt-1">Rerouting form data across dashboards</p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-blue-500/5 border-blue-500/20">
+                        <Card className="bg-backgroundackgroundlue-500/5 border-blue-500/20">
                             <CardHeader className="pb-2">
                                 <CardTitle className="text-sm font-medium flex items-center gap-2">
                                     <Database className="w-4 h-4 text-blue-600" /> Platform Mapping
@@ -705,7 +705,7 @@ export function SuperAdminView() {
                                                                 }, {} as Record<string, { name: string; type: string }[]>)
                                                         ).map(([type, groupTemplates], groupIdx, arr) => (
                                                             <SelectGroup key={type}>
-                                                                <SelectLabel className="text-blue-600 font-bold bg-blue-50/50 py-1 px-3 mb-1 rounded-sm text-xs capitalize tracking-wider">
+                                                                <SelectLabel className="text-blue-600 font-bold bg-backgroundackgroundlue-50/50 py-1 px-3 mb-1 rounded-sm text-xs capitalize tracking-wider">
                                                                     {type} ({groupTemplates.length})
                                                                 </SelectLabel>
                                                                 {groupTemplates.sort((a, b) => a.name.localeCompare(b.name)).map(t => {
@@ -715,7 +715,7 @@ export function SuperAdminView() {
                                                                             <HoverCardTrigger asChild>
                                                                                 <SelectItem value={t.name} className="pl-4 pr-10 cursor-pointer relative data-[highlighted]:bg-primary/5">
                                                                                     <span className="flex-1 text-left block w-full pr-6 truncate">{t.name}</span>
-                                                                                    <Info className="w-4 h-4 text-zinc-400 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+                                                                                    <Info className="w-4 h-4 text-muted-foreground absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
                                                                                 </SelectItem>
                                                                             </HoverCardTrigger>
                                                                             <HoverCardContent side="right" align="start" sideOffset={10} className="w-[320px] max-w-[90vw] z-[100] max-h-[350px] overflow-y-auto pointer-events-none shadow-2xl border-slate-200 bg-white/95 backdrop-blur-sm">
@@ -731,7 +731,7 @@ export function SuperAdminView() {
                                                                                             <span className="break-words mt-0.5">{f.label || f.id || 'Unnamed field'}</span>
                                                                                         </li>
                                                                                     ))}
-                                                                                    {fields.length === 0 && <li className="text-zinc-400 italic text-center py-4 bg-slate-50 rounded-md">No fields defined for this template.</li>}
+                                                                                    {fields.length === 0 && <li className="text-muted-foreground italic text-center py-4 bg-slate-50 rounded-md">No fields defined for this template.</li>}
                                                                                 </ul>
                                                                             </HoverCardContent>
                                                                         </HoverCard>
@@ -913,13 +913,13 @@ export function SuperAdminView() {
                                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                                         <Input
                                             placeholder="Search name/email..."
-                                            className="pl-9 w-[200px] bg-background"
+                                            className="pl-9 w-[200px] bg-backgroundackgroundackground"
                                             value={userSearch}
                                             onChange={(e) => setUserSearch(e.target.value)}
                                         />
                                     </div>
                                     <Select value={userFilterRole} onValueChange={setUserFilterRole}>
-                                        <SelectTrigger className="w-[140px] bg-background font-medium">
+                                        <SelectTrigger className="w-[140px] bg-backgroundackgroundackground font-medium">
                                             <Shield className="w-4 h-4 mr-2 text-primary" />
                                             <SelectValue placeholder="Role" />
                                         </SelectTrigger>
@@ -933,7 +933,7 @@ export function SuperAdminView() {
                                         </SelectContent>
                                     </Select>
                                     <Select value={userFilterCampus} onValueChange={setUserFilterCampus}>
-                                        <SelectTrigger className="w-[160px] bg-background font-medium">
+                                        <SelectTrigger className="w-[160px] bg-backgroundackgroundackground font-medium">
                                             <MapPin className="w-4 h-4 mr-2 text-primary" />
                                             <SelectValue placeholder="School" />
                                         </SelectTrigger>
@@ -1007,9 +1007,9 @@ export function SuperAdminView() {
                                                         <td className="p-4">
                                                             <div className="flex flex-wrap gap-1.5">
                                                                 {currentAccess.length === 0 ? (
-                                                                    <span className="text-[10px] capitalize font-bold text-zinc-400 tracking-wider">Default only</span>
+                                                                    <span className="text-[10px] capitalize font-bold text-muted-foreground tracking-wider">Default only</span>
                                                                 ) : currentAccess.map(c => (
-                                                                    <Badge key={c} variant="secondary" className="text-[9px] font-bold bg-blue-100 text-blue-700 border-blue-200 capitalize tracking-tighter">
+                                                                    <Badge key={c} variant="secondary" className="text-[9px] font-bold bg-backgroundackgroundlue-100 text-blue-700 border-blue-200 capitalize tracking-tighter">
                                                                         {c}
                                                                     </Badge>
                                                                 ))}
@@ -1018,7 +1018,7 @@ export function SuperAdminView() {
                                                         <td className="p-4 text-right">
                                                             <Popover>
                                                                 <PopoverTrigger asChild>
-                                                                    <Button variant="outline" size="sm" className="h-9 gap-2 font-bold hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm">
+                                                                    <Button variant="outline" size="sm" className="h-9 gap-2 font-bold hover:bg-primary hover:text-foreground hover:border-primary transition-all shadow-sm">
                                                                         <Layout className="w-4 h-4" /> Map Schools
                                                                     </Button>
                                                                 </PopoverTrigger>
@@ -1097,7 +1097,7 @@ export function SuperAdminView() {
                         </CardContent>
                     </Card>
 
-                    <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 flex gap-4 items-start">
+                    <div className="bg-backgroundackgroundlue-50 border border-blue-200 rounded-xl p-4 flex gap-4 items-start">
                         <Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                         <div>
                             <h4 className="font-bold text-blue-800">Campus Visibility Rules</h4>

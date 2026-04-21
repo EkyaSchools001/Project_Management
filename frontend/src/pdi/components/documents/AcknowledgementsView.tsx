@@ -122,11 +122,11 @@ export function AcknowledgementsView({ teacherId }: { teacherId: string }) {
     };
 
     const getStatusBadge = (status: string) => {
-        const baseClass = "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm";
+        const baseClass = "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm";
         switch (status) {
             case 'PENDING': return <Badge className={cn(baseClass, "bg-amber-500")}>Pending</Badge>;
-            case 'VIEWED': return <Badge className={cn(baseClass, "bg-blue-600")}>Viewed</Badge>;
-            case 'ACKNOWLEDGED': return <Badge className={cn(baseClass, "bg-emerald-600")}>Acknowledged</Badge>;
+            case 'VIEWED': return <Badge className={cn(baseClass, "bg-backgroundackgroundlue-600")}>Viewed</Badge>;
+            case 'ACKNOWLEDGED': return <Badge className={cn(baseClass, "bg-backgroundmerald-600")}>Acknowledged</Badge>;
             case 'SIGNED': return <Badge className={cn(baseClass, "bg-indigo-600")}>Signed</Badge>;
             default: return <Badge className={cn(baseClass, "bg-slate-400")}>{status}</Badge>;
         }
@@ -270,7 +270,7 @@ export function AcknowledgementsView({ teacherId }: { teacherId: string }) {
                                     )}
                                 </div>
 
-                                <div className="p-6 bg-background border-t">
+                                <div className="p-6 bg-backgroundackgroundackground border-t">
                                     {selectedAck.status === 'ACKNOWLEDGED' ? (
                                         <div className="flex items-center gap-4 p-4 rounded-lg bg-green-50 border border-green-100">
                                             <ShieldCheck className="w-8 h-8 text-green-600" />
@@ -286,7 +286,7 @@ export function AcknowledgementsView({ teacherId }: { teacherId: string }) {
                                         </div>
                                     ) : (
                                         <div className="flex flex-col gap-4">
-                                            <div className="flex items-start gap-3 p-4 rounded-lg bg-blue-50 border border-blue-100 text-blue-800 text-sm">
+                                            <div className="flex items-start gap-3 p-4 rounded-lg bg-backgroundackgroundlue-50 border border-blue-100 text-blue-800 text-sm">
                                                 <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
                                                 <p>
                                                     By clicking "Acknowledge", you confirm that you have read and understood the contents of this document.
@@ -297,7 +297,7 @@ export function AcknowledgementsView({ teacherId }: { teacherId: string }) {
                                                 <Button variant="ghost" onClick={() => setSelectedAck(null)}>Cancel</Button>
                                                 <Button
                                                     onClick={handleAcknowledge}
-                                                    className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-md"
+                                                    className="bg-indigo-600 hover:bg-indigo-700 text-foreground shadow-md"
                                                 >
                                                     <FileCheck className="w-4 h-4 mr-2" />
                                                     Acknowledge Document

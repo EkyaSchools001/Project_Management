@@ -667,12 +667,12 @@ export function GoalSettingForm({
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-between sticky bottom-6 bg-background/95 backdrop-blur-sm p-4 border rounded-xl shadow-lg">
+                        <div className="flex items-center justify-between sticky bottom-6 bg-backgroundackgroundackground/95 backdrop-blur-sm p-4 border rounded-xl shadow-lg">
                             <div className={cn(
                                 "flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300",
                                 isSaving
                                     ? "bg-amber-50 text-amber-600 border-amber-100"
-                                    : "bg-emerald-50 text-emerald-600 border-emerald-100"
+                                    : "bg-backgroundmerald-50 text-emerald-600 border-emerald-100"
                             )}>
                                 <Cloud className={cn("w-3.5 h-3.5", isSaving ? "animate-pulse fill-amber-600/20" : "fill-emerald-600/20")} />
                                 <span className="text-[10px] font-bold uppercase tracking-wider">

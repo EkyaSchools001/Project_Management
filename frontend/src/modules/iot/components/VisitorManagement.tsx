@@ -111,8 +111,8 @@ export function VisitorManagement({ schoolId }: VisitorManagementProps) {
                 <User className="w-5 h-5 text-[#BAFF00]" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{currentVisitors.length}</p>
-                <p className="text-xs text-white/50">Currently Present</p>
+                <p className="text-2xl font-bold text-foreground">{currentVisitors.length}</p>
+                <p className="text-xs text-foreground/50">Currently Present</p>
               </div>
             </div>
           </CardContent>
@@ -120,12 +120,12 @@ export function VisitorManagement({ schoolId }: VisitorManagementProps) {
         <Card className="bg-[#1a1d29] border-white/10">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-blue-500/10">
+              <div className="p-2 rounded-lg bg-backgroundackgroundlue-500/10">
                 <Clock className="w-5 h-5 text-blue-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{todayVisitors.length}</p>
-                <p className="text-xs text-white/50">Today's Visitors</p>
+                <p className="text-2xl font-bold text-foreground">{todayVisitors.length}</p>
+                <p className="text-xs text-foreground/50">Today's Visitors</p>
               </div>
             </div>
           </CardContent>
@@ -137,8 +137,8 @@ export function VisitorManagement({ schoolId }: VisitorManagementProps) {
                 <LogOut className="w-5 h-5 text-green-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{checkedOut.length}</p>
-                <p className="text-xs text-white/50">Checked Out</p>
+                <p className="text-2xl font-bold text-foreground">{checkedOut.length}</p>
+                <p className="text-xs text-foreground/50">Checked Out</p>
               </div>
             </div>
           </CardContent>
@@ -146,7 +146,7 @@ export function VisitorManagement({ schoolId }: VisitorManagementProps) {
       </div>
 
       <div className="flex justify-between items-center">
-        <h2 className="text-lg font-semibold text-white">Visitor Check-in</h2>
+        <h2 className="text-lg font-semibold text-foreground">Visitor Check-in</h2>
         <Dialog open={showDialog} onOpenChange={setShowDialog}>
           <DialogTrigger asChild>
             <Button className="bg-[#BAFF00] text-black hover:bg-[#a8e600]">
@@ -156,44 +156,44 @@ export function VisitorManagement({ schoolId }: VisitorManagementProps) {
           </DialogTrigger>
           <DialogContent className="bg-[#1a1d29] border-white/10">
             <DialogHeader>
-              <DialogTitle className="text-white">Visitor Check-in</DialogTitle>
+              <DialogTitle className="text-foreground">Visitor Check-in</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
               <div>
-                <Label className="text-white/70">Name *</Label>
+                <Label className="text-foreground/70">Name *</Label>
                 <Input
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="Visitor name"
-                  className="bg-[#0d1117] border-white/10 text-white"
+                  className="bg-[#0d1117] border-white/10 text-foreground"
                 />
               </div>
               <div>
-                <Label className="text-white/70">Email</Label>
+                <Label className="text-foreground/70">Email</Label>
                 <Input
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="visitor@email.com"
-                  className="bg-[#0d1117] border-white/10 text-white"
+                  className="bg-[#0d1117] border-white/10 text-foreground"
                 />
               </div>
               <div>
-                <Label className="text-white/70">Phone</Label>
+                <Label className="text-foreground/70">Phone</Label>
                 <Input
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   placeholder="+1 234 567 8900"
-                  className="bg-[#0d1117] border-white/10 text-white"
+                  className="bg-[#0d1117] border-white/10 text-foreground"
                 />
               </div>
               <div>
-                <Label className="text-white/70">Purpose of Visit</Label>
+                <Label className="text-foreground/70">Purpose of Visit</Label>
                 <Input
                   value={formData.purpose}
                   onChange={(e) => setFormData({ ...formData, purpose: e.target.value })}
                   placeholder="Meeting with..."
-                  className="bg-[#0d1117] border-white/10 text-white"
+                  className="bg-[#0d1117] border-white/10 text-foreground"
                 />
               </div>
               <Button
@@ -210,7 +210,7 @@ export function VisitorManagement({ schoolId }: VisitorManagementProps) {
 
       <Card className="bg-[#1a1d29] border-white/10">
         <CardHeader>
-          <CardTitle className="text-white">Current Visitors</CardTitle>
+          <CardTitle className="text-foreground">Current Visitors</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
@@ -218,14 +218,14 @@ export function VisitorManagement({ schoolId }: VisitorManagementProps) {
               <div key={visitor.id} className="flex items-center justify-between p-3 rounded-lg bg-[#0d1117] border border-white/10">
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <p className="font-medium text-white">{visitor.name}</p>
+                    <p className="font-medium text-foreground">{visitor.name}</p>
                     {visitor.badgeNumber && (
                       <Badge className="bg-[#BAFF00]/20 text-[#BAFF00]">
                         {visitor.badgeNumber}
                       </Badge>
                     )}
                   </div>
-                  <div className="flex items-center gap-4 mt-1 text-xs text-white/50">
+                  <div className="flex items-center gap-4 mt-1 text-xs text-foreground/50">
                     {visitor.purpose && (
                       <span className="flex items-center gap-1">
                         <MapPin className="w-3 h-3" />
@@ -243,7 +243,7 @@ export function VisitorManagement({ schoolId }: VisitorManagementProps) {
                     variant="outline"
                     size="sm"
                     onClick={() => setSelectedVisitor(visitor)}
-                    className="border-white/20 text-white hover:bg-white/10"
+                    className="border-white/20 text-foreground hover:bg-white/10"
                   >
                     <QrCode className="w-4 h-4 mr-1" />
                     Badge
@@ -252,7 +252,7 @@ export function VisitorManagement({ schoolId }: VisitorManagementProps) {
                     variant="outline"
                     size="sm"
                     onClick={() => handleCheckOut(visitor.id)}
-                    className="border-white/20 text-white hover:bg-white/10"
+                    className="border-white/20 text-foreground hover:bg-white/10"
                   >
                     <LogOut className="w-4 h-4" />
                   </Button>
@@ -260,7 +260,7 @@ export function VisitorManagement({ schoolId }: VisitorManagementProps) {
               </div>
             ))}
             {currentVisitors.length === 0 && (
-              <div className="text-center text-white/50 py-8">
+              <div className="text-center text-foreground/50 py-8">
                 No visitors currently checked in
               </div>
             )}

@@ -158,9 +158,9 @@ export const NotificationList: React.FC<NotificationListProps> = ({ onNotificati
         ) : notifications.length === 0 ? (
           <div className="flex flex-col items-center justify-center p-8 text-center">
             <div className="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-4">
-              <Bell className="w-6 h-6 text-white/30" />
+              <Bell className="w-6 h-6 text-foreground/30" />
             </div>
-            <p className="text-white/60">No notifications</p>
+            <p className="text-foreground/60">No notifications</p>
           </div>
         ) : (
           <div className="divide-y divide-white/5">

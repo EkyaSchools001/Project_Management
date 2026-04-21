@@ -68,7 +68,7 @@ export function AIAnalysisModal({ isOpen, onClose, data, type, title }: AIAnalys
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
             <DialogContent className="sm:max-w-[600px] h-[80vh] flex flex-col p-0 overflow-hidden   shadow-2xl">
-                <div className="p-6 bg-gradient-to-br from-indigo-600 via-blue-600 to-indigo-700 text-white relative">
+                <div className="p-6 bg-gradient-to-br from-indigo-600 via-blue-600 to-indigo-700 text-foreground relative">
                     <div className="absolute top-0 right-0 p-8 opacity-10">
                         <Brain className="w-32 h-32" />
                     </div>
@@ -85,7 +85,7 @@ export function AIAnalysisModal({ isOpen, onClose, data, type, title }: AIAnalys
                     </DialogHeader>
                 </div>
 
-                <ScrollArea className="flex-1 p-6 bg-background">
+                <ScrollArea className="flex-1 p-6 bg-backgroundackgroundackground">
                     {loading ? (
                         <div className="h-full flex flex-col items-center justify-center space-y-4 py-20 text-center">
                             <div className="relative">
@@ -132,7 +132,7 @@ export function AIAnalysisModal({ isOpen, onClose, data, type, title }: AIAnalys
 function Badge({ children, className, variant = "default" }: { children: React.ReactNode, className?: string, variant?: "default" | "outline" }) {
     const variants = {
         default: "bg-primary text-primary-foreground",
-        outline: "border border-input bg-background"
+        outline: "border border-input bg-backgroundackgroundackground"
     }
     return (
         <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ${variants[variant]} ${className}`}>

@@ -231,7 +231,7 @@ export const SurveyHistoryView = ({ onViewResponse, onBack }: SurveyHistoryViewP
                                         </TableCell>
                                         <TableCell>
                                             <Badge variant="secondary" className={cn(
-                                                "bg-emerald-50 text-emerald-700 hover:bg-emerald-50 font-bold text-[10px] capitalize tracking-wider",
+                                                "bg-backgroundmerald-50 text-emerald-700 hover:bg-backgroundmerald-50 font-bold text-[10px] capitalize tracking-wider",
                                                 !response.isCompleted && "bg-amber-50 text-amber-700 hover:bg-amber-50"
                                             )}>
                                                 {response.isCompleted ? "Completed" : "Pending"}

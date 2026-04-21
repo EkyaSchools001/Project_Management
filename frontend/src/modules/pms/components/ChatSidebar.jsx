@@ -196,14 +196,14 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                 <div className="flex items-center justify-between relative z-10">
                     <div className="space-y-2">
                         <div className="flex items-center gap-4">
-                            <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse-glow shadow-[0_0_15px_rgba(52,211,153,0.5)]" />
-                            <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tighter text-white">Archives</h2>
+                            <div className="w-2.5 h-2.5 rounded-full bg-backgroundmerald-400 animate-pulse-glow shadow-[0_0_15px_rgba(52,211,153,0.5)]" />
+                            <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tighter text-foreground">Archives</h2>
                         </div>
-                        <p className="text-[9px] font-black text-white/30 uppercase tracking-[0.3em]">Operational Matrix Active</p>
+                        <p className="text-[9px] font-black text-foreground/30 uppercase tracking-[0.3em]">Operational Matrix Active</p>
                     </div>
                     <button
                         onClick={handleNewChatClick}
-                        className="w-14 h-14 bg-white/10 hover:bg-white text-white hover:text-slate-950 rounded-2xl transition-all shadow-2xl active:scale-90 flex items-center justify-center group/add"
+                        className="w-14 h-14 bg-white/10 hover:bg-white text-foreground hover:text-slate-950 rounded-2xl transition-all shadow-2xl active:scale-90 flex items-center justify-center group/add"
                     >
                         <Plus size={24} className="group-hover/add:rotate-90 transition-transform duration-500 stroke-[3]" />
                     </button>
@@ -214,7 +214,7 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
             <div className="p-6 bg-slate-50/50 border-b border-slate-100 shadow-sm relative z-10">
                 <div className="relative group/search">
                     <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none">
-                        <Search className="h-4 w-4 text-zinc-400 group-focus-within/search:text-indigo-600 transition-colors" />
+                        <Search className="h-4 w-4 text-muted-foreground group-focus-within/search:text-indigo-600 transition-colors" />
                     </div>
                     <input
                         type="text"
@@ -231,7 +231,7 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                             onClick={() => setRoomTypeFilter(type)}
                             className={`px-3 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-wider transition-all ${
                                 roomTypeFilter === type 
-                                    ? 'bg-indigo-600 text-white' 
+                                    ? 'bg-indigo-600 text-foreground' 
                                     : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
                             }`}
                         >
@@ -253,7 +253,7 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                             <div className="w-20 h-20 bg-slate-50 rounded-[2.5rem] border border-slate-100 flex items-center justify-center mx-auto text-slate-200">
                                 <Search size={32} />
                             </div>
-                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400 leading-relaxed">No signals detected in <br />current temporal slice</p>
+                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground leading-relaxed">No signals detected in <br />current temporal slice</p>
                         </motion.div>
                     ) : (
                         filteredChats.map((chat, i) => {
@@ -273,7 +273,7 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                                         setShowSettingsModal(true);
                                     }}
                                     className={`group relative p-5 cursor-pointer rounded-[2rem] transition-all duration-500 overflow-hidden ${isActive 
-                                        ? 'bg-slate-950 text-white shadow-2xl scale-102 translate-x-2' 
+                                        ? 'bg-slate-950 text-foreground shadow-2xl scale-102 translate-x-2' 
                                         : 'hover:bg-white hover:shadow-xl hover:border-slate-100 border border-transparent'
                                     }`}
                                 >
@@ -292,22 +292,22 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                                             </div>
                                             <div className={`absolute -bottom-1 -right-1 w-4.5 h-4.5 rounded-full border-4 ${isActive ? 'border-slate-950' : 'border-white'} ${
                                                 chat.type === 'PRIVATE' && chat.participants?.some(p => p.user?.id && onlineUsers.includes(p.user.id)) 
-                                                    ? 'bg-emerald-400 animate-pulse' 
+                                                    ? 'bg-backgroundmerald-400 animate-pulse' 
                                                     : 'bg-slate-300'
                                             }`} />
                                         </div>
 
                                         <div className="flex-1 min-w-0">
                                             <div className="flex justify-between items-center mb-1.5">
-                                                <h3 className={`text-sm font-black truncate tracking-tighter uppercase leading-none ${isActive ? 'text-white' : 'text-slate-950 group-hover:text-indigo-600'}`}>
+                                                <h3 className={`text-sm font-black truncate tracking-tighter uppercase leading-none ${isActive ? 'text-foreground' : 'text-slate-950 group-hover:text-indigo-600'}`}>
                                                     {name}
                                                 </h3>
-                                                <span className={`text-[9px] font-black uppercase tracking-widest ${isActive ? 'text-white/40' : 'text-zinc-400'}`}>
+                                                <span className={`text-[9px] font-black uppercase tracking-widest ${isActive ? 'text-foreground/40' : 'text-muted-foreground'}`}>
                                                     {lastMsg.time}
                                                 </span>
                                             </div>
                                             <div className="flex items-center justify-between gap-4">
-                                                <div className={`text-[11px] font-black truncate flex items-center gap-2 uppercase tracking-wide ${isActive ? 'text-white/60' : 'text-slate-500'}`}>
+                                                <div className={`text-[11px] font-black truncate flex items-center gap-2 uppercase tracking-wide ${isActive ? 'text-foreground/60' : 'text-slate-500'}`}>
                                                     {typingChats[chat.id] ? (
                                                         <span className={isActive ? 'text-emerald-400' : 'text-indigo-600 animate-pulse'}>SYNCHRONIZING...</span>
                                                     ) : (
@@ -320,7 +320,7 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                                                     )}
                                                 </div>
                                                 {chat.unreadCount > 0 && (
-                                                    <span className={`h-5 min-w-[1.25rem] px-1.5 flex items-center justify-center rounded-lg text-[9px] font-black transition-all ${isActive ? 'bg-white text-slate-950' : 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20'}`}>
+                                                    <span className={`h-5 min-w-[1.25rem] px-1.5 flex items-center justify-center rounded-lg text-[9px] font-black transition-all ${isActive ? 'bg-white text-slate-950' : 'bg-indigo-600 text-foreground shadow-lg shadow-indigo-500/20'}`}>
                                                         {chat.unreadCount}
                                                     </span>
                                                 )}
@@ -356,11 +356,11 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                                         <div className="p-4 bg-white/10 rounded-2xl border border-white/10 text-indigo-400">
                                             <Zap size={32} />
                                         </div>
-                                        <h3 className="text-white text-4xl font-black uppercase tracking-tighter">Initiation</h3>
+                                        <h3 className="text-foreground text-4xl font-black uppercase tracking-tighter">Initiation</h3>
                                     </div>
-                                    <p className="text-white/30 text-[10px] font-black uppercase tracking-[0.5em]">Establishing Direct Neural Link // Vector Alpha</p>
+                                    <p className="text-foreground/30 text-[10px] font-black uppercase tracking-[0.5em]">Establishing Direct Neural Link // Vector Alpha</p>
                                 </div>
-                                <button onClick={() => setShowNewChatModal(false)} className="w-16 h-16 flex items-center justify-center bg-white/5 hover:bg-white text-white/40 hover:text-slate-950 rounded-3xl transition-all active:scale-90 relative z-10">
+                                <button onClick={() => setShowNewChatModal(false)} className="w-16 h-16 flex items-center justify-center bg-white/5 hover:bg-white text-foreground/40 hover:text-slate-950 rounded-3xl transition-all active:scale-90 relative z-10">
                                     <X size={32} className="stroke-[3]" />
                                 </button>
                             </div>
@@ -403,11 +403,11 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                                                                 <div className="flex-1 min-w-0 pr-2">
                                                                     <div className="font-black text-slate-950 text-sm uppercase tracking-tighter truncate leading-none mb-1.5">{user.name}</div>
                                                                     <div className="flex items-center gap-2">
-                                                                        <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                                                                        <div className="text-[9px] font-black text-zinc-400 uppercase tracking-widest truncate">Node ID: {user.id.slice(0, 8)}</div>
+                                                                        <div className="w-2 h-2 rounded-full bg-backgroundmerald-400 animate-pulse" />
+                                                                        <div className="text-[9px] font-black text-muted-foreground uppercase tracking-widest truncate">Node ID: {user.id.slice(0, 8)}</div>
                                                                     </div>
                                                                 </div>
-                                                                <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-slate-300 group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-sm">
+                                                                <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-slate-300 group-hover:bg-indigo-600 group-hover:text-foreground transition-all shadow-sm">
                                                                     <ArrowLeft size={18} className="rotate-180 stroke-[3]" />
                                                                 </div>
                                                             </motion.button>
@@ -442,8 +442,8 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                             onClick={e => e.stopPropagation()}
                         >
                             <div className="bg-slate-950 p-8 flex items-center justify-between">
-                                <h3 className="text-white text-xl font-black uppercase">Members</h3>
-                                <button onClick={() => setShowMembersModal(false)} className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-xl text-white">
+                                <h3 className="text-foreground text-xl font-black uppercase">Members</h3>
+                                <button onClick={() => setShowMembersModal(false)} className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-xl text-foreground">
                                     <X size={20} />
                                 </button>
                             </div>
@@ -454,11 +454,11 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                                             <div className="w-12 h-12 rounded-xl overflow-hidden">
                                                 <img src={`https://ui-avatars.com/api/?name=${p.user.name}&background=random`} alt="" className="w-full h-full" />
                                             </div>
-                                            <div className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full ${onlineUsers.includes(p.user.id) ? 'bg-emerald-400' : 'bg-slate-300'}`} />
+                                            <div className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full ${onlineUsers.includes(p.user.id) ? 'bg-backgroundmerald-400' : 'bg-slate-300'}`} />
                                         </div>
                                         <div className="flex-1">
                                             <p className="font-black text-slate-900">{p.user.name}</p>
-                                            <p className="text-[9px] text-zinc-400 uppercase">{p.user.role}</p>
+                                            <p className="text-[9px] text-muted-foreground uppercase">{p.user.role}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -486,8 +486,8 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                             onClick={e => e.stopPropagation()}
                         >
                             <div className="bg-slate-950 p-8 flex items-center justify-between">
-                                <h3 className="text-white text-xl font-black uppercase">Settings</h3>
-                                <button onClick={() => setShowSettingsModal(false)} className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-xl text-white">
+                                <h3 className="text-foreground text-xl font-black uppercase">Settings</h3>
+                                <button onClick={() => setShowSettingsModal(false)} className="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-xl text-foreground">
                                     <X size={20} />
                                 </button>
                             </div>

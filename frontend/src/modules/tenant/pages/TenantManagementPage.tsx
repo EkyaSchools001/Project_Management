@@ -53,8 +53,8 @@ export const TenantManagementPage = () => {
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl font-bold text-white">Tenant Management</h1>
-                    <p className="text-white/60">Manage multi-tenant organizations</p>
+                    <h1 className="text-2xl font-bold text-foreground">Tenant Management</h1>
+                    <p className="text-foreground/60">Manage multi-tenant organizations</p>
                 </div>
                 <button
                     onClick={() => setShowCreateModal(true)}
@@ -67,19 +67,19 @@ export const TenantManagementPage = () => {
 
             <div className="flex gap-4">
                 <div className="flex-1 relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-foreground/40" />
                     <input
                         type="text"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder="Search tenants..."
-                        className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white"
+                        className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-lg text-foreground"
                     />
                 </div>
                 <select
                     value={statusFilter}
                     onChange={(e) => setStatusFilter(e.target.value)}
-                    className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white"
+                    className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-foreground"
                 >
                     <option value="">All Status</option>
                     <option value="Active">Active</option>
@@ -103,10 +103,10 @@ export const TenantManagementPage = () => {
                                 )}
                             </div>
                             <div className="flex-1 min-w-0">
-                                <h3 className="font-semibold text-white truncate">{tenant.name}</h3>
-                                <p className="text-sm text-white/60 truncate">{tenant.slug}</p>
+                                <h3 className="font-semibold text-foreground truncate">{tenant.name}</h3>
+                                <p className="text-sm text-foreground/60 truncate">{tenant.slug}</p>
                             </div>
-                            <button className="p-1 text-white/40 hover:text-white">
+                            <button className="p-1 text-foreground/40 hover:text-foreground">
                                 <MoreVertical className="w-4 h-4" />
                             </button>
                         </div>
@@ -116,13 +116,13 @@ export const TenantManagementPage = () => {
                                 <span className={`w-2 h-2 rounded-full ${
                                     tenant.status === 'Active' ? 'bg-green-400' : 'bg-yellow-400'
                                 }`}></span>
-                                <span className="text-sm text-white/60">{tenant.status}</span>
+                                <span className="text-sm text-foreground/60">{tenant.status}</span>
                             </div>
-                            <span className="text-sm text-white/40">{tenant.userCount || 0} users</span>
+                            <span className="text-sm text-foreground/40">{tenant.userCount || 0} users</span>
                         </div>
 
                         {tenant.domain && (
-                            <div className="mt-2 text-sm text-white/40 truncate">
+                            <div className="mt-2 text-sm text-foreground/40 truncate">
                                 {tenant.domain}
                             </div>
                         )}
@@ -132,8 +132,8 @@ export const TenantManagementPage = () => {
 
             {tenants.length === 0 && (
                 <div className="text-center py-12">
-                    <Building className="w-12 h-12 text-white/20 mx-auto mb-4" />
-                    <p className="text-white/60">No tenants found</p>
+                    <Building className="w-12 h-12 text-foreground/20 mx-auto mb-4" />
+                    <p className="text-foreground/60">No tenants found</p>
                 </div>
             )}
         </div>

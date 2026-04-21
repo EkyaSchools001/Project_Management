@@ -441,13 +441,13 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                 </div>
                 <div className="space-y-4">
                     <h2 className="text-4xl font-black text-slate-950 uppercase tracking-tighter">Archives Unlinked</h2>
-                    <p className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.4em] leading-relaxed">Select an active neural node to begin <br />secure synchronization protocol.</p>
+                    <p className="text-[11px] font-black text-muted-foreground uppercase tracking-[0.4em] leading-relaxed">Select an active neural node to begin <br />secure synchronization protocol.</p>
                 </div>
                 <div className="flex justify-center flex-wrap gap-4">
                     <div className="px-6 py-2 bg-indigo-50 text-indigo-600 rounded-full text-[10px] font-black uppercase tracking-widest border border-indigo-100 flex items-center gap-3">
                         <Activity size={14} /> System Latency: 0.2ms
                     </div>
-                    <div className="px-6 py-2 bg-emerald-50 text-emerald-600 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-100 flex items-center gap-3">
+                    <div className="px-6 py-2 bg-backgroundmerald-50 text-emerald-600 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-100 flex items-center gap-3">
                         <Shield size={14} /> Encryption: Layer 7
                     </div>
                 </div>
@@ -464,8 +464,8 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
             return (
                 <div className="mb-4 overflow-hidden rounded-3xl border border-white/20 shadow-2xl group/img relative">
                     <img src={fileUrl} alt="" className="max-w-full cursor-pointer transition-transform duration-500 group-hover/img:scale-105" onClick={() => window.open(fileUrl, '_blank')} />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
-                        <ArrowUpRight size={32} className="text-white" />
+                    <div className="absolute inset-0 bg-backgroundackgroundlack/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
+                        <ArrowUpRight size={32} className="text-foreground" />
                     </div>
                 </div>
             );
@@ -473,13 +473,13 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
 
         if (isAudio) {
             return (
-                <div className="mb-4 p-5 bg-black/5 rounded-3xl border border-white/10 backdrop-blur-xl min-w-[280px]">
+                <div className="mb-4 p-5 bg-backgroundackgroundlack/5 rounded-3xl border border-white/10 backdrop-blur-xl min-w-[280px]">
                     <div className="flex items-center gap-4 mb-4">
                         <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-indigo-600 shadow-xl">
                             <Mic size={20} />
                         </div>
                         <div className="flex-1">
-                            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white">Voice Data Packet</p>
+                            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground">Voice Data Packet</p>
                             <div className="w-full h-1 bg-white/20 rounded-full mt-2" />
                         </div>
                     </div>
@@ -494,8 +494,8 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                     <Paperclip size={24} />
                 </div>
                 <div className="flex-1 min-w-0">
-                    <p className="font-black text-white text-xs uppercase tracking-tight truncate mb-1">{attachment.filename}</p>
-                    <a href={fileUrl} target="_blank" rel="noreferrer" className="text-[9px] font-black text-white/40 hover:text-white uppercase tracking-widest transition-colors">Download Matrix Unit</a>
+                    <p className="font-black text-foreground text-xs uppercase tracking-tight truncate mb-1">{attachment.filename}</p>
+                    <a href={fileUrl} target="_blank" rel="noreferrer" className="text-[9px] font-black text-foreground/40 hover:text-foreground uppercase tracking-widest transition-colors">Download Matrix Unit</a>
                 </div>
             </div>
         );
@@ -508,24 +508,24 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 via-transparent to-rose-600/10 opacity-40 group-hover:opacity-100 transition-opacity duration-1000" />
                 
                 <div className="flex items-center gap-6 relative z-10">
-                    <button onClick={onBack} className="lg:hidden w-12 h-12 flex items-center justify-center hover:bg-white/10 rounded-2xl text-white transition-all active:scale-90 border border-white/10">
+                    <button onClick={onBack} className="lg:hidden w-12 h-12 flex items-center justify-center hover:bg-white/10 rounded-2xl text-foreground transition-all active:scale-90 border border-white/10">
                         <ArrowLeft size={24} className="stroke-[3]" />
                     </button>
                     <div className="relative">
                         <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
                             <img src={`https://ui-avatars.com/api/?name=${getChatName()}&background=random&color=fff&bold=true`} alt="" className="w-full h-full object-cover" />
                         </div>
-                        <div className="absolute -bottom-1 -right-1 w-4.5 h-4.5 bg-emerald-400 rounded-full border-4 border-slate-950 animate-pulse shadow-glow shadow-emerald-400/50" />
+                        <div className="absolute -bottom-1 -right-1 w-4.5 h-4.5 bg-backgroundmerald-400 rounded-full border-4 border-slate-950 animate-pulse shadow-glow shadow-emerald-400/50" />
                     </div>
                     <div>
-                        <h2 className="text-xl font-black text-white uppercase tracking-tighter leading-none mb-2">{getChatName()}</h2>
+                        <h2 className="text-xl font-black text-foreground uppercase tracking-tighter leading-none mb-2">{getChatName()}</h2>
                         <div className="flex items-center gap-3">
                             {Object.keys(typingUsers).length > 0 ? (
                                 <p className="text-[10px] text-emerald-400 font-black uppercase tracking-[0.4em] animate-pulse">Synchronizing Data Node...</p>
                             ) : (
                                 <div className="flex items-center gap-3">
-                                    <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-glow shadow-emerald-500/50 animate-pulse" />
-                                    <p className="text-[10px] text-white/40 font-black uppercase tracking-[0.5em]">Direct Link Active</p>
+                                    <div className="w-2 h-2 rounded-full bg-backgroundmerald-500 shadow-glow shadow-emerald-500/50 animate-pulse" />
+                                    <p className="text-[10px] text-foreground/40 font-black uppercase tracking-[0.5em]">Direct Link Active</p>
                                 </div>
                             )}
                         </div>
@@ -535,20 +535,20 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                 <div className="flex items-center gap-4 relative z-10">
                     <button 
                         onClick={() => setShowSearch(!showSearch)}
-                        className="w-12 h-12 flex items-center justify-center bg-white/5 hover:bg-white/10 rounded-2xl text-white/40 hover:text-white transition-all active:scale-90 border border-white/5"
+                        className="w-12 h-12 flex items-center justify-center bg-white/5 hover:bg-white/10 rounded-2xl text-foreground/40 hover:text-foreground transition-all active:scale-90 border border-white/5"
                     >
                         <Search size={20} />
                     </button>
-                    <button className="w-12 h-12 flex items-center justify-center bg-white/5 hover:bg-white/10 rounded-2xl text-white/40 hover:text-white transition-all active:scale-90 border border-white/5">
+                    <button className="w-12 h-12 flex items-center justify-center bg-white/5 hover:bg-white/10 rounded-2xl text-foreground/40 hover:text-foreground transition-all active:scale-90 border border-white/5">
                         <Phone size={20} />
                     </button>
-                    <button className="w-12 h-12 flex items-center justify-center bg-white/5 hover:bg-white/10 rounded-2xl text-white/40 hover:text-white transition-all active:scale-90 border border-white/5">
+                    <button className="w-12 h-12 flex items-center justify-center bg-white/5 hover:bg-white/10 rounded-2xl text-foreground/40 hover:text-foreground transition-all active:scale-90 border border-white/5">
                         <Video size={20} />
                     </button>
                     <div className="relative">
                         <button
                             onClick={() => setActiveMenuId(activeMenuId === 'chat-options' ? null : 'chat-options')}
-                            className="w-12 h-12 flex items-center justify-center bg-white/5 hover:bg-white/10 rounded-2xl text-white/40 hover:text-white transition-all active:scale-90 border border-white/5"
+                            className="w-12 h-12 flex items-center justify-center bg-white/5 hover:bg-white/10 rounded-2xl text-foreground/40 hover:text-foreground transition-all active:scale-90 border border-white/5"
                         >
                             <MoreVertical size={24} />
                         </button>
@@ -599,13 +599,13 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                                         <div className={`
                                             group/bubble relative p-6 rounded-[2.5rem] text-sm leading-relaxed transition-all duration-500 border border-transparent shadow-xl
                                             ${isSelf
-                                                ? 'bg-slate-950 text-white rounded-br-none hover:shadow-indigo-500/20 translate-z-0'
+                                                ? 'bg-slate-950 text-foreground rounded-br-none hover:shadow-indigo-500/20 translate-z-0'
                                                 : 'bg-white text-slate-950 border-slate-100 rounded-bl-none hover:shadow-slate-200'
                                             }
                                             ${attachments.length > 0 ? 'p-3' : ''}
                                         `}>
                                             {msg.replyTo && (
-                                                <div className={`mb-4 p-4 rounded-2xl border-l-4 text-[10px] ${isSelf ? 'bg-white/5 border-indigo-400/50 text-indigo-100' : 'bg-slate-50 border-indigo-600 text-zinc-400'}`}>
+                                                <div className={`mb-4 p-4 rounded-2xl border-l-4 text-[10px] ${isSelf ? 'bg-white/5 border-indigo-400/50 text-indigo-100' : 'bg-slate-50 border-indigo-600 text-muted-foreground'}`}>
                                                     <p className="font-black uppercase tracking-widest mb-1">{msg.replyTo.sender.name}</p>
                                                     <p className="opacity-60 truncate italic">{msg.replyTo.content}</p>
                                                 </div>
@@ -627,10 +627,10 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                                                 )}
                                             </div>
 
-                                            <div className={`text-[9px] mt-4 flex items-center gap-3 font-black uppercase tracking-[0.2em] ${isSelf ? 'text-white/30' : 'text-slate-300'}`}>
+                                            <div className={`text-[9px] mt-4 flex items-center gap-3 font-black uppercase tracking-[0.2em] ${isSelf ? 'text-foreground/30' : 'text-slate-300'}`}>
                                                 {format(new Date(msg.createdAt), 'HH:mm')}
                                                 {isSelf && !msg.deletedAt && (
-                                                    <CheckCircle size={12} className={msg.isRead ? 'text-emerald-400' : 'text-white/20'} />
+                                                    <CheckCircle size={12} className={msg.isRead ? 'text-emerald-400' : 'text-foreground/20'} />
                                                 )}
                                             </div>
 
@@ -696,7 +696,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
             {/* Neural Uplink Input Terminal */}
             <div className="bg-white px-8 py-8 border-t border-slate-100 relative z-40">
                 <div className="max-w-5xl mx-auto flex items-end gap-6">
-                    <button onClick={handleFileSelect} className="w-16 h-16 flex items-center justify-center rounded-2xl bg-slate-50 text-zinc-400 hover:text-indigo-600 hover:bg-indigo-50 border border-slate-100 transition-all active:scale-90 shadow-sm shrink-0">
+                    <button onClick={handleFileSelect} className="w-16 h-16 flex items-center justify-center rounded-2xl bg-slate-50 text-muted-foreground hover:text-indigo-600 hover:bg-indigo-50 border border-slate-100 transition-all active:scale-90 shadow-sm shrink-0">
                         <Paperclip size={24} className={isUploading ? 'animate-pulse' : ''} />
                         <input type="file" ref={fileInputRef} className="hidden" onChange={handleFileChange} />
                     </button>
@@ -717,7 +717,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                         {recordedAudio ? (
                             <div className="flex items-center justify-between p-6">
                                 <div className="flex items-center gap-6">
-                                    <button onClick={toggleAudioPreview} className="w-14 h-14 flex items-center justify-center bg-indigo-600 text-white rounded-2xl hover:bg-indigo-700 shadow-2xl shadow-indigo-600/20 transition-all active:scale-95">
+                                    <button onClick={toggleAudioPreview} className="w-14 h-14 flex items-center justify-center bg-indigo-600 text-foreground rounded-2xl hover:bg-indigo-700 shadow-2xl shadow-indigo-600/20 transition-all active:scale-95">
                                         {isPlayingPreview ? <Pause size={24} /> : <Play size={24} className="ml-1" />}
                                     </button>
                                     <div className="text-[10px] font-black text-indigo-600 uppercase tracking-[0.5em] animate-pulse">Uplink Packet Ready for Transmission</div>
@@ -740,7 +740,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
 
                     <button
                         onClick={recordedAudio ? handleSendAudio : (isRecording ? stopRecording : (newMessage.trim() ? handleSend : startRecording))}
-                        className={`w-16 h-16 flex items-center justify-center rounded-[1.8rem] transition-all shadow-2xl shrink-0 ${isRecording ? 'bg-rose-600 text-white animate-pulse' : (newMessage.trim() || recordedAudio ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'bg-slate-950 text-white hover:bg-black')}`}
+                        className={`w-16 h-16 flex items-center justify-center rounded-[1.8rem] transition-all shadow-2xl shrink-0 ${isRecording ? 'bg-rose-600 text-foreground animate-pulse' : (newMessage.trim() || recordedAudio ? 'bg-indigo-600 text-foreground hover:bg-indigo-700' : 'bg-slate-950 text-foreground hover:bg-backgroundackgroundlack')}`}
                     >
                         {isRecording ? <Square size={20} fill="currentColor" /> : (newMessage.trim() || recordedAudio ? <Send size={24} /> : <Mic size={24} />)}
                     </button>
@@ -755,11 +755,11 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                             <div className="w-24 h-24 bg-rose-50 rounded-[3rem] flex items-center justify-center mx-auto text-rose-600 border border-rose-100/50 shadow-2xl shadow-rose-600/10"><Trash2 size={40} /></div>
                             <div className="space-y-4">
                                 <h3 className="text-3xl font-black text-slate-950 uppercase tracking-tighter">Purge Data Unit</h3>
-                                <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest leading-relaxed">This action will permanently un-sync this packet from the neural network.</p>
+                                <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest leading-relaxed">This action will permanently un-sync this packet from the neural network.</p>
                             </div>
                             <div className="grid grid-cols-1 gap-4">
                                 <ModalButton onClick={() => handleDeleteMessage(deleteTargetId, true)} label="Purge Globally" color="bg-rose-600" />
-                                <button onClick={() => setShowDeleteOptions(false)} className="py-4 text-[10px] font-black uppercase tracking-widest text-zinc-400">Abort Sequence</button>
+                                <button onClick={() => setShowDeleteOptions(false)} className="py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Abort Sequence</button>
                             </div>
                         </motion.div>
                     </motion.div>
@@ -785,7 +785,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                             <div className="p-6 border-b border-slate-100">
                                 <form onSubmit={handleSearch} className="flex gap-4">
                                     <div className="flex-1 relative">
-                                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
+                                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
                                         <input
                                             type="text"
                                             value={searchQuery}
@@ -794,10 +794,10 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                                             className="w-full pl-12 pr-4 py-4 bg-slate-50 rounded-2xl focus:ring-4 focus:ring-indigo-600/10 focus:border-indigo-600 outline-none"
                                         />
                                     </div>
-                                    <button type="submit" className="px-8 bg-indigo-600 text-white rounded-2xl font-black uppercase">
+                                    <button type="submit" className="px-8 bg-indigo-600 text-foreground rounded-2xl font-black uppercase">
                                         Search
                                     </button>
-                                    <button type="button" onClick={() => setShowSearch(false)} className="px-4 text-zinc-400">
+                                    <button type="button" onClick={() => setShowSearch(false)} className="px-4 text-muted-foreground">
                                         <X size={24} />
                                     </button>
                                 </form>
@@ -809,7 +809,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                                     </div>
                                 ) : searchResults.length === 0 ? (
                                     <div className="text-center py-12">
-                                        <p className="text-zinc-400 font-black uppercase tracking-wider">No results found</p>
+                                        <p className="text-muted-foreground font-black uppercase tracking-wider">No results found</p>
                                     </div>
                                 ) : (
                                     <div className="space-y-4">
@@ -820,7 +820,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                                                         <img src={`https://ui-avatars.com/api/?name=${result.sender?.name}&background=random`} alt="" className="w-full h-full" />
                                                     </div>
                                                     <span className="font-black text-slate-900">{result.sender?.name}</span>
-                                                    <span className="text-zinc-400 text-sm">{new Date(result.createdAt).toLocaleString()}</span>
+                                                    <span className="text-muted-foreground text-sm">{new Date(result.createdAt).toLocaleString()}</span>
                                                 </div>
                                                 <p className="text-slate-700">{result.content}</p>
                                             </div>
@@ -843,13 +843,13 @@ const OptionButton = ({ icon: Icon, label, onClick, color = "text-slate-900" }) 
 );
 
 const BubbleAction = ({ icon: Icon, onClick }) => (
-    <button onClick={onClick} className="w-10 h-10 flex items-center justify-center bg-white/90 backdrop-blur-md rounded-xl text-zinc-400 hover:text-indigo-600 hover:shadow-xl transition-all active:scale-90 border border-slate-100">
+    <button onClick={onClick} className="w-10 h-10 flex items-center justify-center bg-white/90 backdrop-blur-md rounded-xl text-muted-foreground hover:text-indigo-600 hover:shadow-xl transition-all active:scale-90 border border-slate-100">
         <Icon size={18} />
     </button>
 );
 
 const ModalButton = ({ onClick, label, color }) => (
-    <button onClick={onClick} className={`w-full h-16 rounded-[1.5rem] text-white text-[10px] font-black uppercase tracking-[0.2em] shadow-2xl transition-all active:scale-95 ${color} hover:brightness-110 shadow-lg`}>
+    <button onClick={onClick} className={`w-full h-16 rounded-[1.5rem] text-foreground text-[10px] font-black uppercase tracking-[0.2em] shadow-2xl transition-all active:scale-95 ${color} hover:brightness-110 shadow-lg`}>
         {label}
     </button>
 );

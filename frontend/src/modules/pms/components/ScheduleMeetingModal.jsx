@@ -251,17 +251,17 @@ const ScheduleMeetingModal = ({ isOpen, onClose, onSuccess, initialDate, meeting
     }, {});
 
     return (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[110] p-4">
+        <div className="fixed inset-0 bg-backgroundackgroundlack/50 backdrop-blur-sm flex items-center justify-center z-[110] p-4">
             <div className="bg-[#111c2a] rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col animate-in zoom-in-95 duration-200">
                 {/* Header */}
-                <div className="bg-gradient-to-r from-brand-600 to-brand-700 p-6 text-white flex items-center justify-between">
+                <div className="bg-gradient-to-r from-brand-600 to-brand-700 p-6 text-foreground flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className="p-2 bg-[#111c2a]/20 rounded-xl">
                             <Calendar size={24} />
                         </div>
                         <div>
                             <h2 className="text-xl font-bold">{meetingData?.id ? 'Edit Meeting' : 'Schedule Meeting'}</h2>
-                            <p className="text-white/70 text-sm">{meetingData?.id ? 'Update your meeting details' : 'Create a new internal or online session'}</p>
+                            <p className="text-foreground/70 text-sm">{meetingData?.id ? 'Update your meeting details' : 'Create a new internal or online session'}</p>
                         </div>
                     </div>
                     <button onClick={onClose} className="p-2 hover:bg-[#111c2a]/20 rounded-xl transition-all">
@@ -411,7 +411,7 @@ const ScheduleMeetingModal = ({ isOpen, onClose, onSuccess, initialDate, meeting
                                             : "bg-[#0f172a] border-neutral-800 hover:bg-[#1e293b]"
                                     )}
                                 >
-                                    <div className="w-6 h-6 rounded-full bg-neutral-800 text-white text-[10px] font-bold flex items-center justify-center shrink-0">
+                                    <div className="w-6 h-6 rounded-full bg-neutral-800 text-foreground text-[10px] font-bold flex items-center justify-center shrink-0">
                                         {u.name?.charAt(0) || 'U'}
                                     </div>
                                     <span className="text-xs font-medium truncate">{u.name}</span>
@@ -433,7 +433,7 @@ const ScheduleMeetingModal = ({ isOpen, onClose, onSuccess, initialDate, meeting
                     <button
                         onClick={handleSubmit}
                         disabled={loading || !formData.title}
-                        className="flex-[2] px-4 py-3 bg-neutral-800 text-white rounded-xl font-bold shadow-lg shadow-brand-600/20 hover:shadow-brand-600/30 transition-all disabled:opacity-50"
+                        className="flex-[2] px-4 py-3 bg-neutral-800 text-foreground rounded-xl font-bold shadow-lg shadow-brand-600/20 hover:shadow-brand-600/30 transition-all disabled:opacity-50"
                     >
                         {loading ? 'Saving...' : (meetingData?.id ? 'Update Meeting' : 'Confirm & Schedule')}
                     </button>

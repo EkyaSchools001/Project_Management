@@ -51,7 +51,7 @@ const STATUS_COLUMNS = [
 ];
 
 const PRIORITY_CONFIG = {
-    'LOW': { color: '#10b981', bg: 'bg-emerald-50', border: 'border-emerald-200', label: 'Low' },
+    'LOW': { color: '#10b981', bg: 'bg-backgroundmerald-50', border: 'border-emerald-200', label: 'Low' },
     'MEDIUM': { color: '#f59e0b', bg: 'bg-amber-50', border: 'border-amber-200', label: 'Medium' },
     'HIGH': { color: '#f97316', bg: 'bg-orange-50', border: 'border-orange-200', label: 'High' },
     'CRITICAL': { color: '#ef4444', bg: 'bg-rose-50', border: 'border-rose-200', label: 'Critical' }
@@ -312,7 +312,7 @@ const KanbanColumn = ({
         slate: { bg: 'bg-slate-50', border: 'border-slate-200', text: 'text-slate-600', ring: 'ring-slate-200' },
         indigo: { bg: 'bg-indigo-50', border: 'border-indigo-200', text: 'text-indigo-600', ring: 'ring-indigo-200' },
         amber: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-600', ring: 'ring-amber-200' },
-        emerald: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-600', ring: 'ring-emerald-200' }
+        emerald: { bg: 'bg-backgroundmerald-50', border: 'border-emerald-200', text: 'text-emerald-600', ring: 'ring-emerald-200' }
     };
 
     const colors = columnColors[column.color] || columnColors.slate;
@@ -338,7 +338,7 @@ const KanbanColumn = ({
                     </button>
 
                     {showWipLimit && limit && !isCollapsed && (
-                        <div className={`text-xs font-medium ${currentCount >= limit ? 'text-rose-600' : 'text-zinc-400'}`}>
+                        <div className={`text-xs font-medium ${currentCount >= limit ? 'text-rose-600' : 'text-muted-foreground'}`}>
                             {currentCount}/{limit}
                         </div>
                     )}
@@ -363,7 +363,7 @@ const KanbanColumn = ({
                             </SortableContext>
 
                             {tasks.length === 0 && (
-                                <div className="text-center py-8 text-zinc-400 text-sm">
+                                <div className="text-center py-8 text-muted-foreground text-sm">
                                     No tasks
                                 </div>
                             )}
@@ -384,13 +384,13 @@ const KanbanColumn = ({
                                         />
                                         <button
                                             onClick={onQuickAddSubmit}
-                                            className="p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+                                            className="p-2 bg-indigo-600 text-foreground rounded-lg hover:bg-indigo-700"
                                         >
                                             <Plus size={16} />
                                         </button>
                                         <button
                                             onClick={onQuickAdd}
-                                            className="p-2 text-zinc-400 hover:text-slate-600"
+                                            className="p-2 text-muted-foreground hover:text-slate-600"
                                         >
                                             <X size={16} />
                                         </button>
@@ -475,7 +475,7 @@ export const TaskCard = ({
                             isSelected ? 'bg-indigo-600 border-indigo-600' : 'border-slate-300 hover:border-indigo-400'
                         }`}
                     >
-                        {isSelected && <CheckCircle2 size={12} className="text-white" />}
+                        {isSelected && <CheckCircle2 size={12} className="text-foreground" />}
                     </button>
                     <span className="text-sm font-semibold text-slate-800 truncate">
                         {task.title}
@@ -487,7 +487,7 @@ export const TaskCard = ({
                         onClick={(e) => e.stopPropagation()}
                         className={`opacity-0 group-hover:opacity-100 p-1 rounded hover:bg-slate-100 transition-all ${showQuickActions ? 'opacity-100' : ''}`}
                     >
-                        <MoreHorizontal size={16} className="text-zinc-400" />
+                        <MoreHorizontal size={16} className="text-muted-foreground" />
                     </button>
                 )}
             </div>
@@ -517,7 +517,7 @@ export const TaskCard = ({
                             style={{ width: `${progress}%` }}
                         />
                     </div>
-                    <span className="text-[10px] text-zinc-400 mt-1 block">{progress}% complete</span>
+                    <span className="text-[10px] text-muted-foreground mt-1 block">{progress}% complete</span>
                 </div>
             )}
 
@@ -525,7 +525,7 @@ export const TaskCard = ({
                 <div className="flex items-center gap-3">
                     {task.dueDate && (
                         <div className={`flex items-center gap-1 text-[10px] ${
-                            new Date(task.dueDate) < new Date() ? 'text-rose-500' : 'text-zinc-400'
+                            new Date(task.dueDate) < new Date() ? 'text-rose-500' : 'text-muted-foreground'
                         }`}>
                             <Calendar size={12} />
                             {new Date(task.dueDate).toLocaleDateString()}
@@ -563,7 +563,7 @@ const KanbanToolbar = ({
                     <button
                         onClick={() => onFilterChange(null)}
                         className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
-                            !filterPriority ? 'bg-indigo-600 text-white' : 'text-slate-600 hover:bg-slate-100'
+                            !filterPriority ? 'bg-indigo-600 text-foreground' : 'text-slate-600 hover:bg-slate-100'
                         }`}
                     >
                         All
@@ -573,7 +573,7 @@ const KanbanToolbar = ({
                             key={key}
                             onClick={() => onFilterChange(key)}
                             className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
-                                filterPriority === key ? 'bg-indigo-600 text-white' : 'text-slate-600 hover:bg-slate-100'
+                                filterPriority === key ? 'bg-indigo-600 text-foreground' : 'text-slate-600 hover:bg-slate-100'
                             }`}
                             style={filterPriority === key ? {} : { color: config.color }}
                         >

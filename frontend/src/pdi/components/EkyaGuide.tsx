@@ -330,7 +330,7 @@ export function EkyaGuide() {
             <div
                 className={`
           fixed bottom-6 right-6 z-[10000] w-full sm:w-[400px] h-[600px] max-h-[85vh] 
-          bg-background/95 backdrop-blur-xl border border-muted/50 rounded-2xl shadow-2xl
+          bg-backgroundackgroundackground/95 backdrop-blur-xl border border-muted/50 rounded-2xl shadow-2xl
           flex flex-col overflow-hidden transition-all duration-300 origin-bottom-right
           ${isOpen ? 'scale-100 opacity-100 translate-y-0' : 'scale-75 opacity-0 pointer-events-none translate-y-10'}
         `}
@@ -393,7 +393,7 @@ export function EkyaGuide() {
                                     
                                     <div className={`w-11 h-11 rounded-full shrink-0 flex items-center justify-center shadow-inner ${unreadInsight.type === 'milestone' ? 'bg-yellow-500/10 text-yellow-600' :
                                         unreadInsight.type === 'deadline' ? 'bg-red-500/10 text-red-600' :
-                                            'bg-blue-500/10 text-blue-600'
+                                            'bg-backgroundackgroundlue-500/10 text-blue-600'
                                         }`}>
                                         <Bell className="w-5 h-5" />
                                     </div>
@@ -428,7 +428,7 @@ export function EkyaGuide() {
                                 <div className="grid grid-cols-2 gap-3 mb-6">
                                     <button 
                                         onClick={() => setView('chat')}
-                                        className="flex flex-col items-center justify-center p-4 bg-primary text-white rounded-2xl shadow-lg shadow-primary/20 hover:scale-105 transition-transform group"
+                                        className="flex flex-col items-center justify-center p-4 bg-primary text-foreground rounded-2xl shadow-lg shadow-primary/20 hover:scale-105 transition-transform group"
                                     >
                                         <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mb-2 group-hover:rotate-12 transition-transform">
                                             <Sparkles className="w-5 h-5" />
@@ -509,7 +509,7 @@ export function EkyaGuide() {
                                                                 className="w-full bg-white border border-primary/10 p-4 rounded-xl hover:bg-primary/5 hover:border-primary/30 transition-all text-left group flex items-start justify-between shadow-sm"
                                                             >
                                                                 <div className="flex items-start gap-4">
-                                                                    <div className="bg-primary p-2 rounded-lg shrink-0 text-white shadow-sm">
+                                                                    <div className="bg-primary p-2 rounded-lg shrink-0 text-foreground shadow-sm">
                                                                         <Sparkles className="w-4 h-4" />
                                                                     </div>
                                                                     <div>
@@ -567,7 +567,7 @@ export function EkyaGuide() {
                                         <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                                             <div className={`max-w-[85%] px-4 py-3 rounded-2xl ${
                                                 msg.role === 'user' 
-                                                ? 'bg-primary text-white rounded-tr-none' 
+                                                ? 'bg-primary text-foreground rounded-tr-none' 
                                                 : 'bg-slate-100 text-foreground rounded-tl-none border border-slate-200 shadow-sm'
                                             }`}>
                                                 <p className="text-sm leading-relaxed">{msg.content}</p>
@@ -600,7 +600,7 @@ export function EkyaGuide() {
                                         disabled={isAILoading || !chatInput.trim()}
                                         className="rounded-xl bg-primary hover:bg-primary-dark shrink-0 w-11 h-11 shadow-lg shadow-primary/20"
                                     >
-                                        <Send className="w-4 h-4 text-white" />
+                                        <Send className="w-4 h-4 text-foreground" />
                                     </Button>
                                 </div>
                                 <div className="flex items-center justify-between mt-3 px-1">

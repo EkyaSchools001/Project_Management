@@ -73,7 +73,7 @@ export function TimeReport({ className }) {
             value: report?.nonBillableHours || 0,
             icon: TrendingUp,
             color: 'text-blue-400',
-            bgColor: 'bg-blue-500/10'
+            bgColor: 'bg-backgroundackgroundlue-500/10'
         },
         {
             title: 'Avg Hours/Day',
@@ -87,12 +87,12 @@ export function TimeReport({ className }) {
     return (
         <div className={cn("space-y-6", className)}>
             <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold text-white">Time Report</h2>
+                <h2 className="text-xl font-bold text-foreground">Time Report</h2>
                 <Button
                     onClick={handleExport}
                     variant="outline"
                     size="sm"
-                    className="border-white/10 text-white hover:bg-white/10"
+                    className="border-white/10 text-foreground hover:bg-white/10"
                 >
                     <Download className="w-4 h-4 mr-2" />
                     Export
@@ -105,7 +105,7 @@ export function TimeReport({ className }) {
                         <CardContent className="p-4">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-[10px] uppercase tracking-widest text-white/40">
+                                    <p className="text-[10px] uppercase tracking-widest text-foreground/40">
                                         {stat.title}
                                     </p>
                                     <p className={cn("text-2xl font-black mt-1", stat.color)}>
@@ -124,35 +124,35 @@ export function TimeReport({ className }) {
             <Card className="bg-[#18181b] border-white/5">
                 <CardHeader className="border-b border-white/5">
                     <div className="flex items-center justify-between">
-                        <CardTitle className="text-white text-sm">Filter by Date Range</CardTitle>
+                        <CardTitle className="text-foreground text-sm">Filter by Date Range</CardTitle>
                         <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-white/40" />
+                            <Calendar className="w-4 h-4 text-foreground/40" />
                             <Input
                                 type="date"
                                 value={dateRange.startDate}
                                 onChange={(e) => setDateRange(prev => ({ ...prev, startDate: e.target.value }))}
-                                className="bg-[#1a1d24] border-white/10 text-white text-sm w-36"
+                                className="bg-[#1a1d24] border-white/10 text-foreground text-sm w-36"
                             />
-                            <span className="text-white/40">to</span>
+                            <span className="text-foreground/40">to</span>
                             <Input
                                 type="date"
                                 value={dateRange.endDate}
                                 onChange={(e) => setDateRange(prev => ({ ...prev, endDate: e.target.value }))}
-                                className="bg-[#1a1d24] border-white/10 text-white text-sm w-36"
+                                className="bg-[#1a1d24] border-white/10 text-foreground text-sm w-36"
                             />
                         </div>
                     </div>
                 </CardHeader>
                 <CardContent className="p-4">
                     <div className="flex items-center gap-2 mb-4">
-                        <Filter className="w-4 h-4 text-white/40" />
-                        <span className="text-[10px] uppercase tracking-widest text-white/40">
+                        <Filter className="w-4 h-4 text-foreground/40" />
+                        <span className="text-[10px] uppercase tracking-widest text-foreground/40">
                             Group By
                         </span>
                         <select
                             value={groupBy}
                             onChange={(e) => setGroupBy(e.target.value)}
-                            className="bg-[#1a1d24] border border-white/10 rounded-lg px-3 py-1.5 text-white text-sm"
+                            className="bg-[#1a1d24] border border-white/10 rounded-lg px-3 py-1.5 text-foreground text-sm"
                         >
                             <option value="date">Date</option>
                             <option value="task">Task</option>
@@ -173,8 +173,8 @@ export function TimeReport({ className }) {
                                         className="flex items-center justify-between p-3 bg-[#1a1d24] rounded-xl"
                                     >
                                         <div className="flex-1 min-w-0">
-                                            <p className="text-white font-medium truncate">{data.taskTitle}</p>
-                                            <p className="text-white/40 text-xs">{data.count} entries</p>
+                                            <p className="text-foreground font-medium truncate">{data.taskTitle}</p>
+                                            <p className="text-foreground/40 text-xs">{data.count} entries</p>
                                         </div>
                                         <div className="text-[#BAFF00] font-bold">
                                             {(data.minutes / 60).toFixed(1)}h
@@ -192,7 +192,7 @@ export function TimeReport({ className }) {
                                             className="flex items-center justify-between p-3 bg-[#1a1d24] rounded-xl"
                                         >
                                             <div className="flex-1">
-                                                <p className="text-white font-medium">
+                                                <p className="text-foreground font-medium">
                                                     {new Date(date).toLocaleDateString('en-US', {
                                                         weekday: 'short',
                                                         month: 'short',
@@ -208,7 +208,7 @@ export function TimeReport({ className }) {
                             )}
 
                             {(!report?.byTask && !report?.byDate) && (
-                                <div className="text-center text-white/40 py-8">
+                                <div className="text-center text-foreground/40 py-8">
                                     No data available for this period
                                 </div>
                             )}
@@ -219,7 +219,7 @@ export function TimeReport({ className }) {
 
             <Card className="bg-[#18181b] border-white/5">
                 <CardHeader className="border-b border-white/5">
-                    <CardTitle className="text-white text-sm">Summary</CardTitle>
+                    <CardTitle className="text-foreground text-sm">Summary</CardTitle>
                 </CardHeader>
                 <CardContent className="p-4">
                     <div className="grid grid-cols-2 gap-4">
@@ -230,7 +230,7 @@ export function TimeReport({ className }) {
                             <div className="text-2xl font-black text-yellow-400">
                                 {report?.pendingCount || 0}
                             </div>
-                            <div className="text-white/40 text-xs">entries</div>
+                            <div className="text-foreground/40 text-xs">entries</div>
                         </div>
                         <div className="p-4 bg-green-500/10 rounded-xl">
                             <div className="text-green-400 text-xs uppercase tracking-widest mb-1">
@@ -239,7 +239,7 @@ export function TimeReport({ className }) {
                             <div className="text-2xl font-black text-green-400">
                                 {report?.approvedCount || 0}
                             </div>
-                            <div className="text-white/40 text-xs">entries</div>
+                            <div className="text-foreground/40 text-xs">entries</div>
                         </div>
                     </div>
                 </CardContent>

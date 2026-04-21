@@ -82,11 +82,11 @@ export function IoTDashboardPage({ schoolId }: IoTDashboardPageProps) {
   return (
     <div className="min-h-screen bg-[#18181b] p-6 lg:p-8">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+        <h1 className="text-2xl font-bold text-foreground flex items-center gap-3">
           <Cpu className="w-7 h-7 text-[#BAFF00]" />
           Smart Campus
         </h1>
-        <p className="text-white/50">IoT Device Management & Monitoring</p>
+        <p className="text-foreground/50">IoT Device Management & Monitoring</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -97,8 +97,8 @@ export function IoTDashboardPage({ schoolId }: IoTDashboardPageProps) {
                 <Cpu className="w-5 h-5 text-[#BAFF00]" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{stats?.total || 0}</p>
-                <p className="text-xs text-white/50">Total Devices</p>
+                <p className="text-2xl font-bold text-foreground">{stats?.total || 0}</p>
+                <p className="text-xs text-foreground/50">Total Devices</p>
               </div>
             </div>
           </CardContent>
@@ -110,8 +110,8 @@ export function IoTDashboardPage({ schoolId }: IoTDashboardPageProps) {
                 <Activity className="w-5 h-5 text-green-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{stats?.active || 0}</p>
-                <p className="text-xs text-white/50">Active</p>
+                <p className="text-2xl font-bold text-foreground">{stats?.active || 0}</p>
+                <p className="text-xs text-foreground/50">Active</p>
               </div>
             </div>
           </CardContent>
@@ -119,12 +119,12 @@ export function IoTDashboardPage({ schoolId }: IoTDashboardPageProps) {
         <Card className="bg-[#1a1d29] border-white/10">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-blue-500/10">
+              <div className="p-2 rounded-lg bg-backgroundackgroundlue-500/10">
                 <Users className="w-5 h-5 text-blue-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{stats?.todayAttendance || 0}</p>
-                <p className="text-xs text-white/50">Check-ins Today</p>
+                <p className="text-2xl font-bold text-foreground">{stats?.todayAttendance || 0}</p>
+                <p className="text-xs text-foreground/50">Check-ins Today</p>
               </div>
             </div>
           </CardContent>
@@ -136,8 +136,8 @@ export function IoTDashboardPage({ schoolId }: IoTDashboardPageProps) {
                 <AlertTriangle className="w-5 h-5 text-yellow-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{stats?.openMaintenance || 0}</p>
-                <p className="text-xs text-white/50">Open Tickets</p>
+                <p className="text-2xl font-bold text-foreground">{stats?.openMaintenance || 0}</p>
+                <p className="text-xs text-foreground/50">Open Tickets</p>
               </div>
             </div>
           </CardContent>
@@ -169,7 +169,7 @@ export function IoTDashboardPage({ schoolId }: IoTDashboardPageProps) {
           />
         ))}
         {devices.length === 0 && !loading && (
-          <div className="col-span-full text-center text-white/50 py-12">
+          <div className="col-span-full text-center text-foreground/50 py-12">
             No IoT devices configured
           </div>
         )}

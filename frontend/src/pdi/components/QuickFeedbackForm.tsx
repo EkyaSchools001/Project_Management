@@ -150,7 +150,7 @@ export function QuickFeedbackForm({ onSubmit, onAutoSave, onCancel, initialData 
     };
 
     return (
-        <Card className="max-w-4xl mx-auto   shadow-2xl bg-background/60 backdrop-blur-xl overflow-hidden rounded-[2.5rem]">
+        <Card className="max-w-4xl mx-auto   shadow-2xl bg-backgroundackgroundackground/60 backdrop-blur-xl overflow-hidden rounded-[2.5rem]">
             <CardHeader className="bg-gradient-to-r from-primary/10 via-primary/5 to-background border-b p-8">
                 <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-3">
@@ -167,14 +167,14 @@ export function QuickFeedbackForm({ onSubmit, onAutoSave, onCancel, initialData 
                             "hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300",
                             isSaving
                                 ? "bg-amber-50 text-amber-600 border-amber-100"
-                                : "bg-emerald-50 text-emerald-600 border-emerald-100"
+                                : "bg-backgroundmerald-50 text-emerald-600 border-emerald-100"
                         )}>
                             <Cloud className={cn("w-3.5 h-3.5", isSaving ? "animate-pulse fill-amber-600/20" : "fill-emerald-600/20")} />
                             <span className="text-[10px] font-bold uppercase tracking-wider">
                                 {isSaving ? "Saving changes..." : "All changes auto-saved"}
                             </span>
                         </div>
-                        <div className="flex items-center gap-2 bg-background/50 backdrop-blur-md px-4 py-2 rounded-2xl border border-primary/10">
+                        <div className="flex items-center gap-2 bg-backgroundackgroundackground/50 backdrop-blur-md px-4 py-2 rounded-2xl border border-primary/10">
                             <div className="flex gap-1">
                                 {[1, 2, 3].map((s) => (
                                     <div
@@ -395,7 +395,7 @@ export function QuickFeedbackForm({ onSubmit, onAutoSave, onCancel, initialData 
                                     <Textarea
                                         value={formData.actionStep}
                                         onChange={(e) => updateField("actionStep", e.target.value)}
-                                        className="min-h-[100px] text-base rounded-[1.5rem] border-muted-foreground/20 focus:ring-emerald-500/20 bg-emerald-500/[0.02]"
+                                        className="min-h-[100px] text-base rounded-[1.5rem] border-muted-foreground/20 focus:ring-emerald-500/20 bg-backgroundmerald-500/[0.02]"
                                         placeholder="Specific, actionable step for the teacher..."
                                     />
                                 </div>
@@ -403,7 +403,7 @@ export function QuickFeedbackForm({ onSubmit, onAutoSave, onCancel, initialData 
                         </section>
 
                         <section className="space-y-6 pt-6">
-                            <div className="p-6 rounded-[2rem] bg-slate-950 text-white shadow-2xl relative overflow-hidden group">
+                            <div className="p-6 rounded-[2rem] bg-slate-950 text-foreground shadow-2xl relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -translate-y-16 translate-x-16" />
                                 <Label className="text-sm font-black capitalize tracking-[0.2em] text-primary-foreground/70 mb-6 block flex items-center gap-2">
                                     <Tag className="w-5 h-5" /> Meta Tags: Areas for Improvement
@@ -415,7 +415,7 @@ export function QuickFeedbackForm({ onSubmit, onAutoSave, onCancel, initialData 
                                             variant={formData.metaTags.includes(tag) ? "default" : "outline"}
                                             className={cn(
                                                 "px-4 py-2 rounded-xl text-xs font-bold cursor-pointer transition-all duration-300",
-                                                formData.metaTags.includes(tag) ? "bg-primary text-white scale-105 shadow-lg shadow-primary/20" : "hover:bg-primary/20 hover:text-white border-primary/20"
+                                                formData.metaTags.includes(tag) ? "bg-primary text-foreground scale-105 shadow-lg shadow-primary/20" : "hover:bg-primary/20 hover:text-foreground border-primary/20"
                                             )}
                                             onClick={() => toggleSelection("metaTags", tag)}
                                         >
@@ -437,7 +437,7 @@ export function QuickFeedbackForm({ onSubmit, onAutoSave, onCancel, initialData 
                                         variant={formData.tools.includes(tool) ? "default" : "outline"}
                                         className={cn(
                                             "px-4 py-3 rounded-2xl text-xs font-bold cursor-pointer transition-all duration-300",
-                                            formData.tools.includes(tool) ? "bg-primary text-white scale-105 shadow-lg shadow-primary/20" : "hover:bg-primary/10 border-muted-foreground/20"
+                                            formData.tools.includes(tool) ? "bg-primary text-foreground scale-105 shadow-lg shadow-primary/20" : "hover:bg-primary/10 border-muted-foreground/20"
                                         )}
                                         onClick={() => toggleSelection("tools", tool)}
                                     >
@@ -448,7 +448,7 @@ export function QuickFeedbackForm({ onSubmit, onAutoSave, onCancel, initialData 
                                     variant={formData.tools.includes("Other") ? "default" : "outline"}
                                     className={cn(
                                         "px-4 py-3 rounded-2xl text-xs font-bold cursor-pointer transition-all duration-300",
-                                        formData.tools.includes("Other") ? "bg-primary text-white scale-105 shadow-lg shadow-primary/20" : "hover:bg-primary/10 border-muted-foreground/20"
+                                        formData.tools.includes("Other") ? "bg-primary text-foreground scale-105 shadow-lg shadow-primary/20" : "hover:bg-primary/10 border-muted-foreground/20"
                                     )}
                                     onClick={() => toggleSelection("tools", "Other")}
                                 >
@@ -530,7 +530,7 @@ export function QuickFeedbackForm({ onSubmit, onAutoSave, onCancel, initialData 
                     variant="ghost"
                     size="lg"
                     onClick={step === 1 ? onCancel : handleBack}
-                    className="h-14 px-8 rounded-2xl text-base font-bold bg-background/50 hover:bg-background shadow-sm border border-muted-foreground/10"
+                    className="h-14 px-8 rounded-2xl text-base font-bold bg-backgroundackgroundackground/50 hover:bg-backgroundackgroundackground shadow-sm border border-muted-foreground/10"
                 >
                     {step === 1 ? "Cancel" : "Previous Step"}
                 </Button>
@@ -549,7 +549,7 @@ export function QuickFeedbackForm({ onSubmit, onAutoSave, onCancel, initialData 
                     <Button
                         size="lg"
                         onClick={handleSubmit}
-                        className="h-14 px-10 rounded-2xl text-base font-black shadow-xl shadow-emerald-500/20 bg-emerald-600 hover:bg-emerald-700 transition-all active:scale-95 group"
+                        className="h-14 px-10 rounded-2xl text-base font-black shadow-xl shadow-emerald-500/20 bg-backgroundmerald-600 hover:bg-backgroundmerald-700 transition-all active:scale-95 group"
                     >
                         Complete Feedback Loop
                         <CheckCircle2 className="w-5 h-5 ml-2 group-hover:scale-110 transition-transform" />

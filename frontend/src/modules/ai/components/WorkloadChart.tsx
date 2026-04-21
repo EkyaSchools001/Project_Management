@@ -50,7 +50,7 @@ export default function WorkloadChart({ teamMembers = [], tasks = [] }) {
     const getLoadColor = (load) => {
         if (load > 40) return 'bg-red-400';
         if (load > 25) return 'bg-[#BAFF00]';
-        return 'bg-blue-400';
+        return 'bg-backgroundackgroundlue-400';
     };
 
     const getLoadCategoryBadge = (category) => {
@@ -58,7 +58,7 @@ export default function WorkloadChart({ teamMembers = [], tasks = [] }) {
             case 'overloaded':
                 return { class: 'bg-red-400/20 text-red-400', label: 'Overloaded' };
             case 'underutilized':
-                return { class: 'bg-blue-400/20 text-blue-400', label: 'Underutilized' };
+                return { class: 'bg-backgroundackgroundlue-400/20 text-blue-400', label: 'Underutilized' };
             default:
                 return { class: 'bg-[#BAFF00]/20 text-[#BAFF00]', label: 'Optimal' };
         }
@@ -81,26 +81,26 @@ export default function WorkloadChart({ teamMembers = [], tasks = [] }) {
         <div className="bg-[#161B22] rounded-2xl p-6 border border-white/5">
             <div className="flex items-center justify-between mb-6">
                 <div>
-                    <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
                         <Users className="w-5 h-5 text-[#BAFF00]" />
                         Team Workload
                     </h3>
-                    <p className="text-sm text-white/50">Workload distribution analysis</p>
+                    <p className="text-sm text-foreground/50">Workload distribution analysis</p>
                 </div>
             </div>
 
             <div className="grid grid-cols-3 gap-4 mb-6">
                 <div className="p-4 bg-red-400/10 rounded-xl border border-red-400/20 text-center">
                     <p className="text-2xl font-bold text-red-400">{workloadData?.summary?.overloaded || 0}</p>
-                    <p className="text-xs text-white/50">Overloaded</p>
+                    <p className="text-xs text-foreground/50">Overloaded</p>
                 </div>
                 <div className="p-4 bg-[#BAFF00]/10 rounded-xl border border-[#BAFF00]/20 text-center">
                     <p className="text-2xl font-bold text-[#BAFF00]">{workloadData?.summary?.optimal || 0}</p>
-                    <p className="text-xs text-white/50">Optimal</p>
+                    <p className="text-xs text-foreground/50">Optimal</p>
                 </div>
-                <div className="p-4 bg-blue-400/10 rounded-xl border border-blue-400/20 text-center">
+                <div className="p-4 bg-backgroundackgroundlue-400/10 rounded-xl border border-blue-400/20 text-center">
                     <p className="text-2xl font-bold text-blue-400">{workloadData?.summary?.underutilized || 0}</p>
-                    <p className="text-xs text-white/50">Underutilized</p>
+                    <p className="text-xs text-foreground/50">Underutilized</p>
                 </div>
             </div>
 
@@ -110,12 +110,12 @@ export default function WorkloadChart({ teamMembers = [], tasks = [] }) {
                     return (
                         <div key={member.id} className="p-4 bg-white/5 rounded-xl">
                             <div className="flex items-center gap-4">
-                                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-white">
+                                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-foreground">
                                     {member.avatar}
                                 </div>
                                 <div className="flex-1">
                                     <div className="flex items-center gap-2 mb-1">
-                                        <h4 className="font-bold text-white">{member.name}</h4>
+                                        <h4 className="font-bold text-foreground">{member.name}</h4>
                                         <span className={`text-[10px] px-2 py-0.5 rounded uppercase ${badge.class}`}>
                                             {badge.label}
                                         </span>
@@ -127,7 +127,7 @@ export default function WorkloadChart({ teamMembers = [], tasks = [] }) {
                                                 style={{ width: `${Math.min(member.currentLoad, 100)}%` }}
                                             />
                                         </div>
-                                        <span className="text-sm text-white/60 w-12 text-right">{member.currentLoad}h</span>
+                                        <span className="text-sm text-foreground/60 w-12 text-right">{member.currentLoad}h</span>
                                     </div>
                                 </div>
                             </div>
@@ -138,16 +138,16 @@ export default function WorkloadChart({ teamMembers = [], tasks = [] }) {
 
             {workloadData?.suggestions?.length > 0 && (
                 <div className="border-t border-white/10 pt-4">
-                    <h4 className="text-sm font-bold text-white/80 uppercase tracking-wider mb-3">AI Suggestions</h4>
+                    <h4 className="text-sm font-bold text-foreground/80 uppercase tracking-wider mb-3">AI Suggestions</h4>
                     {workloadData.suggestions.map((suggestion, i) => (
                         <div key={i} className="flex items-center gap-3 p-3 bg-[#BAFF00]/5 rounded-xl border border-[#BAFF00]/20">
                             <div className="flex items-center gap-2">
                                 <UserMinus className="w-4 h-4 text-red-400" />
-                                <ArrowRight className="w-4 h-4 text-white/40" />
+                                <ArrowRight className="w-4 h-4 text-foreground/40" />
                                 <UserPlus className="w-4 h-4 text-blue-400" />
                             </div>
-                            <span className="text-sm text-white/80">
-                                Transfer tasks from <strong className="text-white">{suggestion.from}</strong> to <strong className="text-white">{suggestion.to}</strong>
+                            <span className="text-sm text-foreground/80">
+                                Transfer tasks from <strong className="text-foreground">{suggestion.from}</strong> to <strong className="text-foreground">{suggestion.to}</strong>
                             </span>
                         </div>
                     ))}

@@ -125,7 +125,7 @@ const FloatingChatbot = () => {
                 style={{ left: `${position.x}px`, top: `${position.y}px`, zIndex: 9999, position: 'fixed', touchAction: 'none' }}
                 whileHover={{ scale: 1.1, rotate: 10 }}
                 className={clsx(
-                    "w-16 h-16 rounded-3xl flex items-center justify-center cursor-grab active:cursor-grabbing transition-all border border-white/20 bg-neutral-800 text-white shadow-2xl shadow-brand-500/30",
+                    "w-16 h-16 rounded-3xl flex items-center justify-center cursor-grab active:cursor-grabbing transition-all border border-white/20 bg-neutral-800 text-foreground shadow-2xl shadow-brand-500/30",
                     isDragging && "scale-110 opacity-70 rotate-0"
                 )}
             >
@@ -142,13 +142,13 @@ const FloatingChatbot = () => {
                     >
                         <header className="p-6 flex items-center justify-between border-b border-gray-50 bg-[#111c2a]">
                             <div className="flex items-center gap-4">
-                                <div className="w-10 h-10 bg-brand-50 text-brand-600 rounded-xl flex items-center justify-center border border-brand-100">
+                                <div className="w-10 h-10 bg-backgroundackgroundrand-50 text-brand-600 rounded-xl flex items-center justify-center border border-brand-100">
                                     <Cpu size={20} />
                                 </div>
                                 <div>
                                     <p className="text-sm font-black text-neutral-300 uppercase tracking-tight leading-none mb-1">System Assistant</p>
                                     <div className="flex items-center gap-1.5">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+                                        <div className="w-1.5 h-1.5 rounded-full bg-backgroundmerald-500 animate-pulse"></div>
                                         <p className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest">Active Link</p>
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@ const FloatingChatbot = () => {
                                     <div className={clsx(
                                         "max-w-[85%] p-4 text-xs font-medium leading-relaxed rounded-2xl shadow-sm transition-all",
                                         m.sender === 'user'
-                                            ? "bg-neutral-800 text-white rounded-tr-none"
+                                            ? "bg-neutral-800 text-foreground rounded-tr-none"
                                             : "bg-[#111c2a] text-neutral-300 rounded-tl-none border border-neutral-800"
                                     )}>
                                         {m.text}
@@ -173,7 +173,7 @@ const FloatingChatbot = () => {
                                                 <button
                                                     key={opt}
                                                     onClick={() => handleOptionClick(opt)}
-                                                    className="w-full p-4 bg-[#111c2a] border border-neutral-800 rounded-xl hover:border-brand-500 hover:bg-brand-50 hover:text-brand-600 transition-all text-left text-[10px] font-black uppercase tracking-widest flex items-center justify-between group shadow-sm"
+                                                    className="w-full p-4 bg-[#111c2a] border border-neutral-800 rounded-xl hover:border-brand-500 hover:bg-backgroundackgroundrand-50 hover:text-brand-600 transition-all text-left text-[10px] font-black uppercase tracking-widest flex items-center justify-between group shadow-sm"
                                                 >
                                                     {opt}
                                                     <ChevronRight size={14} className="text-gray-300 group-hover:text-brand-500 transition-all" />
@@ -183,8 +183,8 @@ const FloatingChatbot = () => {
                                     )}
                                     {m.type === 'status-choice' && (
                                         <div className="mt-4 flex flex-col gap-2 w-full">
-                                            <button onClick={() => handleStatusChoice('ID')} className="w-full p-4 bg-[#111c2a] border border-neutral-800 rounded-xl hover:border-brand-500 hover:bg-brand-50 hover:text-brand-600 text-left text-[10px] font-black uppercase tracking-widest shadow-sm">Enter Reference ID</button>
-                                            <button onClick={() => handleStatusChoice('RECENT')} className="w-full p-4 bg-[#111c2a] border border-neutral-800 rounded-xl hover:border-brand-500 hover:bg-brand-50 hover:text-brand-600 text-left text-[10px] font-black uppercase tracking-widest shadow-sm">Recall Latest Session</button>
+                                            <button onClick={() => handleStatusChoice('ID')} className="w-full p-4 bg-[#111c2a] border border-neutral-800 rounded-xl hover:border-brand-500 hover:bg-backgroundackgroundrand-50 hover:text-brand-600 text-left text-[10px] font-black uppercase tracking-widest shadow-sm">Enter Reference ID</button>
+                                            <button onClick={() => handleStatusChoice('RECENT')} className="w-full p-4 bg-[#111c2a] border border-neutral-800 rounded-xl hover:border-brand-500 hover:bg-backgroundackgroundrand-50 hover:text-brand-600 text-left text-[10px] font-black uppercase tracking-widest shadow-sm">Recall Latest Session</button>
                                         </div>
                                     )}
                                 </div>
@@ -203,7 +203,7 @@ const FloatingChatbot = () => {
                                     className="w-full pl-11 pr-4 h-12 bg-[#0f172a] rounded-xl border border-neutral-800 text-xs font-bold focus:bg-[#111c2a] focus:border-brand-500 outline-none transition-all"
                                 />
                             </div>
-                            <button type="submit" className="w-12 h-12 bg-neutral-800 text-white rounded-xl flex items-center justify-center hover:bg-brand-700 shadow-lg shadow-brand-500/20 active:scale-90 transition-all">
+                            <button type="submit" className="w-12 h-12 bg-neutral-800 text-foreground rounded-xl flex items-center justify-center hover:bg-backgroundackgroundrand-700 shadow-lg shadow-brand-500/20 active:scale-90 transition-all">
                                 <Send size={20} />
                             </button>
                         </form>

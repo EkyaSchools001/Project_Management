@@ -35,21 +35,21 @@ const CreateTaskModal = ({ isOpen, onClose, onAdd, projects }) => {
     };
 
     return (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center z-[110] p-4">
+        <div className="fixed inset-0 bg-backgroundackgroundlack/40 backdrop-blur-[2px] flex items-center justify-center z-[110] p-4">
             <motion.div
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 className="bg-[#111c2a] rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col"
             >
                 {/* Header */}
-                <div className="bg-neutral-800 p-6 text-white flex items-center justify-between">
+                <div className="bg-neutral-800 p-6 text-foreground flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className="p-2 bg-[#111c2a]/20 rounded-xl">
                             <CheckSquare size={24} />
                         </div>
                         <div>
                             <h2 className="text-xl font-bold">Create New Task</h2>
-                            <p className="text-white/70 text-sm">Define a new unit of work</p>
+                            <p className="text-foreground/70 text-sm">Define a new unit of work</p>
                         </div>
                     </div>
                     <button onClick={onClose} className="p-2 hover:bg-[#111c2a]/20 rounded-xl transition-all">
@@ -147,7 +147,7 @@ const CreateTaskModal = ({ isOpen, onClose, onAdd, projects }) => {
                         </button>
                         <button
                             type="submit"
-                            className="flex-[2] px-6 py-3 bg-neutral-800 text-white rounded-2xl font-bold shadow-lg shadow-brand-600/20 hover:shadow-brand-600/30 transition-all"
+                            className="flex-[2] px-6 py-3 bg-neutral-800 text-foreground rounded-2xl font-bold shadow-lg shadow-brand-600/20 hover:shadow-brand-600/30 transition-all"
                         >
                             Create Task
                         </button>

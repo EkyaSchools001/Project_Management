@@ -76,9 +76,9 @@ export function SecurityFeed({ styles }: { styles?: any }) {
   };
 
   return (
-    <div style={{ ...styles, height: '100%', overflow: 'hidden' }} className="bg-zinc-900 p-6 flex flex-col gap-4 shadow-2xl rounded-[24px]">
+    <div style={{ ...styles, height: '100%', overflow: 'hidden' }} className="bg-backgroundackgroundackground p-6 flex flex-col gap-4 shadow-2xl rounded-[24px]">
       <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center gap-2 text-white/40">
+        <div className="flex items-center gap-2 text-foreground/40">
           <ShieldCheck className="w-5 h-5 text-red-500" />
           <span className="text-xs font-bold uppercase tracking-widest">Security Overview</span>
         </div>
@@ -91,7 +91,7 @@ export function SecurityFeed({ styles }: { styles?: any }) {
         {/* Access Requests Section */}
         <div className="space-y-3">
           <div className="flex justify-between items-center px-1">
-            <span className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] flex items-center gap-2">
+            <span className="text-[10px] font-bold text-foreground/30 uppercase tracking-[0.2em] flex items-center gap-2">
               <Clock className="w-3 h-3" /> Access Requests
             </span>
             <Badge className="bg-amber-500/20 text-amber-500 border-none font-bold text-[10px]">
@@ -103,26 +103,26 @@ export function SecurityFeed({ styles }: { styles?: any }) {
             {requests.length === 0 ? (
               <div className="p-8 text-center bg-white/5 border border-white/10 rounded-2xl border-dashed">
                 <CheckCircle2 className="w-8 h-8 text-emerald-500 mx-auto mb-2 opacity-50" />
-                <p className="text-xs text-white/40 font-medium">All clear! No pending access requests.</p>
+                <p className="text-xs text-foreground/40 font-medium">All clear! No pending access requests.</p>
               </div>
             ) : (
               requests.map((req) => (
                 <div key={req.id} className="p-4 bg-white/5 border border-white/10 rounded-2xl group hover:bg-white/10 transition-all duration-300">
                   <div className="flex justify-between items-start mb-2">
                     <div>
-                      <h4 className="text-sm font-bold text-white group-hover:text-indigo-300 transition-colors capitalize">{req.fullName}</h4>
-                      <p className="text-[10px] text-white/40 font-medium truncate max-w-[150px]">{req.email}</p>
+                      <h4 className="text-sm font-bold text-foreground group-hover:text-indigo-300 transition-colors capitalize">{req.fullName}</h4>
+                      <p className="text-[10px] text-foreground/40 font-medium truncate max-w-[150px]">{req.email}</p>
                     </div>
-                    <Badge variant="outline" className="text-[9px] bg-white/10 border-white/10 text-white/60 font-bold uppercase">
+                    <Badge variant="outline" className="text-[9px] bg-white/10 border-white/10 text-foreground/60 font-bold uppercase">
                       {req.role}
                     </Badge>
                   </div>
 
                   <div className="px-3 py-2 bg-indigo-500/5 border border-indigo-500/10 rounded-xl mb-3">
-                    <p className="text-[11px] text-white/60 leading-relaxed">
+                    <p className="text-[11px] text-foreground/60 leading-relaxed">
                       Requesting <span className="text-indigo-400 font-bold">{req.role}</span> access 
-                      {req.department ? <span> for <span className="text-white/80 font-semibold">{req.department}</span></span> : ""} 
-                      {req.campusId ? <span> at the <span className="text-white/80 font-semibold">{req.campusId}</span> campus</span> : ""}.
+                      {req.department ? <span> for <span className="text-foreground/80 font-semibold">{req.department}</span></span> : ""} 
+                      {req.campusId ? <span> at the <span className="text-foreground/80 font-semibold">{req.campusId}</span> campus</span> : ""}.
                     </p>
                   </div>
                   
@@ -130,7 +130,7 @@ export function SecurityFeed({ styles }: { styles?: any }) {
                     <Button 
                       variant="ghost" 
                       size="sm" 
-                      className="flex-1 h-8 bg-emerald-600/90 hover:bg-emerald-500 text-white border-none text-[10px] font-bold rounded-xl"
+                      className="flex-1 h-8 bg-backgroundmerald-600/90 hover:bg-backgroundmerald-500 text-foreground border-none text-[10px] font-bold rounded-xl"
                       onClick={() => handleVerify(req.id, req.fullName)}
                     >
                       <CheckCircle2 className="w-3.5 h-3.5 mr-1.5" /> Accept
@@ -138,7 +138,7 @@ export function SecurityFeed({ styles }: { styles?: any }) {
                     <Button 
                       variant="ghost" 
                       size="sm" 
-                      className="flex-1 h-8 bg-white/5 hover:bg-red-900/40 text-white/60 hover:text-red-400 border border-white/10 text-[10px] font-bold rounded-xl"
+                      className="flex-1 h-8 bg-white/5 hover:bg-red-900/40 text-foreground/60 hover:text-red-400 border border-white/10 text-[10px] font-bold rounded-xl"
                       onClick={() => handleDeny(req.id, req.fullName)}
                     >
                       <XCircle className="w-3.5 h-3.5 mr-1.5" /> Deny
@@ -152,7 +152,7 @@ export function SecurityFeed({ styles }: { styles?: any }) {
           {requests.length > 5 && (
             <Button 
                 variant="ghost" 
-                className="w-full text-[10px] text-white/30 hover:text-white hover:bg-white/5 font-bold uppercase tracking-widest h-8 rounded-xl"
+                className="w-full text-[10px] text-foreground/30 hover:text-foreground hover:bg-white/5 font-bold uppercase tracking-widest h-8 rounded-xl"
                 onClick={() => navigate('/admin/users')}
             >
                 View all {requests.length} requests
@@ -163,20 +163,20 @@ export function SecurityFeed({ styles }: { styles?: any }) {
         {/* Audit Status Section (Simplified Static for now) */}
         <div className="pt-2">
           <div className="flex justify-between items-center px-1 mb-2">
-            <span className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] flex items-center gap-2">
+            <span className="text-[10px] font-bold text-foreground/30 uppercase tracking-[0.2em] flex items-center gap-2">
               <ShieldAlert className="w-3 h-3" /> Audit Status
             </span>
-            <Badge className="bg-emerald-500/20 text-emerald-500 border-none font-bold text-[10px]">
+            <Badge className="bg-backgroundmerald-500/20 text-emerald-500 border-none font-bold text-[10px]">
               Clean
             </Badge>
           </div>
           <div className="p-4 bg-white/5 border border-white/10 rounded-2xl flex items-center gap-3">
-             <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center">
+             <div className="w-10 h-10 rounded-xl bg-backgroundmerald-500/10 flex items-center justify-center">
                 <ShieldCheck className="w-5 h-5 text-emerald-500" />
              </div>
              <div>
-                <p className="text-xs text-white/70 font-bold">System Integrity</p>
-                <p className="text-[10px] text-white/40 font-medium whitespace-nowrap">Last checked: Just now</p>
+                <p className="text-xs text-foreground/70 font-bold">System Integrity</p>
+                <p className="text-[10px] text-foreground/40 font-medium whitespace-nowrap">Last checked: Just now</p>
              </div>
           </div>
         </div>

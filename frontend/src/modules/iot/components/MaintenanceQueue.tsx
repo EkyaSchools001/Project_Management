@@ -121,7 +121,7 @@ export function MaintenanceQueue({ schoolId }: MaintenanceQueueProps) {
       case 'Urgent': return 'text-red-400 bg-red-500/10';
       case 'High': return 'text-orange-400 bg-orange-500/10';
       case 'Medium': return 'text-yellow-400 bg-yellow-500/10';
-      default: return 'text-blue-400 bg-blue-500/10';
+      default: return 'text-blue-400 bg-backgroundackgroundlue-500/10';
     }
   };
 
@@ -152,13 +152,13 @@ export function MaintenanceQueue({ schoolId }: MaintenanceQueueProps) {
             <div className="p-2 rounded-lg bg-red-500/10">
               <AlertTriangle className="w-5 h-5 text-red-400" />
             </div>
-            <span className="text-white">{openCount} Open</span>
+            <span className="text-foreground">{openCount} Open</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="p-2 rounded-lg bg-yellow-500/10">
               <Wrench className="w-5 h-5 text-yellow-400" />
             </div>
-            <span className="text-white">{inProgressCount} In Progress</span>
+            <span className="text-foreground">{inProgressCount} In Progress</span>
           </div>
         </div>
         <Dialog open={showDialog} onOpenChange={setShowDialog}>
@@ -170,18 +170,18 @@ export function MaintenanceQueue({ schoolId }: MaintenanceQueueProps) {
           </DialogTrigger>
           <DialogContent className="bg-[#1a1d29] border-white/10">
             <DialogHeader>
-              <DialogTitle className="text-white">Maintenance Request</DialogTitle>
+              <DialogTitle className="text-foreground">Maintenance Request</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
               <div>
-                <Label className="text-white/70">Device</Label>
+                <Label className="text-foreground/70">Device</Label>
                 <Select value={formData.deviceId} onValueChange={(v) => setFormData({ ...formData, deviceId: v })}>
-                  <SelectTrigger className="bg-[#0d1117] border-white/10 text-white">
+                  <SelectTrigger className="bg-[#0d1117] border-white/10 text-foreground">
                     <SelectValue placeholder="Select device" />
                   </SelectTrigger>
                   <SelectContent className="bg-[#1a1d29] border-white/10">
                     {devices.map((device) => (
-                      <SelectItem key={device.id} value={device.id} className="text-white">
+                      <SelectItem key={device.id} value={device.id} className="text-foreground">
                         {device.name} ({device.location})
                       </SelectItem>
                     ))}
@@ -189,18 +189,18 @@ export function MaintenanceQueue({ schoolId }: MaintenanceQueueProps) {
                 </Select>
               </div>
               <div>
-                <Label className="text-white/70">Description</Label>
+                <Label className="text-foreground/70">Description</Label>
                 <Input
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   placeholder="Describe the issue"
-                  className="bg-[#0d1117] border-white/10 text-white"
+                  className="bg-[#0d1117] border-white/10 text-foreground"
                 />
               </div>
               <div>
-                <Label className="text-white/70">Priority</Label>
+                <Label className="text-foreground/70">Priority</Label>
                 <Select value={formData.priority} onValueChange={(v) => setFormData({ ...formData, priority: v })}>
-                  <SelectTrigger className="bg-[#0d1117] border-white/10 text-white">
+                  <SelectTrigger className="bg-[#0d1117] border-white/10 text-foreground">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent className="bg-[#1a1d29] border-white/10">
@@ -226,15 +226,15 @@ export function MaintenanceQueue({ schoolId }: MaintenanceQueueProps) {
       <Card className="bg-[#1a1d29] border-white/10">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-white">Maintenance Queue</CardTitle>
+            <CardTitle className="text-foreground">Maintenance Queue</CardTitle>
             <Select value={filter} onValueChange={setFilter}>
-              <SelectTrigger className="w-40 bg-[#0d1117] border-white/10 text-white">
+              <SelectTrigger className="w-40 bg-[#0d1117] border-white/10 text-foreground">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="bg-[#1a1d29] border-white/10">
-                <SelectItem value="all" className="text-white">All</SelectItem>
-                <SelectItem value="open" className="text-white">Open</SelectItem>
-                <SelectItem value="inprogress" className="text-white">In Progress</SelectItem>
+                <SelectItem value="all" className="text-foreground">All</SelectItem>
+                <SelectItem value="open" className="text-foreground">Open</SelectItem>
+                <SelectItem value="inprogress" className="text-foreground">In Progress</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -249,8 +249,8 @@ export function MaintenanceQueue({ schoolId }: MaintenanceQueueProps) {
                       <Badge className={getPriorityColor(request.priority)}>{request.priority}</Badge>
                       <span className={`text-sm ${getStatusColor(request.status)}`}>{request.status}</span>
                     </div>
-                    <p className="text-white mt-1">{request.description}</p>
-                    <div className="flex items-center gap-4 mt-2 text-xs text-white/50">
+                    <p className="text-foreground mt-1">{request.description}</p>
+                    <div className="flex items-center gap-4 mt-2 text-xs text-foreground/50">
                       <span>{request.device?.name}</span>
                       {request.assignedTo && <span>Assigned: {request.assignedTo}</span>}
                       <span className="flex items-center gap-1">
@@ -287,7 +287,7 @@ export function MaintenanceQueue({ schoolId }: MaintenanceQueueProps) {
               </div>
             ))}
             {filteredRequests.length === 0 && (
-              <div className="text-center text-white/50 py-8">
+              <div className="text-center text-foreground/50 py-8">
                 No maintenance requests
               </div>
             )}

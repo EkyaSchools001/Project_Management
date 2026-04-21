@@ -47,47 +47,47 @@ export function ExpenseForm({ expense, budgets, onSubmit, onClose }: ExpenseForm
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-backgroundackgroundlack/50 flex items-center justify-center z-50">
       <div className="bg-[#1a1d24] rounded-2xl p-6 w-full max-w-lg border border-white/10">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold text-white">
+          <h2 className="text-xl font-bold text-foreground">
             {expense ? 'Edit Expense' : 'Add Expense'}
           </h2>
-          <button onClick={onClose} className="text-white/40 hover:text-white">
+          <button onClick={onClose} className="text-foreground/40 hover:text-foreground">
             <X className="w-5 h-5" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm text-white/60 mb-2">Amount</label>
+            <label className="block text-sm text-foreground/60 mb-2">Amount</label>
             <input
               type="number"
               step="0.01"
               value={formData.amount}
               onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#BAFF00]/50"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#BAFF00]/50"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm text-white/60 mb-2">Description</label>
+            <label className="block text-sm text-foreground/60 mb-2">Description</label>
             <input
               type="text"
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#BAFF00]/50"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#BAFF00]/50"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm text-white/60 mb-2">Category</label>
+            <label className="block text-sm text-foreground/60 mb-2">Category</label>
             <select
               value={formData.category}
               onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#BAFF00]/50"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#BAFF00]/50"
             >
               {categories.map(cat => (
                 <option key={cat} value={cat}>{cat}</option>
@@ -96,23 +96,23 @@ export function ExpenseForm({ expense, budgets, onSubmit, onClose }: ExpenseForm
           </div>
 
           <div>
-            <label className="block text-sm text-white/60 mb-2">Date</label>
+            <label className="block text-sm text-foreground/60 mb-2">Date</label>
             <input
               type="date"
               value={formData.date}
               onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#BAFF00]/50"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#BAFF00]/50"
               required
             />
           </div>
 
           {budgets && budgets.length > 0 && (
             <div>
-              <label className="block text-sm text-white/60 mb-2">Budget</label>
+              <label className="block text-sm text-foreground/60 mb-2">Budget</label>
               <select
                 value={formData.budgetId}
                 onChange={(e) => setFormData({ ...formData, budgetId: e.target.value })}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#BAFF00]/50"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#BAFF00]/50"
               >
                 <option value="">Select Budget (Optional)</option>
                 {budgets.map(budget => (
@@ -123,10 +123,10 @@ export function ExpenseForm({ expense, budgets, onSubmit, onClose }: ExpenseForm
           )}
 
           <div>
-            <label className="block text-sm text-white/60 mb-2">Receipt</label>
+            <label className="block text-sm text-foreground/60 mb-2">Receipt</label>
             <div className="border-2 border-dashed border-white/10 rounded-xl p-4 text-center hover:border-white/20 transition-colors cursor-pointer">
-              <Upload className="w-8 h-8 text-white/40 mx-auto mb-2" />
-              <p className="text-sm text-white/60">
+              <Upload className="w-8 h-8 text-foreground/40 mx-auto mb-2" />
+              <p className="text-sm text-foreground/60">
                 {formData.receipt ? formData.receipt : 'Click to upload receipt'}
               </p>
               <input
@@ -144,7 +144,7 @@ export function ExpenseForm({ expense, budgets, onSubmit, onClose }: ExpenseForm
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-3 border border-white/10 rounded-xl text-white font-bold hover:bg-white/5 transition-colors"
+              className="flex-1 px-4 py-3 border border-white/10 rounded-xl text-foreground font-bold hover:bg-white/5 transition-colors"
             >
               Cancel
             </button>

@@ -52,8 +52,8 @@ export function ObservationCard({ observation, onReflect, onView, className }: O
             <p className="text-[10px] font-black capitalize text-zinc-950 tracking-widest mb-1">Score</p>
             <div className={cn(
               "flex items-center justify-center w-12 h-12 rounded-2xl font-black text-xl shadow-sm",
-              observation.score >= 3.5 ? "bg-emerald-500 text-white" :
-                observation.score >= 2.5 ? "bg-amber-500 text-white" : "bg-primary text-white"
+              observation.score >= 3.5 ? "bg-backgroundmerald-500 text-foreground" :
+                observation.score >= 2.5 ? "bg-amber-500 text-foreground" : "bg-primary text-foreground"
             )}>
               {observation.score}
             </div>
@@ -89,12 +89,12 @@ export function ObservationCard({ observation, onReflect, onView, className }: O
               {observation.domain}
             </Badge>
             {observation.subject && (
-              <Badge variant="secondary" className="bg-blue-50 text-blue-700 hover:bg-blue-100 border-none">
+              <Badge variant="secondary" className="bg-backgroundackgroundlue-50 text-blue-700 hover:bg-backgroundackgroundlue-100 border-none">
                 {observation.subject}
               </Badge>
             )}
             {(observation.type === "Quick Feedback" || observation.domain === "Quick Feedback") && (
-              <Badge className="bg-indigo-600 text-white shadow-sm gap-1">
+              <Badge className="bg-indigo-600 text-foreground shadow-sm gap-1">
                 <Zap className="w-3 h-3 fill-current" />
                 Quick Feedback
               </Badge>
@@ -125,7 +125,7 @@ export function ObservationCard({ observation, onReflect, onView, className }: O
         </Button>
 
         {observation.hasReflection ? (
-          <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border-emerald-100 py-1.5 px-3 gap-1.5">
+          <Badge variant="secondary" className="bg-backgroundmerald-50 text-emerald-700 hover:bg-backgroundmerald-100 border-emerald-100 py-1.5 px-3 gap-1.5">
             <CheckCircle2 className="w-3.5 h-3.5" />
             Reflection Submitted
           </Badge>

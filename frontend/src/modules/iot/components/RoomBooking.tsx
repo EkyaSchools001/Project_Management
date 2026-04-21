@@ -120,7 +120,7 @@ export function RoomBooking({ schoolId, userId }: RoomBookingProps) {
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
-        <h2 className="text-lg font-semibold text-white">Room Booking</h2>
+        <h2 className="text-lg font-semibold text-foreground">Room Booking</h2>
         <Dialog open={showDialog} onOpenChange={setShowDialog}>
           <DialogTrigger asChild>
             <Button className="bg-[#BAFF00] text-black hover:bg-[#a8e600]">
@@ -130,18 +130,18 @@ export function RoomBooking({ schoolId, userId }: RoomBookingProps) {
           </DialogTrigger>
           <DialogContent className="bg-[#1a1d29] border-white/10">
             <DialogHeader>
-              <DialogTitle className="text-white">Book a Room</DialogTitle>
+              <DialogTitle className="text-foreground">Book a Room</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
               <div>
-                <Label className="text-white/70">Room</Label>
+                <Label className="text-foreground/70">Room</Label>
                 <Select value={formData.roomId} onValueChange={(v) => setFormData({ ...formData, roomId: v })}>
-                  <SelectTrigger className="bg-[#0d1117] border-white/10 text-white">
+                  <SelectTrigger className="bg-[#0d1117] border-white/10 text-foreground">
                     <SelectValue placeholder="Select room" />
                   </SelectTrigger>
                   <SelectContent className="bg-[#1a1d29] border-white/10">
                     {rooms.map((room) => (
-                      <SelectItem key={room.id} value={room.id} className="text-white">
+                      <SelectItem key={room.id} value={room.id} className="text-foreground">
                         {room.name} ({room.building})
                       </SelectItem>
                     ))}
@@ -149,40 +149,40 @@ export function RoomBooking({ schoolId, userId }: RoomBookingProps) {
                 </Select>
               </div>
               <div>
-                <Label className="text-white/70">Date</Label>
+                <Label className="text-foreground/70">Date</Label>
                 <Input
                   type="date"
                   value={formData.date}
                   onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                  className="bg-[#0d1117] border-white/10 text-white"
+                  className="bg-[#0d1117] border-white/10 text-foreground"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <Label className="text-white/70">Start Time</Label>
+                  <Label className="text-foreground/70">Start Time</Label>
                   <Input
                     type="time"
                     value={formData.startTime}
                     onChange={(e) => setFormData({ ...formData, startTime: e.target.value })}
-                    className="bg-[#0d1117] border-white/10 text-white"
+                    className="bg-[#0d1117] border-white/10 text-foreground"
                   />
                 </div>
                 <div>
-                  <Label className="text-white/70">End Time</Label>
+                  <Label className="text-foreground/70">End Time</Label>
                   <Input
                     type="time"
                     value={formData.endTime}
                     onChange={(e) => setFormData({ ...formData, endTime: e.target.value })}
-                    className="bg-[#0d1117] border-white/10 text-white"
+                    className="bg-[#0d1117] border-white/10 text-foreground"
                   />
                 </div>
               </div>
               <div>
-                <Label className="text-white/70">Purpose (Optional)</Label>
+                <Label className="text-foreground/70">Purpose (Optional)</Label>
                 <Input
                   value={formData.purpose}
                   onChange={(e) => setFormData({ ...formData, purpose: e.target.value })}
-                  className="bg-[#0d1117] border-white/10 text-white"
+                  className="bg-[#0d1117] border-white/10 text-foreground"
                 />
               </div>
               <Button
@@ -203,27 +203,27 @@ export function RoomBooking({ schoolId, userId }: RoomBookingProps) {
           return (
             <Card key={room.id} className="bg-[#1a1d29] border-white/10">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-white flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                   <Building className="w-4 h-4 text-[#BAFF00]" />
                   {room.name}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-xs text-white/50">
+                  <div className="flex items-center gap-2 text-xs text-foreground/50">
                     <MapPin className="w-3 h-3" />
                     {room.building || 'No building'}
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-white/50">
+                  <div className="flex items-center gap-2 text-xs text-foreground/50">
                     <Users className="w-3 h-3" />
                     Capacity: {room.capacity}
                   </div>
                   {room.amenities && (
-                    <p className="text-xs text-white/50">{room.amenities}</p>
+                    <p className="text-xs text-foreground/50">{room.amenities}</p>
                   )}
                   {roomBookings.length > 0 && (
                     <div className="mt-2 pt-2 border-t border-white/10">
-                      <p className="text-xs text-white/50">Upcoming bookings: {roomBookings.length}</p>
+                      <p className="text-xs text-foreground/50">Upcoming bookings: {roomBookings.length}</p>
                     </div>
                   )}
                 </div>
@@ -236,15 +236,15 @@ export function RoomBooking({ schoolId, userId }: RoomBookingProps) {
       {bookings.length > 0 && (
         <Card className="bg-[#1a1d29] border-white/10">
           <CardHeader>
-            <CardTitle className="text-white">My Bookings</CardTitle>
+            <CardTitle className="text-foreground">My Bookings</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
               {bookings.slice(0, 10).map((booking) => (
                 <div key={booking.id} className="flex items-center justify-between p-2 rounded bg-[#0d1117]">
                   <div>
-                    <p className="text-sm text-white">{booking.room?.name}</p>
-                    <p className="text-xs text-white/50">
+                    <p className="text-sm text-foreground">{booking.room?.name}</p>
+                    <p className="text-xs text-foreground/50">
                       {new Date(booking.startTime).toLocaleString()} - {new Date(booking.endTime).toLocaleTimeString()}
                     </p>
                   </div>

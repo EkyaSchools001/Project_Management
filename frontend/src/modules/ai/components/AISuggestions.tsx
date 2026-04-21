@@ -49,7 +49,7 @@ export default function AISuggestions({ types = ['task', 'project', 'workload'] 
 
     const getTypeColor = (type) => {
         switch (type) {
-            case 'task': return 'border-blue-500/30 bg-blue-500/10';
+            case 'task': return 'border-blue-500/30 bg-backgroundackgroundlue-500/10';
             case 'project': return 'border-purple-500/30 bg-purple-500/10';
             case 'workload': return 'border-orange-500/30 bg-orange-500/10';
             default: return 'border-gray-500/30 bg-gray-500/10';
@@ -71,8 +71,8 @@ export default function AISuggestions({ types = ['task', 'project', 'workload'] 
     if (visibleSuggestions.length === 0) {
         return (
             <div className="text-center py-8">
-                <Lightbulb className="w-12 h-12 text-white/20 mx-auto mb-3" />
-                <p className="text-white/50 text-sm">No active suggestions</p>
+                <Lightbulb className="w-12 h-12 text-foreground/20 mx-auto mb-3" />
+                <p className="text-foreground/50 text-sm">No active suggestions</p>
             </div>
         );
     }
@@ -89,10 +89,10 @@ export default function AISuggestions({ types = ['task', 'project', 'workload'] 
                             {getPriorityIndicator(suggestion.priority)}
                         </div>
                         <div className="flex-1 min-w-0">
-                            <h4 className="text-sm font-bold text-white">{suggestion.title}</h4>
-                            <p className="text-xs text-white/60 mt-1">{suggestion.description}</p>
+                            <h4 className="text-sm font-bold text-foreground">{suggestion.title}</h4>
+                            <p className="text-xs text-foreground/60 mt-1">{suggestion.description}</p>
                             <div className="flex items-center gap-2 mt-2">
-                                <span className="text-[10px] uppercase tracking-wider text-white/40 bg-white/5 px-2 py-0.5 rounded">
+                                <span className="text-[10px] uppercase tracking-wider text-foreground/40 bg-white/5 px-2 py-0.5 rounded">
                                     {suggestion.type}
                                 </span>
                             </div>
@@ -106,7 +106,7 @@ export default function AISuggestions({ types = ['task', 'project', 'workload'] 
                             </button>
                             <button
                                 onClick={() => handleDismiss(suggestion.id)}
-                                className="p-1.5 rounded-lg bg-white/5 text-white/40 hover:bg-white/10 transition-colors"
+                                className="p-1.5 rounded-lg bg-white/5 text-foreground/40 hover:bg-white/10 transition-colors"
                             >
                                 <X className="w-4 h-4" />
                             </button>

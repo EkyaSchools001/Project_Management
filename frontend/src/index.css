@@ -27,90 +27,90 @@
   --radius-sm:                 8px;
 
   /* Color overrides to eliminate blue and slate/black themes */
-  --color-blue-50: var(--color-emerald-50);
-  --color-blue-100: var(--color-emerald-100);
-  --color-blue-200: var(--color-emerald-200);
-  --color-blue-300: var(--color-emerald-300);
-  --color-blue-400: var(--color-emerald-400);
-  --color-blue-500: var(--color-emerald-500);
-  --color-blue-600: var(--color-emerald-600);
-  --color-blue-700: var(--color-emerald-700);
-  --color-blue-800: var(--color-emerald-800);
-  --color-blue-900: var(--color-emerald-900);
-  --color-blue-950: var(--color-emerald-950);
+  --color-blue-50: var(--color-amber-50);
+  --color-blue-100: var(--color-amber-100);
+  --color-blue-200: var(--color-amber-200);
+  --color-blue-300: var(--color-amber-300);
+  --color-blue-400: var(--color-amber-400);
+  --color-blue-500: var(--color-amber-500);
+  --color-blue-600: var(--color-amber-600);
+  --color-blue-700: var(--color-amber-700);
+  --color-blue-800: var(--color-amber-800);
+  --color-blue-900: var(--color-amber-900);
+  --color-blue-950: var(--color-amber-950);
 
-  --color-indigo-50: var(--color-teal-50);
-  --color-indigo-100: var(--color-teal-100);
-  --color-indigo-200: var(--color-teal-200);
-  --color-indigo-300: var(--color-teal-300);
-  --color-indigo-400: var(--color-teal-400);
-  --color-indigo-500: var(--color-teal-500);
-  --color-indigo-600: var(--color-teal-600);
-  --color-indigo-700: var(--color-teal-700);
-  --color-indigo-800: var(--color-teal-800);
-  --color-indigo-900: var(--color-teal-900);
-  --color-indigo-950: var(--color-teal-950);
+  --color-indigo-50: var(--color-yellow-50);
+  --color-indigo-100: var(--color-yellow-100);
+  --color-indigo-200: var(--color-yellow-200);
+  --color-indigo-300: var(--color-yellow-300);
+  --color-indigo-400: var(--color-yellow-400);
+  --color-indigo-500: var(--color-yellow-500);
+  --color-indigo-600: var(--color-yellow-600);
+  --color-indigo-700: var(--color-yellow-700);
+  --color-indigo-800: var(--color-yellow-800);
+  --color-indigo-900: var(--color-yellow-900);
+  --color-indigo-950: var(--color-yellow-950);
 
-  --color-slate-50: var(--color-zinc-50);
-  --color-slate-100: var(--color-zinc-100);
-  --color-slate-200: var(--color-zinc-200);
-  --color-slate-300: var(--color-zinc-300);
-  --color-slate-400: var(--color-zinc-400);
-  --color-slate-500: var(--color-zinc-500);
-  --color-slate-600: var(--color-zinc-600);
-  --color-slate-700: var(--color-zinc-700);
-  --color-slate-800: var(--color-zinc-800);
-  --color-slate-900: var(--color-zinc-900);
-  --color-slate-950: var(--color-zinc-950);
+  --color-slate-50: var(--color-stone-50);
+  --color-slate-100: var(--color-stone-100);
+  --color-slate-200: var(--color-stone-200);
+  --color-slate-300: var(--color-stone-300);
+  --color-slate-400: var(--color-stone-400);
+  --color-slate-500: var(--color-stone-500);
+  --color-slate-600: var(--color-stone-600);
+  --color-slate-700: var(--color-stone-700);
+  --color-slate-800: var(--color-stone-800);
+  --color-slate-900: var(--color-stone-900);
+  --color-slate-950: var(--color-stone-950);
 }
 
-/* ─── DARK MODE (DEFAULT) ────────────────────────────────────────────────────── */
+/* ─── DARK MOCHA (DEFAULT) ────────────────────────────────────────────────────── */
 :root {
-  /* Core backgrounds — slate/zinc grey */
-  --background:         240 5% 10%;       /* Charcoal */
-  --foreground:         0 0% 96%;
+  /* Core backgrounds — Warm Espresso/Mocha */
+  --background:         25 10% 14%;       /* #262322 */
+  --foreground:         36 20% 90%;       /* Soft cream text */
 
-  --card:               240 5% 13%;
-  --card-foreground:    0 0% 96%;
+  --card:               25 10% 17%;       /* #2F2C2A */
+  --card-foreground:    36 20% 90%;
 
-  --popover:            240 5% 13%;
-  --popover-foreground: 0 0% 96%;
+  --popover:            25 10% 17%;
+  --popover-foreground: 36 20% 90%;
 
-  /* Primary — Professional Emerald Green */
-  --primary:            152 76% 40%;
-  --primary-foreground: 0 0% 100%;
+  /* Primary — Soft Gold / Ochre */
+  --primary:            38 65% 55%;
+  --primary-foreground: 25 10% 10%;
 
-  /* Secondary — subtle zinc */
-  --secondary:          240 5% 18%;
-  --secondary-foreground: 0 0% 86%;
+  /* Secondary — subtle mocha */
+  --secondary:          25 10% 22%;
+  --secondary-foreground: 36 20% 85%;
 
   /* Muted */
-  --muted:              240 5% 18%;
-  --muted-foreground:   240 5% 65%;
+  --muted:              25 10% 22%;
+  --muted-foreground:   25 10% 65%;
 
   /* Accent */
-  --accent:             152 76% 40%;
-  --accent-foreground:  0 0% 100%;
+  --accent:             38 65% 55%;
+  --accent-foreground:  25 10% 10%;
 
   /* Danger */
   --destructive:        0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
   /* Borders */
-  --border:             240 5% 22%;
-  --input:              240 5% 22%;
-  --ring:               152 76% 40%;
+  --border:             25 10% 25%;
+  --input:              25 10% 25%;
+  --ring:               38 65% 55%;
   --radius:             1rem;
 
   /* Sidebar */
-  --sidebar-background: 240 5% 11%;
-  --sidebar-foreground: 240 5% 75%;
-  --sidebar-primary:    152 76% 40%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent:     240 5% 16%;
-  --sidebar-accent-foreground: 0 0% 96%;
-  --sidebar-border:     240 5% 16%;
-  --sidebar-ring:       152 76% 40%;
+  --sidebar-background: 25 10% 12%;       /* Darker mocha for sidebar */
+  --sidebar-foreground: 36 20% 80%;
+  --sidebar-primary:    38 65% 55%;
+  --sidebar-primary-foreground: 25 10% 10%;
+  --sidebar-accent:     25 10% 19%;
+  --sidebar-accent-foreground: 36 20% 90%;
+  --sidebar-border:     25 10% 22%;
+  --sidebar-ring:       38 65% 55%;
 
   /* Custom semantic colors */
   --success:            152 76% 40%;

@@ -551,28 +551,28 @@ function DashboardOverview({
               <ShieldCheck className="w-4 h-4 text-[#BAFF00]" />
               <span className="text-[10px] font-bold tracking-widest text-[#BAFF00] uppercase">Command Intelligence Hub</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-black text-white tracking-tight leading-tight">
+            <h1 className="text-5xl md:text-7xl font-black text-foreground tracking-tight leading-tight">
               Greetings, <span className="text-[#BAFF00]">{(userName || "Leader").split(' ')[0]}</span>
             </h1>
-            <p className="text-white/40 text-lg font-medium max-w-2xl leading-relaxed">
+            <p className="text-foreground/40 text-lg font-medium max-w-2xl leading-relaxed">
               {selectedCampus === 'all' ? "Oversee performance metrics across all ecosystem nodes." : `Visualizing data streams for ${selectedCampus}.`}
-              <span className="text-white font-bold ml-1">Track high-impact growth and manage team excellence.</span>
+              <span className="text-foreground font-bold ml-1">Track high-impact growth and manage team excellence.</span>
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-4">
             {availableCampuses.length > 1 && (
               <Select value={selectedCampus} onValueChange={setSelectedCampus}>
-                <SelectTrigger className="w-full sm:w-[240px] h-14 rounded-xl border-white/10 bg-white/5 text-white font-bold text-sm hover:bg-white/10 transition-all tracking-tight">
+                <SelectTrigger className="w-full sm:w-[240px] h-14 rounded-xl border-white/10 bg-white/5 text-foreground font-bold text-sm hover:bg-white/10 transition-all tracking-tight">
                   <div className="flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-[#BAFF00]" />
                     <SelectValue placeholder="Select Campus" />
                   </div>
                 </SelectTrigger>
-                <SelectContent className="rounded-xl border-white/10 bg-[#0d1117] text-white">
-                  <SelectItem value="all" className="focus:bg-white/10 focus:text-white text-xs font-semibold">Consolidated Global View</SelectItem>
+                <SelectContent className="rounded-xl border-white/10 bg-[#0d1117] text-foreground">
+                  <SelectItem value="all" className="focus:bg-white/10 focus:text-foreground text-xs font-semibold">Consolidated Global View</SelectItem>
                   {availableCampuses.map(c => (
-                    <SelectItem key={c} value={c} className="focus:bg-white/10 focus:text-white text-xs font-semibold">{c}</SelectItem>
+                    <SelectItem key={c} value={c} className="focus:bg-white/10 focus:text-foreground text-xs font-semibold">{c}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -636,7 +636,7 @@ function DashboardOverview({
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="w-2 h-10 rounded-full bg-[#BAFF00] shadow-[0_0_20px_rgba(186,255,0,0.4)]"></div>
-              <h2 className="text-4xl font-black text-white tracking-tight uppercase">Performance Log</h2>
+              <h2 className="text-4xl font-black text-foreground tracking-tight uppercase">Performance Log</h2>
             </div>
             <Button variant="ghost" size="sm" onClick={() => navigate("/leader/team")} className="text-[#BAFF00] font-bold hover:bg-[#BAFF00]/5 text-xs tracking-widest uppercase">
               Consolidated Registry
@@ -650,12 +650,12 @@ function DashboardOverview({
                 <table className="w-full">
                   <thead>
                     <tr className="bg-white/5 hover:bg-white/5 border-b border-white/5">
-                      <th className="p-6 text-[11px] font-bold tracking-widest text-white/40 w-16 uppercase">Rank</th>
-                      <th className="p-6 text-[11px] font-bold tracking-widest text-white/40 uppercase text-left">
+                      <th className="p-6 text-[11px] font-bold tracking-widest text-foreground/40 w-16 uppercase">Rank</th>
+                      <th className="p-6 text-[11px] font-bold tracking-widest text-foreground/40 uppercase text-left">
                         <div className="flex items-center gap-3">
                           <span>Identity Vector</span>
                           <select 
-                            className="text-[10px] font-bold border border-white/10 rounded-md px-2 py-1 bg-[#161B22] text-white/60 cursor-pointer hover:border-[#BAFF00]/50 focus:outline-none transition-all"
+                            className="text-[10px] font-bold border border-white/10 rounded-md px-2 py-1 bg-[#161B22] text-foreground/60 cursor-pointer hover:border-[#BAFF00]/50 focus:outline-none transition-all"
                             value={roleFilter}
                             onChange={(e) => setRoleFilter(e.target.value)}
                             onClick={(e) => e.stopPropagation()}
@@ -667,35 +667,35 @@ function DashboardOverview({
                           </select>
                         </div>
                       </th>
-                      <th className="p-6 text-[11px] font-bold tracking-widest text-white/40 text-center uppercase">Observations</th>
-                      <th className="p-6 text-[11px] font-bold tracking-widest text-white/40 uppercase text-left">Status Cycle</th>
-                      <th className="p-6 text-[11px] font-bold tracking-widest text-white/40 text-center uppercase">Efficiency Index</th>
+                      <th className="p-6 text-[11px] font-bold tracking-widest text-foreground/40 text-center uppercase">Observations</th>
+                      <th className="p-6 text-[11px] font-bold tracking-widest text-foreground/40 uppercase text-left">Status Cycle</th>
+                      <th className="p-6 text-[11px] font-bold tracking-widest text-foreground/40 text-center uppercase">Efficiency Index</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-white/5">
                     {filteredTeamOverview.map((member, index) => (
                       <tr key={member.id} className="group hover:bg-[#BAFF00]/5 transition-all duration-300">
-                        <td className="p-6 text-xs font-bold text-white/20">{index + 1}</td>
+                        <td className="p-6 text-xs font-bold text-foreground/20">{index + 1}</td>
                         <td className="p-6">
                           <div className="flex items-center gap-5">
                             <div className="w-14 h-14 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-[#BAFF00] font-black text-xl shadow-inner group-hover:scale-110 group-hover:bg-[#BAFF00]/10 transition-all duration-300 border-[#BAFF00]/0 group-hover:border-[#BAFF00]/20">
                               {member.name.charAt(0)}
                             </div>
                             <div>
-                              <p className="font-bold text-white text-lg group-hover:text-[#BAFF00] transition-colors">{member.name}</p>
-                              <p className="text-[10px] text-white/30 font-bold tracking-[0.2em] uppercase">{formatRole(member.role)}</p>
+                              <p className="font-bold text-foreground text-lg group-hover:text-[#BAFF00] transition-colors">{member.name}</p>
+                              <p className="text-[10px] text-foreground/30 font-bold tracking-[0.2em] uppercase">{formatRole(member.role)}</p>
                             </div>
                           </div>
                         </td>
                         <td className="p-6 text-center">
-                          <span className="inline-flex items-center justify-center min-w-[3rem] px-4 py-2 rounded-lg bg-white/5 text-white font-bold text-xs border border-white/5 group-hover:bg-[#BAFF00]/10 group-hover:text-[#BAFF00] group-hover:border-[#BAFF00]/20 transition-all">
+                          <span className="inline-flex items-center justify-center min-w-[3rem] px-4 py-2 rounded-lg bg-white/5 text-foreground font-bold text-xs border border-white/5 group-hover:bg-[#BAFF00]/10 group-hover:text-[#BAFF00] group-hover:border-[#BAFF00]/20 transition-all">
                             {member.observations}
                           </span>
                         </td>
                         <td className="p-6 text-left">
                           <div className="flex flex-col">
-                            <span className="text-white font-bold text-sm tracking-tight">{member.lastObserved}</span>
-                            <span className="text-[10px] text-white/20 font-bold uppercase tracking-widest">Formal Auth</span>
+                            <span className="text-foreground font-bold text-sm tracking-tight">{member.lastObserved}</span>
+                            <span className="text-[10px] text-foreground/20 font-bold uppercase tracking-widest">Formal Auth</span>
                           </div>
                         </td>
                         <td className="p-6 text-center">
@@ -778,7 +778,7 @@ function TeamManagementView({
         <div className="flex items-center gap-3">
           {availableCampuses.length > 1 && (
             <Select value={selectedCampus} onValueChange={setSelectedCampus}>
-              <SelectTrigger className="w-[180px] h-10 border-muted-foreground/20 bg-background/50">
+              <SelectTrigger className="w-[180px] h-10 border-muted-foreground/20 bg-backgroundackgroundackground/50">
                 <SelectValue placeholder="All Campuses" />
               </SelectTrigger>
               <SelectContent>
@@ -793,7 +793,7 @@ function TeamManagementView({
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
             <Input
               placeholder="Search teachers..."
-              className="pl-10 w-[250px] bg-background/50 border-muted-foreground/20"
+              className="pl-10 w-[250px] bg-backgroundackgroundackground/50 border-muted-foreground/20"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
@@ -1066,14 +1066,14 @@ function PDParticipationView({ team, training }: { team: any[], training: any[] 
 
       {/* Leaderboard & Upcoming Trainings Data Split */}
       <div className="grid lg:grid-cols-3 gap-6">
-        <Card className="lg:col-span-1 shadow-xl bg-gradient-to-br from-indigo-900 via-slate-900 to-slate-950 text-white overflow-hidden relative border-none">
+        <Card className="lg:col-span-1 shadow-xl bg-gradient-to-br from-indigo-900 via-slate-900 to-slate-950 text-foreground overflow-hidden relative border-none">
           <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -translate-y-10 translate-x-10 pointer-events-none" />
           <CardHeader className="border-b border-white/10 pb-4 relative z-10">
-            <CardTitle className="flex items-center gap-2 text-white">
+            <CardTitle className="flex items-center gap-2 text-foreground">
               <Trophy className="w-5 h-5 text-yellow-500" />
               Teacher Leaderboard
             </CardTitle>
-            <CardDescription className="text-zinc-400">Top performers by Training hours completed.</CardDescription>
+            <CardDescription className="text-muted-foreground">Top performers by Training hours completed.</CardDescription>
           </CardHeader>
           <CardContent className="p-0 relative z-10">
             <div className="divide-y divide-white/10">
@@ -1082,14 +1082,14 @@ function PDParticipationView({ team, training }: { team: any[], training: any[] 
                   <div className="flex items-center gap-3">
                     <div className={cn(
                       "w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs ring-2 ring-offset-2 ring-offset-slate-900",
-                      idx === 0 ? "bg-yellow-500 text-white ring-yellow-500/50" :
+                      idx === 0 ? "bg-yellow-500 text-foreground ring-yellow-500/50" :
                         idx === 1 ? "bg-slate-300 text-slate-800 ring-slate-300/50" :
-                          idx === 2 ? "bg-amber-700 text-white ring-amber-700/50" : "bg-zinc-800 text-zinc-400 ring-slate-800/20"
+                          idx === 2 ? "bg-amber-700 text-foreground ring-amber-700/50" : "bg-card text-muted-foreground ring-slate-800/20"
                     )}>
                       {idx + 1}
                     </div>
                     <div>
-                      <p className="font-bold text-white uppercase tracking-tight font-mono text-sm">{member?.fullName || 'N/A'}</p>
+                      <p className="font-bold text-foreground uppercase tracking-tight font-mono text-sm">{member?.fullName || 'N/A'}</p>
                       <p className="text-[10px] text-zinc-900 capitalize font-black">{member.role}</p>
                     </div>
                   </div>
@@ -1101,7 +1101,7 @@ function PDParticipationView({ team, training }: { team: any[], training: any[] 
               ))}
             </div>
             <div className="p-4 bg-white/5 flex justify-center">
-              <Button variant="link" className="text-zinc-400 hover:text-white text-xs gap-2" onClick={() => {
+              <Button variant="link" className="text-muted-foreground hover:text-foreground text-xs gap-2" onClick={() => {
                 // Focus on the registry table
                 const element = document.getElementById('staff-td-registry');
                 element?.scrollIntoView({ behavior: 'smooth' });
@@ -1201,7 +1201,7 @@ function PDParticipationView({ team, training }: { team: any[], training: any[] 
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
                 <Input
                   placeholder="Search staff..."
-                  className="pl-10 w-[250px] bg-background border-muted-foreground/20 rounded-xl"
+                  className="pl-10 w-[250px] bg-backgroundackgroundackground border-muted-foreground/20 rounded-xl"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -1608,10 +1608,10 @@ function PDCalendarView({
       <div className="space-y-8">
         {/* Calendar Widget */}
         <div className="w-full space-y-6">
-          <Card className="  shadow-2xl bg-zinc-950 text-white overflow-hidden relative">
+          <Card className="  shadow-2xl bg-zinc-950 text-foreground overflow-hidden relative">
             {/* decorative gradient blob */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-pink-500/20 rounded-full blur-3xl -translate-y-10 translate-x-10 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl translate-y-10 -translate-x-10 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-backgroundackgroundlue-500/20 rounded-full blur-3xl translate-y-10 -translate-x-10 pointer-events-none" />
 
             <CardContent className="p-6 md:p-10 relative z-10">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
@@ -1621,7 +1621,7 @@ function PDCalendarView({
                     <h3 className="text-xl font-bold bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">
                       Activity Summary
                     </h3>
-                    <p className="text-zinc-400 text-xs capitalize tracking-wider font-medium">
+                    <p className="text-muted-foreground text-xs capitalize tracking-wider font-medium">
                       {formatDateStr(new Date())}
                     </p>
                   </div>
@@ -1630,24 +1630,24 @@ function PDCalendarView({
                     mode="single"
                     selected={date}
                     onSelect={setDate}
-                    className="rounded-2xl border-none bg-zinc-900/50 p-6 w-full"
+                    className="rounded-2xl border-none bg-backgroundackgroundackground/50 p-6 w-full"
                     classNames={{
                       months: "flex flex-col space-y-4",
                       month: "space-y-4 w-full",
                       caption: "flex justify-center pt-1 relative items-center mb-6",
-                      caption_label: "text-base font-bold text-white",
+                      caption_label: "text-base font-bold text-foreground",
                       nav: "space-x-1 flex items-center",
-                      nav_button: "h-8 w-8 bg-transparent p-0 text-zinc-400 hover:text-white border-zinc-700 hover:bg-zinc-800",
+                      nav_button: "h-8 w-8 bg-transparent p-0 text-muted-foreground hover:text-foreground border-zinc-700 hover:bg-card",
                       nav_button_previous: "absolute left-2",
                       nav_button_next: "absolute right-2",
                       table: "w-full border-collapse",
                       head_row: "flex w-full mt-2",
-                      head_cell: "text-zinc-400 rounded-md w-10 font-bold text-[0.85rem] capitalize tracking-wider flex items-center justify-center",
+                      head_cell: "text-muted-foreground rounded-md w-10 font-bold text-[0.85rem] capitalize tracking-wider flex items-center justify-center",
                       row: "flex w-full mt-3",
-                      cell: "h-10 w-10 text-center text-base p-0 relative [&:has([aria-selected])]:bg-zinc-800 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-                      day: "h-10 w-10 p-0 font-bold aria-selected:opacity-100 text-white hover:bg-zinc-800 rounded-full transition-all flex items-center justify-center",
-                      day_selected: "bg-gradient-to-br from-pink-500 to-red-600 text-white hover:bg-red-600 focus:bg-red-600 shadow-lg shadow-red-500/30",
-                      day_today: "bg-zinc-800 text-white font-black ring-2 ring-zinc-700",
+                      cell: "h-10 w-10 text-center text-base p-0 relative [&:has([aria-selected])]:bg-card first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
+                      day: "h-10 w-10 p-0 font-bold aria-selected:opacity-100 text-foreground hover:bg-card rounded-full transition-all flex items-center justify-center",
+                      day_selected: "bg-gradient-to-br from-pink-500 to-red-600 text-foreground hover:bg-red-600 focus:bg-red-600 shadow-lg shadow-red-500/30",
+                      day_today: "bg-card text-foreground font-black ring-2 ring-zinc-700",
                       day_outside: "text-zinc-500 opacity-40",
                     }}
                   />
@@ -1656,13 +1656,13 @@ function PDCalendarView({
                 {/* Right side: Legend and Actions */}
                 <div className="lg:col-span-5 h-full flex flex-col justify-center pt-10">
                   <div className="space-y-6">
-                    <h4 className="text-sm font-bold text-zinc-400 capitalize tracking-widest mb-4">Legend</h4>
+                    <h4 className="text-sm font-bold text-muted-foreground capitalize tracking-widest mb-4">Legend</h4>
                     <div className="space-y-4">
-                      <div className="flex items-center justify-between p-3 rounded-xl bg-blue-500/5 border border-blue-500/10">
+                      <div className="flex items-center justify-between p-3 rounded-xl bg-backgroundackgroundlue-500/5 border border-blue-500/10">
                         <span className="flex items-center gap-3 text-sm text-zinc-300">
-                          <span className="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]"></span> Pedagogy
+                          <span className="w-3 h-3 rounded-full bg-backgroundackgroundlue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]"></span> Pedagogy
                         </span>
-                        <span className="font-mono text-white text-sm bg-blue-500/20 px-2 py-0.5 rounded-md">
+                        <span className="font-mono text-foreground text-sm bg-backgroundackgroundlue-500/20 px-2 py-0.5 rounded-md">
                           {training.filter((t: any) => (t.topic || t.type) === 'Pedagogy').length}
                         </span>
                       </div>
@@ -1670,7 +1670,7 @@ function PDCalendarView({
                         <span className="flex items-center gap-3 text-sm text-zinc-300">
                           <span className="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_10px_rgba(16,185,129,0.6)]"></span> Technology
                         </span>
-                        <span className="font-mono text-white text-sm bg-green-500/20 px-2 py-0.5 rounded-md">
+                        <span className="font-mono text-foreground text-sm bg-green-500/20 px-2 py-0.5 rounded-md">
                           {training.filter((t: any) => (t.topic || t.type) === 'Technology').length}
                         </span>
                       </div>
@@ -1678,7 +1678,7 @@ function PDCalendarView({
                         <span className="flex items-center gap-3 text-sm text-zinc-300">
                           <span className="w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.6)]"></span> Assessment
                         </span>
-                        <span className="font-mono text-white text-sm bg-rose-500/20 px-2 py-0.5 rounded-md">
+                        <span className="font-mono text-foreground text-sm bg-rose-500/20 px-2 py-0.5 rounded-md">
                           {training.filter((t: any) => (t.topic || t.type) === 'Assessment').length}
                         </span>
                       </div>
@@ -1687,7 +1687,7 @@ function PDCalendarView({
                     <div className="pt-8">
                       <Button
                         variant="outline"
-                        className="w-full py-6 bg-zinc-900 border-zinc-800 text-zinc-400 hover:bg-zinc-800 hover:text-white transition-all text-base rounded-xl"
+                        className="w-full py-6 bg-backgroundackgroundackground border-zinc-800 text-muted-foreground hover:bg-card hover:text-foreground transition-all text-base rounded-xl"
                         onClick={() => setDate(undefined)}
                         disabled={!date}
                       >
@@ -1719,7 +1719,7 @@ function PDCalendarView({
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
                     <Input
                       placeholder="Search sessions..."
-                      className="pl-10 w-[200px] bg-background border-muted-foreground/20 rounded-xl"
+                      className="pl-10 w-[200px] bg-backgroundackgroundackground border-muted-foreground/20 rounded-xl"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                     />
@@ -1759,7 +1759,7 @@ function PDCalendarView({
                   <div className="space-y-1.5">
                     <Label className="text-[10px] capitalize font-bold text-zinc-600 ml-1">Type</Label>
                     <Select value={typeFilter} onValueChange={setTypeFilter}>
-                      <SelectTrigger className="rounded-xl bg-background border-muted-foreground/10 h-10">
+                      <SelectTrigger className="rounded-xl bg-backgroundackgroundackground border-muted-foreground/10 h-10">
                         <SelectValue placeholder="All Types" />
                       </SelectTrigger>
                       <SelectContent>
@@ -1776,7 +1776,7 @@ function PDCalendarView({
                     <Label className="text-[10px] capitalize font-bold text-zinc-600 ml-1">Time</Label>
                     <Input
                       placeholder="e.g. 09:00 AM"
-                      className="rounded-xl bg-background border-muted-foreground/10 h-10"
+                      className="rounded-xl bg-backgroundackgroundackground border-muted-foreground/10 h-10"
                       value={timeFilter}
                       onChange={(e) => setTimeFilter(e.target.value)}
                     />
@@ -1786,7 +1786,7 @@ function PDCalendarView({
                     <Label className="text-[10px] capitalize font-bold text-zinc-600 ml-1">Location</Label>
                     <Input
                       placeholder="Search location..."
-                      className="rounded-xl bg-background border-muted-foreground/10 h-10"
+                      className="rounded-xl bg-backgroundackgroundackground border-muted-foreground/10 h-10"
                       value={locationFilter}
                       onChange={(e) => setLocationFilter(e.target.value)}
                     />
@@ -1795,7 +1795,7 @@ function PDCalendarView({
                   <div className="space-y-1.5">
                     <Label className="text-[10px] capitalize font-bold text-zinc-600 ml-1">Status</Label>
                     <Select value={statusFilter} onValueChange={setStatusFilter}>
-                      <SelectTrigger className="rounded-xl bg-background border-muted-foreground/10 h-10">
+                      <SelectTrigger className="rounded-xl bg-backgroundackgroundackground border-muted-foreground/10 h-10">
                         <SelectValue placeholder="All Statuses" />
                       </SelectTrigger>
                       <SelectContent>
@@ -1888,7 +1888,7 @@ function PDCalendarView({
                                   Edit
                                 </Button>
                                 <Button
-                                  className="h-10 px-6 rounded-xl bg-[#1e293b] hover:bg-[#0f172a] text-white shadow-lg shadow-slate-900/20 transition-all active:scale-[0.98] font-black capitalize tracking-tighter text-xs"
+                                  className="h-10 px-6 rounded-xl bg-[#1e293b] hover:bg-[#0f172a] text-foreground shadow-lg shadow-slate-900/20 transition-all active:scale-[0.98] font-black capitalize tracking-tighter text-xs"
                                   onClick={() => handleRegister(session.id)}
                                 >
                                   Register Now
@@ -2169,7 +2169,7 @@ function PDCalendarView({
                 value={newEvent.time}
                 onValueChange={(val) => setNewEvent({ ...newEvent, time: val })}
               >
-                <SelectTrigger id="event-time" className="rounded-xl bg-background border-muted-foreground/10 h-10">
+                <SelectTrigger id="event-time" className="rounded-xl bg-backgroundackgroundackground border-muted-foreground/10 h-10">
                   <SelectValue placeholder="Select Time" />
                 </SelectTrigger>
                 <SelectContent>
@@ -2219,18 +2219,18 @@ function PDCalendarView({
       {/* Registrants Dialog */}
       <Dialog open={isRegistrantsOpen} onOpenChange={setIsRegistrantsOpen}>
         <DialogContent className="sm:max-w-[700px] rounded-[2rem] overflow-hidden   shadow-2xl p-0">
-          <div className="bg-zinc-950 text-white p-8 relative overflow-hidden">
+          <div className="bg-zinc-950 text-foreground p-8 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-20 translate-x-20 pointer-events-none" />
             <div className="relative z-10">
               <h2 className="text-2xl font-black tracking-tight bg-gradient-to-r from-primary to-info bg-clip-text text-transparent">
                 Registered Participants
               </h2>
-              <p className="text-zinc-400 font-bold text-sm mt-1 capitalize tracking-[0.2em]">
+              <p className="text-muted-foreground font-bold text-sm mt-1 capitalize tracking-[0.2em]">
                 {editingEvent?.title}
               </p>
             </div>
           </div>
-          <div className="p-8 bg-background">
+          <div className="p-8 bg-backgroundackgroundackground">
             <div className="rounded-2xl border border-muted/20 overflow-hidden">
               <Table>
                 <TableHeader className="bg-muted/5">
@@ -2279,7 +2279,7 @@ function PDCalendarView({
             </div>
             <div className="mt-8 flex justify-end">
               <Button
-                className="h-12 px-8 rounded-2xl bg-zinc-900 hover:bg-zinc-800 text-white font-black capitalize tracking-widest text-xs"
+                className="h-12 px-8 rounded-2xl bg-backgroundackgroundackground hover:bg-card text-foreground font-black capitalize tracking-widest text-xs"
                 onClick={() => setIsRegistrantsOpen(false)}
               >
                 Close View
@@ -2584,7 +2584,7 @@ function ReportsView({ team, observations }: { team: any[], observations: any[] 
               <Button
                 onClick={() => setIsAIModalOpen(true)}
                 variant="outline"
-                className="gap-2 bg-emerald-50 hover:bg-emerald-100 border-emerald-200 text-emerald-700 font-bold rounded-full px-5"
+                className="gap-2 bg-backgroundmerald-50 hover:bg-backgroundmerald-100 border-emerald-200 text-emerald-700 font-bold rounded-full px-5"
               >
                 <Sparkles className="w-4 h-4 text-emerald-600" />
                 AI Smart Insights
@@ -2593,7 +2593,7 @@ function ReportsView({ team, observations }: { team: any[], observations: any[] 
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
                 <Input
                   placeholder="Search staff..."
-                  className="pl-10 w-[250px] bg-background border-muted-foreground/20 rounded-xl"
+                  className="pl-10 w-[250px] bg-backgroundackgroundackground border-muted-foreground/20 rounded-xl"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -2766,7 +2766,7 @@ function ReportsView({ team, observations }: { team: any[], observations: any[] 
       </Card>
       {/* Report Preview Dialog */}
       <Dialog open={isReportOpen} onOpenChange={setIsReportOpen}>
-        <DialogContent className="max-w-5xl h-[90vh] overflow-y-auto bg-background/95 backdrop-blur-xl   shadow-2xl">
+        <DialogContent className="max-w-5xl h-[90vh] overflow-y-auto bg-backgroundackgroundackground/95 backdrop-blur-xl   shadow-2xl">
           {selectedTeacher && (
             <TeacherAnalyticsReport teacher={selectedTeacher} observations={observations} />
           )}
@@ -2929,12 +2929,12 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
       {/* Window Closed Popup */}
       <Dialog open={showClosedPopup} onOpenChange={setShowClosedPopup}>
         <DialogContent className="sm:max-w-[450px] p-0 overflow-hidden border-none shadow-2xl">
-          <div className="bg-gradient-to-br from-amber-500 to-orange-600 p-8 text-white text-center relative overflow-hidden">
+          <div className="bg-gradient-to-br from-amber-500 to-orange-600 p-8 text-foreground text-center relative overflow-hidden">
             <div className="absolute top-0 right-0 p-4 opacity-10">
               <LockIcon className="w-24 h-24" />
             </div>
             <div className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl border border-white/30">
-              <AlertCircle className="w-10 h-10 text-white" />
+              <AlertCircle className="w-10 h-10 text-foreground" />
             </div>
             <h2 className="text-2xl font-black mb-2 capitalize tracking-tight">Goal Window Closed</h2>
             <p className="text-amber-50 opacity-90 text-sm leading-relaxed max-w-[300px] mx-auto">
@@ -2955,7 +2955,7 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
               <Button
                 onClick={handleNotifyAdmin}
                 disabled={isNotifying}
-                className="w-full h-14 bg-amber-600 hover:bg-amber-700 text-white font-black capitalize tracking-widest text-sm rounded-2xl shadow-lg shadow-amber-600/20 transition-all active:scale-[0.98] group"
+                className="w-full h-14 bg-amber-600 hover:bg-amber-700 text-foreground font-black capitalize tracking-widest text-sm rounded-2xl shadow-lg shadow-amber-600/20 transition-all active:scale-[0.98] group"
               >
                 {isNotifying ? (
                   <Loader2 className="w-5 h-5 animate-spin" />
@@ -2969,7 +2969,7 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
               <Button
                 variant="ghost"
                 onClick={() => setShowClosedPopup(false)}
-                className="w-full h-12 text-zinc-400 font-bold hover:bg-slate-50 rounded-xl transition-all"
+                className="w-full h-12 text-muted-foreground font-bold hover:bg-slate-50 rounded-xl transition-all"
               >
                 I'll check later
               </Button>
@@ -2990,7 +2990,7 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
                 <Input
                   placeholder="Search goals..."
-                  className="pl-10 w-[250px] bg-background border-muted-foreground/20 rounded-xl"
+                  className="pl-10 w-[250px] bg-backgroundackgroundackground border-muted-foreground/20 rounded-xl"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />

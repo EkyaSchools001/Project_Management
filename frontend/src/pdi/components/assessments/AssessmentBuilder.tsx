@@ -151,7 +151,7 @@ export const AssessmentBuilder: React.FC<{
     };
 
     return (
-        <div className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[100] bg-backgroundackgroundlack/60 backdrop-blur-sm flex items-center justify-center p-4">
             <div className="bg-white w-full max-w-5xl max-h-[90vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden">
                 <div className="p-6 border-b flex justify-between items-center bg-zinc-50">
                     <div>
@@ -217,7 +217,7 @@ export const AssessmentBuilder: React.FC<{
                                             className={cn(
                                                 "cursor-pointer px-3 py-1 rounded-full text-xs font-medium transition-all flex items-center gap-1",
                                                 selectedCampuses.includes(campus)
-                                                    ? "bg-primary text-white border-primary"
+                                                    ? "bg-primary text-foreground border-primary"
                                                     : "bg-white text-zinc-500 border-zinc-200 hover:border-zinc-300"
                                             )}
                                             onClick={() => {
@@ -249,7 +249,7 @@ export const AssessmentBuilder: React.FC<{
                         </div>
 
                         {/* AI Generator Section */}
-                        <div className="bg-emerald-50 p-6 rounded-2xl border border-emerald-200 flex flex-col md:flex-row gap-6 items-start shadow-sm">
+                        <div className="bg-backgroundmerald-50 p-6 rounded-2xl border border-emerald-200 flex flex-col md:flex-row gap-6 items-start shadow-sm">
                             <div className="flex-1 space-y-2 w-full">
                                 <Label className="flex items-center gap-2 text-emerald-900 font-bold">
                                     <Sparkles className="w-4 h-4 text-emerald-600" />
@@ -278,7 +278,7 @@ export const AssessmentBuilder: React.FC<{
                                 </div>
                             </div>
                             <Button
-                                className="mt-8 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl h-12 px-6 flex items-center gap-2 shrink-0 self-end md:self-auto shadow-lg shadow-emerald-200 border-none"
+                                className="mt-8 bg-backgroundmerald-600 hover:bg-backgroundmerald-700 text-foreground rounded-xl h-12 px-6 flex items-center gap-2 shrink-0 self-end md:self-auto shadow-lg shadow-emerald-200 border-none"
                                 onClick={handleAIGenerate}
                                 disabled={isGenerating}
                             >
@@ -300,10 +300,10 @@ export const AssessmentBuilder: React.FC<{
                             {questions.map((q, qIdx) => (
                                 <Card key={qIdx} className="border-2 border-zinc-50 shadow-sm overflow-hidden">
                                     <div className="bg-zinc-50 px-6 py-3 border-b flex justify-between items-center">
-                                        <span className="font-bold text-zinc-400"># {qIdx + 1}</span>
+                                        <span className="font-bold text-muted-foreground"># {qIdx + 1}</span>
                                         <div className="flex items-center gap-4">
                                             <div className="flex items-center gap-2">
-                                                <Label className="text-[10px] capitalize font-bold text-zinc-400">Points</Label>
+                                                <Label className="text-[10px] capitalize font-bold text-muted-foreground">Points</Label>
                                                 <Input
                                                     type="number"
                                                     value={q.points}
@@ -336,7 +336,7 @@ export const AssessmentBuilder: React.FC<{
                                                     <div key={optIdx} className={cn(
                                                         "flex gap-3 items-center p-3 rounded-xl border-2 transition-all group",
                                                         isMultiCorrect(qIdx, opt)
-                                                            ? "border-emerald-500 bg-emerald-50/50"
+                                                            ? "border-emerald-500 bg-backgroundmerald-50/50"
                                                             : "border-zinc-100 hover:border-zinc-200"
                                                     )}>
                                                         <div className="flex flex-col items-center gap-1">
@@ -350,7 +350,7 @@ export const AssessmentBuilder: React.FC<{
                                                             />
                                                             <Label
                                                                 htmlFor={`correct-${qIdx}-${optIdx}`}
-                                                                className="text-[9px] font-bold capitalize text-zinc-400 group-hover:text-emerald-600 cursor-pointer transition-colors"
+                                                                className="text-[9px] font-bold capitalize text-muted-foreground group-hover:text-emerald-600 cursor-pointer transition-colors"
                                                             >
                                                                 Correct
                                                             </Label>

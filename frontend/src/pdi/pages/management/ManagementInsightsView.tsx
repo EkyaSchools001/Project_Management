@@ -324,7 +324,7 @@ export function ManagementInsightsView() {
                                 </thead>
                                 <tbody className="divide-y divide-gray-100">
                                     {campusEngagementData.map(c => (
-                                        <tr key={c.campusId} className="hover:bg-blue-50/30 transition-colors">
+                                        <tr key={c.campusId} className="hover:bg-backgroundackgroundlue-50/30 transition-colors">
                                             <td className="px-6 py-4 font-bold text-indigo-900">{c.campusId}</td>
                                             <td className="px-6 py-4 font-medium">{c.totalTeachers}</td>
                                             <td className="px-6 py-4 text-emerald-600 font-medium">{c.activeTeachers}</td>
@@ -333,7 +333,7 @@ export function ManagementInsightsView() {
                                                     <span className="font-bold text-gray-800 w-8">{c.avgEngagement}%</span>
                                                     <div className="w-full bg-gray-100 rounded-full h-2 max-w-[100px]">
                                                         <div
-                                                            className={`h-2 rounded-full ${c.avgEngagement >= 70 ? 'bg-emerald-500' : c.avgEngagement >= 40 ? 'bg-amber-500' : 'bg-rose-500'}`}
+                                                            className={`h-2 rounded-full ${c.avgEngagement >= 70 ? 'bg-backgroundmerald-500' : c.avgEngagement >= 40 ? 'bg-amber-500' : 'bg-rose-500'}`}
                                                             style={{ width: `${c.avgEngagement}%` }}
                                                         ></div>
                                                     </div>
@@ -341,8 +341,8 @@ export function ManagementInsightsView() {
                                             </td>
                                             <td className="px-6 py-4">
                                                 <Badge className={cn(
-                                                    "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
-                                                    c.status === 'High' ? 'bg-emerald-600' :
+                                                    "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
+                                                    c.status === 'High' ? 'bg-backgroundmerald-600' :
                                                         c.status === 'Medium' ? 'bg-amber-500' :
                                                             'bg-rose-600'
                                                 )}>{c.status}</Badge>
@@ -522,7 +522,7 @@ export function ManagementInsightsView() {
                                                 <td className="px-6 py-4 text-gray-600 font-medium">{app.user?.campusId}</td>
                                                 <td className="px-6 py-4 font-medium">{app.festival?.name}</td>
                                                 <td className="px-6 py-4">
-                                                    <Badge className="bg-emerald-600 hover:bg-emerald-600 border-none px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white">{app.status}</Badge>
+                                                    <Badge className="bg-backgroundmerald-600 hover:bg-backgroundmerald-600 border-none px-3 py-1 text-[10px] font-black uppercase tracking-widest text-foreground">{app.status}</Badge>
                                                 </td>
                                                 <td className="px-6 py-4 text-xs text-gray-500 max-w-[200px] truncate">{app.feedback || '-'}</td>
                                             </tr>
@@ -593,7 +593,7 @@ export function ManagementInsightsView() {
                                 <Building2 className="w-5 h-5 text-blue-500" />
                                 Campus Attendance Tracking
                             </h3>
-                            <Badge className="bg-blue-100 text-blue-700 border-none">Live Data</Badge>
+                            <Badge className="bg-backgroundackgroundlue-100 text-blue-700 border-none">Live Data</Badge>
                         </div>
                         <div className="overflow-x-auto">
                             <table className="w-full text-sm text-left">
@@ -607,7 +607,7 @@ export function ManagementInsightsView() {
                                 </thead>
                                 <tbody className="divide-y divide-gray-100">
                                     {attendanceData.map((row: any) => (
-                                        <tr key={row.campus} className="hover:bg-blue-50/30 transition-colors">
+                                        <tr key={row.campus} className="hover:bg-backgroundackgroundlue-50/30 transition-colors">
                                             <td className="px-6 py-4 font-bold text-gray-900">{row.campus}</td>
                                             <td className="px-6 py-4">{row.registered}</td>
                                             <td className="px-6 py-4 font-medium text-blue-600">{row.attended}</td>
@@ -616,7 +616,7 @@ export function ManagementInsightsView() {
                                                     <span className="font-bold text-gray-800 w-10">{row.attendancePercent}%</span>
                                                     <div className="w-full bg-gray-100 rounded-full h-2 max-w-[120px]">
                                                         <div
-                                                            className={`h-2 rounded-full ${row.attendancePercent >= 80 ? 'bg-emerald-500' : row.attendancePercent >= 60 ? 'bg-blue-500' : 'bg-rose-500'}`}
+                                                            className={`h-2 rounded-full ${row.attendancePercent >= 80 ? 'bg-backgroundmerald-500' : row.attendancePercent >= 60 ? 'bg-backgroundackgroundlue-500' : 'bg-rose-500'}`}
                                                             style={{ width: `${row.attendancePercent}%` }}
                                                         ></div>
                                                     </div>
@@ -636,7 +636,7 @@ export function ManagementInsightsView() {
                                 <Award className="w-5 h-5 text-emerald-500" />
                                 PD Hours Compliance (20h Cutoff)
                             </h3>
-                            <Badge className="bg-emerald-100 text-emerald-700 border-none">Academic Year</Badge>
+                            <Badge className="bg-backgroundmerald-100 text-emerald-700 border-none">Academic Year</Badge>
                         </div>
                         <div className="overflow-x-auto">
                             <table className="w-full text-sm text-left">
@@ -650,12 +650,12 @@ export function ManagementInsightsView() {
                                 </thead>
                                 <tbody className="divide-y divide-gray-100">
                                     {cutoffData.map((row: any) => (
-                                        <tr key={row.campus} className="hover:bg-emerald-50/30 transition-colors">
+                                        <tr key={row.campus} className="hover:bg-backgroundmerald-50/30 transition-colors">
                                             <td className="px-6 py-4 font-bold text-gray-900">{row.campus}</td>
                                             <td className="px-6 py-4 font-medium">{row.total}</td>
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center gap-2">
-                                                    <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+                                                    <div className="w-2 h-2 rounded-full bg-backgroundmerald-500"></div>
                                                     <span className="font-bold text-emerald-700">{row.abovePercent}%</span>
                                                 </div>
                                             </td>
@@ -704,9 +704,9 @@ export function ManagementInsightsView() {
                                             </td>
                                             <td className="px-6 py-4">
                                                 <Badge className={cn(
-                                                    "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
-                                                    row.avgRating >= 4.5 ? 'bg-emerald-600' :
-                                                        row.avgRating >= 3.5 ? 'bg-blue-600' :
+                                                    "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
+                                                    row.avgRating >= 4.5 ? 'bg-backgroundmerald-600' :
+                                                        row.avgRating >= 3.5 ? 'bg-backgroundackgroundlue-600' :
                                                             'bg-amber-500'
                                                 )}>
                                                     {row.avgRating >= 4.5 ? 'Excellent' : row.avgRating >= 3.5 ? 'Good' : 'Average'}

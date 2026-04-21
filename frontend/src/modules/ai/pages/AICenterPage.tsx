@@ -24,13 +24,13 @@ export default function AICenterPage() {
             <div className="max-w-7xl mx-auto">
                 <div className="flex items-center justify-between mb-8">
                     <div>
-                        <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+                        <h1 className="text-2xl font-bold text-foreground flex items-center gap-3">
                             <div className="w-10 h-10 rounded-xl bg-[#BAFF00]/20 flex items-center justify-center">
                                 <Brain className="w-5 h-5 text-[#BAFF00]" />
                             </div>
                             AI Center
                         </h1>
-                        <p className="text-sm text-white/50 mt-1">Smart insights and assistance powered by AI</p>
+                        <p className="text-sm text-foreground/50 mt-1">Smart insights and assistance powered by AI</p>
                     </div>
                     <button
                         onClick={() => setChatOpen(true)}
@@ -49,7 +49,7 @@ export default function AICenterPage() {
                             className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm transition-all ${
                                 activeTab === tab.id
                                     ? 'bg-[#BAFF00] text-black'
-                                    : 'bg-white/5 text-white/60 hover:bg-white/10'
+                                    : 'bg-white/5 text-foreground/60 hover:bg-white/10'
                             }`}
                         >
                             <tab.icon className="w-4 h-4" />
@@ -66,7 +66,7 @@ export default function AICenterPage() {
                             </div>
                             <div className="lg:col-span-2">
                                 <div className="bg-[#161B22] rounded-2xl p-6 border border-white/5">
-                                    <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                    <h3 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
                                         <TrendingUp className="w-5 h-5 text-[#BAFF00]" />
                                         AI Analytics Overview
                                     </h3>
@@ -79,8 +79,8 @@ export default function AICenterPage() {
                                         ].map((stat, i) => (
                                             <div key={i} className="p-4 bg-white/5 rounded-xl">
                                                 <stat.icon className="w-5 h-5 text-[#BAFF00] mb-2" />
-                                                <p className="text-2xl font-bold text-white">{stat.value}</p>
-                                                <p className="text-xs text-white/40">{stat.label}</p>
+                                                <p className="text-2xl font-bold text-foreground">{stat.value}</p>
+                                                <p className="text-xs text-foreground/40">{stat.label}</p>
                                             </div>
                                         ))}
                                     </div>
@@ -92,7 +92,7 @@ export default function AICenterPage() {
                     {activeTab === 'suggestions' && (
                         <div className="lg:col-span-2">
                             <div className="bg-[#161B22] rounded-2xl p-6 border border-white/5">
-                                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                <h3 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
                                     <Zap className="w-5 h-5 text-[#BAFF00]" />
                                     AI Suggestions
                                 </h3>

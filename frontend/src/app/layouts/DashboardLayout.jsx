@@ -34,10 +34,10 @@ export function DashboardLayout() {
     if (!user) return <Navigate to="/login" replace />;
 
     return (
-        <div className="h-screen w-full flex bg-background text-foreground font-sans selection:bg-primary/20 selection:text-primary overflow-hidden">
+        <div className="h-screen w-full flex bg-backgroundackgroundackground text-foreground font-sans selection:bg-primary/20 selection:text-primary overflow-hidden">
             {mobileOpen && (
                 <div
-                    className="fixed inset-0 bg-zinc-900/10 backdrop-blur-[2px] z-40 lg:hidden transition-opacity"
+                    className="fixed inset-0 bg-backgroundackgroundackground/10 backdrop-blur-[2px] z-40 lg:hidden transition-opacity"
                     onClick={() => setMobileOpen(false)}
                 />
             )}
@@ -48,7 +48,7 @@ export function DashboardLayout() {
                 setMobileOpen={setMobileOpen}
             />
 
-            <main className="flex-1 flex flex-col min-w-0 relative bg-background">
+            <main className="flex-1 flex flex-col min-w-0 relative bg-backgroundackgroundackground">
                 <header className="h-16 sticky top-0 z-30 bg-card/80 backdrop-blur-xl border-b border-border px-6 sm:px-8 flex items-center justify-between shadow-sm">
                     <div className="flex items-center gap-4">
                         <button

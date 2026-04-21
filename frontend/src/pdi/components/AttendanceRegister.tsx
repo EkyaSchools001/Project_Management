@@ -162,7 +162,7 @@ export function AttendanceRegister() {
                                                         <div className="flex items-center justify-end gap-2">
                                                             {reg.status === 'Present' || reg.isPresent ? (
                                                                 <>
-                                                                    <Badge className="bg-emerald-500 hover:bg-emerald-600 gap-1">
+                                                                    <Badge className="bg-backgroundmerald-500 hover:bg-backgroundmerald-600 gap-1">
                                                                         <CheckCircle2 className="w-3 h-3" />
                                                                         Present
                                                                     </Badge>

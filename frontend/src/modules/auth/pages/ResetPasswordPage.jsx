@@ -97,8 +97,8 @@ export default function ResetPasswordPage() {
             <div className="min-h-screen w-full flex items-center justify-center bg-[#18181b] p-4">
                 <Card className="p-10 max-w-md text-center bg-[#161B22] border-white/5 rounded-3xl">
                     <AlertCircle size={48} className="text-red-400 mx-auto mb-4" />
-                    <h2 className="text-2xl font-bold text-white mb-2">Invalid Link</h2>
-                    <p className="text-white/60 mb-6">
+                    <h2 className="text-2xl font-bold text-foreground mb-2">Invalid Link</h2>
+                    <p className="text-foreground/60 mb-6">
                         This password reset link is invalid or has expired. Please request a new one.
                     </p>
                     <button
@@ -134,11 +134,11 @@ export default function ResetPasswordPage() {
                             <CheckCircle size={40} className="text-[#BAFF00]" />
                         </motion.div>
 
-                        <h1 className="text-3xl sm:text-4xl font-black text-white text-center mb-4">
+                        <h1 className="text-3xl sm:text-4xl font-black text-foreground text-center mb-4">
                             Password Reset!
                         </h1>
 
-                        <p className="text-white/60 text-center mb-8">
+                        <p className="text-foreground/60 text-center mb-8">
                             Your password has been successfully reset. You can now sign in with your new password.
                         </p>
 
@@ -171,7 +171,7 @@ export default function ResetPasswordPage() {
                         onClick={() => navigate('/login')}
                         className="absolute top-6 right-6 w-10 h-10 bg-white/5 hover:bg-white/10 rounded-full flex items-center justify-center transition-all"
                     >
-                        <ArrowLeft size={18} className="text-white/60" />
+                        <ArrowLeft size={18} className="text-foreground/60" />
                     </button>
 
                     <motion.div
@@ -183,11 +183,11 @@ export default function ResetPasswordPage() {
                         <Lock size={28} className="text-[#BAFF00]" />
                     </motion.div>
 
-                    <h1 className="text-3xl sm:text-4xl font-black text-white text-center mb-3">
+                    <h1 className="text-3xl sm:text-4xl font-black text-foreground text-center mb-3">
                         New Password
                     </h1>
 
-                    <p className="text-white/60 text-center mb-8">
+                    <p className="text-foreground/60 text-center mb-8">
                         Create a strong password for your account
                     </p>
 
@@ -207,7 +207,7 @@ export default function ResetPasswordPage() {
                         </AnimatePresence>
 
                         <div className="space-y-3">
-                            <label className="text-xs font-bold text-white/40 uppercase tracking-wider block pl-2">
+                            <label className="text-xs font-bold text-foreground/40 uppercase tracking-wider block pl-2">
                                 New Password
                             </label>
                             <div className="relative group/input">
@@ -215,14 +215,14 @@ export default function ResetPasswordPage() {
                                     type={showPassword ? 'text' : 'password'}
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full px-6 h-14 bg-[#18181b] rounded-xl border border-white/5 focus:border-[#BAFF00]/50 outline-none transition-all text-white font-medium pr-12"
+                                    className="w-full px-6 h-14 bg-[#18181b] rounded-xl border border-white/5 focus:border-[#BAFF00]/50 outline-none transition-all text-foreground font-medium pr-12"
                                     placeholder="Enter new password"
                                     disabled={isLoading}
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/60 transition-colors"
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-foreground/40 hover:text-foreground/60 transition-colors"
                                 >
                                     {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                                 </button>
@@ -240,15 +240,15 @@ export default function ResetPasswordPage() {
                                             />
                                         ))}
                                     </div>
-                                    <p className="text-xs text-white/40">
-                                        Password strength: <span className={passwordStrength > 3 ? 'text-[#BAFF00]' : 'text-white/60'}>{getStrengthLabel(passwordStrength)}</span>
+                                    <p className="text-xs text-foreground/40">
+                                        Password strength: <span className={passwordStrength > 3 ? 'text-[#BAFF00]' : 'text-foreground/60'}>{getStrengthLabel(passwordStrength)}</span>
                                     </p>
                                 </div>
                             )}
                         </div>
 
                         <div className="space-y-3">
-                            <label className="text-xs font-bold text-white/40 uppercase tracking-wider block pl-2">
+                            <label className="text-xs font-bold text-foreground/40 uppercase tracking-wider block pl-2">
                                 Confirm Password
                             </label>
                             <div className="relative group/input">
@@ -258,14 +258,14 @@ export default function ResetPasswordPage() {
                                     onChange={(e) => setConfirmPassword(e.target.value)}
                                     className={`w-full px-6 h-14 bg-[#18181b] rounded-xl border ${
                                         confirmPassword && password !== confirmPassword ? 'border-red-500/50' : 'border-white/5 focus:border-[#BAFF00]/50'
-                                    } outline-none transition-all text-white font-medium pr-12`}
+                                    } outline-none transition-all text-foreground font-medium pr-12`}
                                     placeholder="Confirm new password"
                                     disabled={isLoading}
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/60 transition-colors"
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-foreground/40 hover:text-foreground/60 transition-colors"
                                 >
                                     {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                                 </button>

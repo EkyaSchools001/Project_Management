@@ -59,13 +59,13 @@ export function InvoiceForm({ invoice, onSubmit, onClose }: InvoiceFormProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-backgroundackgroundlack/50 flex items-center justify-center z-50">
       <div className="bg-[#1a1d24] rounded-2xl p-6 w-full max-w-2xl border border-white/10 max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold text-white">
+          <h2 className="text-xl font-bold text-foreground">
             {invoice ? 'Edit Invoice' : 'Create Invoice'}
           </h2>
-          <button onClick={onClose} className="text-white/40 hover:text-white">
+          <button onClick={onClose} className="text-foreground/40 hover:text-foreground">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -73,40 +73,40 @@ export function InvoiceForm({ invoice, onSubmit, onClose }: InvoiceFormProps) {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm text-white/60 mb-2">Client Name *</label>
+              <label className="block text-sm text-foreground/60 mb-2">Client Name *</label>
               <input
                 type="text"
                 value={formData.client}
                 onChange={(e) => setFormData({ ...formData, client: e.target.value })}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#BAFF00]/50"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#BAFF00]/50"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm text-white/60 mb-2">Client Email</label>
+              <label className="block text-sm text-foreground/60 mb-2">Client Email</label>
               <input
                 type="email"
                 value={formData.clientEmail}
                 onChange={(e) => setFormData({ ...formData, clientEmail: e.target.value })}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#BAFF00]/50"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#BAFF00]/50"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm text-white/60 mb-2">Due Date</label>
+            <label className="block text-sm text-foreground/60 mb-2">Due Date</label>
             <input
               type="date"
               value={formData.dueDate}
               onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#BAFF00]/50"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#BAFF00]/50"
               required
             />
           </div>
 
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-sm text-white/60">Line Items</label>
+              <label className="text-sm text-foreground/60">Line Items</label>
               <button
                 type="button"
                 onClick={addItem}
@@ -123,26 +123,26 @@ export function InvoiceForm({ invoice, onSubmit, onClose }: InvoiceFormProps) {
                     placeholder="Description"
                     value={item.description}
                     onChange={(e) => updateItem(index, 'description', e.target.value)}
-                    className="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-[#BAFF00]/50"
+                    className="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#BAFF00]/50"
                   />
                   <input
                     type="number"
                     placeholder="Qty"
                     value={item.quantity}
                     onChange={(e) => updateItem(index, 'quantity', parseInt(e.target.value))}
-                    className="w-16 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-[#BAFF00]/50"
+                    className="w-16 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#BAFF00]/50"
                   />
                   <input
                     type="number"
                     placeholder="Price"
                     value={item.price}
                     onChange={(e) => updateItem(index, 'price', parseFloat(e.target.value))}
-                    className="w-24 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-[#BAFF00]/50"
+                    className="w-24 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#BAFF00]/50"
                   />
                   <button
                     type="button"
                     onClick={() => removeItem(index)}
-                    className="p-2 text-white/40 hover:text-red-500"
+                    className="p-2 text-foreground/40 hover:text-red-500"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -152,25 +152,25 @@ export function InvoiceForm({ invoice, onSubmit, onClose }: InvoiceFormProps) {
           </div>
 
           <div>
-            <label className="block text-sm text-white/60 mb-2">Notes</label>
+            <label className="block text-sm text-foreground/60 mb-2">Notes</label>
             <textarea
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#BAFF00]/50"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#BAFF00]/50"
               rows={3}
             />
           </div>
 
           <div className="flex justify-between items-center pt-4 border-t border-white/5">
             <div>
-              <p className="text-sm text-white/40">Total</p>
-              <p className="text-2xl font-black text-white">${total.toLocaleString()}</p>
+              <p className="text-sm text-foreground/40">Total</p>
+              <p className="text-2xl font-black text-foreground">${total.toLocaleString()}</p>
             </div>
             <div className="flex gap-4">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-6 py-3 border border-white/10 rounded-xl text-white font-bold hover:bg-white/5 transition-colors"
+                className="px-6 py-3 border border-white/10 rounded-xl text-foreground font-bold hover:bg-white/5 transition-colors"
               >
                 Cancel
               </button>

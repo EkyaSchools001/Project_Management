@@ -122,7 +122,7 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                             {teacher.role === "Teacher" && (
                                 <Badge variant="secondary" className={cn(
                                     "border-none font-bold px-3 py-1 flex gap-1.5 items-center",
-                                    teacher.academics === 'NON_CORE' ? "bg-purple-100 text-purple-700" : "bg-blue-100 text-blue-700"
+                                    teacher.academics === 'NON_CORE' ? "bg-purple-100 text-purple-700" : "bg-backgroundackgroundlue-100 text-blue-700"
                                 )}>
                                     {teacher.academics === 'NON_CORE' ? 'Specialist' : 'Core'}
                                 </Badge>
@@ -152,7 +152,7 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                     <Button
                         onClick={() => setIsAIModalOpen(true)}
                         variant="outline"
-                        className="rounded-full font-bold border-emerald-200 text-emerald-700 bg-emerald-50 hover:bg-emerald-100 flex gap-2 px-5"
+                        className="rounded-full font-bold border-emerald-200 text-emerald-700 bg-backgroundmerald-50 hover:bg-backgroundmerald-100 flex gap-2 px-5"
                     >
                         <Sparkles className="w-4 h-4 text-emerald-600" />
                         AI Insights
@@ -195,7 +195,7 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                     value={`${teacher.completionRate}%`}
                     subtitle="Strategic Objectives"
                     icon={Target}
-                    color="bg-emerald-500"
+                    color="bg-backgroundmerald-500"
                     progress={teacher.completionRate}
                     onClick={() => navigate("/okr")}
                 />
@@ -206,7 +206,7 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                 <div className="lg:col-span-8 space-y-8">
 
                     {/* Performance Heatmap / Domains */}
-                    <Card className="  shadow-premium bg-background/50 backdrop-blur-sm overflow-hidden">
+                    <Card className="  shadow-premium bg-backgroundackgroundackground/50 backdrop-blur-sm overflow-hidden">
                         <CardHeader className="bg-muted/5 border-b">
                             <div className="flex items-center justify-between">
                                 <div>
@@ -222,8 +222,8 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                         <CardContent className="p-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div className="space-y-6">
-                                    <DomainProgress title="Planning & Preparation" score={calculateDomainScore("Planning & Preparation")} color="bg-blue-500" />
-                                    <DomainProgress title="Classroom Environment" score={calculateDomainScore("Classroom Environment")} color="bg-emerald-500" />
+                                    <DomainProgress title="Planning & Preparation" score={calculateDomainScore("Planning & Preparation")} color="bg-backgroundackgroundlue-500" />
+                                    <DomainProgress title="Classroom Environment" score={calculateDomainScore("Classroom Environment")} color="bg-backgroundmerald-500" />
                                     <DomainProgress title="Instructional Delivery" score={calculateDomainScore("Instructional Delivery")} color="bg-indigo-500" />
                                     <DomainProgress title="Assessment & Feedback" score={calculateDomainScore("Assessment & Feedback")} color="bg-amber-500" />
                                     <DomainProgress title="Professional Responsibilities" score={calculateDomainScore("Professional Responsibilities")} color="bg-violet-500" />
@@ -231,7 +231,7 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                                 <div className="bg-muted/30 rounded-2xl p-6 flex flex-col items-center justify-center text-center space-y-4">
                                     <div className="w-32 h-32 rounded-full border-8 border-success/20 border-t-success flex items-center justify-center relative">
                                         <span className="text-4xl font-black text-foreground">{teacher.avgScore}</span>
-                                        <div className="absolute -bottom-2 bg-success text-white text-[10px] font-bold px-2 py-0.5 rounded-full capitalize">Pillar Score</div>
+                                        <div className="absolute -bottom-2 bg-success text-foreground text-[10px] font-bold px-2 py-0.5 rounded-full capitalize">Pillar Score</div>
                                     </div>
                                     <div className="space-y-1">
                                         <h4 className="font-bold">Proficient Tier</h4>
@@ -243,7 +243,7 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                     </Card>
 
                     {/* Observation Registry */}
-                    <Card className="  shadow-premium bg-background/50 backdrop-blur-sm overflow-hidden">
+                    <Card className="  shadow-premium bg-backgroundackgroundackground/50 backdrop-blur-sm overflow-hidden">
                         <CardHeader className="bg-muted/5 border-b">
                             <div className="flex items-center justify-between">
                                 <CardTitle className="flex items-center gap-2">
@@ -324,8 +324,8 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                     {/* Development Goals section removed as requested */}
 
                     {/* Skill Radar / Strengths */}
-                    <Card className="  shadow-premium bg-emerald-50 border-2 border-emerald-100 text-emerald-900 overflow-hidden relative">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-200/20 rounded-full blur-3xl -translate-y-10 translate-x-10" />
+                    <Card className="  shadow-premium bg-backgroundmerald-50 border-2 border-emerald-100 text-emerald-900 overflow-hidden relative">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-backgroundmerald-200/20 rounded-full blur-3xl -translate-y-10 translate-x-10" />
                         <CardHeader className="pb-2 border-b border-emerald-100">
                             <CardTitle className="text-lg flex items-center gap-2 text-emerald-800">
                                 <Star className="w-5 h-5 text-emerald-500" />
@@ -352,7 +352,7 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                                 </div>
                             </div>
 
-                            <Button className="w-full bg-emerald-600 text-white hover:bg-emerald-700 font-bold rounded-xl mt-2 border-none shadow-lg shadow-emerald-200">
+                            <Button className="w-full bg-backgroundmerald-600 text-foreground hover:bg-backgroundmerald-700 font-bold rounded-xl mt-2 border-none shadow-lg shadow-emerald-200">
                                 Download Full Performance Report
                             </Button>
                         </CardContent>
@@ -375,7 +375,7 @@ function StatCardCompact({ title, value, subtitle, icon: Icon, color, progress, 
         >
             <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
-                    <div className={cn("p-3 rounded-2xl text-white shadow-lg", color)}>
+                    <div className={cn("p-3 rounded-2xl text-foreground shadow-lg", color)}>
                         <Icon className="w-6 h-6" />
                     </div>
                     {trend && (

@@ -456,7 +456,7 @@ export function FormTemplatesView() {
 
                                 <div className="flex-1 overflow-y-auto">
                                     <Tabs defaultValue="settings" className="w-full">
-                                        <div className="px-6 border-b bg-background sticky top-0 z-10">
+                                        <div className="px-6 border-b bg-backgroundackgroundackground sticky top-0 z-10">
                                             <TabsList className="w-full justify-start h-12 bg-transparent gap-6">
                                                 <TabsTrigger value="settings" className="data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none px-0">1. Template Settings</TabsTrigger>
                                                 <TabsTrigger value="fields" className="data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none px-0">2. Add Questions</TabsTrigger>
@@ -711,7 +711,7 @@ export function FormTemplatesView() {
 
                     <div className="flex-1 overflow-y-auto">
                         <Tabs defaultValue="settings" className="w-full">
-                            <div className="px-6 border-b bg-background sticky top-0 z-10">
+                            <div className="px-6 border-b bg-backgroundackgroundackground sticky top-0 z-10">
                                 <TabsList className="w-full justify-start h-12 bg-transparent gap-6">
                                     <TabsTrigger value="settings" className="data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none px-0">General Settings</TabsTrigger>
                                     <TabsTrigger value="fields" className="data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none px-0">Questions & Fields</TabsTrigger>
@@ -906,7 +906,7 @@ export function FormTemplatesView() {
 
                     <div className="flex-1 overflow-y-auto p-8 bg-muted/10">
                         <div className="max-w-2xl mx-auto space-y-8">
-                            <div className="bg-background rounded-3xl p-8 shadow-xl shadow-primary/5 border border-primary/10">
+                            <div className="bg-backgroundackgroundackground rounded-3xl p-8 shadow-xl shadow-primary/5 border border-primary/10">
                                 <div className="mb-8 p-4 rounded-xl bg-primary/5 border border-primary/10">
                                     <p className="text-xs font-bold text-primary capitalize tracking-widest mb-1">Live Preview Mode</p>
                                     <p className="text-sm text-muted-foreground">This is how the form will appear to your staff. Interactive elements are functional for testing purposes.</p>
@@ -925,7 +925,7 @@ export function FormTemplatesView() {
                         </div>
                     </div>
 
-                    <DialogFooter className="px-8 py-4 border-t bg-background shrink-0">
+                    <DialogFooter className="px-8 py-4 border-t bg-backgroundackgroundackground shrink-0">
                         <Button className="font-bold px-8 h-11 rounded-xl" onClick={() => setIsPreviewOpen(false)}>Close Preview</Button>
                     </DialogFooter>
                 </DialogContent>
@@ -988,7 +988,7 @@ function TemplateCard({
             <CardHeader className="pb-3 border-b bg-muted/10">
                 <div className="flex justify-between items-start">
                     <div className="flex flex-wrap gap-2">
-                        <Badge variant="outline" className="bg-background">{template.type}</Badge>
+                        <Badge variant="outline" className="bg-backgroundackgroundackground">{template.type}</Badge>
                         <Badge variant="secondary" className="text-[10px]">{template.targetBlock}</Badge>
                     </div>
                     <DropdownMenu>

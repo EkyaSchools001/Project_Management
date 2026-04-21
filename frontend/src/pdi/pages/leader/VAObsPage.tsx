@@ -135,7 +135,7 @@ const MatrixSection = ({
                                 <button type="button" onClick={() => !readOnly && setMatrix(field, row, v)}
                                     disabled={readOnly}
                                     className={cn("w-8 h-8 rounded-full border-2 text-xs font-bold transition-all",
-                                        val === v ? "text-white border-transparent scale-110" : "border-slate-200 text-zinc-400 hover:border-slate-400", readOnly && "cursor-default")}
+                                        val === v ? "text-foreground border-transparent scale-110" : "border-slate-200 text-muted-foreground hover:border-slate-400", readOnly && "cursor-default")}
                                     style={val === v ? { background: ACCENT } : {}}>
                                     {v === "NA" ? "NA" : v[0]}
                                 </button>
@@ -396,8 +396,8 @@ const VAObsPage: React.FC = () => {
                         <Card className="  shadow-lg animate-in fade-in slide-in-from-bottom-4">
                             <CardHeader className="rounded-t-xl" style={{ background: DARK }}>
                                 <div className="flex items-center gap-3">
-                                    <div className="p-2 rounded-xl bg-white/10"><Users className="w-5 h-5 text-white" /></div>
-                                    <div><CardTitle className="text-white">Observer Details</CardTitle><CardDescription className="text-white/70">Page 1 of 4</CardDescription></div>
+                                    <div className="p-2 rounded-xl bg-white/10"><Users className="w-5 h-5 text-foreground" /></div>
+                                    <div><CardTitle className="text-foreground">Observer Details</CardTitle><CardDescription className="text-foreground/70">Page 1 of 4</CardDescription></div>
                                 </div>
                             </CardHeader>
                             <CardContent className="p-6 space-y-5">
@@ -449,8 +449,8 @@ const VAObsPage: React.FC = () => {
                         <Card className="  shadow-lg animate-in fade-in slide-in-from-bottom-4">
                             <CardHeader className="rounded-t-xl" style={{ background: DARK }}>
                                 <div className="flex items-center gap-3">
-                                    <div className="p-2 rounded-xl bg-white/10"><BookOpen className="w-5 h-5 text-white" /></div>
-                                    <div><CardTitle className="text-white">Classroom Details</CardTitle><CardDescription className="text-white/70">Page 2 of 4</CardDescription></div>
+                                    <div className="p-2 rounded-xl bg-white/10"><BookOpen className="w-5 h-5 text-foreground" /></div>
+                                    <div><CardTitle className="text-foreground">Classroom Details</CardTitle><CardDescription className="text-foreground/70">Page 2 of 4</CardDescription></div>
                                 </div>
                             </CardHeader>
                             <CardContent className="p-6 space-y-6">
@@ -459,7 +459,7 @@ const VAObsPage: React.FC = () => {
                                     <div className="flex flex-wrap gap-3">{["Early Years", "Primary", "Middle", "Senior"].map(b => (
                                         <button key={b} type="button" onClick={() => !isViewMode && set("block", b)}
                                             disabled={isViewMode}
-                                            className={cn("px-5 py-2.5 rounded-xl border-2 text-sm font-semibold transition-all", form.block === b ? "text-white" : "border-slate-200 hover:border-amber-300", isViewMode && "cursor-default")}
+                                            className={cn("px-5 py-2.5 rounded-xl border-2 text-sm font-semibold transition-all", form.block === b ? "text-foreground" : "border-slate-200 hover:border-amber-300", isViewMode && "cursor-default")}
                                             style={form.block === b ? { background: ACCENT, borderColor: ACCENT } : {}}>{b}</button>
                                     ))}</div>
                                 </div>
@@ -485,10 +485,10 @@ const VAObsPage: React.FC = () => {
                         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4">
                             <div className="p-4 rounded-2xl" style={{ background: DARK }}>
                                 <div className="flex items-center gap-3">
-                                    <div className="p-2 rounded-xl bg-white/10"><ClipboardCheck className="w-5 h-5 text-white" /></div>
+                                    <div className="p-2 rounded-xl bg-white/10"><ClipboardCheck className="w-5 h-5 text-foreground" /></div>
                                     <div>
-                                        <h2 className="text-lg font-bold text-white">Visual Arts Observation Matrix</h2>
-                                        <p className="text-white/60 text-sm">Page 3 of 4 — Rate each indicator Yes / No / N/A</p>
+                                        <h2 className="text-lg font-bold text-foreground">Visual Arts Observation Matrix</h2>
+                                        <p className="text-foreground/60 text-sm">Page 3 of 4 — Rate each indicator Yes / No / N/A</p>
                                     </div>
                                 </div>
                             </div>
@@ -506,8 +506,8 @@ const VAObsPage: React.FC = () => {
                         <div className="space-y-5 animate-in fade-in slide-in-from-bottom-4">
                             <div className="p-4 rounded-2xl" style={{ background: DARK }}>
                                 <div className="flex items-center gap-3">
-                                    <div className="p-2 rounded-xl bg-white/10"><MessageSquare className="w-5 h-5 text-white" /></div>
-                                    <div><h2 className="text-lg font-bold text-white">Summary & Feedback</h2><p className="text-white/60 text-sm">Page 4 of 4</p></div>
+                                    <div className="p-2 rounded-xl bg-white/10"><MessageSquare className="w-5 h-5 text-foreground" /></div>
+                                    <div><h2 className="text-lg font-bold text-foreground">Summary & Feedback</h2><p className="text-foreground/60 text-sm">Page 4 of 4</p></div>
                                 </div>
                             </div>
 
@@ -536,7 +536,7 @@ const VAObsPage: React.FC = () => {
 
                             {/* Feedback fields */}
                             <Card className="  shadow-sm">
-                                <CardHeader style={{ background: DARK }} className="rounded-t-xl"><CardTitle className="text-white text-base">Feedback Section</CardTitle></CardHeader>
+                                <CardHeader style={{ background: DARK }} className="rounded-t-xl"><CardTitle className="text-foreground text-base">Feedback Section</CardTitle></CardHeader>
                                 <CardContent className="p-5 space-y-4">
                                     <div className="space-y-2">
                                         <Label className="text-xs font-bold capitalize tracking-wide text-muted-foreground">Your Feedback to the Teacher *</Label>
@@ -555,7 +555,7 @@ const VAObsPage: React.FC = () => {
 
                             {/* Meta Tags */}
                             <Card className="  shadow-sm">
-                                <CardHeader style={{ background: DARK }} className="rounded-t-xl"><CardTitle className="text-white text-base">Meta Tags (select at least 1) *</CardTitle></CardHeader>
+                                <CardHeader style={{ background: DARK }} className="rounded-t-xl"><CardTitle className="text-foreground text-base">Meta Tags (select at least 1) *</CardTitle></CardHeader>
                                 <CardContent className="p-5">
                                     <CheckGroup items={META_TAGS} field="metaTags" label="" form={form} toggleList={toggleList} readOnly={isViewMode} />
                                 </CardContent>
@@ -571,13 +571,13 @@ const VAObsPage: React.FC = () => {
                             <Button variant="ghost" onClick={() => navigate("/leader/va-obs")} className="gap-2"><ChevronLeft className="w-4 h-4" /> Cancel</Button>
                         )}
                         {step < TOTAL ? (
-                            <Button onClick={handleNext} className="gap-2 text-white" style={{ background: ACCENT }}>Next <ChevronRight className="w-4 h-4" /></Button>
+                            <Button onClick={handleNext} className="gap-2 text-foreground" style={{ background: ACCENT }}>Next <ChevronRight className="w-4 h-4" /></Button>
                         ) : isViewMode ? (
-                            <Button onClick={() => navigate(`/leader/growth/${form.teacherId}`)} className="gap-2 text-white" style={{ background: DARK }}>
+                            <Button onClick={() => navigate(`/leader/growth/${form.teacherId}`)} className="gap-2 text-foreground" style={{ background: DARK }}>
                                 <ChevronLeft className="w-4 h-4" /> Back to Growth
                             </Button>
                         ) : (
-                            <Button onClick={handleSubmit} className="gap-2 text-white" style={{ background: DARK }}>
+                            <Button onClick={handleSubmit} className="gap-2 text-foreground" style={{ background: DARK }}>
                                 <Save className="w-4 h-4" /> {searchParams.get("id") ? "Update Observation" : "Submit Observation"}
                             </Button>
                         )}

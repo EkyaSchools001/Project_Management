@@ -34,18 +34,18 @@ export function AchievementCard({ achievement, earned = false, onClick }) {
           ${earned ? 'bg-[#BAFF00]/20' : 'bg-white/5'}
         `}>
           {icon}
-          {!earned && <Lock size={16} className="absolute text-white/20" />}
+          {!earned && <Lock size={16} className="absolute text-foreground/20" />}
         </div>
 
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
-            <h3 className={`font-bold text-sm truncate ${earned ? 'text-white' : 'text-white/60'}`}>
+            <h3 className={`font-bold text-sm truncate ${earned ? 'text-foreground' : 'text-foreground/60'}`}>
               {achievement.name}
             </h3>
             {earned && <Check size={16} className="text-[#BAFF00] shrink-0" />}
           </div>
           
-          <p className={`text-xs mt-1 ${earned ? 'text-white/60' : 'text-white/40'} line-clamp-2`}>
+          <p className={`text-xs mt-1 ${earned ? 'text-foreground/60' : 'text-foreground/40'} line-clamp-2`}>
             {achievement.description}
           </p>
 
@@ -56,7 +56,7 @@ export function AchievementCard({ achievement, earned = false, onClick }) {
             </div>
             
             {!earned && achievement.criteria && (
-              <span className="text-[10px] text-white/30">
+              <span className="text-[10px] text-foreground/30">
                 {JSON.parse(achievement.criteria).type === 'level' && `Reach level ${JSON.parse(achievement.criteria).value}`}
                 {JSON.parse(achievement.criteria).type === 'badges' && `Earn ${JSON.parse(achievement.criteria).value} badges`}
                 {JSON.parse(achievement.criteria).type === 'points' && `Earn ${JSON.parse(achievement.criteria).value} points`}

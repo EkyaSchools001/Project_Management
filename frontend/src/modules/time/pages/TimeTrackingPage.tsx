@@ -66,7 +66,7 @@ export function TimeTrackingPage() {
             hours: weeklySummary?.totalHours || 0,
             icon: Calendar,
             color: 'text-blue-400',
-            bgColor: 'bg-blue-500/10'
+            bgColor: 'bg-backgroundackgroundlue-500/10'
         },
         {
             title: 'Billable',
@@ -82,8 +82,8 @@ export function TimeTrackingPage() {
             <div className="max-w-7xl mx-auto space-y-8">
                 <div className="flex items-center justify-between">
                     <div>
-                        <h1 className="text-2xl font-black text-white">Time Tracking</h1>
-                        <p className="text-white/40 mt-1">Track your time on tasks</p>
+                        <h1 className="text-2xl font-black text-foreground">Time Tracking</h1>
+                        <p className="text-foreground/40 mt-1">Track your time on tasks</p>
                     </div>
                     <Button
                         onClick={() => setShowManualModal(true)}
@@ -100,7 +100,7 @@ export function TimeTrackingPage() {
                             <CardContent className="p-4">
                                 <div className="flex items-center justify-between">
                                     <div>
-                                        <p className="text-[10px] uppercase tracking-widest text-white/40">
+                                        <p className="text-[10px] uppercase tracking-widest text-foreground/40">
                                             {card.title}
                                         </p>
                                         <p className={cn("text-3xl font-black mt-1", card.color)}>
@@ -123,7 +123,7 @@ export function TimeTrackingPage() {
                             "px-4 py-3 text-sm font-bold border-b-2 transition-colors",
                             activeView === 'entries'
                                 ? "border-[#BAFF00] text-[#BAFF00]"
-                                : "border-transparent text-white/40 hover:text-white"
+                                : "border-transparent text-foreground/40 hover:text-foreground"
                         )}
                     >
                         Today's Entries
@@ -134,7 +134,7 @@ export function TimeTrackingPage() {
                             "px-4 py-3 text-sm font-bold border-b-2 transition-colors",
                             activeView === 'report'
                                 ? "border-[#BAFF00] text-[#BAFF00]"
-                                : "border-transparent text-white/40 hover:text-white"
+                                : "border-transparent text-foreground/40 hover:text-foreground"
                         )}
                     >
                         Report

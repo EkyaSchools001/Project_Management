@@ -65,8 +65,8 @@ export default function FinanceDashboardPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-black text-white">Finance Dashboard</h1>
-          <p className="text-white/40">Financial overview and quick actions</p>
+          <h1 className="text-2xl font-black text-foreground">Finance Dashboard</h1>
+          <p className="text-foreground/40">Financial overview and quick actions</p>
         </div>
         <div className="flex gap-2">
           <button
@@ -77,7 +77,7 @@ export default function FinanceDashboardPage() {
           </button>
           <button
             onClick={() => navigate('/finance/invoices')}
-            className="flex items-center gap-2 px-4 py-2 border border-white/10 rounded-xl text-white font-bold text-sm hover:bg-white/5"
+            className="flex items-center gap-2 px-4 py-2 border border-white/10 rounded-xl text-foreground font-bold text-sm hover:bg-white/5"
           >
             <FileText className="w-4 h-4" /> Create Invoice
           </button>
@@ -90,9 +90,9 @@ export default function FinanceDashboardPage() {
             <div className="w-10 h-10 rounded-xl bg-[#BAFF00]/10 flex items-center justify-center">
               <DollarSign className="w-5 h-5 text-[#BAFF00]" />
             </div>
-            <span className="text-sm text-white/40">Total Budget</span>
+            <span className="text-sm text-foreground/40">Total Budget</span>
           </div>
-          <p className="text-2xl font-black text-white">${(data?.totalBudget || 0).toLocaleString()}</p>
+          <p className="text-2xl font-black text-foreground">${(data?.totalBudget || 0).toLocaleString()}</p>
         </div>
 
         <div className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5">
@@ -100,9 +100,9 @@ export default function FinanceDashboardPage() {
             <div className="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center">
               <TrendingUp className="w-5 h-5 text-red-500" />
             </div>
-            <span className="text-sm text-white/40">Total Spent</span>
+            <span className="text-sm text-foreground/40">Total Spent</span>
           </div>
-          <p className="text-2xl font-black text-white">${(data?.totalSpent || 0).toLocaleString()}</p>
+          <p className="text-2xl font-black text-foreground">${(data?.totalSpent || 0).toLocaleString()}</p>
         </div>
 
         <div className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5">
@@ -110,19 +110,19 @@ export default function FinanceDashboardPage() {
             <div className="w-10 h-10 rounded-xl bg-yellow-500/10 flex items-center justify-center">
               <Receipt className="w-5 h-5 text-yellow-500" />
             </div>
-            <span className="text-sm text-white/40">Pending</span>
+            <span className="text-sm text-foreground/40">Pending</span>
           </div>
-          <p className="text-2xl font-black text-white">{data?.pendingExpenses || 0}</p>
+          <p className="text-2xl font-black text-foreground">{data?.pendingExpenses || 0}</p>
         </div>
 
         <div className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-backgroundackgroundlue-500/10 flex items-center justify-center">
               <FileText className="w-5 h-5 text-blue-500" />
             </div>
-            <span className="text-sm text-white/40">Outstanding</span>
+            <span className="text-sm text-foreground/40">Outstanding</span>
           </div>
-          <p className="text-2xl font-black text-white">{data?.outstandingInvoices || 0}</p>
+          <p className="text-2xl font-black text-foreground">{data?.outstandingInvoices || 0}</p>
         </div>
       </div>
 
@@ -138,33 +138,33 @@ export default function FinanceDashboardPage() {
         <div className="space-y-4">
           <div className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-bold text-white">Quick Actions</h3>
+              <h3 className="font-bold text-foreground">Quick Actions</h3>
             </div>
             <div className="space-y-2">
               <button
                 onClick={() => navigate('/finance/budgets')}
-                className="w-full flex items-center justify-between p-3 bg-white/5 rounded-xl text-white hover:bg-white/10 transition-colors"
+                className="w-full flex items-center justify-between p-3 bg-white/5 rounded-xl text-foreground hover:bg-white/10 transition-colors"
               >
                 <span>Manage Budgets</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button
                 onClick={() => navigate('/finance/expenses')}
-                className="w-full flex items-center justify-between p-3 bg-white/5 rounded-xl text-white hover:bg-white/10 transition-colors"
+                className="w-full flex items-center justify-between p-3 bg-white/5 rounded-xl text-foreground hover:bg-white/10 transition-colors"
               >
                 <span>View Expenses</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button
                 onClick={() => navigate('/finance/invoices')}
-                className="w-full flex items-center justify-between p-3 bg-white/5 rounded-xl text-white hover:bg-white/10 transition-colors"
+                className="w-full flex items-center justify-between p-3 bg-white/5 rounded-xl text-foreground hover:bg-white/10 transition-colors"
               >
                 <span>Invoices</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button
                 onClick={() => navigate('/finance/reports')}
-                className="w-full flex items-center justify-between p-3 bg-white/5 rounded-xl text-white hover:bg-white/10 transition-colors"
+                className="w-full flex items-center justify-between p-3 bg-white/5 rounded-xl text-foreground hover:bg-white/10 transition-colors"
               >
                 <span>Reports</span>
                 <ArrowRight className="w-4 h-4" />
@@ -177,7 +177,7 @@ export default function FinanceDashboardPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div>
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-bold text-white">Recent Expenses</h3>
+            <h3 className="font-bold text-foreground">Recent Expenses</h3>
             <button
               onClick={() => navigate('/finance/expenses')}
               className="text-sm text-[#BAFF00] hover:text-[#BAFF00]/80"
@@ -190,7 +190,7 @@ export default function FinanceDashboardPage() {
 
         <div>
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-bold text-white">Recent Invoices</h3>
+            <h3 className="font-bold text-foreground">Recent Invoices</h3>
             <button
               onClick={() => navigate('/finance/invoices')}
               className="text-sm text-[#BAFF00] hover:text-[#BAFF00]/80"

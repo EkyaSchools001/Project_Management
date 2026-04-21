@@ -70,22 +70,22 @@ export default function ForgotPasswordPage() {
                             <CheckCircle size={40} className="text-[#BAFF00]" />
                         </motion.div>
 
-                        <h1 className="text-3xl sm:text-4xl font-black text-white text-center mb-4">
+                        <h1 className="text-3xl sm:text-4xl font-black text-foreground text-center mb-4">
                             Check Your Email
                         </h1>
 
-                        <p className="text-white/60 text-center mb-8 leading-relaxed">
-                            We've sent a password reset link to <span className="text-white font-semibold">{email}</span>.
+                        <p className="text-foreground/60 text-center mb-8 leading-relaxed">
+                            We've sent a password reset link to <span className="text-foreground font-semibold">{email}</span>.
                             Please check your inbox and spam folder.
                         </p>
 
-                        <p className="text-white/40 text-center text-sm mb-8">
+                        <p className="text-foreground/40 text-center text-sm mb-8">
                             The link will expire in 1 hour.
                         </p>
 
                         <button
                             onClick={() => navigate('/login')}
-                            className="w-full h-14 bg-white/5 hover:bg-white/10 text-white font-bold rounded-2xl flex items-center justify-center gap-3 transition-all"
+                            className="w-full h-14 bg-white/5 hover:bg-white/10 text-foreground font-bold rounded-2xl flex items-center justify-center gap-3 transition-all"
                         >
                             <ArrowLeft size={20} />
                             Back to Login
@@ -113,7 +113,7 @@ export default function ForgotPasswordPage() {
                         onClick={() => navigate('/login')}
                         className="absolute top-6 right-6 w-10 h-10 bg-white/5 hover:bg-white/10 rounded-full flex items-center justify-center transition-all"
                     >
-                        <ArrowLeft size={18} className="text-white/60" />
+                        <ArrowLeft size={18} className="text-foreground/60" />
                     </button>
 
                     <motion.div
@@ -125,11 +125,11 @@ export default function ForgotPasswordPage() {
                         <Lock size={28} className="text-[#BAFF00]" />
                     </motion.div>
 
-                    <h1 className="text-3xl sm:text-4xl font-black text-white text-center mb-3">
+                    <h1 className="text-3xl sm:text-4xl font-black text-foreground text-center mb-3">
                         Reset Password
                     </h1>
 
-                    <p className="text-white/60 text-center mb-8">
+                    <p className="text-foreground/60 text-center mb-8">
                         Enter your email and we'll send you a reset link
                     </p>
 
@@ -149,7 +149,7 @@ export default function ForgotPasswordPage() {
                         </AnimatePresence>
 
                         <div className="space-y-3">
-                            <label className="text-xs font-bold text-white/40 uppercase tracking-wider block pl-2">
+                            <label className="text-xs font-bold text-foreground/40 uppercase tracking-wider block pl-2">
                                 Email Address
                             </label>
                             <div className="relative group/input">
@@ -163,11 +163,11 @@ export default function ForgotPasswordPage() {
                                     onBlur={() => validateEmail(email)}
                                     className={`w-full px-6 h-14 bg-[#18181b] rounded-xl border ${
                                         validationError ? 'border-red-500/50' : 'border-white/5 focus:border-[#BAFF00]/50'
-                                    } outline-none transition-all text-white font-medium placeholder:text-white/20`}
+                                    } outline-none transition-all text-foreground font-medium placeholder:text-foreground/20`}
                                     placeholder="you@example.com"
                                     disabled={isLoading}
                                 />
-                                <Mail size={20} className="absolute right-5 top-1/2 -translate-y-1/2 text-white/20 group-focus-within/input:text-[#BAFF00] transition-colors" />
+                                <Mail size={20} className="absolute right-5 top-1/2 -translate-y-1/2 text-foreground/20 group-focus-within/input:text-[#BAFF00] transition-colors" />
                             </div>
                             <AnimatePresence>
                                 {validationError && (
@@ -196,7 +196,7 @@ export default function ForgotPasswordPage() {
                         </button>
                     </form>
 
-                    <p className="text-white/40 text-center text-sm mt-8">
+                    <p className="text-foreground/40 text-center text-sm mt-8">
                         Remember your password?{' '}
                         <Link to="/login" className="text-[#BAFF00] hover:underline font-semibold">
                             Sign in

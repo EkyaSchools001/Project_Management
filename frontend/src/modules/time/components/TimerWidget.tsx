@@ -68,13 +68,13 @@ export function TimerWidget({ tasks = [], onTaskSelect, className }) {
                             </span>
                         </>
                     ) : (
-                        <Clock className="w-4 h-4 text-white/40" />
+                        <Clock className="w-4 h-4 text-foreground/40" />
                     )}
                     <button
                         onClick={() => setIsExpanded(true)}
                         className="p-1 hover:bg-white/10 rounded transition-colors"
                     >
-                        <ChevronUp className="w-4 h-4 text-white/60" />
+                        <ChevronUp className="w-4 h-4 text-foreground/60" />
                     </button>
                 </div>
             </div>
@@ -91,13 +91,13 @@ export function TimerWidget({ tasks = [], onTaskSelect, className }) {
             <div className="flex items-center justify-between px-4 py-3 border-b border-white/5">
                 <div className="flex items-center gap-2">
                     <Clock className="w-4 h-4 text-[#BAFF00]" />
-                    <span className="text-white font-bold text-sm">Time Tracker</span>
+                    <span className="text-foreground font-bold text-sm">Time Tracker</span>
                 </div>
                 <button
                     onClick={() => setIsExpanded(false)}
                     className="p-1 hover:bg-white/10 rounded transition-colors"
                 >
-                    <ChevronDown className="w-4 h-4 text-white/40" />
+                    <ChevronDown className="w-4 h-4 text-foreground/40" />
                 </button>
             </div>
 
@@ -105,13 +105,13 @@ export function TimerWidget({ tasks = [], onTaskSelect, className }) {
                 {!activeTimer && (
                     <>
                         <div>
-                            <label className="text-[10px] uppercase tracking-widest text-white/40 mb-2 block">
+                            <label className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2 block">
                                 Select Task
                             </label>
                             <select
                                 value={selectedTaskId}
                                 onChange={handleTaskChange}
-                                className="w-full bg-[#1a1d24] border border-white/10 rounded-xl px-3 py-2.5 text-white text-sm focus:border [#BAFF00] focus:outline-none"
+                                className="w-full bg-[#1a1d24] border border-white/10 rounded-xl px-3 py-2.5 text-foreground text-sm focus:border [#BAFF00] focus:outline-none"
                             >
                                 <option value="">Choose a task...</option>
                                 {tasks.map(task => (
@@ -123,7 +123,7 @@ export function TimerWidget({ tasks = [], onTaskSelect, className }) {
                         </div>
 
                         <div>
-                            <label className="text-[10px] uppercase tracking-widest text-white/40 mb-2 block">
+                            <label className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2 block">
                                 Description (optional)
                             </label>
                             <input
@@ -131,7 +131,7 @@ export function TimerWidget({ tasks = [], onTaskSelect, className }) {
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 placeholder="What are you working on?"
-                                className="w-full bg-[#1a1d24] border border-white/10 rounded-xl px-3 py-2.5 text-white text-sm placeholder:text-white/30 focus:border [#BAFF00] focus:outline-none"
+                                className="w-full bg-[#1a1d24] border border-white/10 rounded-xl px-3 py-2.5 text-foreground text-sm placeholder:text-foreground/30 focus:border [#BAFF00] focus:outline-none"
                             />
                         </div>
                     </>
@@ -139,14 +139,14 @@ export function TimerWidget({ tasks = [], onTaskSelect, className }) {
 
                 {activeTimer && (
                     <div className="bg-[#1a1d24] rounded-xl p-4">
-                        <div className="text-[10px] uppercase tracking-widest text-white/40 mb-1">
+                        <div className="text-[10px] uppercase tracking-widest text-foreground/40 mb-1">
                             Currently Tracking
                         </div>
-                        <div className="text-white font-medium text-sm mb-2">
+                        <div className="text-foreground font-medium text-sm mb-2">
                             {activeTimer.task?.title || 'Task'}
                         </div>
                         {activeTimer.description && (
-                            <div className="text-white/60 text-xs">
+                            <div className="text-foreground/60 text-xs">
                                 {activeTimer.description}
                             </div>
                         )}
@@ -167,7 +167,7 @@ export function TimerWidget({ tasks = [], onTaskSelect, className }) {
                         <Button
                             onClick={handleStop}
                             disabled={loading}
-                            className="flex-1 bg-red-500 hover:bg-red-600 text-white font-bold h-12 rounded-xl"
+                            className="flex-1 bg-red-500 hover:bg-red-600 text-foreground font-bold h-12 rounded-xl"
                         >
                             <Square className="w-4 h-4 mr-2" />
                             Stop
@@ -180,7 +180,7 @@ export function TimerWidget({ tasks = [], onTaskSelect, className }) {
                         <div className="text-4xl font-mono font-black text-[#BAFF00]">
                             {formatElapsed(elapsed)}
                         </div>
-                        <div className="text-[10px] uppercase tracking-widest text-white/40 mt-1">
+                        <div className="text-[10px] uppercase tracking-widest text-foreground/40 mt-1">
                             Elapsed Time
                         </div>
                     </div>

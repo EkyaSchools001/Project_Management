@@ -583,7 +583,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                         <div className="mb-8">
                             <div className="flex items-center justify-between mb-4">
                                 <div className="flex items-center gap-4">
-                                    <div className="p-3 rounded-2xl bg-primary shadow-[0_8px_20px_rgba(234,16,74,0.25)] text-white">
+                                    <div className="p-3 rounded-2xl bg-primary shadow-[0_8px_20px_rgba(234,16,74,0.25)] text-foreground">
                                         {isFinalCoreStep ? <CheckCircle2 className="w-6 h-6" /> : <Sparkles className="w-6 h-6" />}
                                     </div>
                                     <div className="space-y-1">
@@ -600,7 +600,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                                         key={i}
                                                         className={cn(
                                                             "h-1 rounded-full transition-all duration-500",
-                                                            i < formStep ? "w-4 bg-emerald-500" : i === formStep ? "w-8 bg-primary shadow-[0_0_10px_rgba(234,16,74,0.3)]" : "w-4 bg-muted"
+                                                            i < formStep ? "w-4 bg-backgroundmerald-500" : i === formStep ? "w-8 bg-primary shadow-[0_0_10px_rgba(234,16,74,0.3)]" : "w-4 bg-muted"
                                                         )}
                                                     />
                                                 ))}
@@ -626,7 +626,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                                     {RATING_LEVELS.map((level, levelIdx) => {
                                                         const sId = `core-${coreSection.id}-${itemIdx}-${levelIdx}`;
                                                         return (
-                                                            <div key={levelIdx} className="flex items-center space-x-2 bg-background px-3 py-1.5 rounded-full border border-muted hover:border-primary/30 transition-colors cursor-pointer">
+                                                            <div key={levelIdx} className="flex items-center space-x-2 bg-backgroundackgroundackground px-3 py-1.5 rounded-full border border-muted hover:border-primary/30 transition-colors cursor-pointer">
                                                                 <RadioGroupItem value={level} id={sId} className="w-4 h-4" />
                                                                 <Label htmlFor={sId} className="text-xs cursor-pointer font-medium">{level}</Label>
                                                             </div>
@@ -668,7 +668,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                                 <Textarea
                                                     id={fieldId}
                                                     name={fieldId}
-                                                    className="min-h-[80px] rounded-xl bg-background"
+                                                    className="min-h-[80px] rounded-xl bg-backgroundackgroundackground"
                                                     value={formData?.reflection?.[field.id] || ''}
                                                     onChange={(e) => setFormData((prev: any) => ({ ...(prev || {}), reflection: { ...(prev?.reflection || {}), [field.id]: e.target.value } }))}
                                                 />
@@ -763,7 +763,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                                 {RATING_LEVELS.map((level, levelIdx) => {
                                                     const sId = `spec-${currentSection.id}-${itemIdx}-${levelIdx}`;
                                                     return (
-                                                        <div key={levelIdx} className="flex items-center space-x-2 bg-background px-3 py-1.5 rounded-full border border-muted hover:border-primary/30 transition-colors cursor-pointer">
+                                                        <div key={levelIdx} className="flex items-center space-x-2 bg-backgroundackgroundackground px-3 py-1.5 rounded-full border border-muted hover:border-primary/30 transition-colors cursor-pointer">
                                                             <RadioGroupItem value={level} id={sId} className="w-4 h-4" />
                                                             <Label htmlFor={sId} className="text-xs cursor-pointer font-medium">{level}</Label>
                                                         </div>
@@ -806,7 +806,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                             value={formData?.overallRating || ''}
                                         >
                                             {['1', '2', '3', '4'].map((r, rIdx) => (
-                                                <div key={rIdx} className="flex flex-col items-center gap-1 bg-background p-2 rounded-xl border border-muted hover:border-primary/30 transition-colors cursor-pointer min-w-[48px]">
+                                                <div key={rIdx} className="flex flex-col items-center gap-1 bg-backgroundackgroundackground p-2 rounded-xl border border-muted hover:border-primary/30 transition-colors cursor-pointer min-w-[48px]">
                                                     <RadioGroupItem value={r} id={`rating-${rIdx}`} />
                                                     <Label htmlFor={`rating-${rIdx}`} className="text-xs font-bold cursor-pointer">{r}</Label>
                                                 </div>
@@ -875,7 +875,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                             <Textarea
                                                 id={fieldId}
                                                 name={fieldId}
-                                                className="min-h-[80px] rounded-xl bg-background"
+                                                className="min-h-[80px] rounded-xl bg-backgroundackgroundackground"
                                                 value={formData?.reflection?.[field.id] || ''}
                                                 onChange={(e) => setFormData((prev: any) => ({ ...(prev || {}), reflection: { ...(prev?.reflection || {}), [field.id]: e.target.value } }))}
                                             />
@@ -906,7 +906,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                     id="simple-impact"
                                     name="simple-impact"
                                     placeholder="Describe your professional contribution and collaboration..."
-                                    className="min-h-[100px] bg-background"
+                                    className="min-h-[100px] bg-backgroundackgroundackground"
                                     value={formData?.impact || ''}
                                     onChange={(e) => setFormData((prev: any) => ({ ...(prev || {}), impact: e.target.value }))}
                                 />
@@ -918,7 +918,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                     id="simple-evidence"
                                     name="simple-evidence"
                                     placeholder="Describe skills developed and alignment with school needs..."
-                                    className="min-h-[100px] bg-background"
+                                    className="min-h-[100px] bg-backgroundackgroundackground"
                                     value={formData?.evidence || ''}
                                     onChange={(e) => setFormData((prev: any) => ({ ...(prev || {}), evidence: e.target.value }))}
                                 />
@@ -930,7 +930,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                     id="simple-summary"
                                     name="simple-summary"
                                     placeholder="Final summary and any additional support required..."
-                                    className="min-h-[120px] bg-background"
+                                    className="min-h-[120px] bg-backgroundackgroundackground"
                                     value={formData?.text || ''}
                                     onChange={(e) => setFormData((prev: any) => ({ ...(prev || {}), text: e.target.value }))}
                                 />
@@ -962,7 +962,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                             </div>
                             <div className="text-right">
                                 <p className="text-[10px] font-bold text-primary capitalize">Overall Rating</p>
-                                <Badge className="bg-primary text-white">{refData.overallRating || 'N/A'}/4</Badge>
+                                <Badge className="bg-primary text-foreground">{refData.overallRating || 'N/A'}/4</Badge>
                             </div>
                         </div>
 
@@ -976,7 +976,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                 <CardContent className="pt-4 space-y-3">
                                     <div className="grid gap-2">
                                         {section.items.map(item => (
-                                            <div key={item} className="flex justify-between items-center text-[11px] p-2 bg-background rounded border border-muted-foreground/5 shadow-sm">
+                                            <div key={item} className="flex justify-between items-center text-[11px] p-2 bg-backgroundackgroundackground rounded border border-muted-foreground/5 shadow-sm">
                                                 <span className="font-medium max-w-[80%]">{item}</span>
                                                 <Badge variant={refData.ratings?.[item] === 'Yes' ? 'default' : 'outline'} className="text-[10px]">
                                                     {refData.ratings?.[item] || 'N/A'}
@@ -1002,7 +1002,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                     <p className="text-[10px] font-bold text-primary uppercase mb-2">Classroom Tools Used</p>
                                     <div className="flex flex-wrap gap-2">
                                         {(refData.tools || []).map((tool: string) => (
-                                            <Badge key={tool} variant="outline" className="bg-background text-[10px]">{tool}</Badge>
+                                            <Badge key={tool} variant="outline" className="bg-backgroundackgroundackground text-[10px]">{tool}</Badge>
                                         ))}
                                         {(!refData.tools || refData.tools.length === 0) && <p className="text-xs italic text-muted-foreground">None listed</p>}
                                     </div>
@@ -1012,7 +1012,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                     <p className="text-[10px] font-bold text-primary uppercase mb-2">Active Routines</p>
                                     <div className="flex flex-wrap gap-2">
                                         {(refData.routines || []).map((routine: string) => (
-                                            <Badge key={routine} variant="outline" className="bg-background text-[10px]">{routine}</Badge>
+                                            <Badge key={routine} variant="outline" className="bg-backgroundackgroundackground text-[10px]">{routine}</Badge>
                                         ))}
                                         {(!refData.routines || refData.routines.length === 0) && <p className="text-xs italic text-muted-foreground">None listed</p>}
                                     </div>
@@ -1056,9 +1056,9 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                 <CardContent className="pt-4 space-y-3">
                                     <div className="grid gap-2">
                                         {section.items.map(item => (
-                                            <div key={item} className="flex justify-between items-center text-[11px] p-2 bg-background rounded border border-muted-foreground/5 shadow-sm">
+                                            <div key={item} className="flex justify-between items-center text-[11px] p-2 bg-backgroundackgroundackground rounded border border-muted-foreground/5 shadow-sm">
                                                 <span className="font-medium">{item}</span>
-                                                <Badge variant="outline" className="text-[10px] bg-background">
+                                                <Badge variant="outline" className="text-[10px] bg-backgroundackgroundackground">
                                                     {refData.ratings?.[item] || 'Not Rated'}
                                                 </Badge>
                                             </div>
@@ -1121,7 +1121,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                 <FileText className="w-4 h-4" />
                                 Review Teacher's Self-Reflection
                             </h3>
-                            <div className="bg-background/50 rounded-xl border border-muted p-4">
+                            <div className="bg-backgroundackgroundackground/50 rounded-xl border border-muted p-4">
                                 {renderDetailedReflection()}
                             </div>
                         </div>
@@ -1135,7 +1135,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                 <span className="text-xs font-medium text-muted-foreground italic">Fill the formal goal setting details below</span>
                             </div>
 
-                            <div className="bg-background rounded-2xl border border-primary/20 shadow-sm overflow-hidden">
+                            <div className="bg-backgroundackgroundackground rounded-2xl border border-primary/20 shadow-sm overflow-hidden">
                                 <GoalSettingForm
                                     userCampus={user?.campusId}
                                     isLeader={role === 'LEADER'}
@@ -1188,9 +1188,9 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
             return (
                 <ScrollArea className="h-[60vh] pr-4">
                     <div className="space-y-6">
-                        <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200">
+                        <div className="p-4 rounded-xl bg-backgroundmerald-50 border border-emerald-200">
                             <div className="flex items-center gap-2 mb-4">
-                                <Badge className="bg-emerald-600">Final Evaluation</Badge>
+                                <Badge className="bg-backgroundmerald-600">Final Evaluation</Badge>
                                 <span className="text-xs font-medium text-emerald-800">Phase 3: Goal Outcome</span>
                             </div>
 
@@ -1216,8 +1216,8 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                     <Label className="text-xs font-bold text-emerald-900">Final Goal Status</Label>
                                     <div className="flex flex-wrap gap-2">
                                         {[
-                                            { id: 'GOAL_COMPLETED', label: 'Goal Completed', color: 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200 border-emerald-200' },
-                                            { id: 'PARTIALLY_MET', label: 'Partially Met', color: 'bg-blue-100 text-blue-700 hover:bg-blue-200 border-blue-200' },
+                                            { id: 'GOAL_COMPLETED', label: 'Goal Completed', color: 'bg-backgroundmerald-100 text-emerald-700 hover:bg-backgroundmerald-200 border-emerald-200' },
+                                            { id: 'PARTIALLY_MET', label: 'Partially Met', color: 'bg-backgroundackgroundlue-100 text-blue-700 hover:bg-backgroundackgroundlue-200 border-blue-200' },
                                             { id: 'NOT_MET', label: 'Not Met', color: 'bg-red-100 text-red-700 hover:bg-red-200 border-red-200' }
                                         ].map(s => (
                                             <Button
@@ -1280,7 +1280,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                         </div>
                                         <div className="text-right">
                                             <p className="text-[10px] font-bold text-primary capitalize">Overall Rating</p>
-                                            <Badge className="bg-primary text-white">{refData.overallRating || 'N/A'}/4</Badge>
+                                            <Badge className="bg-primary text-foreground">{refData.overallRating || 'N/A'}/4</Badge>
                                         </div>
                                     </div>
 
@@ -1294,7 +1294,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                             <CardContent className="pt-4 space-y-4">
                                                 <div className="grid gap-2">
                                                     {section.items.map(item => (
-                                                        <div key={item} className="flex justify-between items-center text-[11px] p-2 bg-background rounded border border-muted-foreground/5 shadow-sm">
+                                                        <div key={item} className="flex justify-between items-center text-[11px] p-2 bg-backgroundackgroundackground rounded border border-muted-foreground/5 shadow-sm">
                                                             <span className="font-medium max-w-[80%]">{item}</span>
                                                             <Badge variant={refData.ratings?.[item] === 'Yes' ? 'default' : 'outline'} className="text-[10px]">
                                                                 {refData.ratings?.[item] || 'N/A'}
@@ -1320,7 +1320,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                                 <p className="text-[10px] font-bold text-primary capitalize mb-2">Classroom Tools Used</p>
                                                 <div className="flex flex-wrap gap-2">
                                                     {(refData.tools || []).map((tool: string) => (
-                                                        <Badge key={tool} variant="outline" className="bg-background text-[10px]">{tool}</Badge>
+                                                        <Badge key={tool} variant="outline" className="bg-backgroundackgroundackground text-[10px]">{tool}</Badge>
                                                     ))}
                                                     {(!refData.tools || refData.tools.length === 0) && <p className="text-xs italic text-muted-foreground">None listed</p>}
                                                 </div>
@@ -1330,7 +1330,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                                 <p className="text-[10px] font-bold text-primary capitalize mb-2">Active Routines</p>
                                                 <div className="flex flex-wrap gap-2">
                                                     {(refData.routines || []).map((routine: string) => (
-                                                        <Badge key={routine} variant="outline" className="bg-background text-[10px]">{routine}</Badge>
+                                                        <Badge key={routine} variant="outline" className="bg-backgroundackgroundackground text-[10px]">{routine}</Badge>
                                                     ))}
                                                     {(!refData.routines || refData.routines.length === 0) && <p className="text-xs italic text-muted-foreground">None listed</p>}
                                                 </div>
@@ -1370,9 +1370,9 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                             <CardContent className="pt-4 space-y-4">
                                                 <div className="grid gap-2">
                                                     {section.items.map(item => (
-                                                        <div key={item} className="flex justify-between items-center text-[11px] p-2 bg-background rounded border border-muted-foreground/5 shadow-sm">
+                                                        <div key={item} className="flex justify-between items-center text-[11px] p-2 bg-backgroundackgroundackground rounded border border-muted-foreground/5 shadow-sm">
                                                             <span className="font-medium">{item}</span>
-                                                            <Badge variant="outline" className="text-[10px] bg-background">
+                                                            <Badge variant="outline" className="text-[10px] bg-backgroundackgroundackground">
                                                                 {refData.ratings?.[item] || 'Not Rated'}
                                                             </Badge>
                                                         </div>
@@ -1445,7 +1445,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                     {goal.goalCompletionForm && (
                         <div className="space-y-1 pt-4 border-t border-muted">
                             <p className="text-[10px] font-bold text-emerald-600 capitalize">Final Evaluation</p>
-                            <div className="p-3 bg-emerald-50 border border-emerald-100 rounded-lg text-sm">
+                            <div className="p-3 bg-backgroundmerald-50 border border-emerald-100 rounded-lg text-sm">
                                 {safeJsonParse(goal.goalCompletionForm).text}
                             </div>
                         </div>
@@ -1477,7 +1477,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                 className="max-w-4xl h-[90vh] flex flex-col p-0 gap-0 border-2 shadow-2xl overflow-hidden"
             >
                 {/* Sticky header */}
-                <DialogHeader className="px-6 py-4 border-b bg-background shrink-0">
+                <DialogHeader className="px-6 py-4 border-b bg-backgroundackgroundackground shrink-0">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                             <Badge variant="outline" className="rounded-md font-mono text-[10px] capitalize">

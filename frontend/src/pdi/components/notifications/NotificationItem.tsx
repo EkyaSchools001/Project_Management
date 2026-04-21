@@ -63,7 +63,7 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({
       case 'ERROR':
         return 'text-red-500 bg-red-500/10';
       default:
-        return 'text-blue-500 bg-blue-500/10';
+        return 'text-blue-500 bg-backgroundackgroundlue-500/10';
     }
   };
 
@@ -112,7 +112,7 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({
         <div className="flex items-center gap-2">
           <p className={cn(
             'font-medium truncate',
-            !notification.read ? 'text-white' : 'text-white/70'
+            !notification.read ? 'text-foreground' : 'text-foreground/70'
           )}>
             {notification.title}
           </p>
@@ -123,12 +123,12 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({
           )}
         </div>
 
-        <p className="text-sm text-white/50 line-clamp-2 mt-1">
+        <p className="text-sm text-foreground/50 line-clamp-2 mt-1">
           {notification.message}
         </p>
 
         <div className="flex items-center gap-3 mt-2">
-          <span className="text-xs text-white/30">
+          <span className="text-xs text-foreground/30">
             {formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })}
           </span>
           {!notification.read && (
@@ -141,7 +141,7 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({
         variant="ghost"
         size="icon"
         onClick={handleDelete}
-        className="opacity-0 group-hover:opacity-100 h-8 w-8 text-white/30 hover:text-red-400 hover:bg-red-500/10 transition-all shrink-0"
+        className="opacity-0 group-hover:opacity-100 h-8 w-8 text-foreground/30 hover:text-red-400 hover:bg-red-500/10 transition-all shrink-0"
       >
         <Trash2 className="w-4 h-4" />
       </Button>

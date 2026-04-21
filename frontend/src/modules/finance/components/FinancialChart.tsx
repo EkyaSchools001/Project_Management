@@ -71,7 +71,7 @@ export function FinancialChart({ type, data, title }: FinancialChartProps) {
     <div className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5">
       {title && (
         <div className="flex items-center justify-between mb-4">
-          <h3 className="font-bold text-white">{title}</h3>
+          <h3 className="font-bold text-foreground">{title}</h3>
           <div className="flex items-center gap-2">
             {isPositiveTrend ? (
               <TrendingUp className="w-4 h-4 text-green-500" />
@@ -83,8 +83,8 @@ export function FinancialChart({ type, data, title }: FinancialChartProps) {
       )}
 
       <div className="mb-4">
-        <p className="text-sm text-white/40">Total</p>
-        <p className="text-2xl font-black text-white">${total.toLocaleString()}</p>
+        <p className="text-sm text-foreground/40">Total</p>
+        <p className="text-2xl font-black text-foreground">${total.toLocaleString()}</p>
       </div>
 
       <div className="h-48">
@@ -93,12 +93,12 @@ export function FinancialChart({ type, data, title }: FinancialChartProps) {
 
       <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-white/5">
         <div>
-          <p className="text-xs text-white/40">Average</p>
-          <p className="font-bold text-white">${avg.toLocaleString()}</p>
+          <p className="text-xs text-foreground/40">Average</p>
+          <p className="font-bold text-foreground">${avg.toLocaleString()}</p>
         </div>
         <div>
-          <p className="text-xs text-white/40">Period</p>
-          <p className="font-bold text-white">{data.labels.length} months</p>
+          <p className="text-xs text-foreground/40">Period</p>
+          <p className="font-bold text-foreground">{data.labels.length} months</p>
         </div>
       </div>
     </div>

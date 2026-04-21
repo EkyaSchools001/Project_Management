@@ -96,7 +96,7 @@ export function MoocManagementView() {
             </div>
 
             <Dialog open={isMoocFormOpen} onOpenChange={setIsMoocFormOpen}>
-                <DialogContent className="max-w-5xl h-[90vh] overflow-y-auto bg-background/95 backdrop-blur-xl shadow-2xl">
+                <DialogContent className="max-w-5xl h-[90vh] overflow-y-auto bg-backgroundackgroundackground/95 backdrop-blur-xl shadow-2xl">
                     <MoocEvidenceForm
                         onCancel={() => setIsMoocFormOpen(false)}
                         onSubmitSuccess={() => {
@@ -120,7 +120,7 @@ export function MoocManagementView() {
                     />
                 </div>
                 <Select value={statusFilter} onValueChange={setStatusFilter}>
-                    <SelectTrigger className="w-full sm:w-[180px] rounded-xl bg-background border-muted/20">
+                    <SelectTrigger className="w-full sm:w-[180px] rounded-xl bg-backgroundackgroundackground border-muted/20">
                         <Filter className="w-4 h-4 mr-2" />
                         <SelectValue placeholder="Filter by Status" />
                     </SelectTrigger>
@@ -184,7 +184,7 @@ export function MoocManagementView() {
                                         <TableCell>
                                             <Badge
                                                 variant={submission.status === 'Approved' ? 'default' : submission.status === 'Pending' ? 'secondary' : 'destructive'}
-                                                className={submission.status === 'Approved' ? 'bg-emerald-500' : submission.status === 'Pending' ? 'bg-amber-500 text-amber-950' : ''}
+                                                className={submission.status === 'Approved' ? 'bg-backgroundmerald-500' : submission.status === 'Pending' ? 'bg-amber-500 text-amber-950' : ''}
                                             >
                                                 {submission.status}
                                             </Badge>
@@ -205,7 +205,7 @@ export function MoocManagementView() {
                                                         <Button 
                                                             variant="default" 
                                                             size="icon"
-                                                            className="h-8 w-8 bg-emerald-600 hover:bg-emerald-700"
+                                                            className="h-8 w-8 bg-backgroundmerald-600 hover:bg-backgroundmerald-700"
                                                             title="Approve"
                                                             onClick={() => handleApprove(submission.id)}
                                                         >

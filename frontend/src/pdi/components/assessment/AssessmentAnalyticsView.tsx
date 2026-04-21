@@ -37,7 +37,7 @@ const AssessmentAnalyticsView = () => {
     }, []);
 
     if (loading || !data) {
-        return <div className="p-12 text-center animate-pulse text-zinc-400 font-medium">Analyzing assessment data...</div>;
+        return <div className="p-12 text-center animate-pulse text-muted-foreground font-medium">Analyzing assessment data...</div>;
     }
 
     const { campusPostOrientation, detailedStats } = data;
@@ -53,8 +53,8 @@ const AssessmentAnalyticsView = () => {
         : 0;
 
     const stats = [
-        { title: "Avg Assessment Score", value: `${Math.round(avgGlobalScore)}%`, icon: Award, color: "text-blue-600", bg: "bg-blue-50", trend: "System-wide" },
-        { title: "Overall Completion", value: `${Math.round(completionRate)}%`, icon: Target, color: "text-emerald-600", bg: "bg-emerald-50", trend: "All Assessments" },
+        { title: "Avg Assessment Score", value: `${Math.round(avgGlobalScore)}%`, icon: Award, color: "text-blue-600", bg: "bg-backgroundackgroundlue-50", trend: "System-wide" },
+        { title: "Overall Completion", value: `${Math.round(completionRate)}%`, icon: Target, color: "text-emerald-600", bg: "bg-backgroundmerald-50", trend: "All Assessments" },
         { title: "Total Attempts", value: totalAttempts, icon: Activity, color: "text-amber-600", bg: "bg-amber-50", trend: "Submitted" },
         { title: "Active Assessments", value: detailedStats?.length || 0, icon: FileText, color: "text-rose-600", bg: "bg-rose-50", trend: "Live Templates" },
     ];
@@ -74,7 +74,7 @@ const AssessmentAnalyticsView = () => {
                                     {stat.trend}
                                 </Badge>
                             </div>
-                            <h3 className="text-sm font-bold text-zinc-400 capitalize tracking-wider">{stat.title}</h3>
+                            <h3 className="text-sm font-bold text-muted-foreground capitalize tracking-wider">{stat.title}</h3>
                             <p className="text-3xl font-black text-zinc-900 mt-1">{stat.value}</p>
                         </CardContent>
                     </Card>
@@ -140,7 +140,7 @@ const AssessmentAnalyticsView = () => {
                             </div>
                         ))}
                         {(!detailedStats || detailedStats.length === 0) && (
-                            <div className="text-center py-12 text-zinc-400 font-medium">No assessment data available</div>
+                            <div className="text-center py-12 text-muted-foreground font-medium">No assessment data available</div>
                         )}
                     </CardContent>
                 </Card>
@@ -177,7 +177,7 @@ const AssessmentAnalyticsView = () => {
                                     <TableCell className="font-bold text-zinc-800">{stat.title}</TableCell>
                                     <TableCell>
                                         <div className="flex items-center gap-2">
-                                            <div className={`w-2 h-2 rounded-full ${stat.avgScore >= 80 ? 'bg-emerald-500' : stat.avgScore >= 60 ? 'bg-blue-500' : 'bg-amber-500'}`} />
+                                            <div className={`w-2 h-2 rounded-full ${stat.avgScore >= 80 ? 'bg-backgroundmerald-500' : stat.avgScore >= 60 ? 'bg-backgroundackgroundlue-500' : 'bg-amber-500'}`} />
                                             <span className="font-black text-zinc-700">{stat.avgScore}%</span>
                                         </div>
                                     </TableCell>
@@ -185,7 +185,7 @@ const AssessmentAnalyticsView = () => {
                                         {stat.submittedCount} Attempts
                                     </TableCell>
                                     <TableCell>
-                                        <Badge className={`border-none ${stat.submittedCount > 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-zinc-100 text-zinc-500'} font-black text-[10px]`}>
+                                        <Badge className={`border-none ${stat.submittedCount > 0 ? 'bg-backgroundmerald-100 text-emerald-700' : 'bg-zinc-100 text-zinc-500'} font-black text-[10px]`}>
                                             {stat.submittedCount > 0 ? "RECORDED" : "NO DATA"}
                                         </Badge>
                                     </TableCell>

@@ -94,7 +94,7 @@ export default function ProfilePage() {
     return (
         <div className="p-6 space-y-6">
             <div className="flex items-center justify-between">
-                <h1 className="text-2xl font-bold text-white">Profile Settings</h1>
+                <h1 className="text-2xl font-bold text-foreground">Profile Settings</h1>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -114,14 +114,14 @@ export default function ProfilePage() {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2 space-y-6">
                         <Card className="p-6 bg-[#161B22] border-white/5 rounded-2xl">
-                            <h2 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
+                            <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                                 <User size={20} className="text-[#BAFF00]" />
                                 Personal Information
                             </h2>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                                    <label className="text-xs font-medium text-foreground/60 uppercase tracking-wider">
                                         First Name
                                     </label>
                                     <input
@@ -129,12 +129,12 @@ export default function ProfilePage() {
                                         name="firstName"
                                         value={formData.firstName}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#BAFF00]/50 outline-none transition-all"
                                     />
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                                    <label className="text-xs font-medium text-foreground/60 uppercase tracking-wider">
                                         Last Name
                                     </label>
                                     <input
@@ -142,12 +142,12 @@ export default function ProfilePage() {
                                         name="lastName"
                                         value={formData.lastName}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#BAFF00]/50 outline-none transition-all"
                                     />
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                                    <label className="text-xs font-medium text-foreground/60 uppercase tracking-wider">
                                         <Mail size={14} className="inline mr-1" />
                                         Email
                                     </label>
@@ -155,13 +155,13 @@ export default function ProfilePage() {
                                         type="email"
                                         value={user?.email || ''}
                                         disabled
-                                        className="w-full px-4 h-12 bg-white/5 border border-white/5 rounded-xl text-white/40 cursor-not-allowed"
+                                        className="w-full px-4 h-12 bg-white/5 border border-white/5 rounded-xl text-foreground/40 cursor-not-allowed"
                                     />
-                                    <p className="text-xs text-white/30">Email cannot be changed</p>
+                                    <p className="text-xs text-foreground/30">Email cannot be changed</p>
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                                    <label className="text-xs font-medium text-foreground/60 uppercase tracking-wider">
                                         <Phone size={14} className="inline mr-1" />
                                         Phone
                                     </label>
@@ -170,13 +170,13 @@ export default function ProfilePage() {
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#BAFF00]/50 outline-none transition-all"
                                         placeholder="+1 (555) 000-0000"
                                     />
                                 </div>
 
                                 <div className="space-y-2 md:col-span-2">
-                                    <label className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                                    <label className="text-xs font-medium text-foreground/60 uppercase tracking-wider">
                                         Bio
                                     </label>
                                     <textarea
@@ -184,7 +184,7 @@ export default function ProfilePage() {
                                         value={formData.bio}
                                         onChange={handleChange}
                                         rows={3}
-                                        className="w-full px-4 py-3 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all resize-none"
+                                        className="w-full px-4 py-3 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#BAFF00]/50 outline-none transition-all resize-none"
                                         placeholder="Tell us about yourself..."
                                     />
                                 </div>
@@ -192,14 +192,14 @@ export default function ProfilePage() {
                         </Card>
 
                         <Card className="p-6 bg-[#161B22] border-white/5 rounded-2xl">
-                            <h2 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
+                            <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                                 <MapPin size={20} className="text-[#BAFF00]" />
                                 Location
                             </h2>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2 md:col-span-2">
-                                    <label className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                                    <label className="text-xs font-medium text-foreground/60 uppercase tracking-wider">
                                         Address
                                     </label>
                                     <input
@@ -207,13 +207,13 @@ export default function ProfilePage() {
                                         name="address"
                                         value={formData.address}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#BAFF00]/50 outline-none transition-all"
                                         placeholder="123 Main Street"
                                     />
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                                    <label className="text-xs font-medium text-foreground/60 uppercase tracking-wider">
                                         City
                                     </label>
                                     <input
@@ -221,12 +221,12 @@ export default function ProfilePage() {
                                         name="city"
                                         value={formData.city}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#BAFF00]/50 outline-none transition-all"
                                     />
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                                    <label className="text-xs font-medium text-foreground/60 uppercase tracking-wider">
                                         Country
                                     </label>
                                     <input
@@ -234,12 +234,12 @@ export default function ProfilePage() {
                                         name="country"
                                         value={formData.country}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#BAFF00]/50 outline-none transition-all"
                                     />
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                                    <label className="text-xs font-medium text-foreground/60 uppercase tracking-wider">
                                         Postal Code
                                     </label>
                                     <input
@@ -247,28 +247,28 @@ export default function ProfilePage() {
                                         name="postalCode"
                                         value={formData.postalCode}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#BAFF00]/50 outline-none transition-all"
                                     />
                                 </div>
                             </div>
                         </Card>
 
                         <Card className="p-6 bg-[#161B22] border-white/5 rounded-2xl">
-                            <h2 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
+                            <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                                 <Globe size={20} className="text-[#BAFF00]" />
                                 Preferences
                             </h2>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                                    <label className="text-xs font-medium text-foreground/60 uppercase tracking-wider">
                                         Timezone
                                     </label>
                                     <select
                                         name="timezone"
                                         value={formData.timezone}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#BAFF00]/50 outline-none transition-all"
                                     >
                                         {timezones.map(tz => (
                                             <option key={tz.value} value={tz.value}>{tz.label}</option>
@@ -277,14 +277,14 @@ export default function ProfilePage() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                                    <label className="text-xs font-medium text-foreground/60 uppercase tracking-wider">
                                         Language
                                     </label>
                                     <select
                                         name="language"
                                         value={formData.language}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#BAFF00]/50 outline-none transition-all"
                                     >
                                         {languages.map(lang => (
                                             <option key={lang.value} value={lang.value}>{lang.label}</option>
@@ -297,14 +297,14 @@ export default function ProfilePage() {
 
                     <div className="space-y-6">
                         <Card className="p-6 bg-[#161B22] border-white/5 rounded-2xl">
-                            <h2 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
+                            <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                                 <Bell size={20} className="text-[#BAFF00]" />
                                 Notifications
                             </h2>
 
                             <div className="space-y-4">
                                 <label className="flex items-center justify-between cursor-pointer">
-                                    <span className="text-sm text-white/80">Email Notifications</span>
+                                    <span className="text-sm text-foreground/80">Email Notifications</span>
                                     <input
                                         type="checkbox"
                                         name="emailNotifications"
@@ -315,7 +315,7 @@ export default function ProfilePage() {
                                 </label>
 
                                 <label className="flex items-center justify-between cursor-pointer">
-                                    <span className="text-sm text-white/80">Push Notifications</span>
+                                    <span className="text-sm text-foreground/80">Push Notifications</span>
                                     <input
                                         type="checkbox"
                                         name="pushNotifications"
@@ -328,7 +328,7 @@ export default function ProfilePage() {
                         </Card>
 
                         <Card className="p-6 bg-[#161B22] border-white/5 rounded-2xl">
-                            <h2 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
+                            <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                                 <Shield size={20} className="text-[#BAFF00]" />
                                 Account
                             </h2>
@@ -339,7 +339,7 @@ export default function ProfilePage() {
                                         {avatarUrl ? (
                                             <img src={avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
                                         ) : (
-                                            <User size={40} className="text-white/20" />
+                                            <User size={40} className="text-foreground/20" />
                                         )}
                                     </div>
                                     <label className="absolute bottom-0 right-0 w-8 h-8 bg-[#BAFF00] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#BAFF00]/90 transition-colors">
@@ -353,11 +353,11 @@ export default function ProfilePage() {
                                     </label>
                                 </div>
 
-                                <p className="text-sm text-white/60 mb-4">{user?.email}</p>
+                                <p className="text-sm text-foreground/60 mb-4">{user?.email}</p>
 
                                 <div className="px-4 py-2 bg-white/5 rounded-lg inline-block">
-                                    <span className="text-xs text-white/40 uppercase tracking-wider">Role</span>
-                                    <p className="text-white font-semibold">{user?.role}</p>
+                                    <span className="text-xs text-foreground/40 uppercase tracking-wider">Role</span>
+                                    <p className="text-foreground font-semibold">{user?.role}</p>
                                 </div>
                             </div>
                         </Card>

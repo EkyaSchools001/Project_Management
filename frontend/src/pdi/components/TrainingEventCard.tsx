@@ -65,7 +65,7 @@ export function TrainingEventCard({ event, onRegister, className }: TrainingEven
           </Button>
         ) : (
           <Button
-            className="w-full h-14 rounded-2xl text-lg font-bold bg-[#1e293b] hover:bg-[#0f172a] text-white shadow-lg shadow-slate-900/20 transition-all active:scale-[0.98]"
+            className="w-full h-14 rounded-2xl text-lg font-bold bg-[#1e293b] hover:bg-[#0f172a] text-foreground shadow-lg shadow-slate-900/20 transition-all active:scale-[0.98]"
             onClick={onRegister}
           >
             Register Now

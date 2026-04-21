@@ -54,21 +54,21 @@ export function ChallengeCard({ challenge, userProgress = null, onJoin, onViewDe
           ${isActive ? 'bg-[#BAFF00]/20' : 'bg-white/5'}
         `}>
           {icon}
-          {!isActive && <div className="absolute inset-0 bg-black/60 rounded-xl flex items-center justify-center"><Clock size={20} className="text-white/40" /></div>}
+          {!isActive && <div className="absolute inset-0 bg-backgroundackgroundlack/60 rounded-xl flex items-center justify-center"><Clock size={20} className="text-foreground/40" /></div>}
         </div>
 
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
-            <h3 className="font-bold text-white">{challenge.name}</h3>
+            <h3 className="font-bold text-foreground">{challenge.name}</h3>
             {isCompleted && <Check size={18} className="text-[#BAFF00] shrink-0" />}
           </div>
           
-          <p className="text-xs text-white/50 mt-1 line-clamp-2">
+          <p className="text-xs text-foreground/50 mt-1 line-clamp-2">
             {challenge.description}
           </p>
 
           <div className="flex items-center gap-4 mt-3">
-            <div className="flex items-center gap-1 text-white/40">
+            <div className="flex items-center gap-1 text-foreground/40">
               <Users size={12} />
               <span className="text-[10px]">{challenge.participantCount}/{challenge.maxParticipants || '∞'}</span>
             </div>
@@ -77,7 +77,7 @@ export function ChallengeCard({ challenge, userProgress = null, onJoin, onViewDe
               <span className="text-xs font-bold">{challenge.points} pts</span>
             </div>
             {isActive && (
-              <div className="flex items-center gap-1 text-white/40">
+              <div className="flex items-center gap-1 text-foreground/40">
                 <Clock size={12} />
                 <span className="text-[10px]">{daysLeft}d left</span>
               </div>
@@ -92,7 +92,7 @@ export function ChallengeCard({ challenge, userProgress = null, onJoin, onViewDe
                   style={{ width: `${progress}%` }}
                 />
               </div>
-              <p className="text-[10px] text-white/40 text-right">{progress.toFixed(0)}% complete</p>
+              <p className="text-[10px] text-foreground/40 text-right">{progress.toFixed(0)}% complete</p>
             </div>
           )}
 

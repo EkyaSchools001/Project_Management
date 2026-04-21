@@ -95,7 +95,7 @@ export const SurveyAnalyticsDashboard = ({ survey, onRefreshSurvey }: SurveyAnal
                     <div>
                         <div className="flex items-center gap-3">
                             <h2 className="text-xl font-bold">Survey: {survey.title}</h2>
-                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold capitalize tracking-wider ${survey.isActive ? "bg-emerald-100 text-emerald-700 border border-emerald-200" : "bg-slate-100 text-slate-600 border border-slate-200"
+                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold capitalize tracking-wider ${survey.isActive ? "bg-backgroundmerald-100 text-emerald-700 border border-emerald-200" : "bg-slate-100 text-slate-600 border border-slate-200"
                                 }`}>
                                 {survey.isActive ? "Active" : "Closed"}
                             </span>
@@ -121,7 +121,7 @@ export const SurveyAnalyticsDashboard = ({ survey, onRefreshSurvey }: SurveyAnal
                         <>
                             <Button
                                 variant={survey.isActive ? "outline" : "default"}
-                                className={survey.isActive ? "text-red-600 border-red-200 hover:bg-red-50 font-bold" : "bg-emerald-600 hover:bg-emerald-700 text-white font-bold"}
+                                className={survey.isActive ? "text-red-600 border-red-200 hover:bg-red-50 font-bold" : "bg-backgroundmerald-600 hover:bg-backgroundmerald-700 text-foreground font-bold"}
                                 onClick={async () => {
                                     const action = survey.isActive ? 'Deactivate' : 'Activate';
                                     if (confirm(`${action} this survey? All active teachers will be notified automatically.`)) {

@@ -31,7 +31,7 @@ interface PAObs {
 const RATING_LABELS: Record<number, { label: string; color: string }> = {
     1: { label: "Basic", color: "bg-red-100 text-red-700" },
     2: { label: "Developing", color: "bg-yellow-100 text-yellow-700" },
-    3: { label: "Effective", color: "bg-blue-100 text-blue-700" },
+    3: { label: "Effective", color: "bg-backgroundackgroundlue-100 text-blue-700" },
     4: { label: "Highly Effective", color: "bg-green-100 text-green-700" },
 };
 
@@ -134,7 +134,7 @@ const PerformingArtsObsDashboard: React.FC = () => {
                         {/* Header */}
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                             <div className="flex items-center gap-3">
-                                <div className="p-3 rounded-xl text-white shadow-md" style={{ background: "#B69D74" }}>
+                                <div className="p-3 rounded-xl text-foreground shadow-md" style={{ background: "#B69D74" }}>
                                     <Music className="w-6 h-6" />
                                 </div>
                                 <div>
@@ -200,7 +200,7 @@ const PerformingArtsObsDashboard: React.FC = () => {
                         {/* Table */}
                         <Card className="  shadow-sm overflow-hidden">
                             <CardHeader className="border-b py-3 px-4" style={{ background: "#1F2839" }}>
-                                <div className="grid grid-cols-11 gap-2 text-xs font-semibold text-white capitalize tracking-wider">
+                                <div className="grid grid-cols-11 gap-2 text-xs font-semibold text-foreground capitalize tracking-wider">
                                     <span>Sr.</span>
                                     <span className="col-span-1">Date</span>
                                     <span className="col-span-2">Teacher</span>
@@ -250,7 +250,7 @@ const PerformingArtsObsDashboard: React.FC = () => {
                                                 <span className="col-span-2" onClick={(e) => e.stopPropagation()}>
                                                     <Dialog>
                                                         <DialogTrigger asChild>
-                                                            <Button variant="outline" size="sm" className="h-7 text-xs gap-1 bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 hover:text-blue-800">
+                                                            <Button variant="outline" size="sm" className="h-7 text-xs gap-1 bg-backgroundackgroundlue-50 text-blue-700 border-blue-200 hover:bg-backgroundackgroundlue-100 hover:text-blue-800">
                                                                 <MessageSquare className="w-3 h-3" /> View Comment
                                                             </Button>
                                                         </DialogTrigger>

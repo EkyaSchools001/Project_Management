@@ -156,16 +156,16 @@ export const TaskDetailModal = ({
     return (
         <Dialog.Root open={isOpen} onOpenChange={onClose}>
             <Dialog.Portal>
-                <Dialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50" />
+                <Dialog.Overlay className="fixed inset-0 bg-backgroundackgroundlack/50 backdrop-blur-sm z-50" />
                 <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-4xl max-h-[90vh] bg-white rounded-3xl shadow-2xl z-50 overflow-hidden">
                     <div className="flex flex-col h-full max-h-[90vh]">
                         <div className="flex items-center justify-between p-6 border-b border-slate-100">
                             <div className="flex items-center gap-4">
-                                <div className="text-sm font-bold text-zinc-400 uppercase tracking-wider">
+                                <div className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
                                     Task Details
                                 </div>
                                 {task?.id && (
-                                    <span className="text-xs text-zinc-400 font-mono">
+                                    <span className="text-xs text-muted-foreground font-mono">
                                         #{task.id}
                                     </span>
                                 )}
@@ -178,7 +178,7 @@ export const TaskDetailModal = ({
                                     <Trash2 size={18} />
                                 </button>
                                 <Dialog.Close asChild>
-                                    <button className="p-2 text-zinc-400 hover:bg-slate-100 rounded-xl transition-colors">
+                                    <button className="p-2 text-muted-foreground hover:bg-slate-100 rounded-xl transition-colors">
                                         <X size={18} />
                                     </button>
                                 </Dialog.Close>
@@ -210,7 +210,7 @@ export const TaskDetailModal = ({
                             {activeTab === 'details' && (
                                 <div className="space-y-6">
                                     <div>
-                                        <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                                        <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
                                             Title
                                         </label>
                                         <input
@@ -223,7 +223,7 @@ export const TaskDetailModal = ({
                                     </div>
 
                                     <div>
-                                        <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                                        <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
                                             Description
                                         </label>
                                         <textarea
@@ -237,7 +237,7 @@ export const TaskDetailModal = ({
 
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
-                                            <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                                            <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
                                                 Status
                                             </label>
                                             <select
@@ -254,7 +254,7 @@ export const TaskDetailModal = ({
                                         </div>
 
                                         <div>
-                                            <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                                            <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
                                                 Priority
                                             </label>
                                             <select
@@ -273,7 +273,7 @@ export const TaskDetailModal = ({
 
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
-                                            <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                                            <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
                                                 Start Date
                                             </label>
                                             <input
@@ -285,7 +285,7 @@ export const TaskDetailModal = ({
                                         </div>
 
                                         <div>
-                                            <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                                            <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
                                                 End Date
                                             </label>
                                             <input
@@ -299,7 +299,7 @@ export const TaskDetailModal = ({
 
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
-                                            <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                                            <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
                                                 Assignee
                                             </label>
                                             <select
@@ -317,7 +317,7 @@ export const TaskDetailModal = ({
                                         </div>
 
                                         <div>
-                                            <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                                            <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
                                                 Estimated Hours
                                             </label>
                                             <input
@@ -331,7 +331,7 @@ export const TaskDetailModal = ({
                                     </div>
 
                                     <div>
-                                        <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                                        <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
                                             Tags
                                         </label>
                                         <div className="flex flex-wrap gap-2 mb-2">
@@ -343,7 +343,7 @@ export const TaskDetailModal = ({
                                                     {tag}
                                                     <button
                                                         onClick={() => handleRemoveTag(idx)}
-                                                        className="text-zinc-400 hover:text-rose-500"
+                                                        className="text-muted-foreground hover:text-rose-500"
                                                     >
                                                         <X size={12} />
                                                     </button>
@@ -361,7 +361,7 @@ export const TaskDetailModal = ({
                                             />
                                             <button
                                                 onClick={handleAddTag}
-                                                className="px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-semibold hover:bg-indigo-700"
+                                                className="px-4 py-2 bg-indigo-600 text-foreground rounded-xl text-sm font-semibold hover:bg-indigo-700"
                                             >
                                                 Add
                                             </button>
@@ -396,18 +396,18 @@ export const TaskDetailModal = ({
                                                     onClick={() => handleToggleSubtask(idx)}
                                                     className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
                                                         subtask.done
-                                                            ? 'bg-emerald-500 border-emerald-500'
+                                                            ? 'bg-backgroundmerald-500 border-emerald-500'
                                                             : 'border-slate-300 hover:border-indigo-400'
                                                     }`}
                                                 >
-                                                    {subtask.done && <CheckCircle2 size={12} className="text-white" />}
+                                                    {subtask.done && <CheckCircle2 size={12} className="text-foreground" />}
                                                 </button>
-                                                <span className={`flex-1 text-sm ${subtask.done ? 'text-zinc-400 line-through' : 'text-slate-700'}`}>
+                                                <span className={`flex-1 text-sm ${subtask.done ? 'text-muted-foreground line-through' : 'text-slate-700'}`}>
                                                     {subtask.title}
                                                 </span>
                                                 <button
                                                     onClick={() => handleDeleteSubtask(idx)}
-                                                    className="text-zinc-400 hover:text-rose-500"
+                                                    className="text-muted-foreground hover:text-rose-500"
                                                 >
                                                     <Trash2 size={14} />
                                                 </button>
@@ -426,7 +426,7 @@ export const TaskDetailModal = ({
                                         />
                                         <button
                                             onClick={handleAddSubtask}
-                                            className="px-6 py-3 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700"
+                                            className="px-6 py-3 bg-indigo-600 text-foreground rounded-xl font-semibold hover:bg-indigo-700"
                                         >
                                             <Plus size={18} />
                                         </button>
@@ -438,7 +438,7 @@ export const TaskDetailModal = ({
                                 <div className="space-y-6">
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="p-4 bg-slate-50 rounded-xl">
-                                            <div className="flex items-center gap-2 text-zinc-400 mb-2">
+                                            <div className="flex items-center gap-2 text-muted-foreground mb-2">
                                                 <Clock3 size={16} />
                                                 <span className="text-xs font-bold uppercase tracking-wider">Estimated</span>
                                             </div>
@@ -447,7 +447,7 @@ export const TaskDetailModal = ({
                                             </div>
                                         </div>
                                         <div className="p-4 bg-slate-50 rounded-xl">
-                                            <div className="flex items-center gap-2 text-zinc-400 mb-2">
+                                            <div className="flex items-center gap-2 text-muted-foreground mb-2">
                                                 <Clock size={16} />
                                                 <span className="text-xs font-bold uppercase tracking-wider">Logged</span>
                                             </div>
@@ -465,14 +465,14 @@ export const TaskDetailModal = ({
                                                     <div key={idx} className="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
                                                         <div>
                                                             <div className="text-sm font-medium text-slate-700">{entry.description}</div>
-                                                            <div className="text-xs text-zinc-400">{entry.date}</div>
+                                                            <div className="text-xs text-muted-foreground">{entry.date}</div>
                                                         </div>
                                                         <div className="text-sm font-bold text-slate-700">{entry.hours}h</div>
                                                     </div>
                                                 ))}
                                             </div>
                                         ) : (
-                                            <div className="text-center py-8 text-zinc-400 text-sm">
+                                            <div className="text-center py-8 text-muted-foreground text-sm">
                                                 No time entries yet
                                             </div>
                                         )}
@@ -492,7 +492,7 @@ export const TaskDetailModal = ({
                                                     <div className="flex-1">
                                                         <div className="flex items-center gap-2 mb-1">
                                                             <span className="text-sm font-semibold text-slate-700">{comment.author?.name || 'User'}</span>
-                                                            <span className="text-xs text-zinc-400">
+                                                            <span className="text-xs text-muted-foreground">
                                                                 {comment.createdAt ? format(parseISO(comment.createdAt), 'MMM d, h:mm a') : ''}
                                                             </span>
                                                         </div>
@@ -501,7 +501,7 @@ export const TaskDetailModal = ({
                                                 </div>
                                             ))
                                         ) : (
-                                            <div className="text-center py-8 text-zinc-400 text-sm">
+                                            <div className="text-center py-8 text-muted-foreground text-sm">
                                                 No comments yet
                                             </div>
                                         )}
@@ -518,7 +518,7 @@ export const TaskDetailModal = ({
                                         />
                                         <button
                                             onClick={handleAddComment}
-                                            className="px-4 py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700"
+                                            className="px-4 py-3 bg-indigo-600 text-foreground rounded-xl hover:bg-indigo-700"
                                         >
                                             <Send size={18} />
                                         </button>
@@ -528,7 +528,7 @@ export const TaskDetailModal = ({
                         </div>
 
                         <div className="flex items-center justify-between p-6 border-t border-slate-100 bg-slate-50">
-                            <div className="text-sm text-zinc-400">
+                            <div className="text-sm text-muted-foreground">
                                 Created {task?.createdAt ? format(parseISO(task.createdAt), 'MMM d, yyyy') : 'recently'}
                             </div>
                             <div className="flex gap-3">
@@ -539,7 +539,7 @@ export const TaskDetailModal = ({
                                 </Dialog.Close>
                                 <button
                                     onClick={handleSave}
-                                    className="px-6 py-3 bg-indigo-600 text-white text-sm font-semibold rounded-xl hover:bg-indigo-700 transition-colors"
+                                    className="px-6 py-3 bg-indigo-600 text-foreground text-sm font-semibold rounded-xl hover:bg-indigo-700 transition-colors"
                                 >
                                     Save Changes
                                 </button>

@@ -38,7 +38,7 @@ export function DashboardLayout({ children, role, userName }: DashboardLayoutPro
   const mainOffset = "ml-0";
 
   return (
-    <div className="min-h-screen bg-[#18181b] text-white flex flex-col md:flex-row overflow-x-hidden font-sans">
+    <div className="min-h-screen bg-[#18181b] text-foreground flex flex-col md:flex-row overflow-x-hidden font-sans">
       
       {/* Mobile Header */}
       <div className="md:hidden flex items-center justify-between p-4 border-b border-white/10 bg-[#0f0f0f] h-16 sticky top-0 z-50">
@@ -91,26 +91,26 @@ export function DashboardLayout({ children, role, userName }: DashboardLayoutPro
       <main className={cn("flex-1 transition-all duration-300 min-h-screen flex flex-col relative", mainOffset)}>
         {!isMobile && (
           <header className="h-16 border-b border-white/5 bg-[#18181b]/80 backdrop-blur-xl flex items-center justify-between px-8 sticky top-0 z-40 w-full gap-8">
-            <div className="flex items-center gap-3 font-semibold text-[11px] tracking-tight text-white/60">
+            <div className="flex items-center gap-3 font-semibold text-[11px] tracking-tight text-foreground/60">
               <div className="w-2 h-2 rounded-full bg-[#BAFF00] animate-pulse" />
               <span>Project Ecosystem // Active Hub</span>
             </div>
 
             <div className="flex-1 max-w-md relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-white/30" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-foreground/30" />
               <Input
                 placeholder="EXECUTE_SEARCH..."
-                className="pl-10 h-10 bg-white/5 border-white/10 rounded-lg text-xs focus:border-[#BAFF00] focus:ring-1 focus:ring-[#BAFF00]/20 placeholder:text-white/20"
+                className="pl-10 h-10 bg-white/5 border-white/10 rounded-lg text-xs focus:border-[#BAFF00] focus:ring-1 focus:ring-[#BAFF00]/20 placeholder:text-foreground/20"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
 
             <div className="flex items-center gap-4">
-              <Button variant="ghost" size="sm" className="rounded-lg text-white/60 font-semibold text-xs hover:text-[#BAFF00] hover:bg-white/5 transition-all" asChild>
+              <Button variant="ghost" size="sm" className="rounded-lg text-foreground/60 font-semibold text-xs hover:text-[#BAFF00] hover:bg-white/5 transition-all" asChild>
                 <Link to={getDocumentsPath()}>Storage</Link>
               </Button>
-              <Button variant="ghost" size="sm" className="rounded-lg text-white/60 font-semibold text-xs hover:text-[#BAFF00] hover:bg-white/5 transition-all" onClick={() => window.open('https://pdi.ekyaschools.com/education-blogs/', '_blank')}>
+              <Button variant="ghost" size="sm" className="rounded-lg text-foreground/60 font-semibold text-xs hover:text-[#BAFF00] hover:bg-white/5 transition-all" onClick={() => window.open('https://pdi.ekyaschools.com/education-blogs/', '_blank')}>
                 Intel
               </Button>
               <div className="w-px h-6 bg-white/10" />
@@ -121,7 +121,7 @@ export function DashboardLayout({ children, role, userName }: DashboardLayoutPro
 
         <div className="p-2 md:p-4 lg:p-4 w-full flex-1 animate-fade-in relative transition-all duration-300">
           {/* Subtle Technical Decorations */}
-          <div className="absolute top-2 right-4 font-mono text-[7px] text-white/5 uppercase select-none pointer-events-none">
+          <div className="absolute top-2 right-4 font-mono text-[7px] text-foreground/5 uppercase select-none pointer-events-none">
             STREAM_ENCRYPTED // {new Date().toISOString()}
           </div>
           {children}

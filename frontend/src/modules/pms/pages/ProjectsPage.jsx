@@ -139,10 +139,10 @@ const ProjectsPage = () => {
 
     const getStatusStyle = (status) => {
         switch (status) {
-            case 'Completed': return 'bg-emerald-500 text-white border-transparent shadow-emerald-500/20';
-            case 'Active': return 'bg-indigo-600 text-white border-transparent shadow-indigo-500/20';
-            case 'Archived': return 'bg-slate-500 text-white border-transparent shadow-slate-500/10';
-            default: return 'bg-slate-500 text-white border-transparent';
+            case 'Completed': return 'bg-backgroundmerald-500 text-foreground border-transparent shadow-emerald-500/20';
+            case 'Active': return 'bg-indigo-600 text-foreground border-transparent shadow-indigo-500/20';
+            case 'Archived': return 'bg-slate-500 text-foreground border-transparent shadow-slate-500/10';
+            default: return 'bg-slate-500 text-foreground border-transparent';
         }
     };
 
@@ -176,7 +176,7 @@ const ProjectsPage = () => {
             <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-rose-500/5 rounded-full blur-[150px] -z-10" />
 
             {/* Vibrant Mission Matrix Header */}
-            <header className="relative overflow-hidden p-12 sm:p-20 bg-slate-950 rounded-[4rem] sm:rounded-[5rem] text-white shadow-2xl border border-white/5">
+            <header className="relative overflow-hidden p-12 sm:p-20 bg-slate-950 rounded-[4rem] sm:rounded-[5rem] text-foreground shadow-2xl border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-transparent to-rose-600/10" />
                 <div className="absolute -left-20 -bottom-20 w-80 h-80 bg-violet-600 rounded-full blur-[120px] opacity-20 animate-pulse pointer-events-none" />
                 
@@ -189,7 +189,7 @@ const ProjectsPage = () => {
                         <motion.h1 variants={itemVariants} className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tighter uppercase leading-[0.8] mb-4">
                             Mission <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-rose-400 to-amber-400 animate-gradient-shift">Clusters</span>
                         </motion.h1>
-                        <motion.p variants={itemVariants} className="text-white/40 font-bold text-xs sm:text-sm uppercase tracking-[0.4em] flex items-center gap-4">
+                        <motion.p variants={itemVariants} className="text-foreground/40 font-bold text-xs sm:text-sm uppercase tracking-[0.4em] flex items-center gap-4">
                             <Activity size={18} className="text-amber-400" />
                             Secure Orchestration Terminal // Layer 0
                         </motion.p>
@@ -197,7 +197,7 @@ const ProjectsPage = () => {
 
                     <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 w-full xl:w-auto pb-4">
                         <div className="relative group/search flex-1 sm:w-96">
-                            <Search className="absolute left-7 top-1/2 -translate-y-1/2 text-white/20 w-6 h-6 group-focus-within/search:text-indigo-400" />
+                            <Search className="absolute left-7 top-1/2 -translate-y-1/2 text-foreground/20 w-6 h-6 group-focus-within/search:text-indigo-400" />
                             <input
                                 type="text"
                                 placeholder="QUERY MISSION CORE..."
@@ -208,7 +208,7 @@ const ProjectsPage = () => {
                         </div>
                         <button 
                             onClick={() => setIsModalOpen(true)}
-                            className="h-20 px-12 bg-white text-slate-950 font-bold rounded-3xl text-xs uppercase tracking-[0.4em] shadow-[0_20px_50px_rgba(255,255,255,0.1)] hover:bg-rose-600 hover:text-white hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-6 group/deploy"
+                            className="h-20 px-12 bg-white text-slate-950 font-bold rounded-3xl text-xs uppercase tracking-[0.4em] shadow-[0_20px_50px_rgba(255,255,255,0.1)] hover:bg-rose-600 hover:text-foreground hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-6 group/deploy"
                         >
                             <Plus size={28} className="group-hover/deploy:rotate-90 transition-transform duration-500" />
                             Initialize
@@ -341,7 +341,7 @@ const ProjectsPage = () => {
                                                 {project.name}
                                             </h3>
                                             {(viewMode === 'grid' || window.innerWidth > 1024) && (
-                                                <p className="text-zinc-400 font-bold uppercase tracking-widest text-xs leading-relaxed border-l-4 border-slate-50 pl-6 group-hover:border-indigo-400 transition-all line-clamp-3">
+                                                <p className="text-muted-foreground font-bold uppercase tracking-widest text-xs leading-relaxed border-l-4 border-slate-50 pl-6 group-hover:border-indigo-400 transition-all line-clamp-3">
                                                     {project.description || 'Global infrastructure node executing prioritized mission protocols with nested resource clustering.'}
                                                 </p>
                                             )}
@@ -367,7 +367,7 @@ const ProjectsPage = () => {
 
                                             <div className={`flex justify-between items-center ${viewMode === 'list' ? 'ml-auto' : ''}`}>
                                                 <div className="flex items-center gap-6">
-                                                    <div className="w-16 h-16 bg-slate-950 text-white rounded-2xl flex items-center justify-center text-2xl font-bold border-4 border-white shadow-2xl group-hover:scale-115 group-hover:bg-indigo-600 transition-all duration-700">
+                                                    <div className="w-16 h-16 bg-slate-950 text-foreground rounded-2xl flex items-center justify-center text-2xl font-bold border-4 border-white shadow-2xl group-hover:scale-115 group-hover:bg-indigo-600 transition-all duration-700">
                                                         {project.manager?.name?.charAt(0) || 'P'}
                                                     </div>
                                                     <div className="hidden sm:flex flex-col">
@@ -375,7 +375,7 @@ const ProjectsPage = () => {
                                                         <span className="text-[9px] font-bold text-indigo-500 uppercase tracking-[0.3em]">Architect</span>
                                                     </div>
                                                 </div>
-                                                <button className="h-16 px-10 bg-slate-950 text-white font-bold rounded-3xl text-sm uppercase tracking-[0.4em] group-hover:bg-indigo-600 transition-all shadow-2xl active:scale-95 flex items-center gap-4">
+                                                <button className="h-16 px-10 bg-slate-950 text-foreground font-bold rounded-3xl text-sm uppercase tracking-[0.4em] group-hover:bg-indigo-600 transition-all shadow-2xl active:scale-95 flex items-center gap-4">
                                                     Access
                                                     <ArrowUpRight size={22} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                                                 </button>
@@ -444,8 +444,8 @@ const TabButton = ({ active, onClick, label }) => (
         whileTap={{ scale: 0.9 }}
         onClick={onClick}
         className={`px-10 py-5 rounded-[2.5rem] text-sm font-bold uppercase tracking-[0.3em] transition-all whitespace-nowrap flex items-center gap-5 ${active
-            ? 'bg-slate-950 text-white shadow-2xl scale-105 active:scale-95'
-            : 'text-zinc-400 hover:text-slate-950'
+            ? 'bg-slate-950 text-foreground shadow-2xl scale-105 active:scale-95'
+            : 'text-muted-foreground hover:text-slate-950'
             }`}
     >
         {label}
@@ -457,7 +457,7 @@ const ViewButton = ({ active, onClick, icon: Icon }) => (
     <button
         onClick={onClick}
         className={`p-5 rounded-2xl transition-all active:scale-75 ${active 
-            ? 'bg-slate-950 text-white shadow-2xl' 
+            ? 'bg-slate-950 text-foreground shadow-2xl' 
             : 'text-slate-300 hover:text-slate-600'}`}
     >
         <Icon size={24} />

@@ -171,11 +171,11 @@ export default function SettingsPage() {
 
     return (
         <div className="p-6 space-y-6">
-            <h1 className="text-2xl font-bold text-white">Security Settings</h1>
+            <h1 className="text-2xl font-bold text-foreground">Security Settings</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <Card className="p-6 bg-[#161B22] border-white/5 rounded-2xl">
-                    <h2 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
+                    <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                         <Key size={20} className="text-[#BAFF00]" />
                         Change Password
                     </h2>
@@ -211,7 +211,7 @@ export default function SettingsPage() {
                     {!showPasswordForm ? (
                         <button
                             onClick={() => setShowPasswordForm(true)}
-                            className="w-full h-12 bg-white/5 hover:bg-white/10 text-white font-medium rounded-xl flex items-center justify-center gap-2 transition-all"
+                            className="w-full h-12 bg-white/5 hover:bg-white/10 text-foreground font-medium rounded-xl flex items-center justify-center gap-2 transition-all"
                         >
                             <Key size={18} />
                             Change Password
@@ -219,7 +219,7 @@ export default function SettingsPage() {
                     ) : (
                         <form onSubmit={handlePasswordChange} className="space-y-4">
                             <div className="space-y-2">
-                                <label className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                                <label className="text-xs font-medium text-foreground/60 uppercase tracking-wider">
                                     Current Password
                                 </label>
                                 <div className="relative">
@@ -227,13 +227,13 @@ export default function SettingsPage() {
                                         type={showCurrentPassword ? 'text' : 'password'}
                                         value={passwordData.currentPassword}
                                         onChange={(e) => setPasswordData(prev => ({ ...prev, currentPassword: e.target.value }))}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none pr-12"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#BAFF00]/50 outline-none pr-12"
                                         required
                                     />
                                     <button
                                         type="button"
                                         onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                                        className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40"
+                                        className="absolute right-4 top-1/2 -translate-y-1/2 text-foreground/40"
                                     >
                                         {showCurrentPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                                     </button>
@@ -241,7 +241,7 @@ export default function SettingsPage() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                                <label className="text-xs font-medium text-foreground/60 uppercase tracking-wider">
                                     New Password
                                 </label>
                                 <div className="relative">
@@ -249,13 +249,13 @@ export default function SettingsPage() {
                                         type={showNewPassword ? 'text' : 'password'}
                                         value={passwordData.newPassword}
                                         onChange={(e) => setPasswordData(prev => ({ ...prev, newPassword: e.target.value }))}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none pr-12"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#BAFF00]/50 outline-none pr-12"
                                         required
                                     />
                                     <button
                                         type="button"
                                         onClick={() => setShowNewPassword(!showNewPassword)}
-                                        className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40"
+                                        className="absolute right-4 top-1/2 -translate-y-1/2 text-foreground/40"
                                     >
                                         {showNewPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                                     </button>
@@ -263,14 +263,14 @@ export default function SettingsPage() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                                <label className="text-xs font-medium text-foreground/60 uppercase tracking-wider">
                                     Confirm New Password
                                 </label>
                                 <input
                                     type="password"
                                     value={passwordData.confirmPassword}
                                     onChange={(e) => setPasswordData(prev => ({ ...prev, confirmPassword: e.target.value }))}
-                                    className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white focus:border-[#BAFF00]/50 outline-none"
+                                    className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#BAFF00]/50 outline-none"
                                     required
                                 />
                             </div>
@@ -283,7 +283,7 @@ export default function SettingsPage() {
                                         setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
                                         setPasswordError('');
                                     }}
-                                    className="flex-1 h-12 bg-white/5 hover:bg-white/10 text-white font-medium rounded-xl transition-all"
+                                    className="flex-1 h-12 bg-white/5 hover:bg-white/10 text-foreground font-medium rounded-xl transition-all"
                                 >
                                     Cancel
                                 </button>
@@ -300,12 +300,12 @@ export default function SettingsPage() {
                 </Card>
 
                 <Card className="p-6 bg-[#161B22] border-white/5 rounded-2xl">
-                    <h2 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
+                    <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                         <Smartphone size={20} className="text-[#BAFF00]" />
                         Two-Factor Authentication
                     </h2>
 
-                    <p className="text-sm text-white/60 mb-6">
+                    <p className="text-sm text-foreground/60 mb-6">
                         Add an extra layer of security to your account by requiring a verification code in addition to your password.
                     </p>
 
@@ -329,7 +329,7 @@ export default function SettingsPage() {
                                 <Check size={24} className="text-green-400" />
                                 <div>
                                     <p className="text-green-400 font-medium">2FA is enabled</p>
-                                    <p className="text-white/60 text-sm">Your account is protected with two-factor authentication</p>
+                                    <p className="text-foreground/60 text-sm">Your account is protected with two-factor authentication</p>
                                 </div>
                             </div>
 
@@ -345,14 +345,14 @@ export default function SettingsPage() {
                             ) : (
                                 <form onSubmit={handle2FADisable} className="space-y-4">
                                     <div className="space-y-2">
-                                        <label className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                                        <label className="text-xs font-medium text-foreground/60 uppercase tracking-wider">
                                             Enter Verification Code
                                         </label>
                                         <input
                                             type="text"
                                             value={twoFactorCode}
                                             onChange={(e) => setTwoFactorCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                                            className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white text-center text-xl tracking-widest focus:border-[#BAFF00]/50 outline-none"
+                                            className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground text-center text-xl tracking-widest focus:border-[#BAFF00]/50 outline-none"
                                             placeholder="000000"
                                             maxLength={6}
                                             required
@@ -366,14 +366,14 @@ export default function SettingsPage() {
                                                 setTwoFactorCode('');
                                                 setTwoFactorError('');
                                             }}
-                                            className="flex-1 h-12 bg-white/5 text-white font-medium rounded-xl"
+                                            className="flex-1 h-12 bg-white/5 text-foreground font-medium rounded-xl"
                                         >
                                             Cancel
                                         </button>
                                         <button
                                             type="submit"
                                             disabled={isProcessing2FA || twoFactorCode.length !== 6}
-                                            className="flex-1 h-12 bg-red-500 text-white font-bold rounded-xl disabled:opacity-50"
+                                            className="flex-1 h-12 bg-red-500 text-foreground font-bold rounded-xl disabled:opacity-50"
                                         >
                                             {isProcessing2FA ? <Loader2 size={18} className="animate-spin mx-auto" /> : 'Disable 2FA'}
                                         </button>
@@ -387,7 +387,7 @@ export default function SettingsPage() {
                                 <AlertTriangle size={24} className="text-yellow-400" />
                                 <div>
                                     <p className="text-yellow-400 font-medium">2FA is not enabled</p>
-                                    <p className="text-white/60 text-sm">Enable 2FA for better security</p>
+                                    <p className="text-foreground/60 text-sm">Enable 2FA for better security</p>
                                 </div>
                             </div>
 
@@ -403,14 +403,14 @@ export default function SettingsPage() {
                             ) : (
                                 <form onSubmit={handle2FASetup} className="space-y-4">
                                     <div className="space-y-2">
-                                        <label className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                                        <label className="text-xs font-medium text-foreground/60 uppercase tracking-wider">
                                             Enter Verification Code from Email
                                         </label>
                                         <input
                                             type="text"
                                             value={twoFactorCode}
                                             onChange={(e) => setTwoFactorCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                                            className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-white text-center text-xl tracking-widest focus:border-[#BAFF00]/50 outline-none"
+                                            className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground text-center text-xl tracking-widest focus:border-[#BAFF00]/50 outline-none"
                                             placeholder="000000"
                                             maxLength={6}
                                             required
@@ -424,7 +424,7 @@ export default function SettingsPage() {
                                                 setTwoFactorCode('');
                                                 setTwoFactorError('');
                                             }}
-                                            className="flex-1 h-12 bg-white/5 text-white font-medium rounded-xl"
+                                            className="flex-1 h-12 bg-white/5 text-foreground font-medium rounded-xl"
                                         >
                                             Cancel
                                         </button>
@@ -443,21 +443,21 @@ export default function SettingsPage() {
                 </Card>
 
                 <Card className="p-6 bg-[#161B22] border-white/5 rounded-2xl lg:col-span-2">
-                    <h2 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
+                    <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                         <Monitor size={20} className="text-[#BAFF00]" />
                         Active Sessions
                     </h2>
 
-                    <p className="text-sm text-white/60 mb-6">
+                    <p className="text-sm text-foreground/60 mb-6">
                         Manage devices that are logged into your account. You can revoke any session you don't recognize.
                     </p>
 
                     {sessionsLoading ? (
                         <div className="flex items-center justify-center py-8">
-                            <Loader2 size={24} className="animate-spin text-white/40" />
+                            <Loader2 size={24} className="animate-spin text-foreground/40" />
                         </div>
                     ) : sessions.length === 0 ? (
-                        <p className="text-white/40 text-center py-4">No active sessions</p>
+                        <p className="text-foreground/40 text-center py-4">No active sessions</p>
                     ) : (
                         <div className="space-y-3">
                             {sessions.map((session) => (
@@ -467,13 +467,13 @@ export default function SettingsPage() {
                                 >
                                     <div className="flex items-center gap-4">
                                         <div className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center">
-                                            <Monitor size={20} className="text-white/40" />
+                                            <Monitor size={20} className="text-foreground/40" />
                                         </div>
                                         <div>
-                                            <p className="text-white font-medium">
+                                            <p className="text-foreground font-medium">
                                                 {session.deviceInfo || 'Unknown Device'}
                                             </p>
-                                            <p className="text-white/40 text-sm">
+                                            <p className="text-foreground/40 text-sm">
                                                 {session.ipAddress} • Last active {formatDate(session.createdAt)}
                                             </p>
                                         </div>
@@ -515,7 +515,7 @@ export default function SettingsPage() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                        className="fixed inset-0 bg-backgroundackgroundlack/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
                     >
                         <motion.div
                             initial={{ scale: 0.9, opacity: 0 }}
@@ -527,21 +527,21 @@ export default function SettingsPage() {
                                 <div className="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center">
                                     <AlertTriangle size={24} className="text-red-400" />
                                 </div>
-                                <h3 className="text-xl font-bold text-white">Logout All Sessions?</h3>
+                                <h3 className="text-xl font-bold text-foreground">Logout All Sessions?</h3>
                             </div>
-                            <p className="text-white/60 mb-6">
+                            <p className="text-foreground/60 mb-6">
                                 This will log you out from all devices except the current one. You'll need to sign in again on other devices.
                             </p>
                             <div className="flex gap-3">
                                 <button
                                     onClick={() => setShowLogoutConfirm(false)}
-                                    className="flex-1 h-12 bg-white/5 text-white font-medium rounded-xl"
+                                    className="flex-1 h-12 bg-white/5 text-foreground font-medium rounded-xl"
                                 >
                                     Cancel
                                 </button>
                                 <button
                                     onClick={handleLogoutAll}
-                                    className="flex-1 h-12 bg-red-500 text-white font-bold rounded-xl"
+                                    className="flex-1 h-12 bg-red-500 text-foreground font-bold rounded-xl"
                                 >
                                     Logout All
                                 </button>

@@ -114,8 +114,8 @@ export default function ExpensesPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-black text-white">Expenses</h1>
-          <p className="text-white/40">Track and manage expenses</p>
+          <h1 className="text-2xl font-black text-foreground">Expenses</h1>
+          <p className="text-foreground/40">Track and manage expenses</p>
         </div>
         <button
           onClick={() => setShowForm(true)}
@@ -127,15 +127,15 @@ export default function ExpensesPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5">
-          <p className="text-sm text-white/40 mb-1">Total Expenses</p>
-          <p className="text-2xl font-black text-white">${totalExpenses.toLocaleString()}</p>
+          <p className="text-sm text-foreground/40 mb-1">Total Expenses</p>
+          <p className="text-2xl font-black text-foreground">${totalExpenses.toLocaleString()}</p>
         </div>
         <div className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5">
-          <p className="text-sm text-white/40 mb-1">Pending</p>
+          <p className="text-sm text-foreground/40 mb-1">Pending</p>
           <p className="text-2xl font-black text-yellow-500">{pendingCount}</p>
         </div>
         <div className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5">
-          <p className="text-sm text-white/40 mb-1">Approved</p>
+          <p className="text-sm text-foreground/40 mb-1">Approved</p>
           <p className="text-2xl font-black text-green-500">{approvedCount}</p>
         </div>
       </div>

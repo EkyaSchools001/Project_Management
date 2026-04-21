@@ -117,14 +117,14 @@ export function TeacherPortfolio() {
         {!isViewOnly && (
           <div className="flex items-center gap-3">
             <Button 
-                className="bg-[#EA104A] hover:bg-[#D00D3F] text-white shadow-md shadow-rose-200"
+                className="bg-[#EA104A] hover:bg-[#D00D3F] text-foreground shadow-md shadow-rose-200"
                 onClick={() => { setAchCategory("Achievement"); setIsAchievementModalOpen(true); }}
             >
               <Plus className="w-4 h-4 mr-2" />
               Add Achievement
             </Button>
             <Button 
-                className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-md shadow-indigo-200"
+                className="bg-indigo-600 hover:bg-indigo-700 text-foreground shadow-md shadow-indigo-200"
                 onClick={() => { setAchCategory("Activity"); setIsAchievementModalOpen(true); }}
             >
               <Plus className="w-4 h-4 mr-2" />
@@ -197,13 +197,13 @@ export function TeacherPortfolio() {
           title="Avg. Observation Score" 
           value={summary?.avgObservationScore?.toFixed(1) || "0.0"} 
           icon={<ChartLineUp className="w-8 h-8 text-blue-500" weight="duotone" />} 
-          bgColor="bg-blue-50"
+          bgColor="bg-backgroundackgroundlue-50"
         />
         <SummaryCard 
           title="Training Hours" 
           value={`${summary?.trainingHoursCompleted || 0} / ${summary?.trainingHoursPending || 0}`} 
           icon={<GraduationCap className="w-8 h-8 text-emerald-500" weight="duotone" />} 
-          bgColor="bg-emerald-50"
+          bgColor="bg-backgroundmerald-50"
         />
         <SummaryCard 
           title="Goal Progress" 

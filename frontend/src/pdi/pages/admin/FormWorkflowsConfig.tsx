@@ -206,7 +206,7 @@ export function FormWorkflowsConfig() {
                                                         }, {} as Record<string, FormTemplate[]>)
                                                     ).map(([type, groupTemplates], groupIdx, arr) => (
                                                         <SelectGroup key={type}>
-                                                            <SelectLabel className="text-blue-600 font-bold bg-blue-50/50 py-1 px-3 mb-1 rounded-sm text-xs capitalize tracking-wider">
+                                                            <SelectLabel className="text-blue-600 font-bold bg-backgroundackgroundlue-50/50 py-1 px-3 mb-1 rounded-sm text-xs capitalize tracking-wider">
                                                                 {type} ({groupTemplates.length})
                                                             </SelectLabel>
                                                             {groupTemplates.map(t => {
@@ -216,7 +216,7 @@ export function FormWorkflowsConfig() {
                                                                         <HoverCardTrigger asChild>
                                                                             <SelectItem value={t.id} className="pl-4 pr-10 cursor-pointer relative data-[highlighted]:bg-green-50">
                                                                                 <span className="flex-1 text-left block w-full pr-6 truncate">{t.name}</span>
-                                                                                <Info className="w-4 h-4 text-zinc-400 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+                                                                                <Info className="w-4 h-4 text-muted-foreground absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
                                                                             </SelectItem>
                                                                         </HoverCardTrigger>
                                                                         <HoverCardContent side="right" align="start" sideOffset={10} className="w-[320px] max-w-[90vw] z-[100] max-h-[350px] overflow-y-auto pointer-events-none shadow-2xl border-green-200 bg-white/95 backdrop-blur-sm">
@@ -232,7 +232,7 @@ export function FormWorkflowsConfig() {
                                                                                         <span className="break-words mt-0.5">{f.label || f.id || 'Unnamed field'}</span>
                                                                                     </li>
                                                                                 ))}
-                                                                                {fields.length === 0 && <li className="text-zinc-400 italic text-center py-4 bg-slate-50 rounded-md">No fields defined for this template.</li>}
+                                                                                {fields.length === 0 && <li className="text-muted-foreground italic text-center py-4 bg-slate-50 rounded-md">No fields defined for this template.</li>}
                                                                             </ul>
                                                                         </HoverCardContent>
                                                                     </HoverCard>
@@ -285,7 +285,7 @@ export function FormWorkflowsConfig() {
                                         <Button variant="ghost" size="icon" className="text-red-500 hover:bg-red-50 hover:text-red-600" onClick={() => handleDelete(flow.id)}>
                                             <Trash2 className="w-4 h-4" />
                                         </Button>
-                                        <Button variant="ghost" size="icon" className="text-blue-500 hover:bg-blue-50 hover:text-blue-600" onClick={() => handleSaveFlow(flow.id)}>
+                                        <Button variant="ghost" size="icon" className="text-blue-500 hover:bg-backgroundackgroundlue-50 hover:text-blue-600" onClick={() => handleSaveFlow(flow.id)}>
                                             <Save className="w-4 h-4" />
                                         </Button>
                                     </div>

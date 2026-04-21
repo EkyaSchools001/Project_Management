@@ -102,15 +102,15 @@ export default function RiskAssessment({ project = null }) {
         <div className="bg-[#161B22] rounded-2xl p-6 border border-white/5">
             <div className="flex items-center justify-between mb-6">
                 <div>
-                    <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
                         <AlertTriangle className="w-5 h-5 text-[#BAFF00]" />
                         Risk Assessment
                     </h3>
-                    <p className="text-sm text-white/50">{riskData?.projectName || 'All Projects'}</p>
+                    <p className="text-sm text-foreground/50">{riskData?.projectName || 'All Projects'}</p>
                 </div>
                 <div className="text-right">
-                    <p className="text-3xl font-bold text-white">{riskData?.riskScore || 0}</p>
-                    <p className="text-xs text-white/40">Risk Score</p>
+                    <p className="text-3xl font-bold text-foreground">{riskData?.riskScore || 0}</p>
+                    <p className="text-xs text-foreground/40">Risk Score</p>
                 </div>
             </div>
 
@@ -119,7 +119,7 @@ export default function RiskAssessment({ project = null }) {
                     <div className={`px-3 py-1 rounded-lg font-bold text-sm ${getSeverityColor(riskData?.overallRisk)}`}>
                         {riskData?.overallRisk?.toUpperCase()} RISK
                     </div>
-                    <span className="text-xs text-white/40">
+                    <span className="text-xs text-foreground/40">
                         Confidence: {Math.round((riskData?.confidence || 0) * 100)}%
                     </span>
                 </div>
@@ -135,7 +135,7 @@ export default function RiskAssessment({ project = null }) {
             </div>
 
             <div className="space-y-3 mb-6">
-                <h4 className="text-sm font-bold text-white/80 uppercase tracking-wider">Risk Factors</h4>
+                <h4 className="text-sm font-bold text-foreground/80 uppercase tracking-wider">Risk Factors</h4>
                 {riskData?.riskFactors?.map((factor, i) => (
                     <div 
                         key={i}
@@ -147,7 +147,7 @@ export default function RiskAssessment({ project = null }) {
                             </div>
                             <div className="flex-1">
                                 <div className="flex items-center gap-2 mb-1">
-                                    <h5 className="font-bold text-white">{factor.factor}</h5>
+                                    <h5 className="font-bold text-foreground">{factor.factor}</h5>
                                     <span className={`text-[10px] px-2 py-0.5 rounded uppercase ${
                                         factor.severity === 'high' ? 'bg-red-400/20 text-red-400' :
                                         factor.severity === 'medium' ? 'bg-yellow-400/20 text-yellow-400' :
@@ -156,7 +156,7 @@ export default function RiskAssessment({ project = null }) {
                                         {factor.severity}
                                     </span>
                                 </div>
-                                <p className="text-sm text-white/60">{factor.description}</p>
+                                <p className="text-sm text-foreground/60">{factor.description}</p>
                             </div>
                         </div>
                     </div>
@@ -164,11 +164,11 @@ export default function RiskAssessment({ project = null }) {
             </div>
 
             <div className="space-y-3">
-                <h4 className="text-sm font-bold text-white/80 uppercase tracking-wider">Mitigation Suggestions</h4>
+                <h4 className="text-sm font-bold text-foreground/80 uppercase tracking-wider">Mitigation Suggestions</h4>
                 {riskData?.recommendations?.map((rec, i) => (
                     <div key={i} className="flex items-center gap-3 p-3 bg-white/5 rounded-xl">
                         <ChevronRight className="w-4 h-4 text-[#BAFF00]" />
-                        <span className="text-sm text-white/80">{rec}</span>
+                        <span className="text-sm text-foreground/80">{rec}</span>
                     </div>
                 ))}
             </div>

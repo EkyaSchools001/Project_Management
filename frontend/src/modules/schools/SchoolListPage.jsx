@@ -34,7 +34,7 @@ export default function SchoolListPage() {
                                 transition={{ delay: (catIndex * 3 + schoolIndex) * 0.05 }}
                             >
                                 <Card className="group relative overflow-hidden bg-[#111c2a] hover:border-brand-300">
-                                    <div className="absolute top-0 right-0 w-24 h-24 bg-brand-50 rounded-bl-full flex items-center justify-center -mr-12 -mt-12 transition-transform group-hover:scale-110">
+                                    <div className="absolute top-0 right-0 w-24 h-24 bg-backgroundackgroundrand-50 rounded-bl-full flex items-center justify-center -mr-12 -mt-12 transition-transform group-hover:scale-110">
                                         <School className="w-5 h-5 text-brand-200 mt-8 ml-8" />
                                     </div>
 
@@ -53,7 +53,7 @@ export default function SchoolListPage() {
 
                                         <div className="pt-4 flex items-center justify-between border-t border-neutral-800">
                                             <span className="text-xs font-semibold px-2 py-1 bg-[#0f172a] text-gray-400 rounded-md">ID: {school.id.toUpperCase()}</span>
-                                            <button className="p-2 text-brand-600 hover:bg-brand-50 rounded-lg transition-colors">
+                                            <button className="p-2 text-brand-600 hover:bg-backgroundackgroundrand-50 rounded-lg transition-colors">
                                                 <ExternalLink className="w-4 h-4" />
                                             </button>
                                         </div>

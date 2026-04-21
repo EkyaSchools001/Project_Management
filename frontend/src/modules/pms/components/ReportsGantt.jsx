@@ -104,7 +104,7 @@ const ReportsGantt = () => {
 
         return (
             <div className={`flex group hover:bg-slate-50 transition-colors ${isTask ? 'bg-white' : 'bg-white'}`}>
-                <div className={`w-72 p-4 text-[11px] flex items-center gap-3 border-r border-slate-100 sticky left-0 z-10 truncate ${isTask ? 'pl-10 text-zinc-400 bg-white group-hover:bg-slate-50' : 'font-black text-slate-900 bg-white group-hover:bg-slate-50 uppercase tracking-tighter'}`}>
+                <div className={`w-72 p-4 text-[11px] flex items-center gap-3 border-r border-slate-100 sticky left-0 z-10 truncate ${isTask ? 'pl-10 text-muted-foreground bg-white group-hover:bg-slate-50' : 'font-black text-slate-900 bg-white group-hover:bg-slate-50 uppercase tracking-tighter'}`}>
                     {!isTask && (
                         <button onClick={() => toggleProject(item.id)} className="text-slate-300 hover:text-blue-600 transition-colors active:scale-90">
                             {expandedProjects.includes(item.id) ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
@@ -117,7 +117,7 @@ const ReportsGantt = () => {
                     {/* Grid lines */}
                     <div className="absolute inset-0 flex pointer-events-none">
                         {dates.map((_, i) => (
-                            <div key={i} className={`flex-1 border-r border-slate-50 ${isSameDay(dates[i], today) ? 'bg-blue-50/20' : ''}`}></div>
+                            <div key={i} className={`flex-1 border-r border-slate-50 ${isSameDay(dates[i], today) ? 'bg-backgroundackgroundlue-50/20' : ''}`}></div>
                         ))}
                     </div>
 
@@ -127,13 +127,13 @@ const ReportsGantt = () => {
                             initial={{ scaleX: 0 }}
                             animate={{ scaleX: 1 }}
                             className={`absolute top-3.5 h-7 rounded-xl shadow-sm transition-all hover:scale-y-110 cursor-pointer origin-left flex items-center px-3
-                            ${item.status === 'completed' ? 'bg-emerald-600 shadow-emerald-600/10' :
-                                     item.status === 'ongoing' ? 'bg-blue-600 shadow-blue-600/10' : 'bg-slate-200'}
+                            ${item.status === 'completed' ? 'bg-backgroundmerald-600 shadow-emerald-600/10' :
+                                     item.status === 'ongoing' ? 'bg-backgroundackgroundlue-600 shadow-blue-600/10' : 'bg-slate-200'}
                             ${isTask ? 'h-5 top-4.5 opacity-80' : ''}`}
                             style={{ left: pos.left, width: pos.width }}
                             title={`${item.name}: ${item.start} - ${item.end}`}
                         >
-                            <span className="text-[8px] font-black uppercase text-white truncate drop-shadow-sm">{item.name}</span>
+                            <span className="text-[8px] font-black uppercase text-foreground truncate drop-shadow-sm">{item.name}</span>
                         </motion.div>
                     )}
                 </div>
@@ -149,17 +149,17 @@ const ReportsGantt = () => {
                         <Calendar className="w-8 h-8 text-blue-600" />
                         Project Timeline Vector
                     </h2>
-                    <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest ml-12">Visualize project scopes and task dependencies across the timeline.</p>
+                    <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest ml-12">Visualize project scopes and task dependencies across the timeline.</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-6">
-                    <div className="flex gap-4 text-[9px] font-black uppercase tracking-widest text-zinc-400 bg-slate-50 px-4 py-2 rounded-full border border-slate-100">
-                        <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-600"></span> Executed</span>
-                        <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-blue-600"></span> Active</span>
+                    <div className="flex gap-4 text-[9px] font-black uppercase tracking-widest text-muted-foreground bg-slate-50 px-4 py-2 rounded-full border border-slate-100">
+                        <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-backgroundmerald-600"></span> Executed</span>
+                        <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-backgroundackgroundlue-600"></span> Active</span>
                         <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-200"></span> Backlog</span>
                     </div>
                     <button
                         onClick={() => setIsModalOpen(true)}
-                        className="flex items-center gap-2 h-14 px-8 bg-zinc-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-slate-900/10 active:scale-95"
+                        className="flex items-center gap-2 h-14 px-8 bg-backgroundackgroundackground text-foreground rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-backgroundackgroundlack transition-all shadow-xl shadow-slate-900/10 active:scale-95"
                     >
                         <Plus size={18} />
                         Inject Task Unit
@@ -172,12 +172,12 @@ const ReportsGantt = () => {
                     <div className="min-w-[1200px]">
                         {/* Header */}
                         <div className="flex border-b border-slate-100 bg-slate-50 sticky top-0 z-30">
-                            <div className="w-72 p-5 font-black text-[10px] text-zinc-400 uppercase tracking-widest border-r border-slate-100 sticky left-0 bg-slate-50 z-20">Deployment Cluster / Node</div>
+                            <div className="w-72 p-5 font-black text-[10px] text-muted-foreground uppercase tracking-widest border-r border-slate-100 sticky left-0 bg-slate-50 z-20">Deployment Cluster / Node</div>
                             <div className="flex-1 flex">
                                 {dates.map((date, i) => (
-                                    <div key={i} className={`flex-1 min-w-[3.5rem] text-center py-4 border-r border-slate-100/50 ${isSameDay(date, today) ? 'bg-blue-600 text-white shadow-xl' : 'text-zinc-400'}`}>
+                                    <div key={i} className={`flex-1 min-w-[3.5rem] text-center py-4 border-r border-slate-100/50 ${isSameDay(date, today) ? 'bg-backgroundackgroundlue-600 text-foreground shadow-xl' : 'text-muted-foreground'}`}>
                                         <span className="text-xs font-black block leading-none">{format(date, 'dd')}</span>
-                                        <span className={`text-[8px] font-black uppercase tracking-wider mt-1 block opacity-60 ${isSameDay(date, today) ? 'text-white' : ''}`}>{format(date, 'EEE')}</span>
+                                        <span className={`text-[8px] font-black uppercase tracking-wider mt-1 block opacity-60 ${isSameDay(date, today) ? 'text-foreground' : ''}`}>{format(date, 'EEE')}</span>
                                     </div>
                                 ))}
                             </div>
@@ -199,7 +199,7 @@ const ReportsGantt = () => {
             </div>
 
             <div className="mt-10 flex justify-end">
-                <button className="text-[10px] font-black text-blue-600 hover:text-blue-700 flex items-center gap-3 uppercase tracking-widest group bg-blue-50 px-6 py-3 rounded-xl border border-blue-100 transition-all active:scale-95">
+                <button className="text-[10px] font-black text-blue-600 hover:text-blue-700 flex items-center gap-3 uppercase tracking-widest group bg-backgroundackgroundlue-50 px-6 py-3 rounded-xl border border-blue-100 transition-all active:scale-95">
                     View Full Roadmap Protocol <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </button>
             </div>

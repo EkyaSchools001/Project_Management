@@ -107,8 +107,8 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
                 <UserCheck className="w-5 h-5 text-[#BAFF00]" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{checkIns}</p>
-                <p className="text-xs text-white/50">Check-ins</p>
+                <p className="text-2xl font-bold text-foreground">{checkIns}</p>
+                <p className="text-xs text-foreground/50">Check-ins</p>
               </div>
             </div>
           </CardContent>
@@ -116,12 +116,12 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
         <Card className="bg-[#1a1d29] border-white/10">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-blue-500/10">
+              <div className="p-2 rounded-lg bg-backgroundackgroundlue-500/10">
                 <UserX className="w-5 h-5 text-blue-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{checkOuts}</p>
-                <p className="text-xs text-white/50">Check-outs</p>
+                <p className="text-2xl font-bold text-foreground">{checkOuts}</p>
+                <p className="text-xs text-foreground/50">Check-outs</p>
               </div>
             </div>
           </CardContent>
@@ -133,8 +133,8 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
                 <Users className="w-5 h-5 text-green-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{present}</p>
-                <p className="text-xs text-white/50">Currently Present</p>
+                <p className="text-2xl font-bold text-foreground">{present}</p>
+                <p className="text-xs text-foreground/50">Currently Present</p>
               </div>
             </div>
           </CardContent>
@@ -146,8 +146,8 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
                 <Clock className="w-5 h-5 text-purple-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{records.length}</p>
-                <p className="text-xs text-white/50">Total Records</p>
+                <p className="text-2xl font-bold text-foreground">{records.length}</p>
+                <p className="text-xs text-foreground/50">Total Records</p>
               </div>
             </div>
           </CardContent>
@@ -156,7 +156,7 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
 
       <Card className="bg-[#1a1d29] border-white/10">
         <CardHeader>
-          <CardTitle className="text-white">Quick Check-in</CardTitle>
+          <CardTitle className="text-foreground">Quick Check-in</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex gap-2">
@@ -165,7 +165,7 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
               value={studentId}
               onChange={(e) => setStudentId(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleCheckIn()}
-              className="bg-[#0d1117] border-white/10 text-white"
+              className="bg-[#0d1117] border-white/10 text-foreground"
             />
             <Button
               onClick={handleCheckIn}
@@ -180,29 +180,29 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
 
       <Card className="bg-[#1a1d29] border-white/10">
         <CardHeader>
-          <CardTitle className="text-white">Today's Attendance</CardTitle>
+          <CardTitle className="text-foreground">Today's Attendance</CardTitle>
         </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
               <TableRow className="border-white/10">
-                <TableHead className="text-white/70">Student ID</TableHead>
-                <TableHead className="text-white/70">Time</TableHead>
-                <TableHead className="text-white/70">Type</TableHead>
-                <TableHead className="text-white/70">Status</TableHead>
+                <TableHead className="text-foreground/70">Student ID</TableHead>
+                <TableHead className="text-foreground/70">Time</TableHead>
+                <TableHead className="text-foreground/70">Type</TableHead>
+                <TableHead className="text-foreground/70">Status</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {records.slice(0, 20).map((record) => (
                 <TableRow key={record.id} className="border-white/10">
-                  <TableCell className="text-white">{record.studentId}</TableCell>
-                  <TableCell className="text-white/70">
+                  <TableCell className="text-foreground">{record.studentId}</TableCell>
+                  <TableCell className="text-foreground/70">
                     {new Date(record.timestamp).toLocaleTimeString()}
                   </TableCell>
                   <TableCell>
                     <Badge
                       variant={record.type === 'CheckIn' ? 'default' : 'secondary'}
-                      className={record.type === 'CheckIn' ? 'bg-green-500' : 'bg-blue-500'}
+                      className={record.type === 'CheckIn' ? 'bg-green-500' : 'bg-backgroundackgroundlue-500'}
                     >
                       {record.type}
                     </Badge>
@@ -226,7 +226,7 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
               ))}
               {records.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={4} className="text-center text-white/50 py-8">
+                  <TableCell colSpan={4} className="text-center text-foreground/50 py-8">
                     No attendance records today
                   </TableCell>
                 </TableRow>

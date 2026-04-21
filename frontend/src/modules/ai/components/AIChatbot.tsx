@@ -106,13 +106,13 @@ export default function AIChatbot({ isOpen, onClose, embedded = false }) {
                             <Bot className="w-5 h-5 text-[#BAFF00]" />
                         </div>
                         <div>
-                            <h3 className="text-sm font-bold text-white">AI Assistant</h3>
-                            <p className="text-[10px] text-white/40">Online</p>
+                            <h3 className="text-sm font-bold text-foreground">AI Assistant</h3>
+                            <p className="text-[10px] text-foreground/40">Online</p>
                         </div>
                     </div>
                     <button 
                         onClick={onClose}
-                        className="p-2 text-white/40 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+                        className="p-2 text-foreground/40 hover:text-foreground hover:bg-white/10 rounded-lg transition-colors"
                     >
                         <X className="w-5 h-5" />
                     </button>
@@ -134,18 +134,18 @@ export default function AIChatbot({ isOpen, onClose, embedded = false }) {
                             <div className={`p-3 rounded-2xl text-sm ${
                                 msg.role === 'user' 
                                     ? 'bg-[#BAFF00] text-black' 
-                                    : 'bg-white/10 text-white'
+                                    : 'bg-white/10 text-foreground'
                             }`}>
                                 {msg.content}
                             </div>
-                            <p className="text-[10px] text-white/30 mt-1">
+                            <p className="text-[10px] text-foreground/30 mt-1">
                                 <Clock className="w-3 h-3 inline mr-1" />
                                 {new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                             </p>
                         </div>
                         {msg.role === 'user' && (
                             <div className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center flex-shrink-0">
-                                <User className="w-4 h-4 text-white" />
+                                <User className="w-4 h-4 text-foreground" />
                             </div>
                         )}
                     </div>
@@ -170,13 +170,13 @@ export default function AIChatbot({ isOpen, onClose, embedded = false }) {
 
             {messages.length <= 1 && (
                 <div className="px-4 pb-2">
-                    <p className="text-[10px] text-white/30 mb-2">Quick questions:</p>
+                    <p className="text-[10px] text-foreground/30 mb-2">Quick questions:</p>
                     <div className="flex flex-wrap gap-2">
                         {SUGGESTED_QUESTIONS.map((q, i) => (
                             <button
                                 key={i}
                                 onClick={() => handleSuggestedQuestion(q)}
-                                className="px-3 py-1.5 text-xs text-white/60 bg-white/5 hover:bg-white/10 rounded-lg transition-colors"
+                                className="px-3 py-1.5 text-xs text-foreground/60 bg-white/5 hover:bg-white/10 rounded-lg transition-colors"
                             >
                                 {q}
                             </button>
@@ -194,7 +194,7 @@ export default function AIChatbot({ isOpen, onClose, embedded = false }) {
                             onChange={(e) => setInput(e.target.value)}
                             onKeyPress={handleKeyPress}
                             placeholder="Type your message..."
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#BAFF00]/50"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-foreground/30 focus:outline-none focus:border-[#BAFF00]/50"
                             disabled={loading}
                         />
                     </div>

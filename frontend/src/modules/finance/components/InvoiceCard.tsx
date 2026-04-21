@@ -18,11 +18,11 @@ interface InvoiceCardProps {
 }
 
 const statusConfig: Record<string, { icon: any; color: string; label: string }> = {
-  Draft: { icon: FileText, color: 'bg-white/10 text-white/60', label: 'Draft' },
-  Sent: { icon: Clock, color: 'bg-blue-500/20 text-blue-500', label: 'Sent' },
+  Draft: { icon: FileText, color: 'bg-white/10 text-foreground/60', label: 'Draft' },
+  Sent: { icon: Clock, color: 'bg-backgroundackgroundlue-500/20 text-blue-500', label: 'Sent' },
   Paid: { icon: CheckCircle, color: 'bg-green-500/20 text-green-500', label: 'Paid' },
   Overdue: { icon: XCircle, color: 'bg-red-500/20 text-red-500', label: 'Overdue' },
-  Void: { icon: XCircle, color: 'bg-white/10 text-white/40', label: 'Void' },
+  Void: { icon: XCircle, color: 'bg-white/10 text-foreground/40', label: 'Void' },
 };
 
 export function InvoiceCard({ invoice, onPay, onVoid, onClick }: InvoiceCardProps) {
@@ -37,10 +37,10 @@ export function InvoiceCard({ invoice, onPay, onVoid, onClick }: InvoiceCardProp
     >
       <div className="flex items-start justify-between mb-4">
         <div>
-          <h3 className="font-bold text-white text-lg">INV-{invoice.number}</h3>
-          <p className="text-sm text-white/60">{invoice.client}</p>
+          <h3 className="font-bold text-foreground text-lg">INV-{invoice.number}</h3>
+          <p className="text-sm text-foreground/60">{invoice.client}</p>
           {invoice.clientEmail && (
-            <p className="text-xs text-white/40">{invoice.clientEmail}</p>
+            <p className="text-xs text-foreground/40">{invoice.clientEmail}</p>
           )}
         </div>
         <span className={`px-3 py-1 rounded-full text-xs font-bold ${status.color}`}>
@@ -49,27 +49,27 @@ export function InvoiceCard({ invoice, onPay, onVoid, onClick }: InvoiceCardProp
       </div>
 
       <div className="mb-4">
-        <p className="text-2xl font-black text-white">${invoice.amount.toLocaleString()}</p>
+        <p className="text-2xl font-black text-foreground">${invoice.amount.toLocaleString()}</p>
       </div>
 
       <div className="space-y-2 text-sm mb-4">
         <div className="flex justify-between">
-          <span className="text-white/40">Due Date</span>
-          <span className={isOverdue ? 'text-red-500' : isDueSoon ? 'text-yellow-500' : 'text-white/60'}>
+          <span className="text-foreground/40">Due Date</span>
+          <span className={isOverdue ? 'text-red-500' : isDueSoon ? 'text-yellow-500' : 'text-foreground/60'}>
             {new Date(invoice.dueDate).toLocaleDateString()}
           </span>
         </div>
         {invoice.paidDate && (
           <div className="flex justify-between">
-            <span className="text-white/40">Paid Date</span>
-            <span className="text-white/60">
+            <span className="text-foreground/40">Paid Date</span>
+            <span className="text-foreground/60">
               {new Date(invoice.paidDate).toLocaleDateString()}
             </span>
           </div>
         )}
         <div className="flex justify-between">
-          <span className="text-white/40">Items</span>
-          <span className="text-white/60">{invoice.items?.length || 0}</span>
+          <span className="text-foreground/40">Items</span>
+          <span className="text-foreground/60">{invoice.items?.length || 0}</span>
         </div>
       </div>
 
@@ -86,7 +86,7 @@ export function InvoiceCard({ invoice, onPay, onVoid, onClick }: InvoiceCardProp
           {onVoid && (
             <button
               onClick={(e) => { e.stopPropagation(); onVoid(); }}
-              className="flex-1 px-4 py-2 border border-white/10 rounded-xl text-white font-bold text-sm hover:bg-white/5 transition-colors"
+              className="flex-1 px-4 py-2 border border-white/10 rounded-xl text-foreground font-bold text-sm hover:bg-white/5 transition-colors"
             >
               Void
             </button>

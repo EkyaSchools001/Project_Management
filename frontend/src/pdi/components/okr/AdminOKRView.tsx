@@ -58,23 +58,23 @@ export const AdminOKRView: React.FC<Props> = ({ data, isManagement }) => {
                 <Card className="  shadow-xl rounded-2xl">
                     <CardContent className="pt-5">
                         <Users className="w-5 h-5 text-blue-500 mb-2" />
-                        <p className="text-[11px] font-bold capitalize tracking-wider text-zinc-400">Total Teachers</p>
+                        <p className="text-[11px] font-bold capitalize tracking-wider text-muted-foreground">Total Teachers</p>
                         <p className="text-2xl font-black text-zinc-800">{overall.totalTeachers}</p>
-                        <p className="text-xs text-zinc-400">{overall.totalCampuses} campuses</p>
+                        <p className="text-xs text-muted-foreground">{overall.totalCampuses} campuses</p>
                     </CardContent>
                 </Card>
                 <Card className="  shadow-xl rounded-2xl">
                     <CardContent className="pt-5">
                         <Eye className="w-5 h-5 text-emerald-500 mb-2" />
-                        <p className="text-[11px] font-bold capitalize tracking-wider text-zinc-400">Obs Completion</p>
+                        <p className="text-[11px] font-bold capitalize tracking-wider text-muted-foreground">Obs Completion</p>
                         <p className="text-2xl font-black text-emerald-700">{overall.observationCompletionRate}%</p>
-                        <p className="text-xs text-zinc-400">System-wide avg</p>
+                        <p className="text-xs text-muted-foreground">System-wide avg</p>
                     </CardContent>
                 </Card>
                 <Card className="  shadow-xl rounded-2xl">
                     <CardContent className="pt-5">
                         <TrendingUp className="w-5 h-5 text-purple-500 mb-2" />
-                        <p className="text-[11px] font-bold capitalize tracking-wider text-zinc-400">Avg Obs Score</p>
+                        <p className="text-[11px] font-bold capitalize tracking-wider text-muted-foreground">Avg Obs Score</p>
                         <p className="text-2xl font-black text-purple-700">
                             {overall.avgObservationScore !== null ? overall.avgObservationScore : '--'}
                         </p>
@@ -83,14 +83,14 @@ export const AdminOKRView: React.FC<Props> = ({ data, isManagement }) => {
                 <Card className="  shadow-xl rounded-2xl">
                     <CardContent className="pt-5">
                         <Award className="w-5 h-5 text-amber-500 mb-2" />
-                        <p className="text-[11px] font-bold capitalize tracking-wider text-zinc-400">Festival Shortlisted</p>
+                        <p className="text-[11px] font-bold capitalize tracking-wider text-muted-foreground">Festival Shortlisted</p>
                         <p className="text-2xl font-black text-amber-700">{overall.totalShortlistedFestivalApps}</p>
                     </CardContent>
                 </Card>
                 <Card className="  shadow-xl rounded-2xl">
                     <CardContent className="pt-5">
                         <Activity className="w-5 h-5 text-rose-500 mb-2" />
-                        <p className="text-[11px] font-bold capitalize tracking-wider text-zinc-400">Campuses</p>
+                        <p className="text-[11px] font-bold capitalize tracking-wider text-muted-foreground">Campuses</p>
                         <p className="text-2xl font-black text-rose-700">{overall.totalCampuses}</p>
                     </CardContent>
                 </Card>
@@ -106,7 +106,7 @@ export const AdminOKRView: React.FC<Props> = ({ data, isManagement }) => {
                 </CardHeader>
                 <CardContent>
                     <Progress value={overall.observationCompletionRate} className="h-3 rounded-full mb-2" />
-                    <p className="text-xs text-zinc-400">{overall.observationCompletionRate}% of all teachers observed system-wide</p>
+                    <p className="text-xs text-muted-foreground">{overall.observationCompletionRate}% of all teachers observed system-wide</p>
                 </CardContent>
             </Card>
 
@@ -116,7 +116,7 @@ export const AdminOKRView: React.FC<Props> = ({ data, isManagement }) => {
                     <div className="flex items-center justify-between gap-4">
                         <CardTitle className="text-base font-bold">Per-Campus Breakdown</CardTitle>
                         <div className="relative">
-                            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" />
+                            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                             <Input
                                 placeholder="Filter campus..."
                                 className="pl-9 w-48 h-8 text-sm bg-white border-zinc-100"
@@ -130,23 +130,23 @@ export const AdminOKRView: React.FC<Props> = ({ data, isManagement }) => {
                     <Table>
                         <TableHeader>
                             <TableRow className="hover:bg-transparent border-zinc-100">
-                                <TableHead className="text-xs font-bold capitalize text-zinc-400 w-[60px] text-center">S.No.</TableHead>
-                                <TableHead className="text-xs font-bold capitalize text-zinc-400 min-w-[110px]">Campus</TableHead>
-                                <TableHead className="text-xs font-bold capitalize text-zinc-400 min-w-[130px]">Obs Completion</TableHead>
-                                <TableHead className="text-xs font-bold capitalize text-zinc-400">Avg Obs Score</TableHead>
-                                <TableHead className="text-xs font-bold capitalize text-zinc-400">Post-Orientation Avg</TableHead>
-                                <TableHead className="text-xs font-bold capitalize text-zinc-400">Preparedness Avg</TableHead>
-                                <TableHead className="text-xs font-bold capitalize text-zinc-400">Avg Instr. Tools</TableHead>
-                                <TableHead className="text-xs font-bold capitalize text-zinc-400">PD Feedback</TableHead>
-                                <TableHead className="text-xs font-bold capitalize text-zinc-400">Self-Paced Eng.</TableHead>
-                                <TableHead className="text-xs font-bold capitalize text-zinc-400">Leadership Score</TableHead>
-                                <TableHead className="text-xs font-bold capitalize text-zinc-400">Festival Shortlisted</TableHead>
+                                <TableHead className="text-xs font-bold capitalize text-muted-foreground w-[60px] text-center">S.No.</TableHead>
+                                <TableHead className="text-xs font-bold capitalize text-muted-foreground min-w-[110px]">Campus</TableHead>
+                                <TableHead className="text-xs font-bold capitalize text-muted-foreground min-w-[130px]">Obs Completion</TableHead>
+                                <TableHead className="text-xs font-bold capitalize text-muted-foreground">Avg Obs Score</TableHead>
+                                <TableHead className="text-xs font-bold capitalize text-muted-foreground">Post-Orientation Avg</TableHead>
+                                <TableHead className="text-xs font-bold capitalize text-muted-foreground">Preparedness Avg</TableHead>
+                                <TableHead className="text-xs font-bold capitalize text-muted-foreground">Avg Instr. Tools</TableHead>
+                                <TableHead className="text-xs font-bold capitalize text-muted-foreground">PD Feedback</TableHead>
+                                <TableHead className="text-xs font-bold capitalize text-muted-foreground">Self-Paced Eng.</TableHead>
+                                <TableHead className="text-xs font-bold capitalize text-muted-foreground">Leadership Score</TableHead>
+                                <TableHead className="text-xs font-bold capitalize text-muted-foreground">Festival Shortlisted</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             {filtered.length === 0 ? (
                                 <TableRow>
-                                    <TableCell colSpan={11} className="text-center py-12 text-zinc-400">
+                                    <TableCell colSpan={11} className="text-center py-12 text-muted-foreground">
                                         No campus data available
                                     </TableCell>
                                 </TableRow>

@@ -33,7 +33,7 @@ const LogWorkModal = ({ isOpen, onClose, onAdd }) => {
                         exit={{ opacity: 0, scale: 0.9, y: 40 }}
                         className="bg-white/90 border border-white/20 rounded-[4rem] shadow-[0_60px_150px_rgba(0,0,0,0.2)] w-full max-w-2xl overflow-hidden backdrop-blur-2xl"
                     >
-                        <div className="bg-zinc-900 p-10 sm:p-14 text-white relative overflow-hidden">
+                        <div className="bg-backgroundackgroundackground p-10 sm:p-14 text-foreground relative overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-transparent pointer-events-none" />
                             <div className="absolute -right-10 -top-10 w-40 h-40 bg-indigo-500 rounded-full blur-[80px] opacity-20 pointer-events-none" />
                             
@@ -45,7 +45,7 @@ const LogWorkModal = ({ isOpen, onClose, onAdd }) => {
                                         </div>
                                         <h2 className="text-3xl font-black uppercase tracking-tighter leading-none">Time Log <br /><span className="text-indigo-400">Protocol</span></h2>
                                     </div>
-                                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40">Synchronize operational units with central node</p>
+                                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40">Synchronize operational units with central node</p>
                                 </div>
                                 <button onClick={onClose} className="w-16 h-16 flex items-center justify-center bg-white/5 hover:bg-white/10 rounded-3xl transition-all active:scale-90 border border-white/10 group">
                                     <X size={32} className="group-hover:rotate-90 transition-transform" />
@@ -115,13 +115,13 @@ const LogWorkModal = ({ isOpen, onClose, onAdd }) => {
                                 <button
                                     type="button"
                                     onClick={onClose}
-                                    className="flex-1 h-20 bg-slate-50 border border-slate-100 text-zinc-400 rounded-[1.75rem] text-[11px] font-black uppercase tracking-[0.3em] hover:bg-slate-100 hover:text-slate-950 transition-all active:scale-95"
+                                    className="flex-1 h-20 bg-slate-50 border border-slate-100 text-muted-foreground rounded-[1.75rem] text-[11px] font-black uppercase tracking-[0.3em] hover:bg-slate-100 hover:text-slate-950 transition-all active:scale-95"
                                 >
                                     Abort Cycle
                                 </button>
                                 <button
                                     type="submit"
-                                    className="flex-1 h-20 bg-indigo-600 text-white rounded-[1.75rem] text-[11px] font-black uppercase tracking-[0.3em] shadow-2xl shadow-indigo-600/40 hover:bg-indigo-500 hover:scale-[1.02] transition-all active:scale-95 flex items-center justify-center gap-4"
+                                    className="flex-1 h-20 bg-indigo-600 text-foreground rounded-[1.75rem] text-[11px] font-black uppercase tracking-[0.3em] shadow-2xl shadow-indigo-600/40 hover:bg-indigo-500 hover:scale-[1.02] transition-all active:scale-95 flex items-center justify-center gap-4"
                                 >
                                     Commit Log Unit
                                     <Sparkles size={20} className="animate-pulse" />
@@ -137,7 +137,7 @@ const LogWorkModal = ({ isOpen, onClose, onAdd }) => {
 
 const FormGroup = ({ label, children }) => (
     <div className="space-y-4">
-        <label className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.4em] px-2">{label}</label>
+        <label className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.4em] px-2">{label}</label>
         {children}
     </div>
 );
@@ -163,20 +163,20 @@ const ReportsSquadLogs = () => {
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-12 relative z-10">
                     <div className="space-y-6">
                         <div className="flex items-center gap-6">
-                            <div className="w-20 h-20 bg-slate-950 rounded-[2rem] flex items-center justify-center text-white shadow-2xl shadow-slate-900/40 relative">
+                            <div className="w-20 h-20 bg-slate-950 rounded-[2rem] flex items-center justify-center text-foreground shadow-2xl shadow-slate-900/40 relative">
                                 <Activity size={36} className="text-indigo-400" />
-                                <div className="absolute -top-1 -right-1 w-6 h-6 bg-emerald-500 rounded-full border-4 border-slate-50 shadow-sm animate-pulse" />
+                                <div className="absolute -top-1 -right-1 w-6 h-6 bg-backgroundmerald-500 rounded-full border-4 border-slate-50 shadow-sm animate-pulse" />
                             </div>
                             <div className="space-y-2">
                                 <h2 className="text-4xl sm:text-5xl font-black text-slate-950 uppercase tracking-tighter leading-none">Squad Audit <br />Infrastructure</h2>
-                                <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.4em]">Autonomous performance monitoring across global deployment</p>
+                                <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.4em]">Autonomous performance monitoring across global deployment</p>
                             </div>
                         </div>
                     </div>
                     
                     <div className="flex flex-col sm:flex-row items-center gap-6">
                         <div className="relative group w-full sm:w-auto">
-                            <Search className="absolute left-7 top-1/2 -translate-y-1/2 text-zinc-400 group-focus-within:text-indigo-600 transition-colors" size={24} />
+                            <Search className="absolute left-7 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-indigo-600 transition-colors" size={24} />
                             <input
                                 type="text"
                                 placeholder="QUERY AUDIT LOGS..."
@@ -185,7 +185,7 @@ const ReportsSquadLogs = () => {
                         </div>
                         <button
                             onClick={() => setIsModalOpen(true)}
-                            className="w-full sm:w-auto flex items-center justify-center gap-4 px-12 h-20 bg-indigo-600 text-white rounded-3xl text-[11px] font-black uppercase tracking-[0.3em] shadow-2xl shadow-indigo-600/40 hover:bg-slate-950 transition-all active:scale-95"
+                            className="w-full sm:w-auto flex items-center justify-center gap-4 px-12 h-20 bg-indigo-600 text-foreground rounded-3xl text-[11px] font-black uppercase tracking-[0.3em] shadow-2xl shadow-indigo-600/40 hover:bg-slate-950 transition-all active:scale-95"
                         >
                             <Plus size={24} />
                             Register Unit
@@ -197,7 +197,7 @@ const ReportsSquadLogs = () => {
             <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse min-w-[1100px]">
                     <thead>
-                        <tr className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.4em] border-b border-slate-100 bg-slate-50/30">
+                        <tr className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.4em] border-b border-slate-100 bg-slate-50/30">
                             <th className="px-12 py-10">Operational Identity</th>
                             <th className="px-12 py-10">Cluster Target</th>
                             <th className="px-12 py-10 text-center">Time Delta</th>
@@ -221,23 +221,23 @@ const ReportsSquadLogs = () => {
                                             <div className="relative">
                                                 <div className="absolute inset-0 bg-indigo-600/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
                                                 <img src={log.avatar} alt={log.name} className="w-16 h-16 rounded-[1.25rem] border-4 border-white shadow-2xl relative z-10 group-hover:scale-115 transition-transform duration-700" />
-                                                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full border-4 border-slate-50 shadow-sm z-20" />
+                                                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-backgroundmerald-500 rounded-full border-4 border-slate-50 shadow-sm z-20" />
                                             </div>
                                             <div className="flex flex-col">
                                                 <span className="text-base font-black text-slate-950 uppercase tracking-tighter leading-none">{log.name}</span>
-                                                <span className="text-[9px] font-black text-zinc-400 mt-2 uppercase tracking-widest">Active Operator</span>
+                                                <span className="text-[9px] font-black text-muted-foreground mt-2 uppercase tracking-widest">Active Operator</span>
                                             </div>
                                         </div>
                                     </td>
                                     <td className="px-12 py-10">
                                         <div className="flex flex-col gap-2">
-                                            <span className="inline-flex text-[9px] font-black text-indigo-600 uppercase tracking-widest bg-indigo-50 px-4 py-1 rounded-full border border-indigo-100 w-max group-hover:bg-indigo-600 group-hover:text-white transition-all">{log.project}</span>
+                                            <span className="inline-flex text-[9px] font-black text-indigo-600 uppercase tracking-widest bg-indigo-50 px-4 py-1 rounded-full border border-indigo-100 w-max group-hover:bg-indigo-600 group-hover:text-foreground transition-all">{log.project}</span>
                                             <span className="text-sm font-bold text-slate-500 tracking-tight">{log.task}</span>
                                         </div>
                                     </td>
                                     <td className="px-12 py-10 text-center">
-                                        <span className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl text-xs font-black bg-slate-950 text-white shadow-xl shadow-slate-950/10 group-hover:bg-indigo-600 transition-all tabular-nums">
-                                            <Clock size={16} className="text-indigo-400 group-hover:text-white" />
+                                        <span className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl text-xs font-black bg-slate-950 text-foreground shadow-xl shadow-slate-950/10 group-hover:bg-indigo-600 transition-all tabular-nums">
+                                            <Clock size={16} className="text-indigo-400 group-hover:text-foreground" />
                                             {log.duration}
                                         </span>
                                     </td>
@@ -248,12 +248,12 @@ const ReportsSquadLogs = () => {
                                         </div>
                                     </td>
                                     <td className="px-12 py-10">
-                                        <p className="text-sm text-zinc-400 font-bold max-w-sm line-clamp-2 italic leading-relaxed group-hover:text-slate-950 transition-colors" title={log.notes}>
+                                        <p className="text-sm text-muted-foreground font-bold max-w-sm line-clamp-2 italic leading-relaxed group-hover:text-slate-950 transition-colors" title={log.notes}>
                                             "{log.notes || 'No contextual output available for this unit.'}"
                                         </p>
                                     </td>
                                     <td className="px-12 py-10 text-right">
-                                        <button className="p-4 bg-slate-50 text-slate-300 rounded-[1.25rem] hover:bg-slate-950 hover:text-white transition-all group/btn border border-slate-100 hover:border-slate-950 opacity-0 group-hover:opacity-100 -translate-x-10 group-hover:translate-x-0">
+                                        <button className="p-4 bg-slate-50 text-slate-300 rounded-[1.25rem] hover:bg-slate-950 hover:text-foreground transition-all group/btn border border-slate-100 hover:border-slate-950 opacity-0 group-hover:opacity-100 -translate-x-10 group-hover:translate-x-0">
                                             <ChevronRight size={24} className="group-hover/btn:translate-x-1 transition-transform" />
                                         </button>
                                     </td>
@@ -271,12 +271,12 @@ const ReportsSquadLogs = () => {
                             <img key={i} src={l.avatar} className="w-12 h-12 rounded-2xl border-4 border-slate-50 shadow-xl" alt="" />
                         ))}
                     </div>
-                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.4em]">Infrastructure Scan: <span className="text-slate-950 bg-white px-4 py-2 rounded-xl shadow-inner border border-slate-100 ml-2">{logs.length} Units Deployed</span></span>
+                    <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.4em]">Infrastructure Scan: <span className="text-slate-950 bg-white px-4 py-2 rounded-xl shadow-inner border border-slate-100 ml-2">{logs.length} Units Deployed</span></span>
                 </div>
                 
                 <div className="flex gap-4">
-                    <button className="h-16 px-8 rounded-2xl border border-slate-200 text-[10px] font-black uppercase text-zinc-400 hover:bg-white hover:text-slate-950 transition-all disabled:opacity-30 active:scale-95 shadow-sm" disabled>Back</button>
-                    <button className="h-16 px-10 rounded-2xl bg-slate-950 text-white text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 transition-all shadow-2xl shadow-slate-950/20 active:scale-95 flex items-center gap-3">
+                    <button className="h-16 px-8 rounded-2xl border border-slate-200 text-[10px] font-black uppercase text-muted-foreground hover:bg-white hover:text-slate-950 transition-all disabled:opacity-30 active:scale-95 shadow-sm" disabled>Back</button>
+                    <button className="h-16 px-10 rounded-2xl bg-slate-950 text-foreground text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 transition-all shadow-2xl shadow-slate-950/20 active:scale-95 flex items-center gap-3">
                         Next Cycle
                         <ChevronRight size={20} />
                     </button>

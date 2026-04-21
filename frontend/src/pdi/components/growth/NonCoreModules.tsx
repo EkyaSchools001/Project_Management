@@ -74,7 +74,7 @@ const NonCoreModules: React.FC<NonCoreModulesProps> = ({ teacherId, teacherName,
                 >
                     <CardHeader className="flex flex-row items-center gap-4">
                         <div
-                            className={`p-3 rounded-xl text-white ${module.color} group-hover:scale-110 transition-transform`}
+                            className={`p-3 rounded-xl text-foreground ${module.color} group-hover:scale-110 transition-transform`}
                         >
                             <module.icon className="w-6 h-6" />
                         </div>

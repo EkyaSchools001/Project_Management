@@ -534,7 +534,7 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
     return (
         <div className="max-w-5xl mx-auto pb-20">
             {/* Progress Header */}
-            <div className="sticky top-0 z-20 bg-background/80 backdrop-blur-md pt-4 pb-6 border-b mb-8 px-4">
+            <div className="sticky top-0 z-20 bg-backgroundackgroundackground/80 backdrop-blur-md pt-4 pb-6 border-b mb-8 px-4">
                 <div className="flex justify-between items-center mb-4">
                     <div>
                         <h2 className="text-2xl font-bold text-primary">Observation Form</h2>
@@ -553,7 +553,7 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                             "hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300",
                             isSaving
                                 ? "bg-amber-50 text-amber-600 border-amber-100"
-                                : "bg-emerald-50 text-emerald-600 border-emerald-100"
+                                : "bg-backgroundmerald-50 text-emerald-600 border-emerald-100"
                         )}>
                             <Cloud className={cn("w-3.5 h-3.5", isSaving ? "animate-pulse fill-amber-600/20" : "fill-emerald-600/20")} />
                             <span className="text-[10px] font-bold uppercase tracking-wider">
@@ -683,7 +683,7 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                                                 variant={formData.campus === c ? "default" : "outline"}
                                                 className={cn(
                                                     "cursor-pointer px-4 py-2 rounded-full text-xs font-semibold transition-all hover:scale-105",
-                                                    formData.campus === c ? "bg-primary text-white" : "border-primary/20 text-muted-foreground hover:bg-primary/5",
+                                                    formData.campus === c ? "bg-primary text-foreground" : "border-primary/20 text-muted-foreground hover:bg-primary/5",
                                                     readOnly && "cursor-default scale-100 opacity-80"
                                                 )}
                                                 onClick={() => !readOnly && updateField("campus", c)}
@@ -973,7 +973,7 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                                                 key={tool}
                                                 className={cn(
                                                     "flex items-center space-x-3 p-3 rounded-xl border transition-all select-none",
-                                                    isChecked ? "bg-emerald-500/5 border-emerald-500 shadow-sm" : "hover:bg-muted/50 border-muted-foreground/10",
+                                                    isChecked ? "bg-backgroundmerald-500/5 border-emerald-500 shadow-sm" : "hover:bg-muted/50 border-muted-foreground/10",
                                                     readOnly && "cursor-default"
                                                 )}
                                             >
@@ -1118,7 +1118,7 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                 {/* Step 6: Meta Tags */}
                 {step === 6 && (
                     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                        <Card className="  shadow-xl bg-background overflow-hidden">
+                        <Card className="  shadow-xl bg-backgroundackgroundackground overflow-hidden">
                             <CardHeader className="bg-primary/5 border-b py-8">
                                 <div className="flex items-center gap-4">
                                     <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
@@ -1131,7 +1131,7 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                                 </div>
                             </CardHeader>
                             <CardContent className="p-10 space-y-10">
-                                <div className="p-6 bg-emerald-50 rounded-2xl border border-emerald-200 flex items-start gap-4 mb-4 shadow-sm">
+                                <div className="p-6 bg-backgroundmerald-50 rounded-2xl border border-emerald-200 flex items-start gap-4 mb-4 shadow-sm">
                                     <Sparkles className="w-6 h-6 text-emerald-600 mt-1" />
                                     <div>
                                         <p className="font-bold text-emerald-800">Insight Engine Integration</p>
@@ -1156,7 +1156,7 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                 )}
 
                 {/* Sticky Bottom Actions */}
-                <div className="fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-lg border-t py-4 z-30 px-6">
+                <div className="fixed bottom-0 left-0 right-0 bg-backgroundackgroundackground/80 backdrop-blur-lg border-t py-4 z-30 px-6">
                     <div className="max-w-5xl mx-auto flex justify-between items-center">
                         <Button
                             type="button"
@@ -1183,7 +1183,7 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                                 <Button
                                     type="button"
                                     onClick={handleNext}
-                                    className="gap-2 font-bold px-8 bg-primary hover:bg-primary/90 text-white"
+                                    className="gap-2 font-bold px-8 bg-primary hover:bg-primary/90 text-foreground"
                                 >
                                     Next <ChevronRight className="w-4 h-4" />
                                 </Button>
@@ -1191,14 +1191,14 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                                 <Button
                                     type="button"
                                     onClick={onCancel}
-                                    className="gap-2 font-bold px-10 bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20"
+                                    className="gap-2 font-bold px-10 bg-primary hover:bg-primary/90 text-foreground shadow-lg shadow-primary/20"
                                 >
                                     <CheckCircle2 className="w-4 h-4" /> Back to Growth
                                 </Button>
                             ) : (
                                 <Button
                                     type="submit"
-                                    className="gap-2 font-bold px-10 bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20"
+                                    className="gap-2 font-bold px-10 bg-primary hover:bg-primary/90 text-foreground shadow-lg shadow-primary/20"
                                 >
                                     <Save className="w-4 h-4" /> {initialData.id ? "Update Observation" : "Submit Observation"}
                                 </Button>
@@ -1281,8 +1281,8 @@ const DomainSection = ({ domain, idx, readOnly, updateIndicatorRating, updateDom
                                     className={cn(
                                         "px-3 py-1.5 rounded-lg text-xs font-bold transition-all border",
                                         formData.domains?.find((d: any) => d.domainId === domain.id)?.indicators.find((i: any) => i.name === indicator)?.rating === rating
-                                            ? "bg-primary text-white border-primary shadow-lg shadow-primary/20 scale-105"
-                                            : "bg-background text-muted-foreground border-muted-foreground/10 hover:border-primary/40 hover:bg-primary/5",
+                                            ? "bg-primary text-foreground border-primary shadow-lg shadow-primary/20 scale-105"
+                                            : "bg-backgroundackgroundackground text-muted-foreground border-muted-foreground/10 hover:border-primary/40 hover:bg-primary/5",
                                         readOnly && "cursor-default scale-100 opacity-80"
                                     )}
                                 >

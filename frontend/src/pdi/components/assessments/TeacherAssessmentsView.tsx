@@ -33,7 +33,7 @@ export const TeacherAssessmentsView: React.FC = () => {
     const getStatus = (assessmentId: string) => {
         const attempt = attempts.find(a => a.assessmentId === assessmentId);
         if (!attempt) return { label: 'Not Started', color: 'bg-slate-500' };
-        if (attempt.status === 'SUBMITTED') return { label: 'Completed', color: 'bg-emerald-600', score: attempt.score };
+        if (attempt.status === 'SUBMITTED') return { label: 'Completed', color: 'bg-backgroundmerald-600', score: attempt.score };
         return { label: 'In Progress', color: 'bg-amber-500' };
     };
 
@@ -57,7 +57,7 @@ export const TeacherAssessmentsView: React.FC = () => {
         ? (submittedAttempts.length / assignments.length) * 100
         : 0;
 
-    if (loading) return <div className="p-8 text-center text-zinc-400 font-medium">Loading assessments...</div>;
+    if (loading) return <div className="p-8 text-center text-muted-foreground font-medium">Loading assessments...</div>;
 
     return (
         <div className="space-y-8 pb-12">
@@ -77,20 +77,20 @@ export const TeacherAssessmentsView: React.FC = () => {
                 <Card className="  shadow-md bg-white rounded-2xl overflow-hidden">
                     <CardContent className="pt-6">
                         <div className="flex items-center gap-3 mb-2">
-                            <div className="p-2 bg-emerald-100 rounded-lg">
+                            <div className="p-2 bg-backgroundmerald-100 rounded-lg">
                                 <CheckCircle className="w-5 h-5 text-emerald-600" />
                             </div>
                             <span className="text-zinc-500 text-sm font-medium">Completion Rate</span>
                         </div>
                         <div className="text-3xl font-bold text-zinc-900">{Math.round(completionRate)}%</div>
-                        <div className="text-[10px] text-zinc-400 mt-1">{submittedAttempts.length} of {assignments.length} Completed</div>
+                        <div className="text-[10px] text-muted-foreground mt-1">{submittedAttempts.length} of {assignments.length} Completed</div>
                     </CardContent>
                 </Card>
 
                 <Card className="  shadow-md bg-white rounded-2xl overflow-hidden opacity-90">
                     <CardContent className="pt-6">
                         <div className="flex items-center gap-3 mb-2">
-                            <div className="p-2 bg-blue-100 rounded-lg">
+                            <div className="p-2 bg-backgroundackgroundlue-100 rounded-lg">
                                 <AlertCircle className="w-5 h-5 text-blue-600" />
                             </div>
                             <span className="text-zinc-500 text-sm font-medium">Acad. Preparedness</span>
@@ -98,7 +98,7 @@ export const TeacherAssessmentsView: React.FC = () => {
                         <div className="text-3xl font-bold text-zinc-900">
                             {academicPreparednessAttempt ? `${Math.round(academicPreparednessAttempt.score || 0)}%` : '--'}
                         </div>
-                        <div className="text-[10px] text-zinc-400 mt-1">{academicPreparednessAttempt ? 'Completed' : 'Not Attempted'}</div>
+                        <div className="text-[10px] text-muted-foreground mt-1">{academicPreparednessAttempt ? 'Completed' : 'Not Attempted'}</div>
                     </CardContent>
                 </Card>
 
@@ -113,7 +113,7 @@ export const TeacherAssessmentsView: React.FC = () => {
                         <div className="text-3xl font-bold text-zinc-900">
                             {postOrientationAttempt ? `${Math.round(postOrientationAttempt.score || 0)}%` : '--'}
                         </div>
-                        <div className="text-[10px] text-zinc-400 mt-1">{postOrientationAttempt ? 'Completed' : 'Not Attempted'}</div>
+                        <div className="text-[10px] text-muted-foreground mt-1">{postOrientationAttempt ? 'Completed' : 'Not Attempted'}</div>
                     </CardContent>
                 </Card>
             </div>
@@ -134,13 +134,13 @@ export const TeacherAssessmentsView: React.FC = () => {
                                 <CardHeader className="pb-2">
                                     <div className="flex justify-between items-start mb-2">
                                         <Badge className={cn(
-                                            "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
+                                            "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
                                             status.color
                                         )}>{status.label}</Badge>
                                         {status.score !== undefined && (
                                             <div className="flex flex-col items-end">
                                                 <div className="text-sm font-black text-primary">Score: {Math.round(status.score)}%</div>
-                                                <span className="text-[9px] text-zinc-400">Final Result</span>
+                                                <span className="text-[9px] text-muted-foreground">Final Result</span>
                                             </div>
                                         )}
                                     </div>

@@ -83,12 +83,12 @@ export function LearningInsightsView() {
     };
 
     const getStatusBadge = (status: string) => {
-        const baseClass = "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm";
+        const baseClass = "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm";
         switch (status) {
-            case 'Submitted': return <Badge className={cn(baseClass, "bg-blue-600")}>Submitted</Badge>;
+            case 'Submitted': return <Badge className={cn(baseClass, "bg-backgroundackgroundlue-600")}>Submitted</Badge>;
             case 'Under Review': return <Badge className={cn(baseClass, "bg-amber-500")}>Under Review</Badge>;
-            case 'Shortlisted': return <Badge className={cn(baseClass, "bg-emerald-600")}>Shortlisted</Badge>;
-            case 'Confirmed': return <Badge className={cn(baseClass, "bg-emerald-600")}>Confirmed</Badge>;
+            case 'Shortlisted': return <Badge className={cn(baseClass, "bg-backgroundmerald-600")}>Shortlisted</Badge>;
+            case 'Confirmed': return <Badge className={cn(baseClass, "bg-backgroundmerald-600")}>Confirmed</Badge>;
             case 'Rejected': return <Badge className={cn(baseClass, "bg-rose-600")}>Rejected</Badge>;
             default: return <Badge className={cn(baseClass, "bg-slate-400")}>{status}</Badge>;
         }
@@ -280,11 +280,11 @@ export function LearningInsightsView() {
                                             <td className="px-6 py-4">
                                                 {teacher.isActive ? (
                                                     <Badge className={cn(
-                                                        "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm bg-emerald-600"
+                                                        "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm bg-backgroundmerald-600"
                                                     )}>Active</Badge>
                                                 ) : (
                                                     <Badge className={cn(
-                                                        "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm bg-slate-500"
+                                                        "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm bg-slate-500"
                                                     )}>Inactive</Badge>
                                                 )}
                                             </td>

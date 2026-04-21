@@ -94,24 +94,24 @@ export default function GamificationPage() {
     >
       <motion.div variants={itemVariants} className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-black text-white">Gamification</h1>
-          <p className="text-white/40 text-sm mt-1">Track your progress and earn rewards</p>
+          <h1 className="text-3xl font-black text-foreground">Gamification</h1>
+          <p className="text-foreground/40 text-sm mt-1">Track your progress and earn rewards</p>
         </div>
         {stats && (
           <div className="flex items-center gap-6 px-6 py-3 bg-[#161B22] border border-white/5 rounded-2xl">
             <div className="flex items-center gap-2">
               <Zap size={20} className="text-[#BAFF00]" />
               <div>
-                <p className="text-xs text-white/40">Total Points</p>
-                <p className="text-xl font-black text-white">{stats.totalPoints.toLocaleString()}</p>
+                <p className="text-xs text-foreground/40">Total Points</p>
+                <p className="text-xl font-black text-foreground">{stats.totalPoints.toLocaleString()}</p>
               </div>
             </div>
             <div className="w-px h-10 bg-white/10" />
             <div className="flex items-center gap-2">
               <Flame size={20} className="text-orange-400" />
               <div>
-                <p className="text-xs text-white/40">Streak</p>
-                <p className="text-xl font-black text-white">{stats.streak} days</p>
+                <p className="text-xs text-foreground/40">Streak</p>
+                <p className="text-xl font-black text-foreground">{stats.streak} days</p>
               </div>
             </div>
           </div>
@@ -124,13 +124,13 @@ export default function GamificationPage() {
 
           <Card className="bg-[#161B22] border-white/5 p-6 rounded-2xl">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-white flex items-center gap-3">
+              <h2 className="text-xl font-bold text-foreground flex items-center gap-3">
                 <div className="w-10 h-10 bg-purple-500/10 rounded-xl flex items-center justify-center">
                   <Award size={20} className="text-purple-400" />
                 </div>
                 Badges
               </h2>
-              <span className="text-xs text-white/40">{earnedBadges.length}/{badges.length} earned</span>
+              <span className="text-xs text-foreground/40">{earnedBadges.length}/{badges.length} earned</span>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {badges.map(badge => (
@@ -145,13 +145,13 @@ export default function GamificationPage() {
 
           <Card className="bg-[#161B22] border-white/5 p-6 rounded-2xl">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-white flex items-center gap-3">
+              <h2 className="text-xl font-bold text-foreground flex items-center gap-3">
                 <div className="w-10 h-10 bg-yellow-500/10 rounded-xl flex items-center justify-center">
                   <Star size={20} className="text-yellow-400" />
                 </div>
                 Achievements
               </h2>
-              <span className="text-xs text-white/40">{earnedAchievements.length}/{achievements.length} unlocked</span>
+              <span className="text-xs text-foreground/40">{earnedAchievements.length}/{achievements.length} unlocked</span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {achievements.map(achievement => (
@@ -167,8 +167,8 @@ export default function GamificationPage() {
           {challenges.length > 0 && (
             <Card className="bg-[#161B22] border-white/5 p-6 rounded-2xl">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-bold text-white flex items-center gap-3">
-                  <div className="w-10 h-10 bg-blue-500/10 rounded-xl flex items-center justify-center">
+                <h2 className="text-xl font-bold text-foreground flex items-center gap-3">
+                  <div className="w-10 h-10 bg-backgroundackgroundlue-500/10 rounded-xl flex items-center justify-center">
                     <Target size={20} className="text-blue-400" />
                   </div>
                   Active Challenges
@@ -191,27 +191,27 @@ export default function GamificationPage() {
           <Leaderboard limit={5} onViewAll={() => navigate('/gamification/leaderboard')} />
           
           <Card className="bg-[#161B22] border-white/5 p-6 rounded-2xl">
-            <h3 className="text-lg font-bold text-white mb-4">Quick Stats</h3>
+            <h3 className="text-lg font-bold text-foreground mb-4">Quick Stats</h3>
             <div className="space-y-4">
               <div className="flex items-center justify-between p-3 bg-white/5 rounded-xl">
-                <span className="text-sm text-white/60">Total Points</span>
+                <span className="text-sm text-foreground/60">Total Points</span>
                 <span className="font-black text-[#BAFF00]">{stats?.totalPoints?.toLocaleString() || 0}</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-white/5 rounded-xl">
-                <span className="text-sm text-white/60">Current Level</span>
-                <span className="font-black text-white">{stats?.level || 1}</span>
+                <span className="text-sm text-foreground/60">Current Level</span>
+                <span className="font-black text-foreground">{stats?.level || 1}</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-white/5 rounded-xl">
-                <span className="text-sm text-white/60">Badges Earned</span>
-                <span className="font-black text-white">{earnedBadges.length}</span>
+                <span className="text-sm text-foreground/60">Badges Earned</span>
+                <span className="font-black text-foreground">{earnedBadges.length}</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-white/5 rounded-xl">
-                <span className="text-sm text-white/60">Achievements</span>
-                <span className="font-black text-white">{earnedAchievements.length}</span>
+                <span className="text-sm text-foreground/60">Achievements</span>
+                <span className="font-black text-foreground">{earnedAchievements.length}</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-white/5 rounded-xl">
-                <span className="text-sm text-white/60">Weekly Points</span>
-                <span className="font-black text-white">{stats?.weeklyPoints || 0}</span>
+                <span className="text-sm text-foreground/60">Weekly Points</span>
+                <span className="font-black text-foreground">{stats?.weeklyPoints || 0}</span>
               </div>
             </div>
           </Card>

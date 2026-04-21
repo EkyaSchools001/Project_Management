@@ -82,7 +82,7 @@ export default function DashboardPage() {
                     <button className="h-16 px-10 bg-secondary border border-border text-foreground font-bold rounded-xl text-xs uppercase tracking-widest hover:bg-accent transition-all">
                         Analytics Hub
                     </button>
-                    <button className="h-16 px-10 bg-primary text-white font-extrabold rounded-xl text-xs uppercase tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-all">
+                    <button className="h-16 px-10 bg-primary text-foreground font-extrabold rounded-xl text-xs uppercase tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-all">
                         Execute New Task
                     </button>
                 </motion.div>
@@ -137,7 +137,7 @@ export default function DashboardPage() {
                                     <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em] mt-1 ml-14">System Analytics Output</p>
                                 </div>
                                 <div className="flex bg-muted p-1 rounded-xl">
-                                    <button className="px-4 py-1.5 bg-primary text-white text-[10px] font-bold rounded-lg transition-all">REAL-TIME</button>
+                                    <button className="px-4 py-1.5 bg-primary text-foreground text-[10px] font-bold rounded-lg transition-all">REAL-TIME</button>
                                     <button className="px-4 py-1.5 text-muted-foreground text-[10px] font-bold hover:text-foreground transition-all">HST_LOGS</button>
                                 </div>
                             </div>
@@ -193,11 +193,11 @@ export default function DashboardPage() {
                         </Card>
 
                         {/* Guardian - Custom Nifty Surface */}
-                        <Card className="bg-primary text-white p-10 rounded-[1.5rem] shadow-xl relative overflow-hidden group">
+                        <Card className="bg-primary text-foreground p-10 rounded-[1.5rem] shadow-xl relative overflow-hidden group">
                            <div className="absolute -right-20 -top-20 w-60 h-60 bg-white/10 rounded-full blur-[80px] pointer-events-none group-hover:scale-150 transition-transform duration-1000" />
                             <div className="relative z-10 space-y-6">
                                 <h3 className="text-2xl font-black uppercase tracking-tight">Guardian <br />Protocol</h3>
-                                <p className="text-white/80 text-xs font-bold leading-relaxed max-w-[200px]">System-wide threat assessment meeting 99.9% availability index.</p>
+                                <p className="text-foreground/80 text-xs font-bold leading-relaxed max-w-[200px]">System-wide threat assessment meeting 99.9% availability index.</p>
                                 <button className="px-8 h-12 bg-white text-primary font-bold rounded-xl text-[10px] uppercase tracking-widest hover:scale-105 active:scale-95 transition-all">Verify Node</button>
                             </div>
                         </Card>

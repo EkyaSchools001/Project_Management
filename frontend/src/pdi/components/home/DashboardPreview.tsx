@@ -42,7 +42,7 @@ export function DashboardPreview() {
 
                     {/* Top Stats Row */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <Card className="bg-background/80 backdrop-blur">
+                        <Card className="bg-backgroundackgroundackground/80 backdrop-blur">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                 <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
                                 <DollarSign className="h-4 w-4 text-muted-foreground" />
@@ -54,7 +54,7 @@ export function DashboardPreview() {
                                 </p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-background/80 backdrop-blur">
+                        <Card className="bg-backgroundackgroundackground/80 backdrop-blur">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                 <CardTitle className="text-sm font-medium">Active Users</CardTitle>
                                 <Users className="h-4 w-4 text-muted-foreground" />
@@ -66,7 +66,7 @@ export function DashboardPreview() {
                                 </p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-background/80 backdrop-blur">
+                        <Card className="bg-backgroundackgroundackground/80 backdrop-blur">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                 <CardTitle className="text-sm font-medium">Active Sessions</CardTitle>
                                 <Activity className="h-4 w-4 text-muted-foreground" />
@@ -82,7 +82,7 @@ export function DashboardPreview() {
 
                     {/* Charts Row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <Card className="bg-background/80 backdrop-blur col-span-1">
+                        <Card className="bg-backgroundackgroundackground/80 backdrop-blur col-span-1">
                             <CardHeader>
                                 <CardTitle>Overview</CardTitle>
                             </CardHeader>
@@ -107,7 +107,7 @@ export function DashboardPreview() {
                                 </div>
                             </CardContent>
                         </Card>
-                        <Card className="bg-background/80 backdrop-blur col-span-1">
+                        <Card className="bg-backgroundackgroundackground/80 backdrop-blur col-span-1">
                             <CardHeader>
                                 <CardTitle>Recent Sales</CardTitle>
                             </CardHeader>
@@ -126,7 +126,7 @@ export function DashboardPreview() {
                     </div>
 
                     {/* List Preview */}
-                    <div className="rounded-lg border bg-background/50 p-4">
+                    <div className="rounded-lg border bg-backgroundackgroundackground/50 p-4">
                         <div className="space-y-4">
                             {[1, 2, 3].map((i) => (
                                 <div key={i} className="flex items-center justify-between">

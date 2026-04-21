@@ -61,8 +61,8 @@ export default function LeaderboardPage() {
     >
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-black text-white">Leaderboard</h1>
-          <p className="text-white/40 text-sm mt-1">See how you rank against others</p>
+          <h1 className="text-3xl font-black text-foreground">Leaderboard</h1>
+          <p className="text-foreground/40 text-sm mt-1">See how you rank against others</p>
         </div>
         
         {currentUserRank && (
@@ -70,7 +70,7 @@ export default function LeaderboardPage() {
             <Trophy size={24} className="text-[#BAFF00]" />
             <div>
               <p className="text-xs text-[#BAFF00] font-bold uppercase tracking-widest">Your Rank</p>
-              <p className="text-2xl font-black text-white">#{currentUserRank}</p>
+              <p className="text-2xl font-black text-foreground">#{currentUserRank}</p>
             </div>
           </div>
         )}
@@ -85,7 +85,7 @@ export default function LeaderboardPage() {
                 onClick={() => { setPeriod(opt.value); setPage(1); }}
                 className={`
                   px-4 py-2 text-sm font-bold uppercase tracking-wider rounded-md transition-all
-                  ${period === opt.value ? 'bg-[#BAFF00] text-black' : 'text-white/40 hover:text-white'}
+                  ${period === opt.value ? 'bg-[#BAFF00] text-black' : 'text-foreground/40 hover:text-foreground'}
                 `}
               >
                 {opt.label}
@@ -93,7 +93,7 @@ export default function LeaderboardPage() {
             ))}
           </div>
           
-          <p className="text-xs text-white/40">
+          <p className="text-xs text-foreground/40">
             {entries.length} participants
           </p>
         </div>
@@ -103,7 +103,7 @@ export default function LeaderboardPage() {
             <div className="w-8 h-8 border-3 border-[#BAFF00] border-t-transparent rounded-full animate-spin" />
           </div>
         ) : entries.length === 0 ? (
-          <div className="text-center py-20 text-white/40">
+          <div className="text-center py-20 text-foreground/40">
             No leaderboard data available
           </div>
         ) : (
@@ -128,27 +128,27 @@ export default function LeaderboardPage() {
                         </div>
                       ) : (
                         <div className="w-10 h-10 flex items-center justify-center">
-                          <span className="font-black text-lg text-white/40">#{entry.rank}</span>
+                          <span className="font-black text-lg text-foreground/40">#{entry.rank}</span>
                         </div>
                       )}
                     </div>
 
-                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white font-bold text-lg">
+                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-foreground font-bold text-lg">
                       {entry.userName?.charAt(0).toUpperCase() || '?'}
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <p className={`font-bold text-lg truncate ${isCurrentUser ? 'text-[#BAFF00]' : 'text-white'}`}>
+                      <p className={`font-bold text-lg truncate ${isCurrentUser ? 'text-[#BAFF00]' : 'text-foreground'}`}>
                         {entry.userName}
                       </p>
-                      <p className="text-xs text-white/40">Level {entry.level}</p>
+                      <p className="text-xs text-foreground/40">Level {entry.level}</p>
                     </div>
 
                     <div className="text-right">
                       <p className="text-2xl font-black text-[#BAFF00]">
                         {entry.score.toLocaleString()}
                       </p>
-                      <p className="text-[10px] text-white/40">points</p>
+                      <p className="text-[10px] text-foreground/40">points</p>
                     </div>
                   </div>
                 );
@@ -160,17 +160,17 @@ export default function LeaderboardPage() {
                 <button
                   onClick={() => setPage(Math.max(1, page - 1))}
                   disabled={page === 1}
-                  className="p-2 rounded-lg bg-white/5 text-white/40 hover:text-white disabled:opacity-30"
+                  className="p-2 rounded-lg bg-white/5 text-foreground/40 hover:text-foreground disabled:opacity-30"
                 >
                   <ChevronLeft size={20} />
                 </button>
-                <span className="text-sm text-white/60">
+                <span className="text-sm text-foreground/60">
                   Page {page} of {totalPages}
                 </span>
                 <button
                   onClick={() => setPage(Math.min(totalPages, page + 1))}
                   disabled={page === totalPages}
-                  className="p-2 rounded-lg bg-white/5 text-white/40 hover:text-white disabled:opacity-30"
+                  className="p-2 rounded-lg bg-white/5 text-foreground/40 hover:text-foreground disabled:opacity-30"
                 >
                   <ChevronRight size={20} />
                 </button>

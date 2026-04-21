@@ -109,7 +109,7 @@ const MessageReactions = ({ message, roomId }) => {
                                     initial={{ opacity: 0, y: 5 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: 5 }}
-                                    className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-zinc-900 text-white text-[9px] px-2 py-1 rounded-lg whitespace-nowrap z-50"
+                                    className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-backgroundackgroundackground text-foreground text-[9px] px-2 py-1 rounded-lg whitespace-nowrap z-50"
                                 >
                                     <div className="flex gap-1">
                                         {users.map((u, i) => (
@@ -127,7 +127,7 @@ const MessageReactions = ({ message, roomId }) => {
                 
                 <button
                     onClick={() => setShowPicker(!showPicker)}
-                    className="w-8 h-8 flex items-center justify-center bg-white/80 rounded-xl text-zinc-400 hover:text-indigo-600 hover:bg-white transition-all border border-slate-100"
+                    className="w-8 h-8 flex items-center justify-center bg-white/80 rounded-xl text-muted-foreground hover:text-indigo-600 hover:bg-white transition-all border border-slate-100"
                 >
                     +
                 </button>

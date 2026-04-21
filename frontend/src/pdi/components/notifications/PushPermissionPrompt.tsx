@@ -35,7 +35,7 @@ export const PushPermissionPrompt: React.FC<PushPermissionPromptProps> = ({ onCo
       <Card className="bg-white/5 border-white/10">
         <CardContent className="p-4 text-center">
           <AlertCircle className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
-          <p className="text-white/70 text-sm">
+          <p className="text-foreground/70 text-sm">
             Push notifications are not supported in your browser
           </p>
         </CardContent>
@@ -48,7 +48,7 @@ export const PushPermissionPrompt: React.FC<PushPermissionPromptProps> = ({ onCo
       <Card className="bg-white/5 border-white/10">
         <CardContent className="p-4 text-center">
           <div className="animate-spin w-6 h-6 border-2 border-[#BAFF00] border-t-transparent rounded-full mx-auto" />
-          <p className="text-white/50 text-sm mt-2">Loading...</p>
+          <p className="text-foreground/50 text-sm mt-2">Loading...</p>
         </CardContent>
       </Card>
     );
@@ -64,15 +64,15 @@ export const PushPermissionPrompt: React.FC<PushPermissionPromptProps> = ({ onCo
                 <Check className="w-5 h-5 text-green-500" />
               </div>
               <div>
-                <p className="text-white font-medium">Push Notifications Enabled</p>
-                <p className="text-white/50 text-sm">You'll receive notifications in your browser</p>
+                <p className="text-foreground font-medium">Push Notifications Enabled</p>
+                <p className="text-foreground/50 text-sm">You'll receive notifications in your browser</p>
               </div>
             </div>
             <Button 
               variant="outline" 
               size="sm" 
               onClick={handleDisable}
-              className="border-white/20 text-white hover:bg-white/10"
+              className="border-white/20 text-foreground hover:bg-white/10"
             >
               Disable
             </Button>
@@ -91,8 +91,8 @@ export const PushPermissionPrompt: React.FC<PushPermissionPromptProps> = ({ onCo
               <X className="w-5 h-5 text-red-500" />
             </div>
             <div>
-              <p className="text-white font-medium">Push Notifications Blocked</p>
-              <p className="text-white/50 text-sm">
+              <p className="text-foreground font-medium">Push Notifications Blocked</p>
+              <p className="text-foreground/50 text-sm">
                 Please enable notifications in your browser settings
               </p>
             </div>
@@ -111,8 +111,8 @@ export const PushPermissionPrompt: React.FC<PushPermissionPromptProps> = ({ onCo
               <Bell className="w-5 h-5 text-[#BAFF00]" />
             </div>
             <div>
-              <p className="text-white font-medium">Enable Push Notifications</p>
-              <p className="text-white/50 text-sm">Stay updated with real-time alerts</p>
+              <p className="text-foreground font-medium">Enable Push Notifications</p>
+              <p className="text-foreground/50 text-sm">Stay updated with real-time alerts</p>
             </div>
           </div>
           <Button 

@@ -210,7 +210,7 @@ export function FestivalManagementDashboard() {
                                         <p className="text-sm font-bold text-gray-500 capitalize">Total Applications</p>
                                         <h3 className="text-3xl font-black text-blue-900 mt-2">{totalApps}</h3>
                                     </div>
-                                    <div className="p-3 bg-blue-100/50 rounded-xl text-blue-600">
+                                    <div className="p-3 bg-backgroundackgroundlue-100/50 rounded-xl text-blue-600">
                                         <FileText className="w-6 h-6" />
                                     </div>
                                 </div>
@@ -238,7 +238,7 @@ export function FestivalManagementDashboard() {
                                         <p className="text-sm font-bold text-gray-500 capitalize">Confirmed Participants</p>
                                         <h3 className="text-3xl font-black text-emerald-800 mt-2">{confirmedCount}</h3>
                                     </div>
-                                    <div className="p-3 bg-emerald-100/50 rounded-xl text-emerald-600">
+                                    <div className="p-3 bg-backgroundmerald-100/50 rounded-xl text-emerald-600">
                                         <CheckCircle2 className="w-6 h-6" />
                                     </div>
                                 </div>
@@ -259,7 +259,7 @@ export function FestivalManagementDashboard() {
                                     </CardHeader>
                                     <CardContent>
                                         <div className="space-y-3">
-                                            <div className="flex justify-between items-center bg-blue-50/50 p-2 rounded-lg">
+                                            <div className="flex justify-between items-center bg-backgroundackgroundlue-50/50 p-2 rounded-lg">
                                                 <span className="text-xs font-medium text-gray-600">Total Apps Received</span>
                                                 <span className="font-bold text-blue-700">{stats.total}</span>
                                             </div>
@@ -351,7 +351,7 @@ export function FestivalManagementDashboard() {
                                                     </td>
                                                 )}
                                                 <td className="px-6 py-4">
-                                                    <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-100">
+                                                    <Badge variant="outline" className="bg-backgroundackgroundlue-50 text-blue-700 border-blue-100">
                                                         {app.preferredStrand || 'N/A'}
                                                     </Badge>
                                                 </td>
@@ -365,7 +365,7 @@ export function FestivalManagementDashboard() {
                                                                 app.status === 'Rejected' ? 'destructive' :
                                                                     app.status === 'Under Review' ? 'secondary' : 'outline'
                                                     } className={
-                                                        app.status === 'Confirmed' ? 'bg-emerald-600' :
+                                                        app.status === 'Confirmed' ? 'bg-backgroundmerald-600' :
                                                             app.status === 'Shortlisted' ? 'bg-green-600' : ''
                                                     }>
                                                         {app.status}
@@ -435,7 +435,7 @@ export function FestivalManagementDashboard() {
                                         Reject
                                     </Button>
                                     {(role === 'ADMIN' || role === 'SUPERADMIN' || role === 'MANAGEMENT') && selectedApp.status === 'Shortlisted' ? (
-                                        <Button className="bg-emerald-600 hover:bg-emerald-700" onClick={() => handleUpdateStatus('Confirmed')}>
+                                        <Button className="bg-backgroundmerald-600 hover:bg-backgroundmerald-700" onClick={() => handleUpdateStatus('Confirmed')}>
                                             <CheckCircle2 className="w-4 h-4 mr-2" />
                                             Confirm Selection
                                         </Button>
@@ -577,7 +577,7 @@ export function FestivalManagementDashboard() {
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 text-right">
-                                                <Badge variant={teacher.isActive ? 'default' : 'secondary'} className={teacher.isActive ? 'bg-emerald-100 text-emerald-800' : ''}>
+                                                <Badge variant={teacher.isActive ? 'default' : 'secondary'} className={teacher.isActive ? 'bg-backgroundmerald-100 text-emerald-800' : ''}>
                                                     {teacher.isActive ? 'Active' : 'Inactive'}
                                                 </Badge>
                                             </td>

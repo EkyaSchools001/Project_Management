@@ -24,33 +24,33 @@ export const HOSOKRView: React.FC<Props> = ({ data }) => {
                 <Card className="  shadow-xl rounded-2xl">
                     <CardContent className="pt-6">
                         <Users className="w-5 h-5 text-blue-500 mb-2" />
-                        <p className="text-xs font-bold capitalize tracking-wider text-zinc-400">Total Teachers</p>
+                        <p className="text-xs font-bold capitalize tracking-wider text-muted-foreground">Total Teachers</p>
                         <p className="text-3xl font-black text-zinc-800">{data.totalTeachers}</p>
                     </CardContent>
                 </Card>
                 <Card className="  shadow-xl rounded-2xl">
                     <CardContent className="pt-6">
                         <Eye className="w-5 h-5 text-emerald-500 mb-2" />
-                        <p className="text-xs font-bold capitalize tracking-wider text-zinc-400">Teachers Observed</p>
+                        <p className="text-xs font-bold capitalize tracking-wider text-muted-foreground">Teachers Observed</p>
                         <p className="text-3xl font-black text-emerald-700">{data.teachersObserved}</p>
-                        <p className="text-xs text-zinc-400 mt-1">{coverageRate}% coverage</p>
+                        <p className="text-xs text-muted-foreground mt-1">{coverageRate}% coverage</p>
                     </CardContent>
                 </Card>
                 <Card className="  shadow-xl rounded-2xl">
                     <CardContent className="pt-6">
                         <XCircle className="w-5 h-5 text-red-400 mb-2" />
-                        <p className="text-xs font-bold capitalize tracking-wider text-zinc-400">Not Yet Observed</p>
+                        <p className="text-xs font-bold capitalize tracking-wider text-muted-foreground">Not Yet Observed</p>
                         <p className="text-3xl font-black text-red-600">{data.teachersNotObserved}</p>
                     </CardContent>
                 </Card>
                 <Card className="  shadow-xl rounded-2xl">
                     <CardContent className="pt-6">
                         <TrendingUp className="w-5 h-5 text-purple-500 mb-2" />
-                        <p className="text-xs font-bold capitalize tracking-wider text-zinc-400">Avg Obs Score</p>
+                        <p className="text-xs font-bold capitalize tracking-wider text-muted-foreground">Avg Obs Score</p>
                         <p className="text-3xl font-black text-purple-700">
                             {data.avgObservationScore !== null ? data.avgObservationScore : '--'}
                         </p>
-                        <p className="text-xs text-zinc-400 mt-1">{data.avgObservationsPerTeacher} obs/teacher</p>
+                        <p className="text-xs text-muted-foreground mt-1">{data.avgObservationsPerTeacher} obs/teacher</p>
                     </CardContent>
                 </Card>
             </div>
@@ -66,11 +66,11 @@ export const HOSOKRView: React.FC<Props> = ({ data }) => {
                 <CardContent className="space-y-3">
                     <div className="flex justify-between text-sm font-medium">
                         <span className="text-zinc-600">{data.teachersObserved} observed</span>
-                        <span className="text-zinc-400">Target: all {data.totalTeachers}</span>
+                        <span className="text-muted-foreground">Target: all {data.totalTeachers}</span>
                     </div>
                     <Progress value={coverageRate} className="h-3 rounded-full" />
                     <div className="flex gap-2">
-                        <Badge className="bg-emerald-50 text-emerald-700 border-emerald-100 border">{data.teachersObserved} Observed</Badge>
+                        <Badge className="bg-backgroundmerald-50 text-emerald-700 border-emerald-100 border">{data.teachersObserved} Observed</Badge>
                         <Badge className="bg-red-50 text-red-700 border-red-100 border">{data.teachersNotObserved} Pending</Badge>
                         <Badge className="bg-amber-50 text-amber-700 border-amber-100 border">{data.avgTrainingHoursPerTeacher}h avg PD / teacher</Badge>
                     </div>
@@ -87,10 +87,10 @@ export const HOSOKRView: React.FC<Props> = ({ data }) => {
                         <Table>
                             <TableHeader>
                                 <TableRow className="hover:bg-transparent border-zinc-100">
-                                    <TableHead className="text-xs font-bold capitalize text-zinc-400 w-[60px] text-center">S.No.</TableHead>
-                                    <TableHead className="text-xs font-bold capitalize text-zinc-400">Observer</TableHead>
-                                    <TableHead className="text-xs font-bold capitalize text-zinc-400">Observations Done</TableHead>
-                                    <TableHead className="text-xs font-bold capitalize text-zinc-400">Target Progress</TableHead>
+                                    <TableHead className="text-xs font-bold capitalize text-muted-foreground w-[60px] text-center">S.No.</TableHead>
+                                    <TableHead className="text-xs font-bold capitalize text-muted-foreground">Observer</TableHead>
+                                    <TableHead className="text-xs font-bold capitalize text-muted-foreground">Observations Done</TableHead>
+                                    <TableHead className="text-xs font-bold capitalize text-muted-foreground">Target Progress</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -129,16 +129,16 @@ export const HOSOKRView: React.FC<Props> = ({ data }) => {
                     <Table>
                         <TableHeader>
                             <TableRow className="hover:bg-transparent border-zinc-100">
-                                <TableHead className="text-xs font-bold capitalize text-zinc-400">Teacher</TableHead>
-                                <TableHead className="text-xs font-bold capitalize text-zinc-400">Goals</TableHead>
-                                <TableHead className="text-xs font-bold capitalize text-zinc-400">Completion</TableHead>
-                                <TableHead className="text-xs font-bold capitalize text-zinc-400">Status</TableHead>
+                                <TableHead className="text-xs font-bold capitalize text-muted-foreground">Teacher</TableHead>
+                                <TableHead className="text-xs font-bold capitalize text-muted-foreground">Goals</TableHead>
+                                <TableHead className="text-xs font-bold capitalize text-muted-foreground">Completion</TableHead>
+                                <TableHead className="text-xs font-bold capitalize text-muted-foreground">Status</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             {data.goalCompletionByTeacher.length === 0 ? (
                                 <TableRow>
-                                    <TableCell colSpan={5} className="text-center py-10 text-zinc-400">No goal data available</TableCell>
+                                    <TableCell colSpan={5} className="text-center py-10 text-muted-foreground">No goal data available</TableCell>
                                 </TableRow>
                             ) : data.goalCompletionByTeacher.map((t, index) => (
                                 <TableRow key={t.teacherId} className="border-zinc-50 hover:bg-zinc-50/50">
@@ -152,7 +152,7 @@ export const HOSOKRView: React.FC<Props> = ({ data }) => {
                                     </TableCell>
                                     <TableCell>
                                         {t.rate === 100 ? (
-                                            <Badge className="bg-emerald-50 text-emerald-700 border-emerald-100 border gap-1">
+                                            <Badge className="bg-backgroundmerald-50 text-emerald-700 border-emerald-100 border gap-1">
                                                 <CheckCircle2 className="w-3 h-3" /> Complete
                                             </Badge>
                                         ) : (

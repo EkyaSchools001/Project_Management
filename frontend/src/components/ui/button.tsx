@@ -41,7 +41,7 @@ const buttonVariants = cva(
           "bg-success text-success-foreground shadow-sm hover:bg-success/90 hover:-translate-y-0.5",
         // Indigo gradient (hero actions)
         gradient:
-          "gradient-indigo text-white shadow-fab hover:-translate-y-0.5 hover:shadow-glow-indigo",
+          "gradient-indigo text-foreground shadow-fab hover:-translate-y-0.5 hover:shadow-glow-indigo",
       },
       size: {
         default: "h-10 px-5 py-2",

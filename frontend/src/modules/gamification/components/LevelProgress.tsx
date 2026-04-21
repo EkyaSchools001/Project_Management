@@ -43,8 +43,8 @@ export function LevelProgress({ compact = false }) {
         </div>
         <div className="flex-1">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-sm font-bold text-white">Level {currentLevel.level}</span>
-            <span className="text-xs text-white/40">{progressPercent}%</span>
+            <span className="text-sm font-bold text-foreground">Level {currentLevel.level}</span>
+            <span className="text-xs text-foreground/40">{progressPercent}%</span>
           </div>
           <div className="h-2 bg-white/10 rounded-full overflow-hidden">
             <div 
@@ -65,14 +65,14 @@ export function LevelProgress({ compact = false }) {
             <Star size={32} className="text-black" />
           </div>
           <div>
-            <p className="text-xs text-white/40 font-bold uppercase tracking-widest">Current Level</p>
-            <h3 className="text-2xl font-black text-white">{currentLevel.name}</h3>
+            <p className="text-xs text-foreground/40 font-bold uppercase tracking-widest">Current Level</p>
+            <h3 className="text-2xl font-black text-foreground">{currentLevel.name}</h3>
             <p className="text-xs text-[#BAFF00]">Level {currentLevel.level}</p>
           </div>
         </div>
         <div className="text-right">
-          <p className="text-3xl font-black text-white">{progressPercent}%</p>
-          <p className="text-[10px] text-white/40">to next level</p>
+          <p className="text-3xl font-black text-foreground">{progressPercent}%</p>
+          <p className="text-[10px] text-foreground/40">to next level</p>
         </div>
       </div>
 
@@ -92,11 +92,11 @@ export function LevelProgress({ compact = false }) {
         {nextLevel && (
           <div className="flex items-center justify-between pt-4 border-t border-white/5">
             <div className="flex items-center gap-2">
-              <Zap size={16} className="text-white/40" />
-              <span className="text-sm text-white/60">
+              <Zap size={16} className="text-foreground/40" />
+              <span className="text-sm text-foreground/60">
                 {pointsToNextLevel.toLocaleString()} points to
               </span>
-              <span className="text-sm font-bold text-white">{nextLevel.name}</span>
+              <span className="text-sm font-bold text-foreground">{nextLevel.name}</span>
             </div>
             <div className="px-3 py-1 bg-[#BAFF00]/10 rounded-lg">
               <span className="text-xs font-bold text-[#BAFF00]">Level {nextLevel.level}</span>

@@ -150,8 +150,8 @@ export function DynamicDashboard({ role, id, fallback }: DynamicDashboardProps) 
               <div className="font-medium">{item.name || item.title || item.fullName || "Item"}</div>
               {item.status && (
                 <Badge className={cn(
-                  "px-2 py-0.5 rounded-full font-black text-[8px] tracking-widest uppercase border-none text-white shadow-sm",
-                  item.status === 'Active' || item.status === 'Approved' || item.status === 'Completed' ? 'bg-emerald-600' :
+                  "px-2 py-0.5 rounded-full font-black text-[8px] tracking-widest uppercase border-none text-foreground shadow-sm",
+                  item.status === 'Active' || item.status === 'Approved' || item.status === 'Completed' ? 'bg-backgroundmerald-600' :
                   item.status === 'Pending' || item.status === 'Draft' ? 'bg-amber-500' :
                   item.status === 'Rejected' ? 'bg-rose-600' :
                   'bg-slate-500'

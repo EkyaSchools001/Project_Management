@@ -5,7 +5,7 @@ export const AnalyticsService = {
         const [projectsCount, tasksCount, usersCount] = await Promise.all([
             prisma.project.count(),
             prisma.task.count(),
-            prisma.profile.count()
+            prisma.user.count()
         ]);
 
         return {
@@ -13,7 +13,7 @@ export const AnalyticsService = {
             tasks: tasksCount,
             users: usersCount,
             systemHealth: "99.9%",
-            upTime: "12 days" // In a real app, calculate this
+            upTime: "12 days"
         };
     },
 

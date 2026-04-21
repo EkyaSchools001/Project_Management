@@ -752,7 +752,7 @@ export const getSessions = async (req: AuthRequest, res: Response) => {
 
 export const revokeSession = async (req: AuthRequest, res: Response) => {
     try {
-        const rawSessionId = req.params.sessionId;
+        const rawSessionId = req.params.sessionId as string;
         const sessionId = Array.isArray(rawSessionId) ? rawSessionId[0] : rawSessionId;
 
         if (!sessionId) {

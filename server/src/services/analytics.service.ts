@@ -21,7 +21,7 @@ export const AnalyticsService = {
         return await prisma.department.findMany({
             include: {
                 _count: {
-                    select: { projects: true, profiles: true }
+                    select: { projects: true, users: true }
                 }
             }
         });
@@ -29,10 +29,10 @@ export const AnalyticsService = {
 
     async getRoleDistribution() {
         // Useful for SuperAdmins to see user breakdown
-        const roles = await prisma.profile.groupBy({
+        const roles = await prisma.user.groupBy({
             by: ['role'],
-            _count: { role: true }
+            _count: { _all: true }
         });
-        return roles.map(r => ({ role: r.role, count: r._count.role }));
+        return roles.map(r => ({ role: r.role, count: r._count._all }));
     }
 };

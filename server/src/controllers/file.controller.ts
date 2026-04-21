@@ -147,7 +147,7 @@ export const uploadTaskAttachment = async (req: AuthRequest, res: Response) => {
                 return res.status(400).json({ error: 'Task ID is required' });
             }
 
-            const result = await fileService.uploadAttachment(req.file, req.user.id, 'task', taskId);
+            const result = await fileService.uploadAttachment(req.file, req.user.id, 'task', taskId as string);
 
             if (!result.success) {
                 return res.status(500).json({ error: result.error });
@@ -181,7 +181,7 @@ export const uploadProjectAttachment = async (req: AuthRequest, res: Response) =
                 return res.status(400).json({ error: 'Project ID is required' });
             }
 
-            const result = await fileService.uploadAttachment(req.file, req.user.id, 'project', projectId);
+            const result = await fileService.uploadAttachment(req.file, req.user.id, 'project', projectId as string);
 
             if (!result.success) {
                 return res.status(500).json({ error: result.error });
@@ -237,7 +237,7 @@ export const listFiles = async (req: AuthRequest, res: Response) => {
 
 export const getFile = async (req: AuthRequest, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         const file = await fileService.getFileById(id);
 
         if (!file) {
@@ -256,7 +256,7 @@ export const getFile = async (req: AuthRequest, res: Response) => {
 
 export const downloadFile = async (req: AuthRequest, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         const file = await fileService.getFileById(id);
 
         if (!file) {
@@ -280,7 +280,7 @@ export const downloadFile = async (req: AuthRequest, res: Response) => {
 
 export const deleteFile = async (req: AuthRequest, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         const file = await fileService.getFileById(id);
 
         if (!file) {

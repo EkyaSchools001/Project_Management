@@ -61,7 +61,7 @@ export interface CreateMaintenanceData {
 }
 
 export const createDevice = async (data: CreateDeviceData) => {
-  return prisma.iotDevice.create({
+  return prisma.ioTDevice.create({
     data: {
       name: data.name,
       type: data.type,
@@ -78,7 +78,7 @@ export const getAllDevices = async (schoolId?: string, status?: string) => {
   if (schoolId) where.schoolId = schoolId;
   if (status) where.status = status;
 
-  return prisma.iotDevice.findMany({
+  return prisma.ioTDevice.findMany({
     where,
     include: {
       readings: {
@@ -91,7 +91,7 @@ export const getAllDevices = async (schoolId?: string, status?: string) => {
 };
 
 export const getDeviceById = async (id: string) => {
-  return prisma.iotDevice.findUnique({
+  return prisma.ioTDevice.findUnique({
     where: { id },
     include: {
       readings: {
@@ -108,7 +108,7 @@ export const getDeviceById = async (id: string) => {
 };
 
 export const updateDevice = async (id: string, data: UpdateDeviceData) => {
-  return prisma.iotDevice.update({
+  return prisma.ioTDevice.update({
     where: { id },
     data: {
       ...(data.name && { name: data.name }),
@@ -122,11 +122,11 @@ export const updateDevice = async (id: string, data: UpdateDeviceData) => {
 };
 
 export const deleteDevice = async (id: string) => {
-  await prisma.iotDevice.delete({ where: { id } });
+  await prisma.ioTDevice.delete({ where: { id } });
 };
 
 export const addReading = async (data: CreateReadingData) => {
-  const reading = await prisma.iOTReading.create({
+  const reading = await prisma.ioTReading.create({
     data: {
       deviceId: data.deviceId,
       type: data.type,
@@ -136,7 +136,7 @@ export const addReading = async (data: CreateReadingData) => {
     },
   });
 
-  await prisma.iotDevice.update({
+  await prisma.ioTDevice.update({
     where: { id: data.deviceId },
     data: { lastSeen: new Date() },
   });
@@ -148,7 +148,7 @@ export const getLatestReading = async (deviceId: string, type?: string) => {
   const where: any = { deviceId };
   if (type) where.type = type;
 
-  return prisma.iOTReading.findFirst({
+  return prisma.ioTReading.findFirst({
     where,
     orderBy: { timestamp: 'desc' },
   });
@@ -168,7 +168,7 @@ export const getReadingHistory = async (
     if (endDate) where.timestamp.lte = endDate;
   }
 
-  return prisma.iOTReading.findMany({
+  return prisma.ioTReading.findMany({
     where,
     orderBy: { timestamp: 'desc' },
     take: limit,
@@ -457,10 +457,10 @@ export const getDeviceStats = async (schoolId?: string) => {
   if (schoolId) where.schoolId = schoolId;
 
   const [total, active, offline, maintenance] = await Promise.all([
-    prisma.iotDevice.count({ where }),
-    prisma.iotDevice.count({ where: { ...where, status: 'Active' } }),
-    prisma.iotDevice.count({ where: { ...where, status: 'Offline' } }),
-    prisma.iotDevice.count({ where: { ...where, status: 'Maintenance' } }),
+    prisma.ioTDevice.count({ where }),
+    prisma.ioTDevice.count({ where: { ...where, status: 'Active' } }),
+    prisma.ioTDevice.count({ where: { ...where, status: 'Offline' } }),
+    prisma.ioTDevice.count({ where: { ...where, status: 'Maintenance' } }),
   ]);
 
   const openMaintenance = await prisma.maintenanceRequest.count({

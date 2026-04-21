@@ -2,38 +2,38 @@ import api from './api';
 
 export const aiService = {
     async prioritizeTasks(tasks, context) {
-        const response = await api.post('/v1/ai/prioritize', { tasks, context });
+        const response = await api.post('/ai/prioritize', { tasks, context });
         return response.data.data;
     },
 
     async analyzeRisk(project, historicalData) {
-        const response = await api.post('/v1/ai/risk-assessment', { project, historicalData });
+        const response = await api.post('/ai/risk-assessment', { project, historicalData });
         return response.data.data;
     },
 
     async suggestWorkload(teamMembers, tasks) {
-        const response = await api.post('/v1/ai/workload-balance', { teamMembers, tasks });
+        const response = await api.post('/ai/workload-balance', { teamMembers, tasks });
         return response.data.data;
     },
 
     async optimizeMeeting(meetings, constraints) {
-        const response = await api.post('/v1/ai/meeting-schedule', { meetings, constraints });
+        const response = await api.post('/ai/meeting-schedule', { meetings, constraints });
         return response.data.data;
     },
 
     async analyze(text, type) {
-        const response = await api.post('/v1/ai/analyze', { text, type });
+        const response = await api.post('/ai/analyze', { text, type });
         return response.data.data;
     },
 
     async chatbot(message, context) {
-        const response = await api.post('/v1/ai/chatbot', { message, context });
+        const response = await api.post('/ai/chatbot', { message, context });
         return response.data.data;
     },
 
     async getSuggestions(userId, types) {
         try {
-            const response = await api.get('/v1/ai/suggestions', { params: { userId, types: types?.join(',') } });
+            const response = await api.get('/ai/suggestions', { params: { userId, types: types?.join(',') } });
             // #region agent log
             fetch('http://127.0.0.1:7595/ingest/a1327625-861f-425d-8b19-5e387310336b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5ea8b1'},body:JSON.stringify({sessionId:'5ea8b1',runId:'run1',hypothesisId:'H4',location:'ai.service.js:getSuggestions:success',message:'AI suggestions endpoint success',data:{status:response?.status||null,count:Array.isArray(response?.data?.data)?response.data.data.length:null},timestamp:Date.now()})}).catch(()=>{});
             // #endregion
@@ -60,7 +60,17 @@ export const aiService = {
     },
 
     async autoTag(items) {
-        const response = await api.post('/v1/ai/auto-tag', { items });
+        const response = await api.post('/ai/auto-tag', { items });
+        return response.data.data;
+    },
+
+    async generatePlan(name, description) {
+        const response = await api.post('/ai/generate-plan', { name, description });
+        return response.data.data;
+    },
+
+    async generateQuiz(courseTitle, difficulty) {
+        const response = await api.post('/ai/generate-quiz', { courseTitle, difficulty });
         return response.data.data;
     }
 };

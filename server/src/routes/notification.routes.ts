@@ -70,7 +70,7 @@ router.put('/preferences', async (req: Request, res: Response, next: NextFunctio
 router.put('/:id/read', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const userId = getCurrentUserId(req);
-        const notification = await NotificationService.markAsRead(req.params.id, userId);
+        const notification = await NotificationService.markAsRead(req.params.i as string, userId);
         res.json({ success: true, data: notification });
     } catch (error) {
         next(error);
@@ -90,7 +90,7 @@ router.put('/read-all', async (req: Request, res: Response, next: NextFunction) 
 router.delete('/:id', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const userId = getCurrentUserId(req);
-        await NotificationService.deleteNotification(req.params.id, userId);
+        await NotificationService.deleteNotification(req.params.i as string, userId);
         res.json({ success: true });
     } catch (error) {
         next(error);

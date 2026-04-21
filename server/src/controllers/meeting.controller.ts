@@ -90,7 +90,7 @@ export const listMeetings = async (req: Request, res: Response) => {
 
 export const getMeetingById = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         const meeting = await meetingService.getMeetingById(id);
 
         if (!meeting) {
@@ -106,7 +106,7 @@ export const getMeetingById = async (req: Request, res: Response) => {
 
 export const updateMeeting = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         const input: UpdateMeetingInput = req.body;
 
         const meeting = await meetingService.updateMeeting(id, input);
@@ -124,7 +124,7 @@ export const updateMeeting = async (req: Request, res: Response) => {
 
 export const cancelMeeting = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         const success = await meetingService.cancelMeeting(id);
 
         if (!success) {
@@ -140,7 +140,7 @@ export const cancelMeeting = async (req: Request, res: Response) => {
 
 export const joinMeeting = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         const { userId, userName } = req.body;
 
         if (!userId || !userName) {
@@ -157,7 +157,7 @@ export const joinMeeting = async (req: Request, res: Response) => {
 
 export const leaveMeeting = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         const { userId } = req.body;
 
         if (!userId) {

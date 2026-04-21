@@ -31,7 +31,7 @@ export const financeService = {
     projectId?: string;
     departmentId?: string;
   }) {
-    return prisma.budget.create({ data });
+    return prisma.budget.create({ data: data as any });
   },
 
   async updateBudget(id: string, data: Partial<{
@@ -41,7 +41,7 @@ export const financeService = {
     startDate: Date;
     endDate: Date;
   }>) {
-    return prisma.budget.update({ where: { id }, data });
+    return prisma.budget.update({ where: { id }, data: data as any });
   },
 
   async deleteBudget(id: string) {
@@ -102,7 +102,7 @@ export const financeService = {
         data: { spent: { increment: diff } }
       });
     }
-    return prisma.expense.update({ where: { id }, data });
+    return prisma.expense.update({ where: { id }, data: data as any });
   },
 
   async deleteExpense(id: string) {
@@ -152,7 +152,7 @@ export const financeService = {
     status: string;
     paidDate: Date;
   }>) {
-    return prisma.invoice.update({ where: { id }, data });
+    return prisma.invoice.update({ where: { id }, data: data as any });
   },
 
   async deleteInvoice(id: string) {
@@ -193,7 +193,7 @@ export const financeService = {
     category: string;
     address: string;
   }>) {
-    return prisma.vendor.update({ where: { id }, data });
+    return prisma.vendor.update({ where: { id }, data: data as any });
   },
 
   async deleteVendor(id: string) {
@@ -234,7 +234,7 @@ export const financeService = {
     approvedById: string;
     notes: string;
   }>) {
-    return prisma.purchaseOrder.update({ where: { id }, data });
+    return prisma.purchaseOrder.update({ where: { id }, data: data as any });
   },
 
   async deletePurchaseOrder(id: string) {

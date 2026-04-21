@@ -20,7 +20,7 @@ export const lmsController = {
 
   async getCourseById(req: Request, res: Response) {
     try {
-      const course = await lmsService.getCourseById(req.params.id);
+      const course = await lmsService.getCourseById(req.params.i as string);
       if (!course) {
         return res.status(404).json({ status: 'error', message: 'Course not found' });
       }
@@ -41,7 +41,7 @@ export const lmsController = {
 
   async updateCourse(req: Request, res: Response) {
     try {
-      const course = await lmsService.updateCourse(req.params.id, req.body);
+      const course = await lmsService.updateCourse(req.params.i as string, req.body);
       res.json({ status: 'success', data: course });
     } catch (error: any) {
       res.status(500).json({ status: 'error', message: error.message });
@@ -50,7 +50,7 @@ export const lmsController = {
 
   async deleteCourse(req: Request, res: Response) {
     try {
-      await lmsService.deleteCourse(req.params.id);
+      await lmsService.deleteCourse(req.params.i as string);
       res.json({ status: 'success', message: 'Course deleted' });
     } catch (error: any) {
       res.status(500).json({ status: 'error', message: error.message });
@@ -59,7 +59,7 @@ export const lmsController = {
 
   async getLessons(req: Request, res: Response) {
     try {
-      const lessons = await lmsService.getLessons(req.params.courseId);
+      const lessons = await lmsService.getLessons(req.params.courseI as string);
       res.json({ status: 'success', data: lessons });
     } catch (error: any) {
       res.status(500).json({ status: 'error', message: error.message });
@@ -68,7 +68,7 @@ export const lmsController = {
 
   async getLessonById(req: Request, res: Response) {
     try {
-      const lesson = await lmsService.getLessonById(req.params.id);
+      const lesson = await lmsService.getLessonById(req.params.i as string);
       if (!lesson) {
         return res.status(404).json({ status: 'error', message: 'Lesson not found' });
       }
@@ -89,7 +89,7 @@ export const lmsController = {
 
   async updateLesson(req: Request, res: Response) {
     try {
-      const lesson = await lmsService.updateLesson(req.params.id, req.body);
+      const lesson = await lmsService.updateLesson(req.params.i as string, req.body);
       res.json({ status: 'success', data: lesson });
     } catch (error: any) {
       res.status(500).json({ status: 'error', message: error.message });
@@ -98,7 +98,7 @@ export const lmsController = {
 
   async deleteLesson(req: Request, res: Response) {
     try {
-      await lmsService.deleteLesson(req.params.id);
+      await lmsService.deleteLesson(req.params.i as string);
       res.json({ status: 'success', message: 'Lesson deleted' });
     } catch (error: any) {
       res.status(500).json({ status: 'error', message: error.message });
@@ -107,7 +107,7 @@ export const lmsController = {
 
   async getQuizzes(req: Request, res: Response) {
     try {
-      const quizzes = await lmsService.getQuizzes(req.params.lessonId);
+      const quizzes = await lmsService.getQuizzes(req.params.lessonI as string);
       res.json({ status: 'success', data: quizzes });
     } catch (error: any) {
       res.status(500).json({ status: 'error', message: error.message });
@@ -116,7 +116,7 @@ export const lmsController = {
 
   async getQuizById(req: Request, res: Response) {
     try {
-      const quiz = await lmsService.getQuizById(req.params.id);
+      const quiz = await lmsService.getQuizById(req.params.i as string);
       if (!quiz) {
         return res.status(404).json({ status: 'error', message: 'Quiz not found' });
       }
@@ -137,7 +137,7 @@ export const lmsController = {
 
   async updateQuiz(req: Request, res: Response) {
     try {
-      const quiz = await lmsService.updateQuiz(req.params.id, req.body);
+      const quiz = await lmsService.updateQuiz(req.params.i as string, req.body);
       res.json({ status: 'success', data: quiz });
     } catch (error: any) {
       res.status(500).json({ status: 'error', message: error.message });
@@ -146,7 +146,7 @@ export const lmsController = {
 
   async deleteQuiz(req: Request, res: Response) {
     try {
-      await lmsService.deleteQuiz(req.params.id);
+      await lmsService.deleteQuiz(req.params.i as string);
       res.json({ status: 'success', message: 'Quiz deleted' });
     } catch (error: any) {
       res.status(500).json({ status: 'error', message: error.message });
@@ -158,7 +158,7 @@ export const lmsController = {
       const userId = (req as any).user?.id || req.body.userId;
       const attempt = await lmsService.submitQuizAttempt({
         userId,
-        quizId: req.params.quizId,
+        quizId: req.params.quizI as string,
         answers: req.body.answers,
       });
       res.json({ status: 'success', data: attempt });
@@ -170,7 +170,7 @@ export const lmsController = {
   async getQuizAttempts(req: Request, res: Response) {
     try {
       const userId = (req as any).user?.id;
-      const attempts = await lmsService.getQuizAttempts(userId, req.params.quizId);
+      const attempts = await lmsService.getQuizAttempts(userId, req.params.quizI as string);
       res.json({ status: 'success', data: attempts });
     } catch (error: any) {
       res.status(500).json({ status: 'error', message: error.message });
@@ -180,7 +180,7 @@ export const lmsController = {
   async enrollInCourse(req: Request, res: Response) {
     try {
       const userId = (req as any).user?.id || req.body.userId;
-      const enrollment = await lmsService.enrollInCourse(userId, req.params.courseId);
+      const enrollment = await lmsService.enrollInCourse(userId, req.params.courseI as string);
       res.status(201).json({ status: 'success', data: enrollment });
     } catch (error: any) {
       res.status(500).json({ status: 'error', message: error.message });
@@ -200,7 +200,7 @@ export const lmsController = {
   async getEnrollment(req: Request, res: Response) {
     try {
       const userId = (req as any).user?.id;
-      const enrollment = await lmsService.getEnrollment(userId!, req.params.courseId);
+      const enrollment = await lmsService.getEnrollment(userId!, req.params.courseI as string);
       if (!enrollment) {
         return res.status(404).json({ status: 'error', message: 'Enrollment not found' });
       }
@@ -214,7 +214,7 @@ export const lmsController = {
     try {
       const userId = (req as any).user?.id;
       const { progress } = req.body;
-      const enrollment = await lmsService.updateProgress(userId!, req.params.courseId, progress);
+      const enrollment = await lmsService.updateProgress(userId!, req.params.courseI as string, progress);
       res.json({ status: 'success', data: enrollment });
     } catch (error: any) {
       res.status(500).json({ status: 'error', message: error.message });
@@ -234,7 +234,7 @@ export const lmsController = {
   async generateCertificate(req: Request, res: Response) {
     try {
       const userId = (req as any).user?.id;
-      const certificate = await lmsService.generateCertificate(userId!, req.params.courseId);
+      const certificate = await lmsService.generateCertificate(userId!, req.params.courseI as string);
       res.json({ status: 'success', data: certificate });
     } catch (error: any) {
       res.status(500).json({ status: 'error', message: error.message });
@@ -253,7 +253,7 @@ export const lmsController = {
 
   async getCertificateById(req: Request, res: Response) {
     try {
-      const certificate = await lmsService.getCertificateById(req.params.id);
+      const certificate = await lmsService.getCertificateById(req.params.i as string);
       if (!certificate) {
         return res.status(404).json({ status: 'error', message: 'Certificate not found' });
       }
@@ -274,7 +274,7 @@ export const lmsController = {
 
   async getLearningPathById(req: Request, res: Response) {
     try {
-      const path = await lmsService.getLearningPathById(req.params.id);
+      const path = await lmsService.getLearningPathById(req.params.i as string);
       if (!path) {
         return res.status(404).json({ status: 'error', message: 'Learning path not found' });
       }
@@ -295,7 +295,7 @@ export const lmsController = {
 
   async updateLearningPath(req: Request, res: Response) {
     try {
-      const path = await lmsService.updateLearningPath(req.params.id, req.body);
+      const path = await lmsService.updateLearningPath(req.params.i as string, req.body);
       res.json({ status: 'success', data: path });
     } catch (error: any) {
       res.status(500).json({ status: 'error', message: error.message });
@@ -305,7 +305,7 @@ export const lmsController = {
   async enrollInLearningPath(req: Request, res: Response) {
     try {
       const userId = (req as any).user?.id;
-      const enrollment = await lmsService.enrollInLearningPath(userId!, req.params.pathId);
+      const enrollment = await lmsService.enrollInLearningPath(userId!, req.params.pathI as string);
       res.status(201).json({ status: 'success', data: enrollment });
     } catch (error: any) {
       res.status(500).json({ status: 'error', message: error.message });

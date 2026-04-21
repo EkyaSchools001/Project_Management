@@ -113,5 +113,28 @@ export const AIController = {
             console.error('Error auto-tagging:', error);
             res.status(500).json({ error: 'Failed to auto-tag content' });
         }
+    },
+
+    async generateProjectPlan(req: Request, res: Response) {
+        try {
+            const { name, description } = req.body;
+            if (!name) return res.status(400).json({ error: 'Project name is required' });
+            const plan = await aiService.generateProjectPlan(name, description);
+            res.json({ status: 'success', data: plan });
+        } catch (error) {
+            console.error('Error generating project plan:', error);
+            res.status(500).json({ error: 'Failed to generate project plan' });
+        }
+    },
+
+    async generateQuiz(req: Request, res: Response) {
+        try {
+            const { courseTitle, difficulty } = req.body;
+            const quiz = await aiService.generateQuizForCourse(courseTitle, difficulty);
+            res.json({ status: 'success', data: quiz });
+        } catch (error) {
+            console.error('Error generating quiz:', error);
+            res.status(500).json({ error: 'Failed to generate quiz' });
+        }
     }
 };

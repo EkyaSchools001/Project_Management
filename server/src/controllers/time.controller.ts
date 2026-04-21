@@ -115,7 +115,7 @@ export const CreateEntry = async (req: Request, res: Response) => {
 
 export const UpdateEntry = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         const { description, startTime, endTime, duration, billable } = req.body;
 
         const entry = await timeService.updateEntry(id, {
@@ -135,7 +135,7 @@ export const UpdateEntry = async (req: Request, res: Response) => {
 
 export const DeleteEntry = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         await timeService.deleteEntry(id);
         res.json({ success: true });
     } catch (error: any) {
@@ -151,7 +151,7 @@ export const ApproveEntry = async (req: Request, res: Response) => {
             return res.status(401).json({ error: 'Unauthorized' });
         }
 
-        const { id } = req.params;
+        const id = req.params.i as string;
         const entry = await timeService.approveEntry(id, userId);
         res.json({ success: true, data: entry });
     } catch (error: any) {

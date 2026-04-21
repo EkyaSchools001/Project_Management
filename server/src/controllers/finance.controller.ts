@@ -13,7 +13,7 @@ export const financeController = {
 
   async getBudgetById(req: Request, res: Response) {
     try {
-      const budget = await financeService.getBudgetById(req.params.id);
+      const budget = await financeService.getBudgetById(req.params.i as string);
       if (!budget) return res.status(404).json({ error: 'Budget not found' });
       res.json({ status: 'success', data: budget });
     } catch (error) {
@@ -32,7 +32,7 @@ export const financeController = {
 
   async updateBudget(req: Request, res: Response) {
     try {
-      const budget = await financeService.updateBudget(req.params.id, req.body);
+      const budget = await financeService.updateBudget(req.params.i as string, req.body);
       res.json({ status: 'success', data: budget });
     } catch (error) {
       res.status(500).json({ error: 'Failed to update budget' });
@@ -41,7 +41,7 @@ export const financeController = {
 
   async deleteBudget(req: Request, res: Response) {
     try {
-      await financeService.deleteBudget(req.params.id);
+      await financeService.deleteBudget(req.params.i as string);
       res.json({ status: 'success', message: 'Budget deleted' });
     } catch (error) {
       res.status(500).json({ error: 'Failed to delete budget' });
@@ -59,7 +59,7 @@ export const financeController = {
 
   async getExpenseById(req: Request, res: Response) {
     try {
-      const expense = await financeService.getExpenseById(req.params.id);
+      const expense = await financeService.getExpenseById(req.params.i as string);
       if (!expense) return res.status(404).json({ error: 'Expense not found' });
       res.json({ status: 'success', data: expense });
     } catch (error) {
@@ -78,7 +78,7 @@ export const financeController = {
 
   async updateExpense(req: Request, res: Response) {
     try {
-      const expense = await financeService.updateExpense(req.params.id, req.body);
+      const expense = await financeService.updateExpense(req.params.i as string, req.body);
       res.json({ status: 'success', data: expense });
     } catch (error) {
       res.status(500).json({ error: 'Failed to update expense' });
@@ -87,7 +87,7 @@ export const financeController = {
 
   async deleteExpense(req: Request, res: Response) {
     try {
-      await financeService.deleteExpense(req.params.id);
+      await financeService.deleteExpense(req.params.i as string);
       res.json({ status: 'success', message: 'Expense deleted' });
     } catch (error) {
       res.status(500).json({ error: 'Failed to delete expense' });
@@ -105,7 +105,7 @@ export const financeController = {
 
   async getInvoiceById(req: Request, res: Response) {
     try {
-      const invoice = await financeService.getInvoiceById(req.params.id);
+      const invoice = await financeService.getInvoiceById(req.params.i as string);
       if (!invoice) return res.status(404).json({ error: 'Invoice not found' });
       res.json({ status: 'success', data: invoice });
     } catch (error) {
@@ -124,7 +124,7 @@ export const financeController = {
 
   async updateInvoice(req: Request, res: Response) {
     try {
-      const invoice = await financeService.updateInvoice(req.params.id, req.body);
+      const invoice = await financeService.updateInvoice(req.params.i as string, req.body);
       res.json({ status: 'success', data: invoice });
     } catch (error) {
       res.status(500).json({ error: 'Failed to update invoice' });
@@ -133,7 +133,7 @@ export const financeController = {
 
   async deleteInvoice(req: Request, res: Response) {
     try {
-      await financeService.deleteInvoice(req.params.id);
+      await financeService.deleteInvoice(req.params.i as string);
       res.json({ status: 'success', message: 'Invoice deleted' });
     } catch (error) {
       res.status(500).json({ error: 'Failed to delete invoice' });
@@ -151,7 +151,7 @@ export const financeController = {
 
   async getVendorById(req: Request, res: Response) {
     try {
-      const vendor = await financeService.getVendorById(req.params.id);
+      const vendor = await financeService.getVendorById(req.params.i as string);
       if (!vendor) return res.status(404).json({ error: 'Vendor not found' });
       res.json({ status: 'success', data: vendor });
     } catch (error) {
@@ -170,7 +170,7 @@ export const financeController = {
 
   async updateVendor(req: Request, res: Response) {
     try {
-      const vendor = await financeService.updateVendor(req.params.id, req.body);
+      const vendor = await financeService.updateVendor(req.params.i as string, req.body);
       res.json({ status: 'success', data: vendor });
     } catch (error) {
       res.status(500).json({ error: 'Failed to update vendor' });
@@ -179,7 +179,7 @@ export const financeController = {
 
   async deleteVendor(req: Request, res: Response) {
     try {
-      await financeService.deleteVendor(req.params.id);
+      await financeService.deleteVendor(req.params.i as string);
       res.json({ status: 'success', message: 'Vendor deleted' });
     } catch (error) {
       res.status(500).json({ error: 'Failed to delete vendor' });
@@ -197,7 +197,7 @@ export const financeController = {
 
   async getPurchaseOrderById(req: Request, res: Response) {
     try {
-      const order = await financeService.getPurchaseOrderById(req.params.id);
+      const order = await financeService.getPurchaseOrderById(req.params.i as string);
       if (!order) return res.status(404).json({ error: 'Purchase order not found' });
       res.json({ status: 'success', data: order });
     } catch (error) {
@@ -216,7 +216,7 @@ export const financeController = {
 
   async updatePurchaseOrder(req: Request, res: Response) {
     try {
-      const order = await financeService.updatePurchaseOrder(req.params.id, req.body);
+      const order = await financeService.updatePurchaseOrder(req.params.i as string, req.body);
       res.json({ status: 'success', data: order });
     } catch (error) {
       res.status(500).json({ error: 'Failed to update purchase order' });
@@ -225,7 +225,7 @@ export const financeController = {
 
   async deletePurchaseOrder(req: Request, res: Response) {
     try {
-      await financeService.deletePurchaseOrder(req.params.id);
+      await financeService.deletePurchaseOrder(req.params.i as string);
       res.json({ status: 'success', message: 'Purchase order deleted' });
     } catch (error) {
       res.status(500).json({ error: 'Failed to delete purchase order' });

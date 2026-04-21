@@ -61,11 +61,13 @@ export const getFilePublicUrl = (key) => {
 };
 
 export class CloudStorageService {
+    public config: ReturnType<typeof getStorageConfig>;
+
     constructor() {
         this.config = getStorageConfig();
     }
 
-    async uploadToS3(file, key, options = {}) {
+    async uploadToS3(file: any, key: any, options: any = {}) {
         if (this.config.type !== STORAGE_TYPE.AWS_S3) {
             throw new Error('S3 storage not configured');
         }
@@ -121,11 +123,12 @@ export class CloudStorageService {
         return true;
     }
 
-    async uploadToCloudinary(file, options = {}) {
+    async uploadToCloudinary(file: any, options: any = {}) {
         if (this.config.type !== STORAGE_TYPE.CLOUDINARY) {
             throw new Error('Cloudinary storage not configured');
         }
 
+        // @ts-ignore
         const cloudinary = await import('cloudinary').then(m => m.v2);
         
         cloudinary.config({
@@ -157,6 +160,7 @@ export class CloudStorageService {
             throw new Error('Cloudinary storage not configured');
         }
 
+        // @ts-ignore
         const cloudinary = await import('cloudinary').then(m => m.v2);
         
         cloudinary.config({
@@ -172,7 +176,7 @@ export class CloudStorageService {
         return true;
     }
 
-    async upload(file, key, options = {}) {
+    async upload(file: any, key: any, options: any = {}) {
         switch (this.config.type) {
             case STORAGE_TYPE.AWS_S3:
                 return this.uploadToS3(file, key, options);
@@ -186,7 +190,7 @@ export class CloudStorageService {
         }
     }
 
-    async delete(key, options = {}) {
+    async delete(key: any, options: any = {}) {
         switch (this.config.type) {
             case STORAGE_TYPE.AWS_S3:
                 return this.deleteFromS3(key);

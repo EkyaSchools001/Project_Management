@@ -1,5 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  Sparkles, 
+  Search, 
+  BookOpen, 
+  GraduationCap, 
+  Trophy, 
+  Zap,
+  LayoutGrid,
+  LayoutList,
+  ChevronRight,
+  Target
+} from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -17,7 +30,7 @@ export default function LMSPage() {
   const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activeTab, setActiveTab] = useState('catalog');
 
   useEffect(() => {
@@ -48,7 +61,7 @@ export default function LMSPage() {
     try {
       const res = await lmsService.getCourses({ 
         search: searchQuery, 
-        category: selectedCategory || undefined 
+        category: selectedCategory === 'all' ? undefined : selectedCategory || undefined 
       });
       setCourses(res.data?.data?.courses || []);
     } catch (error) {
@@ -67,64 +80,105 @@ export default function LMSPage() {
     }
   };
 
-  const handlePathEnroll = async (pathId: string) => {
-    try {
-      await lmsService.enrollInLearningPath(pathId);
-      loadData();
-    } catch (error) {
-      console.error('Error enrolling in path:', error);
-    }
-  };
-
   const enrollmentsMap = new Map(myCourses.map(e => [e.courseId, e]));
-  const pathEnrollmentsMap = new Map(
-    myCourses.flatMap(e => e.learningPathEnrollments || []).map(e => [e.learningPathId, e])
-  );
 
   return (
-    <div className="container mx-auto py-6 space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Learning Center</h1>
+    <div className="min-h-screen bg-[#0B0E14] text-white p-6 sm:p-10 lg:p-16 space-y-12">
+      {/* Premium Header */}
+      <header className="relative p-12 lg:p-16 rounded-[3rem] overflow-hidden bg-slate-900 border border-white/5 space-y-8">
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-transparent to-transparent" />
+        <div className="absolute top-0 right-0 p-8">
+          <Badge className="bg-indigo-500/10 text-indigo-400 border-indigo-500/20 px-4 py-1 uppercase tracking-widest text-[10px] font-bold">
+            V 2.0 // Neural LMS
+          </Badge>
+        </div>
+        
+        <div className="max-w-4xl space-y-4">
+          <motion.h1 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="text-4xl lg:text-6xl font-bold tracking-tighter uppercase leading-none"
+          >
+            Advance <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-rose-400">Knowledge</span> Matrix
+          </motion.h1>
+          <p className="text-slate-400 text-sm lg:text-base font-medium max-w-2xl leading-relaxed">
+            Access world-class pedagogical resources, real-time assessments, and intelligent learning paths tailored to your professional development goals.
+          </p>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-4 pt-4">
+          <div className="relative group flex-1 max-w-md">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-indigo-400 transition-colors" size={18} />
+            <input 
+              placeholder="Search Subject Core..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+              className="w-full pl-12 pr-4 h-14 bg-white/5 border border-white/10 rounded-2xl text-sm font-medium focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 outline-none transition-all"
+            />
+          </div>
+          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+            <SelectTrigger className="h-14 bg-white/5 border-white/10 rounded-2xl w-full sm:w-48 text-sm font-medium">
+              <SelectValue placeholder="All Domains" />
+            </SelectTrigger>
+            <SelectContent className="bg-slate-900 border-white/10 text-white">
+              <SelectItem value="all">All Domains</SelectItem>
+              {categories.map((cat) => (
+                <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Button onClick={handleSearch} className="h-14 px-8 bg-indigo-600 hover:bg-indigo-500 rounded-2xl font-bold uppercase tracking-widest text-[10px]">
+            Execute Query
+          </Button>
+        </div>
+      </header>
+
+      {/* Stats Quickbar */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <StatCard label="Enrolled Units" value={myCourses.length} icon={BookOpen} color="text-indigo-400" />
+        <StatCard label="Completed Paths" value="0" icon={Trophy} color="text-amber-400" />
+        <StatCard label="Knowledge Points" value="1,240" icon={Zap} color="text-rose-400" />
+        <StatCard label="Active Sessions" value={courses.length} icon={Target} color="text-emerald-400" />
       </div>
 
-      <div className="flex flex-col md:flex-row gap-4">
-        <Input 
-          placeholder="Search courses..." 
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-          className="md:w-80"
-        />
-        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-          <SelectTrigger className="md:w-48">
-            <SelectValue placeholder="All Categories" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="">All Categories</SelectItem>
-            {categories.map((cat) => (
-              <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <Button onClick={handleSearch}>Search</Button>
-      </div>
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
+        <div className="flex justify-between items-center">
+          <TabsList className="bg-white/5 border border-white/5 p-1 rounded-2xl h-auto">
+            <TabsTrigger value="catalog" className="rounded-xl px-6 py-2.5 data-[state=active]:bg-indigo-600 data-[state=active]:text-white uppercase text-[10px] font-bold tracking-widest">Global Catalog</TabsTrigger>
+            <TabsTrigger value="my-courses" className="rounded-xl px-6 py-2.5 data-[state=active]:bg-indigo-600 data-[state=active]:text-white uppercase text-[10px] font-bold tracking-widest">My Learning</TabsTrigger>
+            <TabsTrigger value="paths" className="rounded-xl px-6 py-2.5 data-[state=active]:bg-indigo-600 data-[state=active]:text-white uppercase text-[10px] font-bold tracking-widest">Neural Paths</TabsTrigger>
+          </TabsList>
+          
+          <div className="flex gap-2">
+             <Button variant="ghost" size="icon" className="rounded-xl bg-white/5 border border-white/5"><LayoutGrid size={18} /></Button>
+             <Button variant="ghost" size="icon" className="rounded-xl opacity-40"><LayoutList size={18} /></Button>
+          </div>
+        </div>
 
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList>
-          <TabsTrigger value="catalog">Course Catalog</TabsTrigger>
-          <TabsTrigger value="my-courses">My Courses</TabsTrigger>
-          <TabsTrigger value="paths">Learning Paths</TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="catalog" className="mt-6">
+        <TabsContent value="catalog" className="mt-0 outline-none">
           {loading ? (
-            <div className="text-center py-12 text-muted-foreground">Loading courses...</div>
-          ) : courses.length === 0 ? (
-            <div className="text-center py-12 text-muted-foreground">
-              No courses found. Try a different search.
-            </div>
+            <LoadingGrid />
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {/* Dynamic AI Recommendation Card */}
+              <motion.div 
+                whileHover={{ y: -8 }}
+                className="bg-gradient-to-br from-indigo-600 to-violet-800 p-8 rounded-[2.5rem] flex flex-col justify-between group cursor-pointer relative overflow-hidden shadow-2xl shadow-indigo-500/20 border border-white/10"
+              >
+                <div className="absolute top-0 right-0 p-6">
+                  <Sparkles className="text-white/40 group-hover:text-white transition-colors" size={24} />
+                </div>
+                <div className="space-y-4 relative z-10">
+                  <Badge className="bg-white/20 text-white border-transparent">AI Suggested</Badge>
+                  <h3 className="text-2xl font-bold tracking-tight uppercase leading-none">Pedagogical <br />Leadership</h3>
+                  <p className="text-white/60 text-xs font-medium uppercase tracking-widest">High-impact certification for lead educators.</p>
+                </div>
+                <Button className="mt-8 bg-white text-indigo-950 hover:bg-neutral-100 rounded-xl font-bold uppercase text-[10px] w-full flex items-center gap-2">
+                  Launch Assessment <ChevronRight size={14} />
+                </Button>
+              </motion.div>
+
               {courses.map((course) => (
                 <CourseCard
                   key={course.id}
@@ -138,15 +192,8 @@ export default function LMSPage() {
           )}
         </TabsContent>
 
-        <TabsContent value="my-courses" className="mt-6">
-          {loading ? (
-            <div className="text-center py-12 text-muted-foreground">Loading your courses...</div>
-          ) : myCourses.length === 0 ? (
-            <div className="text-center py-12 text-muted-foreground">
-              You haven't enrolled in any courses yet. Browse the catalog to get started!
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <TabsContent value="my-courses" className="outline-none">
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {myCourses.map((enrollment) => (
                 <CourseCard
                   key={enrollment.id}
@@ -155,32 +202,45 @@ export default function LMSPage() {
                   onClick={() => navigate(`/lms/courses/${enrollment.courseId}`)}
                 />
               ))}
-            </div>
-          )}
+           </div>
         </TabsContent>
 
-        <TabsContent value="paths" className="mt-6">
-          {loading ? (
-            <div className="text-center py-12 text-muted-foreground">Loading learning paths...</div>
-          ) : learningPaths.length === 0 ? (
-            <div className="text-center py-12 text-muted-foreground">
-              No learning paths available yet.
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <TabsContent value="paths" className="outline-none">
+           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {learningPaths.map((path) => (
                 <LearningPathCard
                   key={path.id}
                   path={path}
-                  enrollment={pathEnrollmentsMap.get(path.id)}
-                  onEnroll={() => handlePathEnroll(path.id)}
                   onClick={() => navigate(`/lms/paths/${path.id}`)}
                 />
               ))}
-            </div>
-          )}
+           </div>
         </TabsContent>
       </Tabs>
+    </div>
+  );
+}
+
+function StatCard({ label, value, icon: Icon, color }: any) {
+  return (
+    <div className="bg-slate-900 border border-white/5 p-8 rounded-[2rem] flex items-center gap-6 group hover:border-white/10 transition-all">
+      <div className={`p-4 bg-white/5 rounded-2xl ${color}`}>
+        <Icon size={24} />
+      </div>
+      <div>
+        <p className="text-slate-500 uppercase font-bold text-[9px] tracking-[0.2em] mb-1">{label}</p>
+        <p className="text-2xl font-bold tracking-tighter">{value}</p>
+      </div>
+    </div>
+  );
+}
+
+function LoadingGrid() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      {[1, 2, 3, 4].map(i => (
+        <div key={i} className="h-80 bg-white/5 rounded-[2.5rem] animate-pulse" />
+      ))}
     </div>
   );
 }

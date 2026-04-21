@@ -82,8 +82,8 @@ export const getTenantBySlug = async (slug: string) => {
 };
 
 export const getTenantByDomain = async (domain: string) => {
-    return prisma.tenant.findUnique({
-        where: { domain },
+    return prisma.tenant.findFirst({
+        where: { domain: domain as string },
         include: {
             settings: true
         }

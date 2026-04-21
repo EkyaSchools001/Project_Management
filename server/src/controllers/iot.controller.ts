@@ -24,7 +24,7 @@ export const getAllDevices = async (req: Request, res: Response) => {
 
 export const getDeviceById = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.i as string;
     const device = await iotService.getDeviceById(id);
     if (!device) {
       return res.status(404).json({ error: 'Device not found' });
@@ -38,7 +38,7 @@ export const getDeviceById = async (req: Request, res: Response) => {
 
 export const updateDevice = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.i as string;
     const device = await iotService.updateDevice(id, req.body);
     res.status(200).json(device);
   } catch (error: any) {
@@ -49,7 +49,7 @@ export const updateDevice = async (req: Request, res: Response) => {
 
 export const deleteDevice = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.i as string;
     await iotService.deleteDevice(id);
     res.status(204).send();
   } catch (error) {
@@ -160,7 +160,7 @@ export const getAllRooms = async (req: Request, res: Response) => {
 
 export const getRoomById = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.i as string;
     const room = await iotService.getRoomById(id);
     if (!room) {
       return res.status(404).json({ error: 'Room not found' });
@@ -174,7 +174,7 @@ export const getRoomById = async (req: Request, res: Response) => {
 
 export const updateRoom = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.i as string;
     const room = await iotService.updateRoom(id, req.body);
     res.status(200).json(room);
   } catch (error: any) {
@@ -185,7 +185,7 @@ export const updateRoom = async (req: Request, res: Response) => {
 
 export const deleteRoom = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.i as string;
     await iotService.deleteRoom(id);
     res.status(204).send();
   } catch (error) {
@@ -229,7 +229,7 @@ export const getRoomBookings = async (req: Request, res: Response) => {
 
 export const updateBookingStatus = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.i as string;
     const { status } = req.body;
     const booking = await iotService.updateBookingStatus(id, status);
     res.status(200).json(booking);
@@ -241,7 +241,7 @@ export const updateBookingStatus = async (req: Request, res: Response) => {
 
 export const deleteBooking = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.i as string;
     await iotService.deleteBooking(id);
     res.status(204).send();
   } catch (error) {
@@ -274,7 +274,7 @@ export const getAllVisitors = async (req: Request, res: Response) => {
 
 export const getVisitorById = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.i as string;
     const visitor = await iotService.getVisitorById(id);
     if (!visitor) {
       return res.status(404).json({ error: 'Visitor not found' });
@@ -288,7 +288,7 @@ export const getVisitorById = async (req: Request, res: Response) => {
 
 export const checkOutVisitor = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.i as string;
     const visitor = await iotService.checkOutVisitor(id);
     res.status(200).json(visitor);
   } catch (error) {
@@ -324,7 +324,7 @@ export const getMaintenanceRequests = async (req: Request, res: Response) => {
 
 export const getMaintenanceRequestById = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.i as string;
     const request = await iotService.getMaintenanceRequestById(id);
     if (!request) {
       return res.status(404).json({ error: 'Request not found' });
@@ -338,7 +338,7 @@ export const getMaintenanceRequestById = async (req: Request, res: Response) => 
 
 export const updateMaintenanceRequest = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.i as string;
     const request = await iotService.updateMaintenanceRequest(id, req.body);
     res.status(200).json(request);
   } catch (error: any) {

@@ -4,18 +4,17 @@ import { prisma } from '../app';
 export const getAllUsers = async (req: Request, res: Response) => {
     try {
         const { role } = req.query;
-        
-        let where: any = {};
+
+        const where: any = {};
         if (role) {
             where.role = role as any;
         }
 
-        const users = await prisma.profile.findMany({
+        const users = await prisma.user.findMany({
             where,
             include: {
+                profile: true,
                 department: true,
-                school: true,
-                overrides: true
             }
         });
 
@@ -34,13 +33,12 @@ export const getAllUsers = async (req: Request, res: Response) => {
 
 export const getUserById = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
-        const user = await prisma.profile.findUnique({
+        const id = req.params.i as string;
+        const user = await prisma.user.findUnique({
             where: { id: id as string },
             include: {
+                profile: true,
                 department: true,
-                school: true,
-                overrides: true
             }
         });
 

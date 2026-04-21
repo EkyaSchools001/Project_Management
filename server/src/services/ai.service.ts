@@ -426,6 +426,76 @@ class AIService {
         return suggestions;
     }
 
+    async generateProjectPlan(name: string, description: string): Promise<any> {
+        // AI Logic to generate milestones and tasks based on project name/description
+        const phases = [
+            { name: 'Research & Discovery', duration: 5 },
+            { name: 'Planning & Architecture', duration: 7 },
+            { name: 'Implementation Layer 1', duration: 14 },
+            { name: 'Testing & QA', duration: 10 },
+            { name: 'Deployment & Training', duration: 5 }
+        ];
+
+        const baseDate = new Date();
+        let currentDate = new Date(baseDate);
+
+        const tasks = phases.flatMap((phase, phaseIndex) => {
+            const phaseTasks = [
+                { title: `${phase.name}: Initial Briefing`, priority: 'high', duration: 1 },
+                { title: `${phase.name}: Core Execution`, priority: 'medium', duration: phase.duration - 2 },
+                { title: `${phase.name}: Review & Sign-off`, priority: 'high', duration: 1 }
+            ];
+
+            return phaseTasks.map((t, tIndex) => {
+                const startDate = new Date(currentDate);
+                currentDate.setDate(currentDate.getDate() + t.duration);
+                const endDate = new Date(currentDate);
+
+                return {
+                    id: `ai-task-${phaseIndex}-${tIndex}`,
+                    title: t.title,
+                    priority: t.priority,
+                    startDate: startDate.toISOString().split('T')[0],
+                    endDate: endDate.toISOString().split('T')[0],
+                    status: 'TODO'
+                };
+            });
+        });
+
+        return {
+            suggestedTasks: tasks,
+            estimatedCompletion: currentDate.toISOString(),
+            confidence: 0.92
+        };
+    }
+
+    async generateQuizForCourse(courseTitle: string, difficulty: 'easy' | 'medium' | 'hard' = 'medium'): Promise<any> {
+        // AI Mock for generating quiz questions
+        const questions = [
+            {
+                question: `What is the primary objective of ${courseTitle}?`,
+                options: ['Enhancing Operational Efficiency', 'Reducing Costs', 'Scaling Resources', 'All of the above'],
+                answer: 3
+            },
+            {
+                question: `Which core module handles real-time sync for ${courseTitle}?`,
+                options: ['PMS Matrix', 'LMS Hub', 'Neural Sync', 'Finance Layer'],
+                answer: 2
+            },
+            {
+                question: 'True or False: System protocols require periodic AI validation.',
+                options: ['True', 'False'],
+                answer: 0
+            }
+        ];
+
+        return {
+            title: `AI Knowledge Check: ${courseTitle}`,
+            questions,
+            estimatedTime: 15 
+        };
+    }
+
     async predictiveText(prefix: string, options: number = 5): Promise<string[]> {
         const commonCompletions = [
             'task',

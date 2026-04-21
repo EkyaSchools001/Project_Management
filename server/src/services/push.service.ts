@@ -10,7 +10,7 @@ if (VAPID_PUBLIC_KEY && VAPID_PRIVATE_KEY) {
 }
 
 export const generateVapidKeys = () => {
-    return webpush.generateVapidKeys();
+    return webpush.generateVAPIDKeys();
 };
 
 export const getVapidPublicKey = () => {

@@ -16,7 +16,7 @@ export const getTickets = async (req: Request, res: Response): Promise<void> => 
 
 export const updateTicket = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         const updates = req.body;
         
         const ticketIndex = ticketsDb.findIndex(t => t.id === id);

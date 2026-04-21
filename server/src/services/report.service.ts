@@ -152,8 +152,8 @@ export const getReports = async (req: Request, res: Response) => {
 
         const where = search ? {
             OR: [
-                { name: { contains: search as string, mode: 'insensitive' } },
-                { description: { contains: search as string, mode: 'insensitive' } }
+                { name: { contains: search as string, mode: 'insensitive' as any } },
+                { description: { contains: search as string, mode: 'insensitive' as any } }
             ]
         } : {};
 
@@ -165,7 +165,7 @@ export const getReports = async (req: Request, res: Response) => {
                 skip,
                 take: Number(limit),
                 orderBy: { updatedAt: 'desc' },
-                include: { createdByUser: { select: { name: true, email: true } } }
+                include: { creator: { select: { name: true, email: true } } }
             }),
             prisma.report.count({ where })
         ]);
@@ -190,11 +190,11 @@ export const getReports = async (req: Request, res: Response) => {
 
 export const getReportById = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
 
         const report = await prisma.report.findUnique({
             where: { id },
-            include: { createdByUser: { select: { name: true, email: true } } }
+            include: { creator: { select: { name: true, email: true } } }
         });
 
         if (!report) {
@@ -218,7 +218,7 @@ export const getReportById = async (req: Request, res: Response) => {
 
 export const updateReport = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         const { name, description, dataSource, filters, widgets, groupBy, sortBy, sortOrder } = req.body;
 
         const report = await prisma.report.update({
@@ -245,7 +245,7 @@ export const updateReport = async (req: Request, res: Response) => {
 
 export const deleteReport = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
 
         await prisma.report.delete({ where: { id } });
 
@@ -285,7 +285,7 @@ export const generateReportData = async (req: Request, res: Response) => {
 
 export const exportReport = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         const { format } = req.body;
 
         const report = await prisma.report.findUnique({ where: { id } });

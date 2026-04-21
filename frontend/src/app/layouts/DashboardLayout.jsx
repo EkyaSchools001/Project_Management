@@ -19,9 +19,15 @@ export function DashboardLayout() {
     const { user, loading, logout } = context;
 
     if (loading) return (
-        <div className="h-screen w-full flex flex-col items-center justify-center bg-[#f8f9fc] gap-6">
-            <div className="w-10 h-10 border-4 border-blue-100 border-t-blue-600 rounded-full animate-spin"></div>
-            <span className="text-sm font-semibold text-gray-400 uppercase tracking-widest animate-pulse">Initializing System...</span>
+        <div className="h-screen w-full flex flex-col items-center justify-center gap-5" style={{background:'hsl(222,25%,7%)'}}>
+            <div className="relative w-12 h-12">
+                <div className="absolute inset-0 rounded-full border-4 border-[hsl(239,84%,67%)]/20" />
+                <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-[hsl(239,84%,67%)] animate-spin" />
+            </div>
+            <div className="text-center">
+                <p className="text-[hsl(215,25%,95%)] font-bold tracking-tight">SchoolOS</p>
+                <p className="text-[hsl(215,16%,50%)] text-xs font-semibold uppercase tracking-widest mt-1 animate-pulse">Initializing...</p>
+            </div>
         </div>
     );
 

@@ -50,7 +50,7 @@ class FileService {
     ): Promise<FileUploadResult> {
         try {
             const uploadedFile = file as UploadedFile;
-            
+
             const imageMetadata = await processImage(uploadedFile);
             const thumbnailUrl = await generateThumbnail(uploadedFile);
 
@@ -61,7 +61,7 @@ class FileService {
                     mimeType: uploadedFile.mimetype,
                     size: uploadedFile.size,
                     path: uploadedFile.path,
-                    url: getFileUrl(uploadedFile),
+                    url: getFileUrl(file),
                     thumbnailUrl,
                     width: imageMetadata.width,
                     height: imageMetadata.height,
@@ -122,7 +122,7 @@ class FileService {
                     mimeType: uploadedFile.mimetype,
                     size: uploadedFile.size,
                     path: uploadedFile.path,
-                    url: getFileUrl(uploadedFile),
+                    url: getFileUrl(file),
                     thumbnailUrl: thumbnailUrl || undefined,
                     width: imageMetadata.width,
                     height: imageMetadata.height,
@@ -132,8 +132,8 @@ class FileService {
                 },
             });
 
-            await prisma.user.update({
-                where: { id: userId },
+            await prisma.profile.update({
+                where: { userId: userId },
                 data: { avatarUrl: fileRecord.url },
             });
 

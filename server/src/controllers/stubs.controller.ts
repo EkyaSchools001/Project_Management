@@ -201,7 +201,7 @@ export const createGoal = (req: Request, res: Response) => {
 };
 
 export const updateGoal = (req: Request, res: Response) => {
-  res.json({ status: 'success', data: { goal: { id: req.params.id, ...req.body } } });
+  res.json({ status: 'success', data: { goal: { id: req.params.i as string, ...req.body } } });
 };
 
 export const requestGoalWindowOpen = (_req: Request, res: Response) => {
@@ -221,7 +221,7 @@ export const submitMooc = (_req: Request, res: Response) => {
 };
 
 export const updateMoocStatus = (req: Request, res: Response) => {
-  res.json({ status: 'success', data: { id: req.params.id, ...req.body } });
+  res.json({ status: 'success', data: { id: req.params.i as string, ...req.body } });
 };
 
 export const getTraining = (_req: Request, res: Response) => {
@@ -229,7 +229,7 @@ export const getTraining = (_req: Request, res: Response) => {
 };
 
 export const getTrainingById = (req: Request, res: Response) => {
-  const event = MOCK_TRAINING_EVENTS.find(e => e.id === req.params.id) || MOCK_TRAINING_EVENTS[0];
+  const event = MOCK_TRAINING_EVENTS.find(e => e.id === req.params.i as string) || MOCK_TRAINING_EVENTS[0];
   res.json({ status: 'success', data: { event } });
 };
 
@@ -238,19 +238,19 @@ export const createTraining = (req: Request, res: Response) => {
 };
 
 export const updateTraining = (req: Request, res: Response) => {
-  res.json({ status: 'success', data: { event: { id: req.params.id, ...req.body } } });
+  res.json({ status: 'success', data: { event: { id: req.params.i as string, ...req.body } } });
 };
 
 export const deleteTraining = (req: Request, res: Response) => {
-  res.json({ status: 'success', data: { id: req.params.id } });
+  res.json({ status: 'success', data: { id: req.params.i as string } });
 };
 
 export const updateTrainingStatus = (req: Request, res: Response) => {
-  res.json({ status: 'success', data: { id: req.params.id, ...req.body } });
+  res.json({ status: 'success', data: { id: req.params.i as string, ...req.body } });
 };
 
 export const registerForTraining = (req: Request, res: Response) => {
-  res.json({ status: 'success', message: 'Successfully registered for the event.', data: { eventId: req.params.id } });
+  res.json({ status: 'success', message: 'Successfully registered for the event.', data: { eventId: req.params.i as string } });
 };
 
 export const getGrowthObservations = (_req: Request, res: Response) => {
@@ -258,7 +258,7 @@ export const getGrowthObservations = (_req: Request, res: Response) => {
 };
 
 export const updateGrowthObservation = (req: Request, res: Response) => {
-  res.json({ status: 'success', data: { observation: { id: req.params.id, ...req.body } } });
+  res.json({ status: 'success', data: { observation: { id: req.params.i as string, ...req.body } } });
 };
 
 export const getTemplates = (_req: Request, res: Response) => {
@@ -266,7 +266,7 @@ export const getTemplates = (_req: Request, res: Response) => {
 };
 
 export const getTemplateById = (req: Request, res: Response) => {
-  const tmpl = MOCK_TEMPLATES.find(t => t.id === req.params.id) || MOCK_TEMPLATES[0];
+  const tmpl = MOCK_TEMPLATES.find(t => t.id === req.params.i as string) || MOCK_TEMPLATES[0];
   res.json({ status: 'success', data: { template: tmpl } });
 };
 
@@ -279,7 +279,7 @@ export const getAnnouncementStats = (req: Request, res: Response) => {
 };
 
 export const acknowledgeAnnouncement = (req: Request, res: Response) => {
-  res.json({ status: 'success', data: { id: req.params.id } });
+  res.json({ status: 'success', data: { id: req.params.i as string } });
 };
 
 export const getMeetings = (_req: Request, res: Response) => {
@@ -287,12 +287,12 @@ export const getMeetings = (_req: Request, res: Response) => {
 };
 
 export const getMeetingById = (req: Request, res: Response) => {
-  const meeting = MOCK_MEETINGS.find(m => m.id === req.params.id) || MOCK_MEETINGS[0];
+  const meeting = MOCK_MEETINGS.find(m => m.id === req.params.i as string) || MOCK_MEETINGS[0];
   res.json({ status: 'success', data: { meeting } });
 };
 
 export const getMeetingMoM = (req: Request, res: Response) => {
-  res.json({ status: 'success', data: { mom: null, meetingId: req.params.meetingId } });
+  res.json({ status: 'success', data: { mom: null, meetingId: req.params.meetingI as string } });
 };
 
 export const getSurveys = (_req: Request, res: Response) => {
@@ -321,7 +321,7 @@ export const getCourses = (_req: Request, res: Response) => {
 };
 
 export const getCourseById = (req: Request, res: Response) => {
-  const course = MOCK_COURSES.find(c => c.id === req.params.id) || MOCK_COURSES[0];
+  const course = MOCK_COURSES.find(c => c.id === req.params.i as string) || MOCK_COURSES[0];
   res.json({ status: 'success', data: { course } });
 };
 

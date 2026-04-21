@@ -21,7 +21,7 @@ export const getAllTenants = async (req: Request, res: Response) => {
 
 export const getTenantById = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         const tenant = await tenantService.getTenantById(id);
         if (!tenant) {
             return res.status(404).json({ error: 'Tenant not found' });
@@ -46,7 +46,7 @@ export const createTenant = async (req: Request, res: Response) => {
 
 export const updateTenant = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         const data = req.body;
         const tenant = await tenantService.updateTenant(id, data);
         res.status(200).json(tenant);
@@ -58,7 +58,7 @@ export const updateTenant = async (req: Request, res: Response) => {
 
 export const deleteTenant = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         await tenantService.deleteTenant(id);
         res.status(204).send();
     } catch (error) {
@@ -84,7 +84,7 @@ export const updateBranding = async (req: TenantRequest, res: Response) => {
 
 export const getTenantSettings = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         const settings = await tenantService.getTenantSettings(id);
         res.status(200).json(settings);
     } catch (error) {
@@ -110,7 +110,7 @@ export const updateTenantSettings = async (req: TenantRequest, res: Response) =>
 
 export const getTenantUsers = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         const users = await tenantService.getTenantUsers(id);
         res.status(200).json(users);
     } catch (error) {
@@ -121,7 +121,7 @@ export const getTenantUsers = async (req: Request, res: Response) => {
 
 export const addUserToTenant = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params;
+        const id = req.params.i as string;
         const { userId, role, isPrimary } = req.body;
         const result = await tenantService.addUserToTenant(userId, id, role, isPrimary);
         res.status(201).json(result);
@@ -133,7 +133,8 @@ export const addUserToTenant = async (req: Request, res: Response) => {
 
 export const removeUserFromTenant = async (req: Request, res: Response) => {
     try {
-        const { id, userId } = req.params;
+        const id = req.params.id as string;
+        const userId = req.params.userId as string;
         await tenantService.removeUserFromTenant(userId, id);
         res.status(204).send();
     } catch (error) {
@@ -144,7 +145,8 @@ export const removeUserFromTenant = async (req: Request, res: Response) => {
 
 export const getCustomFields = async (req: Request, res: Response) => {
     try {
-        const { id, entity } = req.params;
+        const id = req.params.id as string;
+        const entity = req.params.entity as string;
         const fields = await tenantService.getCustomFields(id, entity);
         res.status(200).json(fields);
     } catch (error) {
@@ -170,7 +172,7 @@ export const createCustomField = async (req: TenantRequest, res: Response) => {
 
 export const deleteCustomField = async (req: Request, res: Response) => {
     try {
-        const { fieldId } = req.params;
+        const fieldId = req.params.fieldId as string;
         await tenantService.deleteCustomField(fieldId);
         res.status(204).send();
     } catch (error) {

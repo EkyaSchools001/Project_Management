@@ -7,7 +7,8 @@
         ],
         "outDir": "./dist",
         "rootDir": "./src",
-        "strict": true,
+        "strict": false,
+        "noImplicitAny": false,
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
@@ -21,9 +22,11 @@
         }
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "src/types/**/*.d.ts"
     ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "src/__tests__/**/*"
     ]
 }

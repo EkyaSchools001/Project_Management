@@ -55,12 +55,10 @@ export class GamificationService {
     const badge = await prisma.badge.findUnique({ where: { id: badgeId } });
     if (!badge) throw new Error('Badge not found');
 
-    const [userBadge] = await prisma.$transaction([
-      prisma.userBadge.create({
+    const userBadge = await prisma.userBadge.create({
         data: { userId, badgeId }
-      }),
-      this.addPoints(userId, badge.points, 'badge', badgeId, `Earned badge: ${badge.name}`)
-    ]);
+      });
+      await this.addPoints(userId, badge.points, 'badge', badgeId, `Earned badge: ${badge.name}`);
 
     await this.checkAchievements(userId);
     await this.updateLevel(userId);
@@ -131,12 +129,10 @@ export class GamificationService {
     const achievement = await prisma.achievement.findUnique({ where: { id: achievementId } });
     if (!achievement) throw new Error('Achievement not found');
 
-    const [userAchievement] = await prisma.$transaction([
-      prisma.userAchievement.create({
+    const userAchievement = await prisma.userAchievement.create({
         data: { userId, achievementId }
-      }),
-      this.addPoints(userId, achievement.points, 'achievement', achievementId, `Earned achievement: ${achievement.name}`)
-    ]);
+      });
+      await this.addPoints(userId, achievement.points, 'achievement', achievementId, `Earned achievement: ${achievement.name}`);
 
     await this.updateLevel(userId);
 
@@ -513,13 +509,11 @@ export class GamificationService {
     const challenge = await prisma.challenge.findUnique({ where: { id: challengeId } });
     if (!challenge) throw new Error('Challenge not found');
 
-    await prisma.$transaction([
-      prisma.challengeParticipant.update({
+    await prisma.challengeParticipant.update({
         where: { userId_challengeId: { userId, challengeId } },
         data: { completed: true, progress: 100 }
-      }),
-      this.addPoints(userId, challenge.points, 'challenge', challengeId, `Completed challenge: ${challenge.name}`)
-    ]);
+      });
+      await this.addPoints(userId, challenge.points, 'challenge', challengeId, `Completed challenge: ${challenge.name}`);
 
     await this.checkAchievements(userId);
     await this.updateLevel(userId);

@@ -21,8 +21,9 @@ import reportRoutes from './routes/report.routes';
 import financeRoutes from './routes/finance.routes';
 import tenantRoutes from './routes/tenant.routes';
 import gamificationRoutes from './routes/gamification.routes';
-import iotRoutes from './routes/iot.routes';
+import pmsRoutes from './routes/pms.routes';
 import lmsRoutes from './routes/lms.routes';
+// import iotRoutes from './routes/iot.routes';
 
 import {
     // Notifications
@@ -98,15 +99,16 @@ app.use('/api/v1/analytics', analyticsRoutes);
 app.use('/api/v1/tickets',   ticketRoutes);
 app.use('/api/v1/users',     userRoutes);
 app.use('/api/v1/chat',      chatRoutes);
-app.use('/api/v1/notifications', notificationRoutes);
+// notificationRoutes removed — stub handlers below serve /api/v1/notifications in dev mode
 app.use('/api/v1/meetings', meetingRoutes);
 app.use('/api/v1/ai', aiRoutes);
 app.use('/api/v1/reports', reportRoutes);
 app.use('/api/v1/finance', financeRoutes);
 app.use('/api/v1/tenants', tenantRoutes);
 app.use('/api/v1/gamification', gamificationRoutes);
-app.use('/api/v1/iot', iotRoutes);
+app.use('/api/v1/projects', pmsRoutes);
 app.use('/api/v1/lms', lmsRoutes);
+// Note: /api/v1/notifications stub handlers below take priority for no-DB dev mode
 
 // ─── PDI Stub Routes ─────────────────────────────────────────────────────────
 // Notifications

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { X, Layout, Info, Calendar, User, IndianRupee, Briefcase, Building2 } from 'lucide-react';
+import { X, Layout, Info, Calendar, User, IndianRupee, Briefcase, Building2, Sparkles, Wand2, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { DEPARTMENTS } from '../../../data/organization';
+import { aiService } from '../../../services/ai.service';
 
 const CreateProjectModal = ({ isOpen, onClose, onAdd }) => {
     const [formData, setFormData] = useState({
@@ -14,6 +15,8 @@ const CreateProjectModal = ({ isOpen, onClose, onAdd }) => {
         manager: 'Indu', // Mocked default
         departmentId: DEPARTMENTS[0]?.id || ''
     });
+    const [isGenerating, setIsGenerating] = useState(false);
+    const [aiTasks, setAiTasks] = useState(null);
 
     if (!isOpen) return null;
 
@@ -25,7 +28,8 @@ const CreateProjectModal = ({ isOpen, onClose, onAdd }) => {
             id: Date.now().toString(),
             budget: parseInt(formData.budget) || 0,
             manager: { name: formData.manager, role: 'Lead' },
-            departmentName: department ? department.name : ''
+            departmentName: department ? department.name : '',
+            suggestedTasks: aiTasks
         });
         onClose();
         // Reset form
@@ -39,6 +43,29 @@ const CreateProjectModal = ({ isOpen, onClose, onAdd }) => {
             manager: 'Indu',
             departmentId: DEPARTMENTS[0]?.id || ''
         });
+        setAiTasks(null);
+    };
+
+    const handleGenerateAI = async () => {
+        if (!formData.name) return;
+        setIsGenerating(true);
+        try {
+            const plan = await aiService.generatePlan(formData.name, formData.description);
+            setAiTasks(plan.suggestedTasks);
+            
+            if (plan.suggestedTasks?.[0]) {
+                const lastTask = plan.suggestedTasks[plan.suggestedTasks.length - 1];
+                setFormData(prev => ({
+                    ...prev,
+                    startDate: plan.suggestedTasks[0].startDate,
+                    endDate: lastTask.endDate
+                }));
+            }
+        } catch (error) {
+            console.error('AI generation failed', error);
+        } finally {
+            setIsGenerating(false);
+        }
     };
 
     return (
@@ -80,6 +107,35 @@ const CreateProjectModal = ({ isOpen, onClose, onAdd }) => {
                             value={formData.description}
                             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                         />
+                        
+                        <div className="flex justify-between items-center bg-[#0f172a] p-4 rounded-2xl border border-white/5">
+                            <div className="flex items-center gap-3">
+                                <Sparkles size={18} className="text-amber-400 shrink-0" />
+                                <span className="text-xs font-bold text-gray-300 uppercase tracking-widest">Generate milestones with AI?</span>
+                            </div>
+                            <button
+                                type="button"
+                                disabled={!formData.name || isGenerating}
+                                onClick={handleGenerateAI}
+                                className={`px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 transition-all ${
+                                    isGenerating 
+                                    ? 'bg-amber-500/20 text-amber-500 opacity-50' 
+                                    : 'bg-amber-500/10 text-amber-500 hover:bg-amber-500 hover:text-slate-950'
+                                }`}
+                            >
+                                {isGenerating ? <Loader2 size={12} className="animate-spin" /> : <Wand2 size={12} />}
+                                {aiTasks ? 'Regenerate' : 'Augment'}
+                            </button>
+                        </div>
+                        
+                        {aiTasks && (
+                            <div className="bg-emerald-500/5 border border-emerald-500/20 p-4 rounded-2xl">
+                                <p className="text-[10px] font-bold text-emerald-400 uppercase tracking-[0.2em] mb-2">AI Blueprint Generated</p>
+                                <p className="text-xs text-emerald-300/60 leading-relaxed italic">
+                                    "{aiTasks.length} task milestones have been optimized for this roadmap based on industry benchmarks."
+                                </p>
+                            </div>
+                        )}
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-neutral-800">

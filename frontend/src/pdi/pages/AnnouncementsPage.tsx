@@ -199,7 +199,7 @@ const AnnouncementsPage: React.FC = () => {
         if (priority === 'High') {
             return <Badge variant="destructive" className="bg-red-500 text-foreground font-bold capitalize tracking-wider text-[10px]">High Priority</Badge>;
         }
-        return <Badge variant="secondary" className="bg-backgroundackgroundlue-100 text-blue-700 font-bold capitalize tracking-wider text-[10px]">Normal</Badge>;
+        return <Badge variant="secondary" className="bg-backgroundlue-100 text-blue-700 font-bold capitalize tracking-wider text-[10px]">Normal</Badge>;
     };
 
     return (
@@ -484,7 +484,7 @@ const AnnouncementsPage: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="p-8 bg-backgroundackgroundackground">
+                            <div className="p-8 bg-backgroundackground">
                                 <ScrollArea className="max-h-[400px]">
                                     <div className="prose prose-slate max-w-none">
                                         <p className="text-gray-700 leading-relaxed whitespace-pre-wrap text-lg">
@@ -505,7 +505,7 @@ const AnnouncementsPage: React.FC = () => {
                                                         {announcementStats.count} <span className="text-base font-medium text-muted-foreground">users have acknowledged</span>
                                                     </div>
                                                     {announcementStats.users.length > 0 && (
-                                                        <div className="bg-backgroundackgroundackground rounded-xl border shadow-sm overflow-hidden">
+                                                        <div className="bg-backgroundackground rounded-xl border shadow-sm overflow-hidden">
                                                             <ScrollArea className="h-[250px] w-full">
                                                                 <Table>
                                                                     <TableHeader className="bg-muted/30 sticky top-0 z-10">

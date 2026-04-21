@@ -104,7 +104,7 @@ export const MoocResponsesView: React.FC<MoocResponsesViewProps> = ({ refresh, b
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
             placeholder="Search submissions..."
-            className="pl-10 w-[250px] bg-backgroundackgroundackground border-muted-foreground/20 rounded-xl"
+            className="pl-10 w-[250px] bg-backgroundackground border-muted-foreground/20 rounded-xl"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -251,7 +251,7 @@ export const MoocResponsesView: React.FC<MoocResponsesViewProps> = ({ refresh, b
                 </div>
               </div>
 
-              <div className="h-px bg-backgroundackgroundorder my-4" />
+              <div className="h-px bg-backgroundorder my-4" />
 
               {selectedSubmission.hasCertificate === 'yes' ? (
                 <div>

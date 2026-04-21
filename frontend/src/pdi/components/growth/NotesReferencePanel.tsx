@@ -37,7 +37,7 @@ export const NotesReferencePanel: React.FC<NotesReferencePanelProps> = ({ notes,
             isCollapsed ? "w-12" : "w-80",
             className
         )}>
-            <Card className="shadow-2xl border-primary/20 bg-backgroundackgroundackground/95 backdrop-blur-md overflow-hidden h-[calc(100vh-120px)] flex flex-col">
+            <Card className="shadow-2xl border-primary/20 bg-backgroundackground/95 backdrop-blur-md overflow-hidden h-[calc(100vh-120px)] flex flex-col">
                 <CardHeader className="p-3 border-b bg-primary/5 flex flex-row items-center justify-between shrink-0">
                     {!isCollapsed && (
                         <CardTitle className="text-sm font-bold flex items-center gap-2">

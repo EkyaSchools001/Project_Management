@@ -121,7 +121,7 @@ export function MaintenanceQueue({ schoolId }: MaintenanceQueueProps) {
       case 'Urgent': return 'text-red-400 bg-red-500/10';
       case 'High': return 'text-orange-400 bg-orange-500/10';
       case 'Medium': return 'text-yellow-400 bg-yellow-500/10';
-      default: return 'text-blue-400 bg-backgroundackgroundlue-500/10';
+      default: return 'text-blue-400 bg-backgroundlue-500/10';
     }
   };
 

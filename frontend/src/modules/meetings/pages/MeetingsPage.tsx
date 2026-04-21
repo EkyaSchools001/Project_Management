@@ -288,8 +288,8 @@ export function MeetingsPage() {
             </Tabs>
 
             {showScheduler && (
-                <div className="fixed inset-0 bg-backgroundackgroundlack/50 flex items-center justify-center z-50">
-                    <div className="bg-backgroundackgroundackground p-6 rounded-lg max-h-[90vh] overflow-y-auto">
+                <div className="fixed inset-0 bg-backgroundlack/50 flex items-center justify-center z-50">
+                    <div className="bg-backgroundackground p-6 rounded-lg max-h-[90vh] overflow-y-auto">
                         <MeetingScheduler
                             onSubmit={handleScheduleMeeting}
                             onCancel={() => setShowScheduler(false)}

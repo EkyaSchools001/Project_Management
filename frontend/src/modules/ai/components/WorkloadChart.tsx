@@ -50,7 +50,7 @@ export default function WorkloadChart({ teamMembers = [], tasks = [] }) {
     const getLoadColor = (load) => {
         if (load > 40) return 'bg-red-400';
         if (load > 25) return 'bg-[#BAFF00]';
-        return 'bg-backgroundackgroundlue-400';
+        return 'bg-backgroundlue-400';
     };
 
     const getLoadCategoryBadge = (category) => {
@@ -58,7 +58,7 @@ export default function WorkloadChart({ teamMembers = [], tasks = [] }) {
             case 'overloaded':
                 return { class: 'bg-red-400/20 text-red-400', label: 'Overloaded' };
             case 'underutilized':
-                return { class: 'bg-backgroundackgroundlue-400/20 text-blue-400', label: 'Underutilized' };
+                return { class: 'bg-backgroundlue-400/20 text-blue-400', label: 'Underutilized' };
             default:
                 return { class: 'bg-[#BAFF00]/20 text-[#BAFF00]', label: 'Optimal' };
         }
@@ -98,7 +98,7 @@ export default function WorkloadChart({ teamMembers = [], tasks = [] }) {
                     <p className="text-2xl font-bold text-[#BAFF00]">{workloadData?.summary?.optimal || 0}</p>
                     <p className="text-xs text-foreground/50">Optimal</p>
                 </div>
-                <div className="p-4 bg-backgroundackgroundlue-400/10 rounded-xl border border-blue-400/20 text-center">
+                <div className="p-4 bg-backgroundlue-400/10 rounded-xl border border-blue-400/20 text-center">
                     <p className="text-2xl font-bold text-blue-400">{workloadData?.summary?.underutilized || 0}</p>
                     <p className="text-xs text-foreground/50">Underutilized</p>
                 </div>

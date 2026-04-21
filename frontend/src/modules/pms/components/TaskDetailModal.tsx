@@ -156,7 +156,7 @@ export const TaskDetailModal = ({
     return (
         <Dialog.Root open={isOpen} onOpenChange={onClose}>
             <Dialog.Portal>
-                <Dialog.Overlay className="fixed inset-0 bg-backgroundackgroundlack/50 backdrop-blur-sm z-50" />
+                <Dialog.Overlay className="fixed inset-0 bg-backgroundlack/50 backdrop-blur-sm z-50" />
                 <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-4xl max-h-[90vh] bg-white rounded-3xl shadow-2xl z-50 overflow-hidden">
                     <div className="flex flex-col h-full max-h-[90vh]">
                         <div className="flex items-center justify-between p-6 border-b border-slate-100">

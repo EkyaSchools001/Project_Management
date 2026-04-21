@@ -667,7 +667,7 @@ export function GoalSettingForm({
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-between sticky bottom-6 bg-backgroundackgroundackground/95 backdrop-blur-sm p-4 border rounded-xl shadow-lg">
+                        <div className="flex items-center justify-between sticky bottom-6 bg-backgroundackground/95 backdrop-blur-sm p-4 border rounded-xl shadow-lg">
                             <div className={cn(
                                 "flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300",
                                 isSaving

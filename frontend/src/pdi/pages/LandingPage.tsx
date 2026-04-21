@@ -5,7 +5,7 @@ import { CustomCursor } from "../components/CustomCursor";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-backgroundackgroundlack selection:bg-[#00f0ff]/30 text-foreground overflow-hidden industrial-grid scanlines">
+    <div className="min-h-screen bg-backgroundlack selection:bg-[#00f0ff]/30 text-foreground overflow-hidden industrial-grid scanlines">
       <CustomCursor />
       
       {/* Neon Viewport Edge */}
@@ -129,7 +129,7 @@ export default function LandingPage() {
               </div>
               
               {/* Floating Stat Card */}
-              <div className="absolute -bottom-12 -left-12 bg-backgroundackgroundlack border border-white/10 p-8 w-64 animate-float">
+              <div className="absolute -bottom-12 -left-12 bg-backgroundlack border border-white/10 p-8 w-64 animate-float">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-10 h-10 bg-[#fff600] rounded-none flex items-center justify-center text-black">
                     <Cpu size={20} />

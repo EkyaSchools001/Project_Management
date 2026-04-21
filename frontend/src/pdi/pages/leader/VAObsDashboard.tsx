@@ -16,7 +16,7 @@ import { MessageSquare } from "lucide-react";
 
 const RATING_COLORS: Record<string, string> = {
     "Highly Effective": "bg-green-100 text-green-700",
-    "Effective": "bg-backgroundackgroundlue-100 text-blue-700",
+    "Effective": "bg-backgroundlue-100 text-blue-700",
     "Developing": "bg-yellow-100 text-yellow-700",
     "Needs Improvement": "bg-red-100 text-red-700",
 };
@@ -199,7 +199,7 @@ const VAObsDashboard: React.FC = () => {
                                     <span className="col-span-2" onClick={(e) => e.stopPropagation()}>
                                         <Dialog>
                                             <DialogTrigger asChild>
-                                                <Button variant="outline" size="sm" className="h-7 text-xs gap-1 bg-backgroundackgroundlue-50 text-blue-700 border-blue-200 hover:bg-backgroundackgroundlue-100 hover:text-blue-800">
+                                                <Button variant="outline" size="sm" className="h-7 text-xs gap-1 bg-backgroundlue-50 text-blue-700 border-blue-200 hover:bg-backgroundlue-100 hover:text-blue-800">
                                                     <MessageSquare className="w-3 h-3" /> View Comment
                                                 </Button>
                                             </DialogTrigger>

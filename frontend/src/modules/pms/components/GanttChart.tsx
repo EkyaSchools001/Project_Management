@@ -463,7 +463,7 @@ const TaskTooltip = ({ task, position }) => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="absolute z-50 bg-backgroundackgroundackground text-foreground p-4 rounded-2xl shadow-2xl w-72 pointer-events-none"
+            className="absolute z-50 bg-backgroundackground text-foreground p-4 rounded-2xl shadow-2xl w-72 pointer-events-none"
             style={{
                 left: position.left + position.width / 2,
                 top: 80

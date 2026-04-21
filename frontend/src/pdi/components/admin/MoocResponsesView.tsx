@@ -100,7 +100,7 @@ export function MoocResponsesView({ refreshTeam, onBack }: MoocResponsesViewProp
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <Input
                         placeholder="Search submissions..."
-                        className="pl-10 w-[250px] bg-backgroundackgroundackground border-muted-foreground/20 rounded-xl"
+                        className="pl-10 w-[250px] bg-backgroundackground border-muted-foreground/20 rounded-xl"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
@@ -217,7 +217,7 @@ export function MoocResponsesView({ refreshTeam, onBack }: MoocResponsesViewProp
                                 </div>
                             </div>
 
-                            <div className="h-px bg-backgroundackgroundorder my-4" />
+                            <div className="h-px bg-backgroundorder my-4" />
 
                             {selectedSubmission.hasCertificate === 'yes' ? (
                                 <div>
@@ -250,7 +250,7 @@ export function MoocResponsesView({ refreshTeam, onBack }: MoocResponsesViewProp
 
                             {(selectedSubmission.supportingDocType || selectedSubmission.supportingDocLink || selectedSubmission.supportingDocFile) && (
                                 <div>
-                                    <div className="h-px bg-backgroundackgroundorder my-4" />
+                                    <div className="h-px bg-backgroundorder my-4" />
                                     <h4 className="font-bold flex items-center gap-2 mb-3">
                                         <Paperclip className="w-4 h-4" /> Supporting Documents
                                     </h4>
@@ -285,7 +285,7 @@ export function MoocResponsesView({ refreshTeam, onBack }: MoocResponsesViewProp
                                     )}
                                 </div>
                             )}
-                            <div className="h-px bg-backgroundackgroundorder my-4" />
+                            <div className="h-px bg-backgroundorder my-4" />
 
                             <div>
                                 <Label className="text-muted-foreground">Effectiveness Rating</Label>

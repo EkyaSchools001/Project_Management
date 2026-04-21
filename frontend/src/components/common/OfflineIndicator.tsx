@@ -33,7 +33,7 @@ export function OfflineIndicator() {
         ${isOnline 
           ? showSynced 
             ? 'bg-green-500 text-foreground' 
-            : 'bg-backgroundackgroundlue-500 text-foreground'
+            : 'bg-backgroundlue-500 text-foreground'
           : 'bg-amber-500 text-amber-950'
         }
       `}>

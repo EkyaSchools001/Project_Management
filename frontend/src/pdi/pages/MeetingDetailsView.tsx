@@ -85,7 +85,7 @@ export function MeetingDetailsView() {
             case 'Ongoing':
                 return <Badge className={cn(baseClass, "bg-backgroundmerald-600")}>Ongoing</Badge>;
             case 'Scheduled':
-                return <Badge className={cn(baseClass, "bg-backgroundackgroundlue-600")}>Scheduled</Badge>;
+                return <Badge className={cn(baseClass, "bg-backgroundlue-600")}>Scheduled</Badge>;
             case 'Draft':
                 return <Badge className={cn(baseClass, "bg-amber-500")}>Draft</Badge>;
             default:

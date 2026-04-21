@@ -210,7 +210,7 @@ export function FestivalManagementDashboard() {
                                         <p className="text-sm font-bold text-gray-500 capitalize">Total Applications</p>
                                         <h3 className="text-3xl font-black text-blue-900 mt-2">{totalApps}</h3>
                                     </div>
-                                    <div className="p-3 bg-backgroundackgroundlue-100/50 rounded-xl text-blue-600">
+                                    <div className="p-3 bg-backgroundlue-100/50 rounded-xl text-blue-600">
                                         <FileText className="w-6 h-6" />
                                     </div>
                                 </div>
@@ -259,7 +259,7 @@ export function FestivalManagementDashboard() {
                                     </CardHeader>
                                     <CardContent>
                                         <div className="space-y-3">
-                                            <div className="flex justify-between items-center bg-backgroundackgroundlue-50/50 p-2 rounded-lg">
+                                            <div className="flex justify-between items-center bg-backgroundlue-50/50 p-2 rounded-lg">
                                                 <span className="text-xs font-medium text-gray-600">Total Apps Received</span>
                                                 <span className="font-bold text-blue-700">{stats.total}</span>
                                             </div>
@@ -351,7 +351,7 @@ export function FestivalManagementDashboard() {
                                                     </td>
                                                 )}
                                                 <td className="px-6 py-4">
-                                                    <Badge variant="outline" className="bg-backgroundackgroundlue-50 text-blue-700 border-blue-100">
+                                                    <Badge variant="outline" className="bg-backgroundlue-50 text-blue-700 border-blue-100">
                                                         {app.preferredStrand || 'N/A'}
                                                     </Badge>
                                                 </td>

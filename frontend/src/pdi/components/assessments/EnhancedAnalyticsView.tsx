@@ -192,7 +192,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                     </TableCell>
                                     <TableCell>
                                         {prAttempt ? (
-                                            <Badge variant="secondary" className="bg-backgroundackgroundlue-50 text-blue-700 border-blue-100 font-bold">
+                                            <Badge variant="secondary" className="bg-backgroundlue-50 text-blue-700 border-blue-100 font-bold">
                                                 {Math.round(prAttempt.score)}%
                                             </Badge>
                                         ) : (
@@ -283,7 +283,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                         </CardContent>
                     </Card>
 
-                    <Card className="  shadow-xl shadow-blue-500/5 bg-backgroundackgroundlue-50/30">
+                    <Card className="  shadow-xl shadow-blue-500/5 bg-backgroundlue-50/30">
                         <CardContent className="pt-6">
                             <TrendingUp className="w-5 h-5 text-blue-500 mb-2" />
                             <p className="text-xs font-bold text-blue-600/60 capitalize tracking-wider">Preparedness Avg</p>
@@ -356,7 +356,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                     </CardContent>
                 </Card>
 
-                <Card className="shadow-xl bg-backgroundackgroundlue-50 rounded-3xl border-none">
+                <Card className="shadow-xl bg-backgroundlue-50 rounded-3xl border-none">
                     <CardContent className="p-6">
                         <TrendingUp className="w-5 h-5 text-blue-500 mb-2" />
                         <p className="text-xs font-bold text-blue-600/60 uppercase tracking-widest mb-1">Academic Preparedness</p>
@@ -368,7 +368,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                     </CardContent>
                 </Card>
 
-                <Card className="shadow-xl bg-backgroundackgroundackground text-foreground rounded-3xl border-none relative overflow-hidden">
+                <Card className="shadow-xl bg-backgroundackground text-foreground rounded-3xl border-none relative overflow-hidden">
                     <div className="absolute top-0 right-0 -translate-y-4 translate-x-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl" />
                     <CardContent className="p-6 relative z-10">
                         <CheckCircle2 className="w-5 h-5 text-primary mb-2" />

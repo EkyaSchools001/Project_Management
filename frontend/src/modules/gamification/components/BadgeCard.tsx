@@ -24,7 +24,7 @@ const iconMap = {
 };
 
 const categoryColors = {
-  Academic: 'bg-backgroundackgroundlue-500/10 border-blue-500/30 text-blue-400',
+  Academic: 'bg-backgroundlue-500/10 border-blue-500/30 text-blue-400',
   Behavior: 'bg-green-500/10 border-green-500/30 text-green-400',
   Achievement: 'bg-purple-500/10 border-purple-500/30 text-purple-400',
   Participation: 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400',
@@ -58,7 +58,7 @@ export function BadgeCard({ badge, earned = false, progress = null, onClick }) {
             </div>
           )}
           {!earned && (
-            <div className="absolute inset-0 flex items-center justify-center bg-backgroundackgroundlack/40 rounded-full">
+            <div className="absolute inset-0 flex items-center justify-center bg-backgroundlack/40 rounded-full">
               <Lock size={16} className="text-foreground/40" />
             </div>
           )}

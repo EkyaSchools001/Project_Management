@@ -83,7 +83,7 @@ export const GoalGovernance = () => {
                     };
                     return (order[a.phase] ?? 99) - (order[b.phase] ?? 99);
                 }).map((win) => (
-                    <Card key={win.phase} className="shadow-lg bg-backgroundackgroundackground/50 backdrop-blur-sm overflow-hidden group">
+                    <Card key={win.phase} className="shadow-lg bg-backgroundackground/50 backdrop-blur-sm overflow-hidden group">
                         <div className={`h-1 w-full ${win.status === 'OPEN' ? 'bg-backgroundmerald-500' : 'bg-muted'}`} />
                         <CardHeader className="pb-2">
                             <div className="flex justify-between items-start">

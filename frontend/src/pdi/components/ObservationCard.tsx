@@ -89,7 +89,7 @@ export function ObservationCard({ observation, onReflect, onView, className }: O
               {observation.domain}
             </Badge>
             {observation.subject && (
-              <Badge variant="secondary" className="bg-backgroundackgroundlue-50 text-blue-700 hover:bg-backgroundackgroundlue-100 border-none">
+              <Badge variant="secondary" className="bg-backgroundlue-50 text-blue-700 hover:bg-backgroundlue-100 border-none">
                 {observation.subject}
               </Badge>
             )}

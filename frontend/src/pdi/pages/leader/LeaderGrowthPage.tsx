@@ -344,7 +344,7 @@ const LeaderGrowthPage = () => {
                             >
                                 <CardHeader className="pb-2">
                                     <CardTitle className="flex items-center gap-2 text-base font-semibold">
-                                        <div className="p-1.5 rounded-lg bg-backgroundackgroundlue-500/10 group-hover:bg-backgroundackgroundlue-500/20 transition-colors">
+                                        <div className="p-1.5 rounded-lg bg-backgroundlue-500/10 group-hover:bg-backgroundlue-500/20 transition-colors">
                                             <Wrench className="w-4 h-4 text-blue-600" />
                                         </div>
                                         Avg Tool Usage
@@ -358,7 +358,7 @@ const LeaderGrowthPage = () => {
                                     ) : (
                                         <div className="space-y-3 pt-1">
                                             {[
-                                                { label: "Instructional", value: avgInstructional, color: "bg-backgroundackgroundlue-500" },
+                                                { label: "Instructional", value: avgInstructional, color: "bg-backgroundlue-500" },
                                                 { label: "Learning", value: avgLearning, color: "bg-purple-500" },
                                                 { label: "Cultural", value: avgCultural, color: "bg-amber-500" },
                                             ].map(({ label, value, color }) => (
@@ -516,7 +516,7 @@ const LeaderGrowthPage = () => {
                         {showToolAnalytics && (
                             <div className="mb-8 animate-in slide-in-from-top-2 duration-300">
                                 <Card className="border shadow-md bg-white">
-                                    <CardHeader className="pb-3 border-b bg-backgroundackgroundlue-50/50">
+                                    <CardHeader className="pb-3 border-b bg-backgroundlue-50/50">
                                         <div className="flex items-center justify-between">
                                             <div>
                                                 <CardTitle className="text-base font-bold flex items-center gap-2">
@@ -542,7 +542,7 @@ const LeaderGrowthPage = () => {
                                             {/* Tool Distribution Summary */}
                                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                                 {[
-                                                    { label: "Instructional Tools", value: avgInstructional, total: toolTotals.instructional, color: "text-blue-600", bg: "bg-backgroundackgroundlue-50" },
+                                                    { label: "Instructional Tools", value: avgInstructional, total: toolTotals.instructional, color: "text-blue-600", bg: "bg-backgroundlue-50" },
                                                     { label: "Learning Tools", value: avgLearning, total: toolTotals.learning, color: "text-purple-600", bg: "bg-purple-50" },
                                                     { label: "Cultural Tools", value: avgCultural, total: toolTotals.cultural, color: "text-amber-600", bg: "bg-amber-50" },
                                                 ].map(tool => (
@@ -576,7 +576,7 @@ const LeaderGrowthPage = () => {
                                                                     <p className="text-[10px] text-muted-foreground">{format(new Date(obs.observationDate || obs.createdAt), "MMM d, yyyy")}</p>
                                                                 </div>
                                                                 <div className="flex gap-2">
-                                                                    <Badge variant="outline" className="text-[9px] bg-backgroundackgroundlue-50 border-blue-100">{tools.instructional} Inst</Badge>
+                                                                    <Badge variant="outline" className="text-[9px] bg-backgroundlue-50 border-blue-100">{tools.instructional} Inst</Badge>
                                                                     <Badge variant="outline" className="text-[9px] bg-purple-50 border-purple-100">{tools.learning} Learn</Badge>
                                                                     <Badge variant="outline" className="text-[9px] bg-amber-50 border-amber-100">{tools.cultural} Cult</Badge>
                                                                 </div>
@@ -677,7 +677,7 @@ const LeaderGrowthPage = () => {
                                 </p>
                             </div>
                             <div className={`px-4 py-2 rounded-xl text-sm font-bold shadow-sm ${selectedTeacher.academics === 'CORE'
-                                ? 'bg-backgroundackgroundlue-100 text-blue-700 border border-blue-200'
+                                ? 'bg-backgroundlue-100 text-blue-700 border border-blue-200'
                                 : 'bg-purple-100 text-purple-700 border border-purple-200'
                                 }`}>
                                 {selectedTeacher.academics === 'CORE' ? 'Ekya ED Track' : 'Specialist Track'}

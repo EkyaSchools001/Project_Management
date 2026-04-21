@@ -47,7 +47,7 @@ export default function DepartmentListPage() {
                         <Card className="p-0 overflow-hidden flex flex-col h-full border-white/50 border">
                             <div className="p-6 flex-1">
                                 <div className="flex items-start justify-between mb-4">
-                                    <div className="w-12 h-12 rounded-xl bg-backgroundackgroundrand-50 flex items-center justify-center text-brand-600">
+                                    <div className="w-12 h-12 rounded-xl bg-backgroundrand-50 flex items-center justify-center text-brand-600">
                                         <Building2 className="w-6 h-6" />
                                     </div>
                                     <button className="p-1 hover:bg-[#1e293b] rounded-lg">
@@ -60,7 +60,7 @@ export default function DepartmentListPage() {
                                     <span className="bg-[#1e293b] px-2 py-1 rounded">24 Members</span>
                                 </div>
                             </div>
-                            <div className="px-6 py-4 bg-[#0f172a]/50 border-t border-neutral-800 flex items-center justify-between group cursor-pointer hover:bg-backgroundackgroundrand-50 transition-colors">
+                            <div className="px-6 py-4 bg-[#0f172a]/50 border-t border-neutral-800 flex items-center justify-between group cursor-pointer hover:bg-backgroundrand-50 transition-colors">
                                 <span className="text-sm font-semibold text-gray-300 group-hover:text-brand-600">View Details</span>
                                 <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-brand-600 group-hover:translate-x-1 transition-all" />
                             </div>

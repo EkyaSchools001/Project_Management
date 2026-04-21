@@ -43,14 +43,14 @@ const WIDGET_OPTIONS = [
   { id: 'hero', type: 'hero', name: 'Hero Section', icon: Sparkles, color: 'bg-indigo-600', defaultContent: 'Premium Title', category: 'UI Elements' },
   { id: 'card', type: 'card', name: 'Feature Card', icon: Layers, color: 'bg-white border border-slate-200', defaultContent: 'Feature Name', category: 'UI Elements' },
   { id: 'text', type: 'text', name: 'Paragraph', icon: AlignLeft, color: 'bg-slate-700', defaultContent: 'Add your custom text here...', category: 'UI Elements' },
-  { id: 'button', type: 'button', name: 'Button', icon: MousePointerClick, color: 'bg-backgroundackgroundlue-600', defaultContent: 'Click Me', category: 'UI Elements' },
+  { id: 'button', type: 'button', name: 'Button', icon: MousePointerClick, color: 'bg-backgroundlue-600', defaultContent: 'Click Me', category: 'UI Elements' },
   { id: 'image', type: 'image', name: 'Image', icon: ImageIcon, color: 'bg-backgroundmerald-500', defaultContent: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&q=80', category: 'UI Elements' },
   { id: 'video', type: 'video', name: 'Video', icon: Video, color: 'bg-red-600', defaultContent: 'https://www.w3schools.com/html/mov_bbb.mp4', category: 'UI Elements' },
   { id: 'divider', type: 'divider', name: 'Divider', icon: Minus, color: 'bg-slate-400', defaultContent: '', category: 'UI Elements' },
   { id: 'spacer', type: 'spacer', name: 'Spacer', icon: Box, color: 'bg-slate-200', defaultContent: '', category: 'UI Elements' },
 
   // Stats Cards
-  { id: 'stats', type: 'stats', name: 'Stats Card', icon: Activity, color: 'bg-backgroundackgroundlue-500', defaultContent: '0', category: 'Stats' },
+  { id: 'stats', type: 'stats', name: 'Stats Card', icon: Activity, color: 'bg-backgroundlue-500', defaultContent: '0', category: 'Stats' },
   { id: 'stats_mini', type: 'stats_mini', name: 'Mini Stat', icon: Activity, color: 'bg-indigo-400', defaultContent: '12', category: 'Stats' },
   { id: 'stats_premium', type: 'stats_premium', name: 'Premium Stat', icon: Activity, color: 'bg-white text-red-500 border border-slate-200', defaultContent: '2,450', category: 'Stats' },
   { id: 'progress_card', type: 'progress_card', name: 'Progress Card', icon: TrendingUp, color: 'bg-backgroundmerald-500', defaultContent: '60', category: 'Stats' },
@@ -73,7 +73,7 @@ const WIDGET_OPTIONS = [
   // Special
   { id: 'observation', type: 'observation', name: 'Observation', icon: Eye, color: 'bg-purple-500', defaultContent: 'obs', category: 'Special' },
   { id: 'growth', type: 'growth', name: 'Growth', icon: TrendingUp, color: 'bg-green-500', defaultContent: 'growth', category: 'Special' },
-  { id: 'security_feed', type: 'security_feed', name: 'Security Center', icon: ShieldCheck, color: 'bg-backgroundackgroundackground text-foreground', defaultContent: 'Active Logs', category: 'Special' },
+  { id: 'security_feed', type: 'security_feed', name: 'Security Center', icon: ShieldCheck, color: 'bg-backgroundackground text-foreground', defaultContent: 'Active Logs', category: 'Special' },
   { id: 'chat_mini', type: 'chat_mini', name: 'Chat Widget', icon: MessageSquare, color: 'bg-indigo-50 text-indigo-600', defaultContent: 'Hello Admin!', category: 'Special' },
   { id: 'sparkline', type: 'sparkline', name: 'Growth Sparkline', icon: TrendingUp, color: 'bg-white', defaultContent: '82%', category: 'Charts' },
   { id: 'file_grid', type: 'file_grid', name: 'Document Hub', icon: BookOpen, color: 'bg-white', defaultContent: 'Resource Library', category: 'Lists & Tables' },
@@ -858,7 +858,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
             </div>
             <Trophy className="w-12 h-12 text-yellow-300 animate-bounce" />
           </div>
-          <div className="h-4 w-full bg-backgroundackgroundlack/20 rounded-full overflow-hidden border border-white/10 relative z-10">
+          <div className="h-4 w-full bg-backgroundlack/20 rounded-full overflow-hidden border border-white/10 relative z-10">
             <div 
               className="h-full bg-gradient-to-r from-yellow-300 to-emerald-400 transition-all duration-1000 shadow-[0_0_15px_rgba(250,204,21,0.5)]"
               style={{ width: `${Math.min(100, (Number(widget.content) / 20) * 100)}%` }}
@@ -909,7 +909,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
         className="h-full flex flex-col items-center justify-center p-6 bg-white shadow-sm transition-all hover:shadow-md"
         style={{ borderRadius: (widget.styles?.borderRadius as string) || '12px', ...widget.styles } as any}
       >
-        <div className={`p-3 rounded-2xl mb-3 ${(option as any)?.color || 'bg-backgroundackgroundlue-500'} text-foreground shadow-lg`}>
+        <div className={`p-3 rounded-2xl mb-3 ${(option as any)?.color || 'bg-backgroundlue-500'} text-foreground shadow-lg`}>
           <IconComponent className="w-6 h-6" />
         </div>
         <div className="text-center font-black text-3xl tracking-tight leading-none mb-1">{widget.content || '0'}</div>
@@ -930,7 +930,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
   return (
     <div className="h-screen flex flex-col bg-slate-50 font-sans">
       {/* Top Navbar / Super Admin Panel */}
-      <div className="bg-backgroundackgroundackground text-foreground px-6 py-3 flex items-center justify-between shadow-md z-20 relative">
+      <div className="bg-backgroundackground text-foreground px-6 py-3 flex items-center justify-between shadow-md z-20 relative">
         <div className="flex items-center gap-4">
           <div className="bg-indigo-600 p-2 rounded-lg shadow-sm">
             <LayoutDashboard className="w-5 h-5 text-foreground" />

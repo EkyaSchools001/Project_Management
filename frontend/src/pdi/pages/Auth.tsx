@@ -63,7 +63,7 @@ export default function Auth() {
     });
 
     return (
-        <div className="min-h-screen flex bg-backgroundackgroundlack overflow-hidden relative industrial-grid scanlines">
+        <div className="min-h-screen flex bg-backgroundlack overflow-hidden relative industrial-grid scanlines">
             <div className="neon-frame" />
 
             {/* Technical Background Elements */}
@@ -110,7 +110,7 @@ export default function Auth() {
                                         <Input
                                             type="email"
                                             placeholder="USER@SYSTEM.LOG"
-                                            className="bg-backgroundackgroundlack/50 border-white/10 rounded-none h-14 pl-12 focus:border-[#00f0ff] focus:ring-1 focus:ring-[#00f0ff]/20 text-foreground font-mono placeholder:text-foreground/10"
+                                            className="bg-backgroundlack/50 border-white/10 rounded-none h-14 pl-12 focus:border-[#00f0ff] focus:ring-1 focus:ring-[#00f0ff]/20 text-foreground font-mono placeholder:text-foreground/10"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
                                             required
@@ -128,7 +128,7 @@ export default function Auth() {
                                         <Input
                                             type={showPassword ? "text" : "password"}
                                             placeholder="••••••••"
-                                            className="bg-backgroundackgroundlack/50 border-white/10 rounded-none h-14 pl-12 pr-12 focus:border-[#00f0ff] focus:ring-1 focus:ring-[#00f0ff]/20 text-foreground font-mono placeholder:text-foreground/10"
+                                            className="bg-backgroundlack/50 border-white/10 rounded-none h-14 pl-12 pr-12 focus:border-[#00f0ff] focus:ring-1 focus:ring-[#00f0ff]/20 text-foreground font-mono placeholder:text-foreground/10"
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
                                             required

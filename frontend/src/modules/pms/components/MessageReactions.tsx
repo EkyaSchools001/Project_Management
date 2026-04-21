@@ -109,7 +109,7 @@ const MessageReactions = ({ message, roomId }) => {
                                     initial={{ opacity: 0, y: 5 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: 5 }}
-                                    className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-backgroundackgroundackground text-foreground text-[9px] px-2 py-1 rounded-lg whitespace-nowrap z-50"
+                                    className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-backgroundackground text-foreground text-[9px] px-2 py-1 rounded-lg whitespace-nowrap z-50"
                                 >
                                     <div className="flex gap-1">
                                         {users.map((u, i) => (

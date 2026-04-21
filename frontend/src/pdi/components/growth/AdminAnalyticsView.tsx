@@ -32,7 +32,7 @@ const AdminAnalyticsView = () => {
     ];
 
     const stats = [
-        { title: "Core Teachers", value: data.totalCore, icon: Users, color: "text-blue-600", bg: "bg-backgroundackgroundlue-100", trend: "+2.5%", trendUp: true },
+        { title: "Core Teachers", value: data.totalCore, icon: Users, color: "text-blue-600", bg: "bg-backgroundlue-100", trend: "+2.5%", trendUp: true },
         { title: "Non-Core Teachers", value: data.totalNonCore, icon: Award, color: "text-purple-600", bg: "bg-purple-100", trend: "+1.2%", trendUp: true },
         { title: "Observation Rate", value: `${data.observationCompletionRate}%`, icon: CheckCircle2, color: "text-green-600", bg: "bg-green-100", trend: "+5.4%", trendUp: true },
         { title: "Growth Index", value: "4.0", icon: TrendingUp, color: "text-orange-600", bg: "bg-orange-100", trend: "Stable", trendUp: true },

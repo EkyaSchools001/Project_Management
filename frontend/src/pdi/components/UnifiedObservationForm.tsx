@@ -534,7 +534,7 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
     return (
         <div className="max-w-5xl mx-auto pb-20">
             {/* Progress Header */}
-            <div className="sticky top-0 z-20 bg-backgroundackgroundackground/80 backdrop-blur-md pt-4 pb-6 border-b mb-8 px-4">
+            <div className="sticky top-0 z-20 bg-backgroundackground/80 backdrop-blur-md pt-4 pb-6 border-b mb-8 px-4">
                 <div className="flex justify-between items-center mb-4">
                     <div>
                         <h2 className="text-2xl font-bold text-primary">Observation Form</h2>
@@ -1118,7 +1118,7 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                 {/* Step 6: Meta Tags */}
                 {step === 6 && (
                     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                        <Card className="  shadow-xl bg-backgroundackgroundackground overflow-hidden">
+                        <Card className="  shadow-xl bg-backgroundackground overflow-hidden">
                             <CardHeader className="bg-primary/5 border-b py-8">
                                 <div className="flex items-center gap-4">
                                     <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
@@ -1156,7 +1156,7 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                 )}
 
                 {/* Sticky Bottom Actions */}
-                <div className="fixed bottom-0 left-0 right-0 bg-backgroundackgroundackground/80 backdrop-blur-lg border-t py-4 z-30 px-6">
+                <div className="fixed bottom-0 left-0 right-0 bg-backgroundackground/80 backdrop-blur-lg border-t py-4 z-30 px-6">
                     <div className="max-w-5xl mx-auto flex justify-between items-center">
                         <Button
                             type="button"
@@ -1282,7 +1282,7 @@ const DomainSection = ({ domain, idx, readOnly, updateIndicatorRating, updateDom
                                         "px-3 py-1.5 rounded-lg text-xs font-bold transition-all border",
                                         formData.domains?.find((d: any) => d.domainId === domain.id)?.indicators.find((i: any) => i.name === indicator)?.rating === rating
                                             ? "bg-primary text-foreground border-primary shadow-lg shadow-primary/20 scale-105"
-                                            : "bg-backgroundackgroundackground text-muted-foreground border-muted-foreground/10 hover:border-primary/40 hover:bg-primary/5",
+                                            : "bg-backgroundackground text-muted-foreground border-muted-foreground/10 hover:border-primary/40 hover:bg-primary/5",
                                         readOnly && "cursor-default scale-100 opacity-80"
                                     )}
                                 >

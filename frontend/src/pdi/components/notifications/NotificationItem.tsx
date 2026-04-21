@@ -63,7 +63,7 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({
       case 'ERROR':
         return 'text-red-500 bg-red-500/10';
       default:
-        return 'text-blue-500 bg-backgroundackgroundlue-500/10';
+        return 'text-blue-500 bg-backgroundlue-500/10';
     }
   };
 

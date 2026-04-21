@@ -321,7 +321,7 @@ export function ReflectionForm({ observation, isOpen, onClose, onSubmit, teacher
                                                             <RadioGroupItem value={option} id={`${indicator}-${option}`} className="peer sr-only" />
                                                             <Label
                                                                 htmlFor={`${indicator}-${option}`}
-                                                                className="flex flex-col items-center justify-center h-24 rounded-xl border-2 bg-backgroundackgroundackground cursor-pointer transition-all hover:bg-muted/50 hover:border-primary/30 peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5 peer-data-[state=checked]:shadow-sm"
+                                                                className="flex flex-col items-center justify-center h-24 rounded-xl border-2 bg-backgroundackground cursor-pointer transition-all hover:bg-muted/50 hover:border-primary/30 peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5 peer-data-[state=checked]:shadow-sm"
                                                             >
                                                                 <div className="flex gap-0.5 mb-2">
                                                                     {[...Array(4)].map((_, i) => (
@@ -375,7 +375,7 @@ export function ReflectionForm({ observation, isOpen, onClose, onSubmit, teacher
                                             <Textarea
                                                 id="strengths"
                                                 placeholder="Identify areas where you excelled..."
-                                                className="bg-backgroundackgroundackground"
+                                                className="bg-backgroundackground"
                                                 value={formData.strengths}
                                                 onChange={(e) => setFormData(prev => ({ ...prev, strengths: e.target.value }))}
                                             />
@@ -385,7 +385,7 @@ export function ReflectionForm({ observation, isOpen, onClose, onSubmit, teacher
                                             <Textarea
                                                 id="improvements"
                                                 placeholder="Identify areas for growth..."
-                                                className="bg-backgroundackgroundackground"
+                                                className="bg-backgroundackground"
                                                 value={formData.improvements}
                                                 onChange={(e) => setFormData(prev => ({ ...prev, improvements: e.target.value }))}
                                             />
@@ -395,7 +395,7 @@ export function ReflectionForm({ observation, isOpen, onClose, onSubmit, teacher
                                             <Input
                                                 id="goal"
                                                 placeholder="Define a SMART goal..."
-                                                className="bg-backgroundackgroundackground h-12"
+                                                className="bg-backgroundackground h-12"
                                                 value={formData.goal}
                                                 onChange={(e) => setFormData(prev => ({ ...prev, goal: e.target.value }))}
                                             />
@@ -405,7 +405,7 @@ export function ReflectionForm({ observation, isOpen, onClose, onSubmit, teacher
                                             <Textarea
                                                 id="comments"
                                                 placeholder="Additional context or feedback..."
-                                                className="bg-backgroundackgroundackground"
+                                                className="bg-backgroundackground"
                                                 value={formData.comments}
                                                 onChange={(e) => setFormData(prev => ({ ...prev, comments: e.target.value }))}
                                             />
@@ -422,7 +422,7 @@ export function ReflectionForm({ observation, isOpen, onClose, onSubmit, teacher
                     </div>
                 </ScrollArea>
 
-                <DialogFooter className="px-6 py-4 border-t bg-backgroundackgroundackground shrink-0 gap-2 sm:justify-between">
+                <DialogFooter className="px-6 py-4 border-t bg-backgroundackground shrink-0 gap-2 sm:justify-between">
                     <Button variant="ghost" onClick={step === 0 ? onClose : handleBack} disabled={false}>
                         {step === 0 ? "Cancel" : "Back"}
                     </Button>

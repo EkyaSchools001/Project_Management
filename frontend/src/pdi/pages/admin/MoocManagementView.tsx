@@ -96,7 +96,7 @@ export function MoocManagementView() {
             </div>
 
             <Dialog open={isMoocFormOpen} onOpenChange={setIsMoocFormOpen}>
-                <DialogContent className="max-w-5xl h-[90vh] overflow-y-auto bg-backgroundackgroundackground/95 backdrop-blur-xl shadow-2xl">
+                <DialogContent className="max-w-5xl h-[90vh] overflow-y-auto bg-backgroundackground/95 backdrop-blur-xl shadow-2xl">
                     <MoocEvidenceForm
                         onCancel={() => setIsMoocFormOpen(false)}
                         onSubmitSuccess={() => {
@@ -120,7 +120,7 @@ export function MoocManagementView() {
                     />
                 </div>
                 <Select value={statusFilter} onValueChange={setStatusFilter}>
-                    <SelectTrigger className="w-full sm:w-[180px] rounded-xl bg-backgroundackgroundackground border-muted/20">
+                    <SelectTrigger className="w-full sm:w-[180px] rounded-xl bg-backgroundackground border-muted/20">
                         <Filter className="w-4 h-4 mr-2" />
                         <SelectValue placeholder="Filter by Status" />
                     </SelectTrigger>

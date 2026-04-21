@@ -76,7 +76,7 @@ export function SecurityFeed({ styles }: { styles?: any }) {
   };
 
   return (
-    <div style={{ ...styles, height: '100%', overflow: 'hidden' }} className="bg-backgroundackgroundackground p-6 flex flex-col gap-4 shadow-2xl rounded-[24px]">
+    <div style={{ ...styles, height: '100%', overflow: 'hidden' }} className="bg-backgroundackground p-6 flex flex-col gap-4 shadow-2xl rounded-[24px]">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2 text-foreground/40">
           <ShieldCheck className="w-5 h-5 text-red-500" />

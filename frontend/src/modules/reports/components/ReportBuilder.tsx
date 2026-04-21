@@ -235,7 +235,7 @@ export default function ReportBuilder() {
               {templates.map((template) => (
                 <div
                   key={template.id}
-                  className={`p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${selectedTemplate === template.id ? 'border-blue-500 bg-backgroundackgroundlue-50' : ''}`}
+                  className={`p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${selectedTemplate === template.id ? 'border-blue-500 bg-backgroundlue-50' : ''}`}
                   onClick={() => applyTemplate(template.id)}
                 >
                   <div className="font-medium text-sm">{template.name}</div>

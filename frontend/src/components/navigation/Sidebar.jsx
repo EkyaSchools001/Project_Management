@@ -100,7 +100,7 @@ export function Sidebar({ collapsed, mobileOpen, setMobileOpen }) {
     return (
         <aside
             className={cn(
-                "fixed inset-y-0 left-0 z-50 bg-backgroundackgroundackground border-r border-border transition-all duration-300 ease-out lg:translate-x-0 lg:static flex flex-col",
+                "fixed inset-y-0 left-0 z-50 bg-backgroundackground border-r border-border transition-all duration-300 ease-out lg:translate-x-0 lg:static flex flex-col",
                 mobileOpen ? "translate-x-0" : "-translate-x-full",
                 collapsed ? "lg:w-20" : "lg:w-72",
                 "w-72 shadow-sm"

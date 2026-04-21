@@ -90,7 +90,7 @@ export const TeacherAssessmentsView: React.FC = () => {
                 <Card className="  shadow-md bg-white rounded-2xl overflow-hidden opacity-90">
                     <CardContent className="pt-6">
                         <div className="flex items-center gap-3 mb-2">
-                            <div className="p-2 bg-backgroundackgroundlue-100 rounded-lg">
+                            <div className="p-2 bg-backgroundlue-100 rounded-lg">
                                 <AlertCircle className="w-5 h-5 text-blue-600" />
                             </div>
                             <span className="text-zinc-500 text-sm font-medium">Acad. Preparedness</span>

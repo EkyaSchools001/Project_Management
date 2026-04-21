@@ -54,7 +54,7 @@ export function ChallengeCard({ challenge, userProgress = null, onJoin, onViewDe
           ${isActive ? 'bg-[#BAFF00]/20' : 'bg-white/5'}
         `}>
           {icon}
-          {!isActive && <div className="absolute inset-0 bg-backgroundackgroundlack/60 rounded-xl flex items-center justify-center"><Clock size={20} className="text-foreground/40" /></div>}
+          {!isActive && <div className="absolute inset-0 bg-backgroundlack/60 rounded-xl flex items-center justify-center"><Clock size={20} className="text-foreground/40" /></div>}
         </div>
 
         <div className="flex-1 min-w-0">

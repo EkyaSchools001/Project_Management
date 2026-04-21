@@ -778,7 +778,7 @@ function TeamManagementView({
         <div className="flex items-center gap-3">
           {availableCampuses.length > 1 && (
             <Select value={selectedCampus} onValueChange={setSelectedCampus}>
-              <SelectTrigger className="w-[180px] h-10 border-muted-foreground/20 bg-backgroundackgroundackground/50">
+              <SelectTrigger className="w-[180px] h-10 border-muted-foreground/20 bg-backgroundackground/50">
                 <SelectValue placeholder="All Campuses" />
               </SelectTrigger>
               <SelectContent>
@@ -793,7 +793,7 @@ function TeamManagementView({
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
             <Input
               placeholder="Search teachers..."
-              className="pl-10 w-[250px] bg-backgroundackgroundackground/50 border-muted-foreground/20"
+              className="pl-10 w-[250px] bg-backgroundackground/50 border-muted-foreground/20"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
@@ -1201,7 +1201,7 @@ function PDParticipationView({ team, training }: { team: any[], training: any[] 
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
                 <Input
                   placeholder="Search staff..."
-                  className="pl-10 w-[250px] bg-backgroundackgroundackground border-muted-foreground/20 rounded-xl"
+                  className="pl-10 w-[250px] bg-backgroundackground border-muted-foreground/20 rounded-xl"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -1611,7 +1611,7 @@ function PDCalendarView({
           <Card className="  shadow-2xl bg-zinc-950 text-foreground overflow-hidden relative">
             {/* decorative gradient blob */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-pink-500/20 rounded-full blur-3xl -translate-y-10 translate-x-10 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-backgroundackgroundlue-500/20 rounded-full blur-3xl translate-y-10 -translate-x-10 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-backgroundlue-500/20 rounded-full blur-3xl translate-y-10 -translate-x-10 pointer-events-none" />
 
             <CardContent className="p-6 md:p-10 relative z-10">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
@@ -1630,7 +1630,7 @@ function PDCalendarView({
                     mode="single"
                     selected={date}
                     onSelect={setDate}
-                    className="rounded-2xl border-none bg-backgroundackgroundackground/50 p-6 w-full"
+                    className="rounded-2xl border-none bg-backgroundackground/50 p-6 w-full"
                     classNames={{
                       months: "flex flex-col space-y-4",
                       month: "space-y-4 w-full",
@@ -1658,11 +1658,11 @@ function PDCalendarView({
                   <div className="space-y-6">
                     <h4 className="text-sm font-bold text-muted-foreground capitalize tracking-widest mb-4">Legend</h4>
                     <div className="space-y-4">
-                      <div className="flex items-center justify-between p-3 rounded-xl bg-backgroundackgroundlue-500/5 border border-blue-500/10">
+                      <div className="flex items-center justify-between p-3 rounded-xl bg-backgroundlue-500/5 border border-blue-500/10">
                         <span className="flex items-center gap-3 text-sm text-zinc-300">
-                          <span className="w-3 h-3 rounded-full bg-backgroundackgroundlue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]"></span> Pedagogy
+                          <span className="w-3 h-3 rounded-full bg-backgroundlue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]"></span> Pedagogy
                         </span>
-                        <span className="font-mono text-foreground text-sm bg-backgroundackgroundlue-500/20 px-2 py-0.5 rounded-md">
+                        <span className="font-mono text-foreground text-sm bg-backgroundlue-500/20 px-2 py-0.5 rounded-md">
                           {training.filter((t: any) => (t.topic || t.type) === 'Pedagogy').length}
                         </span>
                       </div>
@@ -1687,7 +1687,7 @@ function PDCalendarView({
                     <div className="pt-8">
                       <Button
                         variant="outline"
-                        className="w-full py-6 bg-backgroundackgroundackground border-zinc-800 text-muted-foreground hover:bg-card hover:text-foreground transition-all text-base rounded-xl"
+                        className="w-full py-6 bg-backgroundackground border-zinc-800 text-muted-foreground hover:bg-card hover:text-foreground transition-all text-base rounded-xl"
                         onClick={() => setDate(undefined)}
                         disabled={!date}
                       >
@@ -1719,7 +1719,7 @@ function PDCalendarView({
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
                     <Input
                       placeholder="Search sessions..."
-                      className="pl-10 w-[200px] bg-backgroundackgroundackground border-muted-foreground/20 rounded-xl"
+                      className="pl-10 w-[200px] bg-backgroundackground border-muted-foreground/20 rounded-xl"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                     />
@@ -1759,7 +1759,7 @@ function PDCalendarView({
                   <div className="space-y-1.5">
                     <Label className="text-[10px] capitalize font-bold text-zinc-600 ml-1">Type</Label>
                     <Select value={typeFilter} onValueChange={setTypeFilter}>
-                      <SelectTrigger className="rounded-xl bg-backgroundackgroundackground border-muted-foreground/10 h-10">
+                      <SelectTrigger className="rounded-xl bg-backgroundackground border-muted-foreground/10 h-10">
                         <SelectValue placeholder="All Types" />
                       </SelectTrigger>
                       <SelectContent>
@@ -1776,7 +1776,7 @@ function PDCalendarView({
                     <Label className="text-[10px] capitalize font-bold text-zinc-600 ml-1">Time</Label>
                     <Input
                       placeholder="e.g. 09:00 AM"
-                      className="rounded-xl bg-backgroundackgroundackground border-muted-foreground/10 h-10"
+                      className="rounded-xl bg-backgroundackground border-muted-foreground/10 h-10"
                       value={timeFilter}
                       onChange={(e) => setTimeFilter(e.target.value)}
                     />
@@ -1786,7 +1786,7 @@ function PDCalendarView({
                     <Label className="text-[10px] capitalize font-bold text-zinc-600 ml-1">Location</Label>
                     <Input
                       placeholder="Search location..."
-                      className="rounded-xl bg-backgroundackgroundackground border-muted-foreground/10 h-10"
+                      className="rounded-xl bg-backgroundackground border-muted-foreground/10 h-10"
                       value={locationFilter}
                       onChange={(e) => setLocationFilter(e.target.value)}
                     />
@@ -1795,7 +1795,7 @@ function PDCalendarView({
                   <div className="space-y-1.5">
                     <Label className="text-[10px] capitalize font-bold text-zinc-600 ml-1">Status</Label>
                     <Select value={statusFilter} onValueChange={setStatusFilter}>
-                      <SelectTrigger className="rounded-xl bg-backgroundackgroundackground border-muted-foreground/10 h-10">
+                      <SelectTrigger className="rounded-xl bg-backgroundackground border-muted-foreground/10 h-10">
                         <SelectValue placeholder="All Statuses" />
                       </SelectTrigger>
                       <SelectContent>
@@ -2169,7 +2169,7 @@ function PDCalendarView({
                 value={newEvent.time}
                 onValueChange={(val) => setNewEvent({ ...newEvent, time: val })}
               >
-                <SelectTrigger id="event-time" className="rounded-xl bg-backgroundackgroundackground border-muted-foreground/10 h-10">
+                <SelectTrigger id="event-time" className="rounded-xl bg-backgroundackground border-muted-foreground/10 h-10">
                   <SelectValue placeholder="Select Time" />
                 </SelectTrigger>
                 <SelectContent>
@@ -2230,7 +2230,7 @@ function PDCalendarView({
               </p>
             </div>
           </div>
-          <div className="p-8 bg-backgroundackgroundackground">
+          <div className="p-8 bg-backgroundackground">
             <div className="rounded-2xl border border-muted/20 overflow-hidden">
               <Table>
                 <TableHeader className="bg-muted/5">
@@ -2279,7 +2279,7 @@ function PDCalendarView({
             </div>
             <div className="mt-8 flex justify-end">
               <Button
-                className="h-12 px-8 rounded-2xl bg-backgroundackgroundackground hover:bg-card text-foreground font-black capitalize tracking-widest text-xs"
+                className="h-12 px-8 rounded-2xl bg-backgroundackground hover:bg-card text-foreground font-black capitalize tracking-widest text-xs"
                 onClick={() => setIsRegistrantsOpen(false)}
               >
                 Close View
@@ -2593,7 +2593,7 @@ function ReportsView({ team, observations }: { team: any[], observations: any[] 
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
                 <Input
                   placeholder="Search staff..."
-                  className="pl-10 w-[250px] bg-backgroundackgroundackground border-muted-foreground/20 rounded-xl"
+                  className="pl-10 w-[250px] bg-backgroundackground border-muted-foreground/20 rounded-xl"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -2766,7 +2766,7 @@ function ReportsView({ team, observations }: { team: any[], observations: any[] 
       </Card>
       {/* Report Preview Dialog */}
       <Dialog open={isReportOpen} onOpenChange={setIsReportOpen}>
-        <DialogContent className="max-w-5xl h-[90vh] overflow-y-auto bg-backgroundackgroundackground/95 backdrop-blur-xl   shadow-2xl">
+        <DialogContent className="max-w-5xl h-[90vh] overflow-y-auto bg-backgroundackground/95 backdrop-blur-xl   shadow-2xl">
           {selectedTeacher && (
             <TeacherAnalyticsReport teacher={selectedTeacher} observations={observations} />
           )}
@@ -2990,7 +2990,7 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
                 <Input
                   placeholder="Search goals..."
-                  className="pl-10 w-[250px] bg-backgroundackgroundackground border-muted-foreground/20 rounded-xl"
+                  className="pl-10 w-[250px] bg-backgroundackground border-muted-foreground/20 rounded-xl"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />

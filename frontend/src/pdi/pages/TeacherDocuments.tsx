@@ -101,7 +101,7 @@ export default function TeacherDocuments() {
     const getStatusBadge = (status: string) => {
         const config = {
             PENDING: { label: "Pending", className: "bg-yellow-100 text-yellow-800 border-yellow-300" },
-            VIEWED: { label: "Viewed", className: "bg-backgroundackgroundlue-100 text-blue-800 border-blue-300" },
+            VIEWED: { label: "Viewed", className: "bg-backgroundlue-100 text-blue-800 border-blue-300" },
             ACKNOWLEDGED: { label: "Acknowledged", className: "bg-green-100 text-green-800 border-green-300" },
             SIGNED: { label: "Signed", className: "bg-purple-100 text-purple-800 border-purple-300" },
         };
@@ -420,7 +420,7 @@ export default function TeacherDocuments() {
                             ) : previewUrl ? (
                                 <>
                                     {isLoadingPreview && (
-                                        <div className="absolute inset-0 flex items-center justify-center bg-backgroundackgroundackground/50 z-10">
+                                        <div className="absolute inset-0 flex items-center justify-center bg-backgroundackground/50 z-10">
                                             <Loader2 className="w-8 h-8 text-primary animate-spin" />
                                         </div>
                                     )}

@@ -69,7 +69,7 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
 
     return (
         <div className="space-y-8 animate-in fade-in duration-700">
-            <div className="relative overflow-hidden border border-white/10 bg-backgroundackgroundlack p-6 md:p-10 mb-8 shadow-2xl industrial-grid">
+            <div className="relative overflow-hidden border border-white/10 bg-backgroundlack p-6 md:p-10 mb-8 shadow-2xl industrial-grid">
                 <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-[#00f0ff]/5 rounded-full blur-[100px]" />
                 <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-72 h-72 bg-[#ff0055]/5 rounded-full blur-[80px]" />
 
@@ -115,7 +115,7 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
 
             <div className="grid grid-cols-1 gap-8 pb-12">
                 {filteredCampusData.map((data, idx) => (
-                    <Card key={idx} className="shadow-2xl overflow-hidden rounded-none bg-backgroundackgroundlack/40 border-white/5 hover:border-[#00f0ff]/20 transition-all duration-500">
+                    <Card key={idx} className="shadow-2xl overflow-hidden rounded-none bg-backgroundlack/40 border-white/5 hover:border-[#00f0ff]/20 transition-all duration-500">
                         <CardHeader className="bg-white/5 border-b border-white/5 pb-6 px-8">
                             <CardTitle className="text-2xl flex items-center justify-between text-foreground uppercase font-black">
                                 <span className="tracking-tighter font-mono">{data.campus}</span>
@@ -132,7 +132,7 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
                                 </div>
                                 
                                 {/* Metric 2 */}
-                                <div className="space-y-2 p-4 rounded-3xl bg-backgroundackgroundlue-50/50 border border-blue-100/50 hover:bg-backgroundackgroundlue-100/50 transition-colors">
+                                <div className="space-y-2 p-4 rounded-3xl bg-backgroundlue-50/50 border border-blue-100/50 hover:bg-backgroundlue-100/50 transition-colors">
                                     <div className="text-[10px] font-bold text-blue-700 uppercase tracking-widest flex items-center gap-1.5"><Target className="w-3 h-3" /> Instr. Tools</div>
                                     <div className="text-3xl font-black text-blue-950">{data.instructionalTools}%</div>
                                     <div className="text-xs text-blue-950 font-bold">Avg Implementation Score</div>

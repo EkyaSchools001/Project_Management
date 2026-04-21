@@ -84,7 +84,7 @@ const ProjectDetailsPage = () => {
             className="max-w-[1800px] mx-auto space-y-16 p-6 sm:p-10 lg:p-16 pb-40"
         >
             {/* Project Hero Header */}
-            <section className="relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-backgroundackgroundackground rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
+            <section className="relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-backgroundackground rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-violet-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-[800px] h-[800px] bg-indigo-500 rounded-full blur-[200px] opacity-10 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 
@@ -114,7 +114,7 @@ const ProjectDetailsPage = () => {
                         </div>
 
                         <div className="flex flex-wrap gap-8 pt-10">
-                            <StatBadge icon={User} label="Command Lead" value={project.manager.name} color="text-blue-400" bg="bg-backgroundackgroundlue-600/10" />
+                            <StatBadge icon={User} label="Command Lead" value={project.manager.name} color="text-blue-400" bg="bg-backgroundlue-600/10" />
                             <StatBadge icon={CalendarIcon} label="Target Window" value={project.endDate} color="text-indigo-400" bg="bg-indigo-600/10" />
                             <StatBadge icon={IndianRupee} label="Budget Matrix" value={`₹${project.budget.toLocaleString()}`} color="text-rose-400" bg="bg-rose-600/10" />
                         </div>

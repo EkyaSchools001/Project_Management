@@ -49,7 +49,7 @@ export default function AISuggestions({ types = ['task', 'project', 'workload'] 
 
     const getTypeColor = (type) => {
         switch (type) {
-            case 'task': return 'border-blue-500/30 bg-backgroundackgroundlue-500/10';
+            case 'task': return 'border-blue-500/30 bg-backgroundlue-500/10';
             case 'project': return 'border-purple-500/30 bg-purple-500/10';
             case 'workload': return 'border-orange-500/30 bg-orange-500/10';
             default: return 'border-gray-500/30 bg-gray-500/10';

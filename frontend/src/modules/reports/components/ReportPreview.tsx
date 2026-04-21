@@ -219,7 +219,7 @@ export default function ReportPreview({ reportName, widgets, data, onClose }: Re
         </Tabs>
 
         {exportFormat && (
-          <div className="fixed inset-0 bg-backgroundackgroundlack/50 flex items-center justify-center z-50">
+          <div className="fixed inset-0 bg-backgroundlack/50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg">
               <h3 className="text-lg font-bold mb-4">Export Report</h3>
               <p className="mb-4">Export this report as {exportFormat.toUpperCase()}?</p>

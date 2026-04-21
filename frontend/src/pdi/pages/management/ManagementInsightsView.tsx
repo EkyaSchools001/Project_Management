@@ -324,7 +324,7 @@ export function ManagementInsightsView() {
                                 </thead>
                                 <tbody className="divide-y divide-gray-100">
                                     {campusEngagementData.map(c => (
-                                        <tr key={c.campusId} className="hover:bg-backgroundackgroundlue-50/30 transition-colors">
+                                        <tr key={c.campusId} className="hover:bg-backgroundlue-50/30 transition-colors">
                                             <td className="px-6 py-4 font-bold text-indigo-900">{c.campusId}</td>
                                             <td className="px-6 py-4 font-medium">{c.totalTeachers}</td>
                                             <td className="px-6 py-4 text-emerald-600 font-medium">{c.activeTeachers}</td>
@@ -593,7 +593,7 @@ export function ManagementInsightsView() {
                                 <Building2 className="w-5 h-5 text-blue-500" />
                                 Campus Attendance Tracking
                             </h3>
-                            <Badge className="bg-backgroundackgroundlue-100 text-blue-700 border-none">Live Data</Badge>
+                            <Badge className="bg-backgroundlue-100 text-blue-700 border-none">Live Data</Badge>
                         </div>
                         <div className="overflow-x-auto">
                             <table className="w-full text-sm text-left">
@@ -607,7 +607,7 @@ export function ManagementInsightsView() {
                                 </thead>
                                 <tbody className="divide-y divide-gray-100">
                                     {attendanceData.map((row: any) => (
-                                        <tr key={row.campus} className="hover:bg-backgroundackgroundlue-50/30 transition-colors">
+                                        <tr key={row.campus} className="hover:bg-backgroundlue-50/30 transition-colors">
                                             <td className="px-6 py-4 font-bold text-gray-900">{row.campus}</td>
                                             <td className="px-6 py-4">{row.registered}</td>
                                             <td className="px-6 py-4 font-medium text-blue-600">{row.attended}</td>
@@ -616,7 +616,7 @@ export function ManagementInsightsView() {
                                                     <span className="font-bold text-gray-800 w-10">{row.attendancePercent}%</span>
                                                     <div className="w-full bg-gray-100 rounded-full h-2 max-w-[120px]">
                                                         <div
-                                                            className={`h-2 rounded-full ${row.attendancePercent >= 80 ? 'bg-backgroundmerald-500' : row.attendancePercent >= 60 ? 'bg-backgroundackgroundlue-500' : 'bg-rose-500'}`}
+                                                            className={`h-2 rounded-full ${row.attendancePercent >= 80 ? 'bg-backgroundmerald-500' : row.attendancePercent >= 60 ? 'bg-backgroundlue-500' : 'bg-rose-500'}`}
                                                             style={{ width: `${row.attendancePercent}%` }}
                                                         ></div>
                                                     </div>
@@ -706,7 +706,7 @@ export function ManagementInsightsView() {
                                                 <Badge className={cn(
                                                     "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
                                                     row.avgRating >= 4.5 ? 'bg-backgroundmerald-600' :
-                                                        row.avgRating >= 3.5 ? 'bg-backgroundackgroundlue-600' :
+                                                        row.avgRating >= 3.5 ? 'bg-backgroundlue-600' :
                                                             'bg-amber-500'
                                                 )}>
                                                     {row.avgRating >= 4.5 ? 'Excellent' : row.avgRating >= 3.5 ? 'Good' : 'Average'}

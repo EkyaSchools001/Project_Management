@@ -41,7 +41,7 @@ export function TimeEntryList({ filters = {}, onEdit, onDelete, className }) {
 
     const getStatusBadge = (status) => {
         const styles = {
-            Running: 'bg-backgroundackgroundlue-500/20 text-blue-400 border-blue-500/30',
+            Running: 'bg-backgroundlue-500/20 text-blue-400 border-blue-500/30',
             Pending: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
             Approved: 'bg-green-500/20 text-green-400 border-green-500/30',
             Rejected: 'bg-red-500/20 text-red-400 border-red-500/30'

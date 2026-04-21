@@ -664,7 +664,7 @@ export function SystemSettingsView() {
                                 {/* Google Workspace */}
                                 <div className="flex items-start justify-between p-4 border rounded-lg bg-card hover:shadow-sm transition-shadow">
                                     <div className="flex gap-4">
-                                        <div className="p-2 bg-backgroundackgroundlue-100 dark:bg-backgroundackgroundlue-900/20 rounded-lg">
+                                        <div className="p-2 bg-backgroundlue-100 dark:bg-backgroundlue-900/20 rounded-lg">
                                             <Globe className="w-8 h-8 text-blue-600 dark:text-blue-400" />
                                         </div>
                                         <div>

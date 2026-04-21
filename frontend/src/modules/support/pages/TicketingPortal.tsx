@@ -380,7 +380,7 @@ export default function TicketingPortal() {
                     key={msg.id} 
                     className={`flex gap-8 max-w-[90%] relative z-10 ${msg.type === 'user' ? 'ml-auto flex-row-reverse' : ''}`}
                   >
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 border-2 shadow-2xl transition-all ${msg.type === 'user' ? 'bg-backgroundackgroundackground border-white/20 text-foreground' : 'bg-white border-slate-50 text-indigo-600'}`}>
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 border-2 shadow-2xl transition-all ${msg.type === 'user' ? 'bg-backgroundackground border-white/20 text-foreground' : 'bg-white border-slate-50 text-indigo-600'}`}>
                       {msg.type === 'user' ? <User className="w-7 h-7" /> : <Bot className="w-7 h-7" />}
                     </div>
                     <div className={`p-8 rounded-[3rem] text-lg font-medium shadow-2xl ${msg.type === 'user' ? 'bg-indigo-600 text-foreground rounded-tr-none shadow-indigo-600/10' : 'bg-white border border-slate-50 text-slate-800 rounded-tl-none shadow-slate-200/20'}`}>

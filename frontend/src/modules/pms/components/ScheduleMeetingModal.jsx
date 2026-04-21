@@ -251,7 +251,7 @@ const ScheduleMeetingModal = ({ isOpen, onClose, onSuccess, initialDate, meeting
     }, {});
 
     return (
-        <div className="fixed inset-0 bg-backgroundackgroundlack/50 backdrop-blur-sm flex items-center justify-center z-[110] p-4">
+        <div className="fixed inset-0 bg-backgroundlack/50 backdrop-blur-sm flex items-center justify-center z-[110] p-4">
             <div className="bg-[#111c2a] rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col animate-in zoom-in-95 duration-200">
                 {/* Header */}
                 <div className="bg-gradient-to-r from-brand-600 to-brand-700 p-6 text-foreground flex items-center justify-between">

@@ -542,7 +542,7 @@ export function LeaderPerformanceAnalytics({ team, observations, goals = [] }: L
                                 variant={focusCategory === "all" ? "default" : "outline"}
                                 className={cn(
                                     "cursor-pointer font-bold px-3 py-1 transition-all",
-                                    focusCategory === "all" ? "bg-backgroundackgroundlue-600 text-foreground" : "bg-backgroundackgroundlue-50/50 text-blue-700 border-blue-100 hover:bg-backgroundackgroundlue-100"
+                                    focusCategory === "all" ? "bg-backgroundlue-600 text-foreground" : "bg-backgroundlue-50/50 text-blue-700 border-blue-100 hover:bg-backgroundlue-100"
                                 )}
                                 onClick={() => setFocusCategory("all")}
                             >

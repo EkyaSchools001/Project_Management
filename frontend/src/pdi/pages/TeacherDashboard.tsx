@@ -215,7 +215,7 @@ const DashboardOverview = ({
 
   return (
     <div className="space-y-8 animate-in fade-in duration-700">
-      <div className="relative overflow-hidden border border-white/10 bg-backgroundackgroundlack p-6 md:p-10 mb-8 shadow-2xl industrial-grid">
+      <div className="relative overflow-hidden border border-white/10 bg-backgroundlack p-6 md:p-10 mb-8 shadow-2xl industrial-grid">
         {/* Background decorative elements */}
         <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-[#00f0ff]/5 rounded-full blur-[100px]" />
         <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-72 h-72 bg-[#ff0055]/5 rounded-full blur-[80px]" />
@@ -363,7 +363,7 @@ const DashboardOverview = ({
                   />
                 ))
               ) : (
-                <Card className="bg-backgroundackgroundlack/40 border border-white/5 p-12 flex flex-col items-center justify-center text-center space-y-4 rounded-none">
+                <Card className="bg-backgroundlack/40 border border-white/5 p-12 flex flex-col items-center justify-center text-center space-y-4 rounded-none">
                   <div className="w-16 h-16 rounded-none bg-white/5 flex items-center justify-center border border-white/10">
                     <Eye className="w-8 h-8 text-foreground/20" />
                   </div>
@@ -396,7 +396,7 @@ const DashboardOverview = ({
                   <GoalCard key={goal.id} goal={goal} />
                 ))
               ) : (
-                <Card className="bg-backgroundackgroundlack/40 border border-white/5 p-12 flex flex-col items-center justify-center text-center space-y-4 rounded-none">
+                <Card className="bg-backgroundlack/40 border border-white/5 p-12 flex flex-col items-center justify-center text-center space-y-4 rounded-none">
                   <div className="w-16 h-16 rounded-none bg-white/5 flex items-center justify-center border border-white/10">
                     <Target className="w-8 h-8 text-foreground/20" />
                   </div>
@@ -616,7 +616,7 @@ function ObservationsView({
       </div>
 
       {(showUpcoming || upcomingObservations.length > 0) && (
-        <Card className="shadow-xl bg-backgroundackgroundackground/50 backdrop-blur-sm overflow-hidden mb-8">
+        <Card className="shadow-xl bg-backgroundackground/50 backdrop-blur-sm overflow-hidden mb-8">
           <CardHeader className="border-b bg-muted/20">
             <div className="flex items-center gap-2">
               <Calendar className="w-5 h-5 text-primary" />
@@ -1452,7 +1452,7 @@ function CalendarView({
                   mode="single"
                   selected={date}
                   onSelect={setDate}
-                  className="rounded-2xl border-none bg-backgroundackgroundackground/50 p-6 w-full"
+                  className="rounded-2xl border-none bg-backgroundackground/50 p-6 w-full"
                   classNames={{
                     months: "flex flex-col space-y-4",
                     month: "space-y-4 w-full",
@@ -1515,7 +1515,7 @@ function CalendarView({
                   <div className="pt-8 space-y-4">
                     <div className="grid grid-cols-2 gap-3">
                       <Select value={selectedType} onValueChange={setSelectedType}>
-                        <SelectTrigger className="bg-backgroundackgroundackground border-zinc-800 text-foreground rounded-xl focus:ring-primary h-12">
+                        <SelectTrigger className="bg-backgroundackground border-zinc-800 text-foreground rounded-xl focus:ring-primary h-12">
                           <SelectValue placeholder="Topic" />
                         </SelectTrigger>
                         <SelectContent>
@@ -1526,7 +1526,7 @@ function CalendarView({
                         </SelectContent>
                       </Select>
                       <Select value={selectedCampus} onValueChange={setSelectedCampus}>
-                        <SelectTrigger className="bg-backgroundackgroundackground border-zinc-800 text-foreground rounded-xl focus:ring-primary h-12">
+                        <SelectTrigger className="bg-backgroundackground border-zinc-800 text-foreground rounded-xl focus:ring-primary h-12">
                           <SelectValue placeholder="Campus" />
                         </SelectTrigger>
                         <SelectContent>
@@ -1542,14 +1542,14 @@ function CalendarView({
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
                       <Input
                         placeholder="Search sessions..."
-                        className="pl-10 bg-backgroundackgroundackground border-zinc-800 text-foreground rounded-xl focus:ring-primary"
+                        className="pl-10 bg-backgroundackground border-zinc-800 text-foreground rounded-xl focus:ring-primary"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                       />
                     </div>
                     <Button
                       variant="outline"
-                      className="w-full py-6 bg-backgroundackgroundackground border-zinc-800 text-muted-foreground hover:bg-card hover:text-foreground transition-all text-base rounded-xl"
+                      className="w-full py-6 bg-backgroundackground border-zinc-800 text-muted-foreground hover:bg-card hover:text-foreground transition-all text-base rounded-xl"
                       onClick={() => {
                         setDate(undefined);
                         setSelectedType("all");
@@ -1923,7 +1923,7 @@ function MoocEvidencePage() {
       </div>
 
       <Dialog open={isMoocFormOpen} onOpenChange={setIsMoocFormOpen}>
-        <DialogContent className="max-w-5xl h-[90vh] overflow-y-auto bg-backgroundackgroundackground/95 backdrop-blur-xl shadow-2xl">
+        <DialogContent className="max-w-5xl h-[90vh] overflow-y-auto bg-backgroundackground/95 backdrop-blur-xl shadow-2xl">
           <MoocEvidenceForm
             onCancel={() => {
               setIsMoocFormOpen(false);
@@ -2062,9 +2062,9 @@ function MoocEvidencePage() {
 function CourseCard({ course, onEnrollSuccess }: { course: any, onEnrollSuccess?: () => void }) {
   const [enrolling, setEnrolling] = useState(false);
   return (
-    <Card className="group hover:shadow-2xl transition-all duration-300   bg-backgroundackgroundackground/50 backdrop-blur-sm overflow-hidden flex flex-col">
+    <Card className="group hover:shadow-2xl transition-all duration-300   bg-backgroundackground/50 backdrop-blur-sm overflow-hidden flex flex-col">
       <div className={cn("h-32 w-full relative", course.thumbnail)}>
-        <div className="absolute inset-0 bg-backgroundackgroundlack/20 group-hover:bg-backgroundackgroundlack/10 transition-colors" />
+        <div className="absolute inset-0 bg-backgroundlack/20 group-hover:bg-backgroundlack/10 transition-colors" />
         <div className="absolute top-3 left-3">
           <Badge variant="secondary" className="bg-white/90 text-black border-none backdrop-blur-sm">
             {course.category}
@@ -2463,7 +2463,7 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
       {
         selectedActivity && (
           <Dialog open={!!selectedActivity} onOpenChange={() => setSelectedActivity(null)}>
-            <DialogContent className="max-w-4xl bg-backgroundackgroundackground/95 backdrop-blur-xl  ">
+            <DialogContent className="max-w-4xl bg-backgroundackground/95 backdrop-blur-xl  ">
               <DialogHeader>
                 <DialogTitle className="text-2xl font-bold flex items-center gap-2">
                   <Book className="w-6 h-6 text-primary" />
@@ -2526,7 +2526,7 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
                 </div>
 
                 {/* Main Details */}
-                <Card className="shadow-xl bg-backgroundackgroundackground/50 backdrop-blur-sm">
+                <Card className="shadow-xl bg-backgroundackground/50 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <FileText className="w-5 h-5 text-primary" />
@@ -3116,7 +3116,7 @@ function ReflectionDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md bg-backgroundackgroundackground   shadow-2xl">
+      <DialogContent className="sm:max-w-md bg-backgroundackground   shadow-2xl">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <MessageSquare className="w-5 h-5 text-primary" />
@@ -3192,8 +3192,8 @@ function ObservationDetailView({ observations }: { observations: Observation[] }
       <div className="grid lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8">
           {/* Main Assessment Card - Similar to Leader View but read-only for teacher */}
-          <Card className="  shadow-2xl bg-backgroundackgroundackground/50 backdrop-blur-sm overflow-hidden">
-            <div className="h-4 bg-backgroundackgroundlack" />
+          <Card className="  shadow-2xl bg-backgroundackground/50 backdrop-blur-sm overflow-hidden">
+            <div className="h-4 bg-backgroundlack" />
             <CardHeader className="bg-muted/10 pb-8">
               <div className="flex justify-between items-start">
                 <div>
@@ -3452,7 +3452,7 @@ function ObservationDetailView({ observations }: { observations: Observation[] }
                         </h3>
                         <div className="flex flex-wrap gap-2">
                           {(observation as any).learningTools.map((tool: string, idx: number) => (
-                            <Badge key={idx} variant="secondary" className="bg-backgroundackgroundlue-50 text-blue-700 border-blue-100 uppercase text-[10px] tracking-wider font-bold">
+                            <Badge key={idx} variant="secondary" className="bg-backgroundlue-50 text-blue-700 border-blue-100 uppercase text-[10px] tracking-wider font-bold">
                               {tool}
                             </Badge>
                           ))}
@@ -3590,15 +3590,15 @@ function ObservationDetailView({ observations }: { observations: Observation[] }
                     {/* Summary Stats */}
                     <div className="grid grid-cols-1 gap-4 p-6">
                       <div className="grid grid-cols-3 gap-4">
-                        <div className="p-4 bg-backgroundackgroundackground rounded-lg border shadow-sm">
+                        <div className="p-4 bg-backgroundackground rounded-lg border shadow-sm">
                           <span className="block text-xs font-bold text-zinc-900 uppercase mb-1">Strengths</span>
                           <p className="font-bold text-sm">{observation.detailedReflection.strengths}</p>
                         </div>
-                        <div className="p-4 bg-backgroundackgroundackground rounded-lg border shadow-sm">
+                        <div className="p-4 bg-backgroundackground rounded-lg border shadow-sm">
                           <span className="block text-xs font-bold text-zinc-900 uppercase mb-1">Growth Areas</span>
                           <p className="font-bold text-sm">{observation.detailedReflection.improvements}</p>
                         </div>
-                        <div className="p-4 bg-backgroundackgroundackground rounded-lg border shadow-sm">
+                        <div className="p-4 bg-backgroundackground rounded-lg border shadow-sm">
                           <span className="block text-xs font-bold text-zinc-900 uppercase mb-1">Goal</span>
                           <p className="font-bold text-sm">{observation.detailedReflection.goal}</p>
                         </div>

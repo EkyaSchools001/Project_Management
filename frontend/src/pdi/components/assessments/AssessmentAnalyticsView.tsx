@@ -50,7 +50,7 @@ export const AssessmentAnalyticsView: React.FC = () => {
     return (
         <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <Card className="  shadow-md bg-backgroundackgroundackground text-foreground">
+                <Card className="  shadow-md bg-backgroundackground text-foreground">
                     <CardContent className="pt-6 space-y-2">
                         <Users className="w-8 h-8 text-primary mb-2" />
                         <p className="text-muted-foreground text-sm">Total Attempts</p>

@@ -206,7 +206,7 @@ export function FormWorkflowsConfig() {
                                                         }, {} as Record<string, FormTemplate[]>)
                                                     ).map(([type, groupTemplates], groupIdx, arr) => (
                                                         <SelectGroup key={type}>
-                                                            <SelectLabel className="text-blue-600 font-bold bg-backgroundackgroundlue-50/50 py-1 px-3 mb-1 rounded-sm text-xs capitalize tracking-wider">
+                                                            <SelectLabel className="text-blue-600 font-bold bg-backgroundlue-50/50 py-1 px-3 mb-1 rounded-sm text-xs capitalize tracking-wider">
                                                                 {type} ({groupTemplates.length})
                                                             </SelectLabel>
                                                             {groupTemplates.map(t => {
@@ -285,7 +285,7 @@ export function FormWorkflowsConfig() {
                                         <Button variant="ghost" size="icon" className="text-red-500 hover:bg-red-50 hover:text-red-600" onClick={() => handleDelete(flow.id)}>
                                             <Trash2 className="w-4 h-4" />
                                         </Button>
-                                        <Button variant="ghost" size="icon" className="text-blue-500 hover:bg-backgroundackgroundlue-50 hover:text-blue-600" onClick={() => handleSaveFlow(flow.id)}>
+                                        <Button variant="ghost" size="icon" className="text-blue-500 hover:bg-backgroundlue-50 hover:text-blue-600" onClick={() => handleSaveFlow(flow.id)}>
                                             <Save className="w-4 h-4" />
                                         </Button>
                                     </div>

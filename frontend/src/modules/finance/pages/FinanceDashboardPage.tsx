@@ -117,7 +117,7 @@ export default function FinanceDashboardPage() {
 
         <div className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-xl bg-backgroundackgroundlue-500/10 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-backgroundlue-500/10 flex items-center justify-center">
               <FileText className="w-5 h-5 text-blue-500" />
             </div>
             <span className="text-sm text-foreground/40">Outstanding</span>

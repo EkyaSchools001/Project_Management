@@ -33,7 +33,7 @@ const LogWorkModal = ({ isOpen, onClose, onAdd }) => {
                         exit={{ opacity: 0, scale: 0.9, y: 40 }}
                         className="bg-white/90 border border-white/20 rounded-[4rem] shadow-[0_60px_150px_rgba(0,0,0,0.2)] w-full max-w-2xl overflow-hidden backdrop-blur-2xl"
                     >
-                        <div className="bg-backgroundackgroundackground p-10 sm:p-14 text-foreground relative overflow-hidden">
+                        <div className="bg-backgroundackground p-10 sm:p-14 text-foreground relative overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-transparent pointer-events-none" />
                             <div className="absolute -right-10 -top-10 w-40 h-40 bg-indigo-500 rounded-full blur-[80px] opacity-20 pointer-events-none" />
                             

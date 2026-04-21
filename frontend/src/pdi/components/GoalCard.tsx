@@ -74,7 +74,7 @@ export function GoalCard({ goal, onReflect, className }: GoalCardProps) {
             variant="secondary"
             className={cn(
               "text-[10px] font-black capitalize tracking-wider",
-              goal.academics === "CORE" ? "bg-backgroundackgroundlue-100 text-blue-700" : "bg-purple-100 text-purple-700"
+              goal.academics === "CORE" ? "bg-backgroundlue-100 text-blue-700" : "bg-purple-100 text-purple-700"
             )}
           >
             {goal.academics === "NON_CORE" ? "Non-Core" : "Core"}

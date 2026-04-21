@@ -197,7 +197,7 @@ export function TeacherPortfolio() {
           title="Avg. Observation Score" 
           value={summary?.avgObservationScore?.toFixed(1) || "0.0"} 
           icon={<ChartLineUp className="w-8 h-8 text-blue-500" weight="duotone" />} 
-          bgColor="bg-backgroundackgroundlue-50"
+          bgColor="bg-backgroundlue-50"
         />
         <SummaryCard 
           title="Training Hours" 

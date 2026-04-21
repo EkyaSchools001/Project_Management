@@ -122,7 +122,7 @@ export function TeacherAnalyticsReport({ teacher, observations = [] }: TeacherAn
                     <div>
                         <h2 className="text-2xl font-bold">{teacher.name}</h2>
                         <div className="flex items-center gap-2 text-muted-foreground mt-1">
-                            <Badge variant="outline" className="bg-backgroundackgroundackground">
+                            <Badge variant="outline" className="bg-backgroundackground">
                                 {teacher.role}
                             </Badge>
                             <span className="text-sm">•</span>

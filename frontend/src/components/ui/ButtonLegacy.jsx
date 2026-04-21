@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 
 export function Button({ className, variant = "primary", size = "md", ...props }) {
     const variants = {
-        primary: "bg-neutral-800 text-foreground hover:bg-backgroundackgroundrand-700 shadow-lg shadow-brand-500/20",
-        secondary: "bg-[#111c2a] text-brand-600 border border-brand-100 hover:bg-backgroundackgroundrand-50",
+        primary: "bg-neutral-800 text-foreground hover:bg-backgroundrand-700 shadow-lg shadow-brand-500/20",
+        secondary: "bg-[#111c2a] text-brand-600 border border-brand-100 hover:bg-backgroundrand-50",
         outline: "bg-transparent text-gray-200 border border-neutral-700 hover:border-brand-500 hover:text-brand-600",
-        ghost: "bg-transparent text-gray-300 hover:bg-backgroundackgroundrand-50",
+        ghost: "bg-transparent text-gray-300 hover:bg-backgroundrand-50",
         danger: "bg-red-50 text-red-600 border border-red-100 hover:bg-red-100"
     };
 

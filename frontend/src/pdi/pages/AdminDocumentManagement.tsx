@@ -115,7 +115,7 @@ export default function AdminDocumentManagement() {
     const getStatusBadge = (status: string) => {
         const config = {
             PENDING: { label: "Pending", className: "bg-yellow-100 text-yellow-800 border-yellow-300", icon: Clock },
-            VIEWED: { label: "Viewed", className: "bg-backgroundackgroundlue-100 text-blue-800 border-blue-300", icon: Eye },
+            VIEWED: { label: "Viewed", className: "bg-backgroundlue-100 text-blue-800 border-blue-300", icon: Eye },
             ACKNOWLEDGED: { label: "Acknowledged", className: "bg-green-100 text-green-800 border-green-300", icon: CheckCircle2 },
             SIGNED: { label: "Signed", className: "bg-purple-100 text-purple-800 border-purple-300", icon: PenTool },
         };
@@ -715,7 +715,7 @@ export default function AdminDocumentManagement() {
                                             {documents.reduce((sum, doc) => sum + (doc.acknowledged || 0), 0)}
                                         </span>
                                     </div>
-                                    <div className="flex items-center justify-between p-4 rounded-lg bg-backgroundackgroundlue-50 border border-blue-200">
+                                    <div className="flex items-center justify-between p-4 rounded-lg bg-backgroundlue-50 border border-blue-200">
                                         <div className="flex items-center gap-3">
                                             <BarChart3 className="w-5 h-5 text-blue-600" />
                                             <span className="font-medium">Completion Rate</span>
@@ -863,7 +863,7 @@ export default function AdminDocumentManagement() {
                                                 .map((teacher) => (
                                                     <div
                                                         key={teacher.id}
-                                                        className="flex items-center space-x-3 p-3 rounded-lg hover:bg-backgroundackgroundackground cursor-pointer transition-colors"
+                                                        className="flex items-center space-x-3 p-3 rounded-lg hover:bg-backgroundackground cursor-pointer transition-colors"
                                                         onClick={() => {
                                                             const isSelected = newDocument.assignedTeachers.includes(teacher.id);
                                                             setNewDocument({
@@ -995,7 +995,7 @@ export default function AdminDocumentManagement() {
                                     .map((teacher) => (
                                         <div
                                             key={teacher.id}
-                                            className="flex items-center space-x-3 p-3 rounded-lg hover:bg-backgroundackgroundackground cursor-pointer transition-colors"
+                                            className="flex items-center space-x-3 p-3 rounded-lg hover:bg-backgroundackground cursor-pointer transition-colors"
                                             onClick={() => toggleTeacherSelection(teacher.id)}
                                         >
                                             <Checkbox

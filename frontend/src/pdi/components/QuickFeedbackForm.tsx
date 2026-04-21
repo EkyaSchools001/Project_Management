@@ -150,7 +150,7 @@ export function QuickFeedbackForm({ onSubmit, onAutoSave, onCancel, initialData 
     };
 
     return (
-        <Card className="max-w-4xl mx-auto   shadow-2xl bg-backgroundackgroundackground/60 backdrop-blur-xl overflow-hidden rounded-[2.5rem]">
+        <Card className="max-w-4xl mx-auto   shadow-2xl bg-backgroundackground/60 backdrop-blur-xl overflow-hidden rounded-[2.5rem]">
             <CardHeader className="bg-gradient-to-r from-primary/10 via-primary/5 to-background border-b p-8">
                 <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-3">
@@ -174,7 +174,7 @@ export function QuickFeedbackForm({ onSubmit, onAutoSave, onCancel, initialData 
                                 {isSaving ? "Saving changes..." : "All changes auto-saved"}
                             </span>
                         </div>
-                        <div className="flex items-center gap-2 bg-backgroundackgroundackground/50 backdrop-blur-md px-4 py-2 rounded-2xl border border-primary/10">
+                        <div className="flex items-center gap-2 bg-backgroundackground/50 backdrop-blur-md px-4 py-2 rounded-2xl border border-primary/10">
                             <div className="flex gap-1">
                                 {[1, 2, 3].map((s) => (
                                     <div
@@ -530,7 +530,7 @@ export function QuickFeedbackForm({ onSubmit, onAutoSave, onCancel, initialData 
                     variant="ghost"
                     size="lg"
                     onClick={step === 1 ? onCancel : handleBack}
-                    className="h-14 px-8 rounded-2xl text-base font-bold bg-backgroundackgroundackground/50 hover:bg-backgroundackgroundackground shadow-sm border border-muted-foreground/10"
+                    className="h-14 px-8 rounded-2xl text-base font-bold bg-backgroundackground/50 hover:bg-backgroundackground shadow-sm border border-muted-foreground/10"
                 >
                     {step === 1 ? "Cancel" : "Previous Step"}
                 </Button>

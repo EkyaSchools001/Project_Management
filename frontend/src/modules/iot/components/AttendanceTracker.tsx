@@ -116,7 +116,7 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
         <Card className="bg-[#1a1d29] border-white/10">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-backgroundackgroundlue-500/10">
+              <div className="p-2 rounded-lg bg-backgroundlue-500/10">
                 <UserX className="w-5 h-5 text-blue-400" />
               </div>
               <div>
@@ -202,7 +202,7 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
                   <TableCell>
                     <Badge
                       variant={record.type === 'CheckIn' ? 'default' : 'secondary'}
-                      className={record.type === 'CheckIn' ? 'bg-green-500' : 'bg-backgroundackgroundlue-500'}
+                      className={record.type === 'CheckIn' ? 'bg-green-500' : 'bg-backgroundlue-500'}
                     >
                       {record.type}
                     </Badge>

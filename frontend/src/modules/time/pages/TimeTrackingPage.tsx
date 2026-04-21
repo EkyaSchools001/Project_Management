@@ -66,7 +66,7 @@ export function TimeTrackingPage() {
             hours: weeklySummary?.totalHours || 0,
             icon: Calendar,
             color: 'text-blue-400',
-            bgColor: 'bg-backgroundackgroundlue-500/10'
+            bgColor: 'bg-backgroundlue-500/10'
         },
         {
             title: 'Billable',

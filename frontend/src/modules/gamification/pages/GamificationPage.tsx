@@ -168,7 +168,7 @@ export default function GamificationPage() {
             <Card className="bg-[#161B22] border-white/5 p-6 rounded-2xl">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-foreground flex items-center gap-3">
-                  <div className="w-10 h-10 bg-backgroundackgroundlue-500/10 rounded-xl flex items-center justify-center">
+                  <div className="w-10 h-10 bg-backgroundlue-500/10 rounded-xl flex items-center justify-center">
                     <Target size={20} className="text-blue-400" />
                   </div>
                   Active Challenges

@@ -398,7 +398,7 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
                         <div className="space-y-1.5">
                             <Label className="text-[10px] capitalize font-bold text-muted-foreground ml-1">Category</Label>
                             <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                                <SelectTrigger className="rounded-xl bg-backgroundackgroundackground border-muted-foreground/10 h-10">
+                                <SelectTrigger className="rounded-xl bg-backgroundackground border-muted-foreground/10 h-10">
                                     <SelectValue placeholder="All Categories" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -416,7 +416,7 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
                         <div className="space-y-1.5">
                             <Label className="text-[10px] capitalize font-bold text-muted-foreground ml-1">Status</Label>
                             <Select value={statusFilter} onValueChange={setStatusFilter}>
-                                <SelectTrigger className="rounded-xl bg-backgroundackgroundackground border-muted-foreground/10 h-10">
+                                <SelectTrigger className="rounded-xl bg-backgroundackground border-muted-foreground/10 h-10">
                                     <SelectValue placeholder="All Statuses" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -674,7 +674,7 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
             {/* Detail View Dialog */}
             {detailCourse && (
                 <Dialog open={isDetailOpen} onOpenChange={setIsDetailOpen}>
-                    <DialogContent className="max-w-4xl bg-backgroundackgroundackground/95 backdrop-blur-xl">
+                    <DialogContent className="max-w-4xl bg-backgroundackground/95 backdrop-blur-xl">
                         <DialogHeader>
                             <DialogTitle className="text-2xl font-bold flex items-center gap-2">
                                 <BookOpen className="w-6 h-6 text-primary" />
@@ -735,7 +735,7 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
                             </div>
 
                             {/* Main Details */}
-                            <Card className="shadow-xl bg-backgroundackgroundackground/50 backdrop-blur-sm">
+                            <Card className="shadow-xl bg-backgroundackground/50 backdrop-blur-sm">
                                 <CardContent className="p-6">
                                     <div className="flex items-center gap-2 mb-4">
                                         <FileText className="w-5 h-5 text-primary" />
@@ -797,7 +797,7 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
 
                             {/* Enrolled Members Table */}
                             {showEnrolledTable && mockEnrolledMembers[detailCourse.id as keyof typeof mockEnrolledMembers] && (
-                                <Card className="shadow-xl bg-backgroundackgroundackground/50 backdrop-blur-sm">
+                                <Card className="shadow-xl bg-backgroundackground/50 backdrop-blur-sm">
                                     <CardContent className="p-6">
                                         <div className="flex items-center justify-between mb-4">
                                             <div className="flex items-center gap-2">

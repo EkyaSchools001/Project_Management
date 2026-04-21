@@ -18,7 +18,7 @@ const MetricCard = ({ icon: Icon, label, value, sub, color = 'blue' }: {
     color?: string;
 }) => {
     const colorMap: Record<string, string> = {
-        blue: 'bg-backgroundackgroundlue-50 text-blue-600 border-blue-100',
+        blue: 'bg-backgroundlue-50 text-blue-600 border-blue-100',
         emerald: 'bg-backgroundmerald-50 text-emerald-600 border-emerald-100',
         amber: 'bg-amber-50 text-amber-600 border-amber-100',
         purple: 'bg-purple-50 text-purple-600 border-purple-100',

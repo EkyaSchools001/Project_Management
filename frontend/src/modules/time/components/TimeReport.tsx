@@ -73,7 +73,7 @@ export function TimeReport({ className }) {
             value: report?.nonBillableHours || 0,
             icon: TrendingUp,
             color: 'text-blue-400',
-            bgColor: 'bg-backgroundackgroundlue-500/10'
+            bgColor: 'bg-backgroundlue-500/10'
         },
         {
             title: 'Avg Hours/Day',

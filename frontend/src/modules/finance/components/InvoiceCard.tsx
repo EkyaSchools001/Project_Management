@@ -19,7 +19,7 @@ interface InvoiceCardProps {
 
 const statusConfig: Record<string, { icon: any; color: string; label: string }> = {
   Draft: { icon: FileText, color: 'bg-white/10 text-foreground/60', label: 'Draft' },
-  Sent: { icon: Clock, color: 'bg-backgroundackgroundlue-500/20 text-blue-500', label: 'Sent' },
+  Sent: { icon: Clock, color: 'bg-backgroundlue-500/20 text-blue-500', label: 'Sent' },
   Paid: { icon: CheckCircle, color: 'bg-green-500/20 text-green-500', label: 'Paid' },
   Overdue: { icon: XCircle, color: 'bg-red-500/20 text-red-500', label: 'Overdue' },
   Void: { icon: XCircle, color: 'bg-white/10 text-foreground/40', label: 'Void' },

@@ -531,7 +531,7 @@ export function SuperAdminView() {
                                 <p className="text-xs text-zinc-900 font-bold mt-1">Rerouting form data across dashboards</p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-backgroundackgroundlue-500/5 border-blue-500/20">
+                        <Card className="bg-backgroundlue-500/5 border-blue-500/20">
                             <CardHeader className="pb-2">
                                 <CardTitle className="text-sm font-medium flex items-center gap-2">
                                     <Database className="w-4 h-4 text-blue-600" /> Platform Mapping
@@ -705,7 +705,7 @@ export function SuperAdminView() {
                                                                 }, {} as Record<string, { name: string; type: string }[]>)
                                                         ).map(([type, groupTemplates], groupIdx, arr) => (
                                                             <SelectGroup key={type}>
-                                                                <SelectLabel className="text-blue-600 font-bold bg-backgroundackgroundlue-50/50 py-1 px-3 mb-1 rounded-sm text-xs capitalize tracking-wider">
+                                                                <SelectLabel className="text-blue-600 font-bold bg-backgroundlue-50/50 py-1 px-3 mb-1 rounded-sm text-xs capitalize tracking-wider">
                                                                     {type} ({groupTemplates.length})
                                                                 </SelectLabel>
                                                                 {groupTemplates.sort((a, b) => a.name.localeCompare(b.name)).map(t => {
@@ -913,13 +913,13 @@ export function SuperAdminView() {
                                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                                         <Input
                                             placeholder="Search name/email..."
-                                            className="pl-9 w-[200px] bg-backgroundackgroundackground"
+                                            className="pl-9 w-[200px] bg-backgroundackground"
                                             value={userSearch}
                                             onChange={(e) => setUserSearch(e.target.value)}
                                         />
                                     </div>
                                     <Select value={userFilterRole} onValueChange={setUserFilterRole}>
-                                        <SelectTrigger className="w-[140px] bg-backgroundackgroundackground font-medium">
+                                        <SelectTrigger className="w-[140px] bg-backgroundackground font-medium">
                                             <Shield className="w-4 h-4 mr-2 text-primary" />
                                             <SelectValue placeholder="Role" />
                                         </SelectTrigger>
@@ -933,7 +933,7 @@ export function SuperAdminView() {
                                         </SelectContent>
                                     </Select>
                                     <Select value={userFilterCampus} onValueChange={setUserFilterCampus}>
-                                        <SelectTrigger className="w-[160px] bg-backgroundackgroundackground font-medium">
+                                        <SelectTrigger className="w-[160px] bg-backgroundackground font-medium">
                                             <MapPin className="w-4 h-4 mr-2 text-primary" />
                                             <SelectValue placeholder="School" />
                                         </SelectTrigger>
@@ -1009,7 +1009,7 @@ export function SuperAdminView() {
                                                                 {currentAccess.length === 0 ? (
                                                                     <span className="text-[10px] capitalize font-bold text-muted-foreground tracking-wider">Default only</span>
                                                                 ) : currentAccess.map(c => (
-                                                                    <Badge key={c} variant="secondary" className="text-[9px] font-bold bg-backgroundackgroundlue-100 text-blue-700 border-blue-200 capitalize tracking-tighter">
+                                                                    <Badge key={c} variant="secondary" className="text-[9px] font-bold bg-backgroundlue-100 text-blue-700 border-blue-200 capitalize tracking-tighter">
                                                                         {c}
                                                                     </Badge>
                                                                 ))}
@@ -1097,7 +1097,7 @@ export function SuperAdminView() {
                         </CardContent>
                     </Card>
 
-                    <div className="bg-backgroundackgroundlue-50 border border-blue-200 rounded-xl p-4 flex gap-4 items-start">
+                    <div className="bg-backgroundlue-50 border border-blue-200 rounded-xl p-4 flex gap-4 items-start">
                         <Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                         <div>
                             <h4 className="font-bold text-blue-800">Campus Visibility Rules</h4>

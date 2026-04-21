@@ -85,7 +85,7 @@ export function LearningInsightsView() {
     const getStatusBadge = (status: string) => {
         const baseClass = "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm";
         switch (status) {
-            case 'Submitted': return <Badge className={cn(baseClass, "bg-backgroundackgroundlue-600")}>Submitted</Badge>;
+            case 'Submitted': return <Badge className={cn(baseClass, "bg-backgroundlue-600")}>Submitted</Badge>;
             case 'Under Review': return <Badge className={cn(baseClass, "bg-amber-500")}>Under Review</Badge>;
             case 'Shortlisted': return <Badge className={cn(baseClass, "bg-backgroundmerald-600")}>Shortlisted</Badge>;
             case 'Confirmed': return <Badge className={cn(baseClass, "bg-backgroundmerald-600")}>Confirmed</Badge>;

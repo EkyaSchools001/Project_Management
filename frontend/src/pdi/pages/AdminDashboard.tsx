@@ -267,7 +267,7 @@ const AdminOverview = ({ userName }: { userName: string }) => {
                     </CardContent>
                 </Card>
 
-                <div className="rounded-[2rem] overflow-hidden shadow-xl bg-backgroundackgroundackground">
+                <div className="rounded-[2rem] overflow-hidden shadow-xl bg-backgroundackground">
                     <SecurityFeed />
                 </div>
             </div>

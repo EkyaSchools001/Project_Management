@@ -69,7 +69,7 @@ const CreateProjectModal = ({ isOpen, onClose, onAdd }) => {
     };
 
     return (
-        <div className="fixed inset-0 bg-backgroundackgroundlack/40 backdrop-blur-[2px] flex items-center justify-center z-[110] p-4">
+        <div className="fixed inset-0 bg-backgroundlack/40 backdrop-blur-[2px] flex items-center justify-center z-[110] p-4">
             <motion.div
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}

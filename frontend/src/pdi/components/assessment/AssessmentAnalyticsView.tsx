@@ -53,7 +53,7 @@ const AssessmentAnalyticsView = () => {
         : 0;
 
     const stats = [
-        { title: "Avg Assessment Score", value: `${Math.round(avgGlobalScore)}%`, icon: Award, color: "text-blue-600", bg: "bg-backgroundackgroundlue-50", trend: "System-wide" },
+        { title: "Avg Assessment Score", value: `${Math.round(avgGlobalScore)}%`, icon: Award, color: "text-blue-600", bg: "bg-backgroundlue-50", trend: "System-wide" },
         { title: "Overall Completion", value: `${Math.round(completionRate)}%`, icon: Target, color: "text-emerald-600", bg: "bg-backgroundmerald-50", trend: "All Assessments" },
         { title: "Total Attempts", value: totalAttempts, icon: Activity, color: "text-amber-600", bg: "bg-amber-50", trend: "Submitted" },
         { title: "Active Assessments", value: detailedStats?.length || 0, icon: FileText, color: "text-rose-600", bg: "bg-rose-50", trend: "Live Templates" },
@@ -177,7 +177,7 @@ const AssessmentAnalyticsView = () => {
                                     <TableCell className="font-bold text-zinc-800">{stat.title}</TableCell>
                                     <TableCell>
                                         <div className="flex items-center gap-2">
-                                            <div className={`w-2 h-2 rounded-full ${stat.avgScore >= 80 ? 'bg-backgroundmerald-500' : stat.avgScore >= 60 ? 'bg-backgroundackgroundlue-500' : 'bg-amber-500'}`} />
+                                            <div className={`w-2 h-2 rounded-full ${stat.avgScore >= 80 ? 'bg-backgroundmerald-500' : stat.avgScore >= 60 ? 'bg-backgroundlue-500' : 'bg-amber-500'}`} />
                                             <span className="font-black text-zinc-700">{stat.avgScore}%</span>
                                         </div>
                                     </TableCell>

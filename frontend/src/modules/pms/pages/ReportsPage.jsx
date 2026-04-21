@@ -59,7 +59,7 @@ const ReportsPage = () => {
             className="space-y-16 p-6 sm:p-10 lg:p-16 max-w-[1700px] mx-auto pb-40"
         >
             {/* Header Section */}
-            <header className="relative overflow-hidden p-12 sm:p-20 bg-backgroundackgroundackground rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
+            <header className="relative overflow-hidden p-12 sm:p-20 bg-backgroundackground rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-violet-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-[600px] h-[600px] bg-indigo-500 rounded-full blur-[200px] opacity-10 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 

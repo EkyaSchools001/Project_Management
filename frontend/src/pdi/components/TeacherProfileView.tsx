@@ -122,7 +122,7 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                             {teacher.role === "Teacher" && (
                                 <Badge variant="secondary" className={cn(
                                     "border-none font-bold px-3 py-1 flex gap-1.5 items-center",
-                                    teacher.academics === 'NON_CORE' ? "bg-purple-100 text-purple-700" : "bg-backgroundackgroundlue-100 text-blue-700"
+                                    teacher.academics === 'NON_CORE' ? "bg-purple-100 text-purple-700" : "bg-backgroundlue-100 text-blue-700"
                                 )}>
                                     {teacher.academics === 'NON_CORE' ? 'Specialist' : 'Core'}
                                 </Badge>
@@ -206,7 +206,7 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                 <div className="lg:col-span-8 space-y-8">
 
                     {/* Performance Heatmap / Domains */}
-                    <Card className="  shadow-premium bg-backgroundackgroundackground/50 backdrop-blur-sm overflow-hidden">
+                    <Card className="  shadow-premium bg-backgroundackground/50 backdrop-blur-sm overflow-hidden">
                         <CardHeader className="bg-muted/5 border-b">
                             <div className="flex items-center justify-between">
                                 <div>
@@ -222,7 +222,7 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                         <CardContent className="p-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div className="space-y-6">
-                                    <DomainProgress title="Planning & Preparation" score={calculateDomainScore("Planning & Preparation")} color="bg-backgroundackgroundlue-500" />
+                                    <DomainProgress title="Planning & Preparation" score={calculateDomainScore("Planning & Preparation")} color="bg-backgroundlue-500" />
                                     <DomainProgress title="Classroom Environment" score={calculateDomainScore("Classroom Environment")} color="bg-backgroundmerald-500" />
                                     <DomainProgress title="Instructional Delivery" score={calculateDomainScore("Instructional Delivery")} color="bg-indigo-500" />
                                     <DomainProgress title="Assessment & Feedback" score={calculateDomainScore("Assessment & Feedback")} color="bg-amber-500" />
@@ -243,7 +243,7 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                     </Card>
 
                     {/* Observation Registry */}
-                    <Card className="  shadow-premium bg-backgroundackgroundackground/50 backdrop-blur-sm overflow-hidden">
+                    <Card className="  shadow-premium bg-backgroundackground/50 backdrop-blur-sm overflow-hidden">
                         <CardHeader className="bg-muted/5 border-b">
                             <div className="flex items-center justify-between">
                                 <CardTitle className="flex items-center gap-2">

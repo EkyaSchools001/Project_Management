@@ -56,7 +56,7 @@ export default function LoginPage() {
 
     if (requires2FA) {
         return (
-            <div className="min-h-screen w-full flex items-center justify-center bg-backgroundackgroundackground p-4 relative overflow-hidden">
+            <div className="min-h-screen w-full flex items-center justify-center bg-backgroundackground p-4 relative overflow-hidden">
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
@@ -83,7 +83,7 @@ export default function LoginPage() {
                                 type="text"
                                 value={twoFactorCode}
                                 onChange={(e) => setTwoFactorCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                                className="w-full px-6 h-14 bg-backgroundackgroundackground rounded-xl border border-input focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-foreground text-center text-2xl tracking-[0.5em] font-bold"
+                                className="w-full px-6 h-14 bg-backgroundackground rounded-xl border border-input focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-foreground text-center text-2xl tracking-[0.5em] font-bold"
                                 placeholder="000000"
                                 maxLength={6}
                                 autoFocus
@@ -100,7 +100,7 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="min-h-screen w-full flex items-center justify-center bg-backgroundackgroundackground p-4 relative overflow-hidden font-sans">
+        <div className="min-h-screen w-full flex items-center justify-center bg-backgroundackground p-4 relative overflow-hidden font-sans">
             <motion.div variants={containerVariants} initial="hidden" animate="visible" className="w-full max-w-[440px] relative z-10">
                 <Card className="p-8 sm:p-12 bg-card border-border rounded-3xl sm:rounded-[2.5rem] shadow-[0_20px_40px_rgba(0,0,0,0.06)] relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-full h-1.5 bg-primary" />
@@ -130,7 +130,7 @@ export default function LoginPage() {
                                     required
                                     value={credentials.email}
                                     onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
-                                    className="w-full pl-12 pr-4 h-14 bg-backgroundackgroundackground rounded-xl border border-input focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-foreground text-sm font-medium"
+                                    className="w-full pl-12 pr-4 h-14 bg-backgroundackground rounded-xl border border-input focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-foreground text-sm font-medium"
                                     placeholder="user@school.edu"
                                     disabled={isLoading}
                                 />
@@ -148,7 +148,7 @@ export default function LoginPage() {
                                     required
                                     value={credentials.password}
                                     onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
-                                    className="w-full pl-12 pr-4 h-14 bg-backgroundackgroundackground rounded-xl border border-input focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-foreground text-sm font-medium"
+                                    className="w-full pl-12 pr-4 h-14 bg-backgroundackground rounded-xl border border-input focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-foreground text-sm font-medium"
                                     placeholder="••••••••"
                                     disabled={isLoading}
                                 />

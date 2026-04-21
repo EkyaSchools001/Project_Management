@@ -85,7 +85,7 @@ export default function LMSPage() {
   return (
     <div className="min-h-screen bg-[#18181b] text-foreground p-6 sm:p-10 lg:p-16 space-y-12">
       {/* Premium Header */}
-      <header className="relative p-12 lg:p-16 rounded-[3rem] overflow-hidden bg-backgroundackgroundackground border border-white/5 space-y-8">
+      <header className="relative p-12 lg:p-16 rounded-[3rem] overflow-hidden bg-backgroundackground border border-white/5 space-y-8">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-transparent to-transparent" />
         <div className="absolute top-0 right-0 p-8">
           <Badge className="bg-indigo-500/10 text-indigo-400 border-indigo-500/20 px-4 py-1 uppercase tracking-widest text-[10px] font-bold">
@@ -121,7 +121,7 @@ export default function LMSPage() {
             <SelectTrigger className="h-14 bg-white/5 border-white/10 rounded-2xl w-full sm:w-48 text-sm font-medium">
               <SelectValue placeholder="All Domains" />
             </SelectTrigger>
-            <SelectContent className="bg-backgroundackgroundackground border-white/10 text-foreground">
+            <SelectContent className="bg-backgroundackground border-white/10 text-foreground">
               <SelectItem value="all">All Domains</SelectItem>
               {categories.map((cat) => (
                 <SelectItem key={cat} value={cat}>{cat}</SelectItem>
@@ -223,7 +223,7 @@ export default function LMSPage() {
 
 function StatCard({ label, value, icon: Icon, color }: any) {
   return (
-    <div className="bg-backgroundackgroundackground border border-white/5 p-8 rounded-[2rem] flex items-center gap-6 group hover:border-white/10 transition-all">
+    <div className="bg-backgroundackground border border-white/5 p-8 rounded-[2rem] flex items-center gap-6 group hover:border-white/10 transition-all">
       <div className={`p-4 bg-white/5 rounded-2xl ${color}`}>
         <Icon size={24} />
       </div>

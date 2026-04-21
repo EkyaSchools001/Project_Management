@@ -464,7 +464,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
             return (
                 <div className="mb-4 overflow-hidden rounded-3xl border border-white/20 shadow-2xl group/img relative">
                     <img src={fileUrl} alt="" className="max-w-full cursor-pointer transition-transform duration-500 group-hover/img:scale-105" onClick={() => window.open(fileUrl, '_blank')} />
-                    <div className="absolute inset-0 bg-backgroundackgroundlack/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
+                    <div className="absolute inset-0 bg-backgroundlack/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
                         <ArrowUpRight size={32} className="text-foreground" />
                     </div>
                 </div>
@@ -473,7 +473,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
 
         if (isAudio) {
             return (
-                <div className="mb-4 p-5 bg-backgroundackgroundlack/5 rounded-3xl border border-white/10 backdrop-blur-xl min-w-[280px]">
+                <div className="mb-4 p-5 bg-backgroundlack/5 rounded-3xl border border-white/10 backdrop-blur-xl min-w-[280px]">
                     <div className="flex items-center gap-4 mb-4">
                         <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-indigo-600 shadow-xl">
                             <Mic size={20} />
@@ -740,7 +740,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
 
                     <button
                         onClick={recordedAudio ? handleSendAudio : (isRecording ? stopRecording : (newMessage.trim() ? handleSend : startRecording))}
-                        className={`w-16 h-16 flex items-center justify-center rounded-[1.8rem] transition-all shadow-2xl shrink-0 ${isRecording ? 'bg-rose-600 text-foreground animate-pulse' : (newMessage.trim() || recordedAudio ? 'bg-indigo-600 text-foreground hover:bg-indigo-700' : 'bg-slate-950 text-foreground hover:bg-backgroundackgroundlack')}`}
+                        className={`w-16 h-16 flex items-center justify-center rounded-[1.8rem] transition-all shadow-2xl shrink-0 ${isRecording ? 'bg-rose-600 text-foreground animate-pulse' : (newMessage.trim() || recordedAudio ? 'bg-indigo-600 text-foreground hover:bg-indigo-700' : 'bg-slate-950 text-foreground hover:bg-backgroundlack')}`}
                     >
                         {isRecording ? <Square size={20} fill="currentColor" /> : (newMessage.trim() || recordedAudio ? <Send size={24} /> : <Mic size={24} />)}
                     </button>

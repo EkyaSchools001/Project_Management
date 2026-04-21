@@ -18,7 +18,7 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
     const getRatingColor = (rating: string | number) => {
         const r = typeof rating === 'string' ? rating : rating.toString();
         if (r.includes("Highly Effective") || r === "4") return "bg-backgroundmerald-500 text-foreground border-transparent";
-        if (r.includes("Effective") || r === "3") return "bg-backgroundackgroundlue-500 text-foreground border-transparent";
+        if (r.includes("Effective") || r === "3") return "bg-backgroundlue-500 text-foreground border-transparent";
         if (r.includes("Developing") || r === "2") return "bg-amber-500 text-foreground border-transparent";
         if (r.includes("Basic") || r === "1" || r.includes("Needs Improvement")) return "bg-rose-500 text-foreground border-transparent";
         return "bg-slate-200 text-slate-700 border-transparent shadow-none";

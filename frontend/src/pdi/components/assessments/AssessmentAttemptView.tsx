@@ -103,7 +103,7 @@ export const AssessmentAttemptView: React.FC = () => {
     return (
         <div className="max-w-4xl mx-auto space-y-8 p-4 md:p-0">
             {/* Header / Timer */}
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4 bg-backgroundackgroundackground text-foreground p-6 rounded-2xl shadow-xl">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4 bg-backgroundackground text-foreground p-6 rounded-2xl shadow-xl">
                 <div>
                     <h2 className="text-2xl font-bold">{assessment.title}</h2>
                     <p className="text-muted-foreground text-sm">Question {currentQuestionIndex + 1} of {questions.length}</p>

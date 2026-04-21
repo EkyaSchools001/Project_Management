@@ -174,7 +174,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                     </TableCell>
                                     <TableCell>
                                         {poAttempt ? (
-                                            <Badge variant="secondary" className="bg-backgroundmerald-50 text-emerald-700 border-emerald-100 font-bold">
+                                            <Badge variant="secondary" className="bg-violet-50 text-violet-700 border-violet-100 font-bold">
                                                 {Math.round(poAttempt.score)}%
                                             </Badge>
                                         ) : (
@@ -192,7 +192,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                     </TableCell>
                                     <TableCell>
                                         {prAttempt ? (
-                                            <Badge variant="secondary" className="bg-backgroundlue-50 text-blue-700 border-blue-100 font-bold">
+                                            <Badge variant="secondary" className="bg-violet-50 text-blue-700 border-blue-100 font-bold">
                                                 {Math.round(prAttempt.score)}%
                                             </Badge>
                                         ) : (
@@ -213,7 +213,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                             <div className="flex flex-col gap-1 flex-1 min-w-[80px]">
                                                 <div className="w-full h-1.5 bg-zinc-100 rounded-full overflow-hidden">
                                                     <div
-                                                        className={cn("h-full transition-all duration-500", allCompleted ? "bg-backgroundmerald-500" : "bg-primary")}
+                                                        className={cn("h-full transition-all duration-500", allCompleted ? "bg-violet-500" : "bg-primary")}
                                                         style={{ width: `${assignedAssessments.length > 0 ? (completedCount / assignedAssessments.length) * 100 : 0}%` }}
                                                     />
                                                 </div>
@@ -222,7 +222,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                                 </span>
                                             </div>
                                             {allCompleted ? (
-                                                <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                                                <CheckCircle2 className="w-4 h-4 text-violet-500" />
                                             ) : (
                                                 <Clock className="w-4 h-4 text-amber-500" />
                                             )}
@@ -259,11 +259,11 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <Card className="  shadow-xl shadow-emerald-500/5 bg-backgroundmerald-50/30">
+                    <Card className="  shadow-xl shadow-violet-500/5 bg-violet-50/30">
                         <CardContent className="pt-6">
-                            <TrendingUp className="w-5 h-5 text-emerald-500 mb-2" />
-                            <p className="text-xs font-bold text-emerald-600/60 capitalize tracking-wider">Post-Orientation Avg</p>
-                            <h3 className="text-3xl font-black text-emerald-700 mt-1">
+                            <TrendingUp className="w-5 h-5 text-violet-500 mb-2" />
+                            <p className="text-xs font-bold text-violet-600/60 capitalize tracking-wider">Post-Orientation Avg</p>
+                            <h3 className="text-3xl font-black text-violet-700 mt-1">
                                 {myCampusMetric && myCampusMetric.postOrientationAvg !== null
                                     ? `${Math.round(myCampusMetric.postOrientationAvg)}%`
                                     : '--'}
@@ -283,7 +283,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                         </CardContent>
                     </Card>
 
-                    <Card className="  shadow-xl shadow-blue-500/5 bg-backgroundlue-50/30">
+                    <Card className="  shadow-xl shadow-blue-500/5 bg-violet-50/30">
                         <CardContent className="pt-6">
                             <TrendingUp className="w-5 h-5 text-blue-500 mb-2" />
                             <p className="text-xs font-bold text-blue-600/60 capitalize tracking-wider">Preparedness Avg</p>
@@ -334,13 +334,13 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
     return (
         <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <Card className="shadow-2xl shadow-emerald-500/10 bg-gradient-to-br from-emerald-500 justify-between items-center text-foreground border-none rounded-3xl overflow-hidden relative">
+                <Card className="shadow-2xl shadow-violet-500/10 bg-gradient-to-br from-violet-500 justify-between items-center text-foreground border-none rounded-3xl overflow-hidden relative">
                     <div className="absolute top-0 right-0 -translate-y-4 translate-x-4 w-24 h-24 bg-white/10 rounded-full blur-2xl" />
                     <CardContent className="p-6 relative z-10">
-                        <TrendingUp className="w-6 h-6 text-emerald-100 mb-3" />
-                        <p className="text-xs font-bold text-emerald-100 uppercase tracking-widest mb-1">Network Post Orientation</p>
+                        <TrendingUp className="w-6 h-6 text-violet-100 mb-3" />
+                        <p className="text-xs font-bold text-violet-100 uppercase tracking-widest mb-1">Network Post Orientation</p>
                         <h3 className="text-4xl font-black">{networkPostOrientationAvg !== null ? `${Math.round(networkPostOrientationAvg)}%` : '--'}</h3>
-                        <p className="text-[10px] text-emerald-200 mt-2 font-medium">Average across all campuses</p>
+                        <p className="text-[10px] text-violet-200 mt-2 font-medium">Average across all campuses</p>
                     </CardContent>
                 </Card>
 
@@ -356,7 +356,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                     </CardContent>
                 </Card>
 
-                <Card className="shadow-xl bg-backgroundlue-50 rounded-3xl border-none">
+                <Card className="shadow-xl bg-violet-50 rounded-3xl border-none">
                     <CardContent className="p-6">
                         <TrendingUp className="w-5 h-5 text-blue-500 mb-2" />
                         <p className="text-xs font-bold text-blue-600/60 uppercase tracking-widest mb-1">Academic Preparedness</p>
@@ -368,7 +368,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                     </CardContent>
                 </Card>
 
-                <Card className="shadow-xl bg-backgroundackground text-foreground rounded-3xl border-none relative overflow-hidden">
+                <Card className="shadow-xl bg-background text-foreground rounded-3xl border-none relative overflow-hidden">
                     <div className="absolute top-0 right-0 -translate-y-4 translate-x-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl" />
                     <CardContent className="p-6 relative z-10">
                         <CheckCircle2 className="w-5 h-5 text-primary mb-2" />
@@ -432,7 +432,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                     <TableCell className="text-center">
                                         {campus.postOrientationAvg !== null ? (
                                             <div className="flex flex-col items-center">
-                                                <span className="text-lg font-bold text-emerald-600">{Math.round(campus.postOrientationAvg)}%</span>
+                                                <span className="text-lg font-bold text-violet-600">{Math.round(campus.postOrientationAvg)}%</span>
                                                 <span className="text-[10px] text-muted-foreground">Average Score</span>
                                             </div>
                                         ) : (

@@ -112,7 +112,7 @@ export default function InvoicesPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="w-8 h-8 border-2 border-[#BAFF00] border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-[#8b5cf6] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -130,7 +130,7 @@ export default function InvoicesPage() {
         </div>
         <button
           onClick={() => setShowForm(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-[#BAFF00] text-black rounded-xl font-bold text-sm hover:bg-[#BAFF00]/80"
+          className="flex items-center gap-2 px-4 py-2 bg-[#8b5cf6] text-black rounded-xl font-bold text-sm hover:bg-[#8b5cf6]/80"
         >
           <Plus className="w-4 h-4" /> Create Invoice
         </button>
@@ -143,7 +143,7 @@ export default function InvoicesPage() {
         </div>
         <div className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5">
           <p className="text-sm text-foreground/40 mb-1">Paid</p>
-          <p className="text-2xl font-black text-green-500">${paidAmount.toLocaleString()}</p>
+          <p className="text-2xl font-black text-violet-500">${paidAmount.toLocaleString()}</p>
         </div>
         <div className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5">
           <p className="text-sm text-foreground/40 mb-1">Outstanding</p>
@@ -160,7 +160,7 @@ export default function InvoicesPage() {
               placeholder="Search by client or invoice number..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground placeholder-white/40 text-sm focus:outline-none focus:border-[#BAFF00]/50"
+              className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground placeholder-white/40 text-sm focus:outline-none focus:border-[#8b5cf6]/50"
             />
           </div>
           <div className="flex items-center gap-2">
@@ -168,7 +168,7 @@ export default function InvoicesPage() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#BAFF00]/50"
+              className="px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#8b5cf6]/50"
             >
               <option value="">All Status</option>
               <option value="Draft">Draft</option>
@@ -186,7 +186,7 @@ export default function InvoicesPage() {
           <p className="text-foreground/40 mb-4">No invoices found</p>
           <button
             onClick={() => setShowForm(true)}
-            className="px-4 py-2 bg-[#BAFF00] text-black rounded-xl font-bold text-sm hover:bg-[#BAFF00]/80"
+            className="px-4 py-2 bg-[#8b5cf6] text-black rounded-xl font-bold text-sm hover:bg-[#8b5cf6]/80"
           >
             Create your first invoice
           </button>

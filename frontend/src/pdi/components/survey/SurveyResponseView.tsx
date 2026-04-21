@@ -52,7 +52,7 @@ export const SurveyResponseView = ({ survey, response, onEdit, onRetake }: Surve
                         </Button>
                     )}
                 </div>
-                <Badge variant="outline" className="bg-green-100 text-green-700 border-green-200 px-3 py-1">
+                <Badge variant="outline" className="bg-violet-100 text-violet-700 border-violet-200 px-3 py-1">
                     {response.isCompleted ? 'Completed' : 'Draft'}
                 </Badge>
             </div>

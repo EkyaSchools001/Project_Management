@@ -104,7 +104,7 @@ export function VideoConference({
     };
 
     return (
-        <div className="flex h-screen bg-backgroundackground">
+        <div className="flex h-screen bg-background">
             <div className="flex-1 flex flex-col">
                 <div className="flex-1 relative bg-backgroundlack">
                     {meetingUrl ? (

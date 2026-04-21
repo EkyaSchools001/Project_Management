@@ -52,7 +52,7 @@ import { Input } from "@pdi/components/ui/input";
 import { CAMPUS_OPTIONS } from "@pdi/lib/constants";
 import { getSocket } from "@pdi/lib/socket";
 
-const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ['#8884d8', '#a78bfa', '#ffc658', '#ff8042', '#6366f1', '#c084fc', '#FFBB28', '#FF8042'];
 
 export function PDHoursAnalyticsView() {
     const [loading, setLoading] = useState(true);
@@ -220,7 +220,7 @@ export function PDHoursAnalyticsView() {
                             type="number"
                             value={cutoff}
                             onChange={(e) => setCutoff(parseInt(e.target.value) || 0)}
-                            className="w-16 h-8 text-xs bg-backgroundackground"
+                            className="w-16 h-8 text-xs bg-background"
                         />
                     </div>
                     <Button variant="outline" size="sm" onClick={fetchData}>
@@ -270,7 +270,7 @@ export function PDHoursAnalyticsView() {
 
                     {/* Main Charts Row */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        <Card className="glass-card shadow-xl overflow-hidden   bg-backgroundackground/50 backdrop-blur-xl">
+                        <Card className="glass-card shadow-xl overflow-hidden   bg-background/50 backdrop-blur-xl">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0">
                                 <div>
                                     <CardTitle className="text-lg">Average Training Hours by Campus</CardTitle>
@@ -290,16 +290,16 @@ export function PDHoursAnalyticsView() {
                                         />
                                         <Legend verticalAlign="top" height={36} />
                                         <Bar dataKey="Workshop" stackId="a" fill="#8884d8" name="Workshops" />
-                                        <Bar dataKey="MOOC" stackId="a" fill="#82ca9d" name="MOOCs" />
+                                        <Bar dataKey="MOOC" stackId="a" fill="#a78bfa" name="MOOCs" />
                                         <Bar dataKey="In-house Training" stackId="a" fill="#ffc658" name="In-house" />
                                         <Bar dataKey="Self-study" stackId="a" fill="#ff8042" name="Self-study" radius={[6, 6, 0, 0]} />
-                                        <Bar dataKey="Other" stackId="a" fill="#0088FE" name="Other" radius={[6, 6, 0, 0]} />
+                                        <Bar dataKey="Other" stackId="a" fill="#6366f1" name="Other" radius={[6, 6, 0, 0]} />
                                     </BarChart>
                                 </ResponsiveContainer>
                             </CardContent>
                         </Card>
 
-                        <Card className="glass-card shadow-xl overflow-hidden   bg-backgroundackground/50 backdrop-blur-xl">
+                        <Card className="glass-card shadow-xl overflow-hidden   bg-background/50 backdrop-blur-xl">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0">
                                 <div>
                                     <CardTitle className="text-lg">Goal Compliance ( {cutoff}h )</CardTitle>
@@ -327,7 +327,7 @@ export function PDHoursAnalyticsView() {
 
                     {/* Secondary Metrics Row */}
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <Card className="lg:col-span-2 glass-card shadow-xl overflow-hidden   bg-backgroundackground/50 backdrop-blur-xl">
+                        <Card className="lg:col-span-2 glass-card shadow-xl overflow-hidden   bg-background/50 backdrop-blur-xl">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0">
                                 <div>
                                     <CardTitle className="text-lg">Training Event Performance</CardTitle>
@@ -353,7 +353,7 @@ export function PDHoursAnalyticsView() {
                             </CardContent>
                         </Card>
 
-                        <Card className="glass-card shadow-xl overflow-hidden   bg-backgroundackground/50 backdrop-blur-xl">
+                        <Card className="glass-card shadow-xl overflow-hidden   bg-background/50 backdrop-blur-xl">
                             <CardHeader>
                                 <CardTitle className="text-lg">Event Feedback</CardTitle>
                                 <CardDescription>Top rated sessions this semester</CardDescription>
@@ -379,7 +379,7 @@ export function PDHoursAnalyticsView() {
 
                     {/* Tertiary Metrics Row */}
                     <div className="grid grid-cols-1 mt-6">
-                        <Card className="glass-card shadow-xl overflow-hidden   bg-backgroundackground/50 backdrop-blur-xl">
+                        <Card className="glass-card shadow-xl overflow-hidden   bg-background/50 backdrop-blur-xl">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0">
                                 <div>
                                     <CardTitle className="text-lg">Attendance Rate by Campus</CardTitle>
@@ -417,7 +417,7 @@ export function PDHoursAnalyticsView() {
                         <h2 className="text-2xl font-bold">{selectedCampus} - Detailed Teacher Training Hours</h2>
                     </div>
 
-                    <Card className="glass-card shadow-xl   bg-backgroundackground/50 backdrop-blur-xl overflow-hidden">
+                    <Card className="glass-card shadow-xl   bg-background/50 backdrop-blur-xl overflow-hidden">
                         <CardHeader>
                             <CardTitle>Teacher PD Registry</CardTitle>
                             <CardDescription>Individual hours breakdown for {selectedCampus}</CardDescription>
@@ -454,7 +454,7 @@ export function PDHoursAnalyticsView() {
                                                 <TableCell className="text-muted-foreground">{teacher.email}</TableCell>
                                                 <TableCell className="text-right font-bold">{teacher.totalHours}h</TableCell>
                                                 <TableCell className="text-right">
-                                                    <Badge className={teacher.totalHours >= cutoff ? "bg-green-100 text-green-700 hover:bg-green-100 border-none px-3" : "bg-yellow-100 text-yellow-700 hover:bg-yellow-100 border-none px-3"}>
+                                                    <Badge className={teacher.totalHours >= cutoff ? "bg-violet-100 text-violet-700 hover:bg-violet-100 border-none px-3" : "bg-yellow-100 text-yellow-700 hover:bg-yellow-100 border-none px-3"}>
                                                         {teacher.totalHours >= cutoff ? "Requirement Met" : "Hours Pending"}
                                                     </Badge>
                                                 </TableCell>
@@ -463,7 +463,7 @@ export function PDHoursAnalyticsView() {
                                                         <Button
                                                             variant="ghost"
                                                             size="icon"
-                                                            className="h-8 w-8 text-blue-500 hover:bg-backgroundlue-50 hover:text-blue-600"
+                                                            className="h-8 w-8 text-blue-500 hover:bg-violet-50 hover:text-blue-600"
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 handleSendSnapshot(teacher.id, teacher.fullName);
@@ -492,14 +492,14 @@ export function PDHoursAnalyticsView() {
 
 function StatSummaryCard({ title, value, subtitle, icon: Icon, color }: any) {
     const colorClasses: any = {
-        blue: "bg-backgroundlue-500/10 text-blue-600",
-        green: "bg-green-500/10 text-green-600",
+        blue: "bg-violet-500/10 text-blue-600",
+        green: "bg-violet-500/10 text-violet-600",
         purple: "bg-purple-500/10 text-purple-600",
         amber: "bg-amber-500/10 text-amber-600",
     };
 
     return (
-        <Card className="glass-card shadow-lg   bg-backgroundackground/50 backdrop-blur-xl hover:translate-y-[-4px] transition-all duration-300">
+        <Card className="glass-card shadow-lg   bg-background/50 backdrop-blur-xl hover:translate-y-[-4px] transition-all duration-300">
             <CardContent className="pt-6">
                 <div className="flex items-center justify-between mb-2">
                     <p className="text-sm font-medium text-muted-foreground">{title}</p>

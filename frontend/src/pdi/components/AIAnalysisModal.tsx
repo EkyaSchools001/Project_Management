@@ -85,7 +85,7 @@ export function AIAnalysisModal({ isOpen, onClose, data, type, title }: AIAnalys
                     </DialogHeader>
                 </div>
 
-                <ScrollArea className="flex-1 p-6 bg-backgroundackground">
+                <ScrollArea className="flex-1 p-6 bg-background">
                     {loading ? (
                         <div className="h-full flex flex-col items-center justify-center space-y-4 py-20 text-center">
                             <div className="relative">
@@ -132,7 +132,7 @@ export function AIAnalysisModal({ isOpen, onClose, data, type, title }: AIAnalys
 function Badge({ children, className, variant = "default" }: { children: React.ReactNode, className?: string, variant?: "default" | "outline" }) {
     const variants = {
         default: "bg-primary text-primary-foreground",
-        outline: "border border-input bg-backgroundackground"
+        outline: "border border-input bg-background"
     }
     return (
         <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ${variants[variant]} ${className}`}>

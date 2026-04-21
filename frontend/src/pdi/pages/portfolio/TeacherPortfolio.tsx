@@ -197,13 +197,13 @@ export function TeacherPortfolio() {
           title="Avg. Observation Score" 
           value={summary?.avgObservationScore?.toFixed(1) || "0.0"} 
           icon={<ChartLineUp className="w-8 h-8 text-blue-500" weight="duotone" />} 
-          bgColor="bg-backgroundlue-50"
+          bgColor="bg-violet-50"
         />
         <SummaryCard 
           title="Training Hours" 
           value={`${summary?.trainingHoursCompleted || 0} / ${summary?.trainingHoursPending || 0}`} 
-          icon={<GraduationCap className="w-8 h-8 text-emerald-500" weight="duotone" />} 
-          bgColor="bg-backgroundmerald-50"
+          icon={<GraduationCap className="w-8 h-8 text-violet-500" weight="duotone" />} 
+          bgColor="bg-violet-50"
         />
         <SummaryCard 
           title="Goal Progress" 
@@ -247,7 +247,7 @@ export function TeacherPortfolio() {
                     <p className="text-gray-600 text-sm">{event.description}</p>
                     {(event.score || event.observerName) && (
                       <div className="mt-4 pt-4 border-t border-gray-100 flex items-center gap-4 text-sm">
-                        {event.score && <span className="font-semibold px-2 py-1 bg-green-50 text-green-700 rounded-md">Score: {event.score.toFixed(1)}</span>}
+                        {event.score && <span className="font-semibold px-2 py-1 bg-violet-50 text-violet-700 rounded-md">Score: {event.score.toFixed(1)}</span>}
                         {event.observerName && <span className="text-gray-500">By: {event.observerName}</span>}
                       </div>
                     )}
@@ -286,7 +286,7 @@ function EventIcon({ type }: { type: string }) {
       return <Target className="w-5 h-5 text-indigo-500" weight="fill" />;
     case 'Training':
     case 'Self-Learning Course':
-      return <GraduationCap className="w-5 h-5 text-emerald-500" weight="fill" />;
+      return <GraduationCap className="w-5 h-5 text-violet-500" weight="fill" />;
     case 'Achievement':
       return <Trophy className="w-5 h-5 text-amber-500" weight="fill" />;
     default:

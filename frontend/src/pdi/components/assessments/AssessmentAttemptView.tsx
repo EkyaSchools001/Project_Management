@@ -103,7 +103,7 @@ export const AssessmentAttemptView: React.FC = () => {
     return (
         <div className="max-w-4xl mx-auto space-y-8 p-4 md:p-0">
             {/* Header / Timer */}
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4 bg-backgroundackground text-foreground p-6 rounded-2xl shadow-xl">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4 bg-background text-foreground p-6 rounded-2xl shadow-xl">
                 <div>
                     <h2 className="text-2xl font-bold">{assessment.title}</h2>
                     <p className="text-muted-foreground text-sm">Question {currentQuestionIndex + 1} of {questions.length}</p>
@@ -195,7 +195,7 @@ export const AssessmentAttemptView: React.FC = () => {
                     </Button>
 
                     {currentQuestionIndex === questions.length - 1 ? (
-                        <Button onClick={handleSubmit} className="gap-2 px-8 bg-backgroundmerald-600 hover:bg-backgroundmerald-700">
+                        <Button onClick={handleSubmit} className="gap-2 px-8 bg-violet-600 hover:bg-violet-700">
                             Submit Assessment <Send className="w-4 h-4" />
                         </Button>
                     ) : (
@@ -217,7 +217,7 @@ export const AssessmentAttemptView: React.FC = () => {
                         className={`w-10 h-10 rounded-lg font-bold text-sm transition-all ${currentQuestionIndex === idx
                             ? 'bg-primary text-foreground scale-110 shadow-lg'
                             : answers[questions[idx].id]
-                                ? 'bg-backgroundmerald-100 text-emerald-700 hover:bg-backgroundmerald-200'
+                                ? 'bg-violet-100 text-violet-700 hover:bg-violet-200'
                                 : 'bg-zinc-100 text-zinc-500 hover:bg-zinc-200'
                             }`}
                     >

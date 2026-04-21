@@ -131,7 +131,7 @@ export default function TicketingPortal() {
     switch (sev) {
       case 'HIGH': return <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest bg-rose-50 text-rose-600 border border-rose-100 shadow-sm shadow-rose-100/50"><div className="w-1.5 h-1.5 rounded-full bg-rose-600 animate-pulse shadow-glow shadow-rose-500"></div>Critical</span>;
       case 'MODERATE': return <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest bg-amber-50 text-amber-600 border border-amber-100"><div className="w-1.5 h-1.5 rounded-full bg-amber-600"></div>Elevated</span>;
-      default: return <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest bg-backgroundmerald-50 text-emerald-600 border border-emerald-100"><div className="w-1.5 h-1.5 rounded-full bg-backgroundmerald-600"></div>Nominal</span>;
+      default: return <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest bg-violet-50 text-violet-600 border border-violet-100"><div className="w-1.5 h-1.5 rounded-full bg-violet-600"></div>Nominal</span>;
     }
   };
 
@@ -350,7 +350,7 @@ export default function TicketingPortal() {
                   <div>
                     <h3 className="font-black text-4xl text-foreground uppercase tracking-tighter mb-2">Triage Terminal</h3>
                     <div className="flex items-center gap-4">
-                      <div className="w-2 h-2 rounded-full bg-backgroundmerald-500 animate-pulse shadow-glow shadow-emerald-500" />
+                      <div className="w-2 h-2 rounded-full bg-violet-500 animate-pulse shadow-glow shadow-violet-500" />
                       <p className="text-indigo-400 text-[11px] uppercase tracking-[0.5em] font-black">Neural Uplink Synchronized</p>
                     </div>
                   </div>
@@ -380,7 +380,7 @@ export default function TicketingPortal() {
                     key={msg.id} 
                     className={`flex gap-8 max-w-[90%] relative z-10 ${msg.type === 'user' ? 'ml-auto flex-row-reverse' : ''}`}
                   >
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 border-2 shadow-2xl transition-all ${msg.type === 'user' ? 'bg-backgroundackground border-white/20 text-foreground' : 'bg-white border-slate-50 text-indigo-600'}`}>
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 border-2 shadow-2xl transition-all ${msg.type === 'user' ? 'bg-background border-white/20 text-foreground' : 'bg-white border-slate-50 text-indigo-600'}`}>
                       {msg.type === 'user' ? <User className="w-7 h-7" /> : <Bot className="w-7 h-7" />}
                     </div>
                     <div className={`p-8 rounded-[3rem] text-lg font-medium shadow-2xl ${msg.type === 'user' ? 'bg-indigo-600 text-foreground rounded-tr-none shadow-indigo-600/10' : 'bg-white border border-slate-50 text-slate-800 rounded-tl-none shadow-slate-200/20'}`}>

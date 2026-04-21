@@ -17,8 +17,8 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
     // Helper to get rating color
     const getRatingColor = (rating: string | number) => {
         const r = typeof rating === 'string' ? rating : rating.toString();
-        if (r.includes("Highly Effective") || r === "4") return "bg-backgroundmerald-500 text-foreground border-transparent";
-        if (r.includes("Effective") || r === "3") return "bg-backgroundlue-500 text-foreground border-transparent";
+        if (r.includes("Highly Effective") || r === "4") return "bg-violet-500 text-foreground border-transparent";
+        if (r.includes("Effective") || r === "3") return "bg-violet-500 text-foreground border-transparent";
         if (r.includes("Developing") || r === "2") return "bg-amber-500 text-foreground border-transparent";
         if (r.includes("Basic") || r === "1" || r.includes("Needs Improvement")) return "bg-rose-500 text-foreground border-transparent";
         return "bg-slate-200 text-slate-700 border-transparent shadow-none";
@@ -103,9 +103,9 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
             {/* Premium Sections Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Card className="border-none shadow-xl bg-white rounded-[2rem] overflow-hidden group">
-                    <div className="h-1.5 bg-backgroundmerald-500 w-full" />
+                    <div className="h-1.5 bg-violet-500 w-full" />
                     <CardHeader className="flex flex-row items-center gap-4 pb-2">
-                        <div className="p-3 rounded-2xl bg-backgroundmerald-500 shadow-lg shadow-emerald-200 group-hover:scale-110 transition-transform">
+                        <div className="p-3 rounded-2xl bg-violet-500 shadow-lg shadow-violet-200 group-hover:scale-110 transition-transform">
                             <Lightbulb className="w-6 h-6 text-foreground" />
                         </div>
                         <div>
@@ -114,8 +114,8 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
                         </div>
                     </CardHeader>
                     <CardContent className="pt-4">
-                        <div className="p-6 rounded-2xl bg-backgroundmerald-50/50 border border-emerald-100 min-h-[120px]">
-                            <p className="text-emerald-900 leading-relaxed font-medium whitespace-pre-wrap italic">
+                        <div className="p-6 rounded-2xl bg-violet-50/50 border border-violet-100 min-h-[120px]">
+                            <p className="text-violet-900 leading-relaxed font-medium whitespace-pre-wrap italic">
                                 &ldquo;{data.strengths || data.feedback || "Positive feedback highlights will appear here."}&rdquo;
                             </p>
                         </div>
@@ -206,7 +206,7 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
                                             <div key={i} className="flex flex-col justify-between p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all hover:border-[#B69D74]/30 group">
                                                 <span className="text-[11px] font-bold text-slate-500 capitalize tracking-tight mb-3 line-clamp-2 md:h-8">{statement}</span>
                                                 <Badge className={cn("self-start px-3 py-1 text-[10px] font-black tracking-wider transition-all",
-                                                    val === 'Yes' ? "bg-backgroundmerald-500 text-foreground" :
+                                                    val === 'Yes' ? "bg-violet-500 text-foreground" :
                                                         val === 'No' ? "bg-rose-500 text-foreground" : "bg-slate-200 text-slate-600"
                                                 )}>
                                                     {val}
@@ -285,7 +285,7 @@ export const ObservationReport: React.FC<ObservationReportProps> = ({ data, onBa
                     <div className="flex items-center justify-center gap-3">
                         <div className="h-px w-8 bg-slate-200" />
                         <div className="flex items-center gap-2 text-[#B69D74] text-[11px] font-black capitalize tracking-[0.4em]">
-                            <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                            <CheckCircle2 className="w-5 h-5 text-violet-500" />
                             Report Finalized
                         </div>
                         <div className="h-px w-8 bg-slate-200" />

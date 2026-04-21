@@ -447,7 +447,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                     <div className="px-6 py-2 bg-indigo-50 text-indigo-600 rounded-full text-[10px] font-black uppercase tracking-widest border border-indigo-100 flex items-center gap-3">
                         <Activity size={14} /> System Latency: 0.2ms
                     </div>
-                    <div className="px-6 py-2 bg-backgroundmerald-50 text-emerald-600 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-100 flex items-center gap-3">
+                    <div className="px-6 py-2 bg-violet-50 text-violet-600 rounded-full text-[10px] font-black uppercase tracking-widest border border-violet-100 flex items-center gap-3">
                         <Shield size={14} /> Encryption: Layer 7
                     </div>
                 </div>
@@ -515,16 +515,16 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                         <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
                             <img src={`https://ui-avatars.com/api/?name=${getChatName()}&background=random&color=fff&bold=true`} alt="" className="w-full h-full object-cover" />
                         </div>
-                        <div className="absolute -bottom-1 -right-1 w-4.5 h-4.5 bg-backgroundmerald-400 rounded-full border-4 border-slate-950 animate-pulse shadow-glow shadow-emerald-400/50" />
+                        <div className="absolute -bottom-1 -right-1 w-4.5 h-4.5 bg-violet-400 rounded-full border-4 border-slate-950 animate-pulse shadow-glow shadow-violet-400/50" />
                     </div>
                     <div>
                         <h2 className="text-xl font-black text-foreground uppercase tracking-tighter leading-none mb-2">{getChatName()}</h2>
                         <div className="flex items-center gap-3">
                             {Object.keys(typingUsers).length > 0 ? (
-                                <p className="text-[10px] text-emerald-400 font-black uppercase tracking-[0.4em] animate-pulse">Synchronizing Data Node...</p>
+                                <p className="text-[10px] text-violet-400 font-black uppercase tracking-[0.4em] animate-pulse">Synchronizing Data Node...</p>
                             ) : (
                                 <div className="flex items-center gap-3">
-                                    <div className="w-2 h-2 rounded-full bg-backgroundmerald-500 shadow-glow shadow-emerald-500/50 animate-pulse" />
+                                    <div className="w-2 h-2 rounded-full bg-violet-500 shadow-glow shadow-violet-500/50 animate-pulse" />
                                     <p className="text-[10px] text-foreground/40 font-black uppercase tracking-[0.5em]">Direct Link Active</p>
                                 </div>
                             )}
@@ -630,7 +630,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                                             <div className={`text-[9px] mt-4 flex items-center gap-3 font-black uppercase tracking-[0.2em] ${isSelf ? 'text-foreground/30' : 'text-slate-300'}`}>
                                                 {format(new Date(msg.createdAt), 'HH:mm')}
                                                 {isSelf && !msg.deletedAt && (
-                                                    <CheckCircle size={12} className={msg.isRead ? 'text-emerald-400' : 'text-foreground/20'} />
+                                                    <CheckCircle size={12} className={msg.isRead ? 'text-violet-400' : 'text-foreground/20'} />
                                                 )}
                                             </div>
 

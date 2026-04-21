@@ -149,25 +149,25 @@ export function ManagementGoalsView() {
                             <div className="space-y-3">
                                 <div className="flex justify-between text-sm font-bold text-slate-700">
                                     <span className="flex items-center gap-2">
-                                        <div className="p-1.5 rounded-md bg-backgroundmerald-100/50"><FileText className="w-4 h-4 text-emerald-600" /></div>
+                                        <div className="p-1.5 rounded-md bg-violet-100/50"><FileText className="w-4 h-4 text-violet-600" /></div>
                                         Self-Reflection Forms Filled
                                     </span>
-                                    <span className="text-emerald-700 bg-backgroundmerald-50 px-2 py-0.5 rounded-md">{stat.reflectionPct}% ({stat.reflectionFilled}/{stat.totalTeachers})</span>
+                                    <span className="text-violet-700 bg-violet-50 px-2 py-0.5 rounded-md">{stat.reflectionPct}% ({stat.reflectionFilled}/{stat.totalTeachers})</span>
                                 </div>
                                 <div className="h-3 rounded-full bg-slate-100 overflow-hidden">
-                                     <div className="h-full bg-backgroundmerald-500 transition-all duration-1000" style={{ width: `${stat.reflectionPct}%` }} />
+                                     <div className="h-full bg-violet-500 transition-all duration-1000" style={{ width: `${stat.reflectionPct}%` }} />
                                 </div>
                             </div>
                             <div className="space-y-3">
                                 <div className="flex justify-between text-sm font-bold text-slate-700">
                                     <span className="flex items-center gap-2">
-                                         <div className="p-1.5 rounded-md bg-backgroundlue-100/50"><Target className="w-4 h-4 text-blue-600" /></div>
+                                         <div className="p-1.5 rounded-md bg-violet-100/50"><Target className="w-4 h-4 text-blue-600" /></div>
                                          Goal Setting Forms Filled
                                     </span>
-                                    <span className="text-blue-700 bg-backgroundlue-50 px-2 py-0.5 rounded-md">{stat.settingPct}% ({stat.settingFilled}/{stat.totalTeachers})</span>
+                                    <span className="text-blue-700 bg-violet-50 px-2 py-0.5 rounded-md">{stat.settingPct}% ({stat.settingFilled}/{stat.totalTeachers})</span>
                                 </div>
                                 <div className="h-3 rounded-full bg-slate-100 overflow-hidden">
-                                     <div className="h-full bg-backgroundlue-500 transition-all duration-1000" style={{ width: `${stat.settingPct}%` }} />
+                                     <div className="h-full bg-violet-500 transition-all duration-1000" style={{ width: `${stat.settingPct}%` }} />
                                 </div>
                             </div>
                         </CardContent>

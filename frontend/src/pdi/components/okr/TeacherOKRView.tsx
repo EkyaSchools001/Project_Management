@@ -18,8 +18,8 @@ const MetricCard = ({ icon: Icon, label, value, sub, color = 'blue' }: {
     color?: string;
 }) => {
     const colorMap: Record<string, string> = {
-        blue: 'bg-backgroundlue-50 text-blue-600 border-blue-100',
-        emerald: 'bg-backgroundmerald-50 text-emerald-600 border-emerald-100',
+        blue: 'bg-violet-50 text-blue-600 border-blue-100',
+        emerald: 'bg-violet-50 text-violet-600 border-violet-100',
         amber: 'bg-amber-50 text-amber-600 border-amber-100',
         purple: 'bg-purple-50 text-purple-600 border-purple-100',
         zinc: 'bg-zinc-50 text-zinc-600 border-zinc-100',
@@ -112,7 +112,7 @@ export const TeacherOKRView: React.FC<Props> = ({ data }) => {
                     <Progress value={pdProgress} className="h-3 rounded-full" />
                     <div className="flex justify-between text-xs text-muted-foreground">
                         <span>{pdProgress}% of annual goal achieved</span>
-                        <span className={data.pdHoursPending === 0 ? 'text-emerald-600 font-bold' : ''}>
+                        <span className={data.pdHoursPending === 0 ? 'text-violet-600 font-bold' : ''}>
                             {data.pdHoursPending === 0 ? '🎉 Goal reached!' : `${data.pdHoursPending}h to go`}
                         </span>
                     </div>
@@ -134,7 +134,7 @@ export const TeacherOKRView: React.FC<Props> = ({ data }) => {
                     </div>
                     <Progress value={goalProgress} className="h-3 rounded-full" />
                     <div className="flex gap-2 mt-2">
-                        <Badge variant="secondary" className="bg-backgroundmerald-50 text-emerald-700 border-emerald-100">
+                        <Badge variant="secondary" className="bg-violet-50 text-violet-700 border-violet-100">
                             {data.goalsCompleted} Done
                         </Badge>
                         <Badge variant="secondary" className="bg-amber-50 text-amber-700 border-amber-100">

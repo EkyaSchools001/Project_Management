@@ -52,7 +52,7 @@ export function ObservationCard({ observation, onReflect, onView, className }: O
             <p className="text-[10px] font-black capitalize text-zinc-950 tracking-widest mb-1">Score</p>
             <div className={cn(
               "flex items-center justify-center w-12 h-12 rounded-2xl font-black text-xl shadow-sm",
-              observation.score >= 3.5 ? "bg-backgroundmerald-500 text-foreground" :
+              observation.score >= 3.5 ? "bg-violet-500 text-foreground" :
                 observation.score >= 2.5 ? "bg-amber-500 text-foreground" : "bg-primary text-foreground"
             )}>
               {observation.score}
@@ -89,7 +89,7 @@ export function ObservationCard({ observation, onReflect, onView, className }: O
               {observation.domain}
             </Badge>
             {observation.subject && (
-              <Badge variant="secondary" className="bg-backgroundlue-50 text-blue-700 hover:bg-backgroundlue-100 border-none">
+              <Badge variant="secondary" className="bg-violet-50 text-blue-700 hover:bg-violet-100 border-none">
                 {observation.subject}
               </Badge>
             )}
@@ -125,7 +125,7 @@ export function ObservationCard({ observation, onReflect, onView, className }: O
         </Button>
 
         {observation.hasReflection ? (
-          <Badge variant="secondary" className="bg-backgroundmerald-50 text-emerald-700 hover:bg-backgroundmerald-100 border-emerald-100 py-1.5 px-3 gap-1.5">
+          <Badge variant="secondary" className="bg-violet-50 text-violet-700 hover:bg-violet-100 border-violet-100 py-1.5 px-3 gap-1.5">
             <CheckCircle2 className="w-3.5 h-3.5" />
             Reflection Submitted
           </Badge>

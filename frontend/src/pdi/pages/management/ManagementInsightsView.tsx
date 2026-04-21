@@ -284,7 +284,7 @@ export function ManagementInsightsView() {
                                             {globalEngagementSummary.totalActive}
                                         </h3>
                                     </div>
-                                    <UserCircle className="w-5 h-5 text-green-500" />
+                                    <UserCircle className="w-5 h-5 text-violet-500" />
                                 </div>
                             </CardContent>
                         </Card>
@@ -324,16 +324,16 @@ export function ManagementInsightsView() {
                                 </thead>
                                 <tbody className="divide-y divide-gray-100">
                                     {campusEngagementData.map(c => (
-                                        <tr key={c.campusId} className="hover:bg-backgroundlue-50/30 transition-colors">
+                                        <tr key={c.campusId} className="hover:bg-violet-50/30 transition-colors">
                                             <td className="px-6 py-4 font-bold text-indigo-900">{c.campusId}</td>
                                             <td className="px-6 py-4 font-medium">{c.totalTeachers}</td>
-                                            <td className="px-6 py-4 text-emerald-600 font-medium">{c.activeTeachers}</td>
+                                            <td className="px-6 py-4 text-violet-600 font-medium">{c.activeTeachers}</td>
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center gap-3">
                                                     <span className="font-bold text-gray-800 w-8">{c.avgEngagement}%</span>
                                                     <div className="w-full bg-gray-100 rounded-full h-2 max-w-[100px]">
                                                         <div
-                                                            className={`h-2 rounded-full ${c.avgEngagement >= 70 ? 'bg-backgroundmerald-500' : c.avgEngagement >= 40 ? 'bg-amber-500' : 'bg-rose-500'}`}
+                                                            className={`h-2 rounded-full ${c.avgEngagement >= 70 ? 'bg-violet-500' : c.avgEngagement >= 40 ? 'bg-amber-500' : 'bg-rose-500'}`}
                                                             style={{ width: `${c.avgEngagement}%` }}
                                                         ></div>
                                                     </div>
@@ -342,7 +342,7 @@ export function ManagementInsightsView() {
                                             <td className="px-6 py-4">
                                                 <Badge className={cn(
                                                     "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
-                                                    c.status === 'High' ? 'bg-backgroundmerald-600' :
+                                                    c.status === 'High' ? 'bg-violet-600' :
                                                         c.status === 'Medium' ? 'bg-amber-500' :
                                                             'bg-rose-600'
                                                 )}>{c.status}</Badge>
@@ -453,7 +453,7 @@ export function ManagementInsightsView() {
                                         <th className="px-6 py-4">Campus Name</th>
                                         <th className="px-6 py-4">Total Applications</th>
                                         <th className="px-6 py-4">Under Review</th>
-                                        <th className="px-6 py-4 text-emerald-600">Shortlisted</th>
+                                        <th className="px-6 py-4 text-violet-600">Shortlisted</th>
                                         <th className="px-6 py-4 text-rose-600">Rejected</th>
                                     </tr>
                                 </thead>
@@ -463,7 +463,7 @@ export function ManagementInsightsView() {
                                             <td className="px-6 py-4 font-bold text-indigo-900">{c.campusId}</td>
                                             <td className="px-6 py-4 font-bold text-purple-700">{c.total}</td>
                                             <td className="px-6 py-4 font-medium text-amber-600">{c.underReview}</td>
-                                            <td className="px-6 py-4 font-medium text-emerald-600">{c.shortlisted}</td>
+                                            <td className="px-6 py-4 font-medium text-violet-600">{c.shortlisted}</td>
                                             <td className="px-6 py-4 font-medium text-rose-600">{c.rejected}</td>
                                         </tr>
                                     ))}
@@ -522,7 +522,7 @@ export function ManagementInsightsView() {
                                                 <td className="px-6 py-4 text-gray-600 font-medium">{app.user?.campusId}</td>
                                                 <td className="px-6 py-4 font-medium">{app.festival?.name}</td>
                                                 <td className="px-6 py-4">
-                                                    <Badge className="bg-backgroundmerald-600 hover:bg-backgroundmerald-600 border-none px-3 py-1 text-[10px] font-black uppercase tracking-widest text-foreground">{app.status}</Badge>
+                                                    <Badge className="bg-violet-600 hover:bg-violet-600 border-none px-3 py-1 text-[10px] font-black uppercase tracking-widest text-foreground">{app.status}</Badge>
                                                 </td>
                                                 <td className="px-6 py-4 text-xs text-gray-500 max-w-[200px] truncate">{app.feedback || '-'}</td>
                                             </tr>
@@ -556,18 +556,18 @@ export function ManagementInsightsView() {
                                 </div>
                             </CardContent>
                         </Card>
-                        <Card className="bg-gradient-to-br from-emerald-50 to-white shadow-sm">
+                        <Card className="bg-gradient-to-br from-violet-50 to-white shadow-sm">
                             <CardContent className="p-6">
                                 <div className="flex justify-between items-start">
                                     <div>
                                         <p className="text-sm font-bold text-zinc-950 uppercase">Compliance (20h+)</p>
-                                        <h3 className="text-3xl font-black text-emerald-900 mt-2">
+                                        <h3 className="text-3xl font-black text-violet-900 mt-2">
                                             {cutoffData.length > 0
                                                 ? Math.round(cutoffData.reduce((acc, curr) => acc + curr.abovePercent, 0) / cutoffData.length)
                                                 : 0}%
                                         </h3>
                                     </div>
-                                    <Award className="w-6 h-6 text-emerald-500" />
+                                    <Award className="w-6 h-6 text-violet-500" />
                                 </div>
                             </CardContent>
                         </Card>
@@ -593,7 +593,7 @@ export function ManagementInsightsView() {
                                 <Building2 className="w-5 h-5 text-blue-500" />
                                 Campus Attendance Tracking
                             </h3>
-                            <Badge className="bg-backgroundlue-100 text-blue-700 border-none">Live Data</Badge>
+                            <Badge className="bg-violet-100 text-blue-700 border-none">Live Data</Badge>
                         </div>
                         <div className="overflow-x-auto">
                             <table className="w-full text-sm text-left">
@@ -607,7 +607,7 @@ export function ManagementInsightsView() {
                                 </thead>
                                 <tbody className="divide-y divide-gray-100">
                                     {attendanceData.map((row: any) => (
-                                        <tr key={row.campus} className="hover:bg-backgroundlue-50/30 transition-colors">
+                                        <tr key={row.campus} className="hover:bg-violet-50/30 transition-colors">
                                             <td className="px-6 py-4 font-bold text-gray-900">{row.campus}</td>
                                             <td className="px-6 py-4">{row.registered}</td>
                                             <td className="px-6 py-4 font-medium text-blue-600">{row.attended}</td>
@@ -616,7 +616,7 @@ export function ManagementInsightsView() {
                                                     <span className="font-bold text-gray-800 w-10">{row.attendancePercent}%</span>
                                                     <div className="w-full bg-gray-100 rounded-full h-2 max-w-[120px]">
                                                         <div
-                                                            className={`h-2 rounded-full ${row.attendancePercent >= 80 ? 'bg-backgroundmerald-500' : row.attendancePercent >= 60 ? 'bg-backgroundlue-500' : 'bg-rose-500'}`}
+                                                            className={`h-2 rounded-full ${row.attendancePercent >= 80 ? 'bg-violet-500' : row.attendancePercent >= 60 ? 'bg-violet-500' : 'bg-rose-500'}`}
                                                             style={{ width: `${row.attendancePercent}%` }}
                                                         ></div>
                                                     </div>
@@ -633,10 +633,10 @@ export function ManagementInsightsView() {
                     <Card className="shadow-sm border-gray-100 overflow-hidden">
                         <div className="p-4 bg-gray-50/50 border-b flex justify-between items-center">
                             <h3 className="font-bold text-gray-800 flex items-center gap-2">
-                                <Award className="w-5 h-5 text-emerald-500" />
+                                <Award className="w-5 h-5 text-violet-500" />
                                 PD Hours Compliance (20h Cutoff)
                             </h3>
-                            <Badge className="bg-backgroundmerald-100 text-emerald-700 border-none">Academic Year</Badge>
+                            <Badge className="bg-violet-100 text-violet-700 border-none">Academic Year</Badge>
                         </div>
                         <div className="overflow-x-auto">
                             <table className="w-full text-sm text-left">
@@ -644,19 +644,19 @@ export function ManagementInsightsView() {
                                     <tr>
                                         <th className="px-6 py-4">Campus Name</th>
                                         <th className="px-6 py-4">Total Teachers</th>
-                                        <th className="px-6 py-4 text-emerald-600">Above Cutoff (%)</th>
+                                        <th className="px-6 py-4 text-violet-600">Above Cutoff (%)</th>
                                         <th className="px-6 py-4 text-rose-600">Below Cutoff (%)</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-100">
                                     {cutoffData.map((row: any) => (
-                                        <tr key={row.campus} className="hover:bg-backgroundmerald-50/30 transition-colors">
+                                        <tr key={row.campus} className="hover:bg-violet-50/30 transition-colors">
                                             <td className="px-6 py-4 font-bold text-gray-900">{row.campus}</td>
                                             <td className="px-6 py-4 font-medium">{row.total}</td>
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center gap-2">
-                                                    <div className="w-2 h-2 rounded-full bg-backgroundmerald-500"></div>
-                                                    <span className="font-bold text-emerald-700">{row.abovePercent}%</span>
+                                                    <div className="w-2 h-2 rounded-full bg-violet-500"></div>
+                                                    <span className="font-bold text-violet-700">{row.abovePercent}%</span>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4">
@@ -705,8 +705,8 @@ export function ManagementInsightsView() {
                                             <td className="px-6 py-4">
                                                 <Badge className={cn(
                                                     "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
-                                                    row.avgRating >= 4.5 ? 'bg-backgroundmerald-600' :
-                                                        row.avgRating >= 3.5 ? 'bg-backgroundlue-600' :
+                                                    row.avgRating >= 4.5 ? 'bg-violet-600' :
+                                                        row.avgRating >= 3.5 ? 'bg-violet-600' :
                                                             'bg-amber-500'
                                                 )}>
                                                     {row.avgRating >= 4.5 ? 'Excellent' : row.avgRating >= 3.5 ? 'Good' : 'Average'}

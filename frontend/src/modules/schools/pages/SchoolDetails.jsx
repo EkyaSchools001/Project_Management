@@ -78,7 +78,7 @@ export default function SchoolDetails() {
             className="max-w-[1800px] mx-auto space-y-16 p-6 sm:p-10 lg:p-16 pb-40"
         >
             {/* High-Vibrancy Header */}
-            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-backgroundackground rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
+            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-background rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-rose-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-[500px] h-[500px] bg-rose-500 rounded-full blur-[180px] opacity-10 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 
@@ -109,7 +109,7 @@ export default function SchoolDetails() {
                 <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-10 bg-white/5 backdrop-blur-3xl border border-white/10 p-10 lg:p-12 rounded-[4rem] shadow-2xl shadow-black/20 w-full xl:w-auto relative z-10 group-hover:bg-white/10 transition-all duration-700">
                     <div className="flex flex-col gap-4 border-b sm:border-b-0 sm:border-r border-white/10 pb-6 sm:pb-0 sm:pr-12 w-full sm:w-auto">
                         <div className="flex items-center gap-4">
-                            <div className="w-4 h-4 bg-backgroundmerald-400 rounded-full animate-pulse-glow shadow-[0_0_20px_rgba(52,211,153,0.6)]" />
+                            <div className="w-4 h-4 bg-violet-400 rounded-full animate-pulse-glow shadow-[0_0_20px_rgba(52,211,153,0.6)]" />
                             <span className="text-[11px] font-black text-foreground/40 uppercase tracking-[0.3em]">Network Uptime</span>
                         </div>
                         <span className="text-5xl font-black text-foreground leading-none">100.0%</span>
@@ -130,7 +130,7 @@ export default function SchoolDetails() {
                     { label: 'Control Center', icon: LayoutDashboard, desc: 'Operational Matrix', color: 'from-blue-500 to-indigo-600', text: 'text-blue-500' },
                     { label: 'Personnel', icon: UserCheck, desc: 'Identity Clusters', color: 'from-violet-500 to-purple-600', text: 'text-violet-500' },
                     { label: 'Identity Vault', icon: GraduationCap, desc: 'Credential Streams', color: 'from-rose-500 to-pink-600', text: 'text-rose-500' },
-                    { label: 'Protocol Base', icon: BookOpen, desc: 'Strategic Nodes', color: 'from-emerald-400 to-teal-600', text: 'text-emerald-500' }
+                    { label: 'Protocol Base', icon: BookOpen, desc: 'Strategic Nodes', color: 'from-violet-400 to-fuchsia-600', text: 'text-violet-500' }
                 ].map((item, i) => (
                     <motion.div key={i} variants={itemVariants}>
                         <Card className="p-12 group cursor-pointer hover:shadow-[0_45px_100px_rgba(0,0,0,0.1)] hover:border-indigo-500 transition-all duration-700 bg-white border border-slate-100 rounded-[4rem] relative overflow-hidden flex flex-col items-center text-center space-y-10 group/card">

@@ -78,9 +78,9 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
                         <div className="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
                             <ShieldCheck className="w-4 h-4 text-primary" />
                             <span className="text-[10px] font-bold tracking-[0.2em] text-foreground/80 uppercase">Management Console</span>
-                            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-backgroundmerald-500/20 border border-emerald-500/30">
-                                <div className="w-1.5 h-1.5 rounded-full bg-backgroundmerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-                                <span className="text-[9px] font-black text-emerald-400 tracking-widest uppercase">Live Sync</span>
+                            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-violet-500/20 border border-violet-500/30">
+                                <div className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+                                <span className="text-[9px] font-black text-violet-400 tracking-widest uppercase">Live Sync</span>
                             </div>
                         </div>
                         <h1 className="text-4xl md:text-5xl font-black text-foreground tracking-tight">
@@ -132,7 +132,7 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
                                 </div>
                                 
                                 {/* Metric 2 */}
-                                <div className="space-y-2 p-4 rounded-3xl bg-backgroundlue-50/50 border border-blue-100/50 hover:bg-backgroundlue-100/50 transition-colors">
+                                <div className="space-y-2 p-4 rounded-3xl bg-violet-50/50 border border-blue-100/50 hover:bg-violet-100/50 transition-colors">
                                     <div className="text-[10px] font-bold text-blue-700 uppercase tracking-widest flex items-center gap-1.5"><Target className="w-3 h-3" /> Instr. Tools</div>
                                     <div className="text-3xl font-black text-blue-950">{data.instructionalTools}%</div>
                                     <div className="text-xs text-blue-950 font-bold">Avg Implementation Score</div>
@@ -146,10 +146,10 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
                                 </div>
 
                                 {/* Metric 4 */}
-                                <div className="space-y-2 p-4 rounded-3xl bg-backgroundmerald-50/50 border border-emerald-100/50 hover:bg-backgroundmerald-100/50 transition-colors">
-                                    <div className="text-[10px] font-bold text-emerald-700 uppercase tracking-widest flex items-center gap-1.5"><BarChart2 className="w-3 h-3" /> Observations</div>
-                                    <div className="text-3xl font-black text-emerald-950">{data.obsCompletion}%</div>
-                                    <div className="text-xs text-emerald-950 font-bold">Completion Rate</div>
+                                <div className="space-y-2 p-4 rounded-3xl bg-violet-50/50 border border-violet-100/50 hover:bg-violet-100/50 transition-colors">
+                                    <div className="text-[10px] font-bold text-violet-700 uppercase tracking-widest flex items-center gap-1.5"><BarChart2 className="w-3 h-3" /> Observations</div>
+                                    <div className="text-3xl font-black text-violet-950">{data.obsCompletion}%</div>
+                                    <div className="text-xs text-violet-950 font-bold">Completion Rate</div>
                                 </div>
 
                                 {/* Metric 5 */}

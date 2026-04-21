@@ -531,7 +531,7 @@ export function SuperAdminView() {
                                 <p className="text-xs text-zinc-900 font-bold mt-1">Rerouting form data across dashboards</p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-backgroundlue-500/5 border-blue-500/20">
+                        <Card className="bg-violet-500/5 border-blue-500/20">
                             <CardHeader className="pb-2">
                                 <CardTitle className="text-sm font-medium flex items-center gap-2">
                                     <Database className="w-4 h-4 text-blue-600" /> Platform Mapping
@@ -705,7 +705,7 @@ export function SuperAdminView() {
                                                                 }, {} as Record<string, { name: string; type: string }[]>)
                                                         ).map(([type, groupTemplates], groupIdx, arr) => (
                                                             <SelectGroup key={type}>
-                                                                <SelectLabel className="text-blue-600 font-bold bg-backgroundlue-50/50 py-1 px-3 mb-1 rounded-sm text-xs capitalize tracking-wider">
+                                                                <SelectLabel className="text-blue-600 font-bold bg-violet-50/50 py-1 px-3 mb-1 rounded-sm text-xs capitalize tracking-wider">
                                                                     {type} ({groupTemplates.length})
                                                                 </SelectLabel>
                                                                 {groupTemplates.sort((a, b) => a.name.localeCompare(b.name)).map(t => {
@@ -913,13 +913,13 @@ export function SuperAdminView() {
                                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                                         <Input
                                             placeholder="Search name/email..."
-                                            className="pl-9 w-[200px] bg-backgroundackground"
+                                            className="pl-9 w-[200px] bg-background"
                                             value={userSearch}
                                             onChange={(e) => setUserSearch(e.target.value)}
                                         />
                                     </div>
                                     <Select value={userFilterRole} onValueChange={setUserFilterRole}>
-                                        <SelectTrigger className="w-[140px] bg-backgroundackground font-medium">
+                                        <SelectTrigger className="w-[140px] bg-background font-medium">
                                             <Shield className="w-4 h-4 mr-2 text-primary" />
                                             <SelectValue placeholder="Role" />
                                         </SelectTrigger>
@@ -933,7 +933,7 @@ export function SuperAdminView() {
                                         </SelectContent>
                                     </Select>
                                     <Select value={userFilterCampus} onValueChange={setUserFilterCampus}>
-                                        <SelectTrigger className="w-[160px] bg-backgroundackground font-medium">
+                                        <SelectTrigger className="w-[160px] bg-background font-medium">
                                             <MapPin className="w-4 h-4 mr-2 text-primary" />
                                             <SelectValue placeholder="School" />
                                         </SelectTrigger>
@@ -1009,7 +1009,7 @@ export function SuperAdminView() {
                                                                 {currentAccess.length === 0 ? (
                                                                     <span className="text-[10px] capitalize font-bold text-muted-foreground tracking-wider">Default only</span>
                                                                 ) : currentAccess.map(c => (
-                                                                    <Badge key={c} variant="secondary" className="text-[9px] font-bold bg-backgroundlue-100 text-blue-700 border-blue-200 capitalize tracking-tighter">
+                                                                    <Badge key={c} variant="secondary" className="text-[9px] font-bold bg-violet-100 text-blue-700 border-blue-200 capitalize tracking-tighter">
                                                                         {c}
                                                                     </Badge>
                                                                 ))}
@@ -1097,7 +1097,7 @@ export function SuperAdminView() {
                         </CardContent>
                     </Card>
 
-                    <div className="bg-backgroundlue-50 border border-blue-200 rounded-xl p-4 flex gap-4 items-start">
+                    <div className="bg-violet-50 border border-blue-200 rounded-xl p-4 flex gap-4 items-start">
                         <Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                         <div>
                             <h4 className="font-bold text-blue-800">Campus Visibility Rules</h4>
@@ -1126,9 +1126,9 @@ export function SuperAdminView() {
                             <CardContent className="pt-6 space-y-4">
                                 {healthMetrics ? (
                                     <>
-                                        <div className="flex justify-between items-center bg-green-50/50 p-3 rounded-lg border border-green-100">
-                                            <span className="text-sm font-medium text-muted-foreground flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" /> Active Connections</span>
-                                            <span className="font-bold text-green-700 text-lg">{healthMetrics.activeConnections}</span>
+                                        <div className="flex justify-between items-center bg-violet-50/50 p-3 rounded-lg border border-violet-100">
+                                            <span className="text-sm font-medium text-muted-foreground flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" /> Active Connections</span>
+                                            <span className="font-bold text-violet-700 text-lg">{healthMetrics.activeConnections}</span>
                                         </div>
                                         <div className="flex justify-between items-center p-3 rounded-lg border bg-muted/20">
                                             <span className="text-sm font-medium text-muted-foreground">Uptime</span>

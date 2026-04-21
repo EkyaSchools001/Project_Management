@@ -139,7 +139,7 @@ const ProjectsPage = () => {
 
     const getStatusStyle = (status) => {
         switch (status) {
-            case 'Completed': return 'bg-backgroundmerald-500 text-foreground border-transparent shadow-emerald-500/20';
+            case 'Completed': return 'bg-violet-500 text-foreground border-transparent shadow-violet-500/20';
             case 'Active': return 'bg-indigo-600 text-foreground border-transparent shadow-indigo-500/20';
             case 'Archived': return 'bg-slate-500 text-foreground border-transparent shadow-slate-500/10';
             default: return 'bg-slate-500 text-foreground border-transparent';
@@ -359,7 +359,7 @@ const ProjectsPage = () => {
                                                 <div className="space-y-2 text-right">
                                                     <p className="text-sm font-bold text-slate-300 uppercase tracking-[0.2em]">Allocation</p>
                                                     <div className="flex items-center justify-end gap-3">
-                                                        <IndianRupee size={18} className="text-emerald-500" />
+                                                        <IndianRupee size={18} className="text-violet-500" />
                                                         <span className="text-sm font-bold text-slate-950 uppercase">{(project.budget || 0).toLocaleString()}</span>
                                                     </div>
                                                 </div>
@@ -432,7 +432,7 @@ const TelemetryCard = ({ title, value, icon: Icon, color, iconColor }) => (
                 <p className="text-sm font-bold text-slate-300 uppercase tracking-[0.5em] mb-3 group-hover:text-slate-950 transition-colors">{title}</p>
                 <div className="flex items-baseline gap-4">
                     <p className="text-2xl sm:text-4xl font-bold text-slate-950 tracking-tighter group-hover:scale-105 transition-all duration-700 origin-left">{value}</p>
-                    <ArrowUpRight size={24} className="text-emerald-500 opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0" />
+                    <ArrowUpRight size={24} className="text-violet-500 opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0" />
                 </div>
             </div>
         </Card>

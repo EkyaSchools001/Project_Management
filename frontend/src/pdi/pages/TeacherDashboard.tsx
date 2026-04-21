@@ -225,9 +225,9 @@ const DashboardOverview = ({
             <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
               <Sparkles className="w-4 h-4 text-primary animate-pulse" />
               <span className="text-xs font-bold tracking-[0.2em] text-foreground/80 uppercase mr-1">Teacher Platform</span>
-              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-backgroundmerald-500/20 border border-emerald-500/30">
-                <div className="w-1.5 h-1.5 rounded-full bg-backgroundmerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-                <span className="text-[10px] font-black text-emerald-400 tracking-widest uppercase">Live Sync Active</span>
+              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-violet-500/20 border border-violet-500/30">
+                <div className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+                <span className="text-[10px] font-black text-violet-400 tracking-widest uppercase">Live Sync Active</span>
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-black text-foreground tracking-tight">
@@ -616,7 +616,7 @@ function ObservationsView({
       </div>
 
       {(showUpcoming || upcomingObservations.length > 0) && (
-        <Card className="shadow-xl bg-backgroundackground/50 backdrop-blur-sm overflow-hidden mb-8">
+        <Card className="shadow-xl bg-background/50 backdrop-blur-sm overflow-hidden mb-8">
           <CardHeader className="border-b bg-muted/20">
             <div className="flex items-center gap-2">
               <Calendar className="w-5 h-5 text-primary" />
@@ -843,7 +843,7 @@ function ObservationsView({
                         NA
                       </div>
                     ) : obs.score !== undefined ? (
-                      <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-backgroundmerald-50 text-emerald-700 font-black text-xs border border-emerald-100 shadow-sm">
+                      <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-violet-50 text-violet-700 font-black text-xs border border-violet-100 shadow-sm">
                         {obs.score}
                       </div>
                     ) : (
@@ -852,7 +852,7 @@ function ObservationsView({
                   </TableCell>
                   <TableCell className="p-6">
                     {obs.hasReflection ? (
-                      <Badge className="bg-backgroundmerald-50 text-emerald-700 border-emerald-100 text-[10px] font-black uppercase tracking-widest gap-1 border h-6">
+                      <Badge className="bg-violet-50 text-violet-700 border-violet-100 text-[10px] font-black uppercase tracking-widest gap-1 border h-6">
                         <CheckCircle2 className="w-3 h-3" />
                         Reflected
                       </Badge>
@@ -1114,7 +1114,7 @@ function GoalsView({ goals, fetchGoals, userName, role }: { goals: any[], fetchG
             </DropdownMenuContent>
           </DropdownMenu>
           {isReflectionWindowOpen && !hasExistingReflection && (
-            <Button size="sm" className="h-10 gap-2 rounded-xl bg-backgroundmerald-600 hover:bg-backgroundmerald-700 text-foreground" onClick={handleInitiateReflection} disabled={isInitiating}>
+            <Button size="sm" className="h-10 gap-2 rounded-xl bg-violet-600 hover:bg-violet-700 text-foreground" onClick={handleInitiateReflection} disabled={isInitiating}>
               {isInitiating ? "Initiating..." : "Start Annual Reflection"}
             </Button>
           )}
@@ -1287,7 +1287,7 @@ function GoalsView({ goals, fetchGoals, userName, role }: { goals: any[], fetchG
 
                     {(goal.progress || 0) >= 100 ? (
 
-                      <Badge className="bg-backgroundmerald-50 text-emerald-700 border-emerald-100 text-[10px] font-black uppercase tracking-widest gap-1 border h-6">
+                      <Badge className="bg-violet-50 text-violet-700 border-violet-100 text-[10px] font-black uppercase tracking-widest gap-1 border h-6">
 
                         <CheckCircle2 className="w-3 h-3" />
 
@@ -1452,7 +1452,7 @@ function CalendarView({
                   mode="single"
                   selected={date}
                   onSelect={setDate}
-                  className="rounded-2xl border-none bg-backgroundackground/50 p-6 w-full"
+                  className="rounded-2xl border-none bg-background/50 p-6 w-full"
                   classNames={{
                     months: "flex flex-col space-y-4",
                     month: "space-y-4 w-full",
@@ -1515,7 +1515,7 @@ function CalendarView({
                   <div className="pt-8 space-y-4">
                     <div className="grid grid-cols-2 gap-3">
                       <Select value={selectedType} onValueChange={setSelectedType}>
-                        <SelectTrigger className="bg-backgroundackground border-zinc-800 text-foreground rounded-xl focus:ring-primary h-12">
+                        <SelectTrigger className="bg-background border-zinc-800 text-foreground rounded-xl focus:ring-primary h-12">
                           <SelectValue placeholder="Topic" />
                         </SelectTrigger>
                         <SelectContent>
@@ -1526,7 +1526,7 @@ function CalendarView({
                         </SelectContent>
                       </Select>
                       <Select value={selectedCampus} onValueChange={setSelectedCampus}>
-                        <SelectTrigger className="bg-backgroundackground border-zinc-800 text-foreground rounded-xl focus:ring-primary h-12">
+                        <SelectTrigger className="bg-background border-zinc-800 text-foreground rounded-xl focus:ring-primary h-12">
                           <SelectValue placeholder="Campus" />
                         </SelectTrigger>
                         <SelectContent>
@@ -1542,14 +1542,14 @@ function CalendarView({
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
                       <Input
                         placeholder="Search sessions..."
-                        className="pl-10 bg-backgroundackground border-zinc-800 text-foreground rounded-xl focus:ring-primary"
+                        className="pl-10 bg-background border-zinc-800 text-foreground rounded-xl focus:ring-primary"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                       />
                     </div>
                     <Button
                       variant="outline"
-                      className="w-full py-6 bg-backgroundackground border-zinc-800 text-muted-foreground hover:bg-card hover:text-foreground transition-all text-base rounded-xl"
+                      className="w-full py-6 bg-background border-zinc-800 text-muted-foreground hover:bg-card hover:text-foreground transition-all text-base rounded-xl"
                       onClick={() => {
                         setDate(undefined);
                         setSelectedType("all");
@@ -1676,7 +1676,7 @@ function CalendarView({
                           <span className={cn(
                             "inline-flex items-center px-4 py-1.5 rounded-xl text-xs font-black uppercase tracking-widest border shadow-sm",
                             session.status === "Approved"
-                              ? "bg-backgroundmerald-500/5 text-emerald-600 border-emerald-500/20"
+                              ? "bg-violet-500/5 text-violet-600 border-violet-500/20"
                               : "bg-amber-500/5 text-amber-600 border-amber-500/20"
                           )}>
                             {session.status}
@@ -1684,7 +1684,7 @@ function CalendarView({
                         </td>
                         <td className="px-8 py-7 text-right">
                           {session.isRegistered ? (
-                            <div className="flex items-center justify-end gap-2 text-emerald-600 font-bold">
+                            <div className="flex items-center justify-end gap-2 text-violet-600 font-bold">
                               <CheckCircle2 className="w-5 h-5" />
                               Registered
                             </div>
@@ -1821,7 +1821,7 @@ function CoursesView({ courses = [], enrolledCourses = [], onEnrollSuccess }: { 
         {/* Completed */}
         <section>
           <div className="flex items-center gap-2 mb-4">
-            <Trophy className="w-5 h-5 text-emerald-500" />
+            <Trophy className="w-5 h-5 text-violet-500" />
             <h3 className="text-xl font-bold">Completed Courses</h3>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1923,7 +1923,7 @@ function MoocEvidencePage() {
       </div>
 
       <Dialog open={isMoocFormOpen} onOpenChange={setIsMoocFormOpen}>
-        <DialogContent className="max-w-5xl h-[90vh] overflow-y-auto bg-backgroundackground/95 backdrop-blur-xl shadow-2xl">
+        <DialogContent className="max-w-5xl h-[90vh] overflow-y-auto bg-background/95 backdrop-blur-xl shadow-2xl">
           <MoocEvidenceForm
             onCancel={() => {
               setIsMoocFormOpen(false);
@@ -2040,7 +2040,7 @@ function MoocEvidencePage() {
                   <TableCell className="p-8 text-right">
                     <Badge className={cn(
                       "text-[10px] font-black uppercase tracking-[0.2em] border px-4 py-1.5 rounded-xl shadow-sm",
-                      sub.status === 'APPROVED' ? "bg-backgroundmerald-500/10 text-emerald-600 border-emerald-500/20" :
+                      sub.status === 'APPROVED' ? "bg-violet-500/10 text-violet-600 border-violet-500/20" :
                         sub.status === 'REJECTED' ? "bg-rose-500/10 text-rose-600 border-rose-500/20" :
                           "bg-amber-500/10 text-amber-600 border-amber-500/20"
                     )}>
@@ -2062,7 +2062,7 @@ function MoocEvidencePage() {
 function CourseCard({ course, onEnrollSuccess }: { course: any, onEnrollSuccess?: () => void }) {
   const [enrolling, setEnrolling] = useState(false);
   return (
-    <Card className="group hover:shadow-2xl transition-all duration-300   bg-backgroundackground/50 backdrop-blur-sm overflow-hidden flex flex-col">
+    <Card className="group hover:shadow-2xl transition-all duration-300   bg-background/50 backdrop-blur-sm overflow-hidden flex flex-col">
       <div className={cn("h-32 w-full relative", course.thumbnail)}>
         <div className="absolute inset-0 bg-backgroundlack/20 group-hover:bg-backgroundlack/10 transition-colors" />
         <div className="absolute top-3 left-3">
@@ -2098,7 +2098,7 @@ function CourseCard({ course, onEnrollSuccess }: { course: any, onEnrollSuccess?
             </div>
           </div>
         ) : course.status === 'completed' ? (
-          <div className="flex items-center gap-2 text-emerald-600 text-sm font-medium mt-2">
+          <div className="flex items-center gap-2 text-violet-600 text-sm font-medium mt-2">
             <CheckCircle2 className="w-4 h-4" />
             Course Completed
           </div>
@@ -2284,11 +2284,11 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
 
         {/* Quick Stats */}
         <div className="space-y-4">
-          <Card className="shadow-lg bg-backgroundmerald-500 text-foreground">
+          <Card className="shadow-lg bg-violet-500 text-foreground">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <p className="text-emerald-50/80 text-sm font-medium">Achieved hours</p>
+                  <p className="text-violet-50/80 text-sm font-medium">Achieved hours</p>
                   <p className="text-3xl font-bold">{pdHours.total}h</p>
                 </div>
                 <div className="p-3 bg-white/20 rounded-xl">
@@ -2436,7 +2436,7 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
                   <TableCell className="text-zinc-900 text-sm">{row.date}</TableCell>
                   <TableCell className="text-right font-bold">{row.hours}h</TableCell>
                   <TableCell>
-                    <div className="flex items-center gap-1.5 text-emerald-600 font-medium">
+                    <div className="flex items-center gap-1.5 text-violet-600 font-medium">
                       <CheckCircle2 className="w-3.5 h-3.5" />
                       {row.status}
                     </div>
@@ -2463,7 +2463,7 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
       {
         selectedActivity && (
           <Dialog open={!!selectedActivity} onOpenChange={() => setSelectedActivity(null)}>
-            <DialogContent className="max-w-4xl bg-backgroundackground/95 backdrop-blur-xl  ">
+            <DialogContent className="max-w-4xl bg-background/95 backdrop-blur-xl  ">
               <DialogHeader>
                 <DialogTitle className="text-2xl font-bold flex items-center gap-2">
                   <Book className="w-6 h-6 text-primary" />
@@ -2504,7 +2504,7 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
                   <Card className={cn(
                     "border-none shadow-lg text-foreground",
                     selectedActivity.status === "Approved"
-                      ? "bg-gradient-to-br from-emerald-500 to-emerald-600"
+                      ? "bg-gradient-to-br from-violet-500 to-violet-600"
                       : "bg-gradient-to-br from-amber-500 to-amber-600"
                   )}>
                     <CardContent className="p-4">
@@ -2512,13 +2512,13 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
                         <div>
                           <p className={cn(
                             "text-xs font-medium mb-1",
-                            selectedActivity.status === "Approved" ? "text-emerald-50/80" : "text-amber-50/80"
+                            selectedActivity.status === "Approved" ? "text-violet-50/80" : "text-amber-50/80"
                           )}>Status</p>
                           <p className="text-xl font-bold">{selectedActivity.status}</p>
                         </div>
                         <ShieldCheck className={cn(
                           "w-8 h-8",
-                          selectedActivity.status === "Approved" ? "text-emerald-50/50" : "text-amber-50/50"
+                          selectedActivity.status === "Approved" ? "text-violet-50/50" : "text-amber-50/50"
                         )} />
                       </div>
                     </CardContent>
@@ -2526,7 +2526,7 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
                 </div>
 
                 {/* Main Details */}
-                <Card className="shadow-xl bg-backgroundackground/50 backdrop-blur-sm">
+                <Card className="shadow-xl bg-background/50 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <FileText className="w-5 h-5 text-primary" />
@@ -2652,7 +2652,7 @@ export default function TeacherDashboard() {
       { name: "Primary", hours: 0, target: 6, color: "bg-amber-500" },
       { name: "Middle School", hours: 0, target: 6, color: "bg-sky-500" },
       { name: "High School", hours: 0, target: 6, color: "bg-indigo-500" },
-      { name: "Online Courses", hours: 0, target: 6, color: "bg-backgroundmerald-500" }
+      { name: "Online Courses", hours: 0, target: 6, color: "bg-violet-500" }
     ],
     history: []
   });
@@ -3116,7 +3116,7 @@ function ReflectionDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md bg-backgroundackground   shadow-2xl">
+      <DialogContent className="sm:max-w-md bg-background   shadow-2xl">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <MessageSquare className="w-5 h-5 text-primary" />
@@ -3180,7 +3180,7 @@ function ObservationDetailView({ observations }: { observations: Observation[] }
             <Button
               onClick={() => setIsAIModalOpen(true)}
               size="sm"
-              className="gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-lg shadow-emerald-500/20 font-bold border-none"
+              className="gap-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 shadow-lg shadow-violet-500/20 font-bold border-none"
             >
               <Sparkles className="w-4 h-4 text-amber-300" />
               AI Smart Analysis
@@ -3192,7 +3192,7 @@ function ObservationDetailView({ observations }: { observations: Observation[] }
       <div className="grid lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8">
           {/* Main Assessment Card - Similar to Leader View but read-only for teacher */}
-          <Card className="  shadow-2xl bg-backgroundackground/50 backdrop-blur-sm overflow-hidden">
+          <Card className="  shadow-2xl bg-background/50 backdrop-blur-sm overflow-hidden">
             <div className="h-4 bg-backgroundlack" />
             <CardHeader className="bg-muted/10 pb-8">
               <div className="flex justify-between items-start">
@@ -3393,7 +3393,7 @@ function ObservationDetailView({ observations }: { observations: Observation[] }
                                     variant={answer === "Yes" ? "default" : answer === "No" ? "destructive" : "outline"}
                                     className={cn(
                                       "flex-shrink-0 font-bold px-3",
-                                      answer === "Yes" && "bg-backgroundmerald-500 hover:bg-backgroundmerald-600",
+                                      answer === "Yes" && "bg-violet-500 hover:bg-violet-600",
                                       answer === "No" && "bg-rose-500 hover:bg-rose-600"
                                     )}
                                   >
@@ -3429,13 +3429,13 @@ function ObservationDetailView({ observations }: { observations: Observation[] }
                     {/* Culture Tools */}
                     {(observation as any).cultureTools?.length > 0 && (
                       <div className="space-y-4">
-                        <h3 className="text-lg font-bold flex items-center gap-2 text-emerald-600">
+                        <h3 className="text-lg font-bold flex items-center gap-2 text-violet-600">
                           <Zap className="w-5 h-5" />
                           Culture Tools
                         </h3>
                         <div className="flex flex-wrap gap-2">
                           {(observation as any).cultureTools.map((tool: string, idx: number) => (
-                            <Badge key={idx} variant="secondary" className="bg-backgroundmerald-50 text-emerald-700 border-emerald-100 uppercase text-[10px] tracking-wider font-bold">
+                            <Badge key={idx} variant="secondary" className="bg-violet-50 text-violet-700 border-violet-100 uppercase text-[10px] tracking-wider font-bold">
                               {tool}
                             </Badge>
                           ))}
@@ -3452,7 +3452,7 @@ function ObservationDetailView({ observations }: { observations: Observation[] }
                         </h3>
                         <div className="flex flex-wrap gap-2">
                           {(observation as any).learningTools.map((tool: string, idx: number) => (
-                            <Badge key={idx} variant="secondary" className="bg-backgroundlue-50 text-blue-700 border-blue-100 uppercase text-[10px] tracking-wider font-bold">
+                            <Badge key={idx} variant="secondary" className="bg-violet-50 text-blue-700 border-blue-100 uppercase text-[10px] tracking-wider font-bold">
                               {tool}
                             </Badge>
                           ))}
@@ -3590,15 +3590,15 @@ function ObservationDetailView({ observations }: { observations: Observation[] }
                     {/* Summary Stats */}
                     <div className="grid grid-cols-1 gap-4 p-6">
                       <div className="grid grid-cols-3 gap-4">
-                        <div className="p-4 bg-backgroundackground rounded-lg border shadow-sm">
+                        <div className="p-4 bg-background rounded-lg border shadow-sm">
                           <span className="block text-xs font-bold text-zinc-900 uppercase mb-1">Strengths</span>
                           <p className="font-bold text-sm">{observation.detailedReflection.strengths}</p>
                         </div>
-                        <div className="p-4 bg-backgroundackground rounded-lg border shadow-sm">
+                        <div className="p-4 bg-background rounded-lg border shadow-sm">
                           <span className="block text-xs font-bold text-zinc-900 uppercase mb-1">Growth Areas</span>
                           <p className="font-bold text-sm">{observation.detailedReflection.improvements}</p>
                         </div>
-                        <div className="p-4 bg-backgroundackground rounded-lg border shadow-sm">
+                        <div className="p-4 bg-background rounded-lg border shadow-sm">
                           <span className="block text-xs font-bold text-zinc-900 uppercase mb-1">Goal</span>
                           <p className="font-bold text-sm">{observation.detailedReflection.goal}</p>
                         </div>

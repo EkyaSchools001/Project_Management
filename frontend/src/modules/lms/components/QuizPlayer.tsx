@@ -77,7 +77,7 @@ export function QuizPlayer({
           <p className="text-lg">
             You got {correct} out of {questions.length} questions correct.
           </p>
-          <div className={`text-xl font-semibold ${passed ? 'text-green-600' : 'text-red-600'}`}>
+          <div className={`text-xl font-semibold ${passed ? 'text-violet-600' : 'text-red-600'}`}>
             {passed ? 'Passed' : 'Failed'}
           </div>
           <p className="text-muted-foreground">

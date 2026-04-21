@@ -107,8 +107,8 @@ export function MeetingsDashboard() {
                     <div>
                         <Badge className={cn(
                             "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm mb-2",
-                            meeting.status === 'Scheduled' ? "bg-backgroundlue-600" :
-                            meeting.status === 'Ongoing' ? "bg-backgroundmerald-600" :
+                            meeting.status === 'Scheduled' ? "bg-violet-600" :
+                            meeting.status === 'Ongoing' ? "bg-violet-600" :
                             meeting.status === 'Completed' ? "bg-slate-600" :
                             meeting.status === 'Draft' ? "bg-amber-500" :
                             "bg-slate-400"

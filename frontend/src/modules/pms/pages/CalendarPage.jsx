@@ -50,7 +50,7 @@ const CalendarPage = () => {
     const [selectedDate, setSelectedDate] = useState(null);
 
     const [events, setEvents] = useState({
-        [format(addDays(new Date(), 2), 'yyyy-MM-dd')]: { title: 'NODE SYNC', type: 'task', color: 'from-emerald-400 to-teal-600 shadow-emerald-500/20' },
+        [format(addDays(new Date(), 2), 'yyyy-MM-dd')]: { title: 'NODE SYNC', type: 'task', color: 'from-violet-400 to-fuchsia-600 shadow-violet-500/20' },
         [format(addDays(new Date(), 5), 'yyyy-MM-dd')]: { title: 'ORBITAL REVIEW', type: 'meeting', color: 'from-rose-400 to-rose-600 shadow-rose-500/20' },
         [format(addDays(new Date(), 10), 'yyyy-MM-dd')]: { title: 'CORE MATRIX', type: 'task', color: 'from-indigo-400 to-indigo-600 shadow-indigo-500/20' },
         [format(addDays(new Date(), 15), 'yyyy-MM-dd')]: { title: 'UPLINK ESTABLISHED', type: 'reminder', color: 'from-amber-400 to-amber-600 shadow-amber-500/20' }
@@ -90,7 +90,7 @@ const CalendarPage = () => {
                 <div className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative z-10">
                     <div className="space-y-8 max-w-3xl">
                         <motion.div variants={itemVariants} className="inline-flex items-center gap-4 px-6 py-2 bg-white/5 rounded-full border border-white/10 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.5em] backdrop-blur-3xl">
-                            <Clock size={14} className="text-emerald-400" />
+                            <Clock size={14} className="text-violet-400" />
                             Temporal Synchronization Protocol: Active
                         </motion.div>
                         <motion.h1 variants={itemVariants} className="text-5xl sm:text-8xl lg:text-9xl font-black tracking-tighter uppercase leading-[0.8] mb-4">
@@ -132,7 +132,7 @@ const CalendarPage = () => {
                     </span>
                     <div className="h-8 w-[2px] bg-slate-100 mx-2" />
                     <div className="flex items-center gap-4">
-                        <div className="w-2.5 h-2.5 rounded-full bg-backgroundmerald-500 animate-pulse" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-violet-500 animate-pulse" />
                         <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em]">Network Operational</span>
                     </div>
                 </div>

@@ -30,9 +30,9 @@ export const HOSOKRView: React.FC<Props> = ({ data }) => {
                 </Card>
                 <Card className="  shadow-xl rounded-2xl">
                     <CardContent className="pt-6">
-                        <Eye className="w-5 h-5 text-emerald-500 mb-2" />
+                        <Eye className="w-5 h-5 text-violet-500 mb-2" />
                         <p className="text-xs font-bold capitalize tracking-wider text-muted-foreground">Teachers Observed</p>
-                        <p className="text-3xl font-black text-emerald-700">{data.teachersObserved}</p>
+                        <p className="text-3xl font-black text-violet-700">{data.teachersObserved}</p>
                         <p className="text-xs text-muted-foreground mt-1">{coverageRate}% coverage</p>
                     </CardContent>
                 </Card>
@@ -70,7 +70,7 @@ export const HOSOKRView: React.FC<Props> = ({ data }) => {
                     </div>
                     <Progress value={coverageRate} className="h-3 rounded-full" />
                     <div className="flex gap-2">
-                        <Badge className="bg-backgroundmerald-50 text-emerald-700 border-emerald-100 border">{data.teachersObserved} Observed</Badge>
+                        <Badge className="bg-violet-50 text-violet-700 border-violet-100 border">{data.teachersObserved} Observed</Badge>
                         <Badge className="bg-red-50 text-red-700 border-red-100 border">{data.teachersNotObserved} Pending</Badge>
                         <Badge className="bg-amber-50 text-amber-700 border-amber-100 border">{data.avgTrainingHoursPerTeacher}h avg PD / teacher</Badge>
                     </div>
@@ -152,7 +152,7 @@ export const HOSOKRView: React.FC<Props> = ({ data }) => {
                                     </TableCell>
                                     <TableCell>
                                         {t.rate === 100 ? (
-                                            <Badge className="bg-backgroundmerald-50 text-emerald-700 border-emerald-100 border gap-1">
+                                            <Badge className="bg-violet-50 text-violet-700 border-violet-100 border gap-1">
                                                 <CheckCircle2 className="w-3 h-3" /> Complete
                                             </Badge>
                                         ) : (

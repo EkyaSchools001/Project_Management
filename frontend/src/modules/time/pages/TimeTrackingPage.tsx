@@ -58,22 +58,22 @@ export function TimeTrackingPage() {
             title: 'Today',
             hours: todaySummary?.totalHours || 0,
             icon: Clock,
-            color: 'text-[#BAFF00]',
-            bgColor: 'bg-[#BAFF00]/10'
+            color: 'text-[#8b5cf6]',
+            bgColor: 'bg-[#8b5cf6]/10'
         },
         {
             title: 'This Week',
             hours: weeklySummary?.totalHours || 0,
             icon: Calendar,
             color: 'text-blue-400',
-            bgColor: 'bg-backgroundlue-500/10'
+            bgColor: 'bg-violet-500/10'
         },
         {
             title: 'Billable',
             hours: weeklySummary?.billableHours || 0,
             icon: BarChart3,
-            color: 'text-green-400',
-            bgColor: 'bg-green-500/10'
+            color: 'text-violet-400',
+            bgColor: 'bg-violet-500/10'
         }
     ];
 
@@ -87,7 +87,7 @@ export function TimeTrackingPage() {
                     </div>
                     <Button
                         onClick={() => setShowManualModal(true)}
-                        className="bg-[#BAFF00] hover:bg-[#BAFF00]/90 text-black font-bold"
+                        className="bg-[#8b5cf6] hover:bg-[#8b5cf6]/90 text-black font-bold"
                     >
                         <Plus className="w-4 h-4 mr-2" />
                         Manual Entry
@@ -122,7 +122,7 @@ export function TimeTrackingPage() {
                         className={cn(
                             "px-4 py-3 text-sm font-bold border-b-2 transition-colors",
                             activeView === 'entries'
-                                ? "border-[#BAFF00] text-[#BAFF00]"
+                                ? "border-[#8b5cf6] text-[#8b5cf6]"
                                 : "border-transparent text-foreground/40 hover:text-foreground"
                         )}
                     >
@@ -133,7 +133,7 @@ export function TimeTrackingPage() {
                         className={cn(
                             "px-4 py-3 text-sm font-bold border-b-2 transition-colors",
                             activeView === 'report'
-                                ? "border-[#BAFF00] text-[#BAFF00]"
+                                ? "border-[#8b5cf6] text-[#8b5cf6]"
                                 : "border-transparent text-foreground/40 hover:text-foreground"
                         )}
                     >

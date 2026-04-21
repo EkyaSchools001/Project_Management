@@ -59,7 +59,7 @@ export function TrainingEventCard({ event, onRegister, className }: TrainingEven
 
       <div className="pt-6 border-t border-muted/50">
         {event.isRegistered ? (
-          <Button variant="outline" className="w-full h-14 rounded-2xl text-lg font-bold border-2 border-emerald-500 text-emerald-600 cursor-default" disabled>
+          <Button variant="outline" className="w-full h-14 rounded-2xl text-lg font-bold border-2 border-violet-500 text-violet-600 cursor-default" disabled>
             <CheckCircle2 className="mr-2 w-6 h-6" />
             Registered
           </Button>

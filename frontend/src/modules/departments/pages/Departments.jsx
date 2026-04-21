@@ -48,13 +48,13 @@ export default function Departments() {
             className="max-w-[1800px] mx-auto space-y-12 sm:space-y-16 p-4 sm:p-10 lg:p-16 pb-32"
         >
             {/* Vibrant Header Section */}
-            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-10 relative overflow-hidden p-10 sm:p-16 lg:p-20 bg-backgroundackground rounded-[4rem] sm:rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
+            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-10 relative overflow-hidden p-10 sm:p-16 lg:p-20 bg-background rounded-[4rem] sm:rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-violet-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-96 h-96 bg-amber-500 rounded-full blur-[140px] opacity-20 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 
                 <div className="space-y-8 relative z-10 max-w-2xl">
                     <motion.div variants={itemVariants} className="inline-flex items-center gap-4 px-6 py-2 bg-white/5 rounded-full border border-white/10 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] backdrop-blur-md">
-                        <div className="w-2.5 h-2.5 rounded-full bg-backgroundmerald-400 animate-pulse-glow shadow-[0_0_10px_rgba(52,211,153,0.4)]" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-violet-400 animate-pulse-glow shadow-[0_0_10px_rgba(52,211,153,0.4)]" />
                         Infrastructure Matrix: Nominal
                     </motion.div>
                     <motion.h1 variants={itemVariants} className="text-4xl sm:text-7xl lg:text-9xl font-black text-foreground tracking-tighter uppercase leading-[0.85]">
@@ -89,7 +89,7 @@ export default function Departments() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
                 {[
                     { label: 'Active Clusters', value: DEPARTMENTS.length, icon: Layers, color: 'from-blue-500 to-indigo-600', iconColor: 'text-blue-500' },
-                    { label: 'Verified Nodes', value: '11', icon: Shield, color: 'from-emerald-400 to-teal-600', iconColor: 'text-emerald-500' },
+                    { label: 'Verified Nodes', value: '11', icon: Shield, color: 'from-violet-400 to-fuchsia-600', iconColor: 'text-violet-500' },
                     { label: 'Network Integrity', value: '99.9%', icon: Activity, color: 'from-amber-400 to-orange-600', iconColor: 'text-amber-500' }
                 ].map((stat, i) => (
                     <motion.div key={i} variants={itemVariants}>
@@ -104,7 +104,7 @@ export default function Departments() {
                                 <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.4em] mb-2 truncate group-hover:text-slate-950 transition-colors">{stat.label}</p>
                                 <div className="flex items-baseline gap-4">
                                     <p className="text-4xl sm:text-6xl font-black text-slate-900 tracking-tighter truncate group-hover:scale-105 transition-transform duration-700 origin-left">{stat.value}</p>
-                                    <ArrowUpRight size={24} className="text-emerald-500 opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-2 group-hover:translate-y-0" />
+                                    <ArrowUpRight size={24} className="text-violet-500 opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-2 group-hover:translate-y-0" />
                                 </div>
                             </div>
                         </Card>
@@ -135,7 +135,7 @@ export default function Departments() {
                                     <div className="w-24 h-24 sm:w-28 sm:h-28 bg-slate-950 text-foreground rounded-[2.5rem] flex items-center justify-center font-black text-3xl sm:text-4xl shadow-2xl relative z-10 group-hover:scale-110 group-hover:bg-indigo-600 transition-all duration-700 border-4 border-white">
                                         {index + 1}
                                     </div>
-                                    <div className="absolute -bottom-2 -right-2 bg-backgroundmerald-500 text-[9px] font-black p-2 rounded-xl text-foreground border-4 border-white shadow-xl z-20 group-hover:animate-bounce">
+                                    <div className="absolute -bottom-2 -right-2 bg-violet-500 text-[9px] font-black p-2 rounded-xl text-foreground border-4 border-white shadow-xl z-20 group-hover:animate-bounce">
                                         SYNC
                                     </div>
                                 </div>

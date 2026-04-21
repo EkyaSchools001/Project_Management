@@ -249,10 +249,10 @@ export const AssessmentBuilder: React.FC<{
                         </div>
 
                         {/* AI Generator Section */}
-                        <div className="bg-backgroundmerald-50 p-6 rounded-2xl border border-emerald-200 flex flex-col md:flex-row gap-6 items-start shadow-sm">
+                        <div className="bg-violet-50 p-6 rounded-2xl border border-violet-200 flex flex-col md:flex-row gap-6 items-start shadow-sm">
                             <div className="flex-1 space-y-2 w-full">
-                                <Label className="flex items-center gap-2 text-emerald-900 font-bold">
-                                    <Sparkles className="w-4 h-4 text-emerald-600" />
+                                <Label className="flex items-center gap-2 text-violet-900 font-bold">
+                                    <Sparkles className="w-4 h-4 text-violet-600" />
                                     Magic Question Generator
                                 </Label>
                                 <div className="flex flex-col md:flex-row gap-4 items-end">
@@ -261,24 +261,24 @@ export const AssessmentBuilder: React.FC<{
                                             placeholder="Paste a topic, chapter summary, or learning objectives here... (e.g., 'Student engagement strategies')"
                                             value={aiPrompt}
                                             onChange={(e) => setAiPrompt(e.target.value)}
-                                            className="bg-white border-emerald-200 focus:border-emerald-500 rounded-xl min-h-[80px] text-emerald-900"
+                                            className="bg-white border-violet-200 focus:border-violet-500 rounded-xl min-h-[80px] text-violet-900"
                                         />
                                     </div>
                                     <div className="w-full md:w-32 space-y-1">
-                                        <Label className="text-[10px] text-emerald-600 capitalize tracking-wider font-bold">Count</Label>
+                                        <Label className="text-[10px] text-violet-600 capitalize tracking-wider font-bold">Count</Label>
                                         <Input
                                             type="number"
                                             min={1}
                                             max={20}
                                             value={aiQuestionCount}
                                             onChange={(e) => setAiQuestionCount(parseInt(e.target.value) || 5)}
-                                            className="bg-white border-emerald-200 focus:border-emerald-500 rounded-xl h-12 text-emerald-900 font-bold text-center"
+                                            className="bg-white border-violet-200 focus:border-violet-500 rounded-xl h-12 text-violet-900 font-bold text-center"
                                         />
                                     </div>
                                 </div>
                             </div>
                             <Button
-                                className="mt-8 bg-backgroundmerald-600 hover:bg-backgroundmerald-700 text-foreground rounded-xl h-12 px-6 flex items-center gap-2 shrink-0 self-end md:self-auto shadow-lg shadow-emerald-200 border-none"
+                                className="mt-8 bg-violet-600 hover:bg-violet-700 text-foreground rounded-xl h-12 px-6 flex items-center gap-2 shrink-0 self-end md:self-auto shadow-lg shadow-violet-200 border-none"
                                 onClick={handleAIGenerate}
                                 disabled={isGenerating}
                             >
@@ -336,7 +336,7 @@ export const AssessmentBuilder: React.FC<{
                                                     <div key={optIdx} className={cn(
                                                         "flex gap-3 items-center p-3 rounded-xl border-2 transition-all group",
                                                         isMultiCorrect(qIdx, opt)
-                                                            ? "border-emerald-500 bg-backgroundmerald-50/50"
+                                                            ? "border-violet-500 bg-violet-50/50"
                                                             : "border-zinc-100 hover:border-zinc-200"
                                                     )}>
                                                         <div className="flex flex-col items-center gap-1">
@@ -346,11 +346,11 @@ export const AssessmentBuilder: React.FC<{
                                                                 name={`correct-${qIdx}`}
                                                                 checked={isMultiCorrect(qIdx, opt)}
                                                                 onChange={() => toggleMultiCorrect(qIdx, opt)}
-                                                                className="w-5 h-5 accent-emerald-600 cursor-pointer"
+                                                                className="w-5 h-5 accent-violet-600 cursor-pointer"
                                                             />
                                                             <Label
                                                                 htmlFor={`correct-${qIdx}-${optIdx}`}
-                                                                className="text-[9px] font-bold capitalize text-muted-foreground group-hover:text-emerald-600 cursor-pointer transition-colors"
+                                                                className="text-[9px] font-bold capitalize text-muted-foreground group-hover:text-violet-600 cursor-pointer transition-colors"
                                                             >
                                                                 Correct
                                                             </Label>

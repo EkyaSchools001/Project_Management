@@ -27,11 +27,11 @@ const statusConfig = {
     'TODO': { color: 'text-muted-foreground', bg: 'bg-slate-100', glow: 'shadow-slate-500/10', label: 'Queued', icon: Circle },
     'IN_PROGRESS': { color: 'text-indigo-400', bg: 'bg-indigo-500/10', glow: 'shadow-indigo-500/20', label: 'Active', icon: Clock },
     'IN_REVIEW': { color: 'text-violet-400', bg: 'bg-violet-500/10', glow: 'shadow-violet-500/20', label: 'Audit', icon: AlertCircle },
-    'DONE': { color: 'text-emerald-400', bg: 'bg-backgroundmerald-500/10', glow: 'shadow-emerald-500/20', label: 'Resolved', icon: CheckCircle2 }
+    'DONE': { color: 'text-violet-400', bg: 'bg-violet-500/10', glow: 'shadow-violet-500/20', label: 'Resolved', icon: CheckCircle2 }
 };
 
 const priorityConfig = {
-    'LOW': 'bg-backgroundmerald-50 text-emerald-600 border-emerald-100',
+    'LOW': 'bg-violet-50 text-violet-600 border-violet-100',
     'MEDIUM': 'bg-amber-50 text-amber-600 border-amber-100',
     'HIGH': 'bg-orange-50 text-orange-600 border-orange-100',
     'CRITICAL': 'bg-rose-50 text-rose-600 border-rose-100'
@@ -127,7 +127,7 @@ const TasksPage = () => {
                 <div className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative z-10">
                     <div className="space-y-8 max-w-3xl">
                         <motion.div variants={itemVariants} className="inline-flex items-center gap-4 px-6 py-2 bg-white/5 rounded-full border border-white/10 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.5em] backdrop-blur-3xl">
-                            <Activity size={14} className="text-emerald-400" />
+                            <Activity size={14} className="text-violet-400" />
                             Work-Stream Synchronization: Nominal
                         </motion.div>
                         <motion.h1 variants={itemVariants} className="text-5xl sm:text-7xl lg:text-9xl font-black tracking-tighter uppercase leading-[0.8] mb-4">
@@ -136,7 +136,7 @@ const TasksPage = () => {
                         <div className="flex flex-wrap gap-6">
                             <MetricPill label="Inventory" value={stats.total} color="text-indigo-400" bg="bg-indigo-400/10" />
                             <MetricPill label="Operational" value={stats.pending} color="text-amber-400" bg="bg-amber-400/10" />
-                            <MetricPill label="Synchronized" value={stats.done} color="text-emerald-400" bg="bg-backgroundmerald-400/10" />
+                            <MetricPill label="Synchronized" value={stats.done} color="text-violet-400" bg="bg-violet-400/10" />
                         </div>
                     </div>
 
@@ -214,7 +214,7 @@ const TasksPage = () => {
                                 
                                 <div className="flex justify-between items-start mb-10 sm:mb-14 relative z-10">
                                     <div className="flex items-center gap-8">
-                                        <div className={`w-18 h-18 rounded-3xl flex items-center justify-center transition-all duration-700 shadow-2xl ${task.status === 'DONE' ? 'bg-backgroundmerald-50 text-emerald-500' : 'bg-slate-50 text-slate-300 group-hover:bg-indigo-600 group-hover:text-foreground'}`}>
+                                        <div className={`w-18 h-18 rounded-3xl flex items-center justify-center transition-all duration-700 shadow-2xl ${task.status === 'DONE' ? 'bg-violet-50 text-violet-500' : 'bg-slate-50 text-slate-300 group-hover:bg-indigo-600 group-hover:text-foreground'}`}>
                                             {task.status === 'DONE' ? <CheckCircle2 size={36} /> : <Circle size={36} className="group-hover:rotate-12 transition-transform" />}
                                         </div>
                                         <div className="space-y-3">

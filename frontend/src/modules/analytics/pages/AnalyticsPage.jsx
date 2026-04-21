@@ -47,7 +47,7 @@ const distributionData = [
     { name: 'Science', value: 200 },
 ];
 
-const COLORS = ['#2563eb', '#059669', '#7c3aed', '#db2777', '#dc2626', '#ea580c'];
+const COLORS = ['#2563eb', '#7c3aed', '#7c3aed', '#db2777', '#dc2626', '#ea580c'];
 
 const StatCard = ({ title, value, change, trend, icon: Icon, delay }) => (
     <motion.div
@@ -61,14 +61,14 @@ const StatCard = ({ title, value, change, trend, icon: Icon, delay }) => (
                     <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] leading-none">{title}</p>
                     <h3 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tighter leading-none tabular-nums">{value}</h3>
                     <div className="flex items-center gap-3">
-                        <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${trend === 'up' ? 'bg-backgroundmerald-50 text-emerald-600 border border-emerald-100' : 'bg-rose-50 text-rose-600 border border-rose-100'}`}>
+                        <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${trend === 'up' ? 'bg-violet-50 text-violet-600 border border-violet-100' : 'bg-rose-50 text-rose-600 border border-rose-100'}`}>
                             {trend === 'up' ? <ArrowUpRight size={14} /> : <ArrowDownRight size={14} />}
                             {change}
                         </div>
                         <span className="text-[9px] text-slate-300 font-black uppercase tracking-widest">Global Variance</span>
                     </div>
                 </div>
-                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-backgroundlue-50 text-blue-600 rounded-2xl flex items-center justify-center group-hover:bg-backgroundlue-600 group-hover:text-foreground transition-all duration-500 shadow-xl shadow-blue-600/5 group-hover:shadow-blue-600/20 group-hover:rotate-6">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-violet-50 text-blue-600 rounded-2xl flex items-center justify-center group-hover:bg-violet-600 group-hover:text-foreground transition-all duration-500 shadow-xl shadow-blue-600/5 group-hover:shadow-blue-600/20 group-hover:rotate-6">
                     <Icon size={28} />
                 </div>
             </div>
@@ -85,7 +85,7 @@ export default function AnalyticsPage() {
             <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-10 pb-12 border-b border-slate-100">
                 <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                        <div className="w-3 h-3 rounded-full bg-backgroundlue-600 animate-pulse shadow-[0_0_15px_rgba(37,99,235,0.4)]"></div>
+                        <div className="w-3 h-3 rounded-full bg-violet-600 animate-pulse shadow-[0_0_15px_rgba(37,99,235,0.4)]"></div>
                         <span className="text-[10px] font-black text-blue-600 uppercase tracking-[0.4em]">Core Infrastructure Intelligence</span>
                     </div>
                     <h1 className="text-4xl sm:text-6xl font-black text-slate-900 tracking-[calc(-0.05em)] uppercase leading-[0.9]">System <br className="hidden sm:block" /> Performance HQ</h1>
@@ -95,7 +95,7 @@ export default function AnalyticsPage() {
                     <button className="h-16 px-8 bg-white border border-slate-200 rounded-2xl text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-600 hover:text-blue-600 hover:border-blue-500 transition-all shadow-sm flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95">
                         <Calendar size={18} className="text-blue-600" /> Last 30 Operational Cycles
                     </button>
-                    <button className="h-16 px-10 bg-backgroundackground text-foreground rounded-2xl text-[10px] sm:text-xs font-black uppercase tracking-widest hover:bg-backgroundlack transition-all shadow-2xl shadow-slate-900/20 flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95 leading-none">
+                    <button className="h-16 px-10 bg-background text-foreground rounded-2xl text-[10px] sm:text-xs font-black uppercase tracking-widest hover:bg-backgroundlack transition-all shadow-2xl shadow-slate-900/20 flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95 leading-none">
                         <Download size={18} /> Export Intelligence
                     </button>
                 </div>
@@ -148,7 +148,7 @@ export default function AnalyticsPage() {
                         </div>
                         <div className="flex gap-6">
                             <div className="flex items-center gap-3">
-                                <div className="w-2.5 h-2.5 rounded-full bg-backgroundlue-600 shadow-[0_0_12px_rgba(37,99,235,0.4)]" />
+                                <div className="w-2.5 h-2.5 rounded-full bg-violet-600 shadow-[0_0_12px_rgba(37,99,235,0.4)]" />
                                 <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest">Active</span>
                             </div>
                             <div className="flex items-center gap-3">
@@ -247,13 +247,13 @@ export default function AnalyticsPage() {
                 </Card>
             </div>
 
-            <Card className="p-10 sm:p-20 bg-backgroundackground text-foreground relative overflow-hidden rounded-[3rem] sm:rounded-[4.5rem] shadow-2xl shadow-slate-900/30 border-none group">
+            <Card className="p-10 sm:p-20 bg-background text-foreground relative overflow-hidden rounded-[3rem] sm:rounded-[4.5rem] shadow-2xl shadow-slate-900/30 border-none group">
                 <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none group-hover:scale-125 transition-transform duration-1000">
                     <Activity size={300} />
                 </div>
                 <div className="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-12 sm:gap-20 relative z-10">
                     <div className="flex flex-col lg:flex-row items-start lg:items-center gap-10 sm:gap-16">
-                        <div className="w-20 h-20 sm:w-28 sm:h-28 bg-backgroundlue-600 text-foreground rounded-[2rem] sm:rounded-[2.5rem] flex items-center justify-center shadow-[0_20px_50px_rgba(37,99,235,0.4)] shrink-0 group-hover:rotate-12 transition-all duration-500">
+                        <div className="w-20 h-20 sm:w-28 sm:h-28 bg-violet-600 text-foreground rounded-[2rem] sm:rounded-[2.5rem] flex items-center justify-center shadow-[0_20px_50px_rgba(37,99,235,0.4)] shrink-0 group-hover:rotate-12 transition-all duration-500">
                             <Activity size={40} />
                         </div>
                         <div className="space-y-4">
@@ -262,7 +262,7 @@ export default function AnalyticsPage() {
                             <p className="text-sm sm:text-2xl text-foreground/40 font-medium leading-relaxed max-w-2xl italic pr-12">Heuristic analysis indicates 3 node clusters are performing below target threshold in the Engineering sector. Action required.</p>
                         </div>
                     </div>
-                    <button className="w-full xl:w-auto h-20 px-16 bg-white text-slate-900 text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] rounded-2xl sm:rounded-3xl hover:bg-backgroundlue-50 shadow-2xl shadow-black/20 active:scale-95 transition-all flex items-center justify-center gap-4 group-hover:gap-8 whitespace-nowrap">
+                    <button className="w-full xl:w-auto h-20 px-16 bg-white text-slate-900 text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] rounded-2xl sm:rounded-3xl hover:bg-violet-50 shadow-2xl shadow-black/20 active:scale-95 transition-all flex items-center justify-center gap-4 group-hover:gap-8 whitespace-nowrap">
                         Execute Recalibration <ArrowUpRight size={24} />
                     </button>
                 </div>

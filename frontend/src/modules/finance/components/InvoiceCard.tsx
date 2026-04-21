@@ -19,8 +19,8 @@ interface InvoiceCardProps {
 
 const statusConfig: Record<string, { icon: any; color: string; label: string }> = {
   Draft: { icon: FileText, color: 'bg-white/10 text-foreground/60', label: 'Draft' },
-  Sent: { icon: Clock, color: 'bg-backgroundlue-500/20 text-blue-500', label: 'Sent' },
-  Paid: { icon: CheckCircle, color: 'bg-green-500/20 text-green-500', label: 'Paid' },
+  Sent: { icon: Clock, color: 'bg-violet-500/20 text-blue-500', label: 'Sent' },
+  Paid: { icon: CheckCircle, color: 'bg-violet-500/20 text-violet-500', label: 'Paid' },
   Overdue: { icon: XCircle, color: 'bg-red-500/20 text-red-500', label: 'Overdue' },
   Void: { icon: XCircle, color: 'bg-white/10 text-foreground/40', label: 'Void' },
 };
@@ -33,7 +33,7 @@ export function InvoiceCard({ invoice, onPay, onVoid, onClick }: InvoiceCardProp
   return (
     <div 
       onClick={onClick}
-      className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5 hover:border-[#BAFF00]/30 transition-all"
+      className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5 hover:border-[#8b5cf6]/30 transition-all"
     >
       <div className="flex items-start justify-between mb-4">
         <div>
@@ -78,7 +78,7 @@ export function InvoiceCard({ invoice, onPay, onVoid, onClick }: InvoiceCardProp
           {onPay && invoice.status === 'Sent' && (
             <button
               onClick={(e) => { e.stopPropagation(); onPay(); }}
-              className="flex-1 px-4 py-2 bg-[#BAFF00] text-black rounded-xl font-bold text-sm hover:bg-[#BAFF00]/80 transition-colors"
+              className="flex-1 px-4 py-2 bg-[#8b5cf6] text-black rounded-xl font-bold text-sm hover:bg-[#8b5cf6]/80 transition-colors"
             >
               Mark Paid
             </button>

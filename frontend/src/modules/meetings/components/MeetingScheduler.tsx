@@ -109,8 +109,8 @@ export function MeetingScheduler({ onSubmit, onCancel, initialData, isLoading }:
 
     const getProviderBadge = (type: MeetingProvider) => {
         const badges = {
-            zoom: <Badge className="bg-backgroundlue-500">Zoom</Badge>,
-            google_meet: <Badge className="bg-green-500">Google Meet</Badge>,
+            zoom: <Badge className="bg-violet-500">Zoom</Badge>,
+            google_meet: <Badge className="bg-violet-500">Google Meet</Badge>,
             microsoft_teams: <Badge className="bg-purple-500">MS Teams</Badge>,
             internal: <Badge className="bg-gray-500">Internal</Badge>
         };

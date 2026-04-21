@@ -101,7 +101,7 @@ export const NotificationList: React.FC<NotificationListProps> = ({ onNotificati
         <div className="flex items-center gap-2">
           <h3 className="font-semibold text-lg">Notifications</h3>
           {unreadCount > 0 && (
-            <span className="bg-[#BAFF00] text-black text-xs px-2 py-0.5 rounded-full font-medium">
+            <span className="bg-[#8b5cf6] text-black text-xs px-2 py-0.5 rounded-full font-medium">
               {unreadCount} new
             </span>
           )}
@@ -118,31 +118,31 @@ export const NotificationList: React.FC<NotificationListProps> = ({ onNotificati
           <TabsList className="w-full justify-start gap-1 bg-transparent h-auto p-0">
             <TabsTrigger 
               value="all" 
-              className="data-[state=active]:bg-[#BAFF00] data-[state=active]:text-black"
+              className="data-[state=active]:bg-[#8b5cf6] data-[state=active]:text-black"
             >
               All
             </TabsTrigger>
             <TabsTrigger 
               value="Task" 
-              className="data-[state=active]:bg-[#BAFF00] data-[state=active]:text-black"
+              className="data-[state=active]:bg-[#8b5cf6] data-[state=active]:text-black"
             >
               Tasks
             </TabsTrigger>
             <TabsTrigger 
               value="Project" 
-              className="data-[state=active]:bg-[#BAFF00] data-[state=active]:text-black"
+              className="data-[state=active]:bg-[#8b5cf6] data-[state=active]:text-black"
             >
               Projects
             </TabsTrigger>
             <TabsTrigger 
               value="Message" 
-              className="data-[state=active]:bg-[#BAFF00] data-[state=active]:text-black"
+              className="data-[state=active]:bg-[#8b5cf6] data-[state=active]:text-black"
             >
               Messages
             </TabsTrigger>
             <TabsTrigger 
               value="System" 
-              className="data-[state=active]:bg-[#BAFF00] data-[state=active]:text-black"
+              className="data-[state=active]:bg-[#8b5cf6] data-[state=active]:text-black"
             >
               System
             </TabsTrigger>
@@ -153,7 +153,7 @@ export const NotificationList: React.FC<NotificationListProps> = ({ onNotificati
       <ScrollArea className="flex-1">
         {loading && notifications.length === 0 ? (
           <div className="flex items-center justify-center p-8">
-            <Loader2 className="w-6 h-6 animate-spin text-[#BAFF00]" />
+            <Loader2 className="w-6 h-6 animate-spin text-[#8b5cf6]" />
           </div>
         ) : notifications.length === 0 ? (
           <div className="flex flex-col items-center justify-center p-8 text-center">

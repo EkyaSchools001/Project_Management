@@ -49,8 +49,8 @@ export default function WorkloadChart({ teamMembers = [], tasks = [] }) {
 
     const getLoadColor = (load) => {
         if (load > 40) return 'bg-red-400';
-        if (load > 25) return 'bg-[#BAFF00]';
-        return 'bg-backgroundlue-400';
+        if (load > 25) return 'bg-[#8b5cf6]';
+        return 'bg-violet-400';
     };
 
     const getLoadCategoryBadge = (category) => {
@@ -58,9 +58,9 @@ export default function WorkloadChart({ teamMembers = [], tasks = [] }) {
             case 'overloaded':
                 return { class: 'bg-red-400/20 text-red-400', label: 'Overloaded' };
             case 'underutilized':
-                return { class: 'bg-backgroundlue-400/20 text-blue-400', label: 'Underutilized' };
+                return { class: 'bg-violet-400/20 text-blue-400', label: 'Underutilized' };
             default:
-                return { class: 'bg-[#BAFF00]/20 text-[#BAFF00]', label: 'Optimal' };
+                return { class: 'bg-[#8b5cf6]/20 text-[#8b5cf6]', label: 'Optimal' };
         }
     };
 
@@ -82,7 +82,7 @@ export default function WorkloadChart({ teamMembers = [], tasks = [] }) {
             <div className="flex items-center justify-between mb-6">
                 <div>
                     <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
-                        <Users className="w-5 h-5 text-[#BAFF00]" />
+                        <Users className="w-5 h-5 text-[#8b5cf6]" />
                         Team Workload
                     </h3>
                     <p className="text-sm text-foreground/50">Workload distribution analysis</p>
@@ -94,11 +94,11 @@ export default function WorkloadChart({ teamMembers = [], tasks = [] }) {
                     <p className="text-2xl font-bold text-red-400">{workloadData?.summary?.overloaded || 0}</p>
                     <p className="text-xs text-foreground/50">Overloaded</p>
                 </div>
-                <div className="p-4 bg-[#BAFF00]/10 rounded-xl border border-[#BAFF00]/20 text-center">
-                    <p className="text-2xl font-bold text-[#BAFF00]">{workloadData?.summary?.optimal || 0}</p>
+                <div className="p-4 bg-[#8b5cf6]/10 rounded-xl border border-[#8b5cf6]/20 text-center">
+                    <p className="text-2xl font-bold text-[#8b5cf6]">{workloadData?.summary?.optimal || 0}</p>
                     <p className="text-xs text-foreground/50">Optimal</p>
                 </div>
-                <div className="p-4 bg-backgroundlue-400/10 rounded-xl border border-blue-400/20 text-center">
+                <div className="p-4 bg-violet-400/10 rounded-xl border border-blue-400/20 text-center">
                     <p className="text-2xl font-bold text-blue-400">{workloadData?.summary?.underutilized || 0}</p>
                     <p className="text-xs text-foreground/50">Underutilized</p>
                 </div>
@@ -140,7 +140,7 @@ export default function WorkloadChart({ teamMembers = [], tasks = [] }) {
                 <div className="border-t border-white/10 pt-4">
                     <h4 className="text-sm font-bold text-foreground/80 uppercase tracking-wider mb-3">AI Suggestions</h4>
                     {workloadData.suggestions.map((suggestion, i) => (
-                        <div key={i} className="flex items-center gap-3 p-3 bg-[#BAFF00]/5 rounded-xl border border-[#BAFF00]/20">
+                        <div key={i} className="flex items-center gap-3 p-3 bg-[#8b5cf6]/5 rounded-xl border border-[#8b5cf6]/20">
                             <div className="flex items-center gap-2">
                                 <UserMinus className="w-4 h-4 text-red-400" />
                                 <ArrowRight className="w-4 h-4 text-foreground/40" />

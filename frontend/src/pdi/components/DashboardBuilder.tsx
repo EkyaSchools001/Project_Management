@@ -43,23 +43,23 @@ const WIDGET_OPTIONS = [
   { id: 'hero', type: 'hero', name: 'Hero Section', icon: Sparkles, color: 'bg-indigo-600', defaultContent: 'Premium Title', category: 'UI Elements' },
   { id: 'card', type: 'card', name: 'Feature Card', icon: Layers, color: 'bg-white border border-slate-200', defaultContent: 'Feature Name', category: 'UI Elements' },
   { id: 'text', type: 'text', name: 'Paragraph', icon: AlignLeft, color: 'bg-slate-700', defaultContent: 'Add your custom text here...', category: 'UI Elements' },
-  { id: 'button', type: 'button', name: 'Button', icon: MousePointerClick, color: 'bg-backgroundlue-600', defaultContent: 'Click Me', category: 'UI Elements' },
-  { id: 'image', type: 'image', name: 'Image', icon: ImageIcon, color: 'bg-backgroundmerald-500', defaultContent: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&q=80', category: 'UI Elements' },
+  { id: 'button', type: 'button', name: 'Button', icon: MousePointerClick, color: 'bg-violet-600', defaultContent: 'Click Me', category: 'UI Elements' },
+  { id: 'image', type: 'image', name: 'Image', icon: ImageIcon, color: 'bg-violet-500', defaultContent: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&q=80', category: 'UI Elements' },
   { id: 'video', type: 'video', name: 'Video', icon: Video, color: 'bg-red-600', defaultContent: 'https://www.w3schools.com/html/mov_bbb.mp4', category: 'UI Elements' },
   { id: 'divider', type: 'divider', name: 'Divider', icon: Minus, color: 'bg-slate-400', defaultContent: '', category: 'UI Elements' },
   { id: 'spacer', type: 'spacer', name: 'Spacer', icon: Box, color: 'bg-slate-200', defaultContent: '', category: 'UI Elements' },
 
   // Stats Cards
-  { id: 'stats', type: 'stats', name: 'Stats Card', icon: Activity, color: 'bg-backgroundlue-500', defaultContent: '0', category: 'Stats' },
+  { id: 'stats', type: 'stats', name: 'Stats Card', icon: Activity, color: 'bg-violet-500', defaultContent: '0', category: 'Stats' },
   { id: 'stats_mini', type: 'stats_mini', name: 'Mini Stat', icon: Activity, color: 'bg-indigo-400', defaultContent: '12', category: 'Stats' },
   { id: 'stats_premium', type: 'stats_premium', name: 'Premium Stat', icon: Activity, color: 'bg-white text-red-500 border border-slate-200', defaultContent: '2,450', category: 'Stats' },
-  { id: 'progress_card', type: 'progress_card', name: 'Progress Card', icon: TrendingUp, color: 'bg-backgroundmerald-500', defaultContent: '60', category: 'Stats' },
+  { id: 'progress_card', type: 'progress_card', name: 'Progress Card', icon: TrendingUp, color: 'bg-violet-500', defaultContent: '60', category: 'Stats' },
   { id: 'users', type: 'stats', name: 'User Count', icon: Users, color: 'bg-cyan-500', defaultContent: '0', category: 'Stats' },
   { id: 'goals', type: 'stats', name: 'Goals', icon: Target, color: 'bg-red-500', defaultContent: '0', category: 'Goals' },
-  { id: 'attendance', type: 'stats', name: 'Attendance', icon: Users, color: 'bg-teal-500', defaultContent: '0%', category: 'Stats' },
+  { id: 'attendance', type: 'stats', name: 'Attendance', icon: Users, color: 'bg-fuchsia-500', defaultContent: '0%', category: 'Stats' },
 
   // Charts
-  { id: 'chart_bar', type: 'chart_bar', name: 'Bar Chart', icon: BarChart3, color: 'bg-green-500', defaultContent: 'chart', category: 'Charts' },
+  { id: 'chart_bar', type: 'chart_bar', name: 'Bar Chart', icon: BarChart3, color: 'bg-violet-500', defaultContent: 'chart', category: 'Charts' },
   { id: 'chart_line', type: 'chart_line', name: 'Line Chart', icon: TrendingUp, color: 'bg-purple-500', defaultContent: 'chart', category: 'Charts' },
   { id: 'chart_pie', type: 'chart_pie', name: 'Pie Chart', icon: PieChart, color: 'bg-orange-500', defaultContent: 'chart', category: 'Charts' },
 
@@ -72,16 +72,16 @@ const WIDGET_OPTIONS = [
 
   // Special
   { id: 'observation', type: 'observation', name: 'Observation', icon: Eye, color: 'bg-purple-500', defaultContent: 'obs', category: 'Special' },
-  { id: 'growth', type: 'growth', name: 'Growth', icon: TrendingUp, color: 'bg-green-500', defaultContent: 'growth', category: 'Special' },
-  { id: 'security_feed', type: 'security_feed', name: 'Security Center', icon: ShieldCheck, color: 'bg-backgroundackground text-foreground', defaultContent: 'Active Logs', category: 'Special' },
+  { id: 'growth', type: 'growth', name: 'Growth', icon: TrendingUp, color: 'bg-violet-500', defaultContent: 'growth', category: 'Special' },
+  { id: 'security_feed', type: 'security_feed', name: 'Security Center', icon: ShieldCheck, color: 'bg-background text-foreground', defaultContent: 'Active Logs', category: 'Special' },
   { id: 'chat_mini', type: 'chat_mini', name: 'Chat Widget', icon: MessageSquare, color: 'bg-indigo-50 text-indigo-600', defaultContent: 'Hello Admin!', category: 'Special' },
   { id: 'sparkline', type: 'sparkline', name: 'Growth Sparkline', icon: TrendingUp, color: 'bg-white', defaultContent: '82%', category: 'Charts' },
   { id: 'file_grid', type: 'file_grid', name: 'Document Hub', icon: BookOpen, color: 'bg-white', defaultContent: 'Resource Library', category: 'Lists & Tables' },
 ];
 
 const ROLE_OPTIONS = [
-  { id: 'TEACHER', name: 'TEACHER', displayName: 'Teacher', color: '#14b8a6' },
-  { id: 'LEADER', name: 'LEADER', displayName: 'Leader / Manager', color: '#22c55e' },
+  { id: 'TEACHER', name: 'TEACHER', displayName: 'Teacher', color: '#8b5cf6' },
+  { id: 'LEADER', name: 'LEADER', displayName: 'Leader / Manager', color: '#7c3aed' },
   { id: 'SCHOOL_LEADER', name: 'SCHOOL_LEADER', displayName: 'School Leader', color: '#0ea5e9' },
   { id: 'ADMIN', name: 'ADMIN', displayName: 'Campus Admin', color: '#3b82f6' },
   { id: 'MANAGEMENT', name: 'MANAGEMENT', displayName: 'Management', color: '#f97316' },
@@ -124,7 +124,7 @@ const ROLE_TEMPLATES: Record<string, { name: string; description: string; widget
     description: "School-wide achievement and institutional health tracking",
     widgets: [
        { id: 'sl1', type: 'hero', name: 'Principal Header', content: 'Lead with Excellence, Campus', x: 0, y: 0, width: 12, height: 5, 
-         styles: { backgroundGradient: 'linear-gradient(135deg, #064e3b 0%, #059669 100%)', color: '#ffffff', textAlign: 'left', borderRadius: '32px', badge: 'CAMPUS PRINCIPAL' } },
+         styles: { backgroundGradient: 'linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%)', color: '#ffffff', textAlign: 'left', borderRadius: '32px', badge: 'CAMPUS PRINCIPAL' } },
        { id: 'sl2', type: 'stats_premium', name: 'Mean Student GPA', content: '3.9', x: 0, y: 5, width: 4, height: 3, styles: { borderRadius: '20px', trendValue: '+0.1', trendUp: true } },
        { id: 'sl3', type: 'stats_premium', name: 'Staff Retention', content: '98%', x: 4, y: 5, width: 4, height: 3, styles: { borderRadius: '20px', trendValue: 'Industry Leading', trendUp: true } },
        { id: 'sl4', type: 'stats_premium', name: 'Safety Audit', content: 'Pass', x: 8, y: 5, width: 4, height: 3, styles: { borderRadius: '20px', trendValue: 'Verified', trendUp: true } },
@@ -148,7 +148,7 @@ const ROLE_TEMPLATES: Record<string, { name: string; description: string; widget
     description: "High-level institutional performance and corporate overview",
     widgets: [
       { id: 'm1', type: 'hero', name: 'Governance Hub', content: 'Executive Insights, Global', x: 0, y: 0, width: 12, height: 5, 
-        styles: { backgroundGradient: 'linear-gradient(135deg, #312e81 0%, #047857 100%)', color: '#ffffff', textAlign: 'left', borderRadius: '24px', badge: 'CORPORATE BOARD' } },
+        styles: { backgroundGradient: 'linear-gradient(135deg, #312e81 0%, #6d28d9 100%)', color: '#ffffff', textAlign: 'left', borderRadius: '24px', badge: 'CORPORATE BOARD' } },
       { id: 'm2', type: 'chart_line', name: 'Multi-Year Revenue Matrix', content: 'Revenue', x: 0, y: 5, width: 12, height: 10, styles: { borderRadius: '20px' } },
       { id: 'm3', type: 'stats_premium', name: 'Group ROI', content: '+24%', x: 0, y: 15, width: 6, height: 4, styles: { borderRadius: '24px', trendValue: '+3.2%', trendUp: true } },
       { id: 'm4', type: 'stats_premium', name: 'Global Enrollment', content: '48k', x: 6, y: 15, width: 6, height: 4, styles: { borderRadius: '24px', trendValue: '+8.5%', trendUp: true } },
@@ -818,7 +818,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
             </div>
           </div>
           <div className="flex items-center gap-2 mt-4">
-            <div className={`flex items-center text-[12px] font-bold px-2 py-0.5 rounded-full ${isUp ? 'text-emerald-600 bg-backgroundmerald-50' : 'text-slate-500 bg-slate-100'}`}>
+            <div className={`flex items-center text-[12px] font-bold px-2 py-0.5 rounded-full ${isUp ? 'text-violet-600 bg-violet-50' : 'text-slate-500 bg-slate-100'}`}>
               {isUp ? <ArrowUp className="w-3 h-3 mr-1" /> : null}
               {widget.styles?.trendValue || 'Stable trend'}
             </div>
@@ -835,7 +835,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
         <div className="absolute bottom-6 right-6 z-50 animate-bounce cursor-pointer">
           <div className="bg-white px-4 py-2 rounded-full shadow-2xl border border-slate-100 flex items-center gap-3">
             <div className="text-xs font-bold text-slate-900">{widget.content} 🤙</div>
-            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-400 to-indigo-500 flex items-center justify-center p-0.5">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-violet-400 to-indigo-500 flex items-center justify-center p-0.5">
               <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
                 <img src="https://ui-avatars.com/api/?name=AI+Bot&background=6366f1&color=fff" alt="Bot" className="w-full h-full object-cover" />
               </div>
@@ -860,7 +860,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
           </div>
           <div className="h-4 w-full bg-backgroundlack/20 rounded-full overflow-hidden border border-white/10 relative z-10">
             <div 
-              className="h-full bg-gradient-to-r from-yellow-300 to-emerald-400 transition-all duration-1000 shadow-[0_0_15px_rgba(250,204,21,0.5)]"
+              className="h-full bg-gradient-to-r from-yellow-300 to-violet-400 transition-all duration-1000 shadow-[0_0_15px_rgba(250,204,21,0.5)]"
               style={{ width: `${Math.min(100, (Number(widget.content) / 20) * 100)}%` }}
             />
           </div>
@@ -909,7 +909,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
         className="h-full flex flex-col items-center justify-center p-6 bg-white shadow-sm transition-all hover:shadow-md"
         style={{ borderRadius: (widget.styles?.borderRadius as string) || '12px', ...widget.styles } as any}
       >
-        <div className={`p-3 rounded-2xl mb-3 ${(option as any)?.color || 'bg-backgroundlue-500'} text-foreground shadow-lg`}>
+        <div className={`p-3 rounded-2xl mb-3 ${(option as any)?.color || 'bg-violet-500'} text-foreground shadow-lg`}>
           <IconComponent className="w-6 h-6" />
         </div>
         <div className="text-center font-black text-3xl tracking-tight leading-none mb-1">{widget.content || '0'}</div>
@@ -930,7 +930,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
   return (
     <div className="h-screen flex flex-col bg-slate-50 font-sans">
       {/* Top Navbar / Super Admin Panel */}
-      <div className="bg-backgroundackground text-foreground px-6 py-3 flex items-center justify-between shadow-md z-20 relative">
+      <div className="bg-background text-foreground px-6 py-3 flex items-center justify-between shadow-md z-20 relative">
         <div className="flex items-center gap-4">
           <div className="bg-indigo-600 p-2 rounded-lg shadow-sm">
             <LayoutDashboard className="w-5 h-5 text-foreground" />
@@ -1400,7 +1400,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
                           <SelectItem value="none">None</SelectItem>
                           <SelectItem value="1px solid #e2e8f0">Solid Low</SelectItem>
                           <SelectItem value="1px solid #cbd5e1">Solid Mid</SelectItem>
-                          <SelectItem value="2px solid #10b981">Solid Indigo</SelectItem>
+                          <SelectItem value="2px solid #8b5cf6">Solid Indigo</SelectItem>
                           <SelectItem value="1px dashed #cbd5e1">Dashed</SelectItem>
                         </SelectContent>
                       </Select>

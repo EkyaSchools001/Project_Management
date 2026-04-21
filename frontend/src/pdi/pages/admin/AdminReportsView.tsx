@@ -34,7 +34,7 @@ const campusActivityData = [
 
 const courseDistributionData = [
     { name: 'Pedagogy', value: 45, color: '#8884d8' },
-    { name: 'Technology', value: 25, color: '#82ca9d' },
+    { name: 'Technology', value: 25, color: '#a78bfa' },
     { name: 'Leadership', value: 15, color: '#ffc658' },
     { name: 'Subject Specific', value: 15, color: '#ff8042' },
 ];
@@ -163,7 +163,7 @@ export function AdminReportsView() {
                         <div className="flex items-center gap-2">
                             <Button
                                 onClick={() => setIsAIModalOpen(true)}
-                                className="gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-lg shadow-emerald-500/20 font-bold border-none"
+                                className="gap-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 shadow-lg shadow-violet-500/20 font-bold border-none"
                             >
                                 <Sparkles className="w-4 h-4 text-amber-300" />
                                 AI Analysis
@@ -283,8 +283,8 @@ export function AdminReportsView() {
                                                 <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
                                             </linearGradient>
                                             <linearGradient id="colorTeachers" x1="0" y1="0" x2="0" y2="1">
-                                                <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
-                                                <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+                                                <stop offset="5%" stopColor="#a78bfa" stopOpacity={0.8} />
+                                                <stop offset="95%" stopColor="#a78bfa" stopOpacity={0} />
                                             </linearGradient>
                                             <linearGradient id="colorGoals" x1="0" y1="0" x2="0" y2="1">
                                                 <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.8} />
@@ -300,7 +300,7 @@ export function AdminReportsView() {
                                         />
                                         <Legend />
                                         <Area type="monotone" dataKey="total" stroke="#8884d8" fillOpacity={1} fill="url(#colorTotal)" name="Total Users" />
-                                        <Area type="monotone" dataKey="teachers" stroke="#82ca9d" fillOpacity={1} fill="url(#colorTeachers)" name="Teachers" />
+                                        <Area type="monotone" dataKey="teachers" stroke="#a78bfa" fillOpacity={1} fill="url(#colorTeachers)" name="Teachers" />
                                         <Area type="monotone" dataKey="goals" stroke="#f59e0b" fillOpacity={1} fill="url(#colorGoals)" name="Goals Created" />
                                     </AreaChart>
                                 </ResponsiveContainer>
@@ -330,7 +330,7 @@ export function AdminReportsView() {
                                             dataKey="value"
                                         >
                                             {analyticsData.courseDistribution.map((entry: any, index: number) => (
-                                                <Cell key={`cell-${index}`} fill={entry.color || ['#8884d8', '#82ca9d', '#ffc658', '#ff8042'][index % 4]} />
+                                                <Cell key={`cell-${index}`} fill={entry.color || ['#8884d8', '#a78bfa', '#ffc658', '#ff8042'][index % 4]} />
                                             ))}
                                         </Pie>
                                         <Tooltip
@@ -368,7 +368,7 @@ export function AdminReportsView() {
                                         />
                                         <Legend />
                                         <Bar dataKey="observations" name="Observations" fill="#8884d8" radius={[4, 4, 0, 0]} />
-                                        <Bar dataKey="goals" name="Goals" fill="#82ca9d" radius={[4, 4, 0, 0]} />
+                                        <Bar dataKey="goals" name="Goals" fill="#a78bfa" radius={[4, 4, 0, 0]} />
                                     </BarChart>
                                 </ResponsiveContainer>
                             </div>

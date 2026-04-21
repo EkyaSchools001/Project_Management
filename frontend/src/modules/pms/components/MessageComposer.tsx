@@ -282,7 +282,7 @@ const MessageComposer = ({ roomId, onSend, disabled }) => {
                             ? 'bg-rose-600 text-foreground animate-pulse' 
                             : message.trim() 
                                 ? 'bg-indigo-600 text-foreground hover:bg-indigo-700' 
-                                : 'bg-backgroundackground text-foreground hover:bg-backgroundlack'
+                                : 'bg-background text-foreground hover:bg-backgroundlack'
                     }`}
                 >
                     {isUploading ? (

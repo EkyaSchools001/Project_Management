@@ -57,7 +57,7 @@ export function SidebarAccordionItem({
                         className={cn(
                             "p-2 rounded-lg transition-all duration-200",
                             isActive
-                                ? "bg-[#BAFF00] text-black shadow-lg shadow-[#BAFF00]/20"
+                                ? "bg-[#8b5cf6] text-black shadow-lg shadow-[#8b5cf6]/20"
                                 : "text-foreground/60 hover:bg-white/5 hover:text-foreground"
                         )}
                     >
@@ -68,7 +68,7 @@ export function SidebarAccordionItem({
                         className={cn(
                             "p-2 rounded-lg transition-all duration-200",
                             isActive
-                                ? "bg-[#BAFF00] text-black shadow-lg shadow-[#BAFF00]/20"
+                                ? "bg-[#8b5cf6] text-black shadow-lg shadow-[#8b5cf6]/20"
                                 : "text-foreground/60 hover:bg-white/5 hover:text-foreground"
                         )}
                     >
@@ -87,7 +87,7 @@ export function SidebarAccordionItem({
                             className={cn(
                                 "flex items-center justify-between gap-2 px-3 py-1.5 rounded-md text-xs transition-colors",
                                 isActive
-                                    ? "bg-[#BAFF00] text-black"
+                                    ? "bg-[#8b5cf6] text-black"
                                     : "text-foreground hover:bg-white/10"
                             )}
                         >
@@ -101,7 +101,7 @@ export function SidebarAccordionItem({
                                 className={cn(
                                     "flex items-center justify-between gap-2 px-3 py-1.5 rounded-md text-xs transition-colors",
                                     location.pathname === sub.path
-                                        ? "bg-[#BAFF00] text-black"
+                                        ? "bg-[#8b5cf6] text-black"
                                         : "text-foreground hover:bg-white/10"
                                     )}
                             >
@@ -126,7 +126,7 @@ export function SidebarAccordionItem({
                 className={cn(
                     "w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition-all duration-200 group",
                     isActive
-                        ? "bg-[#BAFF00]/10 text-[#BAFF00]"
+                        ? "bg-[#8b5cf6]/10 text-[#8b5cf6]"
                         : "text-foreground/60 hover:bg-white/5 hover:text-foreground"
                 )}
             >
@@ -134,7 +134,7 @@ export function SidebarAccordionItem({
                     <module.icon
                         className={cn(
                             "w-5 h-5 shrink-0 transition-transform",
-                            isActive ? "text-[#BAFF00]" : "group-hover:scale-110 text-foreground/50"
+                            isActive ? "text-[#8b5cf6]" : "group-hover:scale-110 text-foreground/50"
                         )}
                         weight={isActive ? "fill" : "bold"}
                         size={18}
@@ -166,7 +166,7 @@ export function SidebarAccordionItem({
                     <module.icon
                         className={cn(
                             "w-5 h-5 shrink-0 transition-transform",
-                            isActive ? "text-[#BAFF00]" : "text-foreground/50 group-hover:scale-110"
+                            isActive ? "text-[#8b5cf6]" : "text-foreground/50 group-hover:scale-110"
                         )}
                         weight={isActive ? "fill" : "bold"}
                         size={18}
@@ -199,7 +199,7 @@ export function SidebarAccordionItem({
                                 className={cn(
                                     "flex items-center justify-between gap-3 px-3 py-2 rounded-lg transition-all duration-200 group relative",
                                     "text-foreground/40 hover:text-foreground hover:bg-white/5",
-                                    isSubActive && "text-[#BAFF00] font-bold bg-[#BAFF00]/5 border-r-2 border-[#BAFF00]"
+                                    isSubActive && "text-[#8b5cf6] font-bold bg-[#8b5cf6]/5 border-r-2 border-[#8b5cf6]"
                                 )}
                             >
                                 <div className="flex items-center gap-2">

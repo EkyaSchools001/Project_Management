@@ -27,29 +27,29 @@
   --radius-sm:                 8px;
 
   /* Color overrides to eliminate blue and slate/black themes */
-  --color-blue-50: var(--color-emerald-50);
-  --color-blue-100: var(--color-emerald-100);
-  --color-blue-200: var(--color-emerald-200);
-  --color-blue-300: var(--color-emerald-300);
-  --color-blue-400: var(--color-emerald-400);
-  --color-blue-500: var(--color-emerald-500);
-  --color-blue-600: var(--color-emerald-600);
-  --color-blue-700: var(--color-emerald-700);
-  --color-blue-800: var(--color-emerald-800);
-  --color-blue-900: var(--color-emerald-900);
-  --color-blue-950: var(--color-emerald-950);
+  --color-blue-50: var(--color-violet-50);
+  --color-blue-100: var(--color-violet-100);
+  --color-blue-200: var(--color-violet-200);
+  --color-blue-300: var(--color-violet-300);
+  --color-blue-400: var(--color-violet-400);
+  --color-blue-500: var(--color-violet-500);
+  --color-blue-600: var(--color-violet-600);
+  --color-blue-700: var(--color-violet-700);
+  --color-blue-800: var(--color-violet-800);
+  --color-blue-900: var(--color-violet-900);
+  --color-blue-950: var(--color-violet-950);
 
-  --color-indigo-50: var(--color-teal-50);
-  --color-indigo-100: var(--color-teal-100);
-  --color-indigo-200: var(--color-teal-200);
-  --color-indigo-300: var(--color-teal-300);
-  --color-indigo-400: var(--color-teal-400);
-  --color-indigo-500: var(--color-teal-500);
-  --color-indigo-600: var(--color-teal-600);
-  --color-indigo-700: var(--color-teal-700);
-  --color-indigo-800: var(--color-teal-800);
-  --color-indigo-900: var(--color-teal-900);
-  --color-indigo-950: var(--color-teal-950);
+  --color-indigo-50: var(--color-fuchsia-50);
+  --color-indigo-100: var(--color-fuchsia-100);
+  --color-indigo-200: var(--color-fuchsia-200);
+  --color-indigo-300: var(--color-fuchsia-300);
+  --color-indigo-400: var(--color-fuchsia-400);
+  --color-indigo-500: var(--color-fuchsia-500);
+  --color-indigo-600: var(--color-fuchsia-600);
+  --color-indigo-700: var(--color-fuchsia-700);
+  --color-indigo-800: var(--color-fuchsia-800);
+  --color-indigo-900: var(--color-fuchsia-900);
+  --color-indigo-950: var(--color-fuchsia-950);
 
   --color-slate-50: var(--color-zinc-50);
   --color-slate-100: var(--color-zinc-100);
@@ -76,8 +76,8 @@
   --popover:            0 0% 100%;
   --popover-foreground: 240 10% 15%;
 
-  /* Primary — Deep Corporate Emerald */
-  --primary:            160 84% 25%;      /* #0A7545 */
+  /* Primary — Professional Iris/Violet */
+  --primary:            262 83% 58%;      
   --primary-foreground: 0 0% 100%;
 
   /* Secondary — subtle light gray */
@@ -89,8 +89,8 @@
   --muted-foreground:   240 5% 45%;
 
   /* Accent */
-  --accent:             160 84% 94%;      /* very light green */
-  --accent-foreground:  160 84% 25%;
+  --accent:             262 83% 96%;      /* very light violet */
+  --accent-foreground:  262 83% 58%;
 
   /* Danger */
   --destructive:        0 84% 60%;
@@ -99,21 +99,21 @@
   /* Borders */
   --border:             240 5% 85%;
   --input:              240 5% 85%;
-  --ring:               160 84% 25%;
+  --ring:               262 83% 58%;
   --radius:             0.75rem;
 
   /* Sidebar */
   --sidebar-background: 0 0% 100%;
   --sidebar-foreground: 240 10% 20%;
-  --sidebar-primary:    160 84% 25%;
+  --sidebar-primary:    262 83% 58%;
   --sidebar-primary-foreground: 0 0% 100%;
   --sidebar-accent:     240 5% 95%;
   --sidebar-accent-foreground: 240 10% 15%;
   --sidebar-border:     240 5% 85%;
-  --sidebar-ring:       160 84% 25%;
+  --sidebar-ring:       262 83% 58%;
 
   /* Custom semantic colors */
-  --success:            160 84% 39%;
+  --success:            262 83% 58%;
   --warning:            38 92% 50%;
   --info:               199 89% 48%;
 }

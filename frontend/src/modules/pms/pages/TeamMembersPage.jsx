@@ -19,7 +19,7 @@ const TeamMembersPage = () => {
     const [team, setTeam] = useState([
         { id: '1', name: 'John Doe', role: 'Project Lead', status: 'Active', avatar: 'JD', departmentId: 'tech', email: 'john.doe@school.edu', phone: '+1 (555) 123-4567', color: 'from-blue-500 to-indigo-600' },
         { id: '2', name: 'Jane Smith', role: 'Coordinator', status: 'In Meeting', avatar: 'JS', departmentId: 'ops', email: 'jane.smith@school.edu', phone: '+1 (555) 234-5678', color: 'from-violet-500 to-purple-600' },
-        { id: '3', name: 'Robert Brown', role: 'Support Staff', status: 'Offline', avatar: 'RB', departmentId: 'hr', email: 'robert.b@school.edu', phone: '+1 (555) 345-6789', color: 'from-emerald-400 to-teal-600' },
+        { id: '3', name: 'Robert Brown', role: 'Support Staff', status: 'Offline', avatar: 'RB', departmentId: 'hr', email: 'robert.b@school.edu', phone: '+1 (555) 345-6789', color: 'from-violet-400 to-fuchsia-600' },
         { id: '4', name: 'Emily Davis', role: 'Designer', status: 'Active', avatar: 'ED', departmentId: 'tech', email: 'emily.d@school.edu', phone: '+1 (555) 456-7890', color: 'from-rose-500 to-pink-600' }
     ]);
 
@@ -27,7 +27,7 @@ const TeamMembersPage = () => {
 
     const getStatusColor = (status) => {
         switch (status) {
-            case 'Active': return 'bg-backgroundmerald-400 shadow-[0_0_20px_rgba(52,211,153,0.6)] animate-pulse-glow';
+            case 'Active': return 'bg-violet-400 shadow-[0_0_20px_rgba(52,211,153,0.6)] animate-pulse-glow';
             case 'In Meeting': return 'bg-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.6)] animate-pulse';
             default: return 'bg-slate-400 opacity-50';
         }
@@ -80,13 +80,13 @@ const TeamMembersPage = () => {
             className="max-w-[1800px] mx-auto space-y-16 p-6 sm:p-10 lg:p-16 pb-40"
         >
             {/* High-Vibrancy Header */}
-            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-backgroundackground rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
+            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-background rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-violet-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-[600px] h-[600px] bg-indigo-500 rounded-full blur-[200px] opacity-10 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 
                 <div className="space-y-10 relative z-10 flex-1 w-full sm:w-auto">
                     <div className="inline-flex items-center gap-6 px-10 py-4 bg-white/5 rounded-full border border-white/10 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] backdrop-blur-md">
-                        <div className="w-2.5 h-2.5 rounded-full bg-backgroundmerald-400 animate-pulse-glow shadow-[0_0_10px_rgba(52,211,153,0.4)]" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-violet-400 animate-pulse-glow shadow-[0_0_10px_rgba(52,211,153,0.4)]" />
                         Team Synchronization Protocol: Operational
                     </div>
                     <h1 className="text-5xl sm:text-8xl lg:text-9xl font-black text-foreground tracking-tighter uppercase leading-[0.85]">
@@ -206,7 +206,7 @@ const TeamMembersPage = () => {
                                             <div className="pt-4">
                                                 <p className="text-[11px] uppercase font-black text-muted-foreground tracking-[0.4em] mb-4">Sync Reliability</p>
                                                 <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-                                                    <motion.div initial={{ width: 0 }} animate={{ width: "94%" }} className="h-full bg-backgroundmerald-500 rounded-full" />
+                                                    <motion.div initial={{ width: 0 }} animate={{ width: "94%" }} className="h-full bg-violet-500 rounded-full" />
                                                 </div>
                                             </div>
                                         </div>

@@ -428,7 +428,7 @@ export function AdminCalendarView() {
                 <Card className="  shadow-2xl bg-zinc-950 text-foreground overflow-hidden relative">
                     {/* decorative gradient blob */}
                     <div className="absolute top-0 right-0 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl -translate-y-20 translate-x-20 pointer-events-none" />
-                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-backgroundlue-500/10 rounded-full blur-3xl translate-y-20 -translate-x-20 pointer-events-none" />
+                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl translate-y-20 -translate-x-20 pointer-events-none" />
 
                     <CardContent className="p-8 md:p-10 relative z-10">
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-10 items-start">
@@ -447,7 +447,7 @@ export function AdminCalendarView() {
                                     mode="single"
                                     selected={date}
                                     onSelect={setDate}
-                                    className="rounded-3xl border-none bg-backgroundackground/50 p-8 w-full shadow-inner"
+                                    className="rounded-3xl border-none bg-background/50 p-8 w-full shadow-inner"
                                     classNames={{
                                         months: "flex flex-col space-y-6",
                                         month: "space-y-6 w-full",
@@ -475,7 +475,7 @@ export function AdminCalendarView() {
                                     }}
                                     modifiersStyles={{
                                         pedagogy: { border: '2px solid #3b82f6', color: 'white' }, // Blue
-                                        technology: { border: '2px solid #10b981', color: 'white' }, // Green
+                                        technology: { border: '2px solid #8b5cf6', color: 'white' }, // Green
                                         assessment: { border: '2px solid #f43f5e', color: 'white' }, // Red
                                         other: { border: '2px solid #eab308', color: 'white' } // Yellow
                                     }}
@@ -484,7 +484,7 @@ export function AdminCalendarView() {
 
                             {/* Right side: Legend and Filters */}
                             <div className="lg:col-span-5 h-full flex flex-col justify-center pt-8 lg:pt-20">
-                                <div className="bg-backgroundackground/40 rounded-3xl p-8 border border-zinc-800/50 backdrop-blur-sm space-y-8">
+                                <div className="bg-background/40 rounded-3xl p-8 border border-zinc-800/50 backdrop-blur-sm space-y-8">
                                     <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
                                         <h4 className="text-sm font-bold text-muted-foreground capitalize tracking-widest">Training Legend</h4>
                                         <Badge variant="outline" className="bg-white/5 border-zinc-700 text-zinc-300">
@@ -495,17 +495,17 @@ export function AdminCalendarView() {
                                     <div className="space-y-5">
                                         <div className="flex items-center justify-between group cursor-default">
                                             <span className="flex items-center gap-4 text-zinc-300 group-hover:text-foreground transition-colors font-medium">
-                                                <span className="w-3 h-3 rounded-full bg-backgroundlue-500 shadow-[0_0_12px_rgba(59,130,246,0.5)]"></span> Pedagogy
+                                                <span className="w-3 h-3 rounded-full bg-violet-500 shadow-[0_0_12px_rgba(59,130,246,0.5)]"></span> Pedagogy
                                             </span>
-                                            <span className="font-mono text-zinc-100 bg-backgroundlue-500/10 px-3 py-1 rounded-xl border border-blue-500/20">
+                                            <span className="font-mono text-zinc-100 bg-violet-500/10 px-3 py-1 rounded-xl border border-blue-500/20">
                                                 {training.filter((t: any) => (t.topic || t.type) === 'Pedagogy').length}
                                             </span>
                                         </div>
                                         <div className="flex items-center justify-between group cursor-default">
                                             <span className="flex items-center gap-4 text-zinc-300 group-hover:text-foreground transition-colors font-medium">
-                                                <span className="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_12px_rgba(16,185,129,0.5)]"></span> Technology
+                                                <span className="w-3 h-3 rounded-full bg-violet-500 shadow-[0_0_12px_rgba(16,185,129,0.5)]"></span> Technology
                                             </span>
-                                            <span className="font-mono text-zinc-100 bg-green-500/10 px-3 py-1 rounded-xl border border-green-500/20">
+                                            <span className="font-mono text-zinc-100 bg-violet-500/10 px-3 py-1 rounded-xl border border-violet-500/20">
                                                 {training.filter((t: any) => (t.topic || t.type) === 'Technology').length}
                                             </span>
                                         </div>
@@ -539,7 +539,7 @@ export function AdminCalendarView() {
                 </Card>
 
                 {/* Events List - Fixed duplication */}
-                <Card className="  shadow-2xl bg-backgroundackground/60 backdrop-blur-xl rounded-[2rem] overflow-hidden border border-muted/20">
+                <Card className="  shadow-2xl bg-background/60 backdrop-blur-xl rounded-[2rem] overflow-hidden border border-muted/20">
                     <CardHeader className="px-8 py-8 border-b bg-muted/5">
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div>
@@ -552,7 +552,7 @@ export function AdminCalendarView() {
                             </div>
                             <div className="flex flex-wrap items-center gap-4">
                                 <Select value={selectedCampus} onValueChange={setSelectedCampus}>
-                                    <SelectTrigger className="w-[180px] h-12 bg-muted/40 border-transparent focus:bg-backgroundackground focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all font-medium">
+                                    <SelectTrigger className="w-[180px] h-12 bg-muted/40 border-transparent focus:bg-background focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all font-medium">
                                         <div className="flex items-center gap-2">
                                             <MapPin className="w-4 h-4" />
                                             <SelectValue placeholder="All Campuses" />
@@ -565,7 +565,7 @@ export function AdminCalendarView() {
                                     </SelectContent>
                                 </Select>
                                 <Select value={selectedType} onValueChange={setSelectedType}>
-                                    <SelectTrigger className="w-[180px] h-12 bg-muted/40 border-transparent focus:bg-backgroundackground focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all font-medium">
+                                    <SelectTrigger className="w-[180px] h-12 bg-muted/40 border-transparent focus:bg-background focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all font-medium">
                                         <div className="flex items-center gap-2">
                                             <Filter className="w-4 h-4" />
                                             <SelectValue placeholder="All Types" />
@@ -583,7 +583,7 @@ export function AdminCalendarView() {
                                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                                     <Input
                                         placeholder="Search sessions..."
-                                        className="pl-12 w-[280px] h-12 bg-muted/40 border-transparent focus:bg-backgroundackground focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all font-medium"
+                                        className="pl-12 w-[280px] h-12 bg-muted/40 border-transparent focus:bg-background focus:ring-2 focus:ring-primary/20 rounded-2xl transition-all font-medium"
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
                                     />
@@ -629,7 +629,7 @@ export function AdminCalendarView() {
                                                             {session.time}
                                                         </div>
                                                         <div className="text-sm font-medium text-muted-foreground flex items-center gap-2.5 pl-0.5">
-                                                            <div className="w-8 h-8 rounded-lg bg-backgroundlue-500/10 flex items-center justify-center">
+                                                            <div className="w-8 h-8 rounded-lg bg-violet-500/10 flex items-center justify-center">
                                                                 <MapPin className="w-4 h-4 text-blue-500" />
                                                             </div>
                                                             {session.location}
@@ -640,7 +640,7 @@ export function AdminCalendarView() {
                                                     <span className={cn(
                                                         "inline-flex items-center px-4 py-1.5 rounded-xl text-xs font-black capitalize tracking-widest border shadow-sm",
                                                         session.status === "Approved"
-                                                            ? "bg-backgroundmerald-500/5 text-emerald-600 border-emerald-500/20"
+                                                            ? "bg-violet-500/5 text-violet-600 border-violet-500/20"
                                                             : "bg-amber-500/5 text-amber-600 border-amber-500/20"
                                                     )}>
                                                         {session.status}
@@ -821,7 +821,7 @@ export function AdminCalendarView() {
                             </p>
                         </div>
                     </div>
-                    <div className="p-8 bg-backgroundackground">
+                    <div className="p-8 bg-background">
                         <div className="rounded-2xl border border-muted/20 overflow-hidden">
                             <Table>
                                 <TableHeader className="bg-muted/5">
@@ -870,7 +870,7 @@ export function AdminCalendarView() {
                         </div>
                         <div className="mt-8 flex justify-end">
                             <Button
-                                className="h-12 px-8 rounded-2xl bg-backgroundackground hover:bg-card text-foreground font-black capitalize tracking-widest text-xs"
+                                className="h-12 px-8 rounded-2xl bg-background hover:bg-card text-foreground font-black capitalize tracking-widest text-xs"
                                 onClick={() => setIsRegistrantsOpen(false)}
                             >
                                 Close View

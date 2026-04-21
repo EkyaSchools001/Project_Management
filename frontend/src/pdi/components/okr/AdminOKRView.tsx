@@ -21,7 +21,7 @@ const CampusRow: React.FC<{ c: CampusOKRMetric; index: number }> = ({ c, index }
         <TableCell>
             <div className="flex items-center gap-2">
                 <Progress value={c.observationCompletionRate} className="h-2 w-18" />
-                <span className={`text-xs font-bold ${c.observationCompletionRate >= 80 ? 'text-emerald-600' : c.observationCompletionRate >= 50 ? 'text-amber-600' : 'text-red-500'}`}>
+                <span className={`text-xs font-bold ${c.observationCompletionRate >= 80 ? 'text-violet-600' : c.observationCompletionRate >= 50 ? 'text-amber-600' : 'text-red-500'}`}>
                     {c.observationCompletionRate}%
                 </span>
             </div>
@@ -65,9 +65,9 @@ export const AdminOKRView: React.FC<Props> = ({ data, isManagement }) => {
                 </Card>
                 <Card className="  shadow-xl rounded-2xl">
                     <CardContent className="pt-5">
-                        <Eye className="w-5 h-5 text-emerald-500 mb-2" />
+                        <Eye className="w-5 h-5 text-violet-500 mb-2" />
                         <p className="text-[11px] font-bold capitalize tracking-wider text-muted-foreground">Obs Completion</p>
-                        <p className="text-2xl font-black text-emerald-700">{overall.observationCompletionRate}%</p>
+                        <p className="text-2xl font-black text-violet-700">{overall.observationCompletionRate}%</p>
                         <p className="text-xs text-muted-foreground">System-wide avg</p>
                     </CardContent>
                 </Card>

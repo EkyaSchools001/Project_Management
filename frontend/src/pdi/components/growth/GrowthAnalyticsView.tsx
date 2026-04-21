@@ -79,7 +79,7 @@ const TeacherTable = ({
                                     <Badge
                                         variant="secondary"
                                         className={t.academics === 'CORE'
-                                            ? 'bg-backgroundlue-50 text-blue-700 border-none font-bold text-[10px]'
+                                            ? 'bg-violet-50 text-blue-700 border-none font-bold text-[10px]'
                                             : 'bg-purple-50 text-purple-700 border-none font-bold text-[10px]'}
                                     >
                                         {t.academics === 'CORE' ? 'Core' : 'Non-Core'}
@@ -88,7 +88,7 @@ const TeacherTable = ({
                                 <TableCell className="text-center font-mono font-bold text-zinc-700">{t.observationCount}</TableCell>
                                 <TableCell className="text-center">
                                     <div className="flex items-center justify-center gap-2">
-                                        <div className={`w-2 h-2 rounded-full ${t.avgScore >= 4 ? 'bg-backgroundmerald-500' : t.avgScore >= 3 ? 'bg-amber-500' : t.avgScore > 0 ? 'bg-rose-500' : 'bg-zinc-200'}`} />
+                                        <div className={`w-2 h-2 rounded-full ${t.avgScore >= 4 ? 'bg-violet-500' : t.avgScore >= 3 ? 'bg-amber-500' : t.avgScore > 0 ? 'bg-rose-500' : 'bg-zinc-200'}`} />
                                         <span className="font-mono font-bold text-zinc-700">{t.avgScore > 0 ? t.avgScore : '--'}</span>
                                     </div>
                                 </TableCell>
@@ -150,8 +150,8 @@ const GrowthAnalyticsView = () => {
     const nonCoreTeachers = allTeachers.filter(t => t.academics === 'NON_CORE');
 
     const stats = [
-        { title: "Total Teachers", value: data.totalTeachers || allTeachers.length, icon: Users, color: "text-blue-600", bg: "bg-backgroundlue-100", trend: "All Staff" },
-        { title: "Core Teachers", value: data.totalCore || coreTeachers.length, icon: BookOpen, color: "text-emerald-600", bg: "bg-backgroundmerald-100", trend: "Academic Core" },
+        { title: "Total Teachers", value: data.totalTeachers || allTeachers.length, icon: Users, color: "text-blue-600", bg: "bg-violet-100", trend: "All Staff" },
+        { title: "Core Teachers", value: data.totalCore || coreTeachers.length, icon: BookOpen, color: "text-violet-600", bg: "bg-violet-100", trend: "Academic Core" },
         { title: "Non-Core Teachers", value: data.totalNonCore || nonCoreTeachers.length, icon: Palette, color: "text-purple-600", bg: "bg-purple-100", trend: "Non-Core" },
         { title: "Target Completion", value: `${Math.round(data.observationCompletionRate)}%`, icon: Target, color: "text-amber-600", bg: "bg-amber-100", trend: "Annual Goal" },
     ];
@@ -226,7 +226,7 @@ const GrowthAnalyticsView = () => {
                                     <p className="text-[8px] font-bold text-muted-foreground">Inst.</p>
                                 </div>
                                 <div className="text-center">
-                                    <p className="text-[10px] font-black text-emerald-600">{data.toolUsage.percentages.la}%</p>
+                                    <p className="text-[10px] font-black text-violet-600">{data.toolUsage.percentages.la}%</p>
                                     <p className="text-[8px] font-bold text-muted-foreground">LA</p>
                                 </div>
                                 <div className="text-center">
@@ -382,7 +382,7 @@ const GrowthAnalyticsView = () => {
                                             </div>
                                         </TableCell>
                                         <TableCell className="text-center">
-                                            <Badge variant="secondary" className="bg-backgroundlue-50 text-blue-700 border-none font-bold">
+                                            <Badge variant="secondary" className="bg-violet-50 text-blue-700 border-none font-bold">
                                                 {campus.coreCount} Core
                                             </Badge>
                                         </TableCell>
@@ -393,7 +393,7 @@ const GrowthAnalyticsView = () => {
                                         </TableCell>
                                         <TableCell className="font-mono font-bold text-zinc-700">
                                             <div className="flex items-center gap-2">
-                                                <div className={`w-2 h-2 rounded-full ${campus.avgScore >= 4 ? 'bg-backgroundmerald-500' : campus.avgScore >= 3 ? 'bg-amber-500' : 'bg-rose-500'}`} />
+                                                <div className={`w-2 h-2 rounded-full ${campus.avgScore >= 4 ? 'bg-violet-500' : campus.avgScore >= 3 ? 'bg-amber-500' : 'bg-rose-500'}`} />
                                                 {campus.avgScore}
                                             </div>
                                         </TableCell>
@@ -407,7 +407,7 @@ const GrowthAnalyticsView = () => {
                                             </div>
                                         </TableCell>
                                         <TableCell className="text-right">
-                                            <Badge variant="secondary" className="bg-backgroundlue-50 text-blue-600 border-none font-bold">
+                                            <Badge variant="secondary" className="bg-violet-50 text-blue-600 border-none font-bold">
                                                 {campus.observationCount} Obs
                                             </Badge>
                                         </TableCell>

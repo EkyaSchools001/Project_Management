@@ -20,8 +20,8 @@ import {
 import { Card } from '../../../components/ui/CardLegacy';
 
 const CATEGORIES = [
-    { id: 'all', name: 'All Schools', icon: LayoutGrid, color: 'text-foreground', bg: 'bg-backgroundackground', activeBg: 'bg-indigo-600', activeText: 'text-foreground', count: (s) => Object.values(s).flat().length },
-    { id: 'progressive', name: 'Progressive', icon: Sparkles, color: 'text-blue-500', bg: 'bg-backgroundlue-50', activeBg: 'bg-backgroundlue-600', activeText: 'text-foreground', count: (s) => s.progressive.length },
+    { id: 'all', name: 'All Schools', icon: LayoutGrid, color: 'text-foreground', bg: 'bg-background', activeBg: 'bg-indigo-600', activeText: 'text-foreground', count: (s) => Object.values(s).flat().length },
+    { id: 'progressive', name: 'Progressive', icon: Sparkles, color: 'text-blue-500', bg: 'bg-violet-50', activeBg: 'bg-violet-600', activeText: 'text-foreground', count: (s) => s.progressive.length },
     { id: 'icse_cbse', name: 'Regulatory', icon: ShieldCheck, color: 'text-indigo-500', bg: 'bg-indigo-50', activeBg: 'bg-indigo-600', activeText: 'text-foreground', count: (s) => s.icse_cbse.length },
     { id: 'purpose_based', name: 'Specialized', icon: Trophy, color: 'text-purple-500', bg: 'bg-purple-50', activeBg: 'bg-purple-600', activeText: 'text-foreground', count: (s) => s.purpose_based.length }
 ];
@@ -76,7 +76,7 @@ export default function Schools() {
                                 <div className="w-22 h-22 bg-slate-50 text-indigo-600 rounded-[2rem] flex items-center justify-center shadow-inner relative z-10 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-foreground transition-all duration-700 border border-slate-100 group-hover:border-indigo-500 group-hover:shadow-2xl group-hover:shadow-indigo-600/30">
                                     <School size={36} />
                                 </div>
-                                <div className="absolute -bottom-2 -right-2 bg-backgroundmerald-500 p-2 rounded-xl text-foreground border-4 border-white shadow-xl z-20 group-hover:animate-bounce">
+                                <div className="absolute -bottom-2 -right-2 bg-violet-500 p-2 rounded-xl text-foreground border-4 border-white shadow-xl z-20 group-hover:animate-bounce">
                                     <Activity size={12} />
                                 </div>
                             </div>
@@ -111,13 +111,13 @@ export default function Schools() {
             animate="visible"
             className="max-w-[1800px] mx-auto space-y-16 p-6 sm:p-10 lg:p-20 pb-40"
         >
-            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-backgroundackground rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
+            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-background rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-violet-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-96 h-96 bg-indigo-500 rounded-full blur-[140px] opacity-20 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 
                 <div className="space-y-10 relative z-10 max-w-3xl">
                     <div className="inline-flex items-center gap-4 px-6 py-2 bg-white/5 rounded-full border border-white/10 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] backdrop-blur-md">
-                        <div className="w-2.5 h-2.5 rounded-full bg-backgroundmerald-400 animate-pulse-glow shadow-[0_0_10px_rgba(52,211,153,0.4)]" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-violet-400 animate-pulse-glow shadow-[0_0_10px_rgba(52,211,153,0.4)]" />
                         Infrastructure Matrix: Nominal
                     </div>
                     <h1 className="text-5xl sm:text-8xl lg:text-9xl font-black text-foreground tracking-tighter uppercase leading-[0.85]">

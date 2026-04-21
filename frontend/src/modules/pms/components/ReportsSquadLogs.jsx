@@ -33,7 +33,7 @@ const LogWorkModal = ({ isOpen, onClose, onAdd }) => {
                         exit={{ opacity: 0, scale: 0.9, y: 40 }}
                         className="bg-white/90 border border-white/20 rounded-[4rem] shadow-[0_60px_150px_rgba(0,0,0,0.2)] w-full max-w-2xl overflow-hidden backdrop-blur-2xl"
                     >
-                        <div className="bg-backgroundackground p-10 sm:p-14 text-foreground relative overflow-hidden">
+                        <div className="bg-background p-10 sm:p-14 text-foreground relative overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-transparent pointer-events-none" />
                             <div className="absolute -right-10 -top-10 w-40 h-40 bg-indigo-500 rounded-full blur-[80px] opacity-20 pointer-events-none" />
                             
@@ -165,7 +165,7 @@ const ReportsSquadLogs = () => {
                         <div className="flex items-center gap-6">
                             <div className="w-20 h-20 bg-slate-950 rounded-[2rem] flex items-center justify-center text-foreground shadow-2xl shadow-slate-900/40 relative">
                                 <Activity size={36} className="text-indigo-400" />
-                                <div className="absolute -top-1 -right-1 w-6 h-6 bg-backgroundmerald-500 rounded-full border-4 border-slate-50 shadow-sm animate-pulse" />
+                                <div className="absolute -top-1 -right-1 w-6 h-6 bg-violet-500 rounded-full border-4 border-slate-50 shadow-sm animate-pulse" />
                             </div>
                             <div className="space-y-2">
                                 <h2 className="text-4xl sm:text-5xl font-black text-slate-950 uppercase tracking-tighter leading-none">Squad Audit <br />Infrastructure</h2>
@@ -221,7 +221,7 @@ const ReportsSquadLogs = () => {
                                             <div className="relative">
                                                 <div className="absolute inset-0 bg-indigo-600/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
                                                 <img src={log.avatar} alt={log.name} className="w-16 h-16 rounded-[1.25rem] border-4 border-white shadow-2xl relative z-10 group-hover:scale-115 transition-transform duration-700" />
-                                                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-backgroundmerald-500 rounded-full border-4 border-slate-50 shadow-sm z-20" />
+                                                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-violet-500 rounded-full border-4 border-slate-50 shadow-sm z-20" />
                                             </div>
                                             <div className="flex flex-col">
                                                 <span className="text-base font-black text-slate-950 uppercase tracking-tighter leading-none">{log.name}</span>

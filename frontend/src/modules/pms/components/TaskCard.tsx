@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 
 const PRIORITY_CONFIG = {
-    'LOW': { color: '#10b981', bg: 'bg-backgroundmerald-50', border: 'border-emerald-200', text: 'text-emerald-600', label: 'Low' },
+    'LOW': { color: '#8b5cf6', bg: 'bg-violet-50', border: 'border-violet-200', text: 'text-violet-600', label: 'Low' },
     'MEDIUM': { color: '#f59e0b', bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-600', label: 'Medium' },
     'HIGH': { color: '#f97316', bg: 'bg-orange-50', border: 'border-orange-200', text: 'text-orange-600', label: 'High' },
     'CRITICAL': { color: '#ef4444', bg: 'bg-rose-50', border: 'border-rose-200', text: 'text-rose-600', label: 'Critical' }
@@ -23,9 +23,9 @@ const PRIORITY_CONFIG = {
 
 const STATUS_CONFIG = {
     'TODO': { label: 'To Do', color: '#94a3b8', icon: 'circle' },
-    'IN_PROGRESS': { label: 'In Progress', color: '#10b981', icon: 'clock' },
+    'IN_PROGRESS': { label: 'In Progress', color: '#8b5cf6', icon: 'clock' },
     'IN_REVIEW': { label: 'In Review', color: '#f59e0b', icon: 'alert' },
-    'DONE': { label: 'Done', color: '#10b981', icon: 'check' }
+    'DONE': { label: 'Done', color: '#8b5cf6', icon: 'check' }
 };
 
 export const TaskCard = ({
@@ -263,7 +263,7 @@ export const TaskCard = ({
                     <div className="space-y-1">
                         {task.subtasks.slice(0, 3).map((subtask, idx) => (
                             <div key={idx} className="flex items-center gap-2 text-xs">
-                                <div className={`w-3 h-3 rounded border ${subtask.done ? 'bg-backgroundmerald-500 border-emerald-500' : 'border-slate-300'}`}>
+                                <div className={`w-3 h-3 rounded border ${subtask.done ? 'bg-violet-500 border-violet-500' : 'border-slate-300'}`}>
                                     {subtask.done && <CheckCircle2 size={8} className="text-foreground" />}
                                 </div>
                                 <span className={subtask.done ? 'text-muted-foreground line-through' : 'text-slate-600'}>

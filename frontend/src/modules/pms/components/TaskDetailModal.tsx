@@ -23,7 +23,7 @@ import {
 import { format, parseISO } from 'date-fns';
 
 const PRIORITY_OPTIONS = [
-    { value: 'LOW', label: 'Low', color: '#10b981' },
+    { value: 'LOW', label: 'Low', color: '#8b5cf6' },
     { value: 'MEDIUM', label: 'Medium', color: '#f59e0b' },
     { value: 'HIGH', label: 'High', color: '#f97316' },
     { value: 'CRITICAL', label: 'Critical', color: '#ef4444' }
@@ -31,9 +31,9 @@ const PRIORITY_OPTIONS = [
 
 const STATUS_OPTIONS = [
     { value: 'TODO', label: 'To Do', color: '#94a3b8' },
-    { value: 'IN_PROGRESS', label: 'In Progress', color: '#10b981' },
+    { value: 'IN_PROGRESS', label: 'In Progress', color: '#8b5cf6' },
     { value: 'IN_REVIEW', label: 'In Review', color: '#f59e0b' },
-    { value: 'DONE', label: 'Done', color: '#10b981' }
+    { value: 'DONE', label: 'Done', color: '#8b5cf6' }
 ];
 
 export const TaskDetailModal = ({
@@ -396,7 +396,7 @@ export const TaskDetailModal = ({
                                                     onClick={() => handleToggleSubtask(idx)}
                                                     className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
                                                         subtask.done
-                                                            ? 'bg-backgroundmerald-500 border-emerald-500'
+                                                            ? 'bg-violet-500 border-violet-500'
                                                             : 'border-slate-300 hover:border-indigo-400'
                                                     }`}
                                                 >

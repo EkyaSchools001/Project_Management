@@ -241,9 +241,9 @@ export function LeaderPerformanceAnalytics({ team, observations, goals = [] }: L
                     <Button
                         onClick={() => setIsAIModalOpen(true)}
                         variant="outline"
-                        className="gap-2 bg-backgroundmerald-50 hover:bg-backgroundmerald-100 border-emerald-200 text-emerald-700 font-bold rounded-full px-5"
+                        className="gap-2 bg-violet-50 hover:bg-violet-100 border-violet-200 text-violet-700 font-bold rounded-full px-5"
                     >
-                        <Sparkles className="w-4 h-4 text-emerald-600" />
+                        <Sparkles className="w-4 h-4 text-violet-600" />
                         AI Smart Insights
                     </Button>
                     {/* Role Filter */}
@@ -290,7 +290,7 @@ export function LeaderPerformanceAnalytics({ team, observations, goals = [] }: L
                                 <p className="text-sm font-medium text-muted-foreground">Average Score</p>
                                 <div className="flex items-baseline gap-2 mt-2">
                                     <h3 className="text-3xl font-bold">{currentAvgScore.toFixed(1)}</h3>
-                                    <span className="text-sm font-medium text-emerald-600 flex items-center">
+                                    <span className="text-sm font-medium text-violet-600 flex items-center">
                                         <ArrowUpRight className="w-3 h-3 mr-1" />
                                         +{growth}%
                                     </span>
@@ -314,7 +314,7 @@ export function LeaderPerformanceAnalytics({ team, observations, goals = [] }: L
                                 <p className="text-sm font-medium text-muted-foreground">Total Observations</p>
                                 <div className="flex items-baseline gap-2 mt-2">
                                     <h3 className="text-3xl font-bold">{totalObservations}</h3>
-                                    <span className="text-sm font-medium text-green-600 flex items-center">
+                                    <span className="text-sm font-medium text-violet-600 flex items-center">
                                         <ArrowUpRight className="w-3 h-3 mr-1" />
                                         +12%
                                     </span>
@@ -356,7 +356,7 @@ export function LeaderPerformanceAnalytics({ team, observations, goals = [] }: L
                                 <p className="text-sm font-medium text-muted-foreground">Goal Completion</p>
                                 <div className="flex items-baseline gap-2 mt-2">
                                     <h3 className="text-3xl font-bold">{goalCompletionRate}%</h3>
-                                    <span className="text-sm font-medium text-green-600 flex items-center">
+                                    <span className="text-sm font-medium text-violet-600 flex items-center">
                                         <ArrowUpRight className="w-3 h-3 mr-1" />
                                         +0%
                                     </span>
@@ -451,7 +451,7 @@ export function LeaderPerformanceAnalytics({ team, observations, goals = [] }: L
                 <Card className="  shadow-md">
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
-                            <TrendingUp className="w-5 h-5 text-green-500" />
+                            <TrendingUp className="w-5 h-5 text-violet-500" />
                             Top Growth
                         </CardTitle>
                         <CardDescription>Teachers showing significant improvement this quarter</CardDescription>
@@ -461,7 +461,7 @@ export function LeaderPerformanceAnalytics({ team, observations, goals = [] }: L
                             {topTeachers.map((t, i) => (
                                 <div key={t.id} className="flex items-center justify-between p-3 bg-muted/20 rounded-xl hover:bg-muted/40 transition-colors cursor-pointer group" onClick={() => navigate(`/leader/team/${t.id}`)}>
                                     <div className="flex items-center gap-3">
-                                        <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-700 font-bold border border-green-200">
+                                        <div className="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center text-violet-700 font-bold border border-violet-200">
                                             #{i + 1}
                                         </div>
                                         <div>
@@ -542,7 +542,7 @@ export function LeaderPerformanceAnalytics({ team, observations, goals = [] }: L
                                 variant={focusCategory === "all" ? "default" : "outline"}
                                 className={cn(
                                     "cursor-pointer font-bold px-3 py-1 transition-all",
-                                    focusCategory === "all" ? "bg-backgroundlue-600 text-foreground" : "bg-backgroundlue-50/50 text-blue-700 border-blue-100 hover:bg-backgroundlue-100"
+                                    focusCategory === "all" ? "bg-violet-600 text-foreground" : "bg-violet-50/50 text-blue-700 border-blue-100 hover:bg-violet-100"
                                 )}
                                 onClick={() => setFocusCategory("all")}
                             >
@@ -552,7 +552,7 @@ export function LeaderPerformanceAnalytics({ team, observations, goals = [] }: L
                                 variant={focusCategory === "core" ? "default" : "outline"}
                                 className={cn(
                                     "cursor-pointer font-bold px-3 py-1 transition-all",
-                                    focusCategory === "core" ? "bg-backgroundmerald-600 text-foreground" : "bg-backgroundmerald-50/50 text-emerald-700 border-emerald-100 hover:bg-backgroundmerald-100"
+                                    focusCategory === "core" ? "bg-violet-600 text-foreground" : "bg-violet-50/50 text-violet-700 border-violet-100 hover:bg-violet-100"
                                 )}
                                 onClick={() => setFocusCategory("core")}
                             >

@@ -543,16 +543,16 @@ function DashboardOverview({
   return (
     <div className="space-y-8 animate-in fade-in duration-700">
       <div className="relative overflow-hidden border border-white/5 bg-[#161B22] p-8 md:p-14 mb-10 rounded-[1.5rem] shadow-2xl">
-        <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-[#BAFF00]/5 rounded-full blur-[120px]" />
+        <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-[#8b5cf6]/5 rounded-full blur-[120px]" />
         
         <div className="relative z-10 flex flex-col xl:flex-row xl:items-center justify-between gap-12">
           <div className="space-y-6 flex-1">
-            <div className="inline-flex items-center gap-3 px-3 py-1.5 rounded-full bg-[#BAFF00]/10 border border-[#BAFF00]/20">
-              <ShieldCheck className="w-4 h-4 text-[#BAFF00]" />
-              <span className="text-[10px] font-bold tracking-widest text-[#BAFF00] uppercase">Command Intelligence Hub</span>
+            <div className="inline-flex items-center gap-3 px-3 py-1.5 rounded-full bg-[#8b5cf6]/10 border border-[#8b5cf6]/20">
+              <ShieldCheck className="w-4 h-4 text-[#8b5cf6]" />
+              <span className="text-[10px] font-bold tracking-widest text-[#8b5cf6] uppercase">Command Intelligence Hub</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-black text-foreground tracking-tight leading-tight">
-              Greetings, <span className="text-[#BAFF00]">{(userName || "Leader").split(' ')[0]}</span>
+              Greetings, <span className="text-[#8b5cf6]">{(userName || "Leader").split(' ')[0]}</span>
             </h1>
             <p className="text-foreground/40 text-lg font-medium max-w-2xl leading-relaxed">
               {selectedCampus === 'all' ? "Oversee performance metrics across all ecosystem nodes." : `Visualizing data streams for ${selectedCampus}.`}
@@ -565,7 +565,7 @@ function DashboardOverview({
               <Select value={selectedCampus} onValueChange={setSelectedCampus}>
                 <SelectTrigger className="w-full sm:w-[240px] h-14 rounded-xl border-white/10 bg-white/5 text-foreground font-bold text-sm hover:bg-white/10 transition-all tracking-tight">
                   <div className="flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-[#BAFF00]" />
+                    <MapPin className="w-4 h-4 text-[#8b5cf6]" />
                     <SelectValue placeholder="Select Campus" />
                   </div>
                 </SelectTrigger>
@@ -635,10 +635,10 @@ function DashboardOverview({
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-2 h-10 rounded-full bg-[#BAFF00] shadow-[0_0_20px_rgba(186,255,0,0.4)]"></div>
+              <div className="w-2 h-10 rounded-full bg-[#8b5cf6] shadow-[0_0_20px_rgba(186,255,0,0.4)]"></div>
               <h2 className="text-4xl font-black text-foreground tracking-tight uppercase">Performance Log</h2>
             </div>
-            <Button variant="ghost" size="sm" onClick={() => navigate("/leader/team")} className="text-[#BAFF00] font-bold hover:bg-[#BAFF00]/5 text-xs tracking-widest uppercase">
+            <Button variant="ghost" size="sm" onClick={() => navigate("/leader/team")} className="text-[#8b5cf6] font-bold hover:bg-[#8b5cf6]/5 text-xs tracking-widest uppercase">
               Consolidated Registry
               <ArrowUpRight className="ml-2 w-4 h-4" />
             </Button>
@@ -655,7 +655,7 @@ function DashboardOverview({
                         <div className="flex items-center gap-3">
                           <span>Identity Vector</span>
                           <select 
-                            className="text-[10px] font-bold border border-white/10 rounded-md px-2 py-1 bg-[#161B22] text-foreground/60 cursor-pointer hover:border-[#BAFF00]/50 focus:outline-none transition-all"
+                            className="text-[10px] font-bold border border-white/10 rounded-md px-2 py-1 bg-[#161B22] text-foreground/60 cursor-pointer hover:border-[#8b5cf6]/50 focus:outline-none transition-all"
                             value={roleFilter}
                             onChange={(e) => setRoleFilter(e.target.value)}
                             onClick={(e) => e.stopPropagation()}
@@ -674,21 +674,21 @@ function DashboardOverview({
                   </thead>
                   <tbody className="divide-y divide-white/5">
                     {filteredTeamOverview.map((member, index) => (
-                      <tr key={member.id} className="group hover:bg-[#BAFF00]/5 transition-all duration-300">
+                      <tr key={member.id} className="group hover:bg-[#8b5cf6]/5 transition-all duration-300">
                         <td className="p-6 text-xs font-bold text-foreground/20">{index + 1}</td>
                         <td className="p-6">
                           <div className="flex items-center gap-5">
-                            <div className="w-14 h-14 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-[#BAFF00] font-black text-xl shadow-inner group-hover:scale-110 group-hover:bg-[#BAFF00]/10 transition-all duration-300 border-[#BAFF00]/0 group-hover:border-[#BAFF00]/20">
+                            <div className="w-14 h-14 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-[#8b5cf6] font-black text-xl shadow-inner group-hover:scale-110 group-hover:bg-[#8b5cf6]/10 transition-all duration-300 border-[#8b5cf6]/0 group-hover:border-[#8b5cf6]/20">
                               {member.name.charAt(0)}
                             </div>
                             <div>
-                              <p className="font-bold text-foreground text-lg group-hover:text-[#BAFF00] transition-colors">{member.name}</p>
+                              <p className="font-bold text-foreground text-lg group-hover:text-[#8b5cf6] transition-colors">{member.name}</p>
                               <p className="text-[10px] text-foreground/30 font-bold tracking-[0.2em] uppercase">{formatRole(member.role)}</p>
                             </div>
                           </div>
                         </td>
                         <td className="p-6 text-center">
-                          <span className="inline-flex items-center justify-center min-w-[3rem] px-4 py-2 rounded-lg bg-white/5 text-foreground font-bold text-xs border border-white/5 group-hover:bg-[#BAFF00]/10 group-hover:text-[#BAFF00] group-hover:border-[#BAFF00]/20 transition-all">
+                          <span className="inline-flex items-center justify-center min-w-[3rem] px-4 py-2 rounded-lg bg-white/5 text-foreground font-bold text-xs border border-white/5 group-hover:bg-[#8b5cf6]/10 group-hover:text-[#8b5cf6] group-hover:border-[#8b5cf6]/20 transition-all">
                             {member.observations}
                           </span>
                         </td>
@@ -778,7 +778,7 @@ function TeamManagementView({
         <div className="flex items-center gap-3">
           {availableCampuses.length > 1 && (
             <Select value={selectedCampus} onValueChange={setSelectedCampus}>
-              <SelectTrigger className="w-[180px] h-10 border-muted-foreground/20 bg-backgroundackground/50">
+              <SelectTrigger className="w-[180px] h-10 border-muted-foreground/20 bg-background/50">
                 <SelectValue placeholder="All Campuses" />
               </SelectTrigger>
               <SelectContent>
@@ -793,7 +793,7 @@ function TeamManagementView({
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
             <Input
               placeholder="Search teachers..."
-              className="pl-10 w-[250px] bg-backgroundackground/50 border-muted-foreground/20"
+              className="pl-10 w-[250px] bg-background/50 border-muted-foreground/20"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
@@ -1201,7 +1201,7 @@ function PDParticipationView({ team, training }: { team: any[], training: any[] 
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
                 <Input
                   placeholder="Search staff..."
-                  className="pl-10 w-[250px] bg-backgroundackground border-muted-foreground/20 rounded-xl"
+                  className="pl-10 w-[250px] bg-background border-muted-foreground/20 rounded-xl"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -1611,7 +1611,7 @@ function PDCalendarView({
           <Card className="  shadow-2xl bg-zinc-950 text-foreground overflow-hidden relative">
             {/* decorative gradient blob */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-pink-500/20 rounded-full blur-3xl -translate-y-10 translate-x-10 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-backgroundlue-500/20 rounded-full blur-3xl translate-y-10 -translate-x-10 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-violet-500/20 rounded-full blur-3xl translate-y-10 -translate-x-10 pointer-events-none" />
 
             <CardContent className="p-6 md:p-10 relative z-10">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
@@ -1630,7 +1630,7 @@ function PDCalendarView({
                     mode="single"
                     selected={date}
                     onSelect={setDate}
-                    className="rounded-2xl border-none bg-backgroundackground/50 p-6 w-full"
+                    className="rounded-2xl border-none bg-background/50 p-6 w-full"
                     classNames={{
                       months: "flex flex-col space-y-4",
                       month: "space-y-4 w-full",
@@ -1658,19 +1658,19 @@ function PDCalendarView({
                   <div className="space-y-6">
                     <h4 className="text-sm font-bold text-muted-foreground capitalize tracking-widest mb-4">Legend</h4>
                     <div className="space-y-4">
-                      <div className="flex items-center justify-between p-3 rounded-xl bg-backgroundlue-500/5 border border-blue-500/10">
+                      <div className="flex items-center justify-between p-3 rounded-xl bg-violet-500/5 border border-blue-500/10">
                         <span className="flex items-center gap-3 text-sm text-zinc-300">
-                          <span className="w-3 h-3 rounded-full bg-backgroundlue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]"></span> Pedagogy
+                          <span className="w-3 h-3 rounded-full bg-violet-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]"></span> Pedagogy
                         </span>
-                        <span className="font-mono text-foreground text-sm bg-backgroundlue-500/20 px-2 py-0.5 rounded-md">
+                        <span className="font-mono text-foreground text-sm bg-violet-500/20 px-2 py-0.5 rounded-md">
                           {training.filter((t: any) => (t.topic || t.type) === 'Pedagogy').length}
                         </span>
                       </div>
-                      <div className="flex items-center justify-between p-3 rounded-xl bg-green-500/5 border border-green-500/10">
+                      <div className="flex items-center justify-between p-3 rounded-xl bg-violet-500/5 border border-violet-500/10">
                         <span className="flex items-center gap-3 text-sm text-zinc-300">
-                          <span className="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_10px_rgba(16,185,129,0.6)]"></span> Technology
+                          <span className="w-3 h-3 rounded-full bg-violet-500 shadow-[0_0_10px_rgba(16,185,129,0.6)]"></span> Technology
                         </span>
-                        <span className="font-mono text-foreground text-sm bg-green-500/20 px-2 py-0.5 rounded-md">
+                        <span className="font-mono text-foreground text-sm bg-violet-500/20 px-2 py-0.5 rounded-md">
                           {training.filter((t: any) => (t.topic || t.type) === 'Technology').length}
                         </span>
                       </div>
@@ -1687,7 +1687,7 @@ function PDCalendarView({
                     <div className="pt-8">
                       <Button
                         variant="outline"
-                        className="w-full py-6 bg-backgroundackground border-zinc-800 text-muted-foreground hover:bg-card hover:text-foreground transition-all text-base rounded-xl"
+                        className="w-full py-6 bg-background border-zinc-800 text-muted-foreground hover:bg-card hover:text-foreground transition-all text-base rounded-xl"
                         onClick={() => setDate(undefined)}
                         disabled={!date}
                       >
@@ -1719,7 +1719,7 @@ function PDCalendarView({
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
                     <Input
                       placeholder="Search sessions..."
-                      className="pl-10 w-[200px] bg-backgroundackground border-muted-foreground/20 rounded-xl"
+                      className="pl-10 w-[200px] bg-background border-muted-foreground/20 rounded-xl"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                     />
@@ -1759,7 +1759,7 @@ function PDCalendarView({
                   <div className="space-y-1.5">
                     <Label className="text-[10px] capitalize font-bold text-zinc-600 ml-1">Type</Label>
                     <Select value={typeFilter} onValueChange={setTypeFilter}>
-                      <SelectTrigger className="rounded-xl bg-backgroundackground border-muted-foreground/10 h-10">
+                      <SelectTrigger className="rounded-xl bg-background border-muted-foreground/10 h-10">
                         <SelectValue placeholder="All Types" />
                       </SelectTrigger>
                       <SelectContent>
@@ -1776,7 +1776,7 @@ function PDCalendarView({
                     <Label className="text-[10px] capitalize font-bold text-zinc-600 ml-1">Time</Label>
                     <Input
                       placeholder="e.g. 09:00 AM"
-                      className="rounded-xl bg-backgroundackground border-muted-foreground/10 h-10"
+                      className="rounded-xl bg-background border-muted-foreground/10 h-10"
                       value={timeFilter}
                       onChange={(e) => setTimeFilter(e.target.value)}
                     />
@@ -1786,7 +1786,7 @@ function PDCalendarView({
                     <Label className="text-[10px] capitalize font-bold text-zinc-600 ml-1">Location</Label>
                     <Input
                       placeholder="Search location..."
-                      className="rounded-xl bg-backgroundackground border-muted-foreground/10 h-10"
+                      className="rounded-xl bg-background border-muted-foreground/10 h-10"
                       value={locationFilter}
                       onChange={(e) => setLocationFilter(e.target.value)}
                     />
@@ -1795,7 +1795,7 @@ function PDCalendarView({
                   <div className="space-y-1.5">
                     <Label className="text-[10px] capitalize font-bold text-zinc-600 ml-1">Status</Label>
                     <Select value={statusFilter} onValueChange={setStatusFilter}>
-                      <SelectTrigger className="rounded-xl bg-backgroundackground border-muted-foreground/10 h-10">
+                      <SelectTrigger className="rounded-xl bg-background border-muted-foreground/10 h-10">
                         <SelectValue placeholder="All Statuses" />
                       </SelectTrigger>
                       <SelectContent>
@@ -1863,7 +1863,7 @@ function PDCalendarView({
                           </td>
                           <td className="p-6 text-right">
                             {(session as any).isRegistered ? (
-                              <div className="flex items-center justify-end gap-2 text-emerald-600 font-bold">
+                              <div className="flex items-center justify-end gap-2 text-violet-600 font-bold">
                                 <CheckCircle2 className="w-4 h-4" />
                                 Registered
                               </div>
@@ -2169,7 +2169,7 @@ function PDCalendarView({
                 value={newEvent.time}
                 onValueChange={(val) => setNewEvent({ ...newEvent, time: val })}
               >
-                <SelectTrigger id="event-time" className="rounded-xl bg-backgroundackground border-muted-foreground/10 h-10">
+                <SelectTrigger id="event-time" className="rounded-xl bg-background border-muted-foreground/10 h-10">
                   <SelectValue placeholder="Select Time" />
                 </SelectTrigger>
                 <SelectContent>
@@ -2230,7 +2230,7 @@ function PDCalendarView({
               </p>
             </div>
           </div>
-          <div className="p-8 bg-backgroundackground">
+          <div className="p-8 bg-background">
             <div className="rounded-2xl border border-muted/20 overflow-hidden">
               <Table>
                 <TableHeader className="bg-muted/5">
@@ -2279,7 +2279,7 @@ function PDCalendarView({
             </div>
             <div className="mt-8 flex justify-end">
               <Button
-                className="h-12 px-8 rounded-2xl bg-backgroundackground hover:bg-card text-foreground font-black capitalize tracking-widest text-xs"
+                className="h-12 px-8 rounded-2xl bg-background hover:bg-card text-foreground font-black capitalize tracking-widest text-xs"
                 onClick={() => setIsRegistrantsOpen(false)}
               >
                 Close View
@@ -2584,16 +2584,16 @@ function ReportsView({ team, observations }: { team: any[], observations: any[] 
               <Button
                 onClick={() => setIsAIModalOpen(true)}
                 variant="outline"
-                className="gap-2 bg-backgroundmerald-50 hover:bg-backgroundmerald-100 border-emerald-200 text-emerald-700 font-bold rounded-full px-5"
+                className="gap-2 bg-violet-50 hover:bg-violet-100 border-violet-200 text-violet-700 font-bold rounded-full px-5"
               >
-                <Sparkles className="w-4 h-4 text-emerald-600" />
+                <Sparkles className="w-4 h-4 text-violet-600" />
                 AI Smart Insights
               </Button>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
                 <Input
                   placeholder="Search staff..."
-                  className="pl-10 w-[250px] bg-backgroundackground border-muted-foreground/20 rounded-xl"
+                  className="pl-10 w-[250px] bg-background border-muted-foreground/20 rounded-xl"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -2766,7 +2766,7 @@ function ReportsView({ team, observations }: { team: any[], observations: any[] 
       </Card>
       {/* Report Preview Dialog */}
       <Dialog open={isReportOpen} onOpenChange={setIsReportOpen}>
-        <DialogContent className="max-w-5xl h-[90vh] overflow-y-auto bg-backgroundackground/95 backdrop-blur-xl   shadow-2xl">
+        <DialogContent className="max-w-5xl h-[90vh] overflow-y-auto bg-background/95 backdrop-blur-xl   shadow-2xl">
           {selectedTeacher && (
             <TeacherAnalyticsReport teacher={selectedTeacher} observations={observations} />
           )}
@@ -2990,7 +2990,7 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
                 <Input
                   placeholder="Search goals..."
-                  className="pl-10 w-[250px] bg-backgroundackground border-muted-foreground/20 rounded-xl"
+                  className="pl-10 w-[250px] bg-background border-muted-foreground/20 rounded-xl"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />

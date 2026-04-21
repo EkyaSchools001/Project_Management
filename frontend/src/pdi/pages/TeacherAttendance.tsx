@@ -288,7 +288,7 @@ export default function TeacherAttendance() {
                                                 {event.attendanceClosed ? (
                                                     <Badge variant="destructive" className="bg-red-500/10 text-red-500 border-red-500/20">Closed</Badge>
                                                 ) : event.attendanceEnabled ? (
-                                                    <Badge variant="default" className="bg-green-500/10 text-green-500 border-green-500/20 animate-pulse">Live</Badge>
+                                                    <Badge variant="default" className="bg-violet-500/10 text-violet-500 border-violet-500/20 animate-pulse">Live</Badge>
                                                 ) : (
                                                     <Badge variant="secondary" className="bg-gray-500/10 text-gray-400 border-gray-500/20">Not Enabled</Badge>
                                                 )}

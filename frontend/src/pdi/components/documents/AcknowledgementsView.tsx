@@ -125,8 +125,8 @@ export function AcknowledgementsView({ teacherId }: { teacherId: string }) {
         const baseClass = "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm";
         switch (status) {
             case 'PENDING': return <Badge className={cn(baseClass, "bg-amber-500")}>Pending</Badge>;
-            case 'VIEWED': return <Badge className={cn(baseClass, "bg-backgroundlue-600")}>Viewed</Badge>;
-            case 'ACKNOWLEDGED': return <Badge className={cn(baseClass, "bg-backgroundmerald-600")}>Acknowledged</Badge>;
+            case 'VIEWED': return <Badge className={cn(baseClass, "bg-violet-600")}>Viewed</Badge>;
+            case 'ACKNOWLEDGED': return <Badge className={cn(baseClass, "bg-violet-600")}>Acknowledged</Badge>;
             case 'SIGNED': return <Badge className={cn(baseClass, "bg-indigo-600")}>Signed</Badge>;
             default: return <Badge className={cn(baseClass, "bg-slate-400")}>{status}</Badge>;
         }
@@ -174,7 +174,7 @@ export function AcknowledgementsView({ teacherId }: { teacherId: string }) {
                                         >
                                             <div className={cn(
                                                 "w-10 h-10 rounded-full flex items-center justify-center shrink-0",
-                                                ack.status === 'ACKNOWLEDGED' ? "bg-green-100 text-green-600" : "bg-primary/10 text-primary"
+                                                ack.status === 'ACKNOWLEDGED' ? "bg-violet-100 text-violet-600" : "bg-primary/10 text-primary"
                                             )}>
                                                 <FileCheck className="w-5 h-5" />
                                             </div>
@@ -213,7 +213,7 @@ export function AcknowledgementsView({ teacherId }: { teacherId: string }) {
                                     <CardTitle className="text-xl flex items-center gap-2">
                                         {selectedAck.document?.title}
                                         {selectedAck.status === 'ACKNOWLEDGED' && (
-                                            <CheckCircle2 className="w-5 h-5 text-green-500" />
+                                            <CheckCircle2 className="w-5 h-5 text-violet-500" />
                                         )}
                                     </CardTitle>
                                     <CardDescription>
@@ -270,23 +270,23 @@ export function AcknowledgementsView({ teacherId }: { teacherId: string }) {
                                     )}
                                 </div>
 
-                                <div className="p-6 bg-backgroundackground border-t">
+                                <div className="p-6 bg-background border-t">
                                     {selectedAck.status === 'ACKNOWLEDGED' ? (
-                                        <div className="flex items-center gap-4 p-4 rounded-lg bg-green-50 border border-green-100">
-                                            <ShieldCheck className="w-8 h-8 text-green-600" />
+                                        <div className="flex items-center gap-4 p-4 rounded-lg bg-violet-50 border border-violet-100">
+                                            <ShieldCheck className="w-8 h-8 text-violet-600" />
                                             <div>
-                                                <div className="font-semibold text-green-900">Document Acknowledged</div>
-                                                <div className="text-sm text-green-700">
+                                                <div className="font-semibold text-violet-900">Document Acknowledged</div>
+                                                <div className="text-sm text-violet-700">
                                                     Acknowledged on {selectedAck.acknowledgedAt ? new Date(selectedAck.acknowledgedAt).toLocaleString() : 'N/A'} from IP {selectedAck.ipAddress || 'unknown'}
                                                 </div>
-                                                <div className="text-[10px] text-green-600 font-mono mt-1 opacity-60">
+                                                <div className="text-[10px] text-violet-600 font-mono mt-1 opacity-60">
                                                     Digital Hash: {selectedAck.documentHash}
                                                 </div>
                                             </div>
                                         </div>
                                     ) : (
                                         <div className="flex flex-col gap-4">
-                                            <div className="flex items-start gap-3 p-4 rounded-lg bg-backgroundlue-50 border border-blue-100 text-blue-800 text-sm">
+                                            <div className="flex items-start gap-3 p-4 rounded-lg bg-violet-50 border border-blue-100 text-blue-800 text-sm">
                                                 <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
                                                 <p>
                                                     By clicking "Acknowledge", you confirm that you have read and understood the contents of this document.

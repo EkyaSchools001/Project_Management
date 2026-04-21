@@ -43,8 +43,8 @@ export function DashboardLayout({ children, role, userName }: DashboardLayoutPro
       {/* Mobile Header */}
       <div className="md:hidden flex items-center justify-between p-4 border-b border-white/10 bg-[#0f0f0f] h-16 sticky top-0 z-50">
         <div className="flex items-center gap-2">
-          <Cpu className="w-5 h-5 text-[#BAFF00]" />
-          <span className="font-bold text-sm tracking-tight">Veidence <span className="text-[#BAFF00]">Pro</span></span>
+          <Cpu className="w-5 h-5 text-[#8b5cf6]" />
+          <span className="font-bold text-sm tracking-tight">Veidence <span className="text-[#8b5cf6]">Pro</span></span>
         </div>
         <div className="flex items-center gap-2">
           <NotificationBell />
@@ -92,7 +92,7 @@ export function DashboardLayout({ children, role, userName }: DashboardLayoutPro
         {!isMobile && (
           <header className="h-16 border-b border-white/5 bg-[#18181b]/80 backdrop-blur-xl flex items-center justify-between px-8 sticky top-0 z-40 w-full gap-8">
             <div className="flex items-center gap-3 font-semibold text-[11px] tracking-tight text-foreground/60">
-              <div className="w-2 h-2 rounded-full bg-[#BAFF00] animate-pulse" />
+              <div className="w-2 h-2 rounded-full bg-[#8b5cf6] animate-pulse" />
               <span>Project Ecosystem // Active Hub</span>
             </div>
 
@@ -100,17 +100,17 @@ export function DashboardLayout({ children, role, userName }: DashboardLayoutPro
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-foreground/30" />
               <Input
                 placeholder="EXECUTE_SEARCH..."
-                className="pl-10 h-10 bg-white/5 border-white/10 rounded-lg text-xs focus:border-[#BAFF00] focus:ring-1 focus:ring-[#BAFF00]/20 placeholder:text-foreground/20"
+                className="pl-10 h-10 bg-white/5 border-white/10 rounded-lg text-xs focus:border-[#8b5cf6] focus:ring-1 focus:ring-[#8b5cf6]/20 placeholder:text-foreground/20"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
 
             <div className="flex items-center gap-4">
-              <Button variant="ghost" size="sm" className="rounded-lg text-foreground/60 font-semibold text-xs hover:text-[#BAFF00] hover:bg-white/5 transition-all" asChild>
+              <Button variant="ghost" size="sm" className="rounded-lg text-foreground/60 font-semibold text-xs hover:text-[#8b5cf6] hover:bg-white/5 transition-all" asChild>
                 <Link to={getDocumentsPath()}>Storage</Link>
               </Button>
-              <Button variant="ghost" size="sm" className="rounded-lg text-foreground/60 font-semibold text-xs hover:text-[#BAFF00] hover:bg-white/5 transition-all" onClick={() => window.open('https://pdi.ekyaschools.com/education-blogs/', '_blank')}>
+              <Button variant="ghost" size="sm" className="rounded-lg text-foreground/60 font-semibold text-xs hover:text-[#8b5cf6] hover:bg-white/5 transition-all" onClick={() => window.open('https://pdi.ekyaschools.com/education-blogs/', '_blank')}>
                 Intel
               </Button>
               <div className="w-px h-6 bg-white/10" />

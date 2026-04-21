@@ -59,7 +59,7 @@ export function BudgetForm({ budget, projects, departments, onSubmit, onClose }:
               type="text"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#BAFF00]/50"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#8b5cf6]/50"
               placeholder="e.g., Q1 2024 Operating Budget"
               required
             />
@@ -72,7 +72,7 @@ export function BudgetForm({ budget, projects, departments, onSubmit, onClose }:
               step="0.01"
               value={formData.total}
               onChange={(e) => setFormData({ ...formData, total: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#BAFF00]/50"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#8b5cf6]/50"
               required
             />
           </div>
@@ -82,7 +82,7 @@ export function BudgetForm({ budget, projects, departments, onSubmit, onClose }:
             <select
               value={formData.period}
               onChange={(e) => setFormData({ ...formData, period: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#BAFF00]/50"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#8b5cf6]/50"
             >
               <option value="Monthly">Monthly</option>
               <option value="Quarterly">Quarterly</option>
@@ -97,7 +97,7 @@ export function BudgetForm({ budget, projects, departments, onSubmit, onClose }:
                 type="date"
                 value={formData.startDate}
                 onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#BAFF00]/50"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#8b5cf6]/50"
                 required
               />
             </div>
@@ -107,7 +107,7 @@ export function BudgetForm({ budget, projects, departments, onSubmit, onClose }:
                 type="date"
                 value={formData.endDate}
                 onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#BAFF00]/50"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#8b5cf6]/50"
                 required
               />
             </div>
@@ -119,7 +119,7 @@ export function BudgetForm({ budget, projects, departments, onSubmit, onClose }:
               <select
                 value={formData.projectId}
                 onChange={(e) => setFormData({ ...formData, projectId: e.target.value })}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#BAFF00]/50"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#8b5cf6]/50"
               >
                 <option value="">Select Project</option>
                 {projects.map(project => (
@@ -135,7 +135,7 @@ export function BudgetForm({ budget, projects, departments, onSubmit, onClose }:
               <select
                 value={formData.departmentId}
                 onChange={(e) => setFormData({ ...formData, departmentId: e.target.value })}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#BAFF00]/50"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#8b5cf6]/50"
               >
                 <option value="">Select Department</option>
                 {departments.map(dept => (
@@ -155,7 +155,7 @@ export function BudgetForm({ budget, projects, departments, onSubmit, onClose }:
             </button>
             <button
               type="submit"
-              className="flex-1 px-4 py-3 bg-[#BAFF00] text-black rounded-xl font-bold hover:bg-[#BAFF00]/80 transition-colors"
+              className="flex-1 px-4 py-3 bg-[#8b5cf6] text-black rounded-xl font-bold hover:bg-[#8b5cf6]/80 transition-colors"
             >
               {budget ? 'Update' : 'Create'} Budget
             </button>

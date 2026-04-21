@@ -41,9 +41,9 @@ export function TimeEntryList({ filters = {}, onEdit, onDelete, className }) {
 
     const getStatusBadge = (status) => {
         const styles = {
-            Running: 'bg-backgroundlue-500/20 text-blue-400 border-blue-500/30',
+            Running: 'bg-violet-500/20 text-blue-400 border-blue-500/30',
             Pending: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
-            Approved: 'bg-green-500/20 text-green-400 border-green-500/30',
+            Approved: 'bg-violet-500/20 text-violet-400 border-violet-500/30',
             Rejected: 'bg-red-500/20 text-red-400 border-red-500/30'
         };
         
@@ -82,7 +82,7 @@ export function TimeEntryList({ filters = {}, onEdit, onDelete, className }) {
                     onClick={() => setShowFilters(!showFilters)}
                     className={cn(
                         "flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors",
-                        showFilters ? "bg-[#BAFF00]/20 text-[#BAFF00]" : "bg-white/5 text-foreground/60 hover:bg-white/10"
+                        showFilters ? "bg-[#8b5cf6]/20 text-[#8b5cf6]" : "bg-white/5 text-foreground/60 hover:bg-white/10"
                     )}
                 >
                     <Filter className="w-3 h-3" />
@@ -137,14 +137,14 @@ export function TimeEntryList({ filters = {}, onEdit, onDelete, className }) {
                     <span className="text-foreground/60 text-sm">
                         {entries.length} entries
                     </span>
-                    <span className="text-[#BAFF00] font-bold">
+                    <span className="text-[#8b5cf6] font-bold">
                         {formatDuration(totalMinutes)} total
                     </span>
                 </div>
 
                 {loading ? (
                     <div className="p-8 text-center">
-                        <div className="w-6 h-6 border-2 border-[#BAFF00] border-t-transparent rounded-full animate-spin mx-auto" />
+                        <div className="w-6 h-6 border-2 border-[#8b5cf6] border-t-transparent rounded-full animate-spin mx-auto" />
                     </div>
                 ) : entries.length === 0 ? (
                     <div className="p-8 text-center text-foreground/40">

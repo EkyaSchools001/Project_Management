@@ -443,11 +443,11 @@ export function DashboardSidebar({
               : "opacity-100 translate-x-0 delay-[120ms]"
           )}
         >
-          <div className="sidebar-circle-icon bg-[#BAFF00]/10 shrink-0">
-            <Student className="w-4 h-4 text-[#BAFF00]" weight="bold" />
+          <div className="sidebar-circle-icon bg-[#8b5cf6]/10 shrink-0">
+            <Student className="w-4 h-4 text-[#8b5cf6]" weight="bold" />
           </div>
           <span className="font-bold text-foreground truncate text-[13px] whitespace-nowrap tracking-tight">
-             Veidence <span className="text-[#BAFF00]">Pro</span>
+             Veidence <span className="text-[#8b5cf6]">Pro</span>
           </span>
         </div>
 
@@ -482,7 +482,7 @@ export function DashboardSidebar({
       >
         <p className="font-bold text-foreground truncate text-xs">{userName}</p>
         <div className="mt-1">
-          <p className="text-[10px] font-black text-[#BAFF00] uppercase tracking-widest">{role}</p>
+          <p className="text-[10px] font-black text-[#8b5cf6] uppercase tracking-widest">{role}</p>
         </div>
       </div>
 

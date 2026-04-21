@@ -38,8 +38,8 @@ export function LevelProgress({ compact = false }) {
   if (compact) {
     return (
       <div className="flex items-center gap-4 p-4 bg-[#161B22] border border-white/5 rounded-2xl">
-        <div className="w-12 h-12 bg-[#BAFF00]/20 rounded-xl flex items-center justify-center">
-          <Star size={24} className="text-[#BAFF00]" />
+        <div className="w-12 h-12 bg-[#8b5cf6]/20 rounded-xl flex items-center justify-center">
+          <Star size={24} className="text-[#8b5cf6]" />
         </div>
         <div className="flex-1">
           <div className="flex items-center justify-between mb-1">
@@ -48,7 +48,7 @@ export function LevelProgress({ compact = false }) {
           </div>
           <div className="h-2 bg-white/10 rounded-full overflow-hidden">
             <div 
-              className="h-full bg-gradient-to-r from-[#BAFF00] to-[#7AFF00] rounded-full"
+              className="h-full bg-gradient-to-r from-[#8b5cf6] to-[#7AFF00] rounded-full"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
@@ -61,13 +61,13 @@ export function LevelProgress({ compact = false }) {
     <Card className="bg-[#161B22] border-white/5 p-6 rounded-2xl">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 bg-gradient-to-br from-[#BAFF00] to-[#7AFF00] rounded-2xl flex items-center justify-center">
+          <div className="w-16 h-16 bg-gradient-to-br from-[#8b5cf6] to-[#7AFF00] rounded-2xl flex items-center justify-center">
             <Star size={32} className="text-black" />
           </div>
           <div>
             <p className="text-xs text-foreground/40 font-bold uppercase tracking-widest">Current Level</p>
             <h3 className="text-2xl font-black text-foreground">{currentLevel.name}</h3>
-            <p className="text-xs text-[#BAFF00]">Level {currentLevel.level}</p>
+            <p className="text-xs text-[#8b5cf6]">Level {currentLevel.level}</p>
           </div>
         </div>
         <div className="text-right">
@@ -79,7 +79,7 @@ export function LevelProgress({ compact = false }) {
       <div className="space-y-4">
         <div className="h-4 bg-white/10 rounded-full overflow-hidden relative">
           <div 
-            className="h-full bg-gradient-to-r from-[#BAFF00] to-[#7AFF00] rounded-full transition-all duration-1000"
+            className="h-full bg-gradient-to-r from-[#8b5cf6] to-[#7AFF00] rounded-full transition-all duration-1000"
             style={{ width: `${progressPercent}%` }}
           />
           <div className="absolute inset-0 flex items-center justify-center">
@@ -98,15 +98,15 @@ export function LevelProgress({ compact = false }) {
               </span>
               <span className="text-sm font-bold text-foreground">{nextLevel.name}</span>
             </div>
-            <div className="px-3 py-1 bg-[#BAFF00]/10 rounded-lg">
-              <span className="text-xs font-bold text-[#BAFF00]">Level {nextLevel.level}</span>
+            <div className="px-3 py-1 bg-[#8b5cf6]/10 rounded-lg">
+              <span className="text-xs font-bold text-[#8b5cf6]">Level {nextLevel.level}</span>
             </div>
           </div>
         )}
 
         {!nextLevel && (
           <div className="pt-4 border-t border-white/5">
-            <p className="text-center text-sm text-[#BAFF00] font-bold">
+            <p className="text-center text-sm text-[#8b5cf6] font-bold">
               Maximum level reached! You are a Grandmaster!
             </p>
           </div>

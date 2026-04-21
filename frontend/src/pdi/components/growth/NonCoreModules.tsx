@@ -52,7 +52,7 @@ const NonCoreModules: React.FC<NonCoreModulesProps> = ({ teacherId, teacherName,
             description: "Sports and physical health instruction framework.",
             icon: Activity,
             path: getPath("/leader/pe-obs"),
-            color: "bg-green-500",
+            color: "bg-violet-500",
             disabled: false,
         },
         {

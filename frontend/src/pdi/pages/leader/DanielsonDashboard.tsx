@@ -17,8 +17,8 @@ import { GrowthLayout } from "@pdi/components/growth/GrowthLayout";
 const RATING_COLORS: Record<string, string> = {
     "1": "bg-red-100 text-red-700",
     "2": "bg-yellow-100 text-yellow-700",
-    "3": "bg-backgroundlue-100 text-blue-700",
-    "4": "bg-green-100 text-green-700",
+    "3": "bg-violet-100 text-blue-700",
+    "4": "bg-violet-100 text-violet-700",
 };
 
 const RATING_LABELS: Record<string, string> = {
@@ -247,7 +247,7 @@ const DanielsonDashboard: React.FC = () => {
                                         <span className="col-span-2" onClick={(e) => e.stopPropagation()}>
                                             <Dialog>
                                                 <DialogTrigger asChild>
-                                                    <Button variant="outline" size="sm" className="h-7 text-xs gap-1 bg-backgroundlue-50 text-blue-700 border-blue-200 hover:bg-backgroundlue-100 hover:text-blue-800">
+                                                    <Button variant="outline" size="sm" className="h-7 text-xs gap-1 bg-violet-50 text-blue-700 border-blue-200 hover:bg-violet-100 hover:text-blue-800">
                                                         <MessageSquare className="w-3 h-3" /> View Comment
                                                     </Button>
                                                 </DialogTrigger>

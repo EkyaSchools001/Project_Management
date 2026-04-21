@@ -43,7 +43,7 @@ export function QuickActionButtons({ role }: QuickActionButtonsProps) {
         <div className="flex flex-wrap items-center gap-2">
             {/* Calendar – emerald green */}
             <Button
-                className="h-9 px-4 rounded-xl font-medium gap-2 bg-backgroundmerald-500 text-foreground hover:bg-backgroundmerald-600 shadow-md shadow-emerald-500/25 transition-all duration-200 hover:scale-[1.03] active:scale-95"
+                className="h-9 px-4 rounded-xl font-medium gap-2 bg-violet-500 text-foreground hover:bg-violet-600 shadow-md shadow-violet-500/25 transition-all duration-200 hover:scale-[1.03] active:scale-95"
                 onClick={() => handleNavigation("calendar")}
             >
                 <CalendarBlank className="w-4 h-4" weight="fill" />

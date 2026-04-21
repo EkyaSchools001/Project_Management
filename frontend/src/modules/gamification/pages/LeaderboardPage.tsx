@@ -66,10 +66,10 @@ export default function LeaderboardPage() {
         </div>
         
         {currentUserRank && (
-          <div className="flex items-center gap-3 px-6 py-3 bg-[#BAFF00]/10 border border-[#BAFF00]/30 rounded-2xl">
-            <Trophy size={24} className="text-[#BAFF00]" />
+          <div className="flex items-center gap-3 px-6 py-3 bg-[#8b5cf6]/10 border border-[#8b5cf6]/30 rounded-2xl">
+            <Trophy size={24} className="text-[#8b5cf6]" />
             <div>
-              <p className="text-xs text-[#BAFF00] font-bold uppercase tracking-widest">Your Rank</p>
+              <p className="text-xs text-[#8b5cf6] font-bold uppercase tracking-widest">Your Rank</p>
               <p className="text-2xl font-black text-foreground">#{currentUserRank}</p>
             </div>
           </div>
@@ -85,7 +85,7 @@ export default function LeaderboardPage() {
                 onClick={() => { setPeriod(opt.value); setPage(1); }}
                 className={`
                   px-4 py-2 text-sm font-bold uppercase tracking-wider rounded-md transition-all
-                  ${period === opt.value ? 'bg-[#BAFF00] text-black' : 'text-foreground/40 hover:text-foreground'}
+                  ${period === opt.value ? 'bg-[#8b5cf6] text-black' : 'text-foreground/40 hover:text-foreground'}
                 `}
               >
                 {opt.label}
@@ -100,7 +100,7 @@ export default function LeaderboardPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <div className="w-8 h-8 border-3 border-[#BAFF00] border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-3 border-[#8b5cf6] border-t-transparent rounded-full animate-spin" />
           </div>
         ) : entries.length === 0 ? (
           <div className="text-center py-20 text-foreground/40">
@@ -118,7 +118,7 @@ export default function LeaderboardPage() {
                     key={entry.userId}
                     className={`
                       flex items-center gap-4 p-4 rounded-2xl transition-all
-                      ${isCurrentUser ? 'bg-[#BAFF00]/10 border border-[#BAFF00]/30' : 'bg-white/5 hover:bg-white/10'}
+                      ${isCurrentUser ? 'bg-[#8b5cf6]/10 border border-[#8b5cf6]/30' : 'bg-white/5 hover:bg-white/10'}
                     `}
                   >
                     <div className="w-12 flex justify-center">
@@ -138,14 +138,14 @@ export default function LeaderboardPage() {
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <p className={`font-bold text-lg truncate ${isCurrentUser ? 'text-[#BAFF00]' : 'text-foreground'}`}>
+                      <p className={`font-bold text-lg truncate ${isCurrentUser ? 'text-[#8b5cf6]' : 'text-foreground'}`}>
                         {entry.userName}
                       </p>
                       <p className="text-xs text-foreground/40">Level {entry.level}</p>
                     </div>
 
                     <div className="text-right">
-                      <p className="text-2xl font-black text-[#BAFF00]">
+                      <p className="text-2xl font-black text-[#8b5cf6]">
                         {entry.score.toLocaleString()}
                       </p>
                       <p className="text-[10px] text-foreground/40">points</p>

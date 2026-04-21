@@ -110,7 +110,7 @@ export function RoomBooking({ schoolId, userId }: RoomBookingProps) {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'Approved': return 'bg-green-500';
+      case 'Approved': return 'bg-violet-500';
       case 'Pending': return 'bg-yellow-500';
       case 'Cancelled': return 'bg-red-500';
       default: return 'bg-gray-500';
@@ -123,7 +123,7 @@ export function RoomBooking({ schoolId, userId }: RoomBookingProps) {
         <h2 className="text-lg font-semibold text-foreground">Room Booking</h2>
         <Dialog open={showDialog} onOpenChange={setShowDialog}>
           <DialogTrigger asChild>
-            <Button className="bg-[#BAFF00] text-black hover:bg-[#a8e600]">
+            <Button className="bg-[#8b5cf6] text-black hover:bg-[#a8e600]">
               <Plus className="w-4 h-4 mr-2" />
               New Booking
             </Button>
@@ -188,7 +188,7 @@ export function RoomBooking({ schoolId, userId }: RoomBookingProps) {
               <Button
                 onClick={handleBooking}
                 disabled={loading || !formData.roomId}
-                className="w-full bg-[#BAFF00] text-black hover:bg-[#a8e600]"
+                className="w-full bg-[#8b5cf6] text-black hover:bg-[#a8e600]"
               >
                 {loading ? 'Booking...' : 'Book Room'}
               </Button>
@@ -204,7 +204,7 @@ export function RoomBooking({ schoolId, userId }: RoomBookingProps) {
             <Card key={room.id} className="bg-[#1a1d29] border-white/10">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                  <Building className="w-4 h-4 text-[#BAFF00]" />
+                  <Building className="w-4 h-4 text-[#8b5cf6]" />
                   {room.name}
                 </CardTitle>
               </CardHeader>

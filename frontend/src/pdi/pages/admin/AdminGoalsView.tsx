@@ -220,14 +220,14 @@ export function AdminGoalsView({ simplified = false }: { simplified?: boolean })
             {!simplified && (
                 <>
                     <h3 className="text-xl font-bold mt-10 mb-4">Goal Registry & Adjustments</h3>
-                    <Card className="  shadow-xl bg-backgroundackground/50 backdrop-blur-sm">
+                    <Card className="  shadow-xl bg-background/50 backdrop-blur-sm">
                         <CardHeader className="border-b bg-muted/20 pb-4 flex flex-row items-center justify-between">
                             <CardTitle>All Teacher Goals</CardTitle>
                             <div className="relative w-64">
                                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                                 <Input
                                     placeholder="Search teacher, title, campus..."
-                                    className="pl-9 h-9 border-muted bg-backgroundackground/50"
+                                    className="pl-9 h-9 border-muted bg-background/50"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                 />
@@ -282,7 +282,7 @@ export function AdminGoalsView({ simplified = false }: { simplified?: boolean })
                                             <TableCell className="max-w-[200px] truncate">{goal.title}</TableCell>
                                             <TableCell>
                                                 {goal.selfReflectionForm
-                                                    ? (goal.selfReflectionForm.includes('"adminOverride":true') ? <span className="text-warning font-medium text-xs bg-warning/10 px-2 py-1 rounded-md">Admin Overridden</span> : <span className="text-emerald-600 font-medium text-xs bg-backgroundmerald-50 px-2 py-1 rounded-md">Filled</span>)
+                                                    ? (goal.selfReflectionForm.includes('"adminOverride":true') ? <span className="text-warning font-medium text-xs bg-warning/10 px-2 py-1 rounded-md">Admin Overridden</span> : <span className="text-violet-600 font-medium text-xs bg-violet-50 px-2 py-1 rounded-md">Filled</span>)
                                                     : <span className="text-muted-foreground text-xs italic">Pending</span>}
                                             </TableCell>
                                             <TableCell>
@@ -360,8 +360,8 @@ export function AdminGoalsView({ simplified = false }: { simplified?: boolean })
                                             </h4>
 
                                             <div className="grid grid-cols-2 gap-4">
-                                                <div className="bg-backgroundmerald-50 border border-emerald-100 p-3 rounded-lg">
-                                                    <p className="text-xs font-bold text-emerald-700 capitalize mb-2">✅ Completed ({reflectionCompleted.length})</p>
+                                                <div className="bg-violet-50 border border-violet-100 p-3 rounded-lg">
+                                                    <p className="text-xs font-bold text-violet-700 capitalize mb-2">✅ Completed ({reflectionCompleted.length})</p>
                                                     <div className="space-y-1">
                                                         {reflectionCompleted.map(g => (
                                                             <div key={g.id} className="text-xs font-medium">{g.teacher}</div>
@@ -388,7 +388,7 @@ export function AdminGoalsView({ simplified = false }: { simplified?: boolean })
                                             </h4>
 
                                             <div className="grid grid-cols-2 gap-4">
-                                                <div className="bg-backgroundlue-50 border border-blue-100 p-3 rounded-lg">
+                                                <div className="bg-violet-50 border border-blue-100 p-3 rounded-lg">
                                                     <p className="text-xs font-bold text-blue-700 capitalize mb-2">✅ Completed ({settingCompleted.length})</p>
                                                     <div className="space-y-1">
                                                         {settingCompleted.map(g => (

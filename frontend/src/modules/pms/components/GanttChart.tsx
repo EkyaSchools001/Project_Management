@@ -65,11 +65,11 @@ const STATUS_COLORS = {
     'TODO': { bg: 'bg-slate-200', fill: '#cbd5e1', text: 'text-slate-600', border: 'border-slate-300' },
     'IN_PROGRESS': { bg: 'bg-indigo-100', fill: '#c7d2fe', text: 'text-indigo-600', border: 'border-indigo-300' },
     'IN_REVIEW': { bg: 'bg-amber-100', fill: '#fde68a', text: 'text-amber-600', border: 'border-amber-300' },
-    'DONE': { bg: 'bg-backgroundmerald-100', fill: '#a7f3d0', text: 'text-emerald-600', border: 'border-emerald-300' }
+    'DONE': { bg: 'bg-violet-100', fill: '#a7f3d0', text: 'text-violet-600', border: 'border-violet-300' }
 };
 
 const PRIORITY_COLORS = {
-    'LOW': { color: '#10b981', label: 'Low' },
+    'LOW': { color: '#8b5cf6', label: 'Low' },
     'MEDIUM': { color: '#f59e0b', label: 'Medium' },
     'HIGH': { color: '#f97316', label: 'High' },
     'CRITICAL': { color: '#ef4444', label: 'Critical' }
@@ -463,7 +463,7 @@ const TaskTooltip = ({ task, position }) => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="absolute z-50 bg-backgroundackground text-foreground p-4 rounded-2xl shadow-2xl w-72 pointer-events-none"
+            className="absolute z-50 bg-background text-foreground p-4 rounded-2xl shadow-2xl w-72 pointer-events-none"
             style={{
                 left: position.left + position.width / 2,
                 top: 80

@@ -74,7 +74,7 @@ function ObserveView({ setObservations, setTeam, team, observations }: {
                     subtitle="Record teacher performance using Master Template"
                 />
             </div>
-            <Card className="  shadow-xl bg-backgroundackground overflow-hidden">
+            <Card className="  shadow-xl bg-background overflow-hidden">
                 <CardHeader className="bg-primary/5 border-b py-6">
                     <CardTitle className="text-xl font-bold">{template.title}</CardTitle>
                     <CardDescription>All fields are mandatory unless marked optional</CardDescription>

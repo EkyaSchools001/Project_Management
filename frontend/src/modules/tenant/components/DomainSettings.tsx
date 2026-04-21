@@ -61,7 +61,7 @@ export const DomainSettings = () => {
         <div className="space-y-6">
             <div className="p-6 bg-white/5 rounded-xl border border-white/10">
                 <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                    <Globe className="w-5 h-5 text-[#BAFF00]" />
+                    <Globe className="w-5 h-5 text-[#8b5cf6]" />
                     Custom Domain
                 </h3>
                 <p className="text-foreground/60 mb-4">
@@ -78,7 +78,7 @@ export const DomainSettings = () => {
                     />
                     <button
                         onClick={handleSaveDomain}
-                        className="px-6 py-3 bg-[#BAFF00] text-black rounded-lg hover:bg-[#a8ed00] transition-colors"
+                        className="px-6 py-3 bg-[#8b5cf6] text-black rounded-lg hover:bg-[#7c3aed] transition-colors"
                     >
                         Save
                     </button>
@@ -88,7 +88,7 @@ export const DomainSettings = () => {
             {domain && (
                 <div className="p-6 bg-white/5 rounded-xl border border-white/10">
                     <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                        <Shield className="w-5 h-5 text-[#BAFF00]" />
+                        <Shield className="w-5 h-5 text-[#8b5cf6]" />
                         DNS Configuration
                     </h3>
                     <p className="text-foreground/60 mb-4">
@@ -108,7 +108,7 @@ export const DomainSettings = () => {
                             <div className="flex items-center justify-between">
                                 <span className="text-sm text-foreground/60">Value</span>
                                 <div className="flex items-center gap-2">
-                                    <span className="text-sm font-mono text-[#BAFF00]">
+                                    <span className="text-sm font-mono text-[#8b5cf6]">
                                         schoolos-verification={tenant?.id}
                                     </span>
                                     <button
@@ -133,7 +133,7 @@ export const DomainSettings = () => {
                             <div className="flex items-center justify-between">
                                 <span className="text-sm text-foreground/60">Value</span>
                                 <div className="flex items-center gap-2">
-                                    <span className="text-sm font-mono text-[#BAFF00]">
+                                    <span className="text-sm font-mono text-[#8b5cf6]">
                                         {tenant?.slug}.schoolos.app
                                     </span>
                                     <button
@@ -156,9 +156,9 @@ export const DomainSettings = () => {
                     </button>
 
                     {verificationStatus === 'verified' && (
-                        <div className="mt-4 flex items-center gap-2 p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
-                            <Check className="w-5 h-5 text-green-400" />
-                            <span className="text-sm text-green-400">Domain verified successfully</span>
+                        <div className="mt-4 flex items-center gap-2 p-4 bg-violet-500/10 border border-violet-500/20 rounded-lg">
+                            <Check className="w-5 h-5 text-violet-400" />
+                            <span className="text-sm text-violet-400">Domain verified successfully</span>
                         </div>
                     )}
 
@@ -174,8 +174,8 @@ export const DomainSettings = () => {
             <div className="p-6 bg-white/5 rounded-xl border border-white/10">
                 <h3 className="text-lg font-semibold text-foreground mb-4">SSL Status</h3>
                 <div className="flex items-center gap-3">
-                    <Shield className="w-5 h-5 text-green-400" />
-                    <span className="text-green-400">SSL Certificate Active</span>
+                    <Shield className="w-5 h-5 text-violet-400" />
+                    <span className="text-violet-400">SSL Certificate Active</span>
                     <span className="text-foreground/60 text-sm">
                         (Automatically provisioned via Let's Encrypt)
                     </span>

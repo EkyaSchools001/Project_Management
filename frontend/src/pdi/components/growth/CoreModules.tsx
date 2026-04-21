@@ -28,7 +28,7 @@ const CoreModules: React.FC<CoreModulesProps> = ({ teacherId, teacherName, teach
             description: "Standard Danielson-based academic observation framework.",
             icon: Eye,
             path: getPath("/leader/danielson-framework"),
-            color: "bg-backgroundlue-500",
+            color: "bg-violet-500",
         },
         {
             title: "Quick Feedback Master",

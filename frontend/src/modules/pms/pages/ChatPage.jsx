@@ -65,7 +65,7 @@ const ChatPage = () => {
                 <div className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-10 relative z-10">
                     <div className="space-y-6 max-w-3xl">
                         <motion.div variants={itemVariants} className="inline-flex items-center gap-4 px-6 py-2 bg-white/5 rounded-full border border-white/10 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.5em] backdrop-blur-3xl">
-                            <Activity size={14} className="text-emerald-400" />
+                            <Activity size={14} className="text-violet-400" />
                             Neural Uplink Protocol: Established
                         </motion.div>
                         <motion.h1 variants={itemVariants} className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tighter uppercase leading-[0.8] mb-2">
@@ -73,7 +73,7 @@ const ChatPage = () => {
                         </motion.h1>
                         <div className="flex flex-wrap gap-6">
                             <MetricPill label="Nodes Active" value="128" color="text-indigo-400" bg="bg-indigo-400/10" />
-                            <MetricPill label="Encryption" value="AES-256" color="text-emerald-400" bg="bg-backgroundmerald-400/10" />
+                            <MetricPill label="Encryption" value="AES-256" color="text-violet-400" bg="bg-violet-400/10" />
                         </div>
                     </div>
 

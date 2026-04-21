@@ -45,12 +45,12 @@ export const AssessmentAnalyticsView: React.FC = () => {
         { name: 'In Progress', value: totalAttempts - completedAttempts },
     ];
 
-    const COLORS = ['#10b981', '#f59e0b'];
+    const COLORS = ['#8b5cf6', '#f59e0b'];
 
     return (
         <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <Card className="  shadow-md bg-backgroundackground text-foreground">
+                <Card className="  shadow-md bg-background text-foreground">
                     <CardContent className="pt-6 space-y-2">
                         <Users className="w-8 h-8 text-primary mb-2" />
                         <p className="text-muted-foreground text-sm">Total Attempts</p>
@@ -59,7 +59,7 @@ export const AssessmentAnalyticsView: React.FC = () => {
                 </Card>
                 <Card className="  shadow-md">
                     <CardContent className="pt-6 space-y-2">
-                        <TrendingUp className="w-8 h-8 text-emerald-500 mb-2" />
+                        <TrendingUp className="w-8 h-8 text-violet-500 mb-2" />
                         <p className="text-zinc-500 text-sm">Average Score</p>
                         <h3 className="text-3xl font-bold">{Math.round(avgScore)}%</h3>
                     </CardContent>
@@ -120,7 +120,7 @@ export const AssessmentAnalyticsView: React.FC = () => {
                                     <div className="text-right">
                                         <Badge className={cn(
                                             "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
-                                            attempt.status === 'SUBMITTED' ? 'bg-backgroundmerald-600' : 'bg-amber-500'
+                                            attempt.status === 'SUBMITTED' ? 'bg-violet-600' : 'bg-amber-500'
                                         )}>
                                             {attempt.status}
                                         </Badge>

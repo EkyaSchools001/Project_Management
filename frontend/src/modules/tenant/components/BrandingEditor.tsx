@@ -125,7 +125,7 @@ export const BrandingEditor = ({ onSave }: BrandingEditorProps) => {
                 <div className="space-y-4">
                     <div className="p-6 bg-white/5 rounded-xl border border-white/10">
                         <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                            <Upload className="w-5 h-5 text-[#BAFF00]" />
+                            <Upload className="w-5 h-5 text-[#8b5cf6]" />
                             Logo
                         </h3>
                         <div className="flex items-center gap-4">
@@ -136,7 +136,7 @@ export const BrandingEditor = ({ onSave }: BrandingEditorProps) => {
                                     <Upload className="w-8 h-8 text-foreground/30" />
                                 )}
                             </div>
-                            <label className="px-4 py-2 bg-[#BAFF00]/10 border border-[#BAFF00]/20 text-[#BAFF00] rounded-lg cursor-pointer hover:bg-[#BAFF00]/20 transition-colors">
+                            <label className="px-4 py-2 bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 text-[#8b5cf6] rounded-lg cursor-pointer hover:bg-[#8b5cf6]/20 transition-colors">
                                 <input
                                     type="file"
                                     accept="image/*"
@@ -150,7 +150,7 @@ export const BrandingEditor = ({ onSave }: BrandingEditorProps) => {
 
                     <div className="p-6 bg-white/5 rounded-xl border border-white/10">
                         <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                            <Upload className="w-5 h-5 text-[#BAFF00]" />
+                            <Upload className="w-5 h-5 text-[#8b5cf6]" />
                             Favicon
                         </h3>
                         <div className="flex items-center gap-4">
@@ -161,7 +161,7 @@ export const BrandingEditor = ({ onSave }: BrandingEditorProps) => {
                                     <Upload className="w-5 h-5 text-foreground/30" />
                                 )}
                             </div>
-                            <label className="px-4 py-2 bg-[#BAFF00]/10 border border-[#BAFF00]/20 text-[#BAFF00] rounded-lg cursor-pointer hover:bg-[#BAFF00]/20 transition-colors">
+                            <label className="px-4 py-2 bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 text-[#8b5cf6] rounded-lg cursor-pointer hover:bg-[#8b5cf6]/20 transition-colors">
                                 <input
                                     type="file"
                                     accept="image/*"
@@ -177,7 +177,7 @@ export const BrandingEditor = ({ onSave }: BrandingEditorProps) => {
                 <div className="space-y-4">
                     <div className="p-6 bg-white/5 rounded-xl border border-white/10">
                         <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                            <Palette className="w-5 h-5 text-[#BAFF00]" />
+                            <Palette className="w-5 h-5 text-[#8b5cf6]" />
                             Colors
                         </h3>
                         <div className="space-y-4">
@@ -272,7 +272,7 @@ export const BrandingEditor = ({ onSave }: BrandingEditorProps) => {
                     <button
                         onClick={handleSave}
                         disabled={isSaving}
-                        className="flex items-center gap-2 px-6 py-2 bg-[#BAFF00] text-black rounded-lg hover:bg-[#a8ed00] transition-colors disabled:opacity-50"
+                        className="flex items-center gap-2 px-6 py-2 bg-[#8b5cf6] text-black rounded-lg hover:bg-[#7c3aed] transition-colors disabled:opacity-50"
                     >
                         <Save className="w-4 h-4" />
                         {isSaving ? 'Saving...' : 'Save'}

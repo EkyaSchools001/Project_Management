@@ -84,7 +84,7 @@ const ProjectDetailsPage = () => {
             className="max-w-[1800px] mx-auto space-y-16 p-6 sm:p-10 lg:p-16 pb-40"
         >
             {/* Project Hero Header */}
-            <section className="relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-backgroundackground rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
+            <section className="relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-background rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-violet-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-[800px] h-[800px] bg-indigo-500 rounded-full blur-[200px] opacity-10 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 
@@ -114,7 +114,7 @@ const ProjectDetailsPage = () => {
                         </div>
 
                         <div className="flex flex-wrap gap-8 pt-10">
-                            <StatBadge icon={User} label="Command Lead" value={project.manager.name} color="text-blue-400" bg="bg-backgroundlue-600/10" />
+                            <StatBadge icon={User} label="Command Lead" value={project.manager.name} color="text-blue-400" bg="bg-violet-600/10" />
                             <StatBadge icon={CalendarIcon} label="Target Window" value={project.endDate} color="text-indigo-400" bg="bg-indigo-600/10" />
                             <StatBadge icon={IndianRupee} label="Budget Matrix" value={`₹${project.budget.toLocaleString()}`} color="text-rose-400" bg="bg-rose-600/10" />
                         </div>
@@ -150,8 +150,8 @@ const ProjectDetailsPage = () => {
                         <div className="space-y-4 relative z-10">
                             <p className="text-base font-black text-foreground uppercase tracking-widest">{tasks.length} Atomic Work Units</p>
                             <div className="flex items-center justify-center gap-4">
-                                <div className="w-3 h-3 rounded-full bg-backgroundmerald-400 animate-pulse shadow-[0_0_15px_rgba(52,211,153,0.6)]" />
-                                <p className="text-[10px] font-black text-emerald-400 tracking-[0.3em] uppercase">Deployment Healthy</p>
+                                <div className="w-3 h-3 rounded-full bg-violet-400 animate-pulse shadow-[0_0_15px_rgba(52,211,153,0.6)]" />
+                                <p className="text-[10px] font-black text-violet-400 tracking-[0.3em] uppercase">Deployment Healthy</p>
                             </div>
                         </div>
                     </motion.div>
@@ -249,7 +249,7 @@ const KanbanView = ({ tasksByStatus }) => (
                     <div className="flex items-center gap-6">
                         <div className={`w-4 h-4 rounded-full shadow-[0_0_20px_rgba(0,0,0,0.1)] ${status === 'TODO' ? 'bg-slate-300' :
                             status === 'IN_PROGRESS' ? 'bg-indigo-500 animate-pulse-glow shadow-[0_0_15px_rgba(79,70,229,0.4)]' :
-                                'bg-backgroundmerald-400 shadow-[0_0_15px_rgba(52,211,153,0.4)]'
+                                'bg-violet-400 shadow-[0_0_15px_rgba(52,211,153,0.4)]'
                             }`}></div>
                         <h3 className="font-black text-muted-foreground text-[11px] uppercase tracking-[0.4em]">
                             {status.replace('_', ' ')}
@@ -339,7 +339,7 @@ const ListView = ({ tasks }) => (
                         <tr key={task.id} className="hover:bg-indigo-50/50 transition-all cursor-pointer group">
                             <td className="px-12 py-10">
                                 <div className="flex items-center gap-8">
-                                    <div className={`w-14 h-14 rounded-[1.5rem] flex items-center justify-center transition-all duration-700 shadow-2xl ${task.status === 'Done' ? 'bg-backgroundmerald-50 text-emerald-500 border border-emerald-100' : 'bg-slate-50 text-slate-300 group-hover:bg-indigo-600 group-hover:text-foreground border border-slate-100 group-hover:rotate-12'}`}>
+                                    <div className={`w-14 h-14 rounded-[1.5rem] flex items-center justify-center transition-all duration-700 shadow-2xl ${task.status === 'Done' ? 'bg-violet-50 text-violet-500 border border-violet-100' : 'bg-slate-50 text-slate-300 group-hover:bg-indigo-600 group-hover:text-foreground border border-slate-100 group-hover:rotate-12'}`}>
                                         {task.status === 'Done' ? <CheckCircle2 size={32} /> : <Circle size={32} />}
                                     </div>
                                     <div>
@@ -352,7 +352,7 @@ const ListView = ({ tasks }) => (
                                 </div>
                             </td>
                             <td className="px-12 py-10 text-center">
-                                <span className={`px-8 py-3 rounded-full text-[11px] font-black uppercase tracking-widest border shadow-xl transition-all duration-700 ${task.status === 'Done' ? 'bg-backgroundmerald-50 text-emerald-600 border-emerald-100' : 'bg-white text-indigo-600 border-indigo-50 group-hover:bg-indigo-600 group-hover:text-foreground group-hover:border-indigo-600'}`}>
+                                <span className={`px-8 py-3 rounded-full text-[11px] font-black uppercase tracking-widest border shadow-xl transition-all duration-700 ${task.status === 'Done' ? 'bg-violet-50 text-violet-600 border-violet-100' : 'bg-white text-indigo-600 border-indigo-50 group-hover:bg-indigo-600 group-hover:text-foreground group-hover:border-indigo-600'}`}>
                                     {task.status.replace('_', ' ')}
                                 </span>
                             </td>

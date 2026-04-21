@@ -196,7 +196,7 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                 <div className="flex items-center justify-between relative z-10">
                     <div className="space-y-2">
                         <div className="flex items-center gap-4">
-                            <div className="w-2.5 h-2.5 rounded-full bg-backgroundmerald-400 animate-pulse-glow shadow-[0_0_15px_rgba(52,211,153,0.5)]" />
+                            <div className="w-2.5 h-2.5 rounded-full bg-violet-400 animate-pulse-glow shadow-[0_0_15px_rgba(52,211,153,0.5)]" />
                             <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tighter text-foreground">Archives</h2>
                         </div>
                         <p className="text-[9px] font-black text-foreground/30 uppercase tracking-[0.3em]">Operational Matrix Active</p>
@@ -292,7 +292,7 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                                             </div>
                                             <div className={`absolute -bottom-1 -right-1 w-4.5 h-4.5 rounded-full border-4 ${isActive ? 'border-slate-950' : 'border-white'} ${
                                                 chat.type === 'PRIVATE' && chat.participants?.some(p => p.user?.id && onlineUsers.includes(p.user.id)) 
-                                                    ? 'bg-backgroundmerald-400 animate-pulse' 
+                                                    ? 'bg-violet-400 animate-pulse' 
                                                     : 'bg-slate-300'
                                             }`} />
                                         </div>
@@ -309,11 +309,11 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                                             <div className="flex items-center justify-between gap-4">
                                                 <div className={`text-[11px] font-black truncate flex items-center gap-2 uppercase tracking-wide ${isActive ? 'text-foreground/60' : 'text-slate-500'}`}>
                                                     {typingChats[chat.id] ? (
-                                                        <span className={isActive ? 'text-emerald-400' : 'text-indigo-600 animate-pulse'}>SYNCHRONIZING...</span>
+                                                        <span className={isActive ? 'text-violet-400' : 'text-indigo-600 animate-pulse'}>SYNCHRONIZING...</span>
                                                     ) : (
                                                         <>
                                                             {chat.messages?.[0]?.senderId === userId && (
-                                                                <CheckCheck size={14} className={isActive ? 'text-emerald-400' : 'text-indigo-500'} />
+                                                                <CheckCheck size={14} className={isActive ? 'text-violet-400' : 'text-indigo-500'} />
                                                             )}
                                                             <span className="truncate opacity-80">{lastMsg.content}</span>
                                                         </>
@@ -403,7 +403,7 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                                                                 <div className="flex-1 min-w-0 pr-2">
                                                                     <div className="font-black text-slate-950 text-sm uppercase tracking-tighter truncate leading-none mb-1.5">{user.name}</div>
                                                                     <div className="flex items-center gap-2">
-                                                                        <div className="w-2 h-2 rounded-full bg-backgroundmerald-400 animate-pulse" />
+                                                                        <div className="w-2 h-2 rounded-full bg-violet-400 animate-pulse" />
                                                                         <div className="text-[9px] font-black text-muted-foreground uppercase tracking-widest truncate">Node ID: {user.id.slice(0, 8)}</div>
                                                                     </div>
                                                                 </div>
@@ -454,7 +454,7 @@ const ChatSidebar = ({ onSelectChat, activeChatId, initialChatId, refreshTrigger
                                             <div className="w-12 h-12 rounded-xl overflow-hidden">
                                                 <img src={`https://ui-avatars.com/api/?name=${p.user.name}&background=random`} alt="" className="w-full h-full" />
                                             </div>
-                                            <div className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full ${onlineUsers.includes(p.user.id) ? 'bg-backgroundmerald-400' : 'bg-slate-300'}`} />
+                                            <div className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full ${onlineUsers.includes(p.user.id) ? 'bg-violet-400' : 'bg-slate-300'}`} />
                                         </div>
                                         <div className="flex-1">
                                             <p className="font-black text-slate-900">{p.user.name}</p>

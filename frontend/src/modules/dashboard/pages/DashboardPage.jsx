@@ -102,7 +102,7 @@ export default function DashboardPage() {
                         title="Processing Tasks" 
                         value={stats.tasks} 
                         icon={CheckCircle} 
-                        iconColor="text-green-500"
+                        iconColor="text-violet-500"
                         loading={stats.loading} 
                     />
                     <StatCard 
@@ -164,7 +164,7 @@ export default function DashboardPage() {
                                 </div>
                                 <div className="space-y-2">
                                     <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Integrity</p>
-                                    <p className="text-4xl font-black text-green-600">SECURE</p>
+                                    <p className="text-4xl font-black text-violet-600">SECURE</p>
                                 </div>
                             </div>
                         </Card>

@@ -77,7 +77,7 @@ export default function DepartmentDetails() {
     const stats = [
         { label: 'Live Projects', value: activeProjects, icon: Briefcase, color: 'from-blue-500 to-indigo-600', text: 'text-blue-500', link: `/departments/${id}/projects` },
         { label: 'Pending Operations', value: pendingTasks, icon: ListTodo, color: 'from-violet-500 to-purple-600', text: 'text-violet-500', link: `/departments/${id}/tasks` },
-        { label: 'Success Index', value: '94%', icon: Target, color: 'from-emerald-400 to-teal-600', text: 'text-emerald-500', link: `/departments/${id}/reports` },
+        { label: 'Success Index', value: '94%', icon: Target, color: 'from-violet-400 to-fuchsia-600', text: 'text-violet-500', link: `/departments/${id}/reports` },
         { label: 'Core Velocity', value: '4.2', icon: Zap, color: 'from-amber-400 to-orange-600', text: 'text-amber-500', link: `/departments/${id}/reports` },
     ];
 
@@ -89,7 +89,7 @@ export default function DepartmentDetails() {
             className="max-w-[1800px] mx-auto space-y-16 p-6 sm:p-10 lg:p-16 pb-40"
         >
             {/* High-Vibrancy Header */}
-            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-backgroundackground rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
+            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-background rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-violet-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-[600px] h-[600px] bg-indigo-500 rounded-full blur-[200px] opacity-10 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 
@@ -123,19 +123,19 @@ export default function DepartmentDetails() {
                             whileHover={{ y: -6, scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => navigate('/departments/pd')}
-                            className="flex flex-col items-center justify-end p-8 h-40 bg-[#BAFF00]/10 backdrop-blur-xl border border-[#BAFF00]/30 rounded-[2.5rem] hover:bg-[#BAFF00]/20 hover:border-[#BAFF00]/60 transition-all group flex-1 min-w-[160px] relative overflow-hidden"
+                            className="flex flex-col items-center justify-end p-8 h-40 bg-[#8b5cf6]/10 backdrop-blur-xl border border-[#8b5cf6]/30 rounded-[2.5rem] hover:bg-[#8b5cf6]/20 hover:border-[#8b5cf6]/60 transition-all group flex-1 min-w-[160px] relative overflow-hidden"
                         >
-                            <div className="absolute top-4 right-4 text-[#BAFF00]/30 group-hover:text-[#BAFF00]/60 transition-colors">
+                            <div className="absolute top-4 right-4 text-[#8b5cf6]/30 group-hover:text-[#8b5cf6]/60 transition-colors">
                                 <ArrowUpRight size={24} />
                             </div>
-                            <div className="w-16 h-16 rounded-[1.5rem] flex items-center justify-center bg-[#BAFF00]/20 text-[#BAFF00] transition-transform group-hover:scale-115 shadow-2xl mb-6">
+                            <div className="w-16 h-16 rounded-[1.5rem] flex items-center justify-center bg-[#8b5cf6]/20 text-[#8b5cf6] transition-transform group-hover:scale-115 shadow-2xl mb-6">
                                 <Sparkles size={28} />
                             </div>
-                            <span className="text-[10px] font-black text-[#BAFF00]/70 uppercase tracking-[0.3em] group-hover:text-[#BAFF00] transition-colors">PD Hub</span>
-                            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#BAFF00]/40 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+                            <span className="text-[10px] font-black text-[#8b5cf6]/70 uppercase tracking-[0.3em] group-hover:text-[#8b5cf6] transition-colors">PD Hub</span>
+                            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#8b5cf6]/40 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
                         </motion.button>
                     )}
-                    <NavAction onClick={() => navigate(`/departments/${id}/projects`)} icon={Layout} label="Portfolio" color="text-blue-400" bg="bg-backgroundlue-600/10" />
+                    <NavAction onClick={() => navigate(`/departments/${id}/projects`)} icon={Layout} label="Portfolio" color="text-blue-400" bg="bg-violet-600/10" />
                     <NavAction onClick={() => navigate(`/departments/${id}/tasks`)} icon={ListTodo} label="Operations" color="text-indigo-400" bg="bg-indigo-600/10" />
                     <NavAction onClick={() => navigate(`/departments/${id}/reports`)} icon={FileText} label="Analytics" color="text-rose-400" bg="bg-rose-600/10" />
                     <NavAction onClick={() => navigate(`/departments/${id}/team`)} icon={Users} label="Personnel" color="text-amber-400" bg="bg-amber-600/10" />
@@ -206,7 +206,7 @@ export default function DepartmentDetails() {
                                     onClick={() => navigate(`/departments/${id}/projects/${project.id}`)}
                                 >
                                     <div className="absolute top-0 right-0 p-10">
-                                        <div className="w-3.5 h-3.5 rounded-full bg-backgroundmerald-500 shadow-[0_0_30px_rgba(16,185,129,0.8)] animate-pulse-glow" />
+                                        <div className="w-3.5 h-3.5 rounded-full bg-violet-500 shadow-[0_0_30px_rgba(16,185,129,0.8)] animate-pulse-glow" />
                                     </div>
 
                                     <div className="mb-10">

@@ -450,7 +450,7 @@ export function UserManagementView() {
                                                 </Badge>
                                                 <Badge className={cn(
                                                     "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
-                                                    selectedUser.status === "Active" ? "bg-backgroundmerald-600" : "bg-slate-500"
+                                                    selectedUser.status === "Active" ? "bg-violet-600" : "bg-slate-500"
                                                 )}>
                                                     {selectedUser.status}
                                                 </Badge>
@@ -564,7 +564,7 @@ export function UserManagementView() {
                                                         {formatRole(user.role)}
                                                     </Badge>
                                                     {user.role === "TEACHER" && (
-                                                        <Badge variant="secondary" className={`w-fit text-[10px] ${user.academics === 'NON_CORE' ? 'bg-purple-100 text-purple-700 border-purple-200' : 'bg-backgroundlue-100 text-blue-700 border-blue-200'}`}>
+                                                        <Badge variant="secondary" className={`w-fit text-[10px] ${user.academics === 'NON_CORE' ? 'bg-purple-100 text-purple-700 border-purple-200' : 'bg-violet-100 text-blue-700 border-blue-200'}`}>
                                                             {user.academics === 'NON_CORE' ? 'Specialist' : 'Core'}
                                                         </Badge>
                                                     )}
@@ -574,7 +574,7 @@ export function UserManagementView() {
                                             <TableCell>
                                                 <Badge className={cn(
                                                     "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
-                                                    user.status === "Active" ? "bg-backgroundmerald-600" : "bg-slate-500"
+                                                    user.status === "Active" ? "bg-violet-600" : "bg-slate-500"
                                                 )}>
                                                     {user.status === "Active" ? <UserCheck className="w-3 h-3 mr-1" /> : <UserX className="w-3 h-3 mr-1" />}
                                                     {user.status}
@@ -598,7 +598,7 @@ export function UserManagementView() {
                                                             <Shield className="w-4 h-4 mr-2" /> Change Role
                                                         </DropdownMenuItem>
                                                         <DropdownMenuItem
-                                                            className={user.status === "Active" ? "text-red-600 focus:text-red-600" : "text-green-600 focus:text-green-600"}
+                                                            className={user.status === "Active" ? "text-red-600 focus:text-red-600" : "text-violet-600 focus:text-violet-600"}
                                                             onClick={() => handleAction(user.status === "Active" ? "Deactivate" : "Activate", user)}
                                                         >
                                                             {user.status === "Active" ? (

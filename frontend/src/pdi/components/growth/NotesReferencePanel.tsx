@@ -37,7 +37,7 @@ export const NotesReferencePanel: React.FC<NotesReferencePanelProps> = ({ notes,
             isCollapsed ? "w-12" : "w-80",
             className
         )}>
-            <Card className="shadow-2xl border-primary/20 bg-backgroundackground/95 backdrop-blur-md overflow-hidden h-[calc(100vh-120px)] flex flex-col">
+            <Card className="shadow-2xl border-primary/20 bg-background/95 backdrop-blur-md overflow-hidden h-[calc(100vh-120px)] flex flex-col">
                 <CardHeader className="p-3 border-b bg-primary/5 flex flex-row items-center justify-between shrink-0">
                     {!isCollapsed && (
                         <CardTitle className="text-sm font-bold flex items-center gap-2">
@@ -71,7 +71,7 @@ export const NotesReferencePanel: React.FC<NotesReferencePanelProps> = ({ notes,
                                                 className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
                                                 onClick={() => copyToClipboard(note.text, note.id)}
                                             >
-                                                {copiedId === note.id ? <Check className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3" />}
+                                                {copiedId === note.id ? <Check className="w-3 h-3 text-violet-500" /> : <Copy className="w-3 h-3" />}
                                             </Button>
                                         </div>
                                         <p className="text-xs text-foreground leading-relaxed">

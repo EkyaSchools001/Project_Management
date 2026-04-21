@@ -20,13 +20,13 @@ const PermissionBadge = ({ permission }) => {
     const config = {
         [PERMISSIONS.ALL]: { label: 'Full Access', color: 'bg-neutral-800 text-foreground border-transparent' },
         [PERMISSIONS.DEPARTMENTS]: { label: 'Departments', color: 'bg-indigo-50 text-indigo-700 border-indigo-100' },
-        [PERMISSIONS.SCHOOLS]: { label: 'Schools', color: 'bg-backgroundlue-50 text-blue-700 border-blue-100' },
-        [PERMISSIONS.ANALYTICS]: { label: 'Analytics', color: 'bg-backgroundmerald-50 text-emerald-700 border-emerald-100' },
+        [PERMISSIONS.SCHOOLS]: { label: 'Schools', color: 'bg-violet-50 text-blue-700 border-blue-100' },
+        [PERMISSIONS.ANALYTICS]: { label: 'Analytics', color: 'bg-violet-50 text-violet-700 border-violet-100' },
         [PERMISSIONS.USER_MGMT]: { label: 'Identity', color: 'bg-purple-50 text-purple-700 border-purple-100' },
         [PERMISSIONS.GROWTH_HUB]: { label: 'Growth Hub', color: 'bg-orange-50 text-orange-700 border-orange-100' },
         [PERMISSIONS.GROWTH_ADMIN]: { label: 'GH Admin', color: 'bg-red-50 text-red-700 border-red-100' },
         [PERMISSIONS.GROWTH_LEADER]: { label: 'GH Leader', color: 'bg-amber-50 text-amber-700 border-amber-100' },
-        [PERMISSIONS.GROWTH_TEACHER]: { label: 'GH Teacher', color: 'bg-backgroundmerald-50 text-emerald-700 border-emerald-100' },
+        [PERMISSIONS.GROWTH_TEACHER]: { label: 'GH Teacher', color: 'bg-violet-50 text-violet-700 border-violet-100' },
         [PERMISSIONS.PM_TOOLS]: { label: 'PM Suite', color: 'bg-slate-100 text-slate-700 border-slate-200' },
         [PERMISSIONS.PROJECTS]: { label: 'Projects', color: 'bg-sky-50 text-sky-700 border-sky-100' },
         [PERMISSIONS.TASKS]: { label: 'Tasks', color: 'bg-rose-50 text-rose-700 border-rose-100' },
@@ -34,7 +34,7 @@ const PermissionBadge = ({ permission }) => {
         [PERMISSIONS.CHAT]: { label: 'Chat', color: 'bg-cyan-50 text-cyan-700 border-cyan-100' },
         [PERMISSIONS.REPORTS]: { label: 'Reports', color: 'bg-rose-50 text-rose-700 border-rose-100' },
         [PERMISSIONS.AUDIT_LOGS]: { label: 'Audits', color: 'bg-slate-50 text-slate-700 border-slate-100' },
-        [PERMISSIONS.SETTINGS]: { label: 'Settings', color: 'bg-backgroundackground text-foreground border-transparent' },
+        [PERMISSIONS.SETTINGS]: { label: 'Settings', color: 'bg-background text-foreground border-transparent' },
     };
 
     const details = config[permission] || { label: permission, color: 'bg-slate-50 text-muted-foreground border-slate-200' };
@@ -135,7 +135,7 @@ export default function UserManagement({ initialView = 'users' }) {
             <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 sm:gap-10 py-6 sm:py-10 border-b border-slate-200">
                 <div className="space-y-2 w-full sm:w-auto">
                     <div className="flex items-center gap-3">
-                        <div className="w-2.5 h-2.5 rounded-full bg-backgroundlue-600 animate-pulse shadow-[0_0_15px_rgba(37,99,235,0.3)]"></div>
+                        <div className="w-2.5 h-2.5 rounded-full bg-violet-600 animate-pulse shadow-[0_0_15px_rgba(37,99,235,0.3)]"></div>
                         <span className="text-[9px] sm:text-[10px] font-black text-blue-600 uppercase tracking-[0.3em] sm:tracking-[0.4em]">Central Intelligence Unit</span>
                     </div>
                     <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">Identity Matrix</h1>
@@ -166,8 +166,8 @@ export default function UserManagement({ initialView = 'users' }) {
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} key="users" className="space-y-8 sm:space-y-12">
                         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                             {[
-                                { label: 'Verified Nodes', val: users.length, icon: Users, color: 'text-blue-600 bg-backgroundlue-50' },
-                                { label: 'Active Clusters', val: '12', icon: Globe, color: 'text-emerald-600 bg-backgroundmerald-50' },
+                                { label: 'Verified Nodes', val: users.length, icon: Users, color: 'text-blue-600 bg-violet-50' },
+                                { label: 'Active Clusters', val: '12', icon: Globe, color: 'text-violet-600 bg-violet-50' },
                                 { label: 'Security Breaches', val: '0', icon: ShieldAlert, color: 'text-rose-600 bg-rose-50' },
                                 { label: 'System Uptime', val: '99.9%', icon: ActivityIcon, color: 'text-indigo-600 bg-indigo-50' },
                             ].map((stat, i) => (stat &&
@@ -197,9 +197,9 @@ export default function UserManagement({ initialView = 'users' }) {
                             <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full lg:w-auto">
                                 <input type="file" ref={fileInputRef} className="hidden" onChange={handleFileUpload} />
                                 <button onClick={() => fileInputRef.current.click()} className="h-14 sm:h-16 px-4 sm:px-10 bg-white border border-slate-200 rounded-2xl sm:rounded-[2rem] text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-600 hover:border-blue-500 hover:text-blue-600 hover:shadow-lg transition-all flex items-center justify-center gap-2 sm:gap-3">
-                                    <FileSpreadsheet className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 shrink-0" /> <span className="truncate">Bulk Import</span>
+                                    <FileSpreadsheet className="w-4 h-4 sm:w-5 sm:h-5 text-violet-600 shrink-0" /> <span className="truncate">Bulk Import</span>
                                 </button>
-                                <button className="h-14 sm:h-16 px-4 sm:px-10 bg-backgroundackground text-foreground text-[9px] sm:text-[10px] font-black uppercase tracking-widest rounded-2xl sm:rounded-[2rem] shadow-2xl shadow-slate-900/20 hover:bg-card hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 sm:gap-3">
+                                <button className="h-14 sm:h-16 px-4 sm:px-10 bg-background text-foreground text-[9px] sm:text-[10px] font-black uppercase tracking-widest rounded-2xl sm:rounded-[2rem] shadow-2xl shadow-slate-900/20 hover:bg-card hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 sm:gap-3">
                                     <Plus className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" /> <span className="truncate">Provision</span>
                                 </button>
                             </div>
@@ -218,10 +218,10 @@ export default function UserManagement({ initialView = 'users' }) {
                                     </thead>
                                     <tbody className="divide-y divide-slate-100">
                                         {filteredUsers.map((user) => (
-                                            <tr key={user.id} className="hover:bg-backgroundlue-50/50 transition-all duration-300 group">
+                                            <tr key={user.id} className="hover:bg-violet-50/50 transition-all duration-300 group">
                                                 <td className="px-6 sm:px-12 py-6 sm:py-8">
                                                     <div className="flex items-center gap-4 sm:gap-6">
-                                                        <div className="w-12 h-12 sm:w-16 sm:h-16 bg-slate-50 rounded-xl sm:rounded-[1.5rem] flex items-center justify-center font-black text-muted-foreground uppercase border border-slate-200 group-hover:bg-backgroundlue-600 group-hover:text-foreground group-hover:border-transparent group-hover:rotate-6 transition-all duration-500 shadow-sm text-lg sm:text-xl shrink-0">
+                                                        <div className="w-12 h-12 sm:w-16 sm:h-16 bg-slate-50 rounded-xl sm:rounded-[1.5rem] flex items-center justify-center font-black text-muted-foreground uppercase border border-slate-200 group-hover:bg-violet-600 group-hover:text-foreground group-hover:border-transparent group-hover:rotate-6 transition-all duration-500 shadow-sm text-lg sm:text-xl shrink-0">
                                                             {user.name.charAt(0)}
                                                         </div>
                                                         <div className="min-w-0">
@@ -270,19 +270,19 @@ export default function UserManagement({ initialView = 'users' }) {
 
                 {view === 'permissions' && (
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} key="permissions" className="space-y-8 sm:space-y-12">
-                        <section className="bg-backgroundackground text-foreground rounded-[2rem] sm:rounded-[4rem] p-8 sm:p-16 relative overflow-hidden shadow-2xl border border-zinc-800">
+                        <section className="bg-background text-foreground rounded-[2rem] sm:rounded-[4rem] p-8 sm:p-16 relative overflow-hidden shadow-2xl border border-zinc-800">
                             <div className="absolute top-0 right-0 p-8 sm:p-12 opacity-[0.05] animate-spin-slow pointer-events-none">
                                 <Cpu size={window.innerWidth < 640 ? 200 : 400} />
                             </div>
                             <div className="relative z-10 flex flex-col xl:flex-row justify-between items-start xl:items-center gap-8 sm:gap-10">
                                 <div className="space-y-4 sm:space-y-6 max-w-2xl text-left">
-                                    <div className="inline-flex items-center gap-3 px-5 py-2 bg-backgroundlue-500/10 text-blue-400 rounded-full border border-blue-500/20 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em]">Hardware Root Access</div>
+                                    <div className="inline-flex items-center gap-3 px-5 py-2 bg-violet-500/10 text-blue-400 rounded-full border border-blue-500/20 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em]">Hardware Root Access</div>
                                     <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-[0.9]">Global Permission Matrix</h2>
                                     <p className="text-sm sm:text-lg text-muted-foreground font-medium leading-relaxed">Orchestrate the behavioral heuristics of every identity class within the infrastructure.</p>
                                 </div>
                                 <button
                                     onClick={() => isEditingPermissions ? handleSaveGlobalPermissions() : setIsEditingPermissions(true)}
-                                    className={`w-full sm:w-auto h-16 sm:h-20 px-8 sm:px-16 text-[10px] sm:text-xs font-black rounded-2xl sm:rounded-3xl transition-all shadow-2xl active:scale-95 uppercase tracking-[0.2em] flex items-center justify-center gap-4 ${isEditingPermissions ? 'bg-backgroundmerald-500 text-foreground shadow-emerald-500/20' : 'bg-white text-slate-900 group-hover:bg-backgroundlue-50'}`}
+                                    className={`w-full sm:w-auto h-16 sm:h-20 px-8 sm:px-16 text-[10px] sm:text-xs font-black rounded-2xl sm:rounded-3xl transition-all shadow-2xl active:scale-95 uppercase tracking-[0.2em] flex items-center justify-center gap-4 ${isEditingPermissions ? 'bg-violet-500 text-foreground shadow-violet-500/20' : 'bg-white text-slate-900 group-hover:bg-violet-50'}`}
                                 >
                                     {isEditingPermissions ? <><Save size={20} /> Push Matrix</> : <><Edit size={20} /> Unlock Matrix</>}
                                 </button>
@@ -296,7 +296,7 @@ export default function UserManagement({ initialView = 'users' }) {
                                     <Card key={key} className={`space-y-6 sm:space-y-10 p-6 sm:p-12 border border-slate-100 shadow-sm bg-white rounded-[2rem] sm:rounded-[3rem] transition-all duration-700 ${isEditingPermissions ? 'ring-4 ring-blue-500/20 scale-[1.02] z-10 border-blue-500' : ''}`}>
                                         <div className="flex items-center justify-between pb-6 sm:pb-10 border-b border-slate-50">
                                             <div className="flex items-center gap-4 sm:gap-8 min-w-0">
-                                                <div className="w-12 h-12 sm:w-20 sm:h-20 bg-backgroundlue-50 text-blue-600 rounded-2xl sm:rounded-[2rem] flex items-center justify-center font-black text-xl sm:text-3xl border border-blue-100 shrink-0">
+                                                <div className="w-12 h-12 sm:w-20 sm:h-20 bg-violet-50 text-blue-600 rounded-2xl sm:rounded-[2rem] flex items-center justify-center font-black text-xl sm:text-3xl border border-blue-100 shrink-0">
                                                     {roleName.charAt(0)}
                                                 </div>
                                                 <div className="min-w-0">
@@ -305,9 +305,9 @@ export default function UserManagement({ initialView = 'users' }) {
                                                 </div>
                                             </div>
                                             <div className="hidden xs:flex flex-col items-end gap-2 shrink-0">
-                                                <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-widest text-emerald-500 bg-backgroundmerald-50 px-2 py-1 rounded-md">Online</span>
+                                                <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-widest text-violet-500 bg-violet-50 px-2 py-1 rounded-md">Online</span>
                                                 <div className="w-8 sm:w-12 h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                                                    <div className="h-full bg-backgroundackground w-3/4 rounded-full" />
+                                                    <div className="h-full bg-background w-3/4 rounded-full" />
                                                 </div>
                                             </div>
                                         </div>
@@ -318,7 +318,7 @@ export default function UserManagement({ initialView = 'users' }) {
                                                     onClick={() => handleToggleGlobalPermission(roleName, perm)}
                                                     disabled={!isEditingPermissions || (key === 'SUPER_ADMIN' && perm === PERMISSIONS.ALL)}
                                                     className={`p-4 sm:p-6 border rounded-[1.5rem] sm:rounded-[2rem] text-[9px] sm:text-[11px] font-black uppercase tracking-widest text-left flex items-center justify-between transition-all duration-500 group/perm ${currentPermissions[roleName]?.includes(perm)
-                                                        ? 'bg-backgroundackground text-foreground border-transparent shadow-lg -translate-y-1'
+                                                        ? 'bg-background text-foreground border-transparent shadow-lg -translate-y-1'
                                                         : 'bg-white text-slate-600 border-slate-200 hover:border-blue-500 hover:text-blue-600'}`}
                                                 >
                                                     <span className="truncate pr-2">{perm.split('_').pop()}</span>
@@ -342,7 +342,7 @@ export default function UserManagement({ initialView = 'users' }) {
                             <div className="relative z-10 flex flex-col xl:flex-row justify-between items-start xl:items-center gap-8 sm:gap-12">
                                 <div className="space-y-10 max-w-4xl text-left">
                                     <div className="flex items-center gap-4">
-                                        <div className="w-3 h-3 rounded-full bg-backgroundlue-600 animate-pulse shadow-[0_0_15px_rgba(37,99,235,0.4)]"></div>
+                                        <div className="w-3 h-3 rounded-full bg-violet-600 animate-pulse shadow-[0_0_15px_rgba(37,99,235,0.4)]"></div>
                                         <span className="text-[10px] font-black text-blue-600 uppercase tracking-[0.4em]">Growth Hub Sub-System</span>
                                     </div>
                                     <h2 className="text-4xl sm:text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.85] text-slate-900">Provisioning <br /> Headquarters</h2>
@@ -365,7 +365,7 @@ export default function UserManagement({ initialView = 'users' }) {
                                     </div>
 
                                     <div className="flex items-center gap-6 sm:gap-8 border-b border-slate-100 pb-8 sm:pb-10">
-                                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-backgroundlue-50 text-blue-600 rounded-2xl sm:rounded-[2rem] flex items-center justify-center font-black text-2xl sm:text-3xl border border-blue-100 shrink-0">
+                                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-violet-50 text-blue-600 rounded-2xl sm:rounded-[2rem] flex items-center justify-center font-black text-2xl sm:text-3xl border border-blue-100 shrink-0">
                                             {user.name.charAt(0)}
                                         </div>
                                         <div className="min-w-0">
@@ -380,7 +380,7 @@ export default function UserManagement({ initialView = 'users' }) {
                                             {[
                                                 { id: PERMISSIONS.GROWTH_ADMIN, label: 'Orchestrator', icon: Shield, color: 'text-rose-600 bg-rose-50' },
                                                 { id: PERMISSIONS.GROWTH_LEADER, label: 'Vanguard', icon: Star, color: 'text-amber-600 bg-amber-50' },
-                                                { id: PERMISSIONS.GROWTH_TEACHER, label: 'Practitioner', icon: GraduationCap, color: 'text-emerald-600 bg-backgroundmerald-50' }
+                                                { id: PERMISSIONS.GROWTH_TEACHER, label: 'Practitioner', icon: GraduationCap, color: 'text-violet-600 bg-violet-50' }
                                             ].map(role => {
                                                 const hasRole = (user.overrides || currentPermissions[user.role] || []).includes(role.id);
                                                 return (
@@ -409,7 +409,7 @@ export default function UserManagement({ initialView = 'users' }) {
                                         </div>
                                         <button
                                             onClick={() => handleToggleUserPermission(user.id, PERMISSIONS.GROWTH_HUB)}
-                                            className={`w-16 sm:w-20 h-8 sm:h-10 rounded-full transition-all relative shrink-0 ${(user.overrides || currentPermissions[user.role] || []).includes(PERMISSIONS.GROWTH_HUB) ? 'bg-backgroundlue-600 shadow-xl shadow-blue-600/20' : 'bg-slate-200'}`}
+                                            className={`w-16 sm:w-20 h-8 sm:h-10 rounded-full transition-all relative shrink-0 ${(user.overrides || currentPermissions[user.role] || []).includes(PERMISSIONS.GROWTH_HUB) ? 'bg-violet-600 shadow-xl shadow-blue-600/20' : 'bg-slate-200'}`}
                                         >
                                             <div className={`absolute top-1.5 w-5 sm:w-7 h-5 sm:h-7 bg-white rounded-full transition-all duration-300 ${(user.overrides || currentPermissions[user.role] || []).includes(PERMISSIONS.GROWTH_HUB) ? 'left-9.5 sm:left-11.5 shadow-md' : 'left-1.5'}`}></div>
                                         </button>
@@ -422,7 +422,7 @@ export default function UserManagement({ initialView = 'users' }) {
 
                 {view === 'audit' && (
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} key="audit" className="space-y-8 sm:space-y-12">
-                        <section className="bg-backgroundackground text-foreground rounded-[2rem] sm:rounded-[4.5rem] p-8 sm:p-20 relative overflow-hidden shadow-2xl border border-zinc-800">
+                        <section className="bg-background text-foreground rounded-[2rem] sm:rounded-[4.5rem] p-8 sm:p-20 relative overflow-hidden shadow-2xl border border-zinc-800">
                             <div className="absolute top-0 right-0 p-8 sm:p-16 opacity-[0.05] animate-pulse pointer-events-none">
                                 <HistoryIcon size={window.innerWidth < 640 ? 150 : 240} />
                             </div>
@@ -434,7 +434,7 @@ export default function UserManagement({ initialView = 'users' }) {
 
                         <div className="space-y-4 sm:space-y-6">
                             {[
-                                { user: 'superadmin@ekya.edu', action: 'Update Matrix', target: 'SuperAdmin Role', time: '12:45:01 PM', status: 'Success', icon: ShieldCheck, color: 'text-emerald-500 bg-backgroundmerald-500/10 border-emerald-500/20' },
+                                { user: 'superadmin@ekya.edu', action: 'Update Matrix', target: 'SuperAdmin Role', time: '12:45:01 PM', status: 'Success', icon: ShieldCheck, color: 'text-violet-500 bg-violet-500/10 border-violet-500/20' },
                                 { user: 'tech.manager@ekya.edu', action: 'Identity Purge', target: 'u-temp-429', time: '11:20:15 AM', status: 'Failed', icon: ShieldAlert, color: 'text-rose-500 bg-rose-500/10 border-rose-500/20' },
                                 { user: 'principal.btm@ekya.edu', action: 'Node Spawn', target: 'Annual Sports 2026', time: '09:15:33 AM', status: 'Success', icon: ActivityIcon, color: 'text-indigo-500 bg-indigo-500/10 border-indigo-500/20' },
                                 { user: 'hr.manager@ekya.edu', action: 'Batch Provision', target: '12 Identities', time: '08:02:44 AM', status: 'Success', icon: Users, color: 'text-brand-500 bg-backgroundrand-500/10 border-brand-500/20' },
@@ -455,7 +455,7 @@ export default function UserManagement({ initialView = 'users' }) {
                                         <div className="space-y-1 sm:space-y-2 min-w-0">
                                             <div className="flex flex-wrap items-center gap-3">
                                                 <p className="font-black text-slate-900 uppercase tracking-tighter text-lg sm:text-2xl leading-none truncate">{log.action}</p>
-                                                <span className={`text-[8px] sm:text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full ${log.status === 'Success' ? 'bg-backgroundmerald-500 text-foreground' : 'bg-rose-500 text-foreground'}`}>
+                                                <span className={`text-[8px] sm:text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full ${log.status === 'Success' ? 'bg-violet-500 text-foreground' : 'bg-rose-500 text-foreground'}`}>
                                                     {log.status}
                                                 </span>
                                             </div>
@@ -477,7 +477,7 @@ export default function UserManagement({ initialView = 'users' }) {
 
             <AnimatePresence>
                 {selectedUserForTools && (
-                    <div className="fixed inset-0 bg-backgroundackground/40 backdrop-blur-md z-[9999] flex items-end sm:items-center justify-center p-0 sm:p-6 lg:p-10" onClick={() => setSelectedUserForTools(null)}>
+                    <div className="fixed inset-0 bg-background/40 backdrop-blur-md z-[9999] flex items-end sm:items-center justify-center p-0 sm:p-6 lg:p-10" onClick={() => setSelectedUserForTools(null)}>
                         <motion.div
                             initial={{ opacity: 0, y: "100%" }}
                             animate={{ opacity: 1, y: 0 }}
@@ -485,17 +485,17 @@ export default function UserManagement({ initialView = 'users' }) {
                             className="w-full max-w-4xl bg-white rounded-t-[2.5rem] sm:rounded-[3.5rem] p-8 sm:p-16 lg:p-24 relative shadow-2xl border-t sm:border border-slate-200 overflow-hidden max-h-[95vh] flex flex-col"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <div className="absolute top-0 left-0 w-full h-2 sm:h-4 bg-backgroundackground shrink-0" />
+                            <div className="absolute top-0 left-0 w-full h-2 sm:h-4 bg-background shrink-0" />
                             <button onClick={() => setSelectedUserForTools(null)} className="absolute top-6 sm:top-12 right-6 sm:right-12 p-3 sm:p-4 text-muted-foreground hover:bg-slate-50 rounded-2xl transition-all shrink-0"><X size={window.innerWidth < 640 ? 24 : 36} /></button>
 
                             <div className="overflow-y-auto custom-scrollbar pr-2 flex-1">
                                 <div className="mb-12 sm:mb-20 text-center relative pt-4 sm:pt-0">
-                                    <div className="w-24 h-24 sm:w-40 sm:h-40 bg-backgroundlue-50 text-blue-600 border border-blue-100 rounded-[2rem] sm:rounded-[3rem] flex items-center justify-center text-4xl sm:text-7xl font-black mx-auto mb-6 sm:mb-10 shadow-lg relative overflow-hidden">
+                                    <div className="w-24 h-24 sm:w-40 sm:h-40 bg-violet-50 text-blue-600 border border-blue-100 rounded-[2rem] sm:rounded-[3rem] flex items-center justify-center text-4xl sm:text-7xl font-black mx-auto mb-6 sm:mb-10 shadow-lg relative overflow-hidden">
                                         {selectedUserForTools.name.charAt(0)}
                                     </div>
                                     <h2 className="text-3xl sm:text-6xl font-black text-slate-900 uppercase tracking-tighter mb-4">{selectedUserForTools.name}</h2>
                                     <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-                                        <div className="flex items-center gap-2 sm:gap-3 bg-backgroundlue-50 px-4 sm:px-8 py-2 sm:py-3 rounded-full border border-blue-100">
+                                        <div className="flex items-center gap-2 sm:gap-3 bg-violet-50 px-4 sm:px-8 py-2 sm:py-3 rounded-full border border-blue-100">
                                             <Mail size={14} className="text-blue-600" />
                                             <span className="text-[9px] sm:text-xs font-black text-blue-700 uppercase tracking-widest">{selectedUserForTools.email}</span>
                                         </div>
@@ -512,7 +512,7 @@ export default function UserManagement({ initialView = 'users' }) {
                                             <button
                                                 key={perm}
                                                 onClick={() => handleToggleUserPermission(selectedUserForTools.id, perm)}
-                                                className={`p-5 sm:p-7 rounded-2xl sm:rounded-[2.5rem] border text-[9px] sm:text-[11px] font-black uppercase tracking-widest text-left flex items-center justify-between transition-all duration-500 ${selectedUserForTools.overrides?.includes(perm) ? 'bg-backgroundackground text-foreground border-transparent shadow-lg -translate-y-1' : 'bg-white text-slate-600 border-slate-200 hover:border-blue-500'}`}
+                                                className={`p-5 sm:p-7 rounded-2xl sm:rounded-[2.5rem] border text-[9px] sm:text-[11px] font-black uppercase tracking-widest text-left flex items-center justify-between transition-all duration-500 ${selectedUserForTools.overrides?.includes(perm) ? 'bg-background text-foreground border-transparent shadow-lg -translate-y-1' : 'bg-white text-slate-600 border-slate-200 hover:border-blue-500'}`}
                                             >
                                                 <span className="truncate pr-3">{perm.split('_').pop()}</span>
                                                 {selectedUserForTools.overrides?.includes(perm) ? <Check size={20} className="shrink-0" /> : <Unlock size={14} className="opacity-0 group-hover:opacity-40 shrink-0" />}
@@ -523,7 +523,7 @@ export default function UserManagement({ initialView = 'users' }) {
                             </div>
 
                             <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6 shrink-0 pb-4 sm:pb-0">
-                                <button onClick={() => setSelectedUserForTools(null)} className="flex-1 h-16 sm:h-24 bg-backgroundackground text-foreground font-black rounded-2xl sm:rounded-3xl shadow-xl hover:bg-card active:scale-95 transition-all uppercase tracking-widest text-xs sm:text-sm flex items-center justify-center gap-3">
+                                <button onClick={() => setSelectedUserForTools(null)} className="flex-1 h-16 sm:h-24 bg-background text-foreground font-black rounded-2xl sm:rounded-3xl shadow-xl hover:bg-card active:scale-95 transition-all uppercase tracking-widest text-xs sm:text-sm flex items-center justify-center gap-3">
                                     Verify Changes
                                 </button>
                                 <button onClick={() => setSelectedUserForTools(null)} className="h-16 sm:h-24 px-8 sm:px-16 bg-slate-50 text-muted-foreground font-black rounded-2xl sm:rounded-3xl hover:bg-slate-100 active:scale-95 transition-all uppercase tracking-widest text-xs sm:text-sm">Close</button>

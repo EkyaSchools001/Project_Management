@@ -76,7 +76,7 @@ export function SecurityFeed({ styles }: { styles?: any }) {
   };
 
   return (
-    <div style={{ ...styles, height: '100%', overflow: 'hidden' }} className="bg-backgroundackground p-6 flex flex-col gap-4 shadow-2xl rounded-[24px]">
+    <div style={{ ...styles, height: '100%', overflow: 'hidden' }} className="bg-background p-6 flex flex-col gap-4 shadow-2xl rounded-[24px]">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2 text-foreground/40">
           <ShieldCheck className="w-5 h-5 text-red-500" />
@@ -102,7 +102,7 @@ export function SecurityFeed({ styles }: { styles?: any }) {
           <div className="max-h-[380px] overflow-y-auto space-y-3 pr-2 custom-scrollbar">
             {requests.length === 0 ? (
               <div className="p-8 text-center bg-white/5 border border-white/10 rounded-2xl border-dashed">
-                <CheckCircle2 className="w-8 h-8 text-emerald-500 mx-auto mb-2 opacity-50" />
+                <CheckCircle2 className="w-8 h-8 text-violet-500 mx-auto mb-2 opacity-50" />
                 <p className="text-xs text-foreground/40 font-medium">All clear! No pending access requests.</p>
               </div>
             ) : (
@@ -130,7 +130,7 @@ export function SecurityFeed({ styles }: { styles?: any }) {
                     <Button 
                       variant="ghost" 
                       size="sm" 
-                      className="flex-1 h-8 bg-backgroundmerald-600/90 hover:bg-backgroundmerald-500 text-foreground border-none text-[10px] font-bold rounded-xl"
+                      className="flex-1 h-8 bg-violet-600/90 hover:bg-violet-500 text-foreground border-none text-[10px] font-bold rounded-xl"
                       onClick={() => handleVerify(req.id, req.fullName)}
                     >
                       <CheckCircle2 className="w-3.5 h-3.5 mr-1.5" /> Accept
@@ -166,13 +166,13 @@ export function SecurityFeed({ styles }: { styles?: any }) {
             <span className="text-[10px] font-bold text-foreground/30 uppercase tracking-[0.2em] flex items-center gap-2">
               <ShieldAlert className="w-3 h-3" /> Audit Status
             </span>
-            <Badge className="bg-backgroundmerald-500/20 text-emerald-500 border-none font-bold text-[10px]">
+            <Badge className="bg-violet-500/20 text-violet-500 border-none font-bold text-[10px]">
               Clean
             </Badge>
           </div>
           <div className="p-4 bg-white/5 border border-white/10 rounded-2xl flex items-center gap-3">
-             <div className="w-10 h-10 rounded-xl bg-backgroundmerald-500/10 flex items-center justify-center">
-                <ShieldCheck className="w-5 h-5 text-emerald-500" />
+             <div className="w-10 h-10 rounded-xl bg-violet-500/10 flex items-center justify-center">
+                <ShieldCheck className="w-5 h-5 text-violet-500" />
              </div>
              <div>
                 <p className="text-xs text-foreground/70 font-bold">System Integrity</p>

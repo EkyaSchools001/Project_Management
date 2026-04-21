@@ -38,7 +38,7 @@ interface MeetingCardProps {
 
 const getStatusBadge = (status: MeetingStatus) => {
     const badges = {
-        scheduled: <Badge variant="outline" className="bg-backgroundlue-50 text-blue-700 border-blue-200">Upcoming</Badge>,
+        scheduled: <Badge variant="outline" className="bg-violet-50 text-blue-700 border-blue-200">Upcoming</Badge>,
         live: <Badge className="bg-red-500 animate-pulse">Live Now</Badge>,
         ended: <Badge variant="secondary">Ended</Badge>,
         cancelled: <Badge variant="destructive">Cancelled</Badge>

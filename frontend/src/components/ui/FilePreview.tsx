@@ -172,7 +172,7 @@ const FilePreview = ({
                                     type="button"
                                     variant="ghost"
                                     size="icon"
-                                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-backgroundackground/80 hover:bg-backgroundackground"
+                                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 hover:bg-background"
                                     onClick={handlePrevious}
                                 >
                                     <ChevronLeft className="w-6 h-6" />
@@ -183,7 +183,7 @@ const FilePreview = ({
                                     type="button"
                                     variant="ghost"
                                     size="icon"
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-backgroundackground/80 hover:bg-backgroundackground"
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 hover:bg-background"
                                     onClick={handleNext}
                                 >
                                     <ChevronRight className="w-6 h-6" />

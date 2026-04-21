@@ -83,9 +83,9 @@ export function MeetingDetailsView() {
             case 'Completed':
                 return <Badge className={cn(baseClass, "bg-slate-600")}>Completed</Badge>;
             case 'Ongoing':
-                return <Badge className={cn(baseClass, "bg-backgroundmerald-600")}>Ongoing</Badge>;
+                return <Badge className={cn(baseClass, "bg-violet-600")}>Ongoing</Badge>;
             case 'Scheduled':
-                return <Badge className={cn(baseClass, "bg-backgroundlue-600")}>Scheduled</Badge>;
+                return <Badge className={cn(baseClass, "bg-violet-600")}>Scheduled</Badge>;
             case 'Draft':
                 return <Badge className={cn(baseClass, "bg-amber-500")}>Draft</Badge>;
             default:
@@ -183,12 +183,12 @@ export function MeetingDetailsView() {
                     {/* MoM Section */}
                     {meeting.status === "Completed" && (
                         <Card className="border-none shadow-xl shadow-slate-200/50 overflow-hidden">
-                            <CardHeader className="border-b bg-backgroundmerald-50/50 flex flex-row items-center justify-between space-y-0">
+                            <CardHeader className="border-b bg-violet-50/50 flex flex-row items-center justify-between space-y-0">
                                 <div className="flex flex-col gap-1">
-                                    <CardTitle className="text-xl text-emerald-900 flex items-center gap-2">
+                                    <CardTitle className="text-xl text-violet-900 flex items-center gap-2">
                                         Minutes of Meeting (MoM)
                                         {(user?.role === 'MANAGEMENT' || canManage) && (
-                                            <Button variant="outline" size="sm" className="ml-4 h-7 text-xs bg-white text-emerald-700 hover:bg-backgroundmerald-50 hover:text-emerald-800 border-emerald-200 shadow-sm" onClick={() => {
+                                            <Button variant="outline" size="sm" className="ml-4 h-7 text-xs bg-white text-violet-700 hover:bg-violet-50 hover:text-violet-800 border-violet-200 shadow-sm" onClick={() => {
                                                 const momText = `MoM: ${meeting.title}\n\nSummary:\n${(meeting as any).mom.summary}\n\nMeeting Link: ${window.location.href}`;
                                                 navigator.clipboard.writeText(momText);
                                                 toast.success("MoM copied to clipboard for sharing!");
@@ -199,17 +199,17 @@ export function MeetingDetailsView() {
                                     </CardTitle>
                                     <CardDescription>Official record of decisions and updates from this meeting</CardDescription>
                                 </div>
-                                <FileCheck className="w-6 h-6 text-emerald-600" />
+                                <FileCheck className="w-6 h-6 text-violet-600" />
                             </CardHeader>
                             <CardContent className="p-6">
                                 {(meeting as any).mom ? (
                                     <div className="space-y-6">
-                                        <div className="bg-white rounded-xl p-5 border border-emerald-100/50 shadow-sm">
-                                            <h4 className="font-bold text-emerald-900 mb-3 flex items-center gap-2">
+                                        <div className="bg-white rounded-xl p-5 border border-violet-100/50 shadow-sm">
+                                            <h4 className="font-bold text-violet-900 mb-3 flex items-center gap-2">
                                                 <History className="w-4 h-4" />
                                                 Meeting Summary
                                             </h4>
-                                            <p className="text-emerald-800/80 leading-relaxed whitespace-pre-wrap">
+                                            <p className="text-violet-800/80 leading-relaxed whitespace-pre-wrap">
                                                 {(meeting as any).mom.summary}
                                             </p>
                                         </div>
@@ -355,7 +355,7 @@ export function MeetingDetailsView() {
                                             <div className="flex items-center gap-2">
                                                 <Badge className={cn(
                                                     "px-2 py-0.5 rounded-full font-black text-[8px] tracking-widest uppercase border-none text-foreground shadow-sm",
-                                                    attendee.status === "PRESENT" ? "bg-backgroundmerald-600" : "bg-amber-500"
+                                                    attendee.status === "PRESENT" ? "bg-violet-600" : "bg-amber-500"
                                                 )}>
                                                     {attendee.status || "INVITED"}
                                                 </Badge>

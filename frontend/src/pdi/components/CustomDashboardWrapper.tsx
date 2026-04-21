@@ -112,7 +112,7 @@ export function CustomDashboardWrapper({ role, children }: CustomDashboardWrappe
           <div className="text-3xl font-bold text-primary">{value}</div>
           <div className="text-sm text-muted-foreground mt-1">{subtitle}</div>
           {data?.change !== undefined && (
-            <div className={`flex items-center gap-1 text-xs mt-1 ${data.change >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+            <div className={`flex items-center gap-1 text-xs mt-1 ${data.change >= 0 ? 'text-violet-500' : 'text-red-500'}`}>
               {data.change >= 0 ? <TrendingUp className="w-3 h-3" /> : <Activity className="w-3 h-3" />}
               {Math.abs(data.change)}%
             </div>
@@ -181,7 +181,7 @@ export function CustomDashboardWrapper({ role, children }: CustomDashboardWrappe
               {item.status && (
                 <Badge className={cn(
                   "px-2 py-0.5 rounded-full font-black text-[8px] tracking-widest uppercase border-none text-foreground shadow-sm",
-                  item.status === 'Active' || item.status === 'Approved' || item.status === 'Completed' ? 'bg-backgroundmerald-600' :
+                  item.status === 'Active' || item.status === 'Approved' || item.status === 'Completed' ? 'bg-violet-600' :
                   item.status === 'Pending' || item.status === 'Draft' ? 'bg-amber-500' :
                   item.status === 'Rejected' ? 'bg-rose-600' :
                   'bg-slate-500'

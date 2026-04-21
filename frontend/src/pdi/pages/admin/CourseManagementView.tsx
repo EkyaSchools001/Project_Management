@@ -398,7 +398,7 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
                         <div className="space-y-1.5">
                             <Label className="text-[10px] capitalize font-bold text-muted-foreground ml-1">Category</Label>
                             <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                                <SelectTrigger className="rounded-xl bg-backgroundackground border-muted-foreground/10 h-10">
+                                <SelectTrigger className="rounded-xl bg-background border-muted-foreground/10 h-10">
                                     <SelectValue placeholder="All Categories" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -416,7 +416,7 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
                         <div className="space-y-1.5">
                             <Label className="text-[10px] capitalize font-bold text-muted-foreground ml-1">Status</Label>
                             <Select value={statusFilter} onValueChange={setStatusFilter}>
-                                <SelectTrigger className="rounded-xl bg-backgroundackground border-muted-foreground/10 h-10">
+                                <SelectTrigger className="rounded-xl bg-background border-muted-foreground/10 h-10">
                                     <SelectValue placeholder="All Statuses" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -484,7 +484,7 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
                                         </Button>
                                         <Button
                                             size="sm"
-                                            className="bg-green-600 hover:bg-green-700 text-foreground"
+                                            className="bg-violet-600 hover:bg-violet-700 text-foreground"
                                             onClick={async () => {
                                                 try {
                                                     await courseService.updateCourse(course.id, { status: "Active" });
@@ -551,7 +551,7 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
                                         <Badge
                                             className={cn(
                                                 "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
-                                                course.status?.toUpperCase() === 'ACTIVE' ? "bg-backgroundmerald-600" :
+                                                course.status?.toUpperCase() === 'ACTIVE' ? "bg-violet-600" :
                                                 course.status?.toUpperCase() === 'PUBLISHED' ? "bg-rose-600" :
                                                 course.status?.toUpperCase() === 'MANDATORY' ? "bg-amber-500" :
                                                 "bg-slate-500"
@@ -674,7 +674,7 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
             {/* Detail View Dialog */}
             {detailCourse && (
                 <Dialog open={isDetailOpen} onOpenChange={setIsDetailOpen}>
-                    <DialogContent className="max-w-4xl bg-backgroundackground/95 backdrop-blur-xl">
+                    <DialogContent className="max-w-4xl bg-background/95 backdrop-blur-xl">
                         <DialogHeader>
                             <DialogTitle className="text-2xl font-bold flex items-center gap-2">
                                 <BookOpen className="w-6 h-6 text-primary" />
@@ -713,7 +713,7 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
                                 </Card>
 
                                 <Card className={`shadow-lg text-foreground ${detailCourse.status === 'Active'
-                                    ? 'bg-gradient-to-br from-emerald-500 to-emerald-600'
+                                    ? 'bg-gradient-to-br from-violet-500 to-violet-600'
                                     : detailCourse.status === 'Draft'
                                         ? 'bg-gradient-to-br from-gray-500 to-gray-600'
                                         : 'bg-gradient-to-br from-red-500 to-red-600'
@@ -721,12 +721,12 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
                                     <CardContent className="p-4">
                                         <div className="flex items-center justify-between">
                                             <div>
-                                                <p className={`text-xs font-medium mb-1 ${detailCourse.status === 'Active' ? 'text-emerald-50/80' :
+                                                <p className={`text-xs font-medium mb-1 ${detailCourse.status === 'Active' ? 'text-violet-50/80' :
                                                     detailCourse.status === 'Draft' ? 'text-gray-50/80' : 'text-red-50/80'
                                                     }`}>Status</p>
                                                 <p className="text-xl font-bold">{detailCourse.status}</p>
                                             </div>
-                                            <ShieldCheck className={`w-8 h-8 ${detailCourse.status === 'Active' ? 'text-emerald-50/50' :
+                                            <ShieldCheck className={`w-8 h-8 ${detailCourse.status === 'Active' ? 'text-violet-50/50' :
                                                 detailCourse.status === 'Draft' ? 'text-gray-50/50' : 'text-red-50/50'
                                                 }`} />
                                         </div>
@@ -735,7 +735,7 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
                             </div>
 
                             {/* Main Details */}
-                            <Card className="shadow-xl bg-backgroundackground/50 backdrop-blur-sm">
+                            <Card className="shadow-xl bg-background/50 backdrop-blur-sm">
                                 <CardContent className="p-6">
                                     <div className="flex items-center gap-2 mb-4">
                                         <FileText className="w-5 h-5 text-primary" />
@@ -797,7 +797,7 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
 
                             {/* Enrolled Members Table */}
                             {showEnrolledTable && mockEnrolledMembers[detailCourse.id as keyof typeof mockEnrolledMembers] && (
-                                <Card className="shadow-xl bg-backgroundackground/50 backdrop-blur-sm">
+                                <Card className="shadow-xl bg-background/50 backdrop-blur-sm">
                                     <CardContent className="p-6">
                                         <div className="flex items-center justify-between mb-4">
                                             <div className="flex items-center gap-2">

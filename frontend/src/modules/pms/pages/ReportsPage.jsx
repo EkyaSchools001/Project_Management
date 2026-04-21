@@ -59,7 +59,7 @@ const ReportsPage = () => {
             className="space-y-16 p-6 sm:p-10 lg:p-16 max-w-[1700px] mx-auto pb-40"
         >
             {/* Header Section */}
-            <header className="relative overflow-hidden p-12 sm:p-20 bg-backgroundackground rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
+            <header className="relative overflow-hidden p-12 sm:p-20 bg-background rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-violet-600/10 to-transparent pointer-events-none" />
                 <div className="absolute -right-20 -top-20 w-[600px] h-[600px] bg-indigo-500 rounded-full blur-[200px] opacity-10 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
                 
@@ -136,7 +136,7 @@ const ReportsPage = () => {
                                     "{aiInsights}"
                                 </div>
                                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-                                    <InsightMetric label="Confidence" value="98.4%" icon={Shield} color="text-emerald-500" />
+                                    <InsightMetric label="Confidence" value="98.4%" icon={Shield} color="text-violet-500" />
                                     <InsightMetric label="Impact Score" value="High" icon={Zap} color="text-amber-500" />
                                     <InsightMetric label="Neural Nodes" value="1,024" icon={Cpu} color="text-indigo-500" />
                                 </div>

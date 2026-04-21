@@ -98,7 +98,7 @@ export function FestivalApplicationForm() {
             />
 
             {existingApp && (
-                <div className="bg-backgroundlue-50 border border-blue-100 rounded-xl p-4 flex items-start gap-3">
+                <div className="bg-violet-50 border border-blue-100 rounded-xl p-4 flex items-start gap-3">
                     <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5" />
                     <div>
                         <h4 className="font-bold text-blue-900">Application Submitted</h4>

@@ -51,7 +51,7 @@ const STATUS_COLUMNS = [
 ];
 
 const PRIORITY_CONFIG = {
-    'LOW': { color: '#10b981', bg: 'bg-backgroundmerald-50', border: 'border-emerald-200', label: 'Low' },
+    'LOW': { color: '#8b5cf6', bg: 'bg-violet-50', border: 'border-violet-200', label: 'Low' },
     'MEDIUM': { color: '#f59e0b', bg: 'bg-amber-50', border: 'border-amber-200', label: 'Medium' },
     'HIGH': { color: '#f97316', bg: 'bg-orange-50', border: 'border-orange-200', label: 'High' },
     'CRITICAL': { color: '#ef4444', bg: 'bg-rose-50', border: 'border-rose-200', label: 'Critical' }
@@ -312,7 +312,7 @@ const KanbanColumn = ({
         slate: { bg: 'bg-slate-50', border: 'border-slate-200', text: 'text-slate-600', ring: 'ring-slate-200' },
         indigo: { bg: 'bg-indigo-50', border: 'border-indigo-200', text: 'text-indigo-600', ring: 'ring-indigo-200' },
         amber: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-600', ring: 'ring-amber-200' },
-        emerald: { bg: 'bg-backgroundmerald-50', border: 'border-emerald-200', text: 'text-emerald-600', ring: 'ring-emerald-200' }
+        emerald: { bg: 'bg-violet-50', border: 'border-violet-200', text: 'text-violet-600', ring: 'ring-violet-200' }
     };
 
     const colors = columnColors[column.color] || columnColors.slate;

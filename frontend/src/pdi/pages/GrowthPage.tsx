@@ -161,10 +161,10 @@ const GrowthPage = () => {
 
                 <div className="grid gap-8">
                     {/* Information Card about the Framework */}
-                    <Card className="  shadow-sm bg-backgroundlue-50/50 border border-blue-100">
+                    <Card className="  shadow-sm bg-violet-50/50 border border-blue-100">
                         <CardContent className="p-6">
                             <div className="flex gap-4">
-                                <div className="p-2 rounded-lg bg-backgroundlue-100 h-fit">
+                                <div className="p-2 rounded-lg bg-violet-100 h-fit">
                                     <Info className="w-5 h-5 text-blue-600" />
                                 </div>
                                 <div className="space-y-1">

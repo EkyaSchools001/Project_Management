@@ -485,7 +485,7 @@ const PEObsPage: React.FC = () => {
 
                             <Card className="  shadow-md">
                                 <CardHeader className="rounded-t-xl py-4 px-5" style={{ background: "#F0FDF4" }}>
-                                    <h3 className="font-bold text-green-800">🟦 Section B – Culture and Environment</h3>
+                                    <h3 className="font-bold text-violet-800">🟦 Section B – Culture and Environment</h3>
                                 </CardHeader>
                                 <CardContent className="p-5">
                                     <MatrixTable rows={SECTION_B_ROWS} field="sectionBResponses" label="B" form={form} setMatrix={setMatrix} set={set} DARK={DARK} ACCENT={ACCENT} readOnly={isViewMode} />

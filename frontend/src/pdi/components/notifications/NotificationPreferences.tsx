@@ -105,7 +105,7 @@ export const NotificationPreferences: React.FC = () => {
         <Button 
           onClick={handleSave} 
           disabled={saving}
-          className="bg-[#BAFF00] text-black hover:bg-[#BAFF00]/80"
+          className="bg-[#8b5cf6] text-black hover:bg-[#8b5cf6]/80"
         >
           {saving ? (
             <span className="flex items-center gap-2">
@@ -124,7 +124,7 @@ export const NotificationPreferences: React.FC = () => {
         <Card className="bg-white/5 border-white/10">
           <CardHeader className="pb-4">
             <CardTitle className="flex items-center gap-2 text-foreground">
-              <Bell className="w-5 h-5 text-[#BAFF00]" />
+              <Bell className="w-5 h-5 text-[#8b5cf6]" />
               Delivery Methods
             </CardTitle>
             <CardDescription className="text-foreground/50">
@@ -237,7 +237,7 @@ export const NotificationPreferences: React.FC = () => {
         <Card className="bg-white/5 border-white/10">
           <CardHeader className="pb-4">
             <CardTitle className="flex items-center gap-2 text-foreground">
-              <Clock className="w-5 h-5 text-[#BAFF00]" />
+              <Clock className="w-5 h-5 text-[#8b5cf6]" />
               Quiet Hours
             </CardTitle>
             <CardDescription className="text-foreground/50">

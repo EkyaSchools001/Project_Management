@@ -117,7 +117,7 @@ const ReportsGantt = () => {
                     {/* Grid lines */}
                     <div className="absolute inset-0 flex pointer-events-none">
                         {dates.map((_, i) => (
-                            <div key={i} className={`flex-1 border-r border-slate-50 ${isSameDay(dates[i], today) ? 'bg-backgroundlue-50/20' : ''}`}></div>
+                            <div key={i} className={`flex-1 border-r border-slate-50 ${isSameDay(dates[i], today) ? 'bg-violet-50/20' : ''}`}></div>
                         ))}
                     </div>
 
@@ -127,8 +127,8 @@ const ReportsGantt = () => {
                             initial={{ scaleX: 0 }}
                             animate={{ scaleX: 1 }}
                             className={`absolute top-3.5 h-7 rounded-xl shadow-sm transition-all hover:scale-y-110 cursor-pointer origin-left flex items-center px-3
-                            ${item.status === 'completed' ? 'bg-backgroundmerald-600 shadow-emerald-600/10' :
-                                     item.status === 'ongoing' ? 'bg-backgroundlue-600 shadow-blue-600/10' : 'bg-slate-200'}
+                            ${item.status === 'completed' ? 'bg-violet-600 shadow-violet-600/10' :
+                                     item.status === 'ongoing' ? 'bg-violet-600 shadow-blue-600/10' : 'bg-slate-200'}
                             ${isTask ? 'h-5 top-4.5 opacity-80' : ''}`}
                             style={{ left: pos.left, width: pos.width }}
                             title={`${item.name}: ${item.start} - ${item.end}`}
@@ -153,13 +153,13 @@ const ReportsGantt = () => {
                 </div>
                 <div className="flex flex-wrap items-center gap-6">
                     <div className="flex gap-4 text-[9px] font-black uppercase tracking-widest text-muted-foreground bg-slate-50 px-4 py-2 rounded-full border border-slate-100">
-                        <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-backgroundmerald-600"></span> Executed</span>
-                        <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-backgroundlue-600"></span> Active</span>
+                        <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-violet-600"></span> Executed</span>
+                        <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-violet-600"></span> Active</span>
                         <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-200"></span> Backlog</span>
                     </div>
                     <button
                         onClick={() => setIsModalOpen(true)}
-                        className="flex items-center gap-2 h-14 px-8 bg-backgroundackground text-foreground rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-backgroundlack transition-all shadow-xl shadow-slate-900/10 active:scale-95"
+                        className="flex items-center gap-2 h-14 px-8 bg-background text-foreground rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-backgroundlack transition-all shadow-xl shadow-slate-900/10 active:scale-95"
                     >
                         <Plus size={18} />
                         Inject Task Unit
@@ -175,7 +175,7 @@ const ReportsGantt = () => {
                             <div className="w-72 p-5 font-black text-[10px] text-muted-foreground uppercase tracking-widest border-r border-slate-100 sticky left-0 bg-slate-50 z-20">Deployment Cluster / Node</div>
                             <div className="flex-1 flex">
                                 {dates.map((date, i) => (
-                                    <div key={i} className={`flex-1 min-w-[3.5rem] text-center py-4 border-r border-slate-100/50 ${isSameDay(date, today) ? 'bg-backgroundlue-600 text-foreground shadow-xl' : 'text-muted-foreground'}`}>
+                                    <div key={i} className={`flex-1 min-w-[3.5rem] text-center py-4 border-r border-slate-100/50 ${isSameDay(date, today) ? 'bg-violet-600 text-foreground shadow-xl' : 'text-muted-foreground'}`}>
                                         <span className="text-xs font-black block leading-none">{format(date, 'dd')}</span>
                                         <span className={`text-[8px] font-black uppercase tracking-wider mt-1 block opacity-60 ${isSameDay(date, today) ? 'text-foreground' : ''}`}>{format(date, 'EEE')}</span>
                                     </div>
@@ -199,7 +199,7 @@ const ReportsGantt = () => {
             </div>
 
             <div className="mt-10 flex justify-end">
-                <button className="text-[10px] font-black text-blue-600 hover:text-blue-700 flex items-center gap-3 uppercase tracking-widest group bg-backgroundlue-50 px-6 py-3 rounded-xl border border-blue-100 transition-all active:scale-95">
+                <button className="text-[10px] font-black text-blue-600 hover:text-blue-700 flex items-center gap-3 uppercase tracking-widest group bg-violet-50 px-6 py-3 rounded-xl border border-blue-100 transition-all active:scale-95">
                     View Full Roadmap Protocol <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </button>
             </div>

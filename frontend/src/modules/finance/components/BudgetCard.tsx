@@ -21,18 +21,18 @@ export function BudgetCard({ budget, onClick }: BudgetCardProps) {
   const getStatusColor = () => {
     if (percentage > 90) return 'bg-red-500';
     if (percentage > 70) return 'bg-yellow-500';
-    return 'bg-green-500';
+    return 'bg-violet-500';
   };
 
   return (
     <div 
       onClick={onClick}
-      className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5 cursor-pointer hover:border-[#BAFF00]/30 transition-all"
+      className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5 cursor-pointer hover:border-[#8b5cf6]/30 transition-all"
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#BAFF00]/10 flex items-center justify-center">
-            <DollarSign className="w-5 h-5 text-[#BAFF00]" />
+          <div className="w-10 h-10 rounded-xl bg-[#8b5cf6]/10 flex items-center justify-center">
+            <DollarSign className="w-5 h-5 text-[#8b5cf6]" />
           </div>
           <div>
             <p className="font-bold text-foreground">{budget.name}</p>
@@ -42,7 +42,7 @@ export function BudgetCard({ budget, onClick }: BudgetCardProps) {
         {isOverBudget ? (
           <TrendingUp className="w-5 h-5 text-red-500" />
         ) : (
-          <TrendingDown className="w-5 h-5 text-green-500" />
+          <TrendingDown className="w-5 h-5 text-violet-500" />
         )}
       </div>
 
@@ -57,7 +57,7 @@ export function BudgetCard({ budget, onClick }: BudgetCardProps) {
         </div>
         <div className="flex justify-between text-sm">
           <span className="text-foreground/60">Remaining</span>
-          <span className={`font-bold ${isOverBudget ? 'text-red-500' : 'text-green-500'}`}>
+          <span className={`font-bold ${isOverBudget ? 'text-red-500' : 'text-violet-500'}`}>
             ${remaining.toLocaleString()}
           </span>
         </div>

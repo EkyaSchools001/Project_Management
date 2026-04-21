@@ -103,8 +103,8 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
         <Card className="bg-[#1a1d29] border-white/10">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[#BAFF00]/10">
-                <UserCheck className="w-5 h-5 text-[#BAFF00]" />
+              <div className="p-2 rounded-lg bg-[#8b5cf6]/10">
+                <UserCheck className="w-5 h-5 text-[#8b5cf6]" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{checkIns}</p>
@@ -116,7 +116,7 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
         <Card className="bg-[#1a1d29] border-white/10">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-backgroundlue-500/10">
+              <div className="p-2 rounded-lg bg-violet-500/10">
                 <UserX className="w-5 h-5 text-blue-400" />
               </div>
               <div>
@@ -129,8 +129,8 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
         <Card className="bg-[#1a1d29] border-white/10">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-green-500/10">
-                <Users className="w-5 h-5 text-green-400" />
+              <div className="p-2 rounded-lg bg-violet-500/10">
+                <Users className="w-5 h-5 text-violet-400" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{present}</p>
@@ -170,7 +170,7 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
             <Button
               onClick={handleCheckIn}
               disabled={loading || !studentId.trim()}
-              className="bg-[#BAFF00] text-black hover:bg-[#a8e600]"
+              className="bg-[#8b5cf6] text-black hover:bg-[#a8e600]"
             >
               Check In
             </Button>
@@ -202,7 +202,7 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
                   <TableCell>
                     <Badge
                       variant={record.type === 'CheckIn' ? 'default' : 'secondary'}
-                      className={record.type === 'CheckIn' ? 'bg-green-500' : 'bg-backgroundlue-500'}
+                      className={record.type === 'CheckIn' ? 'bg-violet-500' : 'bg-violet-500'}
                     >
                       {record.type}
                     </Badge>
@@ -219,7 +219,7 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
                         Check Out
                       </Button>
                     ) : (
-                      <span className="text-green-400">Complete</span>
+                      <span className="text-violet-400">Complete</span>
                     )}
                   </TableCell>
                 </TableRow>

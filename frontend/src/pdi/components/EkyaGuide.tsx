@@ -164,12 +164,12 @@ export function EkyaGuide() {
                 keywords: [],
                 content: `
                     <div style="text-align: center; padding: 20px 0;">
-                        <div style="background: #e6f4ea; color: #1e8e3e; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+                        <div style="background: #f5f3ff; color: #7c3aed; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                         </div>
                         <h3 style="margin-bottom: 8px;">Success!</h3>
                         <p style="color: #666;">I have successfully completed: <br/><strong>${actionTitle}</strong></p>
-                        ${actionId === 'action-form-assistant' ? '<p style="margin-top: 16px; font-size: 13px; color: #EA104A; cursor: pointer; text-decoration: underline;">Click here to view your Application</p>' : ''}
+                        ${actionId === 'action-form-assistant' ? '<p style="margin-top: 16px; font-size: 13px; color: #7c3aed; cursor: pointer; text-decoration: underline;">Click here to view your Application</p>' : ''}
                     </div>
                 `
             });
@@ -330,7 +330,7 @@ export function EkyaGuide() {
             <div
                 className={`
           fixed bottom-6 right-6 z-[10000] w-full sm:w-[400px] h-[600px] max-h-[85vh] 
-          bg-backgroundackground/95 backdrop-blur-xl border border-muted/50 rounded-2xl shadow-2xl
+          bg-background/95 backdrop-blur-xl border border-muted/50 rounded-2xl shadow-2xl
           flex flex-col overflow-hidden transition-all duration-300 origin-bottom-right
           ${isOpen ? 'scale-100 opacity-100 translate-y-0' : 'scale-75 opacity-0 pointer-events-none translate-y-10'}
         `}
@@ -345,7 +345,7 @@ export function EkyaGuide() {
                         <div>
                             <h3 className="font-bold text-lg leading-tight tracking-tight">Ekya AI Assistant</h3>
                             <div className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+                                <span className="w-1.5 h-1.5 bg-violet-400 rounded-full animate-pulse" />
                                 <p className="text-primary-foreground/80 text-[10px] uppercase font-bold tracking-widest">Unified Global Help</p>
                             </div>
                         </div>
@@ -393,7 +393,7 @@ export function EkyaGuide() {
                                     
                                     <div className={`w-11 h-11 rounded-full shrink-0 flex items-center justify-center shadow-inner ${unreadInsight.type === 'milestone' ? 'bg-yellow-500/10 text-yellow-600' :
                                         unreadInsight.type === 'deadline' ? 'bg-red-500/10 text-red-600' :
-                                            'bg-backgroundlue-500/10 text-blue-600'
+                                            'bg-violet-500/10 text-blue-600'
                                         }`}>
                                         <Bell className="w-5 h-5" />
                                     </div>

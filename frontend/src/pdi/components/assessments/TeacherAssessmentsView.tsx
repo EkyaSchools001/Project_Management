@@ -33,7 +33,7 @@ export const TeacherAssessmentsView: React.FC = () => {
     const getStatus = (assessmentId: string) => {
         const attempt = attempts.find(a => a.assessmentId === assessmentId);
         if (!attempt) return { label: 'Not Started', color: 'bg-slate-500' };
-        if (attempt.status === 'SUBMITTED') return { label: 'Completed', color: 'bg-backgroundmerald-600', score: attempt.score };
+        if (attempt.status === 'SUBMITTED') return { label: 'Completed', color: 'bg-violet-600', score: attempt.score };
         return { label: 'In Progress', color: 'bg-amber-500' };
     };
 
@@ -77,8 +77,8 @@ export const TeacherAssessmentsView: React.FC = () => {
                 <Card className="  shadow-md bg-white rounded-2xl overflow-hidden">
                     <CardContent className="pt-6">
                         <div className="flex items-center gap-3 mb-2">
-                            <div className="p-2 bg-backgroundmerald-100 rounded-lg">
-                                <CheckCircle className="w-5 h-5 text-emerald-600" />
+                            <div className="p-2 bg-violet-100 rounded-lg">
+                                <CheckCircle className="w-5 h-5 text-violet-600" />
                             </div>
                             <span className="text-zinc-500 text-sm font-medium">Completion Rate</span>
                         </div>
@@ -90,7 +90,7 @@ export const TeacherAssessmentsView: React.FC = () => {
                 <Card className="  shadow-md bg-white rounded-2xl overflow-hidden opacity-90">
                     <CardContent className="pt-6">
                         <div className="flex items-center gap-3 mb-2">
-                            <div className="p-2 bg-backgroundlue-100 rounded-lg">
+                            <div className="p-2 bg-violet-100 rounded-lg">
                                 <AlertCircle className="w-5 h-5 text-blue-600" />
                             </div>
                             <span className="text-zinc-500 text-sm font-medium">Acad. Preparedness</span>
@@ -167,7 +167,7 @@ export const TeacherAssessmentsView: React.FC = () => {
                                         onClick={() => navigate(`/teacher/courses/assessments/attempt/${assessment.id}`)}
                                     >
                                         {status.label === 'Completed' ? (
-                                            <><CheckCircle2 className="w-5 h-5 text-emerald-500" /> Finished</>
+                                            <><CheckCircle2 className="w-5 h-5 text-violet-500" /> Finished</>
                                         ) : (
                                             <><PlayCircle className="w-5 h-5" /> {status.label === 'In Progress' ? 'Continue Attempt' : 'Start Assessment'}</>
                                         )}

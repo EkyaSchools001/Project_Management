@@ -1,4 +1,4 @@
-import api from '@pdi/lib/api';
+﻿import api from '@pdi/lib/api';
 
 export interface TeacherOKRData {
     selfReflectionRate: number;
@@ -19,7 +19,7 @@ export interface HOSOKRData {
     teachersNotObserved: number;
     avgObservationsPerTeacher: number;
     avgObservationScore: number | null;
-    observerCompletion: Array<{ observerId: string; observerName: string; count: number; targetCompletion: number }>;
+    observerCompletion: Array<{ observerId: string; name: string; count: number; targetCompletion: number }>;
     avgTrainingHoursPerTeacher: number;
     goalCompletionByTeacher: Array<{ teacherId: string; teacherName: string; total: number; completed: number; rate: number }>;
 }

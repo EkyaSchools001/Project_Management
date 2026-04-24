@@ -58,29 +58,29 @@ export function TimeReport({ className }) {
             title: 'Total Hours',
             value: report?.totalHours || 0,
             icon: Clock,
-            color: 'text-[#8b5cf6]',
-            bgColor: 'bg-[#8b5cf6]/10'
+            color: 'text-[#ef4444]',
+            bgColor: 'bg-[#ef4444]/10'
         },
         {
             title: 'Billable Hours',
             value: report?.billableHours || 0,
             icon: DollarSign,
-            color: 'text-violet-400',
-            bgColor: 'bg-violet-500/10'
+            color: 'text-red-400',
+            bgColor: 'bg-red-500/10'
         },
         {
             title: 'Non-Billable Hours',
             value: report?.nonBillableHours || 0,
             icon: TrendingUp,
-            color: 'text-blue-400',
-            bgColor: 'bg-violet-500/10'
+            color: 'text-red-400',
+            bgColor: 'bg-red-500/10'
         },
         {
             title: 'Avg Hours/Day',
             value: report?.averageHoursPerDay || 0,
             icon: BarChart3,
-            color: 'text-purple-400',
-            bgColor: 'bg-purple-500/10'
+            color: 'text-red-400',
+            bgColor: 'bg-red-500/10'
         }
     ];
 
@@ -162,7 +162,7 @@ export function TimeReport({ className }) {
 
                     {loading ? (
                         <div className="h-64 flex items-center justify-center">
-                            <div className="w-8 h-8 border-2 border-[#8b5cf6] border-t-transparent rounded-full animate-spin" />
+                            <div className="w-8 h-8 border-2 border-[#ef4444] border-t-transparent rounded-full animate-spin" />
                         </div>
                     ) : (
                         <div className="space-y-3">
@@ -176,7 +176,7 @@ export function TimeReport({ className }) {
                                             <p className="text-foreground font-medium truncate">{data.taskTitle}</p>
                                             <p className="text-foreground/40 text-xs">{data.count} entries</p>
                                         </div>
-                                        <div className="text-[#8b5cf6] font-bold">
+                                        <div className="text-[#ef4444] font-bold">
                                             {(data.minutes / 60).toFixed(1)}h
                                         </div>
                                     </div>
@@ -200,7 +200,7 @@ export function TimeReport({ className }) {
                                                     })}
                                                 </p>
                                             </div>
-                                            <div className="text-[#8b5cf6] font-bold">
+                                            <div className="text-[#ef4444] font-bold">
                                                 {(minutes / 60).toFixed(1)}h
                                             </div>
                                         </div>
@@ -232,11 +232,11 @@ export function TimeReport({ className }) {
                             </div>
                             <div className="text-foreground/40 text-xs">entries</div>
                         </div>
-                        <div className="p-4 bg-violet-500/10 rounded-xl">
-                            <div className="text-violet-400 text-xs uppercase tracking-widest mb-1">
+                        <div className="p-4 bg-red-500/10 rounded-xl">
+                            <div className="text-red-400 text-xs uppercase tracking-widest mb-1">
                                 Approved
                             </div>
-                            <div className="text-2xl font-black text-violet-400">
+                            <div className="text-2xl font-black text-red-400">
                                 {report?.approvedCount || 0}
                             </div>
                             <div className="text-foreground/40 text-xs">entries</div>

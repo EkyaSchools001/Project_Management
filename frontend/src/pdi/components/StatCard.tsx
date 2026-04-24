@@ -1,8 +1,9 @@
+import * as React from 'react';
 import { cn } from "@pdi/lib/utils";
-import React from 'react';
+import { motion } from "framer-motion";
 
 // Accept both Lucide and Phosphor icon components
-type IconComponent = React.ComponentType<{ className?: string; size?: string | number; weight?: string }>;
+type IconComponent = React.ComponentType<{ className?: string; size?: string | number; weight?: any }>;
 
 interface StatCardProps {
   title: string;
@@ -18,49 +19,62 @@ interface StatCardProps {
 }
 
 export function StatCard({ title, value, subtitle, icon: Icon, trend, className, onClick }: StatCardProps) {
+  const MotionDiv = motion.div as any;
+
   return (
-    <div
+    <MotionDiv
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className={cn(
-        "group relative transition-all duration-300 border border-white/5 bg-[#161B22] p-8 rounded-[1rem] flex flex-col justify-between overflow-hidden",
-        onClick && "cursor-pointer hover:border-[#8b5cf6]/30 active:scale-[0.98]",
+        "stat-card group relative overflow-hidden transition-all duration-300 hover:ring-2 hover:ring-primary/20",
+        onClick && "cursor-pointer active:scale-[0.98]",
         className
       )}
       onClick={onClick}
     >
       {/* Decorative background element */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-[#8b5cf6]/5 translate-x-16 -translate-y-16 transition-transform group-hover:scale-150 group-hover:bg-[#8b5cf6]/10 rounded-full" />
+      <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full translate-x-12 -translate-y-12 transition-transform group-hover:scale-150 group-hover:bg-primary/10" />
 
-      <div className="flex flex-row items-center justify-between gap-6 relative z-10 w-full mb-6">
-        <div className="p-4 rounded-full bg-white/5 border border-white/5 text-foreground/50 group-hover:bg-[#8b5cf6]/10 group-hover:text-[#8b5cf6] group-hover:border-[#8b5cf6]/30 transition-all duration-300">
-          {Icon && <Icon size={24} weight="bold" />}
+      <div className="flex items-start justify-between relative z-10">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-2">
+            <p className="text-xs font-black capitalize tracking-[0.15em] text-zinc-900 leading-none">
+              {title}
+            </p>
+          </div>
+
+          <div className="flex items-baseline gap-2 mb-1">
+            <p className="text-5xl font-black text-zinc-950 tracking-tight group-hover:text-primary transition-colors duration-300">
+              {value}
+            </p>
+          </div>
+
+          {subtitle && (
+            <p className="text-sm font-medium text-zinc-800 mt-2 line-clamp-1">{subtitle}</p>
+          )}
+
+          {trend && (
+            <div className={cn(
+              "flex items-center gap-1.5 text-xs mt-3 px-2 py-1 rounded-full w-fit font-bold",
+              trend.isPositive ? "bg-emerald-50 text-emerald-600" : "bg-destructive/10 text-destructive"
+            )}>
+              <span>{trend.isPositive ? "↑" : "↓"}</span>
+              <span>{Math.abs(trend.value)}%</span>
+              <span className="text-[10px] opacity-70 font-medium">monthly</span>
+            </div>
+          )}
         </div>
-        
-        {trend && (
-          <div className={cn(
-            "flex items-center gap-1.5 text-[10px] px-3 py-1 font-bold rounded-full",
-            trend?.isPositive ? "bg-[#27AE60]/10 text-[#27AE60]" : "bg-red-500/10 text-red-500"
-          )}>
-            <span>{trend?.isPositive ? "↑" : "↓"}</span>
-            <span>{Math.abs(trend?.value ?? 0)}%</span>
+
+        {Icon && (
+          <div className="flex-shrink-0 ml-3">
+            <div className="p-3.5 rounded-2xl bg-white shadow-sm border border-border/50 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-350 ease-out group-hover:scale-110 group-hover:-rotate-3 text-primary">
+              <Icon size={24} />
+            </div>
           </div>
         )}
       </div>
-
-      <div className="relative z-10 space-y-2">
-        <div className="flex items-center gap-2">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-foreground/30 truncate">
-            {title}
-          </p>
-        </div>
-
-        <p className="text-5xl font-black text-foreground tracking-tight group-hover:text-[#8b5cf6] transition-colors duration-300 leading-none">
-          {value}
-        </p>
-
-        {subtitle && (
-          <p className="text-[11px] font-semibold text-foreground/40 pt-2 line-clamp-1 border-t border-white/5">{subtitle}</p>
-        )}
-      </div>
-    </div>
+    </MotionDiv>
   );
 }

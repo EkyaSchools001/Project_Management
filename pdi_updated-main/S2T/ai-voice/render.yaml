@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: education-asr-interface
+    env: docker
+    plan: standard # Requires standard or higher due to memory (2GB+)
+    envVars:
+      - key: PORT
+        value: 10000

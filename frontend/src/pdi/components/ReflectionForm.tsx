@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Button } from "@pdi/components/ui/button";
 import { Input } from "@pdi/components/ui/input";
 import { Label } from "@pdi/components/ui/label";
@@ -254,8 +254,8 @@ export function ReflectionForm({ observation, isOpen, onClose, onSubmit, teacher
                             </DialogDescription>
                         </div>
                         <div className="flex items-center gap-6">
-                            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-50 text-violet-600 border border-violet-100 animate-in fade-in duration-1000">
-                                <Cloud className="w-3.5 h-3.5 fill-violet-600/20" />
+                            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100 animate-in fade-in duration-1000">
+                                <Cloud className="w-3.5 h-3.5 fill-emerald-600/20" />
                                 <span className="text-[10px] font-bold uppercase tracking-wider">All changes auto-saved</span>
                             </div>
                             <div className="text-sm font-medium text-muted-foreground">
@@ -426,7 +426,7 @@ export function ReflectionForm({ observation, isOpen, onClose, onSubmit, teacher
                     <Button variant="ghost" onClick={step === 0 ? onClose : handleBack} disabled={false}>
                         {step === 0 ? "Cancel" : "Back"}
                     </Button>
-                    <Button onClick={isFinalStep ? handleFinalSubmit : handleNext} className={cn("gap-2", isFinalStep && "bg-success hover:bg-success/90 text-foreground")}>
+                    <Button onClick={isFinalStep ? handleFinalSubmit : handleNext} className={cn("gap-2", isFinalStep && "bg-success hover:bg-success/90 text-white")}>
                         {isFinalStep ? (
                             <>Simulate Submit <Save className="w-4 h-4" /></>
                         ) : (

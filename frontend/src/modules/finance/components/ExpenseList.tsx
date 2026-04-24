@@ -19,9 +19,9 @@ interface ExpenseListProps {
 
 const statusColors: Record<string, string> = {
   Pending: 'bg-yellow-500/20 text-yellow-500',
-  Approved: 'bg-violet-500/20 text-violet-500',
+  Approved: 'bg-red-500/20 text-red-500',
   Rejected: 'bg-red-500/20 text-red-500',
-  Reimbursed: 'bg-violet-500/20 text-blue-500',
+  Reimbursed: 'bg-red-500/20 text-red-500',
 };
 
 const categoryIcons: Record<string, string> = {
@@ -54,7 +54,7 @@ export function ExpenseList({ expenses, onAddExpense, onSelectExpense }: Expense
           {onAddExpense && (
             <button
               onClick={onAddExpense}
-              className="flex items-center gap-2 px-4 py-2 bg-[#8b5cf6] text-black rounded-xl font-bold text-sm hover:bg-[#8b5cf6]/80 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-[#ef4444] text-black rounded-xl font-bold text-sm hover:bg-[#ef4444]/80 transition-colors"
             >
               <Plus className="w-4 h-4" />
               Add Expense
@@ -70,7 +70,7 @@ export function ExpenseList({ expenses, onAddExpense, onSelectExpense }: Expense
               placeholder="Search expenses..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground placeholder-white/40 text-sm focus:outline-none focus:border-[#8b5cf6]/50"
+              className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground placeholder-white/40 text-sm focus:outline-none focus:border-[#ef4444]/50"
             />
           </div>
           <div className="flex items-center gap-2">
@@ -78,7 +78,7 @@ export function ExpenseList({ expenses, onAddExpense, onSelectExpense }: Expense
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#8b5cf6]/50"
+              className="px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#ef4444]/50"
             >
               <option value="">All Status</option>
               <option value="Pending">Pending</option>
@@ -89,7 +89,7 @@ export function ExpenseList({ expenses, onAddExpense, onSelectExpense }: Expense
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#8b5cf6]/50"
+              className="px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#ef4444]/50"
             >
               <option value="">All Categories</option>
               {categories.map(cat => (

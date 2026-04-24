@@ -1,19 +1,28 @@
 import * as React from "react";
 import { cn } from "@pdi/lib/utils";
 
+import { motion } from "framer-motion";
+
 const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn(
-        // Toddle-style: clean white, 1px subtle border, soft shadow, rounded-2xl
-        "rounded-2xl border border-border bg-card text-card-foreground shadow-card",
-        "transition-all duration-300 ease-out",
-        className,
-      )}
-      {...props}
-    />
-  ),
+  ({ className, ...props }, ref) => {
+    const MotionDiv = motion.div as any;
+    return (
+      <MotionDiv
+        ref={ref}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className={cn(
+          // Toddle-style: clean white, 1px subtle border, soft shadow, rounded-2xl
+          "rounded-2xl border border-border bg-card text-card-foreground shadow-card",
+          "transition-all duration-300 ease-out",
+          className,
+        )}
+        {...props}
+      />
+    );
+  },
 );
 Card.displayName = "Card";
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { PageHeader } from "@pdi/components/layout/PageHeader";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@pdi/components/ui/button";
@@ -484,7 +484,7 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
                                         </Button>
                                         <Button
                                             size="sm"
-                                            className="bg-violet-600 hover:bg-violet-700 text-foreground"
+                                            className="bg-green-600 hover:bg-green-700 text-white"
                                             onClick={async () => {
                                                 try {
                                                     await courseService.updateCourse(course.id, { status: "Active" });
@@ -550,14 +550,13 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
                                     <TableCell>
                                         <Badge
                                             className={cn(
-                                                "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
-                                                course.status?.toUpperCase() === 'ACTIVE' ? "bg-violet-600" :
-                                                course.status?.toUpperCase() === 'PUBLISHED' ? "bg-rose-600" :
+                                                "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
+                                                (course.status?.toUpperCase() === 'ACTIVE' || course.status?.toUpperCase() === 'PUBLISHED') ? "bg-black hover:bg-black cursor-default" :
                                                 course.status?.toUpperCase() === 'MANDATORY' ? "bg-amber-500" :
                                                 "bg-slate-500"
                                             )}
                                         >
-                                            {course.status}
+                                            {course.status?.toUpperCase() === 'PUBLISHED' ? 'Active' : course.status}
                                         </Badge>
                                     </TableCell>
                                     <TableCell className="text-right">
@@ -688,7 +687,7 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
                         <div className="space-y-6 pt-4">
                             {/* Header Stats */}
                             <div className="grid grid-cols-3 gap-4">
-                                <Card className="shadow-lg bg-gradient-to-br from-blue-500 to-blue-600 text-foreground">
+                                <Card className="shadow-lg bg-gradient-to-br from-blue-500 to-blue-600 text-white">
                                     <CardContent className="p-4">
                                         <div className="flex items-center justify-between">
                                             <div>
@@ -700,7 +699,7 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
                                     </CardContent>
                                 </Card>
 
-                                <Card className="shadow-lg bg-gradient-to-br from-purple-500 to-purple-600 text-foreground">
+                                <Card className="shadow-lg bg-gradient-to-br from-purple-500 to-purple-600 text-white">
                                     <CardContent className="p-4">
                                         <div className="flex items-center justify-between">
                                             <div>
@@ -712,8 +711,8 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
                                     </CardContent>
                                 </Card>
 
-                                <Card className={`shadow-lg text-foreground ${detailCourse.status === 'Active'
-                                    ? 'bg-gradient-to-br from-violet-500 to-violet-600'
+                                <Card className={`shadow-lg text-white ${detailCourse.status === 'Active'
+                                    ? 'bg-gradient-to-br from-emerald-500 to-emerald-600'
                                     : detailCourse.status === 'Draft'
                                         ? 'bg-gradient-to-br from-gray-500 to-gray-600'
                                         : 'bg-gradient-to-br from-red-500 to-red-600'
@@ -721,12 +720,12 @@ export function CourseManagementView({ hideHeader = false }: { hideHeader?: bool
                                     <CardContent className="p-4">
                                         <div className="flex items-center justify-between">
                                             <div>
-                                                <p className={`text-xs font-medium mb-1 ${detailCourse.status === 'Active' ? 'text-violet-50/80' :
+                                                <p className={`text-xs font-medium mb-1 ${detailCourse.status === 'Active' ? 'text-emerald-50/80' :
                                                     detailCourse.status === 'Draft' ? 'text-gray-50/80' : 'text-red-50/80'
                                                     }`}>Status</p>
                                                 <p className="text-xl font-bold">{detailCourse.status}</p>
                                             </div>
-                                            <ShieldCheck className={`w-8 h-8 ${detailCourse.status === 'Active' ? 'text-violet-50/50' :
+                                            <ShieldCheck className={`w-8 h-8 ${detailCourse.status === 'Active' ? 'text-emerald-50/50' :
                                                 detailCourse.status === 'Draft' ? 'text-gray-50/50' : 'text-red-50/50'
                                                 }`} />
                                         </div>

@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { cn } from "@pdi/lib/utils";
 import { PageHeader } from "@pdi/components/layout/PageHeader";
 import { Button } from "@pdi/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@pdi/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@pdi/components/ui/tabs";
 import { Badge } from "@pdi/components/ui/badge";
-import { FileText, Plus, Eye, Clock, CheckCircle2, MoreHorizontal, Copy, Pencil, Archive, Trash2, Users, Star, UploadCloud, FileUp } from "lucide-react";
+import { FileText, Plus, Eye, Clock, CheckCircle2, MoreHorizontal, Copy, Pencil, Archive, Trash2, Users, Star, UploadCloud, FileUp, Sparkles, Loader2 } from "lucide-react";
+import { assessmentService } from "@pdi/services/assessmentService";
 import {
     DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger
 } from "@pdi/components/ui/dropdown-menu";
@@ -23,6 +24,7 @@ import {
 } from "@pdi/components/ui/alert-dialog";
 import { Label } from "@pdi/components/ui/label";
 import { Input } from "@pdi/components/ui/input";
+import { Textarea } from "@pdi/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@pdi/components/ui/select";
 import { toast } from "sonner";
 import api from "@pdi/lib/api";
@@ -113,6 +115,50 @@ export function FormTemplatesView() {
     const [isUploadOpen, setIsUploadOpen] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
     const [importConfig, setImportConfig] = useState({ routingSender: "Teacher", routingReceiver: "Leader Dashboard" });
+
+    const [aiPrompt, setAiPrompt] = useState("");
+    const [aiQuestionCount, setAiQuestionCount] = useState(5);
+    const [isGenerating, setIsGenerating] = useState(false);
+
+    const handleAIGenerate = async (target: 'new' | 'edit') => {
+        if (!aiPrompt.trim()) {
+            toast.error("Please enter a topic or context for AI generation");
+            return;
+        }
+
+        setIsGenerating(true);
+        try {
+            const generated = await assessmentService.generateAIQuestions(aiPrompt, aiQuestionCount);
+            if (generated && generated.length > 0) {
+                const newFields = generated.map((q: any) => ({
+                    id: Math.random().toString(36).substr(2, 9),
+                    label: q.prompt,
+                    type: (q.type === 'MCQ' || q.type === 'MULTI_SELECT') ? 'radio' : (q.type === 'LONG_TEXT' ? 'textarea' : (q.type === 'RATING' ? 'rating' : (q.type === 'DATE' ? 'date' : 'text'))),
+                    required: q.required !== undefined ? q.required : true,
+                    options: q.options
+                }));
+
+                if (target === 'new') {
+                    setNewTemplate(prev => ({
+                        ...prev,
+                        fields: [...prev.fields, ...newFields]
+                    }));
+                } else if (editingTemplate) {
+                    setEditingTemplate((prev: any) => ({
+                        ...prev,
+                        fields: [...prev.fields, ...newFields]
+                    }));
+                }
+                toast.success(`Generated ${generated.length} questions!`);
+                setAiPrompt("");
+            }
+        } catch (error: any) {
+            console.error("AI Generation failed:", error);
+            toast.error(error.response?.data?.message || "AI Generation failed. Check your API key.");
+        } finally {
+            setIsGenerating(false);
+        }
+    };
 
     const handleSimulatedUpload = () => {
         setIsUploading(true);
@@ -570,6 +616,60 @@ export function FormTemplatesView() {
                                         </TabsContent>
 
                                         <TabsContent value="fields" className="p-6 space-y-6">
+                                            <div className="p-6 bg-zinc-900 text-white rounded-[2rem] mb-6 shadow-2xl relative overflow-hidden">
+                                                <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-64 h-64 bg-primary/20 rounded-full blur-[80px]" />
+                                                <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-48 h-48 bg-indigo-500/20 rounded-full blur-[60px]" />
+
+                                                <div className="relative z-10 space-y-4">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="p-2 bg-primary/20 rounded-xl">
+                                                            <Sparkles className="w-5 h-5 text-primary animate-pulse" />
+                                                        </div>
+                                                        <h3 className="text-xl font-bold">Magic Question Generator</h3>
+                                                    </div>
+
+                                                    <div className="space-y-4">
+                                                        <Textarea
+                                                            placeholder="Enter a topic, rubric focus, or specific competency (e.g., 'Inquiry-based learning in Science' or 'Effective classroom transitions')"
+                                                            value={aiPrompt}
+                                                            onChange={(e) => setAiPrompt(e.target.value)}
+                                                            className="bg-white/10 border-white/20 text-white placeholder:text-white/40 min-h-[100px] rounded-2xl focus:border-primary/50"
+                                                        />
+
+                                                        <div className="flex flex-col sm:flex-row items-center gap-4">
+                                                            <div className="flex items-center gap-3 bg-white/5 p-1 rounded-xl border border-white/10">
+                                                                {[3, 5, 8].map(count => (
+                                                                    <button
+                                                                        key={count}
+                                                                        type="button"
+                                                                        onClick={() => setAiQuestionCount(count)}
+                                                                        className={cn(
+                                                                            "px-4 py-2 rounded-lg text-xs font-bold transition-all",
+                                                                            aiQuestionCount === count ? "bg-primary text-white" : "text-white/60 hover:text-white"
+                                                                        )}
+                                                                    >
+                                                                        {count} Questions
+                                                                    </button>
+                                                                ))}
+                                                            </div>
+
+                                                            <Button
+                                                                type="button"
+                                                                onClick={() => handleAIGenerate('new')}
+                                                                disabled={isGenerating || !aiPrompt.trim()}
+                                                                className="w-full sm:w-auto bg-gradient-to-r from-primary to-indigo-600 hover:opacity-90 font-bold h-12 px-8 rounded-2xl shadow-lg border-none"
+                                                            >
+                                                                {isGenerating ? (
+                                                                    <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Casting Spell...</>
+                                                                ) : (
+                                                                    <><Sparkles className="mr-2 h-4 w-4" /> Generate Questions</>
+                                                                )}
+                                                            </Button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div className="flex justify-between items-center mb-4">
                                                 <h3 className="font-bold text-lg">Question Builder</h3>
                                                 <Button size="sm" onClick={addNewTemplateField} className="gap-2">
@@ -785,6 +885,60 @@ export function FormTemplatesView() {
                             </TabsContent>
 
                             <TabsContent value="fields" className="p-6 space-y-6">
+                                <div className="p-6 bg-zinc-900 text-white rounded-[2rem] mb-6 shadow-2xl relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-64 h-64 bg-primary/20 rounded-full blur-[80px]" />
+                                    <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-48 h-48 bg-indigo-500/20 rounded-full blur-[60px]" />
+
+                                    <div className="relative z-10 space-y-4">
+                                        <div className="flex items-center gap-3">
+                                            <div className="p-2 bg-primary/20 rounded-xl">
+                                                <Sparkles className="w-5 h-5 text-primary animate-pulse" />
+                                            </div>
+                                            <h3 className="text-xl font-bold">Magic Question Generator</h3>
+                                        </div>
+
+                                        <div className="space-y-4">
+                                            <Textarea
+                                                placeholder="Enter a topic, rubric focus, or specific competency (e.g., 'Modern pedagogy in high school' or 'Behavioral management strategies')"
+                                                value={aiPrompt}
+                                                onChange={(e) => setAiPrompt(e.target.value)}
+                                                className="bg-white/10 border-white/20 text-white placeholder:text-white/40 min-h-[100px] rounded-2xl focus:border-primary/50"
+                                            />
+
+                                            <div className="flex flex-col sm:flex-row items-center gap-4">
+                                                <div className="flex items-center gap-3 bg-white/5 p-1 rounded-xl border border-white/10">
+                                                    {[3, 5, 8].map(count => (
+                                                        <button
+                                                            key={count}
+                                                            type="button"
+                                                            onClick={() => setAiQuestionCount(count)}
+                                                            className={cn(
+                                                                "px-4 py-2 rounded-lg text-xs font-bold transition-all",
+                                                                aiQuestionCount === count ? "bg-primary text-white" : "text-white/60 hover:text-white"
+                                                            )}
+                                                        >
+                                                            {count} Questions
+                                                        </button>
+                                                    ))}
+                                                </div>
+
+                                                <Button
+                                                    type="button"
+                                                    onClick={() => handleAIGenerate('edit')}
+                                                    disabled={isGenerating || !aiPrompt.trim()}
+                                                    className="w-full sm:w-auto bg-gradient-to-r from-primary to-indigo-600 hover:opacity-90 font-bold h-12 px-8 rounded-2xl shadow-lg border-none"
+                                                >
+                                                    {isGenerating ? (
+                                                        <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Casting Spell...</>
+                                                    ) : (
+                                                        <><Sparkles className="mr-2 h-4 w-4" /> Generate Questions</>
+                                                    )}
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div className="flex justify-between items-center mb-4">
                                     <h3 className="font-bold text-lg">Form Fields</h3>
                                     <Button size="sm" onClick={addField} className="gap-2">
@@ -1026,7 +1180,7 @@ function TemplateCard({
                     variant={template.status === "Active" ? "default" : "secondary"}
                     className={cn(
                         "text-[10px] px-2 py-0 h-5",
-                        template.status === "Active" ? "bg-violet-600 hover:bg-violet-600" :
+                        template.status === "Active" ? "bg-black text-white hover:bg-black cursor-default" :
                             template.status === "Draft" ? "bg-amber-500 hover:bg-amber-500" :
                                 "bg-slate-500 hover:bg-slate-500"
                     )}

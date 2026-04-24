@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+﻿import React, { useEffect, useState, useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "@pdi/hooks/useAuth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@pdi/components/ui/card";
@@ -161,10 +161,10 @@ const GrowthPage = () => {
 
                 <div className="grid gap-8">
                     {/* Information Card about the Framework */}
-                    <Card className="  shadow-sm bg-violet-50/50 border border-blue-100">
+                    <Card className="  shadow-sm bg-blue-50/50 border border-blue-100">
                         <CardContent className="p-6">
                             <div className="flex gap-4">
-                                <div className="p-2 rounded-lg bg-violet-100 h-fit">
+                                <div className="p-2 rounded-lg bg-blue-100 h-fit">
                                     <Info className="w-5 h-5 text-blue-600" />
                                 </div>
                                 <div className="space-y-1">

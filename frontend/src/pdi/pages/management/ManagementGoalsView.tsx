@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { PageHeader } from '@pdi/components/layout/PageHeader';
 import { Card, CardHeader, CardTitle, CardContent } from '@pdi/components/ui/card';
 import { Progress } from '@pdi/components/ui/progress';
@@ -140,8 +140,8 @@ export function ManagementGoalsView() {
                             <CardTitle className="text-lg flex justify-between items-center text-slate-800">
                                 <span className="font-black">{stat.campus}</span>
                                 <div className="flex gap-2">
-                                    <Badge variant="outline" className="bg-white shadow-sm border-slate-200 text-muted-foreground">{stat.totalGoals} Goals Active</Badge>
-                                    <Badge variant="secondary" className="bg-card shadow-sm border-zinc-800 text-foreground hover:bg-slate-700">{stat.totalTeachers} Total Teachers</Badge>
+                                    <Badge variant="outline" className="bg-white shadow-sm border-slate-200 text-slate-400">{stat.totalGoals} Goals Active</Badge>
+                                    <Badge variant="secondary" className="bg-slate-800 shadow-sm border-slate-800 text-white hover:bg-slate-700">{stat.totalTeachers} Total Teachers</Badge>
                                 </div>
                             </CardTitle>
                         </CardHeader>
@@ -149,32 +149,32 @@ export function ManagementGoalsView() {
                             <div className="space-y-3">
                                 <div className="flex justify-between text-sm font-bold text-slate-700">
                                     <span className="flex items-center gap-2">
-                                        <div className="p-1.5 rounded-md bg-violet-100/50"><FileText className="w-4 h-4 text-violet-600" /></div>
+                                        <div className="p-1.5 rounded-md bg-emerald-100/50"><FileText className="w-4 h-4 text-emerald-600" /></div>
                                         Self-Reflection Forms Filled
                                     </span>
-                                    <span className="text-violet-700 bg-violet-50 px-2 py-0.5 rounded-md">{stat.reflectionPct}% ({stat.reflectionFilled}/{stat.totalTeachers})</span>
+                                    <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">{stat.reflectionPct}% ({stat.reflectionFilled}/{stat.totalTeachers})</span>
                                 </div>
                                 <div className="h-3 rounded-full bg-slate-100 overflow-hidden">
-                                     <div className="h-full bg-violet-500 transition-all duration-1000" style={{ width: `${stat.reflectionPct}%` }} />
+                                     <div className="h-full bg-emerald-500 transition-all duration-1000" style={{ width: `${stat.reflectionPct}%` }} />
                                 </div>
                             </div>
                             <div className="space-y-3">
                                 <div className="flex justify-between text-sm font-bold text-slate-700">
                                     <span className="flex items-center gap-2">
-                                         <div className="p-1.5 rounded-md bg-violet-100/50"><Target className="w-4 h-4 text-blue-600" /></div>
+                                         <div className="p-1.5 rounded-md bg-blue-100/50"><Target className="w-4 h-4 text-blue-600" /></div>
                                          Goal Setting Forms Filled
                                     </span>
-                                    <span className="text-blue-700 bg-violet-50 px-2 py-0.5 rounded-md">{stat.settingPct}% ({stat.settingFilled}/{stat.totalTeachers})</span>
+                                    <span className="text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md">{stat.settingPct}% ({stat.settingFilled}/{stat.totalTeachers})</span>
                                 </div>
                                 <div className="h-3 rounded-full bg-slate-100 overflow-hidden">
-                                     <div className="h-full bg-violet-500 transition-all duration-1000" style={{ width: `${stat.settingPct}%` }} />
+                                     <div className="h-full bg-blue-500 transition-all duration-1000" style={{ width: `${stat.settingPct}%` }} />
                                 </div>
                             </div>
                         </CardContent>
                     </Card>
                 ))}
                 {filteredCampusStats.length === 0 && !isLoading && (
-                    <div className="col-span-full p-12 text-center text-muted-foreground border-2 border-dashed border-slate-200 rounded-3xl bg-slate-50">No campus data available.</div>
+                    <div className="col-span-full p-12 text-center text-slate-400 border-2 border-dashed border-slate-200 rounded-3xl bg-slate-50">No campus data available.</div>
                 )}
             </div>
         </div>

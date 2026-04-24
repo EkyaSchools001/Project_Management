@@ -1,0 +1,52 @@
+name: Deploy Backend to EC2
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+      - 'database/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          timeout: 60s
+          command_timeout: 20m
+          script: |
+            cd /home/ubuntu/pdi_updated || exit
+
+            echo "--- Pulling latest code ---"
+            git reset --hard
+            git pull origin main
+
+            echo "--- Installing & Building Backend ---"
+            cd backend
+            npm install
+
+            # Sync database schema with Prisma (adds missing columns like category)
+            npx prisma db push --schema=../database/prisma/schema.prisma --accept-data-loss
+
+            # This generates the Prisma client and compiles TS to JS
+            npm run build
+
+            # Populate templates and seed data (idempotent, won't duplicate)
+            npm run prisma:seed
+
+            # 5. Restarting the backend with PM2
+            # We delete the existing process to ensure a clean start with the new build
+            pm2 delete backend || true
+            pm2 start dist/index.js --name "backend"
+            pm2 save
+
+            echo "--- Deployment Complete ---"

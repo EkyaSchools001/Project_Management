@@ -1,4 +1,4 @@
-import { cn } from "@pdi/lib/utils";
+﻿import { cn } from "@pdi/lib/utils";
 import { Calendar, MapPin, Users, Clock, CheckCircle2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
@@ -59,13 +59,13 @@ export function TrainingEventCard({ event, onRegister, className }: TrainingEven
 
       <div className="pt-6 border-t border-muted/50">
         {event.isRegistered ? (
-          <Button variant="outline" className="w-full h-14 rounded-2xl text-lg font-bold border-2 border-violet-500 text-violet-600 cursor-default" disabled>
+          <Button variant="outline" className="w-full h-14 rounded-2xl text-lg font-bold border-2 border-emerald-500 text-emerald-600 cursor-default" disabled>
             <CheckCircle2 className="mr-2 w-6 h-6" />
             Registered
           </Button>
         ) : (
           <Button
-            className="w-full h-14 rounded-2xl text-lg font-bold bg-[#1e293b] hover:bg-[#0f172a] text-foreground shadow-lg shadow-slate-900/20 transition-all active:scale-[0.98]"
+            className="w-full h-14 rounded-2xl text-lg font-bold bg-[#1e293b] hover:bg-[#0f172a] text-white shadow-lg shadow-slate-900/20 transition-all active:scale-[0.98]"
             onClick={onRegister}
           >
             Register Now

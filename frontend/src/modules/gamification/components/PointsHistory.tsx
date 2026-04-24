@@ -5,12 +5,12 @@ import { Card } from '../../../components/ui/card';
 import gamificationService from '../../../services/gamification.service';
 
 const sourceIcons = {
-  badge: <Gift size={14} className="text-purple-400" />,
+  badge: <Gift size={14} className="text-red-400" />,
   achievement: <Award size={14} className="text-yellow-400" />,
-  challenge: <Target size={14} className="text-blue-400" />,
-  level_up: <Trophy size={14} className="text-violet-400" />,
+  challenge: <Target size={14} className="text-red-400" />,
+  level_up: <Trophy size={14} className="text-red-400" />,
   streak: <Flame size={14} className="text-orange-400" />,
-  default: <Plus size={14} className="text-[#8b5cf6]" />
+  default: <Plus size={14} className="text-[#ef4444]" />
 };
 
 const sourceLabels = {
@@ -71,7 +71,7 @@ export function PointsHistory({ limit = 20, filterable = true }) {
             onClick={() => setSourceFilter('')}
             className={`
               px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all whitespace-nowrap
-              ${!sourceFilter ? 'bg-[#8b5cf6] text-black' : 'bg-white/5 text-foreground/40 hover:text-foreground'}
+              ${!sourceFilter ? 'bg-[#ef4444] text-black' : 'bg-white/5 text-foreground/40 hover:text-foreground'}
             `}
           >
             All
@@ -80,7 +80,7 @@ export function PointsHistory({ limit = 20, filterable = true }) {
             onClick={() => setSourceFilter('badge')}
             className={`
               px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all whitespace-nowrap
-              ${sourceFilter === 'badge' ? 'bg-[#8b5cf6] text-black' : 'bg-white/5 text-foreground/40 hover:text-foreground'}
+              ${sourceFilter === 'badge' ? 'bg-[#ef4444] text-black' : 'bg-white/5 text-foreground/40 hover:text-foreground'}
             `}
           >
             Badges
@@ -89,7 +89,7 @@ export function PointsHistory({ limit = 20, filterable = true }) {
             onClick={() => setSourceFilter('achievement')}
             className={`
               px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all whitespace-nowrap
-              ${sourceFilter === 'achievement' ? 'bg-[#8b5cf6] text-black' : 'bg-white/5 text-foreground/40 hover:text-foreground'}
+              ${sourceFilter === 'achievement' ? 'bg-[#ef4444] text-black' : 'bg-white/5 text-foreground/40 hover:text-foreground'}
             `}
           >
             Achievements
@@ -98,7 +98,7 @@ export function PointsHistory({ limit = 20, filterable = true }) {
             onClick={() => setSourceFilter('challenge')}
             className={`
               px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all whitespace-nowrap
-              ${sourceFilter === 'challenge' ? 'bg-[#8b5cf6] text-black' : 'bg-white/5 text-foreground/40 hover:text-foreground'}
+              ${sourceFilter === 'challenge' ? 'bg-[#ef4444] text-black' : 'bg-white/5 text-foreground/40 hover:text-foreground'}
             `}
           >
             Challenges
@@ -108,7 +108,7 @@ export function PointsHistory({ limit = 20, filterable = true }) {
 
       {loading ? (
         <div className="flex items-center justify-center py-12">
-          <div className="w-6 h-6 border-2 border-[#8b5cf6] border-t-transparent rounded-full animate-spin" />
+          <div className="w-6 h-6 border-2 border-[#ef4444] border-t-transparent rounded-full animate-spin" />
         </div>
       ) : history.length === 0 ? (
         <div className="text-center py-12 text-foreground/40 text-sm">
@@ -134,7 +134,7 @@ export function PointsHistory({ limit = 20, filterable = true }) {
                 </p>
               </div>
 
-              <div className={`text-right shrink-0 ${item.points > 0 ? 'text-[#8b5cf6]' : 'text-red-400'}`}>
+              <div className={`text-right shrink-0 ${item.points > 0 ? 'text-[#ef4444]' : 'text-red-400'}`}>
                 <p className="font-black text-lg">
                   {item.points > 0 ? '+' : ''}{item.points}
                 </p>

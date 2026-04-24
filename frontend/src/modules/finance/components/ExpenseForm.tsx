@@ -66,7 +66,7 @@ export function ExpenseForm({ expense, budgets, onSubmit, onClose }: ExpenseForm
               step="0.01"
               value={formData.amount}
               onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#8b5cf6]/50"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#ef4444]/50"
               required
             />
           </div>
@@ -77,7 +77,7 @@ export function ExpenseForm({ expense, budgets, onSubmit, onClose }: ExpenseForm
               type="text"
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#8b5cf6]/50"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#ef4444]/50"
               required
             />
           </div>
@@ -87,7 +87,7 @@ export function ExpenseForm({ expense, budgets, onSubmit, onClose }: ExpenseForm
             <select
               value={formData.category}
               onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#8b5cf6]/50"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#ef4444]/50"
             >
               {categories.map(cat => (
                 <option key={cat} value={cat}>{cat}</option>
@@ -101,7 +101,7 @@ export function ExpenseForm({ expense, budgets, onSubmit, onClose }: ExpenseForm
               type="date"
               value={formData.date}
               onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#8b5cf6]/50"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#ef4444]/50"
               required
             />
           </div>
@@ -112,7 +112,7 @@ export function ExpenseForm({ expense, budgets, onSubmit, onClose }: ExpenseForm
               <select
                 value={formData.budgetId}
                 onChange={(e) => setFormData({ ...formData, budgetId: e.target.value })}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#8b5cf6]/50"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#ef4444]/50"
               >
                 <option value="">Select Budget (Optional)</option>
                 {budgets.map(budget => (
@@ -150,7 +150,7 @@ export function ExpenseForm({ expense, budgets, onSubmit, onClose }: ExpenseForm
             </button>
             <button
               type="submit"
-              className="flex-1 px-4 py-3 bg-[#8b5cf6] text-black rounded-xl font-bold hover:bg-[#8b5cf6]/80 transition-colors"
+              className="flex-1 px-4 py-3 bg-[#ef4444] text-black rounded-xl font-bold hover:bg-[#ef4444]/80 transition-colors"
             >
               {expense ? 'Update' : 'Add'} Expense
             </button>

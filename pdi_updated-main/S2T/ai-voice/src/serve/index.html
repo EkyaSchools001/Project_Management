@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASR In-Browser Testing</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: var(--surface);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 600px;
+            transition: transform 0.3s ease;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-top: 0;
+            background: linear-gradient(135deg, #a5b4fc, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--text-sub);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .upload-area:hover,
+        .upload-area.dragover {
+            border-color: var(--primary);
+            background-color: rgba(79, 70, 229, 0.05);
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .upload-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn:disabled {
+            background-color: #475569;
+            cursor: not-allowed;
+        }
+
+        .result-box {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            min-height: 100px;
+            display: none;
+        }
+
+        .result-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        #transcriptionText,
+        #normalizedText {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .loader {
+            display: none;
+            text-align: center;
+            margin: 1.5rem 0;
+            color: var(--text-sub);
+        }
+
+        .live-subtitles {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            background-color: rgba(79, 70, 229, 0.1);
+            border: 1px solid var(--primary);
+            min-height: 80px;
+            display: none;
+            font-size: 1.25rem;
+            color: #fbbf24;
+            font-weight: 500;
+            line-height: 1.5;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🎙️ Education ASR Interface</h1>
+        <p style="text-align: center; color: var(--text-sub); font-size: 0.95rem;">
+            Upload a `.wav`, `.mp3`, or `.flac` lecture snippet to test transcription and STEM normalization.
+        </p>
+
+        <div class="upload-area" id="dropZone">
+            <div class="upload-icon">📄</div>
+            <p id="fileName">Drag & drop an audio file here, or click to browse</p>
+            <input type="file" id="fileInput" class="file-input" accept="audio/*">
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+            <div style="display: flex; gap: 0.5rem;">
+                <input type="text" id="urlInput" class="btn" placeholder="Paste Audio URL (e.g. .wav, .mp3)"
+                    style="background-color: var(--surface); color: white; border: 1px solid var(--text-sub); text-align: left; flex: 3; cursor: text;">
+                <button id="urlTranscribeBtn" class="btn" style="flex: 1;">Transcribe URL</button>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+            <button id="recordBtn" class="btn" style="background-color: #ef4444;">🎤 Start Recording</button>
+            <button id="transcribeBtn" class="btn" disabled>Transcribe Audio</button>
+        </div>
+        <div class="loader" id="loader">Processing audio using neural network... ⏳</div>
+
+        <div class="live-subtitles" id="liveSubtitles">
+            <span class="result-label" style="color: #fbbf24; text-align: left;">Live Transcriptio</span><br>
+            <span id="liveText">Listening...</span>
+        </div>
+
+        <div class="result-box" id="resultBox">
+            <span class="result-label">Raw Model Output</span>
+            <p id="transcriptionText"></p>
+
+            <span class="result-label">Education Normalized Output</span>
+            <p id="normalizedText" style="color: #cbd5e1;"></p>
+        </div>
+    </div>
+
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const fileNameDisplay = document.getElementById('fileName');
+        const recordBtn = document.getElementById('recordBtn');
+        const transcribeBtn = document.getElementById('transcribeBtn');
+        const resultBox = document.getElementById('resultBox');
+        const transcriptionText = document.getElementById('transcriptionText');
+        const normalizedText = document.getElementById('normalizedText');
+        const loader = document.getElementById('loader');
+        const liveSubtitles = document.getElementById('liveSubtitles');
+        const liveText = document.getElementById('liveText');
+        const urlInput = document.getElementById('urlInput');
+        const urlTranscribeBtn = document.getElementById('urlTranscribeBtn');
+
+        let selectedFile = null;
+
+        // Handle Drag & Drop
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+        });
+
+        // Handle File Input
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) handleFile(e.target.files[0]);
+        });
+
+        function handleFile(file) {
+            if (!file.type.startsWith('audio/')) {
+                alert('Please select a valid audio file.');
+                return;
+            }
+            selectedFile = file;
+            fileNameDisplay.textContent = file.name;
+            fileNameDisplay.style.color = '#10b981';
+            transcribeBtn.disabled = false;
+            resultBox.style.display = 'none';
+        }
+
+        let mediaRecorder = null;
+        let audioChunks = [];
+
+        async function convertToWav(audioBlob) {
+            const arrayBuffer = await audioBlob.arrayBuffer();
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+            const offlineCtx = new OfflineAudioContext(1, audioBuffer.duration * 16000, 16000);
+            const source = offlineCtx.createBufferSource();
+            source.buffer = audioBuffer;
+            source.connect(offlineCtx.destination);
+            source.start();
+            const renderedBuffer = await offlineCtx.startRendering();
+
+            const pcm = renderedBuffer.getChannelData(0);
+            const wavBuffer = new ArrayBuffer(pcm.length * 2 + 44);
+            const view = new DataView(wavBuffer);
+
+            const writeString = (view, offset, string) => {
+                for (let i = 0; i < string.length; i++) {
+                    view.setUint8(offset + i, string.charCodeAt(i));
+                }
+            };
+
+            writeString(view, 0, 'RIFF');
+            view.setUint32(4, 36 + pcm.length * 2, true);
+            writeString(view, 8, 'WAVE');
+            writeString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, 1, true);
+            view.setUint16(22, 1, true);
+            view.setUint32(24, 16000, true);
+            view.setUint32(28, 16000 * 2, true);
+            view.setUint16(32, 2, true);
+            view.setUint16(34, 16, true);
+            writeString(view, 36, 'data');
+            view.setUint32(40, pcm.length * 2, true);
+
+            let offset = 44;
+            for (let i = 0; i < pcm.length; i++, offset += 2) {
+                let s = Math.max(-1, Math.min(1, pcm[i]));
+                view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+            }
+
+            return new Blob([view], { type: 'audio/wav' });
+        }
+
+        recordBtn.addEventListener('click', async () => {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+                recordBtn.innerHTML = '🎤 Start Recording';
+                recordBtn.style.backgroundColor = '#ef4444';
+                mediaRecorder.stream.getTracks().forEach(track => track.stop());
+
+                // Set the final accumulated blob to upload to main UI
+                loader.style.display = 'block';
+                loader.textContent = 'Formatting microphone audio...';
+                const finalBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                try {
+                    const wavBlob = await convertToWav(finalBlob);
+                    const file = new File([wavBlob], "live_recording.wav", { type: 'audio/wav' });
+                    handleFile(file);
+                } catch (e) {
+                    const file = new File([finalBlob], "live_recording.webm", { type: 'audio/webm' });
+                    handleFile(file);
+                }
+                loader.style.display = 'none';
+                loader.textContent = 'Processing audio using neural network... ⏳';
+                liveText.textContent = 'Finalizing...';
+            } else {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+                    audioChunks = [];
+
+                    // Show live sub box
+                    liveSubtitles.style.display = 'block';
+                    liveText.textContent = 'Listening...';
+                    resultBox.style.display = 'none';
+
+                    let isTranscribing = false;
+
+                    mediaRecorder.ondataavailable = async (e) => {
+                        if (e.data.size > 0) audioChunks.push(e.data);
+
+                        // Proceed to send the buffer so far to get the current streaming text
+                        if (!isTranscribing && audioChunks.length > 0) {
+                            isTranscribing = true;
+                            const currentBlob = new Blob(audioChunks, { type: 'audio/webm' });
+
+                            try {
+                                const wavBlob = await convertToWav(currentBlob);
+                                const formData = new FormData();
+                                formData.append('file', new File([wavBlob], "chunk.wav", { type: 'audio/wav' }));
+
+                                formData.append('language', 'en');
+                                formData.append('task', 'transcribe');
+
+                                const response = await fetch('/transcribe/batch', {
+                                    method: 'POST',
+                                    body: formData
+                                });
+
+                                if (response.ok) {
+                                    const data = await response.json();
+                                    liveText.textContent = data.normalized || data.transcription;
+                                }
+                            } catch (err) {
+                                console.error('Live transcription error', err);
+                            } finally {
+                                isTranscribing = false;
+                            }
+                        }
+                    };
+
+                    // Slices the recording every 2.5 seconds to trigger dataavailable
+                    mediaRecorder.start(2500);
+                    recordBtn.innerHTML = '⏹️ Stop Recording';
+                    recordBtn.style.backgroundColor = '#f97316';
+
+                } catch (err) {
+                    console.error('Microphone access denied:', err);
+                    alert('Please allow microphone access to record audio.');
+                }
+            }
+        });
+
+        // Handle API submission
+        transcribeBtn.addEventListener('click', async () => {
+            if (!selectedFile) return;
+
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+            formData.append('language', 'en');
+            formData.append('task', 'transcribe');
+
+            transcribeBtn.disabled = true;
+            loader.style.display = 'block';
+            resultBox.style.display = 'none';
+
+            try {
+                const response = await fetch('/transcribe/batch', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error('API Request Failed');
+
+                const data = await response.json();
+
+                transcriptionText.textContent = data.transcription;
+                normalizedText.textContent = data.normalized;
+
+                loader.style.display = 'none';
+                resultBox.style.display = 'block';
+            } catch (error) {
+                alert('Error connecting to the Inference Server. Ensure the FastAPI backend is running.');
+                console.error(error);
+            } finally {
+                transcribeBtn.disabled = false;
+                loader.style.display = 'none';
+            }
+        });
+        // Handle URL submission
+        urlTranscribeBtn.addEventListener('click', async () => {
+            const url = urlInput.value.trim();
+            if (!url) {
+                alert('Please enter a valid audio URL.');
+                return;
+            }
+
+            urlTranscribeBtn.disabled = true;
+            loader.style.display = 'block';
+            resultBox.style.display = 'none';
+
+            const formData = new FormData();
+            formData.append('url', url);
+            formData.append('language', 'en');
+            formData.append('task', 'transcribe');
+
+            try {
+                const response = await fetch('/transcribe/url', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error('API Request Failed');
+
+                const data = await response.json();
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    transcriptionText.textContent = data.transcription;
+                    normalizedText.textContent = data.normalized;
+                    resultBox.style.display = 'block';
+                }
+            } catch (error) {
+                alert('Error connecting to Server.');
+                console.error(error);
+            } finally {
+                urlTranscribeBtn.disabled = false;
+                loader.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

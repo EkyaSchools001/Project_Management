@@ -23,7 +23,9 @@ import tenantRoutes from './routes/tenant.routes';
 import gamificationRoutes from './routes/gamification.routes';
 import pmsRoutes from './routes/pms.routes';
 import lmsRoutes from './routes/lms.routes';
-// import iotRoutes from './routes/iot.routes';
+import pdiRouter from './routes/pdi';
+import { globalRBAC } from './middlewares/rbac.middleware';
+import { authenticate } from './middlewares/auth.middleware';
 
 import {
     // Notifications
@@ -38,7 +40,7 @@ import {
     getMooc, submitMooc, updateMoocStatus,
     // Training
     getTraining, getTrainingById, createTraining, updateTraining, deleteTraining,
-    updateTrainingStatus, registerForTraining,
+    updateTrainingStatus, registerForTraining, toggleAttendance,
     // Templates
     getTemplates, getTemplateById,
     // Announcements
@@ -64,7 +66,7 @@ import {
     // OKR & Dashboards
     getOkr, getDashboards, getDashboardWidgetTypes,
     // Analytics
-    getAnalytics,
+    getAnalytics, getGrowthAnalytics,
     // Generic fallthrough
     genericSuccess,
 } from './controllers/stubs.controller';
@@ -72,7 +74,7 @@ import {
 dotenv.config();
 
 const app = express();
-const prisma = new PrismaClient();
+export const prisma = new PrismaClient();
 
 // ─── Middleware ──────────────────────────────────────────────────────────────
 app.use(helmet());
@@ -93,6 +95,7 @@ app.use('/api/v1/time',      timeRoutes);
 // so they don't hit the auth middleware which blocks unauthenticated requests.
 app.get   ('/api/v1/growth/observations',       getGrowthObservations);
 app.patch ('/api/v1/growth/observations/:id',   updateGrowthObservation);
+app.get   ('/api/v1/growth/analytics',           getGrowthAnalytics);
 
 app.use('/api/v1/growth',    growthRoutes);
 app.use('/api/v1/analytics', analyticsRoutes);
@@ -106,8 +109,9 @@ app.use('/api/v1/reports', reportRoutes);
 app.use('/api/v1/finance', financeRoutes);
 app.use('/api/v1/tenants', tenantRoutes);
 app.use('/api/v1/gamification', gamificationRoutes);
-app.use('/api/v1/projects', pmsRoutes);
-app.use('/api/v1/lms', lmsRoutes);
+app.use('/api/v1/projects', globalRBAC, pmsRoutes);
+app.use('/api/v1/lms', globalRBAC, lmsRoutes);
+app.use('/api/v1/pdi', authenticate, pdiRouter);
 // Note: /api/v1/notifications stub handlers below take priority for no-DB dev mode
 
 // ─── PDI Stub Routes ─────────────────────────────────────────────────────────
@@ -213,7 +217,7 @@ app.delete('/api/v1/portfolio/:teacherId/achievements/:id',           genericSuc
 // Attendance
 app.get ('/api/v1/attendance',           getAttendance);
 app.post('/api/v1/attendance',           genericSuccess);
-app.post('/api/v1/attendance/:id/toggle',genericSuccess);
+app.post('/api/v1/attendance/:id/toggle',  toggleAttendance);
 
 // Courses
 app.get   ('/api/v1/courses/my-enrollments', getMyEnrollments);
@@ -275,6 +279,7 @@ app.get('/api/v1/analytics/feedback',            getAnalytics);
 app.get('/api/v1/analytics/management/overview', getAnalytics);
 app.get('/api/v1/analytics/attendance/campuses', getAnalytics);
 app.get('/api/v1/analytics/cutoff-stats',        getAnalytics);
+// Removed duplicate /growth/analytics route from here
 
 // Documents
 app.get   ('/api/v1/documents/teacher/acknowledgements',                 genericSuccess);
@@ -283,6 +288,14 @@ app.post  ('/api/v1/documents/assign',                                   generic
 app.post  ('/api/v1/documents/acknowledgements/:id/view',                genericSuccess);
 app.post  ('/api/v1/documents/acknowledgements/:id/acknowledge',         genericSuccess);
 app.delete('/api/v1/documents/:id',                                      genericSuccess);
+
+// PTIL (Parent Teacher Interaction Log)
+app.get   ('/api/v1/ptil',                               genericSuccess);
+app.post  ('/api/v1/ptil',                               genericSuccess);
+app.post  ('/api/v1/ptil/public/submit',                 genericSuccess);
+app.get   ('/api/v1/ptil/analytics',                     genericSuccess);
+app.patch ('/api/v1/ptil/:id',                           genericSuccess);
+
 
 // AI (stub)
 app.post('/api/v1/ai/generate-questions', genericSuccess);
@@ -299,8 +312,18 @@ app.get('/health', (_req, res) => {
 
 // ─── Error Handler ───────────────────────────────────────────────────────────
 app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
-    console.error(err.stack);
-    res.status(500).json({ error: 'Something went wrong!' });
+    const statusCode = err.statusCode || 500;
+    const status = err.status || 'error';
+    
+    if (statusCode === 500) {
+        console.error('SERVER ERROR:', err.stack);
+    }
+
+    res.status(statusCode).json({
+        status,
+        message: err.message || 'Something went wrong!',
+        ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+    });
 });
 
-export { app, prisma };
+export { app };

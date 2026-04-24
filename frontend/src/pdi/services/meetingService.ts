@@ -54,7 +54,7 @@ export interface MeetingActionItem {
 export const meetingService = {
     getAllMeetings: async () => {
         const response = await api.get('/meetings');
-        return response.data.data.meetings as Meeting[];
+        return (response.data.data?.meetings ?? []) as Meeting[];
     },
 
     getMeetingById: async (id: string) => {

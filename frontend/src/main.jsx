@@ -8,7 +8,7 @@ import { usePWAInstallPrompt, useOfflineStatus, useServiceWorker } from './hooks
 import { useState } from 'react'
 
 // #region agent log
-fetch('http://127.0.0.1:7595/ingest/a1327625-861f-425d-8b19-5e387310336b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5ea8b1'},body:JSON.stringify({sessionId:'5ea8b1',runId:'run2',hypothesisId:'H5',location:'main.jsx:module-load',message:'frontend bootstrap executed',data:{url:window.location.pathname},timestamp:Date.now()})}).catch(()=>{});
+// fetch('http://127.0.0.1:7595/ingest/a1327625-861f-425d-8b19-5e387310336b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5ea8b1'},body:JSON.stringify({sessionId:'5ea8b1',runId:'run2',hypothesisId:'H5',location:'main.jsx:module-load',message:'frontend bootstrap executed',data:{url:window.location.pathname},timestamp:Date.now()})}).catch(()=>{});
 // #endregion
 
 function PWAWrapper() {

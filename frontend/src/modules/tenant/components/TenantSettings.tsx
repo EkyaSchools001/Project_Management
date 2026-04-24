@@ -88,7 +88,7 @@ export const TenantSettingsPage = ({ activeTab: initialTab }: TenantSettingsProp
                             onClick={() => setActiveTab(tab.id)}
                             className={`flex items-center gap-2 px-4 py-3 border-b-2 transition-colors ${
                                 activeTab === tab.id
-                                    ? 'border-[#8b5cf6] text-[#8b5cf6]'
+                                    ? 'border-[#ef4444] text-[#ef4444]'
                                     : 'border-transparent text-foreground/60 hover:text-foreground'
                             }`}
                         >
@@ -129,7 +129,7 @@ export const TenantSettingsPage = ({ activeTab: initialTab }: TenantSettingsProp
                             <div className="flex items-center gap-3">
                                 <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                                     tenant?.status === 'Active'
-                                        ? 'bg-violet-500/20 text-violet-400'
+                                        ? 'bg-red-500/20 text-red-400'
                                         : 'bg-yellow-500/20 text-yellow-400'
                                 }`}>
                                     {tenant?.status || 'Active'}

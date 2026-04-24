@@ -67,12 +67,12 @@ export const AuthProvider = ({ children }) => {
             try {
                 const token = tokenService.getToken();
                 // #region agent log
-                fetch('http://127.0.0.1:7595/ingest/a1327625-861f-425d-8b19-5e387310336b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5ea8b1'},body:JSON.stringify({sessionId:'5ea8b1',runId:'run1',hypothesisId:'H1',location:'authContext.jsx:initAuth:token-check',message:'initAuth token presence',data:{hasToken:!!token,hasRefresh:!!tokenService.getRefreshToken()},timestamp:Date.now()})}).catch(()=>{});
+                // fetch('http://127.0.0.1:7595/ingest/a1327625-861f-425d-8b19-5e387310336b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5ea8b1'},body:JSON.stringify({sessionId:'5ea8b1',runId:'run1',hypothesisId:'H1',location:'authContext.jsx:initAuth:token-check',message:'initAuth token presence',data:{hasToken:!!token,hasRefresh:!!tokenService.getRefreshToken()},timestamp:Date.now()})}).catch(()=>{});
                 // #endregion
                 if (token) {
                     const userData = await authService.getMe();
                     // #region agent log
-                    fetch('http://127.0.0.1:7595/ingest/a1327625-861f-425d-8b19-5e387310336b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5ea8b1'},body:JSON.stringify({sessionId:'5ea8b1',runId:'run1',hypothesisId:'H2',location:'authContext.jsx:initAuth:getMe-success',message:'getMe succeeded during init',data:{hasUser:!!userData},timestamp:Date.now()})}).catch(()=>{});
+                    // fetch('http://127.0.0.1:7595/ingest/a1327625-861f-425d-8b19-5e387310336b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5ea8b1'},body:JSON.stringify({sessionId:'5ea8b1',runId:'run1',hypothesisId:'H2',location:'authContext.jsx:initAuth:getMe-success',message:'getMe succeeded during init',data:{hasUser:!!userData},timestamp:Date.now()})}).catch(()=>{});
                     // #endregion
                     setUser(userData);
                     startTokenRefresh();
@@ -81,13 +81,13 @@ export const AuthProvider = ({ children }) => {
             } catch (error) {
                 const status = error?.response?.status;
                 // #region agent log
-                fetch('http://127.0.0.1:7595/ingest/a1327625-861f-425d-8b19-5e387310336b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5ea8b1'},body:JSON.stringify({sessionId:'5ea8b1',runId:'run1',hypothesisId:'H2',location:'authContext.jsx:initAuth:getMe-failed',message:'getMe failed during init',data:{status:status||null,hasRefresh:!!tokenService.getRefreshToken()},timestamp:Date.now()})}).catch(()=>{});
+                // fetch('http://127.0.0.1:7595/ingest/a1327625-861f-425d-8b19-5e387310336b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5ea8b1'},body:JSON.stringify({sessionId:'5ea8b1',runId:'run1',hypothesisId:'H2',location:'authContext.jsx:initAuth:getMe-failed',message:'getMe failed during init',data:{status:status||null,hasRefresh:!!tokenService.getRefreshToken()},timestamp:Date.now()})}).catch(()=>{});
                 // #endregion
                 try {
                     if (!tokenService.getRefreshToken()) {
                         tokenService.clearAuth();
                         // #region agent log
-                        fetch('http://127.0.0.1:7595/ingest/a1327625-861f-425d-8b19-5e387310336b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5ea8b1'},body:JSON.stringify({sessionId:'5ea8b1',runId:'run1',hypothesisId:'H3',location:'authContext.jsx:initAuth:no-refresh-token',message:'no refresh token, clearing auth',data:{cleared:true},timestamp:Date.now()})}).catch(()=>{});
+                        // fetch('http://127.0.0.1:7595/ingest/a1327625-861f-425d-8b19-5e387310336b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5ea8b1'},body:JSON.stringify({sessionId:'5ea8b1',runId:'run1',hypothesisId:'H3',location:'authContext.jsx:initAuth:no-refresh-token',message:'no refresh token, clearing auth',data:{cleared:true},timestamp:Date.now()})}).catch(()=>{});
                         // #endregion
                         return;
                     }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+﻿import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { Button } from "@pdi/components/ui/button";
@@ -165,7 +165,7 @@ const ProgressBar: React.FC<{ step: number; total: number }> = ({ step, total })
     <div className="flex items-center gap-2 mb-8">
         {Array.from({ length: total }, (_, i) => (
             <React.Fragment key={i}>
-                <div className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold transition-all ${i < step ? "text-foreground" : i === step ? "text-foreground" : "bg-slate-200 text-slate-500"}`}
+                <div className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold transition-all ${i < step ? "text-white" : i === step ? "text-white" : "bg-slate-200 text-slate-500"}`}
                     style={i <= step ? { background: i < step ? "#B69D74" : "#1F2839" } : {}}>
                     {i < step ? <CheckCircle className="w-4 h-4" /> : i + 1}
                 </div>
@@ -456,7 +456,7 @@ const PerformingArtsObsPage: React.FC = () => {
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-6">
                     <div className="flex items-center gap-3">
-                        <div className="p-2.5 rounded-xl text-foreground" style={{ background: accentColor }}>
+                        <div className="p-2.5 rounded-xl text-white" style={{ background: accentColor }}>
                             <Music className="w-5 h-5" />
                         </div>
                         <div>
@@ -667,11 +667,11 @@ const PerformingArtsObsPage: React.FC = () => {
                                     Next <ChevronRight className="w-4 h-4" />
                                 </Button>
                             ) : isViewMode ? (
-                                <Button onClick={() => navigate(`/leader/growth/${teacherId}`)} className="flex items-center gap-2 font-semibold text-foreground" style={{ background: darkColor }}>
+                                <Button onClick={() => navigate(`/leader/growth/${teacherId}`)} className="flex items-center gap-2 font-semibold text-white" style={{ background: darkColor }}>
                                     <ChevronLeft className="w-4 h-4" /> Back to Growth
                                 </Button>
                             ) : (
-                                <Button onClick={handleSubmit} disabled={submitting} className="flex items-center gap-2 font-semibold text-foreground" style={{ background: accentColor }}>
+                                <Button onClick={handleSubmit} disabled={submitting} className="flex items-center gap-2 font-semibold text-white" style={{ background: accentColor }}>
                                     {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <CheckCircle className="w-4 h-4" />}
                                     {submitting ? "Saving..." : (searchParams.get("id") ? "Update Observation" : "Submit Observation")}
                                 </Button>

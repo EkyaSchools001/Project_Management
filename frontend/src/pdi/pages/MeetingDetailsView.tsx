@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
     ChevronLeft,
@@ -78,14 +78,14 @@ export function MeetingDetailsView() {
     };
 
     const getStatusBadge = (status: string) => {
-        const baseClass = "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm";
+        const baseClass = "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm";
         switch (status) {
             case 'Completed':
                 return <Badge className={cn(baseClass, "bg-slate-600")}>Completed</Badge>;
             case 'Ongoing':
-                return <Badge className={cn(baseClass, "bg-violet-600")}>Ongoing</Badge>;
+                return <Badge className={cn(baseClass, "bg-emerald-600")}>Ongoing</Badge>;
             case 'Scheduled':
-                return <Badge className={cn(baseClass, "bg-violet-600")}>Scheduled</Badge>;
+                return <Badge className={cn(baseClass, "bg-blue-600")}>Scheduled</Badge>;
             case 'Draft':
                 return <Badge className={cn(baseClass, "bg-amber-500")}>Draft</Badge>;
             default:
@@ -183,12 +183,12 @@ export function MeetingDetailsView() {
                     {/* MoM Section */}
                     {meeting.status === "Completed" && (
                         <Card className="border-none shadow-xl shadow-slate-200/50 overflow-hidden">
-                            <CardHeader className="border-b bg-violet-50/50 flex flex-row items-center justify-between space-y-0">
+                            <CardHeader className="border-b bg-emerald-50/50 flex flex-row items-center justify-between space-y-0">
                                 <div className="flex flex-col gap-1">
-                                    <CardTitle className="text-xl text-violet-900 flex items-center gap-2">
+                                    <CardTitle className="text-xl text-emerald-900 flex items-center gap-2">
                                         Minutes of Meeting (MoM)
                                         {(user?.role === 'MANAGEMENT' || canManage) && (
-                                            <Button variant="outline" size="sm" className="ml-4 h-7 text-xs bg-white text-violet-700 hover:bg-violet-50 hover:text-violet-800 border-violet-200 shadow-sm" onClick={() => {
+                                            <Button variant="outline" size="sm" className="ml-4 h-7 text-xs bg-white text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800 border-emerald-200 shadow-sm" onClick={() => {
                                                 const momText = `MoM: ${meeting.title}\n\nSummary:\n${(meeting as any).mom.summary}\n\nMeeting Link: ${window.location.href}`;
                                                 navigator.clipboard.writeText(momText);
                                                 toast.success("MoM copied to clipboard for sharing!");
@@ -199,17 +199,17 @@ export function MeetingDetailsView() {
                                     </CardTitle>
                                     <CardDescription>Official record of decisions and updates from this meeting</CardDescription>
                                 </div>
-                                <FileCheck className="w-6 h-6 text-violet-600" />
+                                <FileCheck className="w-6 h-6 text-emerald-600" />
                             </CardHeader>
                             <CardContent className="p-6">
                                 {(meeting as any).mom ? (
                                     <div className="space-y-6">
-                                        <div className="bg-white rounded-xl p-5 border border-violet-100/50 shadow-sm">
-                                            <h4 className="font-bold text-violet-900 mb-3 flex items-center gap-2">
+                                        <div className="bg-white rounded-xl p-5 border border-emerald-100/50 shadow-sm">
+                                            <h4 className="font-bold text-emerald-900 mb-3 flex items-center gap-2">
                                                 <History className="w-4 h-4" />
                                                 Meeting Summary
                                             </h4>
-                                            <p className="text-violet-800/80 leading-relaxed whitespace-pre-wrap">
+                                            <p className="text-emerald-800/80 leading-relaxed whitespace-pre-wrap">
                                                 {(meeting as any).mom.summary}
                                             </p>
                                         </div>
@@ -292,7 +292,7 @@ export function MeetingDetailsView() {
                 <div className="space-y-6">
                     {/* Interaction Buttons */}
                     {isCreator && meeting.status !== "Completed" && (
-                        <Card className="border-none shadow-xl shadow-indigo-500/10 bg-indigo-600 text-foreground overflow-hidden group">
+                        <Card className="border-none shadow-xl shadow-indigo-500/10 bg-indigo-600 text-white overflow-hidden group">
                             <CardHeader className="pb-2">
                                 <CardTitle className="text-lg">Lead Meeting</CardTitle>
                                 <CardDescription className="text-indigo-100">Quick actions for the meeting lead</CardDescription>
@@ -307,7 +307,7 @@ export function MeetingDetailsView() {
                                 </Button>
                                 <Button
                                     variant="outline"
-                                    className="w-full border-white/20 hover:bg-white/10 text-foreground gap-2 h-11 rounded-xl"
+                                    className="w-full border-white/20 hover:bg-white/10 text-white gap-2 h-11 rounded-xl"
                                     onClick={() => handleUpdateStatus("Completed")}
                                 >
                                     <CheckCircle2 className="w-4 h-4" />
@@ -316,7 +316,7 @@ export function MeetingDetailsView() {
                                 {meeting.status === 'Scheduled' && (
                                     <Button
                                         variant="outline"
-                                        className="w-full border-white/20 hover:bg-white/10 text-foreground gap-2 h-11 rounded-xl"
+                                        className="w-full border-white/20 hover:bg-white/10 text-white gap-2 h-11 rounded-xl"
                                         onClick={() => handleUpdateStatus("IN_PROGRESS")}
                                     >
                                         <Play className="w-4 h-4" />
@@ -354,8 +354,8 @@ export function MeetingDetailsView() {
                                             </div>
                                             <div className="flex items-center gap-2">
                                                 <Badge className={cn(
-                                                    "px-2 py-0.5 rounded-full font-black text-[8px] tracking-widest uppercase border-none text-foreground shadow-sm",
-                                                    attendee.status === "PRESENT" ? "bg-violet-600" : "bg-amber-500"
+                                                    "px-2 py-0.5 rounded-full font-black text-[8px] tracking-widest uppercase border-none text-white shadow-sm",
+                                                    attendee.status === "PRESENT" ? "bg-emerald-600" : "bg-amber-500"
                                                 )}>
                                                     {attendee.status || "INVITED"}
                                                 </Badge>
@@ -382,7 +382,7 @@ export function MeetingDetailsView() {
                                         <div key={i} className="flex items-center justify-between p-3 rounded-xl border border-slate-100 group hover:border-primary/30 transition-all bg-slate-50/30">
                                             <div className="flex items-center gap-3 min-w-0">
                                                 <div className="p-2 rounded-lg bg-white shadow-sm">
-                                                    <Paperclip className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                                                    <Paperclip className="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" />
                                                 </div>
                                                 <span className="text-sm font-medium text-slate-700 truncate">{file.name || file.fileName}</span>
                                             </div>
@@ -394,7 +394,7 @@ export function MeetingDetailsView() {
                                 </div>
                             ) : (
                                 <div className="text-center py-6">
-                                    <p className="text-sm text-muted-foreground italic">No resources attached.</p>
+                                    <p className="text-sm text-slate-400 italic">No resources attached.</p>
                                 </div>
                             )}
                         </CardContent>

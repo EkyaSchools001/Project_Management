@@ -41,7 +41,7 @@ export default function AIInsights({ tasks = [], project = null }) {
         switch (priority) {
             case 'high': return 'text-red-600 bg-red-50';
             case 'medium': return 'text-amber-600 bg-amber-50';
-            case 'low': return 'text-violet-600 bg-violet-50';
+            case 'low': return 'text-red-600 bg-red-50';
             default: return 'text-muted-foreground bg-muted';
         }
     };

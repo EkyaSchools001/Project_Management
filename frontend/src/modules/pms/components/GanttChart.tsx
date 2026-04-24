@@ -63,13 +63,13 @@ const ZOOM_LEVELS = {
 
 const STATUS_COLORS = {
     'TODO': { bg: 'bg-slate-200', fill: '#cbd5e1', text: 'text-slate-600', border: 'border-slate-300' },
-    'IN_PROGRESS': { bg: 'bg-indigo-100', fill: '#c7d2fe', text: 'text-indigo-600', border: 'border-indigo-300' },
+    'IN_PROGRESS': { bg: 'bg-rose-100', fill: '#c7d2fe', text: 'text-rose-600', border: 'border-rose-300' },
     'IN_REVIEW': { bg: 'bg-amber-100', fill: '#fde68a', text: 'text-amber-600', border: 'border-amber-300' },
-    'DONE': { bg: 'bg-violet-100', fill: '#a7f3d0', text: 'text-violet-600', border: 'border-violet-300' }
+    'DONE': { bg: 'bg-red-100', fill: '#a7f3d0', text: 'text-red-600', border: 'border-red-300' }
 };
 
 const PRIORITY_COLORS = {
-    'LOW': { color: '#8b5cf6', label: 'Low' },
+    'LOW': { color: '#ef4444', label: 'Low' },
     'MEDIUM': { color: '#f59e0b', label: 'Medium' },
     'HIGH': { color: '#f97316', label: 'High' },
     'CRITICAL': { color: '#ef4444', label: 'Critical' }
@@ -375,12 +375,12 @@ const GanttTaskRow = ({ task, index, rowHeight, isExpanded, onToggle, onClick })
 
     return (
         <div
-            className="flex items-center px-6 border-b border-slate-100 hover:bg-indigo-50/50 cursor-pointer transition-colors group"
+            className="flex items-center px-6 border-b border-slate-100 hover:bg-rose-50/50 cursor-pointer transition-colors group"
             style={{ height: rowHeight }}
             onClick={onClick}
         >
             {task.subtasks?.length > 0 && (
-                <button onClick={(e) => { e.stopPropagation(); onToggle(); }} className="mr-2 text-muted-foreground hover:text-indigo-600">
+                <button onClick={(e) => { e.stopPropagation(); onToggle(); }} className="mr-2 text-muted-foreground hover:text-rose-600">
                     {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
                 </button>
             )}
@@ -516,7 +516,7 @@ export const GanttToolbar = ({
                             onClick={() => onZoomChange(key)}
                             className={`px-4 py-2 text-xs font-semibold rounded-xl transition-all ${
                                 zoomLevel === key
-                                    ? 'bg-indigo-600 text-foreground shadow-md'
+                                    ? 'bg-rose-600 text-foreground shadow-md'
                                     : 'text-slate-600 hover:bg-slate-100'
                             }`}
                         >
@@ -537,7 +537,7 @@ export const GanttToolbar = ({
                 <button
                     onClick={() => setShowFilters(!showFilters)}
                     className={`p-2 rounded-xl border transition-all ${
-                        showFilters ? 'bg-indigo-50 border-indigo-200 text-indigo-600' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-100'
+                        showFilters ? 'bg-rose-50 border-rose-200 text-rose-600' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-100'
                     }`}
                 >
                     <Filter size={18} />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@pdi/components/ui/card";
 import { Badge } from "@pdi/components/ui/badge";
 import { cn } from "@pdi/lib/utils";
@@ -32,7 +32,7 @@ export const AssessmentAnalyticsView: React.FC = () => {
         }
     };
 
-    if (loading) return <div className="p-12 text-center text-muted-foreground">Loading analytics...</div>;
+    if (loading) return <div className="p-12 text-center text-zinc-400">Loading analytics...</div>;
 
     const totalAttempts = analytics.length;
     const completedAttempts = analytics.filter(a => a.status === 'SUBMITTED').length;
@@ -45,21 +45,21 @@ export const AssessmentAnalyticsView: React.FC = () => {
         { name: 'In Progress', value: totalAttempts - completedAttempts },
     ];
 
-    const COLORS = ['#8b5cf6', '#f59e0b'];
+    const COLORS = ['#10b981', '#f59e0b'];
 
     return (
         <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <Card className="  shadow-md bg-background text-foreground">
+                <Card className="  shadow-md bg-zinc-900 text-white">
                     <CardContent className="pt-6 space-y-2">
                         <Users className="w-8 h-8 text-primary mb-2" />
-                        <p className="text-muted-foreground text-sm">Total Attempts</p>
+                        <p className="text-zinc-400 text-sm">Total Attempts</p>
                         <h3 className="text-3xl font-bold">{totalAttempts}</h3>
                     </CardContent>
                 </Card>
                 <Card className="  shadow-md">
                     <CardContent className="pt-6 space-y-2">
-                        <TrendingUp className="w-8 h-8 text-violet-500 mb-2" />
+                        <TrendingUp className="w-8 h-8 text-emerald-500 mb-2" />
                         <p className="text-zinc-500 text-sm">Average Score</p>
                         <h3 className="text-3xl font-bold">{Math.round(avgScore)}%</h3>
                     </CardContent>
@@ -119,12 +119,12 @@ export const AssessmentAnalyticsView: React.FC = () => {
                                     </div>
                                     <div className="text-right">
                                         <Badge className={cn(
-                                            "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
-                                            attempt.status === 'SUBMITTED' ? 'bg-violet-600' : 'bg-amber-500'
+                                            "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
+                                            attempt.status === 'SUBMITTED' ? 'bg-emerald-600' : 'bg-amber-500'
                                         )}>
                                             {attempt.status}
                                         </Badge>
-                                        <p className="text-xs text-muted-foreground mt-1">{new Date(attempt.startTime).toLocaleDateString()}</p>
+                                        <p className="text-xs text-zinc-400 mt-1">{new Date(attempt.startTime).toLocaleDateString()}</p>
                                     </div>
                                 </div>
                             ))}

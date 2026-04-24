@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import {
     Dialog,
     DialogContent,
@@ -68,7 +68,7 @@ export function AIAnalysisModal({ isOpen, onClose, data, type, title }: AIAnalys
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
             <DialogContent className="sm:max-w-[600px] h-[80vh] flex flex-col p-0 overflow-hidden   shadow-2xl">
-                <div className="p-6 bg-gradient-to-br from-indigo-600 via-blue-600 to-indigo-700 text-foreground relative">
+                <div className="p-6 bg-gradient-to-br from-rose-600 via-[#EA104A] to-rose-700 text-white relative">
                     <div className="absolute top-0 right-0 p-8 opacity-10">
                         <Brain className="w-32 h-32" />
                     </div>
@@ -79,7 +79,7 @@ export function AIAnalysisModal({ isOpen, onClose, data, type, title }: AIAnalys
                             </div>
                         </div>
                         <DialogTitle className="text-2xl font-black tracking-tight">{title || "AI Smart Analysis"}</DialogTitle>
-                        <DialogDescription className="text-blue-100 font-medium">
+                        <DialogDescription className="text-rose-100 font-medium">
                             Generating data-driven educational insights...
                         </DialogDescription>
                     </DialogHeader>

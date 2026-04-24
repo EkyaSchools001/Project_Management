@@ -235,7 +235,7 @@ export default function ReportBuilder() {
               {templates.map((template) => (
                 <div
                   key={template.id}
-                  className={`p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${selectedTemplate === template.id ? 'border-blue-500 bg-violet-50' : ''}`}
+                  className={`p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${selectedTemplate === template.id ? 'border-red-500 bg-red-50' : ''}`}
                   onClick={() => applyTemplate(template.id)}
                 >
                   <div className="font-medium text-sm">{template.name}</div>
@@ -348,7 +348,7 @@ export default function ReportBuilder() {
                       {widgets.map((widget) => (
                         <div
                           key={widget.id}
-                          className={`col-span-${widget.position.w} row-span-${widget.position.h} border rounded-lg overflow-hidden ${activeWidget === widget.id ? 'ring-2 ring-blue-500' : ''}`}
+                          className={`col-span-${widget.position.w} row-span-${widget.position.h} border rounded-lg overflow-hidden ${activeWidget === widget.id ? 'ring-2 ring-red-500' : ''}`}
                           style={{ gridColumn: `span ${widget.position.w}`, gridRow: `span ${widget.position.h}` }}
                           onClick={() => setActiveWidget(widget.id)}
                         >

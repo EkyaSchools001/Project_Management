@@ -50,38 +50,38 @@ export const learningFestivalService = {
     // Festivals
     getFestivals: async (): Promise<LearningFestival[]> => {
         const response = await api.get('/festivals');
-        return response.data;
+        return response.data.data?.festivals ?? [];
     },
 
     createFestival: async (data: Partial<LearningFestival>): Promise<LearningFestival> => {
         const response = await api.post('/festivals', data);
-        return response.data;
+        return response.data.data.festival;
     },
 
     updateFestival: async (id: string, data: Partial<LearningFestival>): Promise<LearningFestival> => {
         const response = await api.put(`/festivals/${id}`, data);
-        return response.data;
+        return response.data.data.festival;
     },
 
     // Applications
     getApplications: async (params?: { festivalId?: string }): Promise<LearningFestivalApplication[]> => {
         const response = await api.get('/festivals/applications', { params });
-        return response.data;
+        return response.data.data?.applications ?? [];
     },
 
     applyToFestival: async (festivalId: string, data: Partial<LearningFestivalApplication>): Promise<LearningFestivalApplication> => {
         const response = await api.post(`/festivals/${festivalId}/apply`, data);
-        return response.data;
+        return response.data.data.application;
     },
 
     updateApplicationStatus: async (id: string, data: { status: string; feedback?: string }): Promise<LearningFestivalApplication> => {
         const response = await api.put(`/festivals/applications/${id}/status`, data);
-        return response.data;
+        return response.data.data.application;
     },
 
     // Analytics
     getAnalytics: async (): Promise<any> => {
         const response = await api.get('/festivals/analytics');
-        return response.data;
+        return response.data.data.analytics;
     }
 };

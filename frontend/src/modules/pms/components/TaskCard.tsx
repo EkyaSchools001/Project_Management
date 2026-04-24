@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 
 const PRIORITY_CONFIG = {
-    'LOW': { color: '#8b5cf6', bg: 'bg-violet-50', border: 'border-violet-200', text: 'text-violet-600', label: 'Low' },
+    'LOW': { color: '#ef4444', bg: 'bg-red-50', border: 'border-red-200', text: 'text-red-600', label: 'Low' },
     'MEDIUM': { color: '#f59e0b', bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-600', label: 'Medium' },
     'HIGH': { color: '#f97316', bg: 'bg-orange-50', border: 'border-orange-200', text: 'text-orange-600', label: 'High' },
     'CRITICAL': { color: '#ef4444', bg: 'bg-rose-50', border: 'border-rose-200', text: 'text-rose-600', label: 'Critical' }
@@ -23,9 +23,9 @@ const PRIORITY_CONFIG = {
 
 const STATUS_CONFIG = {
     'TODO': { label: 'To Do', color: '#94a3b8', icon: 'circle' },
-    'IN_PROGRESS': { label: 'In Progress', color: '#8b5cf6', icon: 'clock' },
+    'IN_PROGRESS': { label: 'In Progress', color: '#ef4444', icon: 'clock' },
     'IN_REVIEW': { label: 'In Review', color: '#f59e0b', icon: 'alert' },
-    'DONE': { label: 'Done', color: '#8b5cf6', icon: 'check' }
+    'DONE': { label: 'Done', color: '#ef4444', icon: 'check' }
 };
 
 export const TaskCard = ({
@@ -55,14 +55,14 @@ export const TaskCard = ({
         return (
             <div
                 className={`flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 cursor-pointer group transition-colors ${
-                    isSelected ? 'bg-indigo-50' : ''
+                    isSelected ? 'bg-rose-50' : ''
                 }`}
                 onClick={onClick}
             >
                 <button
                     onClick={(e) => { e.stopPropagation(); onToggleSelection?.(); }}
                     className={`w-4 h-4 rounded border-2 flex items-center justify-center ${
-                        isSelected ? 'bg-indigo-600 border-indigo-600' : 'border-slate-300'
+                        isSelected ? 'bg-rose-600 border-rose-600' : 'border-slate-300'
                     }`}
                 >
                     {isSelected && <CheckCircle2 size={10} className="text-foreground" />}
@@ -70,7 +70,7 @@ export const TaskCard = ({
                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: priorityConfig.color }} />
                 <span className="text-sm text-slate-700 truncate flex-1">{task.title}</span>
                 {task.assignee && (
-                    <div className="w-5 h-5 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-[8px] font-bold">
+                    <div className="w-5 h-5 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-[8px] font-bold">
                         {task.assignee.name.charAt(0)}
                     </div>
                 )}
@@ -86,9 +86,9 @@ export const TaskCard = ({
             exit={{ opacity: 0, scale: 0.9 }}
             className={`group relative bg-white rounded-xl border ${
                 isDragging 
-                    ? 'shadow-2xl ring-2 ring-indigo-500 scale-105' 
-                    : 'border-slate-200 hover:border-indigo-300 shadow-sm hover:shadow-md'
-            } ${isSelected ? 'ring-2 ring-indigo-500' : ''} p-4 cursor-pointer transition-all duration-200 ${
+                    ? 'shadow-2xl ring-2 ring-rose-500 scale-105' 
+                    : 'border-slate-200 hover:border-rose-300 shadow-sm hover:shadow-md'
+            } ${isSelected ? 'ring-2 ring-rose-500' : ''} p-4 cursor-pointer transition-all duration-200 ${
                 task.status === 'DONE' ? 'opacity-75' : ''
             }`}
             onClick={onClick}
@@ -101,8 +101,8 @@ export const TaskCard = ({
                         onClick={(e) => { e.stopPropagation(); onToggleSelection?.(); }}
                         className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all shrink-0 ${
                             isSelected 
-                                ? 'bg-indigo-600 border-indigo-600' 
-                                : 'border-slate-300 hover:border-indigo-400'
+                                ? 'bg-rose-600 border-rose-600' 
+                                : 'border-slate-300 hover:border-rose-400'
                         }`}
                     >
                         {isSelected && <CheckCircle2 size={12} className="text-foreground" />}
@@ -183,7 +183,7 @@ export const TaskCard = ({
                 <div className="mb-3">
                     <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
                         <div
-                            className="h-full bg-indigo-500 rounded-full transition-all duration-300"
+                            className="h-full bg-rose-500 rounded-full transition-all duration-300"
                             style={{ width: `${progress}%` }}
                         />
                     </div>
@@ -233,7 +233,7 @@ export const TaskCard = ({
                                 className="w-6 h-6 rounded-full object-cover"
                             />
                         ) : (
-                            <div className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-[10px] font-bold">
+                            <div className="w-6 h-6 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-[10px] font-bold">
                                 {task.assignee.name.charAt(0)}
                             </div>
                         )}
@@ -242,7 +242,7 @@ export const TaskCard = ({
                         </span>
                     </div>
                 ) : (
-                    <button className="text-[10px] text-muted-foreground hover:text-indigo-600 flex items-center gap-1">
+                    <button className="text-[10px] text-muted-foreground hover:text-rose-600 flex items-center gap-1">
                         <User size={12} />
                         Assign
                     </button>
@@ -263,7 +263,7 @@ export const TaskCard = ({
                     <div className="space-y-1">
                         {task.subtasks.slice(0, 3).map((subtask, idx) => (
                             <div key={idx} className="flex items-center gap-2 text-xs">
-                                <div className={`w-3 h-3 rounded border ${subtask.done ? 'bg-violet-500 border-violet-500' : 'border-slate-300'}`}>
+                                <div className={`w-3 h-3 rounded border ${subtask.done ? 'bg-red-500 border-red-500' : 'border-slate-300'}`}>
                                     {subtask.done && <CheckCircle2 size={8} className="text-foreground" />}
                                 </div>
                                 <span className={subtask.done ? 'text-muted-foreground line-through' : 'text-slate-600'}>

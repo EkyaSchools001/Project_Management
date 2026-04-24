@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+﻿import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { Button } from "@pdi/components/ui/button";
@@ -17,8 +17,8 @@ import { MessageSquare } from "lucide-react";
 const RATING_COLORS: Record<number, string> = {
     1: "bg-red-100 text-red-700",
     2: "bg-yellow-100 text-yellow-700",
-    3: "bg-violet-100 text-blue-700",
-    4: "bg-violet-100 text-violet-700",
+    3: "bg-blue-100 text-blue-700",
+    4: "bg-green-100 text-green-700",
 };
 const RATING_LABELS: Record<number, string> = {
     1: "Basic", 2: "Developing", 3: "Effective", 4: "Highly Effective",
@@ -120,7 +120,7 @@ const PEObsDashboard: React.FC = () => {
             <div className="animate-in fade-in duration-500" style={{ background: "#F5F5EF", minHeight: "100vh", padding: "0 0 40px" }}>
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                     <div className="flex items-center gap-3">
-                        <div className="p-3 rounded-xl text-foreground" style={{ background: "#1F2839" }}>
+                        <div className="p-3 rounded-xl text-white" style={{ background: "#1F2839" }}>
                             <Activity className="w-6 h-6" />
                         </div>
                         <div>
@@ -170,7 +170,7 @@ const PEObsDashboard: React.FC = () => {
 
                 <Card className="  shadow-sm overflow-hidden">
                     <CardHeader className="py-3 px-4 border-b" style={{ background: "#1F2839" }}>
-                        <div className="grid grid-cols-11 gap-2 text-xs font-semibold text-foreground capitalize tracking-wider">
+                        <div className="grid grid-cols-11 gap-2 text-xs font-semibold text-white capitalize tracking-wider">
                             <span>Sr.</span>
                             <span>Date</span>
                             <span className="col-span-2">Teacher</span>
@@ -209,7 +209,7 @@ const PEObsDashboard: React.FC = () => {
                                     <span className="col-span-2" onClick={(e) => e.stopPropagation()}>
                                         <Dialog>
                                             <DialogTrigger asChild>
-                                                <Button variant="outline" size="sm" className="h-7 text-xs gap-1 bg-violet-50 text-blue-700 border-blue-200 hover:bg-violet-100 hover:text-blue-800">
+                                                <Button variant="outline" size="sm" className="h-7 text-xs gap-1 bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 hover:text-blue-800">
                                                     <MessageSquare className="w-3 h-3" /> View Comment
                                                 </Button>
                                             </DialogTrigger>

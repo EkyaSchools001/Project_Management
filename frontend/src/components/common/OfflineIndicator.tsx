@@ -32,8 +32,8 @@ export function OfflineIndicator() {
         flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-300
         ${isOnline 
           ? showSynced 
-            ? 'bg-violet-500 text-foreground' 
-            : 'bg-violet-500 text-foreground'
+            ? 'bg-red-500 text-foreground' 
+            : 'bg-red-500 text-foreground'
           : 'bg-amber-500 text-amber-950'
         }
       `}>

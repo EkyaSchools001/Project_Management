@@ -67,8 +67,8 @@ export default function TableWidget({ config, data, onChange }: TableWidgetProps
   const getSortIcon = (field: string) => {
     if (sortField !== field) return <ArrowUpDown className="w-4 h-4 ml-1 text-gray-400" />;
     return sortOrder === 'asc' 
-      ? <ArrowUp className="w-4 h-4 ml-1 text-blue-500" />
-      : <ArrowDown className="w-4 h-4 ml-1 text-blue-500" />;
+      ? <ArrowUp className="w-4 h-4 ml-1 text-red-500" />
+      : <ArrowDown className="w-4 h-4 ml-1 text-red-500" />;
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import api from '@pdi/lib/api';
 import { useAuth } from '@pdi/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
@@ -583,7 +583,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                         <div className="mb-8">
                             <div className="flex items-center justify-between mb-4">
                                 <div className="flex items-center gap-4">
-                                    <div className="p-3 rounded-2xl bg-primary shadow-[0_8px_20px_rgba(234,16,74,0.25)] text-foreground">
+                                    <div className="p-3 rounded-2xl bg-primary shadow-[0_8px_20px_rgba(234,16,74,0.25)] text-white">
                                         {isFinalCoreStep ? <CheckCircle2 className="w-6 h-6" /> : <Sparkles className="w-6 h-6" />}
                                     </div>
                                     <div className="space-y-1">
@@ -600,7 +600,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                                         key={i}
                                                         className={cn(
                                                             "h-1 rounded-full transition-all duration-500",
-                                                            i < formStep ? "w-4 bg-violet-500" : i === formStep ? "w-8 bg-primary shadow-[0_0_10px_rgba(234,16,74,0.3)]" : "w-4 bg-muted"
+                                                            i < formStep ? "w-4 bg-emerald-500" : i === formStep ? "w-8 bg-primary shadow-[0_0_10px_rgba(234,16,74,0.3)]" : "w-4 bg-muted"
                                                         )}
                                                     />
                                                 ))}
@@ -962,7 +962,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                             </div>
                             <div className="text-right">
                                 <p className="text-[10px] font-bold text-primary capitalize">Overall Rating</p>
-                                <Badge className="bg-primary text-foreground">{refData.overallRating || 'N/A'}/4</Badge>
+                                <Badge className="bg-primary text-white">{refData.overallRating || 'N/A'}/4</Badge>
                             </div>
                         </div>
 
@@ -1188,20 +1188,20 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
             return (
                 <ScrollArea className="h-[60vh] pr-4">
                     <div className="space-y-6">
-                        <div className="p-4 rounded-xl bg-violet-50 border border-violet-200">
+                        <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200">
                             <div className="flex items-center gap-2 mb-4">
-                                <Badge className="bg-violet-600">Final Evaluation</Badge>
-                                <span className="text-xs font-medium text-violet-800">Phase 3: Goal Outcome</span>
+                                <Badge className="bg-emerald-600">Final Evaluation</Badge>
+                                <span className="text-xs font-medium text-emerald-800">Phase 3: Goal Outcome</span>
                             </div>
 
                             <div className="space-y-4">
-                                <div className="p-3 bg-white rounded-lg border border-violet-100 shadow-sm">
-                                    <p className="text-[10px] font-bold text-violet-700 uppercase mb-1">Expectations Set Previously (Action Step):</p>
+                                <div className="p-3 bg-white rounded-lg border border-emerald-100 shadow-sm">
+                                    <p className="text-[10px] font-bold text-emerald-700 uppercase mb-1">Expectations Set Previously (Action Step):</p>
                                     <p className="text-xs font-medium">{goal.actionStep || safeJsonParse(goal.goalSettingForm).actionStep || '-'}</p>
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="hos-final-feedback" className="text-xs font-bold text-violet-900">Final Feedback & Narrative</Label>
+                                    <Label htmlFor="hos-final-feedback" className="text-xs font-bold text-emerald-900">Final Feedback & Narrative</Label>
                                     <Textarea
                                         id="hos-final-feedback"
                                         name="hos-final-feedback"
@@ -1213,11 +1213,11 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label className="text-xs font-bold text-violet-900">Final Goal Status</Label>
+                                    <Label className="text-xs font-bold text-emerald-900">Final Goal Status</Label>
                                     <div className="flex flex-wrap gap-2">
                                         {[
-                                            { id: 'GOAL_COMPLETED', label: 'Goal Completed', color: 'bg-violet-100 text-violet-700 hover:bg-violet-200 border-violet-200' },
-                                            { id: 'PARTIALLY_MET', label: 'Partially Met', color: 'bg-violet-100 text-blue-700 hover:bg-violet-200 border-blue-200' },
+                                            { id: 'GOAL_COMPLETED', label: 'Goal Completed', color: 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200 border-emerald-200' },
+                                            { id: 'PARTIALLY_MET', label: 'Partially Met', color: 'bg-blue-100 text-blue-700 hover:bg-blue-200 border-blue-200' },
                                             { id: 'NOT_MET', label: 'Not Met', color: 'bg-red-100 text-red-700 hover:bg-red-200 border-red-200' }
                                         ].map(s => (
                                             <Button
@@ -1280,7 +1280,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                         </div>
                                         <div className="text-right">
                                             <p className="text-[10px] font-bold text-primary capitalize">Overall Rating</p>
-                                            <Badge className="bg-primary text-foreground">{refData.overallRating || 'N/A'}/4</Badge>
+                                            <Badge className="bg-primary text-white">{refData.overallRating || 'N/A'}/4</Badge>
                                         </div>
                                     </div>
 
@@ -1444,8 +1444,8 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                     )}
                     {goal.goalCompletionForm && (
                         <div className="space-y-1 pt-4 border-t border-muted">
-                            <p className="text-[10px] font-bold text-violet-600 capitalize">Final Evaluation</p>
-                            <div className="p-3 bg-violet-50 border border-violet-100 rounded-lg text-sm">
+                            <p className="text-[10px] font-bold text-emerald-600 capitalize">Final Evaluation</p>
+                            <div className="p-3 bg-emerald-50 border border-emerald-100 rounded-lg text-sm">
                                 {safeJsonParse(goal.goalCompletionForm).text}
                             </div>
                         </div>

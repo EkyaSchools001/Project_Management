@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { DashboardLayout } from "@pdi/components/layout/DashboardLayout";
 import { PageHeader } from "@pdi/components/layout/PageHeader";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@pdi/components/ui/card";
@@ -101,8 +101,8 @@ export default function TeacherDocuments() {
     const getStatusBadge = (status: string) => {
         const config = {
             PENDING: { label: "Pending", className: "bg-yellow-100 text-yellow-800 border-yellow-300" },
-            VIEWED: { label: "Viewed", className: "bg-violet-100 text-blue-800 border-blue-300" },
-            ACKNOWLEDGED: { label: "Acknowledged", className: "bg-violet-100 text-violet-800 border-violet-300" },
+            VIEWED: { label: "Viewed", className: "bg-blue-100 text-blue-800 border-blue-300" },
+            ACKNOWLEDGED: { label: "Acknowledged", className: "bg-green-100 text-green-800 border-green-300" },
             SIGNED: { label: "Signed", className: "bg-purple-100 text-purple-800 border-purple-300" },
         };
         const { label, className } = config[status as keyof typeof config] || config.PENDING;
@@ -116,7 +116,7 @@ export default function TeacherDocuments() {
             case "VIEWED":
                 return <Eye className="w-4 h-4 text-blue-600" />;
             case "ACKNOWLEDGED":
-                return <CheckCircle2 className="w-4 h-4 text-violet-600" />;
+                return <CheckCircle2 className="w-4 h-4 text-green-600" />;
             case "SIGNED":
                 return <PenTool className="w-4 h-4 text-purple-600" />;
             default:
@@ -262,9 +262,9 @@ export default function TeacherDocuments() {
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm text-zinc-900">Acknowledged</p>
-                                    <p className="text-2xl font-bold text-violet-600">{stats.acknowledged}</p>
+                                    <p className="text-2xl font-bold text-green-600">{stats.acknowledged}</p>
                                 </div>
-                                <CheckCircle2 className="w-8 h-8 text-violet-600 opacity-50" />
+                                <CheckCircle2 className="w-8 h-8 text-green-600 opacity-50" />
                             </div>
                         </CardContent>
                     </Card>

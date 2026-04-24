@@ -127,7 +127,7 @@ const MessageReactions = ({ message, roomId }) => {
                 
                 <button
                     onClick={() => setShowPicker(!showPicker)}
-                    className="w-8 h-8 flex items-center justify-center bg-white/80 rounded-xl text-muted-foreground hover:text-indigo-600 hover:bg-white transition-all border border-slate-100"
+                    className="w-8 h-8 flex items-center justify-center bg-white/80 rounded-xl text-muted-foreground hover:text-rose-600 hover:bg-white transition-all border border-slate-100"
                 >
                     +
                 </button>

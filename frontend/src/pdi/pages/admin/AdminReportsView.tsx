@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { PageHeader } from "@pdi/components/layout/PageHeader";
 import { Button } from "@pdi/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@pdi/components/ui/card";
-import { Download, Filter, RefreshCw, Calendar as CalendarIcon, Sparkles, Target, Activity, Shield } from "lucide-react";
+import { Download, Filter, RefreshCw, Calendar as CalendarIcon, Sparkles, Target, Activity, Shield, Users } from "lucide-react";
 import { AIAnalysisModal } from "@pdi/components/AIAnalysisModal";
 import { toast } from "sonner";
 import {
@@ -34,7 +34,7 @@ const campusActivityData = [
 
 const courseDistributionData = [
     { name: 'Pedagogy', value: 45, color: '#8884d8' },
-    { name: 'Technology', value: 25, color: '#a78bfa' },
+    { name: 'Technology', value: 25, color: '#82ca9d' },
     { name: 'Leadership', value: 15, color: '#ffc658' },
     { name: 'Subject Specific', value: 15, color: '#ff8042' },
 ];
@@ -85,7 +85,7 @@ export function AdminReportsView() {
             params.delete("school");
         }
         setSearchParams(params, { replace: true });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [timeRange, selectedSchool]);
 
     const analyticsData = {
@@ -163,12 +163,12 @@ export function AdminReportsView() {
                         <div className="flex items-center gap-2">
                             <Button
                                 onClick={() => setIsAIModalOpen(true)}
-                                className="gap-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 shadow-lg shadow-violet-500/20 font-bold border-none"
+                                className="gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-lg shadow-emerald-500/20 font-bold border-none"
                             >
                                 <Sparkles className="w-4 h-4 text-amber-300" />
                                 AI Analysis
                             </Button>
-                            
+
                             <Select value={selectedSchool} onValueChange={setSelectedSchool}>
                                 <SelectTrigger className="w-[180px]">
                                     <SelectValue placeholder="All Schools" />
@@ -205,61 +205,45 @@ export function AdminReportsView() {
                 />
 
                 {/* Overview Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">Total Users</CardTitle>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                className="h-4 w-4 text-muted-foreground"
-                            >
-                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                                <circle cx="9" cy="7" r="4" />
-                                <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-                            </svg>
+                            <CardTitle className="text-sm font-medium">Total Teachers</CardTitle>
+                            <Users className="h-4 w-4 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">{stats?.summary?.totalUsers || 0}</div>
-                            <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                                <span>{stats?.summary?.activeTeachers || 0} Teachers</span>
-                                <span>{stats?.summary?.admins || 0} Admins</span>
-                            </div>
+                            <div className="text-2xl font-bold">{stats?.summary?.totalUsers || "No data"}</div>
+                            <p className="text-xs text-muted-foreground">Active in the current cycle</p>
                         </CardContent>
                     </Card>
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">Professional Goals</CardTitle>
+                            <CardTitle className="text-sm font-medium">Goal Progress</CardTitle>
                             <Target className="h-4 w-4 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">{stats?.summary?.totalGoals || 0}</div>
-                            <p className="text-xs text-muted-foreground">{stats?.summary?.percentOnTrack || 0}% are on track</p>
+                            <div className="text-2xl font-bold">{stats?.summary?.avgProgress || 0}%</div>
+                            <p className="text-xs text-muted-foreground">{stats?.summary?.percentOnTrack || 0}% on track</p>
                         </CardContent>
                     </Card>
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">Average Progress</CardTitle>
+                            <CardTitle className="text-sm font-medium">PD Quality</CardTitle>
                             <Activity className="h-4 w-4 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">{stats?.summary?.avgProgress || 0}%</div>
-                            <p className="text-xs text-muted-foreground">Overall achievement rate</p>
+                            <div className="text-2xl font-bold">{stats?.summary?.percentOnTrack || 0}%</div>
+                            <p className="text-xs text-muted-foreground">High impact goals</p>
                         </CardContent>
                     </Card>
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">Feedback Score</CardTitle>
-                            <Sparkles className="h-4 w-4 text-muted-foreground" />
+                            <CardTitle className="text-sm font-medium">System Health</CardTitle>
+                            <Shield className="h-4 w-4 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">{stats?.extendedKpis?.avgPdFeedback || 0}/5</div>
-                            <p className="text-xs text-muted-foreground">Average training rating</p>
+                            <div className="text-2xl font-bold">Optimal</div>
+                            <p className="text-xs text-muted-foreground">All services active</p>
                         </CardContent>
                     </Card>
                 </div>
@@ -283,8 +267,8 @@ export function AdminReportsView() {
                                                 <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
                                             </linearGradient>
                                             <linearGradient id="colorTeachers" x1="0" y1="0" x2="0" y2="1">
-                                                <stop offset="5%" stopColor="#a78bfa" stopOpacity={0.8} />
-                                                <stop offset="95%" stopColor="#a78bfa" stopOpacity={0} />
+                                                <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
+                                                <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
                                             </linearGradient>
                                             <linearGradient id="colorGoals" x1="0" y1="0" x2="0" y2="1">
                                                 <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.8} />
@@ -300,7 +284,7 @@ export function AdminReportsView() {
                                         />
                                         <Legend />
                                         <Area type="monotone" dataKey="total" stroke="#8884d8" fillOpacity={1} fill="url(#colorTotal)" name="Total Users" />
-                                        <Area type="monotone" dataKey="teachers" stroke="#a78bfa" fillOpacity={1} fill="url(#colorTeachers)" name="Teachers" />
+                                        <Area type="monotone" dataKey="teachers" stroke="#82ca9d" fillOpacity={1} fill="url(#colorTeachers)" name="Teachers" />
                                         <Area type="monotone" dataKey="goals" stroke="#f59e0b" fillOpacity={1} fill="url(#colorGoals)" name="Goals Created" />
                                     </AreaChart>
                                 </ResponsiveContainer>
@@ -330,7 +314,7 @@ export function AdminReportsView() {
                                             dataKey="value"
                                         >
                                             {analyticsData.courseDistribution.map((entry: any, index: number) => (
-                                                <Cell key={`cell-${index}`} fill={entry.color || ['#8884d8', '#a78bfa', '#ffc658', '#ff8042'][index % 4]} />
+                                                <Cell key={`cell-${index}`} fill={entry.color || ['#8884d8', '#82ca9d', '#ffc658', '#ff8042'][index % 4]} />
                                             ))}
                                         </Pie>
                                         <Tooltip
@@ -368,7 +352,7 @@ export function AdminReportsView() {
                                         />
                                         <Legend />
                                         <Bar dataKey="observations" name="Observations" fill="#8884d8" radius={[4, 4, 0, 0]} />
-                                        <Bar dataKey="goals" name="Goals" fill="#a78bfa" radius={[4, 4, 0, 0]} />
+                                        <Bar dataKey="goals" name="Goals" fill="#82ca9d" radius={[4, 4, 0, 0]} />
                                     </BarChart>
                                 </ResponsiveContainer>
                             </div>

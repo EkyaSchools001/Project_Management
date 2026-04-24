@@ -47,8 +47,15 @@ export const GrowthLayout: React.FC<GrowthLayoutProps> = ({
     }, [location.pathname]);
 
     // 1. Role-based access protection
-    if (allowedRoles && user && !allowedRoles.includes(user.role)) {
-        return <Navigate to="/departments/pd/growth" replace />;
+    if (allowedRoles && user) {
+        const userRole = user.role.toUpperCase();
+        const isAllowed = allowedRoles.some(r => r.toUpperCase() === userRole);
+        
+        if (!isAllowed) {
+            console.warn(`Access denied for role ${userRole}. Allowed roles: ${allowedRoles}`);
+            // Redirect back to the PDI home if denied
+            return <Navigate to="/departments/pd" replace />;
+        }
     }
 
     return (

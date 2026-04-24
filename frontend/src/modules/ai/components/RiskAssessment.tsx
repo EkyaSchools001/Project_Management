@@ -65,7 +65,7 @@ export default function RiskAssessment({ project = null }) {
         switch (severity) {
             case 'high': return 'text-red-400 bg-red-400/10 border-red-400/30';
             case 'medium': return 'text-yellow-400 bg-yellow-400/10 border-yellow-400/30';
-            case 'low': return 'text-violet-400 bg-violet-400/10 border-violet-400/30';
+            case 'low': return 'text-red-400 bg-red-400/10 border-red-400/30';
             default: return 'text-gray-400 bg-gray-400/10 border-gray-400/30';
         }
     };
@@ -82,7 +82,7 @@ export default function RiskAssessment({ project = null }) {
     const getRiskScoreColor = (score) => {
         if (score >= 50) return 'text-red-400';
         if (score >= 25) return 'text-yellow-400';
-        return 'text-violet-400';
+        return 'text-red-400';
     };
 
     if (loading) {
@@ -103,7 +103,7 @@ export default function RiskAssessment({ project = null }) {
             <div className="flex items-center justify-between mb-6">
                 <div>
                     <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
-                        <AlertTriangle className="w-5 h-5 text-[#8b5cf6]" />
+                        <AlertTriangle className="w-5 h-5 text-[#ef4444]" />
                         Risk Assessment
                     </h3>
                     <p className="text-sm text-foreground/50">{riskData?.projectName || 'All Projects'}</p>
@@ -127,7 +127,7 @@ export default function RiskAssessment({ project = null }) {
                     <div 
                         className={`h-full rounded-full transition-all ${
                             riskData?.riskScore >= 50 ? 'bg-red-400' :
-                            riskData?.riskScore >= 25 ? 'bg-yellow-400' : 'bg-violet-400'
+                            riskData?.riskScore >= 25 ? 'bg-yellow-400' : 'bg-red-400'
                         }`}
                         style={{ width: `${Math.min(riskData?.riskScore || 0, 100)}%` }}
                     />
@@ -151,7 +151,7 @@ export default function RiskAssessment({ project = null }) {
                                     <span className={`text-[10px] px-2 py-0.5 rounded uppercase ${
                                         factor.severity === 'high' ? 'bg-red-400/20 text-red-400' :
                                         factor.severity === 'medium' ? 'bg-yellow-400/20 text-yellow-400' :
-                                        'bg-violet-400/20 text-violet-400'
+                                        'bg-red-400/20 text-red-400'
                                     }`}>
                                         {factor.severity}
                                     </span>
@@ -167,7 +167,7 @@ export default function RiskAssessment({ project = null }) {
                 <h4 className="text-sm font-bold text-foreground/80 uppercase tracking-wider">Mitigation Suggestions</h4>
                 {riskData?.recommendations?.map((rec, i) => (
                     <div key={i} className="flex items-center gap-3 p-3 bg-white/5 rounded-xl">
-                        <ChevronRight className="w-4 h-4 text-[#8b5cf6]" />
+                        <ChevronRight className="w-4 h-4 text-[#ef4444]" />
                         <span className="text-sm text-foreground/80">{rec}</span>
                     </div>
                 ))}

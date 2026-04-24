@@ -27,7 +27,7 @@ interface DeviceCardProps {
 const getStatusColor = (status: string) => {
   switch (status) {
     case 'Active':
-      return 'bg-violet-500';
+      return 'bg-red-500';
     case 'Offline':
       return 'bg-red-500';
     case 'Maintenance':
@@ -59,11 +59,11 @@ export function DeviceCard({ device, onViewDetails, onStatusChange }: DeviceCard
   };
 
   return (
-    <Card className="bg-[#1a1d29] border-white/10 hover:border-[#8b5cf6]/30 transition-colors">
+    <Card className="bg-[#1a1d29] border-white/10 hover:border-[#ef4444]/30 transition-colors">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-[#8b5cf6]/10">
-            <Icon className="w-5 h-5 text-[#8b5cf6]" />
+          <div className="p-2 rounded-lg bg-[#ef4444]/10">
+            <Icon className="w-5 h-5 text-[#ef4444]" />
           </div>
           <div>
             <CardTitle className="text-sm font-medium text-foreground">{device.name}</CardTitle>

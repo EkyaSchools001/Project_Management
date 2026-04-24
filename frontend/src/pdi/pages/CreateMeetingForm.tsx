@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useAutoSave } from '@pdi/hooks/useAutoSave';
 import { useNavigate, useParams } from 'react-router-dom';
 import { format } from 'date-fns';
@@ -167,9 +167,9 @@ export function CreateMeetingForm() {
                     "flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300",
                     isSaving
                         ? "bg-amber-50 text-amber-600 border-amber-100"
-                        : "bg-violet-50 text-violet-600 border-violet-100"
+                        : "bg-emerald-50 text-emerald-600 border-emerald-100"
                 )}>
-                    <Cloud className={cn("w-3.5 h-3.5", isSaving ? "animate-pulse fill-amber-600/20" : "fill-violet-600/20")} />
+                    <Cloud className={cn("w-3.5 h-3.5", isSaving ? "animate-pulse fill-amber-600/20" : "fill-emerald-600/20")} />
                     <span className="text-[10px] font-bold uppercase tracking-wider">
                         {isSaving ? "Saving changes..." : "All changes auto-saved"}
                     </span>
@@ -332,7 +332,7 @@ export function CreateMeetingForm() {
                                         onClick={() => handleInviteToggle(u.id)}
                                     >
                                         <div className="flex items-center gap-3">
-                                            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${formData.attendees.includes(u.id) ? 'bg-primary text-foreground' : 'bg-primary/10 text-primary'
+                                            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${formData.attendees.includes(u.id) ? 'bg-primary text-white' : 'bg-primary/10 text-primary'
                                                 }`}>
                                                 {u.fullName.charAt(0)}
                                             </div>

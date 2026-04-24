@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { User, userService } from "@pdi/services/userService";
@@ -6,6 +7,7 @@ import { Input } from "@pdi/components/ui/input";
 import { MagnifyingGlass, UserCircle, CaretRight } from "@phosphor-icons/react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@pdi/components/ui/select";
 import { CAMPUS_OPTIONS } from "@pdi/lib/constants";
+import { motion } from "framer-motion";
 
 export function PortfolioDirectory() {
   const [teachers, setTeachers] = useState<User[]>([]);
@@ -31,11 +33,20 @@ export function PortfolioDirectory() {
     }
   };
 
+  const getDisplayValue = (val: any, fallback: string) => {
+    if (!val) return fallback;
+    if (typeof val === 'object') return val.name || fallback;
+    return val;
+  };
+
   const filteredTeachers = teachers.filter(t => {
-    const matchesSearch = t.fullName.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      (t.department && t.department.toLowerCase().includes(searchQuery.toLowerCase()));
+    const fullName = (t.fullName || "").toLowerCase();
+    const deptName = getDisplayValue(t.department, "").toLowerCase();
+    const campusName = getDisplayValue(t.campusId, "").toLowerCase();
     
-    const matchesCampus = selectedCampus === "all" || t.campusId === selectedCampus;
+    const search = searchQuery.toLowerCase();
+    const matchesSearch = fullName.includes(search) || deptName.includes(search);
+    const matchesCampus = selectedCampus === "all" || campusName === selectedCampus.toLowerCase();
     
     return matchesSearch && matchesCampus;
   });
@@ -76,23 +87,34 @@ export function PortfolioDirectory() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredTeachers.map(teacher => (
-          <Card 
-            key={teacher.id} 
-            className="group p-6 hover:shadow-md transition-all duration-300 cursor-pointer border-gray-100 flex items-center justify-between bg-white"
-            onClick={() => navigate(`/portfolio/${teacher.id}`)}
+        {filteredTeachers.map((teacher, idx) => (
+          <motion.div
+            key={teacher.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: idx * 0.05 }}
           >
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-rose-50 flex items-center justify-center text-[#EA104A]">
-                <UserCircle className="w-8 h-8" weight="fill" />
+            <Card 
+              className="group p-6 hover:shadow-md transition-all duration-300 cursor-pointer border-gray-100 flex items-center justify-between bg-white"
+              onClick={() => navigate(`/departments/pd/portfolio/${teacher.id}`)}
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-rose-50 flex items-center justify-center text-[#EA104A]">
+                  <UserCircle className="w-8 h-8" weight="fill" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900">{teacher.fullName}</h3>
+                  <p className="text-sm text-gray-500">
+                    {getDisplayValue(teacher.department, "No Department")} 
+                    • 
+                    {getDisplayValue(teacher.campusId, "No Campus")}
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-semibold text-gray-900">{teacher.fullName}</h3>
-                <p className="text-sm text-gray-500">{teacher.department || "No Department"} • {teacher.campusId || "No Campus"}</p>
-              </div>
-            </div>
-            <CaretRight className="w-5 h-5 text-gray-300 group-hover:text-[#EA104A] transition-colors" weight="bold" />
-          </Card>
+              <CaretRight className="w-5 h-5 text-gray-300 group-hover:text-[#EA104A] transition-colors" weight="bold" />
+            </Card>
+          </motion.div>
         ))}
         {filteredTeachers.length === 0 && (
           <div className="col-span-full py-12 text-center text-gray-500">

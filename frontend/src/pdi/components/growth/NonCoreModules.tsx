@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@pdi/components/ui/card";
 import { Button } from "@pdi/components/ui/button";
 import { Music, Activity, Palette, Heart, MessageSquare, ArrowRight } from "lucide-react";
@@ -52,7 +52,7 @@ const NonCoreModules: React.FC<NonCoreModulesProps> = ({ teacherId, teacherName,
             description: "Sports and physical health instruction framework.",
             icon: Activity,
             path: getPath("/leader/pe-obs"),
-            color: "bg-violet-500",
+            color: "bg-green-500",
             disabled: false,
         },
         {
@@ -74,7 +74,7 @@ const NonCoreModules: React.FC<NonCoreModulesProps> = ({ teacherId, teacherName,
                 >
                     <CardHeader className="flex flex-row items-center gap-4">
                         <div
-                            className={`p-3 rounded-xl text-foreground ${module.color} group-hover:scale-110 transition-transform`}
+                            className={`p-3 rounded-xl text-white ${module.color} group-hover:scale-110 transition-transform`}
                         >
                             <module.icon className="w-6 h-6" />
                         </div>

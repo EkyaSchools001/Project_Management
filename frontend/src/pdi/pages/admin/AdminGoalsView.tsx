@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { PageHeader } from '@pdi/components/layout/PageHeader';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@pdi/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@pdi/components/ui/table';
@@ -282,7 +282,7 @@ export function AdminGoalsView({ simplified = false }: { simplified?: boolean })
                                             <TableCell className="max-w-[200px] truncate">{goal.title}</TableCell>
                                             <TableCell>
                                                 {goal.selfReflectionForm
-                                                    ? (goal.selfReflectionForm.includes('"adminOverride":true') ? <span className="text-warning font-medium text-xs bg-warning/10 px-2 py-1 rounded-md">Admin Overridden</span> : <span className="text-violet-600 font-medium text-xs bg-violet-50 px-2 py-1 rounded-md">Filled</span>)
+                                                    ? (goal.selfReflectionForm.includes('"adminOverride":true') ? <span className="text-warning font-medium text-xs bg-warning/10 px-2 py-1 rounded-md">Admin Overridden</span> : <span className="text-emerald-600 font-medium text-xs bg-emerald-50 px-2 py-1 rounded-md">Filled</span>)
                                                     : <span className="text-muted-foreground text-xs italic">Pending</span>}
                                             </TableCell>
                                             <TableCell>
@@ -316,7 +316,7 @@ export function AdminGoalsView({ simplified = false }: { simplified?: boolean })
             )}
 
             {selectedGoal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-backgroundlack/50 backdrop-blur-sm">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
                     <GoalWorkflowForms
                         goal={selectedGoal}
                         role="ADMIN"
@@ -360,8 +360,8 @@ export function AdminGoalsView({ simplified = false }: { simplified?: boolean })
                                             </h4>
 
                                             <div className="grid grid-cols-2 gap-4">
-                                                <div className="bg-violet-50 border border-violet-100 p-3 rounded-lg">
-                                                    <p className="text-xs font-bold text-violet-700 capitalize mb-2">✅ Completed ({reflectionCompleted.length})</p>
+                                                <div className="bg-emerald-50 border border-emerald-100 p-3 rounded-lg">
+                                                    <p className="text-xs font-bold text-emerald-700 capitalize mb-2">✅ Completed ({reflectionCompleted.length})</p>
                                                     <div className="space-y-1">
                                                         {reflectionCompleted.map(g => (
                                                             <div key={g.id} className="text-xs font-medium">{g.teacher}</div>
@@ -388,7 +388,7 @@ export function AdminGoalsView({ simplified = false }: { simplified?: boolean })
                                             </h4>
 
                                             <div className="grid grid-cols-2 gap-4">
-                                                <div className="bg-violet-50 border border-blue-100 p-3 rounded-lg">
+                                                <div className="bg-blue-50 border border-blue-100 p-3 rounded-lg">
                                                     <p className="text-xs font-bold text-blue-700 capitalize mb-2">✅ Completed ({settingCompleted.length})</p>
                                                     <div className="space-y-1">
                                                         {settingCompleted.map(g => (

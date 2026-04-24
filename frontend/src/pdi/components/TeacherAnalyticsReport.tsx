@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from "react";
 import {
     Card,
     CardContent,
@@ -11,6 +11,8 @@ import { Progress } from "@pdi/components/ui/progress";
 import {
     LineChart,
     Line,
+    BarChart,
+    Bar,
     XAxis,
     YAxis,
     CartesianGrid,
@@ -25,7 +27,7 @@ import {
     Pie,
     Cell,
 } from "recharts";
-import { Book, CheckCircle, Clock, Star, TrendingUp, Award, Target, Zap, Sparkles, Printer } from "lucide-react";
+import { Book, CheckCircle, Clock, Star, TrendingUp, Award, Target, Zap, Sparkles, Brain, Download, Printer } from "lucide-react";
 import { Button } from "@pdi/components/ui/button";
 import { AIAnalysisModal } from "./AIAnalysisModal";
 
@@ -33,7 +35,6 @@ interface TeacherAnalyticsReportProps {
     teacher: {
         id: string;
         name: string;
-        fullName?: string;
         role: string;
         avgScore: number;
         pdHours: number;
@@ -44,7 +45,7 @@ interface TeacherAnalyticsReportProps {
     observations?: any[];
 }
 
-
+const COLORS = ["#8b5cf6", "#10b981", "#f59e0b", "#ef4444"];
 
 export function TeacherAnalyticsReport({ teacher, observations = [] }: TeacherAnalyticsReportProps) {
     const [isAIModalOpen, setIsAIModalOpen] = useState(false);
@@ -117,7 +118,7 @@ export function TeacherAnalyticsReport({ teacher, observations = [] }: TeacherAn
             <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 p-6 bg-muted/20 rounded-2xl border-2">
                 <div className="flex items-center gap-4">
                     <div className="w-16 h-16 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold shadow-lg shadow-primary/20">
-                        {(teacher.name || teacher.fullName || "Teacher").split(" ").map((n: any) => n[0]).join("")}
+                        {teacher.name.split(" ").map((n) => n[0]).join("")}
                     </div>
                     <div>
                         <h2 className="text-2xl font-bold">{teacher.name}</h2>

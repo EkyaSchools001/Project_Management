@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+﻿import React, { useState, useEffect, useRef } from "react";
 import * as LucideIcons from "lucide-react";
 import { Button } from "@pdi/components/ui/button";
 import { Input } from "@pdi/components/ui/input";
@@ -39,27 +39,27 @@ interface CanvasWidget {
 
 const WIDGET_OPTIONS = [
   // UI Builder
-  { id: 'heading', type: 'heading', name: 'Heading', icon: Type, color: 'bg-card', defaultContent: 'Heading Text', category: 'UI Elements' },
+  { id: 'heading', type: 'heading', name: 'Heading', icon: Type, color: 'bg-slate-800', defaultContent: 'Heading Text', category: 'UI Elements' },
   { id: 'hero', type: 'hero', name: 'Hero Section', icon: Sparkles, color: 'bg-indigo-600', defaultContent: 'Premium Title', category: 'UI Elements' },
   { id: 'card', type: 'card', name: 'Feature Card', icon: Layers, color: 'bg-white border border-slate-200', defaultContent: 'Feature Name', category: 'UI Elements' },
   { id: 'text', type: 'text', name: 'Paragraph', icon: AlignLeft, color: 'bg-slate-700', defaultContent: 'Add your custom text here...', category: 'UI Elements' },
-  { id: 'button', type: 'button', name: 'Button', icon: MousePointerClick, color: 'bg-violet-600', defaultContent: 'Click Me', category: 'UI Elements' },
-  { id: 'image', type: 'image', name: 'Image', icon: ImageIcon, color: 'bg-violet-500', defaultContent: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&q=80', category: 'UI Elements' },
+  { id: 'button', type: 'button', name: 'Button', icon: MousePointerClick, color: 'bg-blue-600', defaultContent: 'Click Me', category: 'UI Elements' },
+  { id: 'image', type: 'image', name: 'Image', icon: ImageIcon, color: 'bg-emerald-500', defaultContent: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&q=80', category: 'UI Elements' },
   { id: 'video', type: 'video', name: 'Video', icon: Video, color: 'bg-red-600', defaultContent: 'https://www.w3schools.com/html/mov_bbb.mp4', category: 'UI Elements' },
   { id: 'divider', type: 'divider', name: 'Divider', icon: Minus, color: 'bg-slate-400', defaultContent: '', category: 'UI Elements' },
   { id: 'spacer', type: 'spacer', name: 'Spacer', icon: Box, color: 'bg-slate-200', defaultContent: '', category: 'UI Elements' },
 
   // Stats Cards
-  { id: 'stats', type: 'stats', name: 'Stats Card', icon: Activity, color: 'bg-violet-500', defaultContent: '0', category: 'Stats' },
+  { id: 'stats', type: 'stats', name: 'Stats Card', icon: Activity, color: 'bg-blue-500', defaultContent: '0', category: 'Stats' },
   { id: 'stats_mini', type: 'stats_mini', name: 'Mini Stat', icon: Activity, color: 'bg-indigo-400', defaultContent: '12', category: 'Stats' },
   { id: 'stats_premium', type: 'stats_premium', name: 'Premium Stat', icon: Activity, color: 'bg-white text-red-500 border border-slate-200', defaultContent: '2,450', category: 'Stats' },
-  { id: 'progress_card', type: 'progress_card', name: 'Progress Card', icon: TrendingUp, color: 'bg-violet-500', defaultContent: '60', category: 'Stats' },
+  { id: 'progress_card', type: 'progress_card', name: 'Progress Card', icon: TrendingUp, color: 'bg-emerald-500', defaultContent: '60', category: 'Stats' },
   { id: 'users', type: 'stats', name: 'User Count', icon: Users, color: 'bg-cyan-500', defaultContent: '0', category: 'Stats' },
   { id: 'goals', type: 'stats', name: 'Goals', icon: Target, color: 'bg-red-500', defaultContent: '0', category: 'Goals' },
-  { id: 'attendance', type: 'stats', name: 'Attendance', icon: Users, color: 'bg-fuchsia-500', defaultContent: '0%', category: 'Stats' },
+  { id: 'attendance', type: 'stats', name: 'Attendance', icon: Users, color: 'bg-teal-500', defaultContent: '0%', category: 'Stats' },
 
   // Charts
-  { id: 'chart_bar', type: 'chart_bar', name: 'Bar Chart', icon: BarChart3, color: 'bg-violet-500', defaultContent: 'chart', category: 'Charts' },
+  { id: 'chart_bar', type: 'chart_bar', name: 'Bar Chart', icon: BarChart3, color: 'bg-green-500', defaultContent: 'chart', category: 'Charts' },
   { id: 'chart_line', type: 'chart_line', name: 'Line Chart', icon: TrendingUp, color: 'bg-purple-500', defaultContent: 'chart', category: 'Charts' },
   { id: 'chart_pie', type: 'chart_pie', name: 'Pie Chart', icon: PieChart, color: 'bg-orange-500', defaultContent: 'chart', category: 'Charts' },
 
@@ -72,16 +72,16 @@ const WIDGET_OPTIONS = [
 
   // Special
   { id: 'observation', type: 'observation', name: 'Observation', icon: Eye, color: 'bg-purple-500', defaultContent: 'obs', category: 'Special' },
-  { id: 'growth', type: 'growth', name: 'Growth', icon: TrendingUp, color: 'bg-violet-500', defaultContent: 'growth', category: 'Special' },
-  { id: 'security_feed', type: 'security_feed', name: 'Security Center', icon: ShieldCheck, color: 'bg-background text-foreground', defaultContent: 'Active Logs', category: 'Special' },
+  { id: 'growth', type: 'growth', name: 'Growth', icon: TrendingUp, color: 'bg-green-500', defaultContent: 'growth', category: 'Special' },
+  { id: 'security_feed', type: 'security_feed', name: 'Security Center', icon: ShieldCheck, color: 'bg-slate-900 text-white', defaultContent: 'Active Logs', category: 'Special' },
   { id: 'chat_mini', type: 'chat_mini', name: 'Chat Widget', icon: MessageSquare, color: 'bg-indigo-50 text-indigo-600', defaultContent: 'Hello Admin!', category: 'Special' },
   { id: 'sparkline', type: 'sparkline', name: 'Growth Sparkline', icon: TrendingUp, color: 'bg-white', defaultContent: '82%', category: 'Charts' },
   { id: 'file_grid', type: 'file_grid', name: 'Document Hub', icon: BookOpen, color: 'bg-white', defaultContent: 'Resource Library', category: 'Lists & Tables' },
 ];
 
 const ROLE_OPTIONS = [
-  { id: 'TEACHER', name: 'TEACHER', displayName: 'Teacher', color: '#8b5cf6' },
-  { id: 'LEADER', name: 'LEADER', displayName: 'Leader / Manager', color: '#7c3aed' },
+  { id: 'TEACHER', name: 'TEACHER', displayName: 'Teacher', color: '#14b8a6' },
+  { id: 'LEADER', name: 'LEADER', displayName: 'Leader / Manager', color: '#22c55e' },
   { id: 'SCHOOL_LEADER', name: 'SCHOOL_LEADER', displayName: 'School Leader', color: '#0ea5e9' },
   { id: 'ADMIN', name: 'ADMIN', displayName: 'Campus Admin', color: '#3b82f6' },
   { id: 'MANAGEMENT', name: 'MANAGEMENT', displayName: 'Management', color: '#f97316' },
@@ -124,7 +124,7 @@ const ROLE_TEMPLATES: Record<string, { name: string; description: string; widget
     description: "School-wide achievement and institutional health tracking",
     widgets: [
        { id: 'sl1', type: 'hero', name: 'Principal Header', content: 'Lead with Excellence, Campus', x: 0, y: 0, width: 12, height: 5, 
-         styles: { backgroundGradient: 'linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%)', color: '#ffffff', textAlign: 'left', borderRadius: '32px', badge: 'CAMPUS PRINCIPAL' } },
+         styles: { backgroundGradient: 'linear-gradient(135deg, #064e3b 0%, #059669 100%)', color: '#ffffff', textAlign: 'left', borderRadius: '32px', badge: 'CAMPUS PRINCIPAL' } },
        { id: 'sl2', type: 'stats_premium', name: 'Mean Student GPA', content: '3.9', x: 0, y: 5, width: 4, height: 3, styles: { borderRadius: '20px', trendValue: '+0.1', trendUp: true } },
        { id: 'sl3', type: 'stats_premium', name: 'Staff Retention', content: '98%', x: 4, y: 5, width: 4, height: 3, styles: { borderRadius: '20px', trendValue: 'Industry Leading', trendUp: true } },
        { id: 'sl4', type: 'stats_premium', name: 'Safety Audit', content: 'Pass', x: 8, y: 5, width: 4, height: 3, styles: { borderRadius: '20px', trendValue: 'Verified', trendUp: true } },
@@ -148,7 +148,7 @@ const ROLE_TEMPLATES: Record<string, { name: string; description: string; widget
     description: "High-level institutional performance and corporate overview",
     widgets: [
       { id: 'm1', type: 'hero', name: 'Governance Hub', content: 'Executive Insights, Global', x: 0, y: 0, width: 12, height: 5, 
-        styles: { backgroundGradient: 'linear-gradient(135deg, #312e81 0%, #6d28d9 100%)', color: '#ffffff', textAlign: 'left', borderRadius: '24px', badge: 'CORPORATE BOARD' } },
+        styles: { backgroundGradient: 'linear-gradient(135deg, #312e81 0%, #4338ca 100%)', color: '#ffffff', textAlign: 'left', borderRadius: '24px', badge: 'CORPORATE BOARD' } },
       { id: 'm2', type: 'chart_line', name: 'Multi-Year Revenue Matrix', content: 'Revenue', x: 0, y: 5, width: 12, height: 10, styles: { borderRadius: '20px' } },
       { id: 'm3', type: 'stats_premium', name: 'Group ROI', content: '+24%', x: 0, y: 15, width: 6, height: 4, styles: { borderRadius: '24px', trendValue: '+3.2%', trendUp: true } },
       { id: 'm4', type: 'stats_premium', name: 'Global Enrollment', content: '48k', x: 6, y: 15, width: 6, height: 4, styles: { borderRadius: '24px', trendValue: '+8.5%', trendUp: true } },
@@ -698,7 +698,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
               }} className="hero-widget shadow-2xl group transition-all duration-500 hover:shadow-indigo-500/10">
                 <div className="flex-1 flex flex-col items-start gap-4 z-10">
                   {badgeText && (
-                    <div className="px-3 py-1 bg-white/10 rounded-full border border-white/20 text-[10px] font-bold text-foreground/80 tracking-widest uppercase flex items-center gap-2 mb-2 backdrop-blur-sm">
+                    <div className="px-3 py-1 bg-white/10 rounded-full border border-white/20 text-[10px] font-bold text-white/80 tracking-widest uppercase flex items-center gap-2 mb-2 backdrop-blur-sm">
                       <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></div>
                       {badgeText}
                     </div>
@@ -706,18 +706,18 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
                   <h1 style={{ margin: 0, fontSize: '3.5rem', fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.02em', color: '#ffffff' }}>
                     {widget.content.split(',')[0]}, <span className="text-red-500">{widget.content.split(',')[1] || ''}</span>
                   </h1>
-                  <p className="max-w-md text-foreground/60 text-lg leading-relaxed font-medium mt-2">
+                  <p className="max-w-md text-white/60 text-lg leading-relaxed font-medium mt-2">
                     {descriptionText || 'Oversee the ecosystem, manage workflows, and configure system-wide parameters from your central command center.'}
                   </p>
                 </div>
                 <div className="flex gap-4 z-10 pr-8">
                   {widget.styles?.button1 && (
-                    <Button className="bg-red-500 hover:bg-red-600 text-foreground border-none h-14 px-8 rounded-2xl font-bold shadow-lg shadow-red-500/20 flex items-center gap-2 transform active:scale-95 transition-all">
+                    <Button className="bg-red-500 hover:bg-red-600 text-white border-none h-14 px-8 rounded-2xl font-bold shadow-lg shadow-red-500/20 flex items-center gap-2 transform active:scale-95 transition-all">
                       <Settings className="w-5 h-5" /> {widget.styles.button1}
                     </Button>
                   )}
                   {widget.styles?.button2 && (
-                    <Button variant="outline" className="bg-white/5 border-white/10 text-foreground hover:bg-white/10 h-14 px-8 rounded-2xl font-bold flex items-center gap-2 transform active:scale-95 transition-all backdrop-blur-md">
+                    <Button variant="outline" className="bg-white/5 border-white/10 text-white hover:bg-white/10 h-14 px-8 rounded-2xl font-bold flex items-center gap-2 transform active:scale-95 transition-all backdrop-blur-md">
                       <Users className="w-5 h-5" /> {widget.styles.button2}
                     </Button>
                   )}
@@ -756,7 +756,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
               gap: '12px',
               borderRadius: widget.styles?.borderRadius || '24px'
             }} className="p-8 bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 group">
-              <div className="w-12 h-12 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-foreground transition-colors duration-500">
+              <div className="w-12 h-12 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-500">
                 <CardIcon className="w-6 h-6" />
               </div>
               <h3 className="font-extrabold text-xl text-slate-900 m-0 mt-2">{widget.content}</h3>
@@ -810,7 +810,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
         <div style={{ ...widget.styles, height: '100%' }} className="bg-slate-50 border border-slate-100 p-6 flex flex-col justify-between group hover:bg-white hover:shadow-2xl transition-all duration-300 rounded-[24px]">
           <div className="flex justify-between items-start">
             <div className="flex flex-col gap-1">
-              <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-[0.15em] mb-1">{widget.name}</span>
+              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.15em] mb-1">{widget.name}</span>
               <span className="text-4xl font-black text-slate-900 tabular-nums tracking-tight">{widget.content}</span>
             </div>
             <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-red-500 border border-slate-100 group-hover:scale-110 group-hover:bg-red-50 group-hover:text-red-600 transition-all duration-500">
@@ -818,7 +818,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
             </div>
           </div>
           <div className="flex items-center gap-2 mt-4">
-            <div className={`flex items-center text-[12px] font-bold px-2 py-0.5 rounded-full ${isUp ? 'text-violet-600 bg-violet-50' : 'text-slate-500 bg-slate-100'}`}>
+            <div className={`flex items-center text-[12px] font-bold px-2 py-0.5 rounded-full ${isUp ? 'text-emerald-600 bg-emerald-50' : 'text-slate-500 bg-slate-100'}`}>
               {isUp ? <ArrowUp className="w-3 h-3 mr-1" /> : null}
               {widget.styles?.trendValue || 'Stable trend'}
             </div>
@@ -835,7 +835,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
         <div className="absolute bottom-6 right-6 z-50 animate-bounce cursor-pointer">
           <div className="bg-white px-4 py-2 rounded-full shadow-2xl border border-slate-100 flex items-center gap-3">
             <div className="text-xs font-bold text-slate-900">{widget.content} 🤙</div>
-            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-violet-400 to-indigo-500 flex items-center justify-center p-0.5">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-400 to-indigo-500 flex items-center justify-center p-0.5">
               <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
                 <img src="https://ui-avatars.com/api/?name=AI+Bot&background=6366f1&color=fff" alt="Bot" className="w-full h-full object-cover" />
               </div>
@@ -858,9 +858,9 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
             </div>
             <Trophy className="w-12 h-12 text-yellow-300 animate-bounce" />
           </div>
-          <div className="h-4 w-full bg-backgroundlack/20 rounded-full overflow-hidden border border-white/10 relative z-10">
+          <div className="h-4 w-full bg-black/20 rounded-full overflow-hidden border border-white/10 relative z-10">
             <div 
-              className="h-full bg-gradient-to-r from-yellow-300 to-violet-400 transition-all duration-1000 shadow-[0_0_15px_rgba(250,204,21,0.5)]"
+              className="h-full bg-gradient-to-r from-yellow-300 to-emerald-400 transition-all duration-1000 shadow-[0_0_15px_rgba(250,204,21,0.5)]"
               style={{ width: `${Math.min(100, (Number(widget.content) / 20) * 100)}%` }}
             />
           </div>
@@ -872,7 +872,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
       return (
         <div style={{ ...widget.styles, height: '100%' }} className="bg-white p-6 flex items-center justify-between group hover:shadow-xl transition-all rounded-[24px] border border-slate-100">
           <div className="flex flex-col gap-1">
-            <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{widget.name}</span>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{widget.name}</span>
             <span className="text-2xl font-black text-slate-800">{widget.content}</span>
           </div>
           <div className="w-24 h-12 relative overflow-hidden">
@@ -890,12 +890,12 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
         <div style={{ ...widget.styles, height: '100%' }} className="bg-slate-50 p-6 flex flex-col gap-4 rounded-[24px] border border-slate-100 overflow-hidden">
           <div className="flex justify-between items-center">
             <span className="text-xs font-black text-slate-900 uppercase tracking-widest">{widget.name}</span>
-            <ExternalLink className="w-3.5 h-3.5 text-muted-foreground" />
+            <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
           </div>
           <div className="grid grid-cols-1 gap-2 overflow-y-auto pr-1">
             {['Strategy_Q1.pdf', 'Teacher_Handbook.docx', 'Campus_Map_v2.png'].map((file, idx) => (
               <div key={idx} className="p-3 bg-white rounded-xl border border-slate-200 flex items-center gap-3 hover:border-indigo-300 transition-colors group cursor-pointer shadow-sm">
-                <div className="w-8 h-8 rounded-lg bg-red-50 text-red-500 flex items-center justify-center font-bold text-[10px] group-hover:bg-indigo-600 group-hover:text-foreground transition-all">Doc</div>
+                <div className="w-8 h-8 rounded-lg bg-red-50 text-red-500 flex items-center justify-center font-bold text-[10px] group-hover:bg-indigo-600 group-hover:text-white transition-all">Doc</div>
                 <div className="text-xs font-bold text-slate-700 truncate">{file}</div>
               </div>
             ))}
@@ -909,7 +909,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
         className="h-full flex flex-col items-center justify-center p-6 bg-white shadow-sm transition-all hover:shadow-md"
         style={{ borderRadius: (widget.styles?.borderRadius as string) || '12px', ...widget.styles } as any}
       >
-        <div className={`p-3 rounded-2xl mb-3 ${(option as any)?.color || 'bg-violet-500'} text-foreground shadow-lg`}>
+        <div className={`p-3 rounded-2xl mb-3 ${(option as any)?.color || 'bg-blue-500'} text-white shadow-lg`}>
           <IconComponent className="w-6 h-6" />
         </div>
         <div className="text-center font-black text-3xl tracking-tight leading-none mb-1">{widget.content || '0'}</div>
@@ -930,21 +930,21 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
   return (
     <div className="h-screen flex flex-col bg-slate-50 font-sans">
       {/* Top Navbar / Super Admin Panel */}
-      <div className="bg-background text-foreground px-6 py-3 flex items-center justify-between shadow-md z-20 relative">
+      <div className="bg-slate-900 text-white px-6 py-3 flex items-center justify-between shadow-md z-20 relative">
         <div className="flex items-center gap-4">
           <div className="bg-indigo-600 p-2 rounded-lg shadow-sm">
-            <LayoutDashboard className="w-5 h-5 text-foreground" />
+            <LayoutDashboard className="w-5 h-5 text-white" />
           </div>
           <div>
             <h1 className="text-xl font-bold tracking-tight">Website Editor</h1>
-            <p className="text-xs text-muted-foreground font-medium">Super Admin Control Panel</p>
+            <p className="text-xs text-slate-400 font-medium">Super Admin Control Panel</p>
           </div>
           <Separator orientation="vertical" className="h-8 bg-slate-700 mx-2" />
-          <div className="flex gap-1 bg-card p-1 rounded-lg">
-            <Button variant={!isEditing ? "secondary" : "ghost"} size="sm" onClick={() => { setIsEditing(false); setSelectedWidget(null); }} className={!isEditing ? "bg-white text-slate-900 hover:bg-white" : "text-slate-300 hover:text-foreground"}>
+          <div className="flex gap-1 bg-slate-800 p-1 rounded-lg">
+            <Button variant={!isEditing ? "secondary" : "ghost"} size="sm" onClick={() => { setIsEditing(false); setSelectedWidget(null); }} className={!isEditing ? "bg-white text-slate-900 hover:bg-white" : "text-slate-300 hover:text-white"}>
               <Eye className="w-4 h-4 mr-1.5" /> Preview Live
             </Button>
-            <Button variant={isEditing ? "secondary" : "ghost"} size="sm" onClick={() => setIsEditing(true)} className={isEditing ? "bg-white text-slate-900 hover:bg-white" : "text-slate-300 hover:text-foreground"}>
+            <Button variant={isEditing ? "secondary" : "ghost"} size="sm" onClick={() => setIsEditing(true)} className={isEditing ? "bg-white text-slate-900 hover:bg-white" : "text-slate-300 hover:text-white"}>
               <Palette className="w-4 h-4 mr-1.5" /> Site Builder
             </Button>
           </div>
@@ -955,7 +955,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="bg-card border-slate-700 text-slate-300 hover:bg-slate-700"
+                className="bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700"
                 onClick={handleCloneDashboard}
               >
                 <Copy className="w-4 h-4 mr-2" /> Clone
@@ -963,7 +963,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="bg-card border-slate-700 text-slate-300 hover:bg-slate-700"
+                className="bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700"
                 onClick={() => { loadData(); toast.info("Changes discarded."); }}
               >
                 <Trash2 className="w-4 h-4 mr-2" /> Discard
@@ -980,7 +980,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="bg-card border-slate-700 text-slate-300 hover:bg-slate-700"
+                className="bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700"
                 onClick={handleSetDefault} 
                 disabled={selectedDashboard.isDefault}
               >
@@ -989,7 +989,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="bg-card border-slate-700 text-slate-300 hover:bg-slate-700"
+                className="bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700"
                 onClick={() => window.open(`/${selectedDashboard.role.toLowerCase()}`, '_blank')}
               >
                 <ExternalLink className="w-4 h-4 mr-2" /> View Site
@@ -1056,7 +1056,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
                   <div key={category}>
                     <div className="flex items-center gap-2 mb-2">
                       <div className="h-px bg-slate-200 flex-1"></div>
-                      <span className="text-[10px] font-bold text-muted-foreground capitalize tracking-wider">{category}</span>
+                      <span className="text-[10px] font-bold text-slate-400 capitalize tracking-wider">{category}</span>
                       <div className="h-px bg-slate-200 flex-1"></div>
                     </div>
                     <div className="grid grid-cols-2 gap-2">
@@ -1069,7 +1069,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
                             onDragStart={() => handleDragStart(widget)}
                             className="flex flex-col items-center justify-center p-3 bg-white border border-slate-200 rounded-lg cursor-grab hover:border-indigo-400 hover:shadow-md transition-all active:cursor-grabbing group"
                           >
-                            <div className={`p-2 rounded-md ${widget.color} text-foreground shrink-0 mb-1.5 shadow-sm group-hover:scale-110 transition-transform`}>
+                            <div className={`p-2 rounded-md ${widget.color} text-white shrink-0 mb-1.5 shadow-sm group-hover:scale-110 transition-transform`}>
                               <Icon className="w-4 h-4" />
                             </div>
                             <span className="text-[11px] font-bold text-slate-700 text-center leading-tight">{widget.name}</span>
@@ -1112,7 +1112,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
                 }}
               >
                 {canvasWidgets.length === 0 && isEditing ? (
-                  <div className="col-span-12 flex flex-col items-center justify-center text-muted-foreground py-32 h-full border-2 border-dashed border-slate-300 rounded-2xl bg-slate-50/50 mt-4 mr-4 ml-4">
+                  <div className="col-span-12 flex flex-col items-center justify-center text-slate-400 py-32 h-full border-2 border-dashed border-slate-300 rounded-2xl bg-slate-50/50 mt-4 mr-4 ml-4">
                     <MousePointerClick className="w-16 h-16 mb-4 opacity-50 text-indigo-400" />
                     <h2 className="text-2xl font-bold text-slate-600">Drag Elements Here</h2>
                     <p className="text-sm mt-2 text-slate-500 max-w-sm text-center">Start dragging text, images, buttons or components from the left panel onto this canvas to build your page.</p>
@@ -1140,7 +1140,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
                       >
                         {isEditing && (
                           <div className={`absolute -top-3 -right-3 flex gap-1 z-20 ${isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} transition-opacity`}>
-                            <div className="bg-indigo-600 text-foreground text-[10px] font-bold px-2 py-1 rounded shadow-md truncate max-w-[100px]">
+                            <div className="bg-indigo-600 text-white text-[10px] font-bold px-2 py-1 rounded shadow-md truncate max-w-[100px]">
                               {widget.type}
                             </div>
                             <Button
@@ -1177,7 +1177,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
             <div className="flex-1 overflow-y-auto p-5 custom-scrollbar">
               {!selectedWidget ? (
                 <div className="text-center py-10 opacity-50">
-                  <MousePointerClick className="w-12 h-12 mx-auto mb-3 text-muted-foreground" />
+                  <MousePointerClick className="w-12 h-12 mx-auto mb-3 text-slate-400" />
                   <p className="text-sm font-medium">Select an element on the canvas to edit its properties, content, and styling.</p>
                 </div>
               ) : (
@@ -1400,7 +1400,7 @@ export function DashboardBuilder({ initialRole }: DashboardBuilderProps) {
                           <SelectItem value="none">None</SelectItem>
                           <SelectItem value="1px solid #e2e8f0">Solid Low</SelectItem>
                           <SelectItem value="1px solid #cbd5e1">Solid Mid</SelectItem>
-                          <SelectItem value="2px solid #8b5cf6">Solid Indigo</SelectItem>
+                          <SelectItem value="2px solid #6366f1">Solid Indigo</SelectItem>
                           <SelectItem value="1px dashed #cbd5e1">Dashed</SelectItem>
                         </SelectContent>
                       </Select>

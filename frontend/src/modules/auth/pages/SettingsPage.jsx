@@ -176,7 +176,7 @@ export default function SettingsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <Card className="p-6 bg-[#161B22] border-white/5 rounded-2xl">
                     <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
-                        <Key size={20} className="text-[#8b5cf6]" />
+                        <Key size={20} className="text-[#ef4444]" />
                         Change Password
                     </h2>
 
@@ -186,10 +186,10 @@ export default function SettingsPage() {
                                 initial={{ opacity: 0, height: 0 }}
                                 animate={{ opacity: 1, height: 'auto' }}
                                 exit={{ opacity: 0, height: 0 }}
-                                className="mb-4 p-4 bg-violet-500/10 border border-violet-500/20 rounded-xl flex items-center gap-3"
+                                className="mb-4 p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center gap-3"
                             >
-                                <Check size={20} className="text-violet-400" />
-                                <span className="text-violet-400 text-sm">Password changed successfully</span>
+                                <Check size={20} className="text-red-400" />
+                                <span className="text-red-400 text-sm">Password changed successfully</span>
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -227,7 +227,7 @@ export default function SettingsPage() {
                                         type={showCurrentPassword ? 'text' : 'password'}
                                         value={passwordData.currentPassword}
                                         onChange={(e) => setPasswordData(prev => ({ ...prev, currentPassword: e.target.value }))}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#8b5cf6]/50 outline-none pr-12"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#ef4444]/50 outline-none pr-12"
                                         required
                                     />
                                     <button
@@ -249,7 +249,7 @@ export default function SettingsPage() {
                                         type={showNewPassword ? 'text' : 'password'}
                                         value={passwordData.newPassword}
                                         onChange={(e) => setPasswordData(prev => ({ ...prev, newPassword: e.target.value }))}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#8b5cf6]/50 outline-none pr-12"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#ef4444]/50 outline-none pr-12"
                                         required
                                     />
                                     <button
@@ -270,7 +270,7 @@ export default function SettingsPage() {
                                     type="password"
                                     value={passwordData.confirmPassword}
                                     onChange={(e) => setPasswordData(prev => ({ ...prev, confirmPassword: e.target.value }))}
-                                    className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#8b5cf6]/50 outline-none"
+                                    className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#ef4444]/50 outline-none"
                                     required
                                 />
                             </div>
@@ -290,7 +290,7 @@ export default function SettingsPage() {
                                 <button
                                     type="submit"
                                     disabled={isChangingPassword}
-                                    className="flex-1 h-12 bg-[#8b5cf6] text-black font-bold rounded-xl flex items-center justify-center gap-2 disabled:opacity-50"
+                                    className="flex-1 h-12 bg-[#ef4444] text-black font-bold rounded-xl flex items-center justify-center gap-2 disabled:opacity-50"
                                 >
                                     {isChangingPassword ? <Loader2 size={18} className="animate-spin" /> : 'Update'}
                                 </button>
@@ -301,7 +301,7 @@ export default function SettingsPage() {
 
                 <Card className="p-6 bg-[#161B22] border-white/5 rounded-2xl">
                     <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
-                        <Smartphone size={20} className="text-[#8b5cf6]" />
+                        <Smartphone size={20} className="text-[#ef4444]" />
                         Two-Factor Authentication
                     </h2>
 
@@ -325,10 +325,10 @@ export default function SettingsPage() {
 
                     {user?.profile?.twoFactorEnabled ? (
                         <div className="space-y-4">
-                            <div className="flex items-center gap-3 p-4 bg-violet-500/10 rounded-xl">
-                                <Check size={24} className="text-violet-400" />
+                            <div className="flex items-center gap-3 p-4 bg-red-500/10 rounded-xl">
+                                <Check size={24} className="text-red-400" />
                                 <div>
-                                    <p className="text-violet-400 font-medium">2FA is enabled</p>
+                                    <p className="text-red-400 font-medium">2FA is enabled</p>
                                     <p className="text-foreground/60 text-sm">Your account is protected with two-factor authentication</p>
                                 </div>
                             </div>
@@ -352,7 +352,7 @@ export default function SettingsPage() {
                                             type="text"
                                             value={twoFactorCode}
                                             onChange={(e) => setTwoFactorCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                                            className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground text-center text-xl tracking-widest focus:border-[#8b5cf6]/50 outline-none"
+                                            className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground text-center text-xl tracking-widest focus:border-[#ef4444]/50 outline-none"
                                             placeholder="000000"
                                             maxLength={6}
                                             required
@@ -395,7 +395,7 @@ export default function SettingsPage() {
                                 <button
                                     onClick={handleInitiate2FASetup}
                                     disabled={isProcessing2FA}
-                                    className="w-full h-12 bg-[#8b5cf6] text-black font-bold rounded-xl flex items-center justify-center gap-2 disabled:opacity-50"
+                                    className="w-full h-12 bg-[#ef4444] text-black font-bold rounded-xl flex items-center justify-center gap-2 disabled:opacity-50"
                                 >
                                     {isProcessing2FA ? <Loader2 size={18} className="animate-spin" /> : <Shield size={18} />}
                                     Enable 2FA
@@ -410,7 +410,7 @@ export default function SettingsPage() {
                                             type="text"
                                             value={twoFactorCode}
                                             onChange={(e) => setTwoFactorCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                                            className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground text-center text-xl tracking-widest focus:border-[#8b5cf6]/50 outline-none"
+                                            className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground text-center text-xl tracking-widest focus:border-[#ef4444]/50 outline-none"
                                             placeholder="000000"
                                             maxLength={6}
                                             required
@@ -431,7 +431,7 @@ export default function SettingsPage() {
                                         <button
                                             type="submit"
                                             disabled={isProcessing2FA || twoFactorCode.length !== 6}
-                                            className="flex-1 h-12 bg-[#8b5cf6] text-black font-bold rounded-xl disabled:opacity-50"
+                                            className="flex-1 h-12 bg-[#ef4444] text-black font-bold rounded-xl disabled:opacity-50"
                                         >
                                             {isProcessing2FA ? <Loader2 size={18} className="animate-spin mx-auto" /> : 'Verify & Enable'}
                                         </button>
@@ -444,7 +444,7 @@ export default function SettingsPage() {
 
                 <Card className="p-6 bg-[#161B22] border-white/5 rounded-2xl lg:col-span-2">
                     <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
-                        <Monitor size={20} className="text-[#8b5cf6]" />
+                        <Monitor size={20} className="text-[#ef4444]" />
                         Active Sessions
                     </h2>
 
@@ -488,7 +488,7 @@ export default function SettingsPage() {
                                         </button>
                                     )}
                                     {session.isCurrent && (
-                                        <span className="px-3 py-1 bg-[#8b5cf6]/20 text-[#8b5cf6] text-xs font-medium rounded-full">
+                                        <span className="px-3 py-1 bg-[#ef4444]/20 text-[#ef4444] text-xs font-medium rounded-full">
                                             Current
                                         </span>
                                     )}

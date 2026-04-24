@@ -97,7 +97,7 @@ const ThreadView = ({ message, roomId, onClose }) => {
             <div className="flex-1 overflow-y-auto p-6 custom-scrollbar">
                 {loading ? (
                     <div className="flex items-center justify-center h-full">
-                        <div className="w-10 h-10 border-4 border-indigo-100 border-t-indigo-600 rounded-full animate-spin" />
+                        <div className="w-10 h-10 border-4 border-rose-100 border-t-rose-600 rounded-full animate-spin" />
                     </div>
                 ) : threadMessages.length === 0 ? (
                     <div className="text-center py-12">
@@ -138,12 +138,12 @@ const ThreadView = ({ message, roomId, onClose }) => {
                         value={newReply}
                         onChange={(e) => setNewReply(e.target.value)}
                         placeholder="Reply in thread..."
-                        className="flex-1 bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:ring-4 focus:ring-indigo-600/10 focus:border-indigo-600 outline-none transition-all"
+                        className="flex-1 bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:ring-4 focus:ring-rose-600/10 focus:border-rose-600 outline-none transition-all"
                     />
                     <button
                         type="submit"
                         disabled={!newReply.trim()}
-                        className="w-12 h-12 flex items-center justify-center bg-indigo-600 text-foreground rounded-2xl hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                        className="w-12 h-12 flex items-center justify-center bg-rose-600 text-foreground rounded-2xl hover:bg-rose-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                     >
                         <Send size={18} />
                     </button>

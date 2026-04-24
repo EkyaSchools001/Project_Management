@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Button } from '@pdi/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@pdi/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@pdi/components/ui/table';
 import { Badge } from '@pdi/components/ui/badge';
 import { Survey, SurveyQuestion, surveyService } from '@pdi/services/surveyService';
-import { Edit, Trash2, Plus, GripVertical, Save } from 'lucide-react';
+import { Edit, Trash2, Plus, GripVertical, Save, Sparkles, Loader2 } from 'lucide-react';
 import { QuestionFormModal } from './QuestionFormModal';
 import { toast } from 'sonner';
+import { assessmentService } from '@pdi/services/assessmentService';
+import { cn } from '@pdi/lib/utils';
+import { Textarea } from '@pdi/components/ui/textarea';
 
 interface SurveyManagementViewProps {
     survey: Survey;
@@ -17,6 +20,35 @@ export const SurveyManagementView = ({ survey, onUpdate }: SurveyManagementViewP
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingQuestion, setEditingQuestion] = useState<SurveyQuestion | undefined>(undefined);
     const [isUpdating, setIsUpdating] = useState(false);
+    const [aiPrompt, setAiPrompt] = useState("");
+    const [isGenerating, setIsGenerating] = useState(false);
+
+    const handleAIGenerateSurvey = async () => {
+        if (!aiPrompt.trim()) return;
+        setIsGenerating(true);
+        try {
+            const generated = await assessmentService.generateAIQuestions(aiPrompt, 3);
+            if (generated && generated.length > 0) {
+                // Loop through generated and create questions
+                for (const q of generated) {
+                    await surveyService.createQuestion(survey.id, {
+                        questionText: q.prompt,
+                        questionType: (q.type === 'MCQ' || q.type === 'MULTI_SELECT') ? 'multiple_choice' : 'long_text',
+                        isRequired: true,
+                        pageNumber: 1,
+                        options: q.options
+                    });
+                }
+                toast.success(`Generated ${generated.length} survey questions!`);
+                setAiPrompt("");
+                onUpdate();
+            }
+        } catch (error) {
+            toast.error("Failed to generate survey questions");
+        } finally {
+            setIsGenerating(false);
+        }
+    };
 
     // Sort questions by page and order
     const sortedQuestions = [...survey.questions].sort((a, b) => {
@@ -76,6 +108,34 @@ export const SurveyManagementView = ({ survey, onUpdate }: SurveyManagementViewP
 
     return (
         <div className="space-y-6">
+            <div className="p-6 bg-slate-900 text-white rounded-[2rem] mb-6 shadow-xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-64 h-64 bg-primary/10 rounded-full blur-[80px]" />
+                <div className="relative z-10 space-y-4">
+                    <div className="flex items-center gap-3">
+                        <div className="p-2 bg-primary/20 rounded-xl">
+                            <Sparkles className="w-5 h-5 text-primary animate-pulse" />
+                        </div>
+                        <h3 className="text-xl font-bold">Magic Survey Generator</h3>
+                    </div>
+                    <div className="flex gap-4">
+                        <Textarea 
+                            placeholder="What is this survey about? (e.g., 'Teacher well-being' or 'Digital literacy needs')"
+                            value={aiPrompt}
+                            onChange={(e) => setAiPrompt(e.target.value)}
+                            className="bg-white/5 border-white/10 text-white placeholder:text-white/30 h-14 min-h-[56px] py-4 rounded-2xl flex-1 focus:border-primary/50"
+                        />
+                        <Button 
+                            className="bg-primary hover:bg-primary/90 rounded-2xl h-14 px-6 font-bold gap-2 self-end shadow-lg"
+                            onClick={handleAIGenerateSurvey}
+                            disabled={isGenerating || !aiPrompt.trim()}
+                        >
+                            {isGenerating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
+                            Generate
+                        </Button>
+                    </div>
+                </div>
+            </div>
+
             <div className="flex justify-between items-center">
                 <h3 className="text-lg font-semibold">Questions ({sortedQuestions.length})</h3>
                 <Button onClick={handleAdd}>

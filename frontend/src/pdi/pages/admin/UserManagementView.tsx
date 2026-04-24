@@ -112,9 +112,9 @@ export function UserManagementView() {
     const filteredUsers = users.filter(user => {
         // Now including all roles for Super Admin visibility
 
-        const matchesSearch = user.fullName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            user.role.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesSearch = (user.fullName || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+            (user.email || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+            (user.role || "").toLowerCase().includes(searchQuery.toLowerCase());
 
         let matchesTab = true;
         if (activeTab === "leader") matchesTab = user.role === "LEADER" || user.role === "SCHOOL_LEADER";
@@ -265,9 +265,26 @@ export function UserManagementView() {
                                                     <SelectValue placeholder="Select role" />
                                                 </SelectTrigger>
                                                 <SelectContent>
-                                                    <SelectItem value="TEACHER">Teacher</SelectItem>
-                                                    <SelectItem value="SCHOOL_LEADER">School Leader</SelectItem>
-                                                    <SelectItem value="ADMIN">Admin</SelectItem>
+                                                    <SelectItem value="SUPERADMIN">Super Admin</SelectItem>
+                                                    <SelectItem value="MANAGEMENT">Management / Director</SelectItem>
+                                                    <SelectItem value="HOS">Head of School (HOS)</SelectItem>
+                                                    <SelectItem value="COORDINATOR">Coordinator</SelectItem>
+                                                    <SelectItem value="TEACHER_CORE">Teacher - Core</SelectItem>
+                                                    <SelectItem value="TEACHER_SPECIALIST">Teacher - Specialist</SelectItem>
+                                                    <SelectItem value="TEACHER_SENIOR">Teacher - Senior</SelectItem>
+                                                    <SelectItem value="TEACHER_PARTTIME">Teacher - Part Time</SelectItem>
+                                                    <SelectItem value="ADMIN_OPS">Admin - Operations</SelectItem>
+                                                    <SelectItem value="ADMIN_FINANCE">Admin - Finance</SelectItem>
+                                                    <SelectItem value="ADMIN_HR">Admin - HR</SelectItem>
+                                                    <SelectItem value="ADMIN_IT">Admin - IT / System</SelectItem>
+                                                    <SelectItem value="LIBRARIAN">Librarian</SelectItem>
+                                                    <SelectItem value="NURSE">School Nurse</SelectItem>
+                                                    <SelectItem value="TRANSPORT_MGR">Transport Manager</SelectItem>
+                                                    <SelectItem value="CANTEEN_MGR">Canteen Manager</SelectItem>
+                                                    <SelectItem value="SECURITY">Security / Gate Staff</SelectItem>
+                                                    <SelectItem value="SUPPORT_STAFF">Support Staff</SelectItem>
+                                                    <SelectItem value="PARENT">Parent</SelectItem>
+                                                    <SelectItem value="STUDENT">Student</SelectItem>
                                                 </SelectContent>
                                             </Select>
                                         </div>
@@ -329,10 +346,27 @@ export function UserManagementView() {
                                                     <SelectTrigger>
                                                         <SelectValue placeholder="Select role" />
                                                     </SelectTrigger>
-                                                    <SelectContent>
-                                                        <SelectItem value="TEACHER">Teacher</SelectItem>
-                                                        <SelectItem value="SCHOOL_LEADER">School Leader</SelectItem>
-                                                        <SelectItem value="ADMIN">Admin</SelectItem>
+                                                <SelectContent>
+                                                        <SelectItem value="SUPERADMIN">Super Admin</SelectItem>
+                                                        <SelectItem value="MANAGEMENT">Management / Director</SelectItem>
+                                                        <SelectItem value="HOS">Head of School (HOS)</SelectItem>
+                                                        <SelectItem value="COORDINATOR">Coordinator</SelectItem>
+                                                        <SelectItem value="TEACHER_CORE">Teacher - Core</SelectItem>
+                                                        <SelectItem value="TEACHER_SPECIALIST">Teacher - Specialist</SelectItem>
+                                                        <SelectItem value="TEACHER_SENIOR">Teacher - Senior</SelectItem>
+                                                        <SelectItem value="TEACHER_PARTTIME">Teacher - Part Time</SelectItem>
+                                                        <SelectItem value="ADMIN_OPS">Admin - Operations</SelectItem>
+                                                        <SelectItem value="ADMIN_FINANCE">Admin - Finance</SelectItem>
+                                                        <SelectItem value="ADMIN_HR">Admin - HR</SelectItem>
+                                                        <SelectItem value="ADMIN_IT">Admin - IT / System</SelectItem>
+                                                        <SelectItem value="LIBRARIAN">Librarian</SelectItem>
+                                                        <SelectItem value="NURSE">School Nurse</SelectItem>
+                                                        <SelectItem value="TRANSPORT_MGR">Transport Manager</SelectItem>
+                                                        <SelectItem value="CANTEEN_MGR">Canteen Manager</SelectItem>
+                                                        <SelectItem value="SECURITY">Security / Gate Staff</SelectItem>
+                                                        <SelectItem value="SUPPORT_STAFF">Support Staff</SelectItem>
+                                                        <SelectItem value="PARENT">Parent</SelectItem>
+                                                        <SelectItem value="STUDENT">Student</SelectItem>
                                                     </SelectContent>
                                                 </Select>
                                             </div>
@@ -410,9 +444,26 @@ export function UserManagementView() {
                                                     <SelectValue placeholder="Select role" />
                                                 </SelectTrigger>
                                                 <SelectContent>
-                                                    <SelectItem value="TEACHER">Teacher</SelectItem>
-                                                    <SelectItem value="SCHOOL_LEADER">School Leader</SelectItem>
-                                                    <SelectItem value="ADMIN">Admin</SelectItem>
+                                                    <SelectItem value="SUPERADMIN">Super Admin</SelectItem>
+                                                    <SelectItem value="MANAGEMENT">Management / Director</SelectItem>
+                                                    <SelectItem value="HOS">Head of School (HOS)</SelectItem>
+                                                    <SelectItem value="COORDINATOR">Coordinator</SelectItem>
+                                                    <SelectItem value="TEACHER_CORE">Teacher - Core</SelectItem>
+                                                    <SelectItem value="TEACHER_SPECIALIST">Teacher - Specialist</SelectItem>
+                                                    <SelectItem value="TEACHER_SENIOR">Teacher - Senior</SelectItem>
+                                                    <SelectItem value="TEACHER_PARTTIME">Teacher - Part Time</SelectItem>
+                                                    <SelectItem value="ADMIN_OPS">Admin - Operations</SelectItem>
+                                                    <SelectItem value="ADMIN_FINANCE">Admin - Finance</SelectItem>
+                                                    <SelectItem value="ADMIN_HR">Admin - HR</SelectItem>
+                                                    <SelectItem value="ADMIN_IT">Admin - IT / System</SelectItem>
+                                                    <SelectItem value="LIBRARIAN">Librarian</SelectItem>
+                                                    <SelectItem value="NURSE">School Nurse</SelectItem>
+                                                    <SelectItem value="TRANSPORT_MGR">Transport Manager</SelectItem>
+                                                    <SelectItem value="CANTEEN_MGR">Canteen Manager</SelectItem>
+                                                    <SelectItem value="SECURITY">Security / Gate Staff</SelectItem>
+                                                    <SelectItem value="SUPPORT_STAFF">Support Staff</SelectItem>
+                                                    <SelectItem value="PARENT">Parent</SelectItem>
+                                                    <SelectItem value="STUDENT">Student</SelectItem>
                                                 </SelectContent>
                                             </Select>
                                         </div>
@@ -449,8 +500,8 @@ export function UserManagementView() {
                                                     {formatRole(selectedUser.role)}
                                                 </Badge>
                                                 <Badge className={cn(
-                                                    "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
-                                                    selectedUser.status === "Active" ? "bg-violet-600" : "bg-slate-500"
+                                                    "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
+                                                    selectedUser.status === "Active" ? "bg-black hover:bg-black cursor-default" : "bg-slate-500"
                                                 )}>
                                                     {selectedUser.status}
                                                 </Badge>
@@ -564,7 +615,7 @@ export function UserManagementView() {
                                                         {formatRole(user.role)}
                                                     </Badge>
                                                     {user.role === "TEACHER" && (
-                                                        <Badge variant="secondary" className={`w-fit text-[10px] ${user.academics === 'NON_CORE' ? 'bg-purple-100 text-purple-700 border-purple-200' : 'bg-violet-100 text-blue-700 border-blue-200'}`}>
+                                                        <Badge variant="secondary" className={`w-fit text-[10px] ${user.academics === 'NON_CORE' ? 'bg-purple-100 text-purple-700 border-purple-200' : 'bg-blue-100 text-blue-700 border-blue-200'}`}>
                                                             {user.academics === 'NON_CORE' ? 'Specialist' : 'Core'}
                                                         </Badge>
                                                     )}
@@ -573,8 +624,8 @@ export function UserManagementView() {
                                             <TableCell className="text-muted-foreground">{user.campusId || "N/A"}</TableCell>
                                             <TableCell>
                                                 <Badge className={cn(
-                                                    "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
-                                                    user.status === "Active" ? "bg-violet-600" : "bg-slate-500"
+                                                    "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
+                                                    user.status === "Active" ? "bg-black hover:bg-black cursor-default" : "bg-slate-500"
                                                 )}>
                                                     {user.status === "Active" ? <UserCheck className="w-3 h-3 mr-1" /> : <UserX className="w-3 h-3 mr-1" />}
                                                     {user.status}
@@ -598,7 +649,7 @@ export function UserManagementView() {
                                                             <Shield className="w-4 h-4 mr-2" /> Change Role
                                                         </DropdownMenuItem>
                                                         <DropdownMenuItem
-                                                            className={user.status === "Active" ? "text-red-600 focus:text-red-600" : "text-violet-600 focus:text-violet-600"}
+                                                            className={user.status === "Active" ? "text-red-600 focus:text-red-600" : "text-green-600 focus:text-green-600"}
                                                             onClick={() => handleAction(user.status === "Active" ? "Deactivate" : "Activate", user)}
                                                         >
                                                             {user.status === "Active" ? (

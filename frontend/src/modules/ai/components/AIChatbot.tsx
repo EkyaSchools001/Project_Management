@@ -102,8 +102,8 @@ export default function AIChatbot({ isOpen, onClose, embedded = false }) {
             {!embedded && (
                 <div className="flex items-center justify-between p-4 border-b border-white/10 bg-[#161B22]">
                     <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-xl bg-[#8b5cf6]/20 flex items-center justify-center">
-                            <Bot className="w-5 h-5 text-[#8b5cf6]" />
+                        <div className="w-9 h-9 rounded-xl bg-[#ef4444]/20 flex items-center justify-center">
+                            <Bot className="w-5 h-5 text-[#ef4444]" />
                         </div>
                         <div>
                             <h3 className="text-sm font-bold text-foreground">AI Assistant</h3>
@@ -126,14 +126,14 @@ export default function AIChatbot({ isOpen, onClose, embedded = false }) {
                         className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                         {msg.role === 'assistant' && (
-                            <div className="w-8 h-8 rounded-xl bg-[#8b5cf6]/20 flex items-center justify-center flex-shrink-0">
-                                <Bot className="w-4 h-4 text-[#8b5cf6]" />
+                            <div className="w-8 h-8 rounded-xl bg-[#ef4444]/20 flex items-center justify-center flex-shrink-0">
+                                <Bot className="w-4 h-4 text-[#ef4444]" />
                             </div>
                         )}
                         <div className={`max-w-[80%] ${msg.role === 'user' ? 'text-right' : 'text-left'}`}>
                             <div className={`p-3 rounded-2xl text-sm ${
                                 msg.role === 'user' 
-                                    ? 'bg-[#8b5cf6] text-black' 
+                                    ? 'bg-[#ef4444] text-black' 
                                     : 'bg-white/10 text-foreground'
                             }`}>
                                 {msg.content}
@@ -153,8 +153,8 @@ export default function AIChatbot({ isOpen, onClose, embedded = false }) {
                 
                 {loading && (
                     <div className="flex gap-3">
-                        <div className="w-8 h-8 rounded-xl bg-[#8b5cf6]/20 flex items-center justify-center">
-                            <Bot className="w-4 h-4 text-[#8b5cf6]" />
+                        <div className="w-8 h-8 rounded-xl bg-[#ef4444]/20 flex items-center justify-center">
+                            <Bot className="w-4 h-4 text-[#ef4444]" />
                         </div>
                         <div className="bg-white/10 rounded-2xl p-3">
                             <div className="flex gap-1">
@@ -194,14 +194,14 @@ export default function AIChatbot({ isOpen, onClose, embedded = false }) {
                             onChange={(e) => setInput(e.target.value)}
                             onKeyPress={handleKeyPress}
                             placeholder="Type your message..."
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-foreground/30 focus:outline-none focus:border-[#8b5cf6]/50"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-foreground/30 focus:outline-none focus:border-[#ef4444]/50"
                             disabled={loading}
                         />
                     </div>
                     <button
                         onClick={handleSend}
                         disabled={!input.trim() || loading}
-                        className="p-3 bg-[#8b5cf6] text-black rounded-xl hover:bg-[#8b5cf6]/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        className="p-3 bg-[#ef4444] text-black rounded-xl hover:bg-[#ef4444]/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
                         <Send className="w-5 h-5" />
                     </button>
@@ -215,7 +215,7 @@ export function FloatingChatbotButton({ onClick }) {
     return (
         <button
             onClick={onClick}
-            className="fixed bottom-6 right-6 w-14 h-14 bg-[#8b5cf6] rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center z-40"
+            className="fixed bottom-6 right-6 w-14 h-14 bg-[#ef4444] rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center z-40"
         >
             <MessageCircle className="w-6 h-6 text-black" />
         </button>

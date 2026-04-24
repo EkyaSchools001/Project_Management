@@ -74,31 +74,37 @@ const MOCK_GOALS = [
 const MOCK_TRAINING_EVENTS = [
   {
     id: 'evt_001', title: 'Effective Questioning Strategies Workshop',
-    date: '2025-04-20', endDate: '2025-04-20',
+    date: 'Feb 15, 2026', endDate: 'Feb 15, 2026',
     location: 'EK-North Campus – Conference Hall',
     type: 'IN_SERVICE', category: 'Pedagogy',
+    topic: 'Pedagogy',
     facilitator: 'Dr. Aiyana Redcloud', hours: 3,
     capacity: 30, registered: 18, spotsLeft: 12,
-    isRegistered: false, status: 'UPCOMING',
+    isRegistered: false, status: 'Approved',
     description: 'Deep dive into Bloom\'s taxonomy and higher-order questioning.',
+    registrants: []
   },
   {
     id: 'evt_002', title: 'Technology Integration in the Classroom',
-    date: '2025-04-25', endDate: '2025-04-25',
+    date: 'Feb 18, 2026', endDate: 'Feb 18, 2026',
     location: 'Online – Zoom', type: 'ONLINE', category: 'Technology',
+    topic: 'Technology',
     facilitator: 'Ms. Nkechi Obi', hours: 4,
     capacity: 50, registered: 45, spotsLeft: 5,
-    isRegistered: true, status: 'UPCOMING',
+    isRegistered: true, status: 'Approved',
     description: 'Hand-on workshop on using AI tools for lesson planning.',
+    registrants: []
   },
   {
-    id: 'evt_003', title: 'Annual PDI Learning Festival 2025',
-    date: '2025-05-10', endDate: '2025-05-12',
+    id: 'evt_003', title: 'Annual PDI Learning Festival 2026',
+    date: 'Feb 22, 2026', endDate: 'Feb 22, 2026',
     location: 'Main Campus – Auditorium', type: 'FESTIVAL', category: 'Cross-Curricular',
+    topic: 'Cross-Curricular',
     facilitator: 'Ekya Schools PD Team', hours: 12,
     capacity: 200, registered: 150, spotsLeft: 50,
-    isRegistered: false, status: 'UPCOMING',
+    isRegistered: false, status: 'Approved',
     description: 'Three-day learning celebration with keynotes, workshops, and showcases.',
+    registrants: []
   },
 ];
 
@@ -172,7 +178,11 @@ export const deleteNotification = (_req: Request, res: Response) => {
 };
 
 export const getSettings = (_req: Request, res: Response) => {
-  res.json({ status: 'success', data: { settings: {} } });
+  const settings = [
+    { key: 'training_target_new_joiner', value: '40' },
+    { key: 'training_target_in_service', value: '20' },
+  ];
+  res.json({ status: 'success', data: { settings } });
 };
 
 export const getSettingByKey = (_req: Request, res: Response) => {
@@ -247,6 +257,20 @@ export const deleteTraining = (req: Request, res: Response) => {
 
 export const updateTrainingStatus = (req: Request, res: Response) => {
   res.json({ status: 'success', data: { id: req.params.i as string, ...req.body } });
+};
+
+export const toggleAttendance = (req: Request, res: Response) => {
+  const { action } = req.body;
+  res.json({ 
+    status: 'success', 
+    data: { 
+      event: { 
+        id: req.params.i as string,
+        attendanceEnabled: action === 'enable',
+        attendanceClosed: action === 'close'
+      } 
+    } 
+  });
 };
 
 export const registerForTraining = (req: Request, res: Response) => {
@@ -366,7 +390,96 @@ export const getDashboardWidgetTypes = (_req: Request, res: Response) => {
 };
 
 export const getAnalytics = (_req: Request, res: Response) => {
-  res.json({ status: 'success', data: { attendance: [], engagement: {}, feedback: {}, overview: {} } });
+  res.json({ 
+    status: 'success', 
+    data: { 
+      attendance: [], 
+      engagement: {}, 
+      feedback: {}, 
+      overview: {},
+      summary: {
+        campusAverageEngagement: 68,
+        totalTeachersEnrolled: 156,
+        totalTeachersActive: 124
+      },
+      teachers: MOCK_TEACHERS.map(t => ({
+        id: t.id,
+        name: t.name,
+        email: t.email,
+        campus: t.campusId,
+        role: t.role,
+        coursesEnrolled: Math.floor(Math.random() * 5) + 1,
+        coursesCompleted: Math.floor(Math.random() * 3),
+        engagementPercent: Math.floor(Math.random() * 60) + 40,
+        isActive: Math.random() > 0.2
+      }))
+    } 
+  });
+};
+
+export const getGrowthAnalytics = (_req: Request, res: Response) => {
+  const analytics = {
+    totalTeachers: MOCK_TEACHERS.length,
+    totalCore: MOCK_TEACHERS.filter(t => t.department === 'Mathematics' || t.department === 'Science').length,
+    totalNonCore: MOCK_TEACHERS.filter(t => t.department !== 'Mathematics' && t.department !== 'Science').length,
+    observationCompletionRate: 85,
+    toolUsage: {
+      instructional: 45,
+      la: 30,
+      cultural: 25,
+      total: 100,
+      percentages: {
+        instructional: 45,
+        la: 30,
+        cultural: 25
+      }
+    },
+    growthTrends: [
+      { month: 'Jan', core: 3.2, nonCore: 2.8 },
+      { month: 'Feb', core: 3.4, nonCore: 3.0 },
+      { month: 'Mar', core: 3.5, nonCore: 3.2 },
+      { month: 'Apr', core: 3.7, nonCore: 3.3 }
+    ],
+    allTeachersList: MOCK_TEACHERS.map(t => ({
+      id: t.id,
+      name: t.name,
+      email: t.email,
+      campusId: t.campusId,
+      academics: (t.department === 'Mathematics' || t.department === 'Science') ? 'CORE' : 'NON_CORE',
+      observationCount: Math.floor(Math.random() * 5) + 1,
+      avgScore: t.score
+    })),
+    campusMetrics: [
+      {
+        campusId: 'EK-North',
+        coreCount: 2,
+        nonCoreCount: 1,
+        avgScore: 3.7,
+        avgObsPerTeacher: 2.5,
+        targetCompletion: 90,
+        observationCount: 8,
+        coreTeachers: MOCK_TEACHERS.filter(t => t.campusId === 'EK-North' && (t.department === 'Mathematics' || t.department === 'Science')),
+        nonCoreTeachers: MOCK_TEACHERS.filter(t => t.campusId === 'EK-North' && !(t.department === 'Mathematics' || t.department === 'Science'))
+      },
+      {
+        campusId: 'EK-South',
+        coreCount: 1,
+        nonCoreCount: 1,
+        avgScore: 3.4,
+        avgObsPerTeacher: 2.0,
+        targetCompletion: 80,
+        observationCount: 4,
+        coreTeachers: MOCK_TEACHERS.filter(t => t.campusId === 'EK-South' && (t.department === 'Mathematics' || t.department === 'Science')),
+        nonCoreTeachers: MOCK_TEACHERS.filter(t => t.campusId === 'EK-South' && !(t.department === 'Mathematics' || t.department === 'Science'))
+      }
+    ],
+    observerMetrics: [
+      { id: 'obs_1', name: 'Dr. Ramesh Kumar', observationCount: 12, avgScore: 3.6, targetCompletion: 95 },
+      { id: 'obs_2', name: 'Ms. Anita Rao', observationCount: 8, avgScore: 3.2, targetCompletion: 85 }
+    ]
+  };
+
+  res.json({ status: 'success', data: { analytics } });
 };
 
 export const genericSuccess = (_req: Request, res: Response) => {

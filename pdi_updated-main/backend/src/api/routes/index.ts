@@ -1,0 +1,76 @@
+import { Router } from 'express';
+import { roleModuleAuth } from '../middlewares/accessControl';
+import authRoutes from './authRoutes';
+import goalRoutes from './goalRoutes';
+import userRoutes from './userRoutes';
+import observationRoutes from './observationRoutes';
+import dashboardRoutes from './dashboardRoutes';
+import growthRoutes from './growthRoutes';
+import growthObservationRoutes from './growthObservationRoutes';
+
+import uploadRoutes from './uploadRoutes';
+import documentRoutes from './documentRoutes';
+import moocRoutes from './moocRoutes';
+import trainingRoutes from './trainingRoutes';
+import statsRoutes from './statsRoutes';
+import courseRoutes from './courseRoutes';
+
+import templateRoutes from './templateRoutes';
+import settingsRoutes from './settingsRoutes';
+import pdRoutes from './pdRoutes';
+import attendanceRoutes from './attendanceRoutes';
+import meetingRoutes from './meetingRoutes';
+import notificationRoutes from './notificationRoutes';
+import announcementRoutes from './announcementRoutes';
+import surveyRoutes from './surveyRoutes';
+import ptilRoutes from './ptilRoutes';
+import learningFestivalRoutes from './learningFestivalRoutes';
+import analyticsRoutes from './analyticsRoutes';
+import assessmentRoutes from './assessmentRoutes';
+import okrRoutes from './okrRoutes';
+import formWorkflowRoutes from './formWorkflowRoutes';
+import goalWindowRoutes from './goalWindowRoutes';
+import aiRoutes from './aiRoutes';
+import portfolioRoutes from './portfolioRoutes';
+import educatorHubRoutes from './educatorHubRoutes';
+
+
+const router = Router();
+
+// Apply dynamic access matrix configuration globally
+router.use(roleModuleAuth);
+
+router.use('/auth', authRoutes);
+router.use('/observations', observationRoutes);
+router.use('/dashboards', dashboardRoutes);
+router.use('/growth', growthRoutes);
+router.use('/users', userRoutes);
+router.use('/goals', goalRoutes);
+router.use('/growth-observations', growthObservationRoutes);
+router.use('/goal-windows', goalWindowRoutes);
+router.use('/documents', documentRoutes);
+router.use('/upload', uploadRoutes);
+router.use('/mooc', moocRoutes);
+router.use('/training', trainingRoutes);
+router.use('/stats', statsRoutes);
+router.use('/courses', courseRoutes);
+router.use('/templates', templateRoutes);
+router.use('/settings', settingsRoutes);
+router.use('/pd', pdRoutes);
+router.use('/attendance', attendanceRoutes);
+router.use('/meetings', meetingRoutes);
+router.use('/notifications', notificationRoutes);
+router.use('/announcements', announcementRoutes);
+router.use('/surveys', surveyRoutes);
+router.use('/ptil', ptilRoutes);
+router.use('/festivals', learningFestivalRoutes);
+router.use('/analytics', analyticsRoutes);
+router.use('/assessments', assessmentRoutes);
+router.use('/form-workflows', formWorkflowRoutes);
+router.use('/okr', okrRoutes);
+router.use('/ai', aiRoutes);
+router.use('/portfolio', portfolioRoutes);
+router.use('/educator-hub', educatorHubRoutes);
+
+
+export default router;

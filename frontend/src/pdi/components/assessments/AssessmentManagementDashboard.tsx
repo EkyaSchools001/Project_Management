@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@pdi/components/ui/card";
 import { Button } from "@pdi/components/ui/button";
 import { Input } from "@pdi/components/ui/input";
@@ -110,7 +110,7 @@ export const AssessmentManagementDashboard: React.FC<AssessmentManagementDashboa
                 <TabsContent value="templates" className="mt-6 space-y-4">
                     <div className="flex flex-col md:flex-row gap-4">
                         <div className="relative flex-1">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                             <Input
                                 placeholder="Search templates..."
                                 className="pl-10 h-12 rounded-xl border-zinc-200"
@@ -175,7 +175,7 @@ export const AssessmentManagementDashboard: React.FC<AssessmentManagementDashboa
                                         {assessment.description || 'No description provided.'}
                                     </p>
                                     <div className="flex justify-between items-center pt-4 border-t border-zinc-50">
-                                        <span className="text-xs text-muted-foreground">{assessment.questions?.length || 0} Questions</span>
+                                        <span className="text-xs text-zinc-400">{assessment.questions?.length || 0} Questions</span>
                                         {canManageAssessments && (
                                             <Button
                                                 size="sm"
@@ -199,7 +199,7 @@ export const AssessmentManagementDashboard: React.FC<AssessmentManagementDashboa
                             <CardTitle>Active Assignments</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="text-center py-12 text-muted-foreground">
+                            <div className="text-center py-12 text-zinc-400">
                                 <Users className="w-12 h-12 mx-auto mb-4 opacity-20" />
                                 <p>Assignment history logic here...</p>
                             </div>

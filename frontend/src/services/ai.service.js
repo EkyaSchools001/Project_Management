@@ -35,12 +35,12 @@ export const aiService = {
         try {
             const response = await api.get('/ai/suggestions', { params: { userId, types: types?.join(',') } });
             // #region agent log
-            fetch('http://127.0.0.1:7595/ingest/a1327625-861f-425d-8b19-5e387310336b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5ea8b1'},body:JSON.stringify({sessionId:'5ea8b1',runId:'run1',hypothesisId:'H4',location:'ai.service.js:getSuggestions:success',message:'AI suggestions endpoint success',data:{status:response?.status||null,count:Array.isArray(response?.data?.data)?response.data.data.length:null},timestamp:Date.now()})}).catch(()=>{});
+            // fetch('http://127.0.0.1:7595/ingest/a1327625-861f-425d-8b19-5e387310336b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5ea8b1'},body:JSON.stringify({sessionId:'5ea8b1',runId:'run1',hypothesisId:'H4',location:'ai.service.js:getSuggestions:success',message:'AI suggestions endpoint success',data:{status:response?.status||null,count:Array.isArray(response?.data?.data)?response.data.data.length:null},timestamp:Date.now()})}).catch(()=>{});
             // #endregion
             return response.data.data;
         } catch (error) {
             // #region agent log
-            fetch('http://127.0.0.1:7595/ingest/a1327625-861f-425d-8b19-5e387310336b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5ea8b1'},body:JSON.stringify({sessionId:'5ea8b1',runId:'run1',hypothesisId:'H4',location:'ai.service.js:getSuggestions:failed',message:'AI suggestions endpoint failed',data:{status:error?.response?.status||null,hasResponse:!!error?.response},timestamp:Date.now()})}).catch(()=>{});
+            // fetch('http://127.0.0.1:7595/ingest/a1327625-861f-425d-8b19-5e387310336b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5ea8b1'},body:JSON.stringify({sessionId:'5ea8b1',runId:'run1',hypothesisId:'H4',location:'ai.service.js:getSuggestions:failed',message:'AI suggestions endpoint failed',data:{status:error?.response?.status||null,hasResponse:!!error?.response},timestamp:Date.now()})}).catch(()=>{});
             // #endregion
             // Local/dev fallback when AI suggestions endpoint is unavailable.
             if (error?.response?.status === 404 || error?.response?.status === 401 || error?.response?.status === 403) {

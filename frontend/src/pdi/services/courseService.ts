@@ -25,7 +25,7 @@ export const courseService = {
         if (category && category !== 'all') params.append('category', category);
 
         const response = await api.get(`/courses?${params.toString()}`);
-        return response.data.data.courses;
+        return response.data.data?.courses ?? [];
     },
 
     // Get single course
@@ -66,6 +66,6 @@ export const courseService = {
     // Get my enrollments
     getMyEnrollments: async () => {
         const response = await api.get('/courses/my-enrollments');
-        return response.data.data.enrollments;
+        return response.data.data?.enrollments ?? [];
     }
 };

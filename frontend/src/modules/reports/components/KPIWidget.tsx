@@ -45,7 +45,7 @@ export default function KPIWidget({ config, data, onChange }: KPIWidgetProps) {
       return <Minus className="w-4 h-4 text-gray-400" />;
     }
     return isPositive 
-      ? <TrendingUp className="w-4 h-4 text-violet-500" />
+      ? <TrendingUp className="w-4 h-4 text-red-500" />
       : <TrendingDown className="w-4 h-4 text-red-500" />;
   };
 
@@ -80,7 +80,7 @@ export default function KPIWidget({ config, data, onChange }: KPIWidgetProps) {
       {comparisonData && (
         <div className="flex items-center gap-2 mt-3">
           {getTrendIcon()}
-          <span className={`text-sm font-medium ${isPositive ? 'text-violet-600' : 'text-red-600'}`}>
+          <span className={`text-sm font-medium ${isPositive ? 'text-red-600' : 'text-red-600'}`}>
             {isPositive ? '+' : ''}{changeValue.toFixed(1)}%
           </span>
           <span className="text-xs text-gray-400">
@@ -92,7 +92,7 @@ export default function KPIWidget({ config, data, onChange }: KPIWidgetProps) {
       {!comparisonData && (
         <div className="flex items-center gap-2 mt-3">
           {getTrendIcon()}
-          <span className={`text-sm font-medium ${isPositive ? 'text-violet-600' : 'text-red-600'}`}>
+          <span className={`text-sm font-medium ${isPositive ? 'text-red-600' : 'text-red-600'}`}>
             {isPositive ? '+' : ''}{changeValue.toFixed(1)}%
           </span>
           <span className="text-xs text-gray-400">vs previous period</span>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Button } from "@pdi/components/ui/button";
 import { Input } from "@pdi/components/ui/input";
 import { Label } from "@pdi/components/ui/label";
@@ -33,7 +33,7 @@ interface UnifiedObservationFormProps {
     onAutoSave?: (observation: Partial<Observation>) => Promise<void>;
     onCancel: () => void;
     initialData?: Partial<Observation>;
-    teachers?: { id: string; name: string; role?: string; email?: string; academics?: string; campus?: string }[];
+    teachers?: { id: string; name: string; role?: string; email?: string; academics?: string; campus?: string; department?: string }[];
     readOnly?: boolean;
 }
 
@@ -178,7 +178,10 @@ const LEARNING_AREA_CATEGORIES = [
 const ALL_LEARNING_AREAS = LEARNING_AREA_CATEGORIES.flatMap(cat => cat.options);
 
 
+import { useAuth } from "@pdi/hooks/useAuth";
+
 export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initialData = {}, teachers, readOnly }: UnifiedObservationFormProps) {
+    const { user } = useAuth();
     const [step, setStep] = useState(1);
     const [dynamicDomains, setDynamicDomains] = useState(DOMAINS);
     const [dynamicRoutines, setDynamicRoutines] = useState(ROUTINES);
@@ -191,6 +194,12 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
     const [teacherGoals, setTeacherGoals] = useState<any[]>([]);
     const [isLoadingGoals, setIsLoadingGoals] = useState(false);
     const { setContextData, clearContextData } = useAIContext();
+
+    // Live Recording State
+    const [isRecording, setIsRecording] = useState(false);
+    const [recordingStartTime, setRecordingStartTime] = useState<Date | null>(null);
+    const [timerSeconds, setTimerSeconds] = useState(0);
+    const [currentNote, setCurrentNote] = useState("");
 
     // Internal state uses flattened classroom fields for stability
     const [formData, setFormData] = useState<Partial<Observation> & { block: string; grade: string; section: string; focusArea?: string }>(() => {
@@ -225,7 +234,7 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
             teacher: initialData.teacher || "",
             teacherId: initialData.teacherId || "",
             teacherEmail: initialData.teacherEmail || "",
-            observerName: initialData.observerName || "Rohit",
+            observerName: initialData.observerName || user?.fullName || "",
             block: initialData.classroom?.block || "",
             grade: initialData.classroom?.grade || "",
             section: initialData.classroom?.section || "",
@@ -246,6 +255,47 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
         localStorageKey: `pdi_obs_draft_${formData.id}`
     });
 
+    // Timer Effect
+    useEffect(() => {
+        let interval: NodeJS.Timeout;
+        if (isRecording) {
+            interval = setInterval(() => {
+                setTimerSeconds(prev => prev + 1);
+            }, 1000);
+        }
+        return () => clearInterval(interval);
+    }, [isRecording]);
+
+    const formatDuration = (seconds: number) => {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    };
+
+    const handleStartRecording = () => {
+        setIsRecording(true);
+        if (!recordingStartTime) {
+            setRecordingStartTime(new Date());
+        }
+    };
+
+    const handleStopRecording = () => {
+        setIsRecording(false);
+    };
+
+    const handleAddNote = () => {
+        if (!currentNote.trim()) return;
+        const timestamp = formatDuration(timerSeconds);
+        const newNote = { time: timestamp, note: currentNote.trim() };
+        
+        setFormData(prev => ({
+            ...prev,
+            timestampedNotes: [...(prev.timestampedNotes || []), newNote]
+        }));
+        setCurrentNote("");
+        toast.success(`Note added at ${timestamp}`);
+    };
+
     useEffect(() => {
         if (formData.teacher) {
             setContextData({
@@ -258,6 +308,52 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
         return () => clearContextData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formData.teacher, step, dynamicDomains]);
+
+    // Handle AI Draft Handoff
+    useEffect(() => {
+        const draft = sessionStorage.getItem('ai_observation_draft');
+        // Only load if we aren't editing an existing record (initialData.id is missing)
+        if (draft && !initialData?.id) {
+            try {
+                const payload = JSON.parse(draft);
+                
+                // Lookup teacher if name is provided
+                let teacherId = "";
+                let teacherName = payload.teacherName || "";
+                let teacherEmail = "";
+                let campus = "";
+                
+                if (payload.teacherName && teachers) {
+                    const found = teachers.find(t => t.name.toLowerCase().includes(payload.teacherName.toLowerCase()));
+                    if (found) {
+                        teacherId = found.id;
+                        teacherName = found.name;
+                        teacherEmail = found.email || "";
+                        campus = found.campus || "";
+                    }
+                }
+
+                setFormData(prev => ({
+                    ...prev,
+                    teacher: teacherName,
+                    teacherId: teacherId,
+                    teacherEmail: teacherEmail,
+                    campus: campus || prev.campus,
+                    learningArea: payload.subject || prev.learningArea,
+                    grade: payload.grade || prev.grade,
+                    strengths: payload.strengths || prev.strengths,
+                    areasOfGrowth: payload.areasForImprovement || prev.areasOfGrowth,
+                    score: payload.score || prev.score,
+                    metaTags: payload.domains || prev.metaTags
+                }));
+
+                sessionStorage.removeItem('ai_observation_draft');
+                toast.success("AI draft loaded! Please verify the details.");
+            } catch (e) {
+                console.error("Failed to parse AI draft", e);
+            }
+        }
+    }, [teachers, initialData?.id]);
 
     useEffect(() => {
         if (initialData && Object.keys(initialData).length > 0) {
@@ -553,9 +649,9 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                             "hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300",
                             isSaving
                                 ? "bg-amber-50 text-amber-600 border-amber-100"
-                                : "bg-violet-50 text-violet-600 border-violet-100"
+                                : "bg-emerald-50 text-emerald-600 border-emerald-100"
                         )}>
-                            <Cloud className={cn("w-3.5 h-3.5", isSaving ? "animate-pulse fill-amber-600/20" : "fill-violet-600/20")} />
+                            <Cloud className={cn("w-3.5 h-3.5", isSaving ? "animate-pulse fill-amber-600/20" : "fill-emerald-600/20")} />
                             <span className="text-[10px] font-bold uppercase tracking-wider">
                                 {isSaving ? "Saving changes..." : "All changes auto-saved"}
                             </span>
@@ -598,6 +694,9 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                                                     updateField("teacher", teacher.name);
                                                     updateField("teacherEmail", teacher.email || "");
                                                     updateField("campus", teacher.campus || "");
+                                                    if (teacher.department) {
+                                                        updateField("learningArea", teacher.department);
+                                                    }
                                                 }
                                             }}
                                             disabled={readOnly || !!initialData.teacherId}
@@ -683,7 +782,7 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                                                 variant={formData.campus === c ? "default" : "outline"}
                                                 className={cn(
                                                     "cursor-pointer px-4 py-2 rounded-full text-xs font-semibold transition-all hover:scale-105",
-                                                    formData.campus === c ? "bg-primary text-foreground" : "border-primary/20 text-muted-foreground hover:bg-primary/5",
+                                                    formData.campus === c ? "bg-primary text-white" : "border-primary/20 text-muted-foreground hover:bg-primary/5",
                                                     readOnly && "cursor-default scale-100 opacity-80"
                                                 )}
                                                 onClick={() => !readOnly && updateField("campus", c)}
@@ -960,8 +1059,8 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
 
                             {/* Instructional Tools */}
                             <div className="space-y-6">
-                                <div className="flex items-center gap-3 border-b-2 border-violet-500/10 pb-2">
-                                    <Target className="w-5 h-5 text-violet-500" />
+                                <div className="flex items-center gap-3 border-b-2 border-emerald-500/10 pb-2">
+                                    <Target className="w-5 h-5 text-emerald-500" />
                                     <h3 className="font-bold text-lg">Instructional Tools Observed</h3>
                                 </div>
                                 <div className="grid grid-cols-1 gap-3">
@@ -973,7 +1072,7 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                                                 key={tool}
                                                 className={cn(
                                                     "flex items-center space-x-3 p-3 rounded-xl border transition-all select-none",
-                                                    isChecked ? "bg-violet-500/5 border-violet-500 shadow-sm" : "hover:bg-muted/50 border-muted-foreground/10",
+                                                    isChecked ? "bg-emerald-500/5 border-emerald-500 shadow-sm" : "hover:bg-muted/50 border-muted-foreground/10",
                                                     readOnly && "cursor-default"
                                                 )}
                                             >
@@ -1131,11 +1230,11 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                                 </div>
                             </CardHeader>
                             <CardContent className="p-10 space-y-10">
-                                <div className="p-6 bg-violet-50 rounded-2xl border border-violet-200 flex items-start gap-4 mb-4 shadow-sm">
-                                    <Sparkles className="w-6 h-6 text-violet-600 mt-1" />
+                                <div className="p-6 bg-emerald-50 rounded-2xl border border-emerald-200 flex items-start gap-4 mb-4 shadow-sm">
+                                    <Sparkles className="w-6 h-6 text-emerald-600 mt-1" />
                                     <div>
-                                        <p className="font-bold text-violet-800">Insight Engine Integration</p>
-                                        <p className="text-sm text-violet-700/80">These tags power the AI analytics engine to identify recurring growth areas across teams and campuses.</p>
+                                        <p className="font-bold text-emerald-800">Insight Engine Integration</p>
+                                        <p className="text-sm text-emerald-700/80">These tags power the AI analytics engine to identify recurring growth areas across teams and campuses.</p>
                                     </div>
                                 </div>
 
@@ -1183,7 +1282,7 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                                 <Button
                                     type="button"
                                     onClick={handleNext}
-                                    className="gap-2 font-bold px-8 bg-primary hover:bg-primary/90 text-foreground"
+                                    className="gap-2 font-bold px-8 bg-primary hover:bg-primary/90 text-white"
                                 >
                                     Next <ChevronRight className="w-4 h-4" />
                                 </Button>
@@ -1191,14 +1290,14 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                                 <Button
                                     type="button"
                                     onClick={onCancel}
-                                    className="gap-2 font-bold px-10 bg-primary hover:bg-primary/90 text-foreground shadow-lg shadow-primary/20"
+                                    className="gap-2 font-bold px-10 bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20"
                                 >
                                     <CheckCircle2 className="w-4 h-4" /> Back to Growth
                                 </Button>
                             ) : (
                                 <Button
                                     type="submit"
-                                    className="gap-2 font-bold px-10 bg-primary hover:bg-primary/90 text-foreground shadow-lg shadow-primary/20"
+                                    className="gap-2 font-bold px-10 bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20"
                                 >
                                     <Save className="w-4 h-4" /> {initialData.id ? "Update Observation" : "Submit Observation"}
                                 </Button>
@@ -1281,7 +1380,7 @@ const DomainSection = ({ domain, idx, readOnly, updateIndicatorRating, updateDom
                                     className={cn(
                                         "px-3 py-1.5 rounded-lg text-xs font-bold transition-all border",
                                         formData.domains?.find((d: any) => d.domainId === domain.id)?.indicators.find((i: any) => i.name === indicator)?.rating === rating
-                                            ? "bg-primary text-foreground border-primary shadow-lg shadow-primary/20 scale-105"
+                                            ? "bg-primary text-white border-primary shadow-lg shadow-primary/20 scale-105"
                                             : "bg-background text-muted-foreground border-muted-foreground/10 hover:border-primary/40 hover:bg-primary/5",
                                         readOnly && "cursor-default scale-100 opacity-80"
                                     )}

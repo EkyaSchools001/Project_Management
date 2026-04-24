@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+﻿import { useParams, Link } from "react-router-dom";
 import DynamicDashboard from "@pdi/components/DynamicDashboard";
 import { Button } from "@pdi/components/ui/button";
 import { ArrowLeft, Globe } from "lucide-react";

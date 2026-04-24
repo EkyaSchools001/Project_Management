@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@pdi/hooks/useAuth';
 import { useAccessControl } from '@pdi/hooks/useAccessControl';
@@ -30,7 +30,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
         const defaultPath =
             (user.role === 'ADMIN' || user.role === 'SUPERADMIN') ? '/admin' :
                 (user.role === 'LEADER' || user.role === 'SCHOOL_LEADER') ? '/leader' :
-                    (user.role === 'MANAGEMENT') ? '/management' : '/teacher';
+                    (user.role === 'MANAGEMENT') ? '/management' :
+                        (user.role === 'TESTER') ? '/edu-hub' : '/teacher';
 
         return <Navigate to={defaultPath} replace />;
     }

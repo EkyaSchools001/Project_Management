@@ -119,7 +119,7 @@ export function ManualEntryModal({ isOpen, onClose, tasks = [], existingEntry, o
                             value={formData.taskId}
                             onChange={(e) => handleChange('taskId', e.target.value)}
                             required
-                            className="w-full bg-[#1a1d24] border border-white/10 rounded-xl px-3 py-2.5 text-foreground text-sm focus:border-[#8b5cf6] focus:outline-none"
+                            className="w-full bg-[#1a1d24] border border-white/10 rounded-xl px-3 py-2.5 text-foreground text-sm focus:border-[#ef4444] focus:outline-none"
                         >
                             <option value="">Select a task...</option>
                             {tasks.map(task => (
@@ -156,7 +156,7 @@ export function ManualEntryModal({ isOpen, onClose, tasks = [], existingEntry, o
                                 onClick={() => handleChange('useDuration', false)}
                                 className={`flex-1 py-2 rounded-lg text-sm font-bold transition-colors ${
                                     !formData.useDuration 
-                                        ? 'bg-[#8b5cf6]/20 text-[#8b5cf6]' 
+                                        ? 'bg-[#ef4444]/20 text-[#ef4444]' 
                                         : 'bg-white/5 text-foreground/60'
                                 }`}
                             >
@@ -167,7 +167,7 @@ export function ManualEntryModal({ isOpen, onClose, tasks = [], existingEntry, o
                                 onClick={() => handleChange('useDuration', true)}
                                 className={`flex-1 py-2 rounded-lg text-sm font-bold transition-colors ${
                                     formData.useDuration 
-                                        ? 'bg-[#8b5cf6]/20 text-[#8b5cf6]' 
+                                        ? 'bg-[#ef4444]/20 text-[#ef4444]' 
                                         : 'bg-white/5 text-foreground/60'
                                 }`}
                             >
@@ -231,7 +231,7 @@ export function ManualEntryModal({ isOpen, onClose, tasks = [], existingEntry, o
 
                     <div className="flex items-center justify-between p-3 bg-[#1a1d24] rounded-xl">
                         <div className="flex items-center gap-2">
-                            <DollarSign className={`w-4 h-4 ${formData.billable ? 'text-violet-400' : 'text-foreground/40'}`} />
+                            <DollarSign className={`w-4 h-4 ${formData.billable ? 'text-red-400' : 'text-foreground/40'}`} />
                             <span className="text-foreground text-sm">Billable</span>
                         </div>
                         <Switch
@@ -256,7 +256,7 @@ export function ManualEntryModal({ isOpen, onClose, tasks = [], existingEntry, o
                         <Button
                             type="submit"
                             disabled={loading || !formData.taskId}
-                            className="flex-1 bg-[#8b5cf6] hover:bg-[#8b5cf6]/90 text-black font-bold"
+                            className="flex-1 bg-[#ef4444] hover:bg-[#ef4444]/90 text-black font-bold"
                         >
                             {loading ? 'Saving...' : existingEntry ? 'Update' : 'Create'}
                         </Button>

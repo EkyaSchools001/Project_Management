@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { 
   ChartLineUp, 
@@ -117,14 +117,14 @@ export function TeacherPortfolio() {
         {!isViewOnly && (
           <div className="flex items-center gap-3">
             <Button 
-                className="bg-[#EA104A] hover:bg-[#D00D3F] text-foreground shadow-md shadow-rose-200"
+                className="bg-[#EA104A] hover:bg-[#D00D3F] text-white shadow-md shadow-rose-200"
                 onClick={() => { setAchCategory("Achievement"); setIsAchievementModalOpen(true); }}
             >
               <Plus className="w-4 h-4 mr-2" />
               Add Achievement
             </Button>
             <Button 
-                className="bg-indigo-600 hover:bg-indigo-700 text-foreground shadow-md shadow-indigo-200"
+                className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-md shadow-indigo-200"
                 onClick={() => { setAchCategory("Activity"); setIsAchievementModalOpen(true); }}
             >
               <Plus className="w-4 h-4 mr-2" />
@@ -197,13 +197,13 @@ export function TeacherPortfolio() {
           title="Avg. Observation Score" 
           value={summary?.avgObservationScore?.toFixed(1) || "0.0"} 
           icon={<ChartLineUp className="w-8 h-8 text-blue-500" weight="duotone" />} 
-          bgColor="bg-violet-50"
+          bgColor="bg-blue-50"
         />
         <SummaryCard 
           title="Training Hours" 
           value={`${summary?.trainingHoursCompleted || 0} / ${summary?.trainingHoursPending || 0}`} 
-          icon={<GraduationCap className="w-8 h-8 text-violet-500" weight="duotone" />} 
-          bgColor="bg-violet-50"
+          icon={<GraduationCap className="w-8 h-8 text-emerald-500" weight="duotone" />} 
+          bgColor="bg-emerald-50"
         />
         <SummaryCard 
           title="Goal Progress" 
@@ -247,7 +247,7 @@ export function TeacherPortfolio() {
                     <p className="text-gray-600 text-sm">{event.description}</p>
                     {(event.score || event.observerName) && (
                       <div className="mt-4 pt-4 border-t border-gray-100 flex items-center gap-4 text-sm">
-                        {event.score && <span className="font-semibold px-2 py-1 bg-violet-50 text-violet-700 rounded-md">Score: {event.score.toFixed(1)}</span>}
+                        {event.score && <span className="font-semibold px-2 py-1 bg-green-50 text-green-700 rounded-md">Score: {event.score.toFixed(1)}</span>}
                         {event.observerName && <span className="text-gray-500">By: {event.observerName}</span>}
                       </div>
                     )}
@@ -286,7 +286,7 @@ function EventIcon({ type }: { type: string }) {
       return <Target className="w-5 h-5 text-indigo-500" weight="fill" />;
     case 'Training':
     case 'Self-Learning Course':
-      return <GraduationCap className="w-5 h-5 text-violet-500" weight="fill" />;
+      return <GraduationCap className="w-5 h-5 text-emerald-500" weight="fill" />;
     case 'Achievement':
       return <Trophy className="w-5 h-5 text-amber-500" weight="fill" />;
     default:

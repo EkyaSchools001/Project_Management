@@ -1,40 +1,39 @@
 import { useState, useEffect, useMemo } from "react";
-import { CAMPUS_OPTIONS, TIME_SLOTS } from "@pdi/lib/constants";
+import { CAMPUS_OPTIONS } from "@pdi/lib/constants";
 import { format } from "date-fns";
+// react-timekeeper removed - using native <input type="time"> instead
 import api from "@pdi/lib/api";
 import { getSocket } from "@pdi/lib/socket";
 import { useAuth } from "@pdi/hooks/useAuth";
 import { AssessmentManagementDashboard } from "@pdi/components/assessments/AssessmentManagementDashboard";
 import { useAccessControl } from "@pdi/hooks/useAccessControl";
 import { DashboardLayout } from "@pdi/components/layout/DashboardLayout";
-import { formatRole, cn } from "@pdi/lib/utils";
+import { formatRole } from "@pdi/lib/utils";
 import { PageHeader } from "@pdi/components/layout/PageHeader";
 import { QuickActionButtons } from "@pdi/components/QuickActionButtons";
 import { StatCard } from "@pdi/components/StatCard";
+import { TIME_SLOTS } from "@pdi/lib/constants";
 
-import { 
-  Users, Eye, TrendingUp, Calendar, FileText, Target, Plus, ChevronLeft, ChevronRight, 
-  Star, Search, Filter, Mail, MapPin, Award, Download, 
-  Clock, CheckCircle2, Users as Users2, 
-  Book, Sparkles, 
-  Edit, ClipboardList, Trash2, Lock as LockIcon, RefreshCw, AlertCircle, Trophy, 
-  Bell, Zap, Loader2, ShieldCheck, ArrowUpRight 
-} from "lucide-react";
+import { Users, Eye, TrendingUp, Calendar, FileText, Target, Plus, ChevronLeft, ChevronRight, Save, Star, Search, Filter, Mail, Phone, MapPin, Award, CheckCircle, Download, Printer, Share2, Rocket, Clock, CheckCircle2, Map, Users as Users2, History as HistoryIcon, MessageSquare, Book, Link as LinkIcon, Brain, Paperclip, Sparkles, ClipboardCheck, Tag, Edit, ClipboardList, Trash2, Lock, FileCheck, RefreshCw, AlertCircle, Trophy, Bell, Zap, Loader2, ShieldCheck, ArrowUpRight } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@pdi/components/ui/tabs";
 import { Button } from "@pdi/components/ui/button";
 import { Progress } from "@pdi/components/ui/progress";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@pdi/components/ui/card";
+
 import { Input } from "@pdi/components/ui/input";
 import { Label } from "@pdi/components/ui/label";
 import { Textarea } from "@pdi/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@pdi/components/ui/radio-group";
 import { Calendar as CalendarComponent } from "@pdi/components/ui/calendar";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@pdi/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@pdi/components/ui/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "@pdi/components/ui/popover";
 import { Badge } from "@pdi/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@pdi/components/ui/table";
 import { Switch } from "@pdi/components/ui/switch";
 import { ScrollArea } from "@pdi/components/ui/scroll-area";
-import { Link, useNavigate, Routes, Route, useParams, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, Routes, Route, useParams, useLocation, useSearchParams } from "react-router-dom";
+
+
 
 import { Observation } from "@pdi/types/observation";
 import { Goal } from "@pdi/types/goal";
@@ -43,8 +42,12 @@ import { TeacherAnalyticsReport } from "@pdi/components/TeacherAnalyticsReport";
 import { LeaderPerformanceAnalytics } from "@pdi/components/LeaderPerformanceAnalytics";
 import { AIAnalysisModal } from "@pdi/components/AIAnalysisModal";
 import { toast } from "sonner";
+import { cn } from "@pdi/lib/utils";
+import { GrowthLayout } from "@pdi/components/growth/GrowthLayout";
 
+import { DynamicForm } from "@pdi/components/DynamicForm";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@pdi/components/ui/select";
+import { UnifiedObservationForm } from "@pdi/components/UnifiedObservationForm";
 import { TeacherProfileView } from "@pdi/components/TeacherProfileView";
 import { GoalWorkflowForms } from "@pdi/components/GoalWorkflowForms";
 import { moocService } from "@pdi/services/moocService";
@@ -105,14 +108,27 @@ export default function LeaderDashboard() {
     }
     const caps: string[] = [];
     if (user.campusId) caps.push(user.campusId);
-    if (typeof user.campusAccess === 'string') {
+    if (user.campusAccess) {
       caps.push(...user.campusAccess.split(',').filter(Boolean));
-    } else if (Array.isArray(user.campusAccess)) {
-      caps.push(...(user.campusAccess as string[]));
     }
     return Array.from(new Set(caps.filter(Boolean)));
   }, [user]);
 
+  // Computed Stats
+  const domainAverages = useMemo(() => {
+    const domains = ["Pedagogy", "Technology", "Assessment", "Curriculum"];
+    return domains.map(domainName => {
+      const domainObs = observations.filter(o => o.domain === domainName);
+      const avg = domainObs.length > 0
+        ? Number((domainObs.reduce((acc, o) => acc + (o.score || 0), 0) / domainObs.length).toFixed(1))
+        : 0;
+      return {
+        domain: domainName,
+        average: avg,
+        count: domainObs.length
+      };
+    });
+  }, [observations]);
 
   const systemAvgScore = useMemo(() => {
     if (observations.length === 0) return "0.0";
@@ -275,14 +291,14 @@ export default function LeaderDashboard() {
     if (teachers.length === 0) return;
 
     const mappedTeam = teachers
-      .filter(t => !t.fullName.toLowerCase().includes('test') && !t.email?.toLowerCase().includes('test'))
+      .filter(t => !t.fullName?.toLowerCase().includes('test') && !t.email?.toLowerCase().includes('test'))
       .map(teacher => {
         // 1. Calculate Observation Stats from Real-time State
         // Match by teacherId, teacherEmail, or teacher name as fallback
         const teacherObs = observations.filter(o =>
           (o.teacherId && o.teacherId === teacher.id) ||
           (o.teacherEmail && teacher.email && o.teacherEmail.toLowerCase() === teacher.email.toLowerCase()) ||
-          (o.teacher && typeof o.teacher === 'string' && o.teacher.toLowerCase() === teacher.fullName.toLowerCase())
+          (o.teacher && typeof o.teacher === 'string' && teacher.fullName && o.teacher.toLowerCase() === teacher.fullName.toLowerCase())
         );
 
         const obsCount = teacherObs.length;
@@ -383,7 +399,7 @@ export default function LeaderDashboard() {
     window.dispatchEvent(new Event('local-goals-update'));
   }, [goals]);
 
-  if (!user) return null;
+
 
 
 
@@ -401,6 +417,7 @@ export default function LeaderDashboard() {
                 observations={observations}
                 userName={userName}
                 systemAvgScore={systemAvgScore}
+                domainAverages={domainAverages}
                 role={role}
                 selectedCampus={selectedCampus}
                 setSelectedCampus={setSelectedCampus}
@@ -420,6 +437,7 @@ export default function LeaderDashboard() {
                 observations={observations}
                 userName={userName}
                 systemAvgScore={systemAvgScore}
+                domainAverages={domainAverages}
                 role={role}
                 selectedCampus={selectedCampus}
                 setSelectedCampus={setSelectedCampus}
@@ -444,11 +462,11 @@ export default function LeaderDashboard() {
               ? <AdminGoalsView simplified={false} /> 
               : <TeacherGoalsView goals={goals} />
         } />
-        <Route path="goals/assign" element={<AssignGoalView team={team} currentDraftGoalId={currentDraftGoalId} setCurrentDraftGoalId={setCurrentDraftGoalId} />} />
+        <Route path="goals/assign" element={<AssignGoalView setGoals={setGoals} team={team} currentDraftGoalId={currentDraftGoalId} setCurrentDraftGoalId={setCurrentDraftGoalId} />} />
         <Route path="performance" element={<LeaderPerformanceAnalytics team={team} observations={observations} goals={goals} />} />
         <Route path="hours" element={<PDHoursAnalyticsView />} />
-        <Route path="calendar" element={<PDCalendarView training={training} refreshData={fetchAllData} team={team} />} />
-        <Route path="calendar/propose" element={<ProposeCourseView refreshData={fetchAllData} />} />
+        <Route path="calendar" element={<PDCalendarView training={training} setTraining={setTraining} team={team} role={role} />} />
+        <Route path="calendar/propose" element={<ProposeCourseView setTraining={setTraining} />} />
         <Route path="calendar/responses" element={<MoocResponsesRegistry refresh={fetchMoocSubmissions} backPath={['ADMIN', 'SUPERADMIN'].includes(role) ? '/admin' : '/leader/calendar'} />} />
         <Route path="mooc" element={<MoocResponsesRegistry refresh={fetchMoocSubmissions} backPath={['ADMIN', 'SUPERADMIN'].includes(role) ? '/admin' : '/leader/calendar'} />} />
         
@@ -493,8 +511,8 @@ function LeaderCoursesModule() {
         <Route path="assessments" element={
           <>
             <PageHeader
-               title={['ADMIN', 'SUPERADMIN'].includes(role) ? "Assessment Management" : "Assessments"}
-               subtitle={['ADMIN', 'SUPERADMIN'].includes(role) ? "Design and deploy professional competency checks" : "Manage teacher evaluations"}
+               title={['ADMIN', 'SUPERADMIN', 'COORDINATOR'].includes(role) ? "Assessment Management" : "Assessments"}
+               subtitle={['ADMIN', 'SUPERADMIN', 'COORDINATOR'].includes(role) ? "Design and deploy professional competency checks" : "Manage teacher evaluations"}
             />
             <AssessmentManagementDashboard hideHeader />
           </>
@@ -509,6 +527,7 @@ function DashboardOverview({
   observations,
   userName,
   systemAvgScore,
+  domainAverages,
   role,
   selectedCampus,
   setSelectedCampus,
@@ -519,6 +538,7 @@ function DashboardOverview({
   observations: Observation[],
   userName: string,
   systemAvgScore: string,
+  domainAverages: any,
   role: string,
   selectedCampus: string,
   setSelectedCampus: (val: string) => void,
@@ -542,37 +562,43 @@ function DashboardOverview({
 
   return (
     <div className="space-y-8 animate-in fade-in duration-700">
-      <div className="relative overflow-hidden border border-white/5 bg-[#161B22] p-8 md:p-14 mb-10 rounded-[1.5rem] shadow-2xl">
-        <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-[#8b5cf6]/5 rounded-full blur-[120px]" />
-        
-        <div className="relative z-10 flex flex-col xl:flex-row xl:items-center justify-between gap-12">
-          <div className="space-y-6 flex-1">
-            <div className="inline-flex items-center gap-3 px-3 py-1.5 rounded-full bg-[#8b5cf6]/10 border border-[#8b5cf6]/20">
-              <ShieldCheck className="w-4 h-4 text-[#8b5cf6]" />
-              <span className="text-[10px] font-bold tracking-widest text-[#8b5cf6] uppercase">Command Intelligence Hub</span>
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-slate-900 p-8 md:p-12 mb-8 shadow-2xl">
+        {/* Background decorative elements */}
+        <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-72 h-72 bg-indigo-500/20 rounded-full blur-[80px]" />
+
+        <div className="relative z-10 flex flex-col xl:flex-row xl:items-center justify-between gap-8">
+          <div className="space-y-4">
+            <div className="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
+              <ShieldCheck className="w-4 h-4 text-primary animate-pulse" />
+              <span className="text-[10px] font-bold tracking-[0.2em] text-white/80">Leadership Dashboard</span>
+              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-500/20 border border-emerald-500/30">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+                <span className="text-[9px] font-black text-emerald-400 tracking-widest uppercase">Live Sync</span>
+              </div>
             </div>
-            <h1 className="text-5xl md:text-7xl font-black text-foreground tracking-tight leading-tight">
-              Greetings, <span className="text-[#8b5cf6]">{(userName || "Leader").split(' ')[0]}</span>
+            <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+              Welcome back, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400">{(userName || "").split(' ')[0]}!</span>
             </h1>
-            <p className="text-foreground/40 text-lg font-medium max-w-2xl leading-relaxed">
-              {selectedCampus === 'all' ? "Oversee performance metrics across all ecosystem nodes." : `Visualizing data streams for ${selectedCampus}.`}
-              <span className="text-foreground font-bold ml-1">Track high-impact growth and manage team excellence.</span>
+            <p className="text-slate-400 text-lg font-medium max-w-2xl leading-relaxed">
+              {selectedCampus === 'all' ? "Oversee team performance across respective campus." : `Performance overview for ${selectedCampus}.`}
+              <span className="text-white font-bold ml-1">Track growth, mentor teachers, and drive excellence.</span>
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-4">
             {availableCampuses.length > 1 && (
               <Select value={selectedCampus} onValueChange={setSelectedCampus}>
-                <SelectTrigger className="w-full sm:w-[240px] h-14 rounded-xl border-white/10 bg-white/5 text-foreground font-bold text-sm hover:bg-white/10 transition-all tracking-tight">
+                <SelectTrigger className="w-full sm:w-[220px] h-14 rounded-2xl border-white/10 bg-white/5 backdrop-blur-xl text-white font-bold text-base hover:bg-white/10 transition-all">
                   <div className="flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-[#8b5cf6]" />
+                    <MapPin className="w-4 h-4 text-primary" />
                     <SelectValue placeholder="Select Campus" />
                   </div>
                 </SelectTrigger>
-                <SelectContent className="rounded-xl border-white/10 bg-[#0d1117] text-foreground">
-                  <SelectItem value="all" className="focus:bg-white/10 focus:text-foreground text-xs font-semibold">Consolidated Global View</SelectItem>
+                <SelectContent className="rounded-2xl border-white/10 bg-slate-900/95 backdrop-blur-2xl text-white">
+                  <SelectItem value="all" className="focus:bg-white/10 focus:text-white">All Assigned Schools</SelectItem>
                   {availableCampuses.map(c => (
-                    <SelectItem key={c} value={c} className="focus:bg-white/10 focus:text-foreground text-xs font-semibold">{c}</SelectItem>
+                    <SelectItem key={c} value={c} className="focus:bg-white/10 focus:text-white">{c}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -582,7 +608,7 @@ function DashboardOverview({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
         {isModuleEnabled('/leader/team', role) && (
           <StatCard
             title="Team Members"
@@ -634,78 +660,78 @@ function DashboardOverview({
       {isModuleEnabled('/leader/team', role) && (
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-2 h-10 rounded-full bg-[#8b5cf6] shadow-[0_0_20px_rgba(186,255,0,0.4)]"></div>
-              <h2 className="text-4xl font-black text-foreground tracking-tight uppercase">Performance Log</h2>
+            <div className="flex items-center gap-3">
+              <div className="w-1.5 h-8 rounded-full bg-primary shadow-[0_0_15px_rgba(234,16,74,0.3)]"></div>
+              <h2 className="text-2xl font-black text-foreground tracking-tight">Team Performance Overview</h2>
             </div>
-            <Button variant="ghost" size="sm" onClick={() => navigate("/leader/team")} className="text-[#8b5cf6] font-bold hover:bg-[#8b5cf6]/5 text-xs tracking-widest uppercase">
-              Consolidated Registry
+            <Button variant="ghost" size="sm" onClick={() => navigate("/leader/team")} className="text-primary font-bold hover:bg-primary/5">
+              View All Members
               <ArrowUpRight className="ml-2 w-4 h-4" />
             </Button>
           </div>
 
-          <Card className="border border-white/5 shadow-2xl bg-[#161B22]/60 backdrop-blur-md overflow-hidden rounded-2xl w-full">
-            <ScrollArea className="h-[650px]">
+          <Card className="border-none shadow-2xl bg-white overflow-hidden rounded-[2.5rem]">
+            <ScrollArea className="h-[400px]">
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
-                    <tr className="bg-white/5 hover:bg-white/5 border-b border-white/5">
-                      <th className="p-6 text-[11px] font-bold tracking-widest text-foreground/40 w-16 uppercase">Rank</th>
-                      <th className="p-6 text-[11px] font-bold tracking-widest text-foreground/40 uppercase text-left">
-                        <div className="flex items-center gap-3">
-                          <span>Identity Vector</span>
+                    <tr className="bg-zinc-50/80 hover:bg-zinc-50/80 border-b border-zinc-100">
+                      <th className="p-6 text-[10px] font-black tracking-[0.2em] text-zinc-900 w-16 uppercase">#</th>
+                      <th className="p-6 text-[10px] font-black tracking-[0.2em] text-zinc-900 uppercase">
+                        <div className="flex items-center gap-1.5">
+                          <span>Teacher Profile</span>
                           <select 
-                            className="text-[10px] font-bold border border-white/10 rounded-md px-2 py-1 bg-[#161B22] text-foreground/60 cursor-pointer hover:border-[#8b5cf6]/50 focus:outline-none transition-all"
+                            className="text-[10px] font-bold border border-zinc-200 rounded-md px-1 py-0.5 bg-white text-zinc-600 cursor-pointer hover:border-primary focus:outline-none focus:ring-1 focus:ring-primary normal-case tracking-normal"
                             value={roleFilter}
                             onChange={(e) => setRoleFilter(e.target.value)}
                             onClick={(e) => e.stopPropagation()}
                           >
-                            <option value="all">Unfiltered</option>
+                            <option value="all">All Roles</option>
                             {allRoles.map(r => (
                               <option key={String(r)} value={String(r)}>{formatRole(String(r))}</option>
                             ))}
                           </select>
                         </div>
                       </th>
-                      <th className="p-6 text-[11px] font-bold tracking-widest text-foreground/40 text-center uppercase">Observations</th>
-                      <th className="p-6 text-[11px] font-bold tracking-widest text-foreground/40 uppercase text-left">Status Cycle</th>
-                      <th className="p-6 text-[11px] font-bold tracking-widest text-foreground/40 text-center uppercase">Efficiency Index</th>
+                      <th className="p-6 text-[10px] font-black tracking-[0.2em] text-zinc-900 text-center uppercase">Observations</th>
+                      <th className="p-6 text-[10px] font-black tracking-[0.2em] text-zinc-900 uppercase">Last Seen</th>
+                      <th className="p-6 text-[10px] font-black tracking-[0.2em] text-zinc-900 text-center uppercase">Growth Index</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-white/5">
+                  <tbody className="divide-y divide-zinc-100">
                     {filteredTeamOverview.map((member, index) => (
-                      <tr key={member.id} className="group hover:bg-[#8b5cf6]/5 transition-all duration-300">
-                        <td className="p-6 text-xs font-bold text-foreground/20">{index + 1}</td>
+                      <tr key={member.id} className="group hover:bg-primary/5 transition-all duration-300">
+                        <td className="p-6 text-xs font-bold text-zinc-600">{index + 1}</td>
                         <td className="p-6">
-                          <div className="flex items-center gap-5">
-                            <div className="w-14 h-14 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-[#8b5cf6] font-black text-xl shadow-inner group-hover:scale-110 group-hover:bg-[#8b5cf6]/10 transition-all duration-300 border-[#8b5cf6]/0 group-hover:border-[#8b5cf6]/20">
-                              {member.name.charAt(0)}
+                          <div className="flex items-center gap-4">
+                            <div className="w-14 h-14 rounded-2xl bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-900 font-bold text-xl shadow-sm group-hover:scale-105 group-hover:bg-primary/10 group-hover:text-primary group-hover:border-primary/20 transition-all duration-300">
+                              {(member.name || "?").charAt(0)}
                             </div>
                             <div>
-                              <p className="font-bold text-foreground text-lg group-hover:text-[#8b5cf6] transition-colors">{member.name}</p>
-                              <p className="text-[10px] text-foreground/30 font-bold tracking-[0.2em] uppercase">{formatRole(member.role)}</p>
+                              <p className="font-black text-zinc-900 text-lg group-hover:text-primary transition-colors">{member.name}</p>
+                              <p className="text-xs text-zinc-600 font-bold tracking-wider">{formatRole(member.role)}</p>
                             </div>
                           </div>
                         </td>
                         <td className="p-6 text-center">
-                          <span className="inline-flex items-center justify-center min-w-[3rem] px-4 py-2 rounded-lg bg-white/5 text-foreground font-bold text-xs border border-white/5 group-hover:bg-[#8b5cf6]/10 group-hover:text-[#8b5cf6] group-hover:border-[#8b5cf6]/20 transition-all">
+                          <span className="inline-flex items-center justify-center min-w-[3rem] h-10 px-4 rounded-xl bg-zinc-50 text-zinc-900 font-black text-sm border border-zinc-100 group-hover:bg-white group-hover:border-primary/20 transition-all">
                             {member.observations}
                           </span>
                         </td>
-                        <td className="p-6 text-left">
+                        <td className="p-6">
                           <div className="flex flex-col">
-                            <span className="text-foreground font-bold text-sm tracking-tight">{member.lastObserved}</span>
-                            <span className="text-[10px] text-foreground/20 font-bold uppercase tracking-widest">Formal Auth</span>
+                            <span className="text-zinc-900 font-bold">{member.lastObserved}</span>
+                            <span className="text-[10px] text-zinc-600 font-bold capitalize tracking-wider">Formal Cycle</span>
                           </div>
                         </td>
                         <td className="p-6 text-center">
                           <div className={cn(
-                            "inline-flex items-center justify-center w-14 h-14 rounded-full font-black text-base border shadow-xl transition-all group-hover:scale-110",
+                            "inline-flex items-center justify-center w-14 h-14 rounded-2xl font-black text-base border shadow-sm transition-transform group-hover:scale-110",
                             member.avgScore >= 4
-                              ? "bg-[#27AE60]/10 text-[#27AE60] border-[#27AE60]/20"
+                              ? "bg-emerald-50 text-emerald-600 border-emerald-100 shadow-emerald-100"
                               : member.avgScore >= 3
-                                ? "bg-amber-500/10 text-amber-500 border-amber-500/20"
-                                : "bg-red-500/10 text-red-500 border-red-500/20"
+                                ? "bg-amber-50 text-amber-600 border-amber-100 shadow-amber-100"
+                                : "bg-rose-50 text-rose-600 border-rose-100 shadow-rose-100"
                           )}>
                             {member.avgScore}
                           </div>
@@ -759,8 +785,8 @@ function TeamManagementView({
   };
 
   const filteredTeam = team.filter(member =>
-    member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    member.role.toLowerCase().includes(searchQuery.toLowerCase())
+    (member.name || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+    (member.role || "").toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -864,7 +890,7 @@ function TeamManagementView({
                       <td className="p-6">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary font-bold text-lg border border-primary/20 shadow-inner">
-                            {member.name.charAt(0)}
+                            {(member.name || "?").charAt(0)}
                           </div>
                           <div>
                             <p className="font-bold text-foreground group-hover:text-primary transition-colors">{member.name}</p>
@@ -968,8 +994,8 @@ function PDParticipationView({ team, training }: { team: any[], training: any[] 
   const pdTeam = team.filter(m => m.role !== "Super Admin");
 
   const filteredTeam = pdTeam.filter(m => {
-    const matchesSearch = m.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      m.role.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = (m.name || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (m.role || "").toLowerCase().includes(searchQuery.toLowerCase());
     const matchesRole = roleFilter === "all" || m.role === roleFilter;
     const matchesStatus = statusFilter === "all" ||
       (statusFilter === "Certified" && m.pdHours >= 20) || // Assuming 20 is target
@@ -998,6 +1024,10 @@ function PDParticipationView({ team, training }: { team: any[], training: any[] 
     (!t.entryType || !t.entryType.toLowerCase().includes('observation')) &&
     (!t.type || !t.type.toLowerCase().includes('observation'))
   );
+
+  const avgAttendance = pastTrainings.length > 0
+    ? Math.round(pastTrainings.reduce((acc, t) => acc + ((t.registrants?.length || 0) / (t.capacity || pdTeam.length)) * 100, 0) / pastTrainings.length)
+    : 0;
 
   const activeFiltersCount = (roleFilter !== "all" ? 1 : 0) + (statusFilter !== "all" ? 1 : 0);
 
@@ -1066,14 +1096,14 @@ function PDParticipationView({ team, training }: { team: any[], training: any[] 
 
       {/* Leaderboard & Upcoming Trainings Data Split */}
       <div className="grid lg:grid-cols-3 gap-6">
-        <Card className="lg:col-span-1 shadow-xl bg-gradient-to-br from-indigo-900 via-slate-900 to-slate-950 text-foreground overflow-hidden relative border-none">
+        <Card className="lg:col-span-1 shadow-xl bg-gradient-to-br from-indigo-900 via-slate-900 to-slate-950 text-white overflow-hidden relative border-none">
           <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -translate-y-10 translate-x-10 pointer-events-none" />
           <CardHeader className="border-b border-white/10 pb-4 relative z-10">
-            <CardTitle className="flex items-center gap-2 text-foreground">
+            <CardTitle className="flex items-center gap-2 text-white">
               <Trophy className="w-5 h-5 text-yellow-500" />
               Teacher Leaderboard
             </CardTitle>
-            <CardDescription className="text-muted-foreground">Top performers by Training hours completed.</CardDescription>
+            <CardDescription className="text-slate-400">Top performers by Training hours completed.</CardDescription>
           </CardHeader>
           <CardContent className="p-0 relative z-10">
             <div className="divide-y divide-white/10">
@@ -1082,14 +1112,14 @@ function PDParticipationView({ team, training }: { team: any[], training: any[] 
                   <div className="flex items-center gap-3">
                     <div className={cn(
                       "w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs ring-2 ring-offset-2 ring-offset-slate-900",
-                      idx === 0 ? "bg-yellow-500 text-foreground ring-yellow-500/50" :
+                      idx === 0 ? "bg-yellow-500 text-white ring-yellow-500/50" :
                         idx === 1 ? "bg-slate-300 text-slate-800 ring-slate-300/50" :
-                          idx === 2 ? "bg-amber-700 text-foreground ring-amber-700/50" : "bg-card text-muted-foreground ring-slate-800/20"
+                          idx === 2 ? "bg-amber-700 text-white ring-amber-700/50" : "bg-slate-800 text-slate-400 ring-slate-800/20"
                     )}>
                       {idx + 1}
                     </div>
                     <div>
-                      <p className="font-bold text-foreground uppercase tracking-tight font-mono text-sm">{member?.fullName || 'N/A'}</p>
+                      <p className="font-bold text-sm tracking-tight">{member.name}</p>
                       <p className="text-[10px] text-zinc-900 capitalize font-black">{member.role}</p>
                     </div>
                   </div>
@@ -1101,7 +1131,7 @@ function PDParticipationView({ team, training }: { team: any[], training: any[] 
               ))}
             </div>
             <div className="p-4 bg-white/5 flex justify-center">
-              <Button variant="link" className="text-muted-foreground hover:text-foreground text-xs gap-2" onClick={() => {
+              <Button variant="link" className="text-slate-400 hover:text-white text-xs gap-2" onClick={() => {
                 // Focus on the registry table
                 const element = document.getElementById('staff-td-registry');
                 element?.scrollIntoView({ behavior: 'smooth' });
@@ -1360,14 +1390,16 @@ function PDParticipationView({ team, training }: { team: any[], training: any[] 
   );
 }
 
-function PDCalendarView({ 
-  training, 
-  refreshData, 
-  team 
-}: { 
-  training: any[], 
-  refreshData: () => Promise<void>, 
-  team: any[] 
+function PDCalendarView({
+  training,
+  setTraining,
+  team = [],
+  role
+}: {
+  training: any[],
+  setTraining: React.Dispatch<React.SetStateAction<any[]>>,
+  team?: any[],
+  role: string
 }) {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -1417,6 +1449,16 @@ function PDCalendarView({
     objectives: ""
   });
 
+  // Helper to parse "MMM d, yyyy" string to Date object
+  const parseEventDate = (dateStr: string) => {
+    try {
+      // Handle both "MMM d, yyyy" and potential legacy "MMM d"
+      const parts = dateStr.includes(',') ? dateStr : `${dateStr}, 2026`;
+      return new Date(parts);
+    } catch (e) {
+      return new Date();
+    }
+  };
 
   // Helper to format Date object to "MMM d, yyyy" string
   const formatDateStr = (d: Date) => {
@@ -1439,7 +1481,7 @@ function PDCalendarView({
     
     if (isObservation) return false;
 
-    const matchesSearch = e.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    const matchesSearch = (e.title || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
       (e.topic || e.type || "").toLowerCase().includes(searchQuery.toLowerCase());
 
     let matchesDate = true;
@@ -1455,10 +1497,16 @@ function PDCalendarView({
     return matchesSearch && matchesDate && matchesType && matchesTime && matchesLocation && matchesStatus;
   });
 
+  // Get dates that have events for highlighting
+  const eventDates = safeTraining.map(e => parseEventDate(e.date));
+
   const handleToggleAttendance = async (eventId: string, action: 'enable' | 'close') => {
     try {
-      await trainingService.toggleAttendance(eventId, action);
-      refreshData();
+      const updatedEvent = await trainingService.toggleAttendance(eventId, action);
+      setTraining(prev => prev.map(ev => ev.id === eventId ? { ...ev, ...updatedEvent } : ev));
+      if (editingEvent && editingEvent.id === eventId) {
+        setEditingEvent({ ...editingEvent, ...updatedEvent });
+      }
       toast.success(`Attendance ${action === 'enable' ? 'enabled' : 'closed'} successfully`);
     } catch (error) {
       console.error(`Failed to ${action} attendance:`, error);
@@ -1490,7 +1538,8 @@ function PDCalendarView({
         status: "Approved"
       };
 
-      await trainingService.createEvent(eventData);
+      const response = await trainingService.createEvent(eventData);
+      setTraining(prev => [...prev, response]);
       setIsScheduleOpen(false);
       setNewEvent({
         title: "",
@@ -1523,7 +1572,8 @@ function PDCalendarView({
         topic: editingEvent.type || editingEvent.topic
       };
 
-      await trainingService.updateEvent(editingEvent.id, updatedData);
+      const savedEvent = await trainingService.updateEvent(editingEvent.id, updatedData);
+      setTraining(prev => prev.map(ev => ev.id === editingEvent.id ? savedEvent : ev));
       setIsEditOpen(false);
       setEditingEvent(null);
       toast.success("Event details updated successfully");
@@ -1537,6 +1587,7 @@ function PDCalendarView({
     if (!editingEvent) return;
     try {
       await trainingService.deleteEvent(editingEvent.id);
+      setTraining(prev => prev.filter(t => t.id !== editingEvent.id));
       setIsDeleteOpen(false);
       setIsEditOpen(false);
       setEditingEvent(null);
@@ -1564,7 +1615,19 @@ function PDCalendarView({
   const handleRegister = async (eventId: string) => {
     try {
       await trainingService.registerForEvent(eventId);
-      toast.success(`Successfully registered`);
+
+      setTraining(prev => prev.map(event => {
+        if (event.id === eventId) {
+          toast.success(`Successfully registered for ${event.title}`);
+          return {
+            ...event,
+            isRegistered: true,
+            registered: (event.registered || 0) + 1,
+            spotsLeft: (event.spotsLeft || 1) - 1,
+          };
+        }
+        return event;
+      }));
     } catch (error) {
       console.error("Failed to register:", error);
       toast.error("Failed to register for the event.");
@@ -1608,10 +1671,10 @@ function PDCalendarView({
       <div className="space-y-8">
         {/* Calendar Widget */}
         <div className="w-full space-y-6">
-          <Card className="  shadow-2xl bg-zinc-950 text-foreground overflow-hidden relative">
+          <Card className="  shadow-2xl bg-zinc-950 text-white overflow-hidden relative">
             {/* decorative gradient blob */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-pink-500/20 rounded-full blur-3xl -translate-y-10 translate-x-10 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-violet-500/20 rounded-full blur-3xl translate-y-10 -translate-x-10 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl translate-y-10 -translate-x-10 pointer-events-none" />
 
             <CardContent className="p-6 md:p-10 relative z-10">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
@@ -1621,7 +1684,7 @@ function PDCalendarView({
                     <h3 className="text-xl font-bold bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">
                       Activity Summary
                     </h3>
-                    <p className="text-muted-foreground text-xs capitalize tracking-wider font-medium">
+                    <p className="text-zinc-400 text-xs capitalize tracking-wider font-medium">
                       {formatDateStr(new Date())}
                     </p>
                   </div>
@@ -1630,25 +1693,37 @@ function PDCalendarView({
                     mode="single"
                     selected={date}
                     onSelect={setDate}
-                    className="rounded-2xl border-none bg-background/50 p-6 w-full"
+                    className="rounded-2xl border-none bg-zinc-900/50 p-6 w-full"
                     classNames={{
                       months: "flex flex-col space-y-4",
                       month: "space-y-4 w-full",
                       caption: "flex justify-center pt-1 relative items-center mb-6",
-                      caption_label: "text-base font-bold text-foreground",
+                      caption_label: "text-base font-bold text-white",
                       nav: "space-x-1 flex items-center",
-                      nav_button: "h-8 w-8 bg-transparent p-0 text-muted-foreground hover:text-foreground border-zinc-700 hover:bg-card",
+                      nav_button: "h-8 w-8 bg-transparent p-0 text-zinc-400 hover:text-white border-zinc-700 hover:bg-zinc-800",
                       nav_button_previous: "absolute left-2",
                       nav_button_next: "absolute right-2",
                       table: "w-full border-collapse",
                       head_row: "flex w-full mt-2",
-                      head_cell: "text-muted-foreground rounded-md w-10 font-bold text-[0.85rem] capitalize tracking-wider flex items-center justify-center",
+                      head_cell: "text-zinc-400 rounded-md w-10 font-bold text-[0.85rem] capitalize tracking-wider flex items-center justify-center",
                       row: "flex w-full mt-3",
-                      cell: "h-10 w-10 text-center text-base p-0 relative [&:has([aria-selected])]:bg-card first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-                      day: "h-10 w-10 p-0 font-bold aria-selected:opacity-100 text-foreground hover:bg-card rounded-full transition-all flex items-center justify-center",
-                      day_selected: "bg-gradient-to-br from-pink-500 to-red-600 text-foreground hover:bg-red-600 focus:bg-red-600 shadow-lg shadow-red-500/30",
-                      day_today: "bg-card text-foreground font-black ring-2 ring-zinc-700",
+                      cell: "h-10 w-10 text-center text-base p-0 relative [&:has([aria-selected])]:bg-zinc-800 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
+                      day: "h-10 w-10 p-0 font-bold aria-selected:opacity-100 text-white hover:bg-zinc-800 rounded-full transition-all flex items-center justify-center",
+                      day_selected: "bg-gradient-to-br from-pink-500 to-red-600 text-white hover:bg-red-600 focus:bg-red-600 shadow-lg shadow-red-500/30",
+                      day_today: "bg-zinc-800 text-white font-black ring-2 ring-zinc-700",
                       day_outside: "text-zinc-500 opacity-40",
+                    }}
+                    modifiers={{
+                      pedagogy: training.filter((e: any) => (e.topic || e.type) === "Pedagogy").map((e: any) => parseEventDate(e.date)),
+                      technology: training.filter((e: any) => (e.topic || e.type) === "Technology").map((e: any) => parseEventDate(e.date)),
+                      assessment: training.filter((e: any) => (e.topic || e.type) === "Assessment").map((e: any) => parseEventDate(e.date)),
+                      other: training.filter((e: any) => !["Pedagogy", "Technology", "Assessment"].includes(e.topic || e.type)).map((e: any) => parseEventDate(e.date)),
+                    }}
+                    modifiersStyles={{
+                      pedagogy: { border: '2px solid #3b82f6', color: 'white' }, // Blue
+                      technology: { border: '2px solid #10b981', color: 'white' }, // Green
+                      assessment: { border: '2px solid #f43f5e', color: 'white' }, // Red
+                      other: { border: '2px solid #eab308', color: 'white' } // Yellow
                     }}
                   />
                 </div>
@@ -1656,21 +1731,21 @@ function PDCalendarView({
                 {/* Right side: Legend and Actions */}
                 <div className="lg:col-span-5 h-full flex flex-col justify-center pt-10">
                   <div className="space-y-6">
-                    <h4 className="text-sm font-bold text-muted-foreground capitalize tracking-widest mb-4">Legend</h4>
+                    <h4 className="text-sm font-bold text-zinc-400 capitalize tracking-widest mb-4">Legend</h4>
                     <div className="space-y-4">
-                      <div className="flex items-center justify-between p-3 rounded-xl bg-violet-500/5 border border-blue-500/10">
+                      <div className="flex items-center justify-between p-3 rounded-xl bg-blue-500/5 border border-blue-500/10">
                         <span className="flex items-center gap-3 text-sm text-zinc-300">
-                          <span className="w-3 h-3 rounded-full bg-violet-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]"></span> Pedagogy
+                          <span className="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]"></span> Pedagogy
                         </span>
-                        <span className="font-mono text-foreground text-sm bg-violet-500/20 px-2 py-0.5 rounded-md">
+                        <span className="font-mono text-white text-sm bg-blue-500/20 px-2 py-0.5 rounded-md">
                           {training.filter((t: any) => (t.topic || t.type) === 'Pedagogy').length}
                         </span>
                       </div>
-                      <div className="flex items-center justify-between p-3 rounded-xl bg-violet-500/5 border border-violet-500/10">
+                      <div className="flex items-center justify-between p-3 rounded-xl bg-green-500/5 border border-green-500/10">
                         <span className="flex items-center gap-3 text-sm text-zinc-300">
-                          <span className="w-3 h-3 rounded-full bg-violet-500 shadow-[0_0_10px_rgba(16,185,129,0.6)]"></span> Technology
+                          <span className="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_10px_rgba(16,185,129,0.6)]"></span> Technology
                         </span>
-                        <span className="font-mono text-foreground text-sm bg-violet-500/20 px-2 py-0.5 rounded-md">
+                        <span className="font-mono text-white text-sm bg-green-500/20 px-2 py-0.5 rounded-md">
                           {training.filter((t: any) => (t.topic || t.type) === 'Technology').length}
                         </span>
                       </div>
@@ -1678,7 +1753,7 @@ function PDCalendarView({
                         <span className="flex items-center gap-3 text-sm text-zinc-300">
                           <span className="w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.6)]"></span> Assessment
                         </span>
-                        <span className="font-mono text-foreground text-sm bg-rose-500/20 px-2 py-0.5 rounded-md">
+                        <span className="font-mono text-white text-sm bg-rose-500/20 px-2 py-0.5 rounded-md">
                           {training.filter((t: any) => (t.topic || t.type) === 'Assessment').length}
                         </span>
                       </div>
@@ -1687,7 +1762,7 @@ function PDCalendarView({
                     <div className="pt-8">
                       <Button
                         variant="outline"
-                        className="w-full py-6 bg-background border-zinc-800 text-muted-foreground hover:bg-card hover:text-foreground transition-all text-base rounded-xl"
+                        className="w-full py-6 bg-zinc-900 border-zinc-800 text-zinc-400 hover:bg-zinc-800 hover:text-white transition-all text-base rounded-xl"
                         onClick={() => setDate(undefined)}
                         disabled={!date}
                       >
@@ -1863,7 +1938,7 @@ function PDCalendarView({
                           </td>
                           <td className="p-6 text-right">
                             {(session as any).isRegistered ? (
-                              <div className="flex items-center justify-end gap-2 text-violet-600 font-bold">
+                              <div className="flex items-center justify-end gap-2 text-emerald-600 font-bold">
                                 <CheckCircle2 className="w-4 h-4" />
                                 Registered
                               </div>
@@ -1887,8 +1962,19 @@ function PDCalendarView({
                                   <Edit className="w-4 h-4" />
                                   Edit
                                 </Button>
+                                {['ADMIN', 'SUPERADMIN', 'LEADER', 'COORDINATOR'].includes(role) && (
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    className="h-9 px-4 rounded-xl border-emerald-500/20 text-emerald-600 hover:bg-emerald-50 font-bold flex items-center gap-2"
+                                    onClick={() => handleToggleAttendance(session.id, session.attendanceOpen ? 'close' : 'enable')}
+                                  >
+                                    <ClipboardCheck className="w-4 h-4" />
+                                    {session.attendanceOpen ? "Close Attendance" : "Mark Attendance"}
+                                  </Button>
+                                )}
                                 <Button
-                                  className="h-10 px-6 rounded-xl bg-[#1e293b] hover:bg-[#0f172a] text-foreground shadow-lg shadow-slate-900/20 transition-all active:scale-[0.98] font-black capitalize tracking-tighter text-xs"
+                                  className="h-10 px-6 rounded-xl bg-[#1e293b] hover:bg-[#0f172a] text-white shadow-lg shadow-slate-900/20 transition-all active:scale-[0.98] font-black capitalize tracking-tighter text-xs"
                                   onClick={() => handleRegister(session.id)}
                                 >
                                   Register Now
@@ -2219,13 +2305,13 @@ function PDCalendarView({
       {/* Registrants Dialog */}
       <Dialog open={isRegistrantsOpen} onOpenChange={setIsRegistrantsOpen}>
         <DialogContent className="sm:max-w-[700px] rounded-[2rem] overflow-hidden   shadow-2xl p-0">
-          <div className="bg-zinc-950 text-foreground p-8 relative overflow-hidden">
+          <div className="bg-zinc-950 text-white p-8 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-20 translate-x-20 pointer-events-none" />
             <div className="relative z-10">
               <h2 className="text-2xl font-black tracking-tight bg-gradient-to-r from-primary to-info bg-clip-text text-transparent">
                 Registered Participants
               </h2>
-              <p className="text-muted-foreground font-bold text-sm mt-1 capitalize tracking-[0.2em]">
+              <p className="text-zinc-400 font-bold text-sm mt-1 capitalize tracking-[0.2em]">
                 {editingEvent?.title}
               </p>
             </div>
@@ -2246,8 +2332,8 @@ function PDCalendarView({
                       <TableRow key={registrant.id} className="hover:bg-primary/5 transition-colors group">
                         <TableCell className="py-5">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-black text-sm">
-                              {(registrant.name || registrant.fullName || "User").split(' ').map((n: string) => n[0]).join('')}
+                            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-black text-sm group-hover:bg-primary group-hover:text-white transition-all">
+                              {(registrant.name || "?").split(' ').map((n: string) => n ? n[0] : "").join('')}
                             </div>
                             <span className="font-bold text-foreground">{registrant.name}</span>
                           </div>
@@ -2279,7 +2365,7 @@ function PDCalendarView({
             </div>
             <div className="mt-8 flex justify-end">
               <Button
-                className="h-12 px-8 rounded-2xl bg-background hover:bg-card text-foreground font-black capitalize tracking-widest text-xs"
+                className="h-12 px-8 rounded-2xl bg-zinc-900 hover:bg-zinc-800 text-white font-black capitalize tracking-widest text-xs"
                 onClick={() => setIsRegistrantsOpen(false)}
               >
                 Close View
@@ -2292,7 +2378,7 @@ function PDCalendarView({
   );
 }
 
-function ProposeCourseView({ refreshData }: { refreshData: () => Promise<void> }) {
+function ProposeCourseView({ setTraining }: { setTraining: React.Dispatch<React.SetStateAction<any[]>> }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
@@ -2325,8 +2411,10 @@ function ProposeCourseView({ refreshData }: { refreshData: () => Promise<void> }
         isDownloadable: false
       });
 
+      // Do NOT update local training state as per requirements
+      // setTraining(prev => [...prev, newSession]); 
+
       toast.success("Course proposal submitted for admin approval!");
-      refreshData();
       navigate("/leader/calendar");
     } catch (error) {
       console.error("Failed to propose course:", error);
@@ -2451,11 +2539,11 @@ function ProposeCourseView({ refreshData }: { refreshData: () => Promise<void> }
   );
 }
 
-function ReportsView({ team, observations }: { team: any[], observations: any[] }) {
+function ReportsView({ team, observations }: { team: any[], observations: Observation[] }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
   const [sendingId, setSendingId] = useState<string | null>(null);
-  const [selectedTeacher, setSelectedTeacher] = useState<any>(null);
+  const [selectedTeacher, setSelectedTeacher] = useState<any | null>(null);
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [isAIModalOpen, setIsAIModalOpen] = useState(false);
 
@@ -2483,8 +2571,8 @@ function ReportsView({ team, observations }: { team: any[], observations: any[] 
   const roles = Array.from(new Set(team.map(t => t.role)));
 
   const filteredTeam = team.filter(t => {
-    const matchesSearch = t.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      t.role.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = (t.name || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (t.role || "").toLowerCase().includes(searchQuery.toLowerCase());
 
     const matchesRole = selectedRole === "all" || t.role === selectedRole;
 
@@ -2584,9 +2672,9 @@ function ReportsView({ team, observations }: { team: any[], observations: any[] 
               <Button
                 onClick={() => setIsAIModalOpen(true)}
                 variant="outline"
-                className="gap-2 bg-violet-50 hover:bg-violet-100 border-violet-200 text-violet-700 font-bold rounded-full px-5"
+                className="gap-2 bg-emerald-50 hover:bg-emerald-100 border-emerald-200 text-emerald-700 font-bold rounded-full px-5"
               >
-                <Sparkles className="w-4 h-4 text-violet-600" />
+                <Sparkles className="w-4 h-4 text-emerald-600" />
                 AI Smart Insights
               </Button>
               <div className="relative">
@@ -2678,7 +2766,7 @@ function ReportsView({ team, observations }: { team: any[], observations: any[] 
                         <td className="p-6">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
-                              {(member.name || member.fullName || 'User').split(' ').map((n: any) => n[0]).join('')}
+                              {(member.name || "?").split(' ').map(n => n ? n[0] : "").join('')}
                             </div>
                             <div>
                               <p className="font-bold text-foreground">{member.name}</p>
@@ -2780,13 +2868,15 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
+  const [selectedGoal, setSelectedGoal] = useState<any | null>(null);
 
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [categoryFilter, setCategoryFilter] = useState(searchParams.get("cat") || "All");
   const [statusFilter, setStatusFilter] = useState(searchParams.get("status") || "All");
   const [teacherFilter, setTeacherFilter] = useState(searchParams.get("teacher") || "All");
   const [progressFilter, setProgressFilter] = useState(searchParams.get("prog") || "All");
 
-  const [selectedGoal, setSelectedGoal] = useState<any | null>(null);
+  const [windows, setWindows] = useState<any[]>([]);
   const [showClosedPopup, setShowClosedPopup] = useState(false);
   const [isNotifying, setIsNotifying] = useState(false);
 
@@ -2795,6 +2885,7 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
       const res = await api.get('/goal-windows');
       if (res.data.status === 'success') {
         const fetchedWindows = res.data.data.windows || [];
+        setWindows(fetchedWindows);
         const isGoalSettingOpen = fetchedWindows.find((w: any) => w.phase === 'GOAL_SETTING')?.status === 'OPEN';
         const isGoalCompletionOpen = fetchedWindows.find((w: any) => w.phase === 'GOAL_COMPLETION')?.status === 'OPEN';
         if (!isGoalSettingOpen && !isGoalCompletionOpen) {
@@ -2855,7 +2946,7 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
   }, [searchQuery, categoryFilter, statusFilter, teacherFilter, progressFilter]);
 
   // Ensure goals is an array and filter out invalid entries to prevent crashes
-  const safeGoals = Array.isArray(goals) ? goals.filter(g => g && typeof g.teacher === 'string' && typeof g.title === 'string') : [];
+  const safeGoals = Array.isArray(goals) ? (goals as Goal[]).filter((g): g is Goal & { teacher: string; title: string } => !!(g && typeof g.teacher === 'string' && typeof g.title === 'string')) : [];
 
   // Get unique teachers, categories, and statuses for filter
   const uniqueTeachers = Array.from(new Set(safeGoals.map(g => g.teacher)));
@@ -2864,8 +2955,8 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
 
   // Apply all filters
   const filteredGoals = safeGoals.filter(g => {
-    const matchesSearch = (g.teacher?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      g.title?.toLowerCase().includes(searchQuery.toLowerCase())) ?? false;
+    const matchesSearch = g.teacher.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      g.title.toLowerCase().includes(searchQuery.toLowerCase());
 
     const matchesCategory = categoryFilter === "All" || g.category === categoryFilter;
     const matchesStatus = statusFilter === "All" || g.status === statusFilter;
@@ -2929,12 +3020,12 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
       {/* Window Closed Popup */}
       <Dialog open={showClosedPopup} onOpenChange={setShowClosedPopup}>
         <DialogContent className="sm:max-w-[450px] p-0 overflow-hidden border-none shadow-2xl">
-          <div className="bg-gradient-to-br from-amber-500 to-orange-600 p-8 text-foreground text-center relative overflow-hidden">
+          <div className="bg-gradient-to-br from-amber-500 to-orange-600 p-8 text-white text-center relative overflow-hidden">
             <div className="absolute top-0 right-0 p-4 opacity-10">
-              <LockIcon className="w-24 h-24" />
+              <Lock className="w-24 h-24" />
             </div>
             <div className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl border border-white/30">
-              <AlertCircle className="w-10 h-10 text-foreground" />
+              <AlertCircle className="w-10 h-10 text-white" />
             </div>
             <h2 className="text-2xl font-black mb-2 capitalize tracking-tight">Goal Window Closed</h2>
             <p className="text-amber-50 opacity-90 text-sm leading-relaxed max-w-[300px] mx-auto">
@@ -2955,7 +3046,7 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
               <Button
                 onClick={handleNotifyAdmin}
                 disabled={isNotifying}
-                className="w-full h-14 bg-amber-600 hover:bg-amber-700 text-foreground font-black capitalize tracking-widest text-sm rounded-2xl shadow-lg shadow-amber-600/20 transition-all active:scale-[0.98] group"
+                className="w-full h-14 bg-amber-600 hover:bg-amber-700 text-white font-black capitalize tracking-widest text-sm rounded-2xl shadow-lg shadow-amber-600/20 transition-all active:scale-[0.98] group"
               >
                 {isNotifying ? (
                   <Loader2 className="w-5 h-5 animate-spin" />
@@ -2969,7 +3060,7 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
               <Button
                 variant="ghost"
                 onClick={() => setShowClosedPopup(false)}
-                className="w-full h-12 text-muted-foreground font-bold hover:bg-slate-50 rounded-xl transition-all"
+                className="w-full h-12 text-slate-400 font-bold hover:bg-slate-50 rounded-xl transition-all"
               >
                 I'll check later
               </Button>
@@ -3024,8 +3115,8 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
                         </SelectTrigger>
                         <SelectContent align="start">
                           <SelectItem value="All" className="text-xs">All Teachers</SelectItem>
-                          {uniqueTeachers.map((teacher: any) => (
-                            <SelectItem key={String(teacher)} value={String(teacher)} className="text-xs">{String(teacher)}</SelectItem>
+                          {uniqueTeachers.map(teacher => (
+                            <SelectItem key={teacher} value={teacher} className="text-xs">{teacher}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
@@ -3168,14 +3259,11 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
 
 
 
-function AssignGoalView({ 
-  team, 
-  currentDraftGoalId, 
-  setCurrentDraftGoalId 
-}: { 
-  team: any[],
-  currentDraftGoalId: string | null,
-  setCurrentDraftGoalId: React.Dispatch<React.SetStateAction<string | null>>
+function AssignGoalView({ setGoals, team, currentDraftGoalId, setCurrentDraftGoalId }: { 
+  setGoals: React.Dispatch<React.SetStateAction<any[]>>, 
+  team: any[], 
+  currentDraftGoalId: string | null, 
+  setCurrentDraftGoalId: (id: string | null) => void 
 }) {
   const navigate = useNavigate();
   // We don't need to fetch a dynamic template if we are strictly embedding the static form
@@ -3295,7 +3383,7 @@ function PlaceholderView({ title, icon: Icon }: { title: string; icon: React.Com
         It will provide deep insights and powerful tools for school leaders once released.
       </p>
       <Button asChild>
-        <Link to="/departments/pd/leader">Return to Overview</Link>
+        <Link to="/leader">Return to Overview</Link>
       </Button>
     </div>
   );

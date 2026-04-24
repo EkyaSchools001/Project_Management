@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { cn } from "@pdi/lib/utils";
 import api from '@pdi/lib/api';
-import { Card, CardHeader, CardTitle, CardContent } from '@pdi/components/ui/card';
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@pdi/components/ui/card';
 import { Button } from '@pdi/components/ui/button';
 import { Badge } from '@pdi/components/ui/badge';
 import { toast } from 'sonner';
-import { Clock, Lock, Unlock, RefreshCw } from 'lucide-react';
+import { Calendar as CalendarIcon, Clock, Lock, Unlock, RefreshCw } from 'lucide-react';
 import { format } from 'date-fns';
 import { Input } from '@pdi/components/ui/input';
 import { Label } from '@pdi/components/ui/label';
@@ -84,15 +84,15 @@ export const GoalGovernance = () => {
                     return (order[a.phase] ?? 99) - (order[b.phase] ?? 99);
                 }).map((win) => (
                     <Card key={win.phase} className="shadow-lg bg-background/50 backdrop-blur-sm overflow-hidden group">
-                        <div className={`h-1 w-full ${win.status === 'OPEN' ? 'bg-violet-500' : 'bg-muted'}`} />
+                        <div className={`h-1 w-full ${win.status === 'OPEN' ? 'bg-emerald-500' : 'bg-muted'}`} />
                         <CardHeader className="pb-2">
                             <div className="flex justify-between items-start">
                                 <CardTitle className="text-base font-bold text-foreground">
-                                    {(win.phase || 'Unknown').split('_').map((w: string) => w.charAt(0) + w.slice(1).toLowerCase()).join(' ')}
+                                    {win.phase.split('_').map(w => w.charAt(0) + w.slice(1).toLowerCase()).join(' ')}
                                 </CardTitle>
                                 <Badge className={cn(
-                                    "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
-                                    win.status === 'OPEN' ? 'bg-violet-600' : 'bg-rose-600'
+                                    "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
+                                    win.status === 'OPEN' ? 'bg-emerald-600' : 'bg-rose-600'
                                 )}>
                                     {win.status}
                                 </Badge>
@@ -106,7 +106,7 @@ export const GoalGovernance = () => {
                                         type="date"
                                         className="h-7 text-xs px-1"
                                         value={win.startDate ? format(new Date(win.startDate), 'yyyy-MM-dd') : ''}
-                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleUpdateWindow(win.phase, { startDate: e.target.value })}
+                                        onChange={(e) => handleUpdateWindow(win.phase, { startDate: e.target.value })}
                                     />
                                 </div>
                                 <div className="space-y-1">
@@ -115,7 +115,7 @@ export const GoalGovernance = () => {
                                         type="date"
                                         className="h-7 text-xs px-1"
                                         value={win.endDate ? format(new Date(win.endDate), 'yyyy-MM-dd') : ''}
-                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleUpdateWindow(win.phase, { endDate: e.target.value })}
+                                        onChange={(e) => handleUpdateWindow(win.phase, { endDate: e.target.value })}
                                     />
                                 </div>
                             </div>

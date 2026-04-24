@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+﻿import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams, useLocation } from "react-router-dom";
 import { User, userService } from "@pdi/services/userService";
 
@@ -64,7 +64,8 @@ const DanielsonFrameworkPage = () => {
                             teacherId: selectedTeacher.id,
                             teacher: selectedTeacher.fullName,
                             teacherEmail: selectedTeacher.email,
-                            campus: selectedTeacher.campus,
+                            campus: selectedTeacher.campusId || selectedTeacher.campus,
+                            learningArea: selectedTeacher.department,
                         });
                     }
                 }
@@ -84,7 +85,9 @@ const DanielsonFrameworkPage = () => {
         name: t.fullName,
         role: t.role,
         email: t.email,
-        academics: t.academics
+        academics: t.academics,
+        campus: t.campusId || t.campus,
+        department: t.department
     })), [teachers]);
 
     if (!user) return null;

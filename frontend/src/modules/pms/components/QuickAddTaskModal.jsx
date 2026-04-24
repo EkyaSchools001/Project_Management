@@ -57,10 +57,10 @@ const QuickAddTaskModal = ({ isOpen, onClose, onAdd, projects }) => {
                     >
                         {/* Header Strategy */}
                         <div className="bg-slate-950 p-12 flex items-center justify-between relative overflow-hidden shrink-0">
-                            <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-transparent to-rose-600/10" />
+                            <div className="absolute inset-0 bg-gradient-to-br from-rose-600/30 via-transparent to-rose-600/10" />
                             <div className="relative z-10 space-y-4">
                                 <div className="flex items-center gap-6">
-                                    <div className="p-4 bg-white/10 rounded-2xl border border-white/10 text-indigo-400">
+                                    <div className="p-4 bg-white/10 rounded-2xl border border-white/10 text-rose-400">
                                         <Zap size={32} />
                                     </div>
                                     <h2 className="text-4xl font-black text-foreground uppercase tracking-tighter">Fast Ingestion</h2>
@@ -82,12 +82,12 @@ const QuickAddTaskModal = ({ isOpen, onClose, onAdd, projects }) => {
                                         required
                                         autoFocus
                                         placeholder="UNIT_NAME_PROTOCOL..."
-                                        className="w-full h-20 px-8 bg-slate-50 border border-slate-100 rounded-[2rem] text-sm font-black uppercase tracking-widest text-slate-950 placeholder:text-slate-300 focus:bg-white focus:ring-8 focus:ring-indigo-600/5 focus:border-indigo-600 outline-none transition-all"
+                                        className="w-full h-20 px-8 bg-slate-50 border border-slate-100 rounded-[2rem] text-sm font-black uppercase tracking-widest text-slate-950 placeholder:text-slate-300 focus:bg-white focus:ring-8 focus:ring-rose-600/5 focus:border-rose-600 outline-none transition-all"
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                     />
                                     <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 group-focus-within:opacity-100 transition-opacity">
-                                        <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
+                                        <div className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@ const QuickAddTaskModal = ({ isOpen, onClose, onAdd, projects }) => {
                             <div className="space-y-6">
                                 <label className="text-[11px] font-black text-muted-foreground uppercase tracking-[0.5em] px-4">Parent Cluster</label>
                                 <select
-                                    className="w-full h-20 px-8 bg-slate-50 border border-slate-100 rounded-[2rem] text-sm font-black uppercase tracking-widest text-slate-950 focus:bg-white focus:ring-8 focus:ring-indigo-600/5 focus:border-indigo-600 outline-none transition-all appearance-none cursor-pointer"
+                                    className="w-full h-20 px-8 bg-slate-50 border border-slate-100 rounded-[2rem] text-sm font-black uppercase tracking-widest text-slate-950 focus:bg-white focus:ring-8 focus:ring-rose-600/5 focus:border-rose-600 outline-none transition-all appearance-none cursor-pointer"
                                     value={formData.projectId}
                                     onChange={(e) => setFormData({ ...formData, projectId: parseInt(e.target.value) })}
                                 >
@@ -109,7 +109,7 @@ const QuickAddTaskModal = ({ isOpen, onClose, onAdd, projects }) => {
                                     <input
                                         type="date"
                                         required
-                                        className="w-full h-20 px-8 bg-slate-50 border border-slate-100 rounded-[2rem] text-sm font-black uppercase tracking-widest text-slate-950 focus:bg-white focus:ring-8 focus:ring-indigo-600/5 focus:border-indigo-600 outline-none transition-all"
+                                        className="w-full h-20 px-8 bg-slate-50 border border-slate-100 rounded-[2rem] text-sm font-black uppercase tracking-widest text-slate-950 focus:bg-white focus:ring-8 focus:ring-rose-600/5 focus:border-rose-600 outline-none transition-all"
                                         value={formData.start}
                                         onChange={(e) => setFormData({ ...formData, start: e.target.value })}
                                     />
@@ -119,7 +119,7 @@ const QuickAddTaskModal = ({ isOpen, onClose, onAdd, projects }) => {
                                     <input
                                         type="date"
                                         required
-                                        className="w-full h-20 px-8 bg-slate-50 border border-slate-100 rounded-[2rem] text-sm font-black uppercase tracking-widest text-slate-950 focus:bg-white focus:ring-8 focus:ring-indigo-600/5 focus:border-indigo-600 outline-none transition-all"
+                                        className="w-full h-20 px-8 bg-slate-50 border border-slate-100 rounded-[2rem] text-sm font-black uppercase tracking-widest text-slate-950 focus:bg-white focus:ring-8 focus:ring-rose-600/5 focus:border-rose-600 outline-none transition-all"
                                         value={formData.end}
                                         onChange={(e) => setFormData({ ...formData, end: e.target.value })}
                                     />
@@ -136,7 +136,7 @@ const QuickAddTaskModal = ({ isOpen, onClose, onAdd, projects }) => {
                                 </button>
                                 <button
                                     type="submit"
-                                    className="h-22 bg-slate-950 text-foreground font-black uppercase tracking-[0.4em] rounded-[2rem] hover:bg-indigo-600 shadow-2xl shadow-indigo-600/20 transition-all active:scale-95 text-[11px] flex-[2] flex items-center justify-center gap-6 group/btn"
+                                    className="h-22 bg-slate-950 text-foreground font-black uppercase tracking-[0.4em] rounded-[2rem] hover:bg-rose-600 shadow-2xl shadow-rose-600/20 transition-all active:scale-95 text-[11px] flex-[2] flex items-center justify-center gap-6 group/btn"
                                 >
                                     Deploy to Matrix
                                     <ArrowUpRight size={24} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />

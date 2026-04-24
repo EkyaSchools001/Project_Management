@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@pdi/components/ui/card';
 import { Progress } from '@pdi/components/ui/progress';
 import { Badge } from '@pdi/components/ui/badge';
@@ -18,8 +18,8 @@ const MetricCard = ({ icon: Icon, label, value, sub, color = 'blue' }: {
     color?: string;
 }) => {
     const colorMap: Record<string, string> = {
-        blue: 'bg-violet-50 text-blue-600 border-blue-100',
-        emerald: 'bg-violet-50 text-violet-600 border-violet-100',
+        blue: 'bg-blue-50 text-blue-600 border-blue-100',
+        emerald: 'bg-emerald-50 text-emerald-600 border-emerald-100',
         amber: 'bg-amber-50 text-amber-600 border-amber-100',
         purple: 'bg-purple-50 text-purple-600 border-purple-100',
         zinc: 'bg-zinc-50 text-zinc-600 border-zinc-100',
@@ -30,9 +30,9 @@ const MetricCard = ({ icon: Icon, label, value, sub, color = 'blue' }: {
                 <div className={cn('w-10 h-10 rounded-xl flex items-center justify-center mb-3 border', colorMap[color] || colorMap.blue)}>
                     <Icon className="w-5 h-5" />
                 </div>
-                <p className="text-xs font-bold capitalize tracking-wider text-muted-foreground mb-1">{label}</p>
+                <p className="text-xs font-bold capitalize tracking-wider text-zinc-400 mb-1">{label}</p>
                 <p className="text-3xl font-black text-zinc-800">{value}</p>
-                {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
+                {sub && <p className="text-xs text-zinc-400 mt-1">{sub}</p>}
             </CardContent>
         </Card>
     );
@@ -107,12 +107,12 @@ export const TeacherOKRView: React.FC<Props> = ({ data }) => {
                 <CardContent className="space-y-3">
                     <div className="flex justify-between text-sm font-medium">
                         <span className="text-zinc-600">{data.pdHoursCompleted}h completed</span>
-                        <span className="text-muted-foreground">Goal: {data.pdTargetHours}h</span>
+                        <span className="text-zinc-400">Goal: {data.pdTargetHours}h</span>
                     </div>
                     <Progress value={pdProgress} className="h-3 rounded-full" />
-                    <div className="flex justify-between text-xs text-muted-foreground">
+                    <div className="flex justify-between text-xs text-zinc-400">
                         <span>{pdProgress}% of annual goal achieved</span>
-                        <span className={data.pdHoursPending === 0 ? 'text-violet-600 font-bold' : ''}>
+                        <span className={data.pdHoursPending === 0 ? 'text-emerald-600 font-bold' : ''}>
                             {data.pdHoursPending === 0 ? '🎉 Goal reached!' : `${data.pdHoursPending}h to go`}
                         </span>
                     </div>
@@ -130,11 +130,11 @@ export const TeacherOKRView: React.FC<Props> = ({ data }) => {
                 <CardContent className="space-y-3">
                     <div className="flex justify-between text-sm font-medium">
                         <span className="text-zinc-600">{data.goalsCompleted} completed</span>
-                        <span className="text-muted-foreground">Total: {data.goalsTotal}</span>
+                        <span className="text-zinc-400">Total: {data.goalsTotal}</span>
                     </div>
                     <Progress value={goalProgress} className="h-3 rounded-full" />
                     <div className="flex gap-2 mt-2">
-                        <Badge variant="secondary" className="bg-violet-50 text-violet-700 border-violet-100">
+                        <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 border-emerald-100">
                             {data.goalsCompleted} Done
                         </Badge>
                         <Badge variant="secondary" className="bg-amber-50 text-amber-700 border-amber-100">

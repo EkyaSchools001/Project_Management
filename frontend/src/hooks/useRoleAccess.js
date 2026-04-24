@@ -6,19 +6,23 @@ export const useRoleAccess = () => {
 
     const checkPermission = (permission) => {
         if (!user) return false;
-        return hasPermission(user.role, permission, user.overrides);
+        const normalizedRole = user.role?.toUpperCase().replace(/\s+/g, '_');
+        return hasPermission(normalizedRole, permission, user.overrides);
     };
 
     const checkRouteAccess = (routePermissions) => {
         if (!user) return false;
-        return canAccessRoute(user.role, routePermissions, user.overrides);
+        const normalizedRole = user.role?.toUpperCase().replace(/\s+/g, '_');
+        return canAccessRoute(normalizedRole, routePermissions, user.overrides);
     };
+
+    const normalizedRole = user?.role?.toUpperCase().replace(/\s+/g, '_');
 
     return {
         user,
-        role: user?.role,
+        role: normalizedRole,
         checkPermission,
         checkRouteAccess,
-        isAdmin: user?.role === 'SuperAdmin' || user?.role === 'ManagementAdmin'
+        isAdmin: normalizedRole === 'SUPER_ADMIN' || normalizedRole === 'MANAGEMENT'
     };
 };

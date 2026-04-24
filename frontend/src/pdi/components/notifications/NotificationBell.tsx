@@ -1,6 +1,5 @@
-// @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Bell, Trash2, BellOff } from 'lucide-react';
+import { Bell, Check, Trash2, Info, AlertTriangle, CheckCircle2, XCircle, BellOff } from 'lucide-react';
 import {
     Popover,
     PopoverContent,
@@ -9,29 +8,18 @@ import {
 import { Button } from "@pdi/components/ui/button";
 import { Badge } from "@pdi/components/ui/badge";
 import { ScrollArea } from "@pdi/components/ui/scroll-area";
-import { notificationService } from '@pdi/services/notificationService';
+import { Separator } from "@pdi/components/ui/separator";
+import { notificationService, Notification } from '@pdi/services/notificationService';
 import { getSocket } from '@pdi/lib/socket';
 import { formatDistanceToNow } from 'date-fns';
 import { cn } from '@pdi/lib/utils';
 import { toast } from 'sonner';
 
 import { useAuth } from '@pdi/hooks/useAuth';
-import { NotificationItem } from './NotificationItem';
-
-interface NotificationData {
-    id: string;
-    title: string;
-    message: string;
-    type: string;
-    category: string;
-    read: boolean;
-    link?: string;
-    createdAt: string;
-}
 
 export const NotificationBell: React.FC = () => {
     const { user } = useAuth();
-    const [notifications, setNotifications] = useState<NotificationData[]>([]);
+    const [notifications, setNotifications] = useState<Notification[]>([]);
     const [unreadCount, setUnreadCount] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -40,17 +28,22 @@ export const NotificationBell: React.FC = () => {
 
         fetchNotifications();
 
+        // Socket listener for new notifications
         const socket = getSocket();
+
+        // Join user-specific room for targeted notifications
         socket.emit('join_room', `user:${user.id}`);
         console.log(`NotificationBell: Joining room user:${user.id}`);
 
-        socket.on('notification:new', (newNotification: NotificationData) => {
+        socket.on('notification:new', (newNotification: Notification) => {
             setNotifications(prev => [newNotification, ...prev]);
             setUnreadCount(prev => prev + 1);
             toast.info(`${newNotification.title}: ${newNotification.message.substring(0, 50)}${newNotification.message.length > 50 ? '...' : ''}`, {
                 action: {
                     label: 'View',
-                    onClick: () => {}
+                    onClick: () => {
+                        // Handle view logic if needed
+                    }
                 }
             });
         });
@@ -59,13 +52,14 @@ export const NotificationBell: React.FC = () => {
             socket.off('notification:new');
             socket.emit('leave_room', `user:${user.id}`);
         };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user?.id]);
 
     const fetchNotifications = async () => {
         try {
-            const data = await notificationService.getNotifications({ limit: 20 });
-            setNotifications(data.data);
-            setUnreadCount(data.unread);
+            const data = await notificationService.getNotifications();
+            setNotifications(data);
+            setUnreadCount(data.filter(n => !n.read).length);
         } catch (error) {
             console.error('Failed to fetch notifications', error);
         }
@@ -103,6 +97,15 @@ export const NotificationBell: React.FC = () => {
             }
         } catch (error) {
             toast.error('Failed to delete notification');
+        }
+    };
+
+    const getIcon = (type: string) => {
+        switch (type) {
+            case 'SUCCESS': return <CheckCircle2 className="w-4 h-4 text-green-500" />;
+            case 'WARNING': return <AlertTriangle className="w-4 h-4 text-yellow-500" />;
+            case 'ERROR': return <XCircle className="w-4 h-4 text-red-500" />;
+            default: return <Info className="w-4 h-4 text-blue-500" />;
         }
     };
 
@@ -146,12 +149,42 @@ export const NotificationBell: React.FC = () => {
                     ) : (
                         <div className="flex flex-col">
                             {notifications.map((notification) => (
-                                <NotificationItem
+                                <div
                                     key={notification.id}
-                                    notification={notification}
-                                    onMarkAsRead={handleMarkAsRead}
-                                    onDelete={handleDelete}
-                                />
+                                    onClick={() => !notification.read && handleMarkAsRead(notification.id)}
+                                    className={cn(
+                                        "group flex items-start gap-3 p-4 hover:bg-gray-50/50 cursor-pointer transition-colors relative border-b last:border-0",
+                                        !notification.read && "bg-blue-50/30"
+                                    )}
+                                >
+                                    <div className="mt-0.5">
+                                        {getIcon(notification.type)}
+                                    </div>
+                                    <div className="flex-1 min-w-0 pr-6">
+                                        <div className="flex items-center justify-between gap-2">
+                                            <p className={cn("text-sm font-bold truncate", !notification.read ? "text-gray-900" : "text-gray-600")}>
+                                                {notification.title}
+                                            </p>
+                                            {!notification.read && (
+                                                <div className="w-2 h-2 bg-blue-500 rounded-full shrink-0" />
+                                            )}
+                                        </div>
+                                        <p className="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed">
+                                            {notification.message}
+                                        </p>
+                                        <p className="text-[10px] text-gray-400 mt-2 font-medium">
+                                            {formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })}
+                                        </p>
+                                    </div>
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        onClick={(e) => handleDelete(e, notification.id)}
+                                        className="absolute right-2 top-4 opacity-0 group-hover:opacity-100 h-8 w-8 text-gray-400 hover:text-red-500 transition-opacity"
+                                    >
+                                        <Trash2 className="w-3.5 h-3.5" />
+                                    </Button>
+                                </div>
                             ))}
                         </div>
                     )}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { ScrollToTop } from '@pdi/components/ui/ScrollToTop';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@pdi/components/ui/card';
 import { Button } from '@pdi/components/ui/button';
@@ -231,7 +231,7 @@ export const SurveyHistoryView = ({ onViewResponse, onBack }: SurveyHistoryViewP
                                         </TableCell>
                                         <TableCell>
                                             <Badge variant="secondary" className={cn(
-                                                "bg-violet-50 text-violet-700 hover:bg-violet-50 font-bold text-[10px] capitalize tracking-wider",
+                                                "bg-emerald-50 text-emerald-700 hover:bg-emerald-50 font-bold text-[10px] capitalize tracking-wider",
                                                 !response.isCompleted && "bg-amber-50 text-amber-700 hover:bg-amber-50"
                                             )}>
                                                 {response.isCompleted ? "Completed" : "Pending"}

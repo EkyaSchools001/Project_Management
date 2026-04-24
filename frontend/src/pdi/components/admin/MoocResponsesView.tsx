@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { 
     ChevronLeft, Search, Eye, Link as LinkIcon, Brain, 
@@ -151,8 +151,8 @@ export function MoocResponsesView({ refreshTeam, onBack }: MoocResponsesViewProp
                                         </td>
                                         <td className="p-6">
                                             <Badge className={cn(
-                                                "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
-                                                sub.status === 'APPROVED' ? "bg-violet-600" : 
+                                                "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
+                                                sub.status === 'APPROVED' ? "bg-black hover:bg-black cursor-default" : 
                                                 sub.status === 'REJECTED' ? "bg-rose-600" : 
                                                 "bg-amber-500"
                                             )}>
@@ -217,7 +217,7 @@ export function MoocResponsesView({ refreshTeam, onBack }: MoocResponsesViewProp
                                 </div>
                             </div>
 
-                            <div className="h-px bg-backgroundorder my-4" />
+                            <div className="h-px bg-border my-4" />
 
                             {selectedSubmission.hasCertificate === 'yes' ? (
                                 <div>
@@ -250,7 +250,7 @@ export function MoocResponsesView({ refreshTeam, onBack }: MoocResponsesViewProp
 
                             {(selectedSubmission.supportingDocType || selectedSubmission.supportingDocLink || selectedSubmission.supportingDocFile) && (
                                 <div>
-                                    <div className="h-px bg-backgroundorder my-4" />
+                                    <div className="h-px bg-border my-4" />
                                     <h4 className="font-bold flex items-center gap-2 mb-3">
                                         <Paperclip className="w-4 h-4" /> Supporting Documents
                                     </h4>
@@ -285,7 +285,7 @@ export function MoocResponsesView({ refreshTeam, onBack }: MoocResponsesViewProp
                                     )}
                                 </div>
                             )}
-                            <div className="h-px bg-backgroundorder my-4" />
+                            <div className="h-px bg-border my-4" />
 
                             <div>
                                 <Label className="text-muted-foreground">Effectiveness Rating</Label>
@@ -317,7 +317,7 @@ export function MoocResponsesView({ refreshTeam, onBack }: MoocResponsesViewProp
                                         Reject Submission
                                     </Button>
                                     <Button
-                                        className="flex-1 bg-violet-600 hover:bg-violet-700"
+                                        className="flex-1 bg-green-600 hover:bg-green-700"
                                         onClick={() => handleUpdateStatus('APPROVED')}
                                         disabled={isUpdating}
                                     >

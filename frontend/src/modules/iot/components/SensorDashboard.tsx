@@ -26,7 +26,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     return (
       <div className="bg-[#1a1d29] border border-white/10 p-3 rounded-lg">
         <p className="text-xs text-foreground/50">{new Date(label).toLocaleString()}</p>
-        <p className="text-sm font-medium text-[#8b5cf6]">
+        <p className="text-sm font-medium text-[#ef4444]">
           {payload[0].value.toFixed(1)} {payload[0].payload.unit}
         </p>
       </div>
@@ -118,8 +118,8 @@ export function SensorDashboard({
             <AreaChart data={chartData}>
               <defs>
                 <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#ef4444" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#ffffff10" />
@@ -138,7 +138,7 @@ export function SensorDashboard({
               <Area
                 type="monotone"
                 dataKey="value"
-                stroke="#8b5cf6"
+                stroke="#ef4444"
                 fill="url(#colorValue)"
                 strokeWidth={2}
               />

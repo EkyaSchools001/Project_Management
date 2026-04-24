@@ -82,7 +82,7 @@ export default function ResetPasswordPage() {
     const getStrengthColor = (strength) => {
         if (strength <= 2) return 'bg-red-500';
         if (strength <= 3) return 'bg-yellow-500';
-        return 'bg-[#8b5cf6]';
+        return 'bg-[#ef4444]';
     };
 
     const getStrengthLabel = (strength) => {
@@ -103,7 +103,7 @@ export default function ResetPasswordPage() {
                     </p>
                     <button
                         onClick={() => navigate('/forgot-password')}
-                        className="w-full h-12 bg-[#8b5cf6] text-black font-bold rounded-xl"
+                        className="w-full h-12 bg-[#ef4444] text-black font-bold rounded-xl"
                     >
                         Request New Link
                     </button>
@@ -123,15 +123,15 @@ export default function ResetPasswordPage() {
                     className="w-full max-w-[480px] relative z-10"
                 >
                     <Card className="p-10 sm:p-14 bg-[#161B22] border-white/5 rounded-[3rem] relative overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-1.5 bg-[#8b5cf6] shadow-[0_0_20px_rgba(186,255,0,0.5)]" />
+                        <div className="absolute top-0 left-0 w-full h-1.5 bg-[#ef4444] shadow-[0_0_20px_rgba(186,255,0,0.5)]" />
 
                         <motion.div
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
                             transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                            className="w-20 h-20 mx-auto mb-8 bg-[#8b5cf6]/20 rounded-full flex items-center justify-center"
+                            className="w-20 h-20 mx-auto mb-8 bg-[#ef4444]/20 rounded-full flex items-center justify-center"
                         >
-                            <CheckCircle size={40} className="text-[#8b5cf6]" />
+                            <CheckCircle size={40} className="text-[#ef4444]" />
                         </motion.div>
 
                         <h1 className="text-3xl sm:text-4xl font-black text-foreground text-center mb-4">
@@ -144,7 +144,7 @@ export default function ResetPasswordPage() {
 
                         <button
                             onClick={() => navigate('/login')}
-                            className="w-full h-14 bg-[#8b5cf6] text-black font-bold rounded-xl flex items-center justify-center gap-3 hover:shadow-[0_0_30px_rgba(186,255,0,0.3)]"
+                            className="w-full h-14 bg-[#ef4444] text-black font-bold rounded-xl flex items-center justify-center gap-3 hover:shadow-[0_0_30px_rgba(186,255,0,0.3)]"
                         >
                             Go to Login
                         </button>
@@ -157,7 +157,7 @@ export default function ResetPasswordPage() {
     return (
         <div className="min-h-screen w-full flex items-center justify-center bg-[#18181b] p-4 relative overflow-hidden">
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/grid-me.png')] opacity-[0.03] pointer-events-none" />
-            <div className="absolute -top-1/4 -left-1/4 w-[100%] h-[100%] bg-[#8b5cf6]/5 rounded-full blur-[150px] pointer-events-none" />
+            <div className="absolute -top-1/4 -left-1/4 w-[100%] h-[100%] bg-[#ef4444]/5 rounded-full blur-[150px] pointer-events-none" />
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -165,7 +165,7 @@ export default function ResetPasswordPage() {
                 className="w-full max-w-[480px] relative z-10"
             >
                 <Card className="p-10 sm:p-14 bg-[#161B22] border-white/5 rounded-[3rem] relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-full h-1.5 bg-[#8b5cf6] shadow-[0_0_20px_rgba(186,255,0,0.5)]" />
+                    <div className="absolute top-0 left-0 w-full h-1.5 bg-[#ef4444] shadow-[0_0_20px_rgba(186,255,0,0.5)]" />
 
                     <button
                         onClick={() => navigate('/login')}
@@ -180,7 +180,7 @@ export default function ResetPasswordPage() {
                         transition={{ type: 'spring', stiffness: 200, damping: 15 }}
                         className="w-16 h-16 mx-auto mb-6 bg-[#18181b] border border-white/10 rounded-2xl flex items-center justify-center"
                     >
-                        <Lock size={28} className="text-[#8b5cf6]" />
+                        <Lock size={28} className="text-[#ef4444]" />
                     </motion.div>
 
                     <h1 className="text-3xl sm:text-4xl font-black text-foreground text-center mb-3">
@@ -215,7 +215,7 @@ export default function ResetPasswordPage() {
                                     type={showPassword ? 'text' : 'password'}
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full px-6 h-14 bg-[#18181b] rounded-xl border border-white/5 focus:border-[#8b5cf6]/50 outline-none transition-all text-foreground font-medium pr-12"
+                                    className="w-full px-6 h-14 bg-[#18181b] rounded-xl border border-white/5 focus:border-[#ef4444]/50 outline-none transition-all text-foreground font-medium pr-12"
                                     placeholder="Enter new password"
                                     disabled={isLoading}
                                 />
@@ -241,7 +241,7 @@ export default function ResetPasswordPage() {
                                         ))}
                                     </div>
                                     <p className="text-xs text-foreground/40">
-                                        Password strength: <span className={passwordStrength > 3 ? 'text-[#8b5cf6]' : 'text-foreground/60'}>{getStrengthLabel(passwordStrength)}</span>
+                                        Password strength: <span className={passwordStrength > 3 ? 'text-[#ef4444]' : 'text-foreground/60'}>{getStrengthLabel(passwordStrength)}</span>
                                     </p>
                                 </div>
                             )}
@@ -257,7 +257,7 @@ export default function ResetPasswordPage() {
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
                                     className={`w-full px-6 h-14 bg-[#18181b] rounded-xl border ${
-                                        confirmPassword && password !== confirmPassword ? 'border-red-500/50' : 'border-white/5 focus:border-[#8b5cf6]/50'
+                                        confirmPassword && password !== confirmPassword ? 'border-red-500/50' : 'border-white/5 focus:border-[#ef4444]/50'
                                     } outline-none transition-all text-foreground font-medium pr-12`}
                                     placeholder="Confirm new password"
                                     disabled={isLoading}
@@ -278,7 +278,7 @@ export default function ResetPasswordPage() {
                         <button
                             type="submit"
                             disabled={isLoading || !password || !confirmPassword || password !== confirmPassword}
-                            className="w-full h-14 bg-[#8b5cf6] text-black font-bold rounded-xl flex items-center justify-center gap-3 hover:shadow-[0_0_30px_rgba(186,255,0,0.3)] active:scale-[0.98] transition-all disabled:opacity-50"
+                            className="w-full h-14 bg-[#ef4444] text-black font-bold rounded-xl flex items-center justify-center gap-3 hover:shadow-[0_0_30px_rgba(186,255,0,0.3)] active:scale-[0.98] transition-all disabled:opacity-50"
                         >
                             {isLoading ? (
                                 <Loader2 size={20} className="animate-spin" />

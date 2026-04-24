@@ -1,7 +1,9 @@
+import * as React from 'react';
 import { cn } from "@pdi/lib/utils";
 import { Calendar, User, Tag, MessageSquare, Eye, CheckCircle2, Zap, ArrowRight, Shield } from "lucide-react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
+import { motion } from "framer-motion";
 
 interface ObservationCardProps {
   observation: {
@@ -25,10 +27,16 @@ interface ObservationCardProps {
 
 export function ObservationCard({ observation, onReflect, onView, className }: ObservationCardProps) {
   return (
-    <div className={cn(
-      "dashboard-card p-5 sm:p-8 group hover:border-primary/40 transition-all relative overflow-hidden",
-      className
-    )}>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className={cn(
+        "dashboard-card p-5 sm:p-8 group hover:border-primary/40 transition-all relative overflow-hidden",
+        className
+      )}
+    >
       {/* Decorative background icon */}
       <div className="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity pointer-events-none">
         <Shield size={100} />
@@ -52,8 +60,8 @@ export function ObservationCard({ observation, onReflect, onView, className }: O
             <p className="text-[10px] font-black capitalize text-zinc-950 tracking-widest mb-1">Score</p>
             <div className={cn(
               "flex items-center justify-center w-12 h-12 rounded-2xl font-black text-xl shadow-sm",
-              observation.score >= 3.5 ? "bg-violet-500 text-foreground" :
-                observation.score >= 2.5 ? "bg-amber-500 text-foreground" : "bg-primary text-foreground"
+              observation.score >= 3.5 ? "bg-emerald-500 text-white" :
+                observation.score >= 2.5 ? "bg-amber-500 text-white" : "bg-primary text-white"
             )}>
               {observation.score}
             </div>
@@ -89,12 +97,12 @@ export function ObservationCard({ observation, onReflect, onView, className }: O
               {observation.domain}
             </Badge>
             {observation.subject && (
-              <Badge variant="secondary" className="bg-violet-50 text-blue-700 hover:bg-violet-100 border-none">
+              <Badge variant="secondary" className="bg-blue-50 text-blue-700 hover:bg-blue-100 border-none">
                 {observation.subject}
               </Badge>
             )}
             {(observation.type === "Quick Feedback" || observation.domain === "Quick Feedback") && (
-              <Badge className="bg-indigo-600 text-foreground shadow-sm gap-1">
+              <Badge className="bg-indigo-600 text-white shadow-sm gap-1">
                 <Zap className="w-3 h-3 fill-current" />
                 Quick Feedback
               </Badge>
@@ -125,7 +133,7 @@ export function ObservationCard({ observation, onReflect, onView, className }: O
         </Button>
 
         {observation.hasReflection ? (
-          <Badge variant="secondary" className="bg-violet-50 text-violet-700 hover:bg-violet-100 border-violet-100 py-1.5 px-3 gap-1.5">
+          <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border-emerald-100 py-1.5 px-3 gap-1.5">
             <CheckCircle2 className="w-3.5 h-3.5" />
             Reflection Submitted
           </Badge>
@@ -141,6 +149,6 @@ export function ObservationCard({ observation, onReflect, onView, className }: O
           </Button>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }

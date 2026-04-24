@@ -151,7 +151,7 @@ export default function ReportsViewPage() {
                   <TableRow key={report.id}>
                     <TableCell>
                       <div className="flex items-center gap-2">
-                        <FileText className="w-5 h-5 text-blue-500" />
+                        <FileText className="w-5 h-5 text-red-500" />
                         <span className="font-medium">{report.name}</span>
                       </div>
                       {report.description && (

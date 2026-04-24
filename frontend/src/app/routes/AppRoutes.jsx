@@ -39,21 +39,15 @@ import GamificationPage from '../../modules/gamification/pages/GamificationPage'
 import LeaderboardPage from '../../modules/gamification/pages/LeaderboardPage';
 import TenantManagementPage from '../../modules/tenant/pages/TenantManagementPage';
 import TenantSettingsPage from '../../modules/tenant/pages/TenantSettingsPage';
-
+import RBACDashboard from '../../modules/admin/pages/RBACDashboard';
 
 const ProtectedRoute = ({ children, permission }) => {
     const { user, loading } = useAuth();
     if (loading) return null;
     if (!user) return <Navigate to="/login" replace />;
-    // BYPASS PERMISSIONS AS REQUESTED FOR TESTING (but keeping user check for stability)
     return children;
 };
 
-/**
- * Redirects /teacher/*, /leader/*, /admin/*, /management/*, etc.
- * to their full /departments/pd/* equivalents.
- * This fixes internal navigate() calls inside the PDI dashboards.
- */
 const RedirectToPD = ({ prefix }) => {
     const location = useLocation();
     const newPath = `/departments/pd${location.pathname}${location.search}`;
@@ -77,7 +71,7 @@ export default function AppRoutes() {
                 </ProtectedRoute>
             } />
 
-                <Route path="/" element={<DashboardLayout />}>
+            <Route path="/" element={<DashboardLayout />}>
                 <Route index element={<RoleBasedRedirect />} />
                 <Route path="dashboard" element={<DashboardPage />} />
                 <Route path="profile" element={<ProfilePage />} />
@@ -88,8 +82,6 @@ export default function AppRoutes() {
                         <DepartmentListPage />
                     </ProtectedRoute>
                 } />
-
-
 
                 <Route path="departments/:id" element={
                     <ProtectedRoute permission={PERMISSIONS.DEPARTMENTS}>
@@ -205,7 +197,6 @@ export default function AppRoutes() {
                     </ProtectedRoute>
                 } />
 
-
                 <Route path="users" element={
                     <ProtectedRoute permission={PERMISSIONS.USER_MGMT}>
                         <UserManagementPage />
@@ -218,8 +209,12 @@ export default function AppRoutes() {
                     </ProtectedRoute>
                 } />
 
+                <Route path="rbac" element={
+                    <ProtectedRoute permission={PERMISSIONS.USER_MGMT}>
+                        <RBACDashboard />
+                    </ProtectedRoute>
+                } />
 
-                {/* PMS Routes - Integrated Tools */}
                 <Route path="/pms/projects" element={
                     <ProtectedRoute permission={PERMISSIONS.PROJECTS}>
                         <ProjectsPage />
@@ -328,17 +323,18 @@ export default function AppRoutes() {
                 </ProtectedRoute>
             } />
 
-
-            {/* PDI Internal Navigation Redirects
-                TeacherDashboard and LeaderDashboard use navigate() with short paths
-                like /teacher/observations – these routes transparently redirect them
-                to the correct /departments/pd/* paths so clicks work properly. */}
             <Route path="/teacher/*" element={<RedirectToPD />} />
             <Route path="/leader/*" element={<RedirectToPD />} />
             <Route path="/admin/*" element={<RedirectToPD />} />
             <Route path="/management/*" element={<RedirectToPD />} />
+            <Route path="/coordinator/*" element={<RedirectToPD />} />
             <Route path="/okr" element={<RedirectToPD />} />
-            <Route path="/portfolio" element={<RedirectToPD />} />
+            <Route path="/hr/*" element={<RedirectToPD />} />
+            <Route path="/technology/*" element={<RedirectToPD />} />
+            <Route path="/edu-hub/*" element={<RedirectToPD />} />
+            <Route path="/campuses/*" element={<RedirectToPD />} />
+            <Route path="/educator-hub/*" element={<RedirectToPD />} />
+            <Route path="/portfolio/*" element={<RedirectToPD />} />
             <Route path="/announcements" element={<RedirectToPD />} />
 
             <Route path="*" element={<Navigate to="/dashboard" replace />} />

@@ -14,16 +14,7 @@ import { Button } from '@pdi/components/ui/button';
 import { cn } from '@pdi/lib/utils';
 import { formatDistanceToNow } from 'date-fns';
 
-interface Notification {
-  id: string;
-  title: string;
-  message: string;
-  type: string;
-  category: string;
-  read: boolean;
-  link?: string;
-  createdAt: string;
-}
+import { Notification } from '@pdi/services/notificationService';
 
 interface NotificationItemProps {
   notification: Notification;
@@ -57,13 +48,13 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({
   const getTypeColor = () => {
     switch (notification.type) {
       case 'SUCCESS':
-        return 'text-violet-500 bg-violet-500/10';
+        return 'text-red-500 bg-red-500/10';
       case 'WARNING':
         return 'text-yellow-500 bg-yellow-500/10';
       case 'ERROR':
         return 'text-red-500 bg-red-500/10';
       default:
-        return 'text-blue-500 bg-violet-500/10';
+        return 'text-red-500 bg-red-500/10';
     }
   };
 
@@ -132,7 +123,7 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({
             {formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })}
           </span>
           {!notification.read && (
-            <span className="w-2 h-2 bg-[#8b5cf6] rounded-full" />
+            <span className="w-2 h-2 bg-[#ef4444] rounded-full" />
           )}
         </div>
       </div>

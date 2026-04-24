@@ -6,7 +6,7 @@ import {
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../../components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card';
 
-const COLORS = ['#6366f1', '#c084fc', '#FFBB28', '#FF8042', '#8884d8', '#a78bfa'];
+const COLORS = ['#f43f5e', '#fb7185', '#FFBB28', '#FF8042', '#8884d8', '#fda4af'];
 
 interface ChartWidgetProps {
   config: {

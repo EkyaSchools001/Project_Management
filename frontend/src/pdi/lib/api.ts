@@ -8,10 +8,7 @@ const getApiUrl = () => {
     // 1. Prioritize VITE_API_URL if set
     if (import.meta.env.VITE_API_URL) {
         let url = import.meta.env.VITE_API_URL;
-        if (!url.endsWith('/')) {
-            url += '/';
-        }
-        return url;
+        return url.endsWith('/') ? url : `${url}/`;
     }
 
     const hostname = window.location.hostname;
@@ -20,13 +17,20 @@ const getApiUrl = () => {
         return '/api/v1/';
     }
 
-    // 3. Fallback
-    return '/api/v1/';
+    // 3. Cloudflare Pages/Netlify/Production backend routing
+    if (import.meta.env.PROD) {
+        return '/api/v1/';
+    }
+
+    // 4. Localhost fallback - preferring direct backend connection
+    return 'http://localhost:8888/api/v1/';
 };
 
 const API_URL = getApiUrl();
-console.log('--- DEBUG API URL ---', API_URL);
-console.log('--- VITE_API_URL ---', import.meta.env.VITE_API_URL);
+console.log('--- PDI API CONFIG ---', {
+    baseURL: API_URL,
+    origin: window.location.origin
+});
 
 const api: AxiosInstance = axios.create({
     baseURL: API_URL,
@@ -44,9 +48,14 @@ api.interceptors.request.use(
             config.url = config.url.substring(1);
         }
 
-        const token = localStorage.getItem('school_mgmt_token');
+        const token = sessionStorage.getItem('auth_token') || localStorage.getItem('auth_token');
         if (token && config.headers) {
             config.headers.Authorization = `Bearer ${token}`;
+            // Log masked token for debugging 401s
+            if (import.meta.env.DEV) {
+                const masked = token.length > 10 ? `${token.substring(0, 6)}...${token.slice(-4)}` : '***';
+                console.log(`[API Request] ${config.method?.toUpperCase()} ${config.url} | Token: ${masked}`);
+            }
         }
         return config;
     },
@@ -62,10 +71,17 @@ api.interceptors.response.use(
         const status = error.response ? error.response.status : null;
 
         if (status === 401) {
-            console.error('API Error: 401 Unauthorized', error.response?.data);
-            // We removed the immediate clear token and window.location.href = '/login'
-            // to stop unexpected session timeouts from routing bugs.
-            toast.error('Authentication Error. Please check your session.');
+            // Unauthorized - clear this tab's session
+            sessionStorage.removeItem('auth_token');
+            sessionStorage.removeItem('user_data');
+            // Only redirect if we're inside a PDI route (not already on root/login)
+            const isOnAuthPage = ['/', '/login'].includes(window.location.pathname);
+            const isOnPdiRoute = window.location.pathname.startsWith('/departments/pd');
+            if (!isOnAuthPage && isOnPdiRoute) {
+                toast.error('Session expired. Please log in again.');
+                // Redirect to root so SchoolOS login takes over
+                window.location.href = '/';
+            }
         } else if (status === 403) {
             const message = (error.response?.data as any)?.message || 'You do not have permission to perform this action.';
             toast.error(message);

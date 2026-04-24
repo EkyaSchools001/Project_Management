@@ -1,0 +1,78 @@
+# Logs & Output
+logs/
+backend/logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules
+node_modules.bak
+
+# Build output
+dist
+dist-ssr
+*.local
+
+# Environment variables
+.env
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# SQLite local database
+backend/prisma/dev.db
+backend/prisma/dev.db-journal
+backend/prisma/dev.db-shm
+backend/prisma/dev.db-wal
+
+# Archives
+archives/
+
+# OpenCode + GSD
+.opencode/
+.opencode.json
+.planning/
+
+# Temp files
+diff_output.txt
+*.tsbuildinfo
+vite.config.ts.timestamp-*
+database/prisma/dev.db
+database/database/prisma/dev.db
+nul  
+# Python artifacts
+__pycache__/
+*.pyc
+
+# TestSprite artifacts
+testsprite_tests/tmp/
+testsprite_tests/*.png
+testsprite_tests/final_status.md
+mcp_run_debug.log
+final_test_report.txt
+mcp_output.txt
+err_stack.txt
+status*.txt
+git*.txt
+gs*.txt
+tc023_finished.png
+fail_tc023_error.png
+fail_tc023_final_robust.png
+fail_tc023_internal.png
+local_test_results.log
+
+# Google OAuth credentials (NEVER commit these)
+client_secret*.json
+*.apps.googleusercontent.com.json

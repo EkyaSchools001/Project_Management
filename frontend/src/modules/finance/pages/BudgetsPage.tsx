@@ -74,7 +74,7 @@ export default function BudgetsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="w-8 h-8 border-2 border-[#8b5cf6] border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-[#ef4444] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -88,7 +88,7 @@ export default function BudgetsPage() {
         </div>
         <button
           onClick={() => setShowForm(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-[#8b5cf6] text-black rounded-xl font-bold text-sm hover:bg-[#8b5cf6]/80"
+          className="flex items-center gap-2 px-4 py-2 bg-[#ef4444] text-black rounded-xl font-bold text-sm hover:bg-[#ef4444]/80"
         >
           <Plus className="w-4 h-4" /> Create Budget
         </button>
@@ -103,7 +103,7 @@ export default function BudgetsPage() {
               placeholder="Search budgets..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground placeholder-white/40 text-sm focus:outline-none focus:border-[#8b5cf6]/50"
+              className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground placeholder-white/40 text-sm focus:outline-none focus:border-[#ef4444]/50"
             />
           </div>
           <div className="flex items-center gap-2">
@@ -111,7 +111,7 @@ export default function BudgetsPage() {
             <select
               value={periodFilter}
               onChange={(e) => setPeriodFilter(e.target.value)}
-              className="px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#8b5cf6]/50"
+              className="px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#ef4444]/50"
             >
               <option value="">All Periods</option>
               <option value="Monthly">Monthly</option>
@@ -127,7 +127,7 @@ export default function BudgetsPage() {
           <p className="text-foreground/40 mb-4">No budgets found</p>
           <button
             onClick={() => setShowForm(true)}
-            className="px-4 py-2 bg-[#8b5cf6] text-black rounded-xl font-bold text-sm hover:bg-[#8b5cf6]/80"
+            className="px-4 py-2 bg-[#ef4444] text-black rounded-xl font-bold text-sm hover:bg-[#ef4444]/80"
           >
             Create your first budget
           </button>

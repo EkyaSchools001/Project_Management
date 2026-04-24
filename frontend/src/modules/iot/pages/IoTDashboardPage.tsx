@@ -83,7 +83,7 @@ export function IoTDashboardPage({ schoolId }: IoTDashboardPageProps) {
     <div className="min-h-screen bg-[#18181b] p-6 lg:p-8">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-foreground flex items-center gap-3">
-          <Cpu className="w-7 h-7 text-[#8b5cf6]" />
+          <Cpu className="w-7 h-7 text-[#ef4444]" />
           Smart Campus
         </h1>
         <p className="text-foreground/50">IoT Device Management & Monitoring</p>
@@ -93,8 +93,8 @@ export function IoTDashboardPage({ schoolId }: IoTDashboardPageProps) {
         <Card className="bg-[#1a1d29] border-white/10">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[#8b5cf6]/10">
-                <Cpu className="w-5 h-5 text-[#8b5cf6]" />
+              <div className="p-2 rounded-lg bg-[#ef4444]/10">
+                <Cpu className="w-5 h-5 text-[#ef4444]" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{stats?.total || 0}</p>
@@ -106,8 +106,8 @@ export function IoTDashboardPage({ schoolId }: IoTDashboardPageProps) {
         <Card className="bg-[#1a1d29] border-white/10">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-violet-500/10">
-                <Activity className="w-5 h-5 text-violet-400" />
+              <div className="p-2 rounded-lg bg-red-500/10">
+                <Activity className="w-5 h-5 text-red-400" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{stats?.active || 0}</p>
@@ -119,8 +119,8 @@ export function IoTDashboardPage({ schoolId }: IoTDashboardPageProps) {
         <Card className="bg-[#1a1d29] border-white/10">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-violet-500/10">
-                <Users className="w-5 h-5 text-blue-400" />
+              <div className="p-2 rounded-lg bg-red-500/10">
+                <Users className="w-5 h-5 text-red-400" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{stats?.todayAttendance || 0}</p>

@@ -1,4 +1,4 @@
-import { useAccessControl as usePermissionContext } from '@pdi/contexts/PermissionContext';
+﻿import { useAccessControl as usePermissionContext } from '@pdi/contexts/PermissionContext';
 
 /**
  * Hook to share access control logic across components.

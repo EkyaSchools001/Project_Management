@@ -50,8 +50,8 @@ export function Leaderboard({ limit = 10, showPeriodSelector = true, onViewAll }
     <Card className="bg-[#161B22] border-white/5 p-6 rounded-2xl">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-[#8b5cf6]/10 rounded-xl flex items-center justify-center">
-            <Trophy size={20} className="text-[#8b5cf6]" />
+          <div className="w-10 h-10 bg-[#ef4444]/10 rounded-xl flex items-center justify-center">
+            <Trophy size={20} className="text-[#ef4444]" />
           </div>
           <h2 className="text-lg font-bold text-foreground">Leaderboard</h2>
         </div>
@@ -64,7 +64,7 @@ export function Leaderboard({ limit = 10, showPeriodSelector = true, onViewAll }
                 onClick={() => setPeriod(opt.value)}
                 className={`
                   px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-md transition-all
-                  ${period === opt.value ? 'bg-[#8b5cf6] text-black' : 'text-foreground/40 hover:text-foreground'}
+                  ${period === opt.value ? 'bg-[#ef4444] text-black' : 'text-foreground/40 hover:text-foreground'}
                 `}
               >
                 {opt.label}
@@ -76,7 +76,7 @@ export function Leaderboard({ limit = 10, showPeriodSelector = true, onViewAll }
 
       {loading ? (
         <div className="flex items-center justify-center py-12">
-          <div className="w-6 h-6 border-2 border-[#8b5cf6] border-t-transparent rounded-full animate-spin" />
+          <div className="w-6 h-6 border-2 border-[#ef4444] border-t-transparent rounded-full animate-spin" />
         </div>
       ) : entries.length === 0 ? (
         <div className="text-center py-12 text-foreground/40 text-sm">
@@ -89,7 +89,7 @@ export function Leaderboard({ limit = 10, showPeriodSelector = true, onViewAll }
               key={entry.userId}
               className={`
                 flex items-center gap-4 p-3 rounded-xl transition-all cursor-pointer group
-                ${entry.isCurrentUser ? 'bg-[#8b5cf6]/10 border border-[#8b5cf6]/30' : 'hover:bg-white/5'}
+                ${entry.isCurrentUser ? 'bg-[#ef4444]/10 border border-[#ef4444]/30' : 'hover:bg-white/5'}
               `}
             >
               <div className="w-8 flex justify-center">
@@ -108,7 +108,7 @@ export function Leaderboard({ limit = 10, showPeriodSelector = true, onViewAll }
               </div>
 
               <div className="text-right">
-                <p className="font-black text-lg text-[#8b5cf6]">
+                <p className="font-black text-lg text-[#ef4444]">
                   {entry.score.toLocaleString()}
                 </p>
                 <p className="text-[10px] text-foreground/40">points</p>
@@ -121,7 +121,7 @@ export function Leaderboard({ limit = 10, showPeriodSelector = true, onViewAll }
       {onViewAll && (
         <button 
           onClick={onViewAll}
-          className="w-full mt-4 py-3 flex items-center justify-center gap-2 text-xs font-bold text-foreground/60 hover:text-[#8b5cf6] transition-colors"
+          className="w-full mt-4 py-3 flex items-center justify-center gap-2 text-xs font-bold text-foreground/60 hover:text-[#ef4444] transition-colors"
         >
           View Full Leaderboard
           <ChevronRight size={14} />

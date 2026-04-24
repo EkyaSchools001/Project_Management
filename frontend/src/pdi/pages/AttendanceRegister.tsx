@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "@pdi/lib/api";
 import { useAuth } from "@pdi/hooks/useAuth";
@@ -102,7 +102,7 @@ export default function AttendanceRegister() {
             return <Badge variant="destructive" className="bg-red-500/10 text-red-500 hover:bg-red-500/20 border-red-500/20">Closed</Badge>;
         }
         if (event.attendanceEnabled) {
-            return <Badge variant="default" className="bg-violet-500/10 text-blue-500 hover:bg-violet-500/20 border-blue-500/20 animate-pulse">Live</Badge>;
+            return <Badge variant="default" className="bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 border-blue-500/20 animate-pulse">Live</Badge>;
         }
         return <Badge variant="secondary" className="bg-gray-500/10 text-gray-400 hover:bg-gray-500/20 border-gray-500/20">Not Enabled</Badge>;
     };
@@ -290,7 +290,7 @@ export default function AttendanceRegister() {
                                             <TableCell>
                                                 <Badge variant="outline" className={cn(
                                                     "font-medium",
-                                                    (event.status === 'Completed' || event.status === 'COMPLETED') ? "border-violet-500 text-violet-600" :
+                                                    (event.status === 'Completed' || event.status === 'COMPLETED') ? "border-green-500 text-green-600" :
                                                         event.status === 'Ongoing' ? "border-blue-500 text-blue-600" : "border-yellow-500 text-yellow-600"
                                                 )}>
                                                     {event.status}
@@ -299,7 +299,7 @@ export default function AttendanceRegister() {
                                             <TableCell>
                                                 <div className="flex flex-col gap-1">
                                                     {getStatusBadge(event)}
-                                                    <Badge variant="outline" className="w-fit bg-violet-500/5 text-violet-600 border-violet-500/20">
+                                                    <Badge variant="outline" className="w-fit bg-emerald-500/5 text-emerald-600 border-emerald-500/20">
                                                         {event.attendanceCount || 0} Attended
                                                     </Badge>
                                                 </div>
@@ -314,7 +314,7 @@ export default function AttendanceRegister() {
                                                     variant="ghost"
                                                     size="sm"
                                                     onClick={() => handleExport(event)}
-                                                    className="text-blue-600 hover:text-blue-700 hover:bg-violet-50"
+                                                    className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
                                                 >
                                                     <Download className="w-4 h-4 mr-2" />
                                                     Export

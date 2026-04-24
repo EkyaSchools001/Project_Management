@@ -44,8 +44,8 @@ export function FinancialChart({ type, data, title }: FinancialChartProps) {
 
       const gradient = ctx.createLinearGradient(x, y, x, height - padding);
       if (type === 'revenue' || type === 'trend') {
-        gradient.addColorStop(0, '#8b5cf6');
-        gradient.addColorStop(1, '#8b5cf640');
+        gradient.addColorStop(0, '#ef4444');
+        gradient.addColorStop(1, '#ef444440');
       } else {
         gradient.addColorStop(0, '#FF6B6B');
         gradient.addColorStop(1, '#FF6B6B40');
@@ -74,7 +74,7 @@ export function FinancialChart({ type, data, title }: FinancialChartProps) {
           <h3 className="font-bold text-foreground">{title}</h3>
           <div className="flex items-center gap-2">
             {isPositiveTrend ? (
-              <TrendingUp className="w-4 h-4 text-violet-500" />
+              <TrendingUp className="w-4 h-4 text-red-500" />
             ) : (
               <TrendingDown className="w-4 h-4 text-red-500" />
             )}

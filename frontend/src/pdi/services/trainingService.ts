@@ -15,23 +15,13 @@ export interface TrainingEvent {
 
 export const trainingService = {
     async getAllEvents() {
-        try {
-            const response = await api.get('/training');
-            return response?.data?.data?.events || [];
-        } catch (e) {
-            console.error("trainingService getAllEvents error", e);
-            return [];
-        }
+        const response = await api.get('/training');
+        return response.data.data?.events ?? [];
     },
 
     async getEvent(id: string) {
-        try {
-            const response = await api.get(`/training/${id}`);
-            return response?.data?.data?.event || null;
-        } catch (e) {
-            console.error("trainingService getEvent error", e);
-            return null;
-        }
+        const response = await api.get(`/training/${id}`);
+        return response.data.data.event;
     },
 
     async createEvent(data: any) {

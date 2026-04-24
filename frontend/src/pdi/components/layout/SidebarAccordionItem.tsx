@@ -2,8 +2,9 @@ import { CaretDown } from "@phosphor-icons/react";
 import { NavLink, useLocation } from "react-router-dom";
 import { cn } from "@pdi/lib/utils";
 import { Button } from "../ui/button";
+import React from "react";
 
-type IconComponent = any;
+type IconComponent = React.ComponentType<{ className?: string; size?: string | number; weight?: any }>;
 
 export interface SubModule {
     title: string;
@@ -32,7 +33,7 @@ export function SidebarAccordionItem({
     isOpen,
     onToggle,
     collapsed,
-    role: _role,
+    role,
 }: SidebarAccordionItemProps) {
     const location = useLocation();
     const isDirectLink = !!module.path && (!module.subModules || module.subModules.length === 0);
@@ -41,7 +42,7 @@ export function SidebarAccordionItem({
     const isActive = isDirectLink
         ? location.pathname === module.path
         : module.subModules?.some((sub) => {
-            const rootPaths = ["/teacher", "/leader", "/admin", "/management"];
+            const rootPaths = ["/teacher", "/leader", "/admin", "/management", "/hr"];
             return (
                 location.pathname === sub.path ||
                 (!rootPaths.includes(sub.path) && location.pathname.startsWith(sub.path))
@@ -57,8 +58,8 @@ export function SidebarAccordionItem({
                         className={cn(
                             "p-2 rounded-lg transition-all duration-200",
                             isActive
-                                ? "bg-[#8b5cf6] text-black shadow-lg shadow-[#8b5cf6]/20"
-                                : "text-foreground/60 hover:bg-white/5 hover:text-foreground"
+                                ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-lg shadow-sidebar-primary/20"
+                                : "text-sidebar-foreground hover:bg-sidebar-accent"
                         )}
                     >
                         <module.icon className="w-5 h-5 shrink-0" weight={isActive ? "fill" : "duotone"} size={20} />
@@ -68,8 +69,8 @@ export function SidebarAccordionItem({
                         className={cn(
                             "p-2 rounded-lg transition-all duration-200",
                             isActive
-                                ? "bg-[#8b5cf6] text-black shadow-lg shadow-[#8b5cf6]/20"
-                                : "text-foreground/60 hover:bg-white/5 hover:text-foreground"
+                                ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-lg shadow-sidebar-primary/20"
+                                : "text-sidebar-foreground hover:bg-sidebar-accent"
                         )}
                     >
                         <module.icon className="w-5 h-5 shrink-0" weight={isActive ? "fill" : "duotone"} size={20} />
@@ -87,8 +88,8 @@ export function SidebarAccordionItem({
                             className={cn(
                                 "flex items-center justify-between gap-2 px-3 py-1.5 rounded-md text-xs transition-colors",
                                 isActive
-                                    ? "bg-[#8b5cf6] text-black"
-                                    : "text-foreground hover:bg-white/10"
+                                    ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-lg shadow-sidebar-primary/20"
+                                    : "text-sidebar-foreground hover:bg-sidebar-accent"
                             )}
                         >
                             <span>Open {module.title}</span>
@@ -101,13 +102,13 @@ export function SidebarAccordionItem({
                                 className={cn(
                                     "flex items-center justify-between gap-2 px-3 py-1.5 rounded-md text-xs transition-colors",
                                     location.pathname === sub.path
-                                        ? "bg-[#8b5cf6] text-black"
-                                        : "text-foreground hover:bg-white/10"
-                                    )}
+                                        ? "bg-sidebar-primary text-sidebar-primary-foreground"
+                                        : "text-sidebar-foreground hover:bg-sidebar-accent"
+                                )}
                             >
                                 <span>{sub.title}</span>
                                 {sub.badge ? (
-                                    <span className="h-4 w-4 flex items-center justify-center rounded-full bg-red-500 text-[8px] font-bold text-foreground">
+                                    <span className="h-4 w-4 flex items-center justify-center rounded-full bg-red-500 text-[8px] font-bold text-white">
                                         {sub.badge}
                                     </span>
                                 ) : null}
@@ -126,21 +127,21 @@ export function SidebarAccordionItem({
                 className={cn(
                     "w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition-all duration-200 group",
                     isActive
-                        ? "bg-[#8b5cf6]/10 text-[#8b5cf6]"
-                        : "text-foreground/60 hover:bg-white/5 hover:text-foreground"
+                        ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-sm hover:bg-sidebar-primary/90 cursor-default"
+                        : "text-sidebar-foreground hover:bg-sidebar-accent"
                 )}
             >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
                     <module.icon
                         className={cn(
                             "w-5 h-5 shrink-0 transition-transform",
-                            isActive ? "text-[#8b5cf6]" : "group-hover:scale-110 text-foreground/50"
+                            isActive ? "text-sidebar-primary-foreground" : "group-hover:scale-110 text-sidebar-foreground/70"
                         )}
-                        weight={isActive ? "fill" : "bold"}
-                        size={18}
+                        weight={isActive ? "fill" : "duotone"}
+                        size={20}
                     />
                     <span className={cn(
-                        "text-sm truncate animate-in fade-in duration-300",
+                        "text-sm truncate min-w-0 animate-in fade-in duration-300",
                         isActive ? "font-bold" : "font-semibold"
                     )}>
                         {module.title}
@@ -157,27 +158,27 @@ export function SidebarAccordionItem({
                 onClick={onToggle}
                 className={cn(
                     "w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition-all duration-200 group",
-                    "text-foreground/60 hover:bg-white/5 hover:text-foreground",
-                    isActive && !isOpen && "bg-white/5 text-foreground",
-                    isOpen && "bg-white/10 text-foreground"
+                    "text-sidebar-foreground hover:bg-sidebar-accent",
+                    isActive && !isOpen && "bg-sidebar-accent/50",
+                    isOpen && "bg-sidebar-accent/30"
                 )}
             >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
                     <module.icon
                         className={cn(
                             "w-5 h-5 shrink-0 transition-transform",
-                            isActive ? "text-[#8b5cf6]" : "text-foreground/50 group-hover:scale-110"
+                            isActive ? "text-sidebar-primary" : "text-sidebar-foreground/70 group-hover:scale-110"
                         )}
-                        weight={isActive ? "fill" : "bold"}
-                        size={18}
+                        weight={isActive ? "fill" : "duotone"}
+                        size={20}
                     />
-                    <span className="text-sm font-semibold truncate animate-in fade-in duration-300">
+                    <span className="text-sm font-semibold truncate min-w-0 animate-in fade-in duration-300">
                         {module.title}
                     </span>
                 </div>
                 <CaretDown
                     className={cn(
-                        "w-4 h-4 transition-transform duration-200 text-sidebar-foreground/50",
+                        "shrink-0 w-4 h-4 transition-transform duration-200 text-sidebar-foreground/50",
                         isOpen && "rotate-180"
                     )}
                     weight="bold"
@@ -187,7 +188,7 @@ export function SidebarAccordionItem({
             {isOpen && (
                 <div className="pl-9 space-y-1 animate-in slide-in-from-top-1 duration-200">
                     {module.subModules?.map((sub) => {
-                        const rootPaths = ["/teacher", "/leader", "/admin", "/management"];
+                        const rootPaths = ["/teacher", "/leader", "/admin", "/management", "/hr"];
                         const isSubActive =
                             location.pathname === sub.path ||
                             (!rootPaths.includes(sub.path) && location.pathname.startsWith(sub.path));
@@ -198,17 +199,17 @@ export function SidebarAccordionItem({
                                 to={sub.path}
                                 className={cn(
                                     "flex items-center justify-between gap-3 px-3 py-2 rounded-lg transition-all duration-200 group relative",
-                                    "text-foreground/40 hover:text-foreground hover:bg-white/5",
-                                    isSubActive && "text-[#8b5cf6] font-bold bg-[#8b5cf6]/5 border-r-2 border-[#8b5cf6]"
+                                    "text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent",
+                                    isSubActive && "text-sidebar-primary-foreground font-bold bg-sidebar-primary shadow-sm hover:bg-sidebar-primary/90 cursor-default"
                                 )}
                             >
-                                <div className="flex items-center gap-2">
-                                    <span className="text-sm regular truncate animate-in fade-in duration-300 mr-3">
+                                <div className="flex items-center gap-2 min-w-0 flex-1">
+                                    <span className="text-sm regular truncate min-w-0 animate-in fade-in duration-300 mr-3">
                                         {sub.title}
                                     </span>
                                 </div>
                                 {sub.badge ? (
-                                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-foreground ring-2 ring-white">
+                                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground ring-2 ring-white">
                                         {sub.badge}
                                     </span>
                                 ) : null}

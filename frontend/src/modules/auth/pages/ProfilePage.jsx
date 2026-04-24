@@ -115,7 +115,7 @@ export default function ProfilePage() {
                     <div className="lg:col-span-2 space-y-6">
                         <Card className="p-6 bg-[#161B22] border-white/5 rounded-2xl">
                             <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
-                                <User size={20} className="text-[#8b5cf6]" />
+                                <User size={20} className="text-[#ef4444]" />
                                 Personal Information
                             </h2>
 
@@ -129,7 +129,7 @@ export default function ProfilePage() {
                                         name="firstName"
                                         value={formData.firstName}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#8b5cf6]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#ef4444]/50 outline-none transition-all"
                                     />
                                 </div>
 
@@ -142,7 +142,7 @@ export default function ProfilePage() {
                                         name="lastName"
                                         value={formData.lastName}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#8b5cf6]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#ef4444]/50 outline-none transition-all"
                                     />
                                 </div>
 
@@ -170,7 +170,7 @@ export default function ProfilePage() {
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#8b5cf6]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#ef4444]/50 outline-none transition-all"
                                         placeholder="+1 (555) 000-0000"
                                     />
                                 </div>
@@ -184,7 +184,7 @@ export default function ProfilePage() {
                                         value={formData.bio}
                                         onChange={handleChange}
                                         rows={3}
-                                        className="w-full px-4 py-3 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#8b5cf6]/50 outline-none transition-all resize-none"
+                                        className="w-full px-4 py-3 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#ef4444]/50 outline-none transition-all resize-none"
                                         placeholder="Tell us about yourself..."
                                     />
                                 </div>
@@ -193,7 +193,7 @@ export default function ProfilePage() {
 
                         <Card className="p-6 bg-[#161B22] border-white/5 rounded-2xl">
                             <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
-                                <MapPin size={20} className="text-[#8b5cf6]" />
+                                <MapPin size={20} className="text-[#ef4444]" />
                                 Location
                             </h2>
 
@@ -207,7 +207,7 @@ export default function ProfilePage() {
                                         name="address"
                                         value={formData.address}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#8b5cf6]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#ef4444]/50 outline-none transition-all"
                                         placeholder="123 Main Street"
                                     />
                                 </div>
@@ -221,7 +221,7 @@ export default function ProfilePage() {
                                         name="city"
                                         value={formData.city}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#8b5cf6]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#ef4444]/50 outline-none transition-all"
                                     />
                                 </div>
 
@@ -234,7 +234,7 @@ export default function ProfilePage() {
                                         name="country"
                                         value={formData.country}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#8b5cf6]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#ef4444]/50 outline-none transition-all"
                                     />
                                 </div>
 
@@ -247,7 +247,7 @@ export default function ProfilePage() {
                                         name="postalCode"
                                         value={formData.postalCode}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#8b5cf6]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#ef4444]/50 outline-none transition-all"
                                     />
                                 </div>
                             </div>
@@ -255,7 +255,7 @@ export default function ProfilePage() {
 
                         <Card className="p-6 bg-[#161B22] border-white/5 rounded-2xl">
                             <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
-                                <Globe size={20} className="text-[#8b5cf6]" />
+                                <Globe size={20} className="text-[#ef4444]" />
                                 Preferences
                             </h2>
 
@@ -268,7 +268,7 @@ export default function ProfilePage() {
                                         name="timezone"
                                         value={formData.timezone}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#8b5cf6]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#ef4444]/50 outline-none transition-all"
                                     >
                                         {timezones.map(tz => (
                                             <option key={tz.value} value={tz.value}>{tz.label}</option>
@@ -284,7 +284,7 @@ export default function ProfilePage() {
                                         name="language"
                                         value={formData.language}
                                         onChange={handleChange}
-                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#8b5cf6]/50 outline-none transition-all"
+                                        className="w-full px-4 h-12 bg-[#18181b] border border-white/5 rounded-xl text-foreground focus:border-[#ef4444]/50 outline-none transition-all"
                                     >
                                         {languages.map(lang => (
                                             <option key={lang.value} value={lang.value}>{lang.label}</option>
@@ -298,7 +298,7 @@ export default function ProfilePage() {
                     <div className="space-y-6">
                         <Card className="p-6 bg-[#161B22] border-white/5 rounded-2xl">
                             <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
-                                <Bell size={20} className="text-[#8b5cf6]" />
+                                <Bell size={20} className="text-[#ef4444]" />
                                 Notifications
                             </h2>
 
@@ -310,7 +310,7 @@ export default function ProfilePage() {
                                         name="emailNotifications"
                                         checked={formData.emailNotifications}
                                         onChange={handleChange}
-                                        className="w-5 h-5 rounded bg-[#18181b] border border-white/10 text-[#8b5cf6] focus:ring-[#8b5cf6] focus:ring-offset-0 cursor-pointer"
+                                        className="w-5 h-5 rounded bg-[#18181b] border border-white/10 text-[#ef4444] focus:ring-[#ef4444] focus:ring-offset-0 cursor-pointer"
                                     />
                                 </label>
 
@@ -321,7 +321,7 @@ export default function ProfilePage() {
                                         name="pushNotifications"
                                         checked={formData.pushNotifications}
                                         onChange={handleChange}
-                                        className="w-5 h-5 rounded bg-[#18181b] border border-white/10 text-[#8b5cf6] focus:ring-[#8b5cf6] focus:ring-offset-0 cursor-pointer"
+                                        className="w-5 h-5 rounded bg-[#18181b] border border-white/10 text-[#ef4444] focus:ring-[#ef4444] focus:ring-offset-0 cursor-pointer"
                                     />
                                 </label>
                             </div>
@@ -329,20 +329,20 @@ export default function ProfilePage() {
 
                         <Card className="p-6 bg-[#161B22] border-white/5 rounded-2xl">
                             <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
-                                <Shield size={20} className="text-[#8b5cf6]" />
+                                <Shield size={20} className="text-[#ef4444]" />
                                 Account
                             </h2>
 
                             <div className="text-center">
                                 <div className="relative inline-block mb-4">
-                                    <div className="w-24 h-24 rounded-full bg-[#18181b] border-2 border-[#8b5cf6]/20 overflow-hidden flex items-center justify-center">
+                                    <div className="w-24 h-24 rounded-full bg-[#18181b] border-2 border-[#ef4444]/20 overflow-hidden flex items-center justify-center">
                                         {avatarUrl ? (
                                             <img src={avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
                                         ) : (
                                             <User size={40} className="text-foreground/20" />
                                         )}
                                     </div>
-                                    <label className="absolute bottom-0 right-0 w-8 h-8 bg-[#8b5cf6] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#8b5cf6]/90 transition-colors">
+                                    <label className="absolute bottom-0 right-0 w-8 h-8 bg-[#ef4444] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#ef4444]/90 transition-colors">
                                         <Camera size={16} className="text-black" />
                                         <input
                                             type="file"
@@ -365,7 +365,7 @@ export default function ProfilePage() {
                         <button
                             type="submit"
                             disabled={isSaving}
-                            className="w-full h-12 bg-[#8b5cf6] text-black font-bold rounded-xl flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(186,255,0,0.3)] disabled:opacity-50"
+                            className="w-full h-12 bg-[#ef4444] text-black font-bold rounded-xl flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(186,255,0,0.3)] disabled:opacity-50"
                         >
                             {isSaving ? (
                                 <Loader2 size={20} className="animate-spin" />

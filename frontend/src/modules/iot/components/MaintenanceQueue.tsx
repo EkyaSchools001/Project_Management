@@ -121,7 +121,7 @@ export function MaintenanceQueue({ schoolId }: MaintenanceQueueProps) {
       case 'Urgent': return 'text-red-400 bg-red-500/10';
       case 'High': return 'text-orange-400 bg-orange-500/10';
       case 'Medium': return 'text-yellow-400 bg-yellow-500/10';
-      default: return 'text-blue-400 bg-violet-500/10';
+      default: return 'text-red-400 bg-red-500/10';
     }
   };
 
@@ -129,7 +129,7 @@ export function MaintenanceQueue({ schoolId }: MaintenanceQueueProps) {
     switch (status) {
       case 'Open': return 'text-red-400';
       case 'InProgress': return 'text-yellow-400';
-      case 'Completed': return 'text-violet-400';
+      case 'Completed': return 'text-red-400';
       default: return 'text-gray-400';
     }
   };
@@ -163,7 +163,7 @@ export function MaintenanceQueue({ schoolId }: MaintenanceQueueProps) {
         </div>
         <Dialog open={showDialog} onOpenChange={setShowDialog}>
           <DialogTrigger asChild>
-            <Button className="bg-[#8b5cf6] text-black hover:bg-[#a8e600]">
+            <Button className="bg-[#ef4444] text-black hover:bg-[#a8e600]">
               <Wrench className="w-4 h-4 mr-2" />
               New Request
             </Button>
@@ -204,7 +204,7 @@ export function MaintenanceQueue({ schoolId }: MaintenanceQueueProps) {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent className="bg-[#1a1d29] border-white/10">
-                    <SelectItem value="Low" className="text-blue-400">Low</SelectItem>
+                    <SelectItem value="Low" className="text-red-400">Low</SelectItem>
                     <SelectItem value="Medium" className="text-yellow-400">Medium</SelectItem>
                     <SelectItem value="High" className="text-orange-400">High</SelectItem>
                     <SelectItem value="Urgent" className="text-red-400">Urgent</SelectItem>
@@ -214,7 +214,7 @@ export function MaintenanceQueue({ schoolId }: MaintenanceQueueProps) {
               <Button
                 onClick={handleCreateRequest}
                 disabled={loading || !formData.deviceId || !formData.description}
-                className="w-full bg-[#8b5cf6] text-black hover:bg-[#a8e600]"
+                className="w-full bg-[#ef4444] text-black hover:bg-[#a8e600]"
               >
                 {loading ? 'Creating...' : 'Create Request'}
               </Button>
@@ -276,7 +276,7 @@ export function MaintenanceQueue({ schoolId }: MaintenanceQueueProps) {
                         variant="outline"
                         size="sm"
                         onClick={() => handleUpdateStatus(request.id, 'Completed')}
-                        className="border-violet-500/50 text-violet-400 hover:bg-violet-500/10"
+                        className="border-red-500/50 text-red-400 hover:bg-red-500/10"
                       >
                         <CheckCircle className="w-4 h-4 mr-1" />
                         Complete

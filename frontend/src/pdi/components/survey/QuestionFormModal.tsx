@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form'; // Assuming react-hook-form is installed based on previous context
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@pdi/components/ui/dialog';
@@ -80,7 +79,7 @@ export const QuestionFormModal = ({ isOpen, onClose, onSubmit, initialData }: Qu
 
     const onFormSubmit = async (data: FormData) => {
         // Transform options back to JSON if needed
-        let formattedOptions = undefined;
+        let formattedOptions: any = undefined;
         if (['multiple_choice', 'multi_select'].includes(data.questionType) && data.options) {
             // Split by newline and filter empty
             const opts = data.options.split('\n').map(s => s.trim()).filter(Boolean);

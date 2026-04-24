@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Shared API helpers for consistent backend-frontend sync:
  * - Loading states during requests
  * - Success/error toasts

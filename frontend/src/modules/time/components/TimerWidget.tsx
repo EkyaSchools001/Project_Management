@@ -55,15 +55,15 @@ export function TimerWidget({ tasks = [], onTaskSelect, className }) {
         return (
             <div
                 className={cn(
-                    "fixed bottom-6 right-6 z-50 bg-[#18181b] border border-[#8b5cf6]/20 rounded-2xl shadow-2xl",
+                    "fixed bottom-6 right-6 z-50 bg-[#18181b] border border-[#ef4444]/20 rounded-2xl shadow-2xl",
                     className
                 )}
             >
                 <div className="flex items-center gap-3 px-4 py-3">
                     {activeTimer ? (
                         <>
-                            <div className="w-2 h-2 rounded-full bg-[#8b5cf6] animate-pulse" />
-                            <span className="text-[#8b5cf6] font-mono font-bold">
+                            <div className="w-2 h-2 rounded-full bg-[#ef4444] animate-pulse" />
+                            <span className="text-[#ef4444] font-mono font-bold">
                                 {formatElapsed(elapsed)}
                             </span>
                         </>
@@ -90,7 +90,7 @@ export function TimerWidget({ tasks = [], onTaskSelect, className }) {
         >
             <div className="flex items-center justify-between px-4 py-3 border-b border-white/5">
                 <div className="flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-[#8b5cf6]" />
+                    <Clock className="w-4 h-4 text-[#ef4444]" />
                     <span className="text-foreground font-bold text-sm">Time Tracker</span>
                 </div>
                 <button
@@ -111,7 +111,7 @@ export function TimerWidget({ tasks = [], onTaskSelect, className }) {
                             <select
                                 value={selectedTaskId}
                                 onChange={handleTaskChange}
-                                className="w-full bg-[#1a1d24] border border-white/10 rounded-xl px-3 py-2.5 text-foreground text-sm focus:border [#8b5cf6] focus:outline-none"
+                                className="w-full bg-[#1a1d24] border border-white/10 rounded-xl px-3 py-2.5 text-foreground text-sm focus:border [#ef4444] focus:outline-none"
                             >
                                 <option value="">Choose a task...</option>
                                 {tasks.map(task => (
@@ -131,7 +131,7 @@ export function TimerWidget({ tasks = [], onTaskSelect, className }) {
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 placeholder="What are you working on?"
-                                className="w-full bg-[#1a1d24] border border-white/10 rounded-xl px-3 py-2.5 text-foreground text-sm placeholder:text-foreground/30 focus:border [#8b5cf6] focus:outline-none"
+                                className="w-full bg-[#1a1d24] border border-white/10 rounded-xl px-3 py-2.5 text-foreground text-sm placeholder:text-foreground/30 focus:border [#ef4444] focus:outline-none"
                             />
                         </div>
                     </>
@@ -158,7 +158,7 @@ export function TimerWidget({ tasks = [], onTaskSelect, className }) {
                         <Button
                             onClick={handleStart}
                             disabled={!selectedTaskId || loading}
-                            className="flex-1 bg-[#8b5cf6] hover:bg-[#8b5cf6]/90 text-black font-bold h-12 rounded-xl"
+                            className="flex-1 bg-[#ef4444] hover:bg-[#ef4444]/90 text-black font-bold h-12 rounded-xl"
                         >
                             <Play className="w-4 h-4 mr-2" />
                             Start
@@ -177,7 +177,7 @@ export function TimerWidget({ tasks = [], onTaskSelect, className }) {
 
                 {activeTimer && (
                     <div className="text-center">
-                        <div className="text-4xl font-mono font-black text-[#8b5cf6]">
+                        <div className="text-4xl font-mono font-black text-[#ef4444]">
                             {formatElapsed(elapsed)}
                         </div>
                         <div className="text-[10px] uppercase tracking-widest text-foreground/40 mt-1">

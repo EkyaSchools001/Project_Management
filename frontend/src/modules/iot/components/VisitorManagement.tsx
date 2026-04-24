@@ -107,8 +107,8 @@ export function VisitorManagement({ schoolId }: VisitorManagementProps) {
         <Card className="bg-[#1a1d29] border-white/10">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[#8b5cf6]/10">
-                <User className="w-5 h-5 text-[#8b5cf6]" />
+              <div className="p-2 rounded-lg bg-[#ef4444]/10">
+                <User className="w-5 h-5 text-[#ef4444]" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{currentVisitors.length}</p>
@@ -120,8 +120,8 @@ export function VisitorManagement({ schoolId }: VisitorManagementProps) {
         <Card className="bg-[#1a1d29] border-white/10">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-violet-500/10">
-                <Clock className="w-5 h-5 text-blue-400" />
+              <div className="p-2 rounded-lg bg-red-500/10">
+                <Clock className="w-5 h-5 text-red-400" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{todayVisitors.length}</p>
@@ -133,8 +133,8 @@ export function VisitorManagement({ schoolId }: VisitorManagementProps) {
         <Card className="bg-[#1a1d29] border-white/10">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-violet-500/10">
-                <LogOut className="w-5 h-5 text-violet-400" />
+              <div className="p-2 rounded-lg bg-red-500/10">
+                <LogOut className="w-5 h-5 text-red-400" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{checkedOut.length}</p>
@@ -149,7 +149,7 @@ export function VisitorManagement({ schoolId }: VisitorManagementProps) {
         <h2 className="text-lg font-semibold text-foreground">Visitor Check-in</h2>
         <Dialog open={showDialog} onOpenChange={setShowDialog}>
           <DialogTrigger asChild>
-            <Button className="bg-[#8b5cf6] text-black hover:bg-[#a8e600]">
+            <Button className="bg-[#ef4444] text-black hover:bg-[#a8e600]">
               <UserPlus className="w-4 h-4 mr-2" />
               Check In Visitor
             </Button>
@@ -199,7 +199,7 @@ export function VisitorManagement({ schoolId }: VisitorManagementProps) {
               <Button
                 onClick={handleCheckIn}
                 disabled={loading || !formData.name.trim()}
-                className="w-full bg-[#8b5cf6] text-black hover:bg-[#a8e600]"
+                className="w-full bg-[#ef4444] text-black hover:bg-[#a8e600]"
               >
                 {loading ? 'Checking in...' : 'Check In'}
               </Button>
@@ -220,7 +220,7 @@ export function VisitorManagement({ schoolId }: VisitorManagementProps) {
                   <div className="flex items-center gap-2">
                     <p className="font-medium text-foreground">{visitor.name}</p>
                     {visitor.badgeNumber && (
-                      <Badge className="bg-[#8b5cf6]/20 text-[#8b5cf6]">
+                      <Badge className="bg-[#ef4444]/20 text-[#ef4444]">
                         {visitor.badgeNumber}
                       </Badge>
                     )}

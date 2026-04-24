@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import {
     Users, Eye, TrendingUp, Calendar, FileText, Target,
     Award, CheckCircle, Clock, Mail, Phone, MapPin,
@@ -122,7 +122,7 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                             {teacher.role === "Teacher" && (
                                 <Badge variant="secondary" className={cn(
                                     "border-none font-bold px-3 py-1 flex gap-1.5 items-center",
-                                    teacher.academics === 'NON_CORE' ? "bg-purple-100 text-purple-700" : "bg-violet-100 text-blue-700"
+                                    teacher.academics === 'NON_CORE' ? "bg-purple-100 text-purple-700" : "bg-blue-100 text-blue-700"
                                 )}>
                                     {teacher.academics === 'NON_CORE' ? 'Specialist' : 'Core'}
                                 </Badge>
@@ -152,9 +152,9 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                     <Button
                         onClick={() => setIsAIModalOpen(true)}
                         variant="outline"
-                        className="rounded-full font-bold border-violet-200 text-violet-700 bg-violet-50 hover:bg-violet-100 flex gap-2 px-5"
+                        className="rounded-full font-bold border-emerald-200 text-emerald-700 bg-emerald-50 hover:bg-emerald-100 flex gap-2 px-5"
                     >
-                        <Sparkles className="w-4 h-4 text-violet-600" />
+                        <Sparkles className="w-4 h-4 text-emerald-600" />
                         AI Insights
                     </Button>
                     {/* Redacting Schedule Review and New Observation buttons as requested */}
@@ -195,7 +195,7 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                     value={`${teacher.completionRate}%`}
                     subtitle="Strategic Objectives"
                     icon={Target}
-                    color="bg-violet-500"
+                    color="bg-emerald-500"
                     progress={teacher.completionRate}
                     onClick={() => navigate("/okr")}
                 />
@@ -222,8 +222,8 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                         <CardContent className="p-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div className="space-y-6">
-                                    <DomainProgress title="Planning & Preparation" score={calculateDomainScore("Planning & Preparation")} color="bg-violet-500" />
-                                    <DomainProgress title="Classroom Environment" score={calculateDomainScore("Classroom Environment")} color="bg-violet-500" />
+                                    <DomainProgress title="Planning & Preparation" score={calculateDomainScore("Planning & Preparation")} color="bg-blue-500" />
+                                    <DomainProgress title="Classroom Environment" score={calculateDomainScore("Classroom Environment")} color="bg-emerald-500" />
                                     <DomainProgress title="Instructional Delivery" score={calculateDomainScore("Instructional Delivery")} color="bg-indigo-500" />
                                     <DomainProgress title="Assessment & Feedback" score={calculateDomainScore("Assessment & Feedback")} color="bg-amber-500" />
                                     <DomainProgress title="Professional Responsibilities" score={calculateDomainScore("Professional Responsibilities")} color="bg-violet-500" />
@@ -231,7 +231,7 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                                 <div className="bg-muted/30 rounded-2xl p-6 flex flex-col items-center justify-center text-center space-y-4">
                                     <div className="w-32 h-32 rounded-full border-8 border-success/20 border-t-success flex items-center justify-center relative">
                                         <span className="text-4xl font-black text-foreground">{teacher.avgScore}</span>
-                                        <div className="absolute -bottom-2 bg-success text-foreground text-[10px] font-bold px-2 py-0.5 rounded-full capitalize">Pillar Score</div>
+                                        <div className="absolute -bottom-2 bg-success text-white text-[10px] font-bold px-2 py-0.5 rounded-full capitalize">Pillar Score</div>
                                     </div>
                                     <div className="space-y-1">
                                         <h4 className="font-bold">Proficient Tier</h4>
@@ -324,35 +324,35 @@ export function TeacherProfileView({ teacher, observations, goals, onBack, userR
                     {/* Development Goals section removed as requested */}
 
                     {/* Skill Radar / Strengths */}
-                    <Card className="  shadow-premium bg-violet-50 border-2 border-violet-100 text-violet-900 overflow-hidden relative">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-violet-200/20 rounded-full blur-3xl -translate-y-10 translate-x-10" />
-                        <CardHeader className="pb-2 border-b border-violet-100">
-                            <CardTitle className="text-lg flex items-center gap-2 text-violet-800">
-                                <Star className="w-5 h-5 text-violet-500" />
+                    <Card className="  shadow-premium bg-emerald-50 border-2 border-emerald-100 text-emerald-900 overflow-hidden relative">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-200/20 rounded-full blur-3xl -translate-y-10 translate-x-10" />
+                        <CardHeader className="pb-2 border-b border-emerald-100">
+                            <CardTitle className="text-lg flex items-center gap-2 text-emerald-800">
+                                <Star className="w-5 h-5 text-emerald-500" />
                                 Insight Engine
                             </CardTitle>
                         </CardHeader>
                         <CardContent className="p-6 space-y-6 relative z-10">
-                            <div className="p-4 rounded-xl bg-white border border-violet-100 shadow-sm">
-                                <h5 className="text-xs font-black capitalize tracking-widest text-violet-600/70 mb-2 flex items-center gap-1.5">
+                            <div className="p-4 rounded-xl bg-white border border-emerald-100 shadow-sm">
+                                <h5 className="text-xs font-black capitalize tracking-widest text-emerald-600/70 mb-2 flex items-center gap-1.5">
                                     <Brain className="w-3.5 h-3.5" />
                                     Key Strength
                                 </h5>
-                                <p className="text-sm font-bold leading-snug italic text-violet-800">"Exceptional ability to design scaffolded instructional sequences that support complex cognitive tasks."</p>
+                                <p className="text-sm font-bold leading-snug italic text-emerald-800">"Exceptional ability to design scaffolded instructional sequences that support complex cognitive tasks."</p>
                             </div>
 
                             <div className="space-y-4 pt-2">
-                                <h5 className="text-xs font-black capitalize tracking-widest text-violet-600/70 mb-3">Core Competencies</h5>
+                                <h5 className="text-xs font-black capitalize tracking-widest text-emerald-600/70 mb-3">Core Competencies</h5>
                                 <div className="flex flex-wrap gap-2">
                                     {["Pacing", "Questioning", "Engagement", "Assessment"].map(skill => (
-                                        <span key={skill} className="px-3 py-1 rounded-full bg-white text-[10px] font-bold border border-violet-100 text-violet-700 shadow-sm">
+                                        <span key={skill} className="px-3 py-1 rounded-full bg-white text-[10px] font-bold border border-emerald-100 text-emerald-700 shadow-sm">
                                             {skill}
                                         </span>
                                     ))}
                                 </div>
                             </div>
 
-                            <Button className="w-full bg-violet-600 text-foreground hover:bg-violet-700 font-bold rounded-xl mt-2 border-none shadow-lg shadow-violet-200">
+                            <Button className="w-full bg-emerald-600 text-white hover:bg-emerald-700 font-bold rounded-xl mt-2 border-none shadow-lg shadow-emerald-200">
                                 Download Full Performance Report
                             </Button>
                         </CardContent>
@@ -375,7 +375,7 @@ function StatCardCompact({ title, value, subtitle, icon: Icon, color, progress, 
         >
             <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
-                    <div className={cn("p-3 rounded-2xl text-foreground shadow-lg", color)}>
+                    <div className={cn("p-3 rounded-2xl text-white shadow-lg", color)}>
                         <Icon className="w-6 h-6" />
                     </div>
                     {trend && (

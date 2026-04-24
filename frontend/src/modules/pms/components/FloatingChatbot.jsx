@@ -148,8 +148,8 @@ const FloatingChatbot = () => {
                                 <div>
                                     <p className="text-sm font-black text-neutral-300 uppercase tracking-tight leading-none mb-1">System Assistant</p>
                                     <div className="flex items-center gap-1.5">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse"></div>
-                                        <p className="text-[10px] font-bold text-violet-600 uppercase tracking-widest">Active Link</p>
+                                        <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></div>
+                                        <p className="text-[10px] font-bold text-red-600 uppercase tracking-widest">Active Link</p>
                                     </div>
                                 </div>
                             </div>

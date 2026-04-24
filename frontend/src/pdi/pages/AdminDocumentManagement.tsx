@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { PageHeader } from "@pdi/components/layout/PageHeader";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@pdi/components/ui/card";
 import { Button } from "@pdi/components/ui/button";
@@ -115,8 +115,8 @@ export default function AdminDocumentManagement() {
     const getStatusBadge = (status: string) => {
         const config = {
             PENDING: { label: "Pending", className: "bg-yellow-100 text-yellow-800 border-yellow-300", icon: Clock },
-            VIEWED: { label: "Viewed", className: "bg-violet-100 text-blue-800 border-blue-300", icon: Eye },
-            ACKNOWLEDGED: { label: "Acknowledged", className: "bg-violet-100 text-violet-800 border-violet-300", icon: CheckCircle2 },
+            VIEWED: { label: "Viewed", className: "bg-blue-100 text-blue-800 border-blue-300", icon: Eye },
+            ACKNOWLEDGED: { label: "Acknowledged", className: "bg-green-100 text-green-800 border-green-300", icon: CheckCircle2 },
             SIGNED: { label: "Signed", className: "bg-purple-100 text-purple-800 border-purple-300", icon: PenTool },
         };
         const { label, className, icon: Icon } = config[status as keyof typeof config] || config.PENDING;
@@ -349,9 +349,9 @@ export default function AdminDocumentManagement() {
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-zinc-900 font-medium">Active</p>
-                                <p className="text-2xl font-bold text-violet-700">{stats.activeDocuments}</p>
+                                <p className="text-2xl font-bold text-green-700">{stats.activeDocuments}</p>
                             </div>
-                            <CheckCircle2 className="w-8 h-8 text-violet-600 opacity-50" />
+                            <CheckCircle2 className="w-8 h-8 text-green-600 opacity-50" />
                         </div>
                     </CardContent>
                 </Card>
@@ -511,7 +511,7 @@ export default function AdminDocumentManagement() {
                                                         <TableCell>
                                                             <Badge
                                                                 variant="default"
-                                                                className="bg-violet-600"
+                                                                className="bg-black text-white hover:bg-black cursor-default"
                                                             >
                                                                 Active
                                                             </Badge>
@@ -706,16 +706,16 @@ export default function AdminDocumentManagement() {
                                             {stats.pendingAcknowledgements}
                                         </span>
                                     </div>
-                                    <div className="flex items-center justify-between p-4 rounded-lg bg-violet-50 border border-violet-200">
+                                    <div className="flex items-center justify-between p-4 rounded-lg bg-green-50 border border-green-200">
                                         <div className="flex items-center gap-3">
-                                            <CheckCircle2 className="w-5 h-5 text-violet-600" />
+                                            <CheckCircle2 className="w-5 h-5 text-green-600" />
                                             <span className="font-medium">Acknowledged</span>
                                         </div>
-                                        <span className="text-2xl font-bold text-violet-600">
+                                        <span className="text-2xl font-bold text-green-600">
                                             {documents.reduce((sum, doc) => sum + (doc.acknowledged || 0), 0)}
                                         </span>
                                     </div>
-                                    <div className="flex items-center justify-between p-4 rounded-lg bg-violet-50 border border-blue-200">
+                                    <div className="flex items-center justify-between p-4 rounded-lg bg-blue-50 border border-blue-200">
                                         <div className="flex items-center gap-3">
                                             <BarChart3 className="w-5 h-5 text-blue-600" />
                                             <span className="font-medium">Completion Rate</span>

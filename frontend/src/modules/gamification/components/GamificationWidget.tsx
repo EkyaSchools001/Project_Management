@@ -56,7 +56,7 @@ export default function GamificationWidget() {
         </div>
 
         <div className="p-4 bg-muted/30 rounded-xl text-center">
-          <Star size={24} className="mx-auto text-purple-500 mb-2" />
+          <Star size={24} className="mx-auto text-red-500 mb-2" />
           <p className="text-2xl font-black text-foreground">{stats?.level || 1}</p>
           <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Level</p>
         </div>

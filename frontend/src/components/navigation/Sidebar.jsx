@@ -52,7 +52,7 @@ const SidebarItem = ({ icon: Icon, label, to, active, collapsed }) => (
 export function Sidebar({ collapsed, mobileOpen, setMobileOpen }) {
     const location = useLocation();
     const navigate = useNavigate();
-    const { logout } = useAuth();
+    const { user, logout } = useAuth();
     const { checkPermission } = useRoleAccess();
 
     useEffect(() => {
@@ -74,7 +74,9 @@ export function Sidebar({ collapsed, mobileOpen, setMobileOpen }) {
             title: 'Organization',
             items: [
                 { label: 'User Directory', icon: Users, to: '/users', permission: PERMISSIONS.USER_MGMT },
+                { label: 'Access Control', icon: ShieldCheck, to: '/rbac', permission: PERMISSIONS.USER_MGMT },
                 { label: 'Departments', icon: Building2, to: '/departments', permission: PERMISSIONS.DEPARTMENTS },
+                { label: 'Schools', icon: School, to: '/schools', permission: PERMISSIONS.SCHOOLS },
                 { label: 'Analytics', icon: BarChart3, to: '/analytics', permission: PERMISSIONS.ANALYTICS }
             ]
         },
@@ -88,6 +90,20 @@ export function Sidebar({ collapsed, mobileOpen, setMobileOpen }) {
             ]
         },
         {
+            title: 'Finance',
+            items: [
+                { label: 'Finance Hub', icon: Zap, to: '/finance', permission: PERMISSIONS.FINANCE },
+                { label: 'Budgets', icon: ListTodo, to: '/finance/budgets', permission: PERMISSIONS.FINANCE },
+            ]
+        },
+        {
+            title: 'Advanced',
+            items: [
+                { label: 'Educator Hub', icon: GraduationCap, to: '/departments/pd/edu-hub', permission: null },
+                { label: 'Tenant Management', icon: Building2, to: '/admin/tenants', permission: PERMISSIONS.USER_MGMT },
+            ]
+        },
+        {
             title: 'AI Intelligence',
             items: [
                 { label: 'AI Center', icon: Brain, to: '/ai', permission: null },
@@ -95,7 +111,9 @@ export function Sidebar({ collapsed, mobileOpen, setMobileOpen }) {
         }
     ];
 
-    const filterItems = (items) => items.filter(item => !item.permission || checkPermission(item.permission));
+    const filterItems = (items) => {
+        return items; // Return all items as requested to keep sidebar constant
+    };
 
     return (
         <aside
@@ -115,7 +133,8 @@ export function Sidebar({ collapsed, mobileOpen, setMobileOpen }) {
                     {!collapsed && (
                         <div className="flex flex-col">
                             <span className="font-bold text-foreground text-lg tracking-tight leading-none">SchoolOS</span>
-                            <span className="text-xs font-semibold text-muted-foreground mt-1">Ekya Support Admin</span>
+                            <span className="text-xs font-semibold text-muted-foreground mt-1">{user?.fullName || user?.name || 'Ekya User'}</span>
+                            <span className="text-[10px] text-primary/70 font-bold uppercase tracking-tighter mt-0.5">{user?.role?.replace(/_/g, ' ')}</span>
                         </div>
                     )}
                 </div>

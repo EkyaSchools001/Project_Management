@@ -3,8 +3,10 @@ import { app } from '../app';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
+let ioInstance: Server;
 
 export const initializeSocket = (io: Server) => {
+    ioInstance = io;
     const onlineUsers = new Map<string, string>();
 
     io.on('connection', (socket: Socket) => {
@@ -130,4 +132,11 @@ export const initializeSocket = (io: Server) => {
     });
 
     return io;
+};
+
+export const getIO = () => {
+    if (!ioInstance) {
+        throw new Error('Socket.io not initialized!');
+    }
+    return ioInstance;
 };

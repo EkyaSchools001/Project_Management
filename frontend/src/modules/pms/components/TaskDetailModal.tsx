@@ -23,7 +23,7 @@ import {
 import { format, parseISO } from 'date-fns';
 
 const PRIORITY_OPTIONS = [
-    { value: 'LOW', label: 'Low', color: '#8b5cf6' },
+    { value: 'LOW', label: 'Low', color: '#ef4444' },
     { value: 'MEDIUM', label: 'Medium', color: '#f59e0b' },
     { value: 'HIGH', label: 'High', color: '#f97316' },
     { value: 'CRITICAL', label: 'Critical', color: '#ef4444' }
@@ -31,9 +31,9 @@ const PRIORITY_OPTIONS = [
 
 const STATUS_OPTIONS = [
     { value: 'TODO', label: 'To Do', color: '#94a3b8' },
-    { value: 'IN_PROGRESS', label: 'In Progress', color: '#8b5cf6' },
+    { value: 'IN_PROGRESS', label: 'In Progress', color: '#ef4444' },
     { value: 'IN_REVIEW', label: 'In Review', color: '#f59e0b' },
-    { value: 'DONE', label: 'Done', color: '#8b5cf6' }
+    { value: 'DONE', label: 'Done', color: '#ef4444' }
 ];
 
 export const TaskDetailModal = ({
@@ -192,7 +192,7 @@ export const TaskDetailModal = ({
                                     onClick={() => setActiveTab(tab)}
                                     className={`px-6 py-3 text-sm font-semibold capitalize transition-colors ${
                                         activeTab === tab
-                                            ? 'text-indigo-600 border-b-2 border-indigo-600'
+                                            ? 'text-rose-600 border-b-2 border-rose-600'
                                             : 'text-slate-500 hover:text-slate-700'
                                     }`}
                                 >
@@ -217,7 +217,7 @@ export const TaskDetailModal = ({
                                             type="text"
                                             value={formData.title}
                                             onChange={(e) => handleChange('title', e.target.value)}
-                                            className="w-full px-4 py-3 text-lg font-semibold border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                                            className="w-full px-4 py-3 text-lg font-semibold border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400"
                                             placeholder="Task title..."
                                         />
                                     </div>
@@ -230,7 +230,7 @@ export const TaskDetailModal = ({
                                             value={formData.description}
                                             onChange={(e) => handleChange('description', e.target.value)}
                                             rows={4}
-                                            className="w-full px-4 py-3 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 resize-none"
+                                            className="w-full px-4 py-3 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400 resize-none"
                                             placeholder="Add a description..."
                                         />
                                     </div>
@@ -243,7 +243,7 @@ export const TaskDetailModal = ({
                                             <select
                                                 value={formData.status}
                                                 onChange={(e) => handleChange('status', e.target.value)}
-                                                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                                                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400"
                                             >
                                                 {STATUS_OPTIONS.map(opt => (
                                                     <option key={opt.value} value={opt.value}>
@@ -260,7 +260,7 @@ export const TaskDetailModal = ({
                                             <select
                                                 value={formData.priority}
                                                 onChange={(e) => handleChange('priority', e.target.value)}
-                                                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                                                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400"
                                             >
                                                 {PRIORITY_OPTIONS.map(opt => (
                                                     <option key={opt.value} value={opt.value}>
@@ -280,7 +280,7 @@ export const TaskDetailModal = ({
                                                 type="date"
                                                 value={formData.startDate}
                                                 onChange={(e) => handleChange('startDate', e.target.value)}
-                                                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                                                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400"
                                             />
                                         </div>
 
@@ -292,7 +292,7 @@ export const TaskDetailModal = ({
                                                 type="date"
                                                 value={formData.endDate}
                                                 onChange={(e) => handleChange('endDate', e.target.value)}
-                                                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                                                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400"
                                             />
                                         </div>
                                     </div>
@@ -305,7 +305,7 @@ export const TaskDetailModal = ({
                                             <select
                                                 value={formData.assigneeId}
                                                 onChange={(e) => handleChange('assigneeId', e.target.value)}
-                                                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                                                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400"
                                             >
                                                 <option value="">Unassigned</option>
                                                 {users.map(user => (
@@ -324,7 +324,7 @@ export const TaskDetailModal = ({
                                                 type="number"
                                                 value={formData.estimatedHours}
                                                 onChange={(e) => handleChange('estimatedHours', e.target.value)}
-                                                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                                                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400"
                                                 placeholder="0"
                                             />
                                         </div>
@@ -356,12 +356,12 @@ export const TaskDetailModal = ({
                                                 value={newTag}
                                                 onChange={(e) => setNewTag(e.target.value)}
                                                 onKeyDown={(e) => e.key === 'Enter' && handleAddTag()}
-                                                className="flex-1 px-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 text-sm"
+                                                className="flex-1 px-4 py-2 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400 text-sm"
                                                 placeholder="Add tag..."
                                             />
                                             <button
                                                 onClick={handleAddTag}
-                                                className="px-4 py-2 bg-indigo-600 text-foreground rounded-xl text-sm font-semibold hover:bg-indigo-700"
+                                                className="px-4 py-2 bg-rose-600 text-foreground rounded-xl text-sm font-semibold hover:bg-rose-700"
                                             >
                                                 Add
                                             </button>
@@ -376,7 +376,7 @@ export const TaskDetailModal = ({
                                         <div className="flex-1">
                                             <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
                                                 <div
-                                                    className="h-full bg-indigo-500 transition-all duration-300"
+                                                    className="h-full bg-rose-500 transition-all duration-300"
                                                     style={{ width: `${totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0}%` }}
                                                 />
                                             </div>
@@ -396,8 +396,8 @@ export const TaskDetailModal = ({
                                                     onClick={() => handleToggleSubtask(idx)}
                                                     className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
                                                         subtask.done
-                                                            ? 'bg-violet-500 border-violet-500'
-                                                            : 'border-slate-300 hover:border-indigo-400'
+                                                            ? 'bg-red-500 border-red-500'
+                                                            : 'border-slate-300 hover:border-rose-400'
                                                     }`}
                                                 >
                                                     {subtask.done && <CheckCircle2 size={12} className="text-foreground" />}
@@ -421,12 +421,12 @@ export const TaskDetailModal = ({
                                             value={newSubtask}
                                             onChange={(e) => setNewSubtask(e.target.value)}
                                             onKeyDown={(e) => e.key === 'Enter' && handleAddSubtask()}
-                                            className="flex-1 px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                                            className="flex-1 px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400"
                                             placeholder="Add a subtask..."
                                         />
                                         <button
                                             onClick={handleAddSubtask}
-                                            className="px-6 py-3 bg-indigo-600 text-foreground rounded-xl font-semibold hover:bg-indigo-700"
+                                            className="px-6 py-3 bg-rose-600 text-foreground rounded-xl font-semibold hover:bg-rose-700"
                                         >
                                             <Plus size={18} />
                                         </button>
@@ -486,7 +486,7 @@ export const TaskDetailModal = ({
                                         {formData.comments.length > 0 ? (
                                             formData.comments.map(comment => (
                                                 <div key={comment.id} className="flex gap-3 p-3 bg-slate-50 rounded-xl">
-                                                    <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-sm font-bold shrink-0">
+                                                    <div className="w-8 h-8 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-sm font-bold shrink-0">
                                                         {comment.author?.name?.charAt(0) || 'U'}
                                                     </div>
                                                     <div className="flex-1">
@@ -513,12 +513,12 @@ export const TaskDetailModal = ({
                                             value={newComment}
                                             onChange={(e) => setNewComment(e.target.value)}
                                             onKeyDown={(e) => e.key === 'Enter' && handleAddComment()}
-                                            className="flex-1 px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                                            className="flex-1 px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400"
                                             placeholder="Write a comment..."
                                         />
                                         <button
                                             onClick={handleAddComment}
-                                            className="px-4 py-3 bg-indigo-600 text-foreground rounded-xl hover:bg-indigo-700"
+                                            className="px-4 py-3 bg-rose-600 text-foreground rounded-xl hover:bg-rose-700"
                                         >
                                             <Send size={18} />
                                         </button>
@@ -539,7 +539,7 @@ export const TaskDetailModal = ({
                                 </Dialog.Close>
                                 <button
                                     onClick={handleSave}
-                                    className="px-6 py-3 bg-indigo-600 text-foreground text-sm font-semibold rounded-xl hover:bg-indigo-700 transition-colors"
+                                    className="px-6 py-3 bg-rose-600 text-foreground text-sm font-semibold rounded-xl hover:bg-rose-700 transition-colors"
                                 >
                                     Save Changes
                                 </button>

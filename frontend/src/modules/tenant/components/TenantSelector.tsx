@@ -54,7 +54,7 @@ export const TenantSelector = ({ onTenantChange }: TenantSelectorProps) => {
                 {tenant?.logo ? (
                     <img src={tenant.logo} alt={tenant.name} className="w-5 h-5 rounded object-cover" />
                 ) : (
-                    <Building className="w-4 h-4 text-[#8b5cf6]" />
+                    <Building className="w-4 h-4 text-[#ef4444]" />
                 )}
                 <span className="text-sm font-medium text-foreground max-w-[120px] truncate">
                     {tenant?.name || 'Select Tenant'}
@@ -76,13 +76,13 @@ export const TenantSelector = ({ onTenantChange }: TenantSelectorProps) => {
                                 {t.logo ? (
                                     <img src={t.logo} alt={t.name} className="w-6 h-6 rounded object-cover" />
                                 ) : (
-                                    <Building className="w-5 h-5 text-[#8b5cf6]" />
+                                    <Building className="w-5 h-5 text-[#ef4444]" />
                                 )}
                                 <span className="flex-1 text-left text-sm text-foreground truncate">
                                     {t.name}
                                 </span>
                                 {tenant?.id === t.id && (
-                                    <Check className="w-4 h-4 text-[#8b5cf6]" />
+                                    <Check className="w-4 h-4 text-[#ef4444]" />
                                 )}
                             </button>
                         ))}

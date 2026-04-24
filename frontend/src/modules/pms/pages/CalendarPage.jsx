@@ -50,9 +50,9 @@ const CalendarPage = () => {
     const [selectedDate, setSelectedDate] = useState(null);
 
     const [events, setEvents] = useState({
-        [format(addDays(new Date(), 2), 'yyyy-MM-dd')]: { title: 'NODE SYNC', type: 'task', color: 'from-violet-400 to-fuchsia-600 shadow-violet-500/20' },
+        [format(addDays(new Date(), 2), 'yyyy-MM-dd')]: { title: 'NODE SYNC', type: 'task', color: 'from-red-400 to-rose-600 shadow-red-500/20' },
         [format(addDays(new Date(), 5), 'yyyy-MM-dd')]: { title: 'ORBITAL REVIEW', type: 'meeting', color: 'from-rose-400 to-rose-600 shadow-rose-500/20' },
-        [format(addDays(new Date(), 10), 'yyyy-MM-dd')]: { title: 'CORE MATRIX', type: 'task', color: 'from-indigo-400 to-indigo-600 shadow-indigo-500/20' },
+        [format(addDays(new Date(), 10), 'yyyy-MM-dd')]: { title: 'CORE MATRIX', type: 'task', color: 'from-rose-400 to-rose-600 shadow-rose-500/20' },
         [format(addDays(new Date(), 15), 'yyyy-MM-dd')]: { title: 'UPLINK ESTABLISHED', type: 'reminder', color: 'from-amber-400 to-amber-600 shadow-amber-500/20' }
     });
 
@@ -79,22 +79,22 @@ const CalendarPage = () => {
             className="max-w-[1800px] mx-auto space-y-16 p-6 sm:p-10 lg:p-16 pb-40 relative overflow-hidden"
         >
             {/* Ambient Background Elements */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-[150px] -z-10 animate-pulse-slow" />
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-rose-500/5 rounded-full blur-[150px] -z-10 animate-pulse-slow" />
             <div className="absolute bottom-40 left-0 w-[400px] h-[400px] bg-rose-500/5 rounded-full blur-[120px] -z-10" />
 
             {/* Vibrant Mission Matrix Header */}
             <header className="relative overflow-hidden p-12 sm:p-20 bg-slate-950 rounded-[4rem] sm:rounded-[5rem] text-foreground shadow-2xl border border-white/5">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-transparent to-rose-600/10" />
-                <div className="absolute -right-20 -top-20 w-80 h-80 bg-indigo-500 rounded-full blur-[120px] opacity-20 animate-pulse pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-br from-rose-600/30 via-transparent to-rose-600/10" />
+                <div className="absolute -right-20 -top-20 w-80 h-80 bg-rose-500 rounded-full blur-[120px] opacity-20 animate-pulse pointer-events-none" />
                 
                 <div className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative z-10">
                     <div className="space-y-8 max-w-3xl">
                         <motion.div variants={itemVariants} className="inline-flex items-center gap-4 px-6 py-2 bg-white/5 rounded-full border border-white/10 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.5em] backdrop-blur-3xl">
-                            <Clock size={14} className="text-violet-400" />
+                            <Clock size={14} className="text-red-400" />
                             Temporal Synchronization Protocol: Active
                         </motion.div>
                         <motion.h1 variants={itemVariants} className="text-5xl sm:text-8xl lg:text-9xl font-black tracking-tighter uppercase leading-[0.8] mb-4">
-                            Temporal <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-violet-400 to-rose-400 animate-gradient-shift">Matrix</span>
+                            Temporal <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-red-400 to-rose-400 animate-gradient-shift">Matrix</span>
                         </motion.h1>
                         <motion.p variants={itemVariants} className="text-foreground/40 font-black text-xs sm:text-sm uppercase tracking-[0.4em] flex items-center gap-4 border-l-4 border-white/10 pl-6">
                             <Activity size={18} className="text-amber-400" />
@@ -115,7 +115,7 @@ const CalendarPage = () => {
                         </div>
                         <button 
                             onClick={() => setShowScheduleModal(true)}
-                            className="h-20 px-12 bg-white text-slate-950 font-black rounded-3xl text-xs uppercase tracking-[0.4em] shadow-[0_20px_50px_rgba(255,255,255,0.1)] hover:bg-indigo-600 hover:text-foreground hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-6 group/deploy"
+                            className="h-20 px-12 bg-white text-slate-950 font-black rounded-3xl text-xs uppercase tracking-[0.4em] shadow-[0_20px_50px_rgba(255,255,255,0.1)] hover:bg-rose-600 hover:text-foreground hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-6 group/deploy"
                         >
                             <Plus size={28} className="group-hover/deploy:rotate-90 transition-transform duration-500" />
                             Deploy Node
@@ -132,7 +132,7 @@ const CalendarPage = () => {
                     </span>
                     <div className="h-8 w-[2px] bg-slate-100 mx-2" />
                     <div className="flex items-center gap-4">
-                        <div className="w-2.5 h-2.5 rounded-full bg-violet-500 animate-pulse" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
                         <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em]">Network Operational</span>
                     </div>
                 </div>
@@ -154,7 +154,7 @@ const CalendarPage = () => {
                 variants={itemVariants}
                 className="bg-white border border-slate-100 rounded-[4rem] sm:rounded-[5rem] shadow-[0_60px_120px_rgba(0,0,0,0.04)] overflow-hidden relative group/canvas"
             >
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/2 via-transparent to-rose-500/2" />
+                <div className="absolute inset-0 bg-gradient-to-br from-rose-500/2 via-transparent to-rose-500/2" />
                 
                 {/* Week Column Labels */}
                 <div className="grid grid-cols-7 border-b border-slate-100 bg-slate-50/50 relative z-10">
@@ -181,11 +181,11 @@ const CalendarPage = () => {
                                 className={`min-h-[160px] sm:min-h-[200px] p-6 border-b border-r border-slate-100 last:border-r-0 relative transition-all duration-500 flex flex-col group cursor-crosshair overflow-hidden ${!isCurrentMonth ? 'opacity-20 grayscale' : ''}`}
                             >
                                 <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <ArrowUpRight size={16} className="text-indigo-400" />
+                                    <ArrowUpRight size={16} className="text-rose-400" />
                                 </div>
 
                                 <div className="flex justify-start mb-6">
-                                    <span className={`text-sm font-black w-10 h-10 flex items-center justify-center rounded-2xl transition-all duration-700 ${isTodayDate ? 'bg-indigo-600 text-foreground shadow-2xl shadow-indigo-600/40 scale-115 rotate-12' : 'text-slate-900 group-hover:scale-125 group-hover:text-indigo-600'}`}>
+                                    <span className={`text-sm font-black w-10 h-10 flex items-center justify-center rounded-2xl transition-all duration-700 ${isTodayDate ? 'bg-rose-600 text-foreground shadow-2xl shadow-rose-600/40 scale-115 rotate-12' : 'text-slate-900 group-hover:scale-125 group-hover:text-rose-600'}`}>
                                         {format(day, 'd')}
                                     </span>
                                 </div>
@@ -208,7 +208,7 @@ const CalendarPage = () => {
                                 </div>
                                 
                                 {isTodayDate && (
-                                    <div className="absolute inset-0 bg-indigo-600/5 pointer-events-none" />
+                                    <div className="absolute inset-0 bg-rose-600/5 pointer-events-none" />
                                 )}
                             </motion.div>
                         );
@@ -223,7 +223,7 @@ const CalendarPage = () => {
                         initial={{ x: "-100%" }}
                         animate={{ x: "100%" }}
                         transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                        className="h-full w-20 bg-indigo-600 shadow-[0_0_15px_rgba(79,70,229,0.5)]" 
+                        className="h-full w-20 bg-rose-600 shadow-[0_0_15px_rgba(79,70,229,0.5)]" 
                     />
                 </div>
                 <p className="text-[10px] font-black text-slate-300 uppercase tracking-[1em] animate-pulse">Neural Chronometer Operational // No Latency Detected</p>
@@ -271,7 +271,7 @@ const TabButton = ({ active, onClick, label }) => (
             }`}
     >
         {label}
-        {active && <div className="w-2 h-2 rounded-full bg-indigo-400 animate-glow shadow-[0_0_10px_rgba(129,140,248,0.8)]" />}
+        {active && <div className="w-2 h-2 rounded-full bg-rose-400 animate-glow shadow-[0_0_10px_rgba(129,140,248,0.8)]" />}
     </motion.button>
 );
 

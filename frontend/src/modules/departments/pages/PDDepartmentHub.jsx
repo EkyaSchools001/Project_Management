@@ -1,183 +1,162 @@
-import React, { useState } from 'react';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { useAuth } from '../../../modules/auth/authContext';
-import { ArrowLeft, Sparkles, GraduationCap, Users, Target, Zap, ArrowUpRight } from 'lucide-react';
+/**
+ * PDDepartmentHub.jsx
+ * Mounts the complete pdi_updated-main frontend at /departments/pd/*
+ * Acting as a thin shell that wires SchoolOS auth into the PDI system.
+ */
 
-// PDI Providers
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { TooltipProvider } from "@pdi/components/ui/tooltip";
-import { PermissionProvider } from "@pdi/contexts/PermissionContext";
-import { AIProvider } from "@pdi/contexts/AIContext";
-import ErrorBoundary from "@pdi/components/ErrorBoundary";
+import React from 'react';
+import { Routes, Route, Navigate, useNavigate, Outlet } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { TooltipProvider } from '@pdi/components/ui/tooltip';
+import { PermissionProvider } from '@pdi/contexts/PermissionContext';
+import { AIProvider } from '@pdi/contexts/AIContext';
+import ErrorBoundary from '@pdi/components/ErrorBoundary';
+import { useAuth } from '@/modules/auth/authContext';
+import { DashboardLayout } from '@pdi/components/layout/DashboardLayout';
 
-// PDI Integration Components
+// ---- Full PDI page imports ------------------------------------------------
 import TeacherDashboard from '@pdi/pages/TeacherDashboard';
-import LeaderDashboard from '@pdi/pages/LeaderDashboard';
+import LeaderDashboard  from '@pdi/pages/LeaderDashboard';
+import GrowthPage       from '@pdi/pages/GrowthPage';
+import AnnouncementsPage from '@pdi/pages/AnnouncementsPage';
+import OKRDashboard     from '@pdi/pages/OKRDashboard';
+import SurveyPage       from '@pdi/pages/SurveyPage';
+import AttendanceRegister from '@pdi/pages/AttendanceRegister';
+import { MeetingsDashboard } from '@pdi/pages/MeetingsDashboard';
+import { MeetingMoMForm }   from '@pdi/pages/MeetingMoMForm';
+import AdminDocumentManagement from '@pdi/pages/AdminDocumentManagement';
+import { PortfolioIndex }    from '@pdi/pages/portfolio/PortfolioIndex';
+import { TeacherPortfolio }  from '@pdi/pages/portfolio/TeacherPortfolio';
+import { LearningFestivalPage } from '@pdi/pages/LearningFestival/LearningFestivalPage';
+import { FestivalManagementDashboard } from '@pdi/pages/LearningFestival/FestivalManagementDashboard';
+import EventAttendanceView from '@pdi/pages/EventAttendanceView';
+// Leader-specific sub-pages
+import LeaderGrowthPage from '@pdi/pages/leader/LeaderGrowthPage';
+import DanielsonDashboard from '@pdi/pages/leader/DanielsonDashboard';
+import DanielsonFrameworkPage from '@pdi/pages/leader/DanielsonFrameworkPage';
+import QuickFeedbackDashboard from '@pdi/pages/leader/QuickFeedbackDashboard';
+import QuickFeedbackPage from '@pdi/pages/leader/QuickFeedbackPage';
+import NotesPage from '@pdi/pages/leader/NotesPage';
+import PerformingArtsObsDashboard from '@pdi/pages/leader/PerformingArtsObsDashboard';
+import PerformingArtsObsPage from '@pdi/pages/leader/PerformingArtsObsPage';
+import LifeSkillsObsDashboard from '@pdi/pages/leader/LifeSkillsObsDashboard';
+import LifeSkillsObsPage from '@pdi/pages/leader/LifeSkillsObsPage';
+import PEObsDashboard from '@pdi/pages/leader/PEObsDashboard';
+import PEObsPage from '@pdi/pages/leader/PEObsPage';
+import VAObsDashboard from '@pdi/pages/leader/VAObsDashboard';
+import VAObsPage from '@pdi/pages/leader/VAObsPage';
+// Admin sub-pages
+import AdminGrowthAnalyticsPage from '@pdi/pages/admin/AdminGrowthAnalyticsPage';
+// Management sub-pages
+import ManagementDashboard from '@pdi/pages/ManagementDashboard';
+// Coordinator
+import CoordinatorDashboard from '@pdi/pages/CoordinatorDashboard';
 
-const queryClient = new QueryClient();
+import InstitutionalIdentity from "@pdi/pages/educator-hub/InstitutionalIdentity";
+import AcademicOperations from "@pdi/pages/educator-hub/AcademicOperations";
+import PedagogyLearning from "@pdi/pages/educator-hub/PedagogyLearning";
+import ProfessionalDevelopment from "@pdi/pages/educator-hub/ProfessionalDevelopment";
+import Interactions from "@pdi/pages/educator-hub/Interactions";
+import ManagementSupport from "@pdi/pages/educator-hub/ManagementSupport";
+import PhilosophyPage from "@pdi/pages/educator-hub/PhilosophyPage";
+import FoundersMessagePage from "@pdi/pages/educator-hub/FoundersMessagePage";
+import OurSchoolsPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurSchoolsPage";
+import CMRNPSPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/CMRNPSPage";
+import EkyaByrathiPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/EkyaByrathiPage";
+import EkyaBtmLayoutPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/EkyaBtmLayoutPage";
+import EkyaItplPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/EkyaItplPage";
+import EkyaJpNagarPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/EkyaJpNagarPage";
+import EkyaNiceRoadPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/EkyaNiceRoadPage";
+import CmrpuhRbrPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/CmrpuhRbrPage";
+import CmrpuhItplPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/CmrpuhItplPage";
+import CmrpuhBtmPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/CmrpuhBtmPage";
+import LegacyPage from "@pdi/pages/educator-hub/InstitutionalIdentity/LegacyPage";
+import TeamsVisionPage from "@pdi/pages/educator-hub/InstitutionalIdentity/TeamsVisionPage";
+import SchoolPrayerPage from "@pdi/pages/educator-hub/InstitutionalIdentity/SchoolPrayerPage";
+import EduHubIndex from "@pdi/pages/edu-hub/EduHubIndex";
+import ResourcesHub from "@pdi/pages/hr/ResourcesHub";
+import EducatorGuide from "@pdi/pages/hr/EducatorGuide";
+import EducatorEssentials from "@pdi/pages/hr/EducatorEssentials";
+import WellBeing from "@pdi/pages/hr/WellBeing";
+import TechSitesLogin from "@pdi/pages/technology/TechSitesLogin";
+import GreytHRPage from "@pdi/pages/technology/GreytHRPage";
+import SchoologyPage from "@pdi/pages/technology/SchoologyPage";
+import GoogleWorkspacePage from "@pdi/pages/technology/GoogleWorkspacePage";
+import GoogleFormsPage from "@pdi/pages/technology/GoogleFormsPage";
+import GoogleSlidesPage from "@pdi/pages/technology/GoogleSlidesPage";
+import GoogleSheetsPage from "@pdi/pages/technology/GoogleSheetsPage";
+import GoogleDocsPage from "@pdi/pages/technology/GoogleDocsPage";
+import GoogleCalendarPage from "@pdi/pages/technology/GoogleCalendarPage";
+import GoogleMeetPage from "@pdi/pages/technology/GoogleMeetPage";
+import GoogleMailPage from "@pdi/pages/technology/GoogleMailPage";
+import ZoomPage from "@pdi/pages/technology/ZoomPage";
+import SlackPage from "@pdi/pages/technology/SlackPage";
+import EmailSignaturePage from "@pdi/pages/technology/EmailSignaturePage";
+import EkyaversePage from "@pdi/pages/technology/EkyaversePage";
+import InProgress from "@pdi/pages/InProgress";
+import { AdminGoalsView } from "@pdi/pages/admin/AdminGoalsView";
+import { AdminReportsView } from "@pdi/pages/admin/AdminReportsView";
+import { AdminCalendarView } from "@pdi/pages/admin/AdminCalendarView";
+import { ManagementGoalsView } from "@pdi/pages/management/ManagementGoalsView";
+import { ManagementInsightsView } from "@pdi/pages/management/ManagementInsightsView";
+import ManagementGrowthAnalyticsPage from "@pdi/pages/management/ManagementGrowthAnalyticsPage";
+import { LearningInsightsView } from "@pdi/pages/leader/LearningInsightsView";
+import { PDHoursAnalyticsView } from "@pdi/pages/admin/PDHoursAnalyticsView";
+import { MoocManagementView } from "@pdi/pages/admin/MoocManagementView";
+import { CourseManagementView } from "@pdi/pages/admin/CourseManagementView";
+import { UserManagementView } from "@pdi/pages/admin/UserManagementView";
+import { FormTemplatesView } from "@pdi/pages/admin/FormTemplatesView";
+import { SystemSettingsView } from "@pdi/pages/admin/SystemSettingsView";
+import { SuperAdminView } from "@pdi/pages/admin/SuperAdminView";
+import TeacherAttendance from "@pdi/pages/TeacherAttendance";
+import { LeaderPerformanceAnalytics } from "@pdi/components/LeaderPerformanceAnalytics";
+import TeamMembersPage from "../../pms/pages/TeamMembersPage";
 
-const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 } }
-};
+// ---------------------------------------------------------------------------
 
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.08 } }
-};
+const pdiQueryClient = new QueryClient();
 
-const PDHubLanding = ({ role, navigate }) => (
-    <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="max-w-[1800px] mx-auto space-y-16 p-6 sm:p-10 lg:p-16 pb-40"
+/** Normalise SchoolOS role → PDI canonical role string */
+function normalisePDIRole(role) {
+    const r = (role || '').toUpperCase();
+    if (r === 'TEACHERSTAFF' || r === 'TEACHER_STAFF') return 'TEACHER';
+    if (r === 'SCHOOL_LEADER') return 'SCHOOL_LEADER';
+    if (r === 'LEADER') return 'LEADER';
+    if (r === 'ADMIN') return 'ADMIN';
+    if (r === 'SUPERADMIN' || r === 'SUPER_ADMIN') return 'SUPERADMIN';
+    if (r === 'MANAGEMENT' || r === 'MANAGEMENTADMIN') return 'MANAGEMENT';
+    if (r === 'COORDINATOR') return 'COORDINATOR';
+    return 'TEACHER';
+}
+
+/** Decide initial sub-path based on role */
+function roleDefaultPath(role) {
+    if (role === 'TEACHER') return '/departments/pd/teacher';
+    if (role === 'MANAGEMENT') return '/departments/pd/management';
+    if (role === 'COORDINATOR') return '/departments/pd/coordinator';
+    if (role === 'ADMIN' || role === 'SUPERADMIN') return '/departments/pd/admin';
+    return '/departments/pd/leader';
+}
+
+const PDIShell = ({ role, user }) => (
+    <DashboardLayout 
+        role={role.toLowerCase()} 
+        userName={user?.fullName || 'Educator'}
     >
-        {/* Header */}
-        <header className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-12 relative overflow-hidden p-12 sm:p-16 lg:p-24 bg-background rounded-[5rem] text-foreground shadow-2xl group border border-white/5">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#8b5cf6]/10 via-indigo-600/10 to-transparent pointer-events-none" />
-            <div className="absolute -right-20 -top-20 w-[600px] h-[600px] bg-[#8b5cf6] rounded-full blur-[250px] opacity-5 pointer-events-none group-hover:scale-125 transition-transform duration-1000" />
-
-            <div className="space-y-10 relative z-10 flex-1">
-                <motion.button
-                    variants={itemVariants}
-                    onClick={() => navigate('/departments/pd')}
-                    className="group flex items-center text-[10px] font-black text-foreground/40 hover:text-[#8b5cf6] transition-all uppercase tracking-[0.4em]"
-                >
-                    <ArrowLeft className="w-5 h-5 mr-4 group-hover:-translate-x-3 transition-transform" />
-                    Infrastructure Matrix Registry
-                </motion.button>
-
-                <div className="space-y-6">
-                    <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-6">
-                        <h1 className="text-5xl sm:text-8xl lg:text-9xl font-black text-foreground tracking-tighter uppercase leading-[0.85] drop-shadow-2xl">
-                            Teacher <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8b5cf6] via-violet-400 to-indigo-400">
-                                Development
-                            </span>
-                        </h1>
-                        <div className="px-8 py-3 bg-[#8b5cf6]/10 backdrop-blur-xl border border-[#8b5cf6]/20 text-[#8b5cf6] rounded-full text-[10px] font-black uppercase tracking-[0.4em]">
-                            PD_HUB_ACTIVE
-                        </div>
-                    </motion.div>
-                    <motion.p variants={itemVariants} className="text-foreground/40 font-black text-xs sm:text-xl uppercase tracking-[0.3em] flex items-center gap-6">
-                        <GraduationCap size={32} className="text-[#8b5cf6]" />
-                        Lead Orchestrator: <span className="text-foreground font-black">Sharada</span>
-                    </motion.p>
-                </div>
-            </div>
-
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-6 w-full xl:w-auto relative z-10 pb-4">
-                <HubAction
-                    onClick={() => navigate('/departments/pd/teacher')}
-                    icon={GraduationCap}
-                    label="Teacher View"
-                    color="text-[#8b5cf6]"
-                    bg="bg-[#8b5cf6]/10"
-                    border="border-[#8b5cf6]/20"
-                />
-                <HubAction
-                    onClick={() => navigate('/departments/pd/leader')}
-                    icon={Users}
-                    label="Leader View"
-                    color="text-indigo-400"
-                    bg="bg-indigo-600/10"
-                    border="border-indigo-400/20"
-                />
-                <HubAction
-                    onClick={() => navigate('/departments/pd/admin')}
-                    icon={Target}
-                    label="Admin View"
-                    color="text-rose-400"
-                    bg="bg-rose-600/10"
-                    border="border-rose-400/20"
-                />
-            </motion.div>
-        </header>
-
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
-            {[
-                { label: 'Active Teachers', value: '120+', icon: GraduationCap, color: 'from-[#8b5cf6]/20 to-violet-600/10', text: 'text-[#8b5cf6]' },
-                { label: 'PD Goals Tracked', value: '340', icon: Target, color: 'from-indigo-500/20 to-violet-600/10', text: 'text-indigo-400' },
-                { label: 'Completion Rate', value: '87%', icon: Zap, color: 'from-amber-400/20 to-orange-600/10', text: 'text-amber-400' },
-            ].map((stat, i) => (
-                <motion.div key={i} variants={itemVariants}>
-                    <div className="p-12 flex flex-col gap-10 group cursor-pointer hover:shadow-[0_45px_100px_rgba(0,0,0,0.4)] hover:border-[#8b5cf6]/30 transition-all duration-700 bg-background border border-white/5 rounded-[4rem] relative overflow-hidden">
-                        <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-30 group-hover:opacity-60 transition-opacity duration-700`} />
-                        <div className="flex items-center justify-between relative z-10">
-                            <div className={`w-20 h-20 rounded-[2.5rem] flex items-center justify-center bg-white/5 shadow-inner group-hover:scale-110 transition-all duration-700 ${stat.text}`}>
-                                <stat.icon size={36} />
-                            </div>
-                            <ArrowUpRight size={28} className="text-foreground/10 group-hover:text-foreground/40 transition-colors" />
-                        </div>
-                        <div className="relative z-10 space-y-2">
-                            <p className="text-[11px] font-black text-foreground/40 uppercase tracking-[0.4em] group-hover:text-foreground/60 transition-colors">{stat.label}</p>
-                            <p className="text-5xl sm:text-7xl font-black text-foreground tracking-tighter leading-none">{stat.value}</p>
-                        </div>
-                    </div>
-                </motion.div>
-            ))}
-        </div>
-
-        {/* Enter Hub CTA */}
-        <motion.div variants={itemVariants}>
-            <div className="relative overflow-hidden bg-background border border-white/5 rounded-[4rem] p-16 sm:p-24 flex flex-col sm:flex-row items-center justify-between gap-12 group shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#8b5cf6]/5 via-indigo-600/5 to-transparent pointer-events-none" />
-                <div className="absolute -left-20 -bottom-20 w-96 h-96 bg-[#8b5cf6] rounded-full blur-[200px] opacity-5 pointer-events-none" />
-                <div className="space-y-6 relative z-10">
-                    <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-[#8b5cf6]/10 text-[#8b5cf6] rounded-full text-[10px] font-black uppercase tracking-[0.3em] border border-[#8b5cf6]/20">
-                        <div className="w-2 h-2 rounded-full bg-[#8b5cf6] animate-pulse" />
-                        PD System Online
-                    </div>
-                    <h2 className="text-4xl sm:text-6xl font-black text-foreground uppercase tracking-tighter leading-none">
-                        Enter Your <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8b5cf6] to-violet-400">Dashboard</span>
-                    </h2>
-                    <p className="text-foreground/40 font-black text-xs uppercase tracking-[0.3em]">Access observations, goals, training events & more</p>
-                </div>
-                <button
-                    onClick={() => navigate(role === 'TEACHER' ? '/departments/pd/teacher' : '/departments/pd/leader')}
-                    className="relative z-10 h-24 px-16 bg-[#8b5cf6] text-slate-950 font-black rounded-[2.5rem] text-[11px] uppercase tracking-[0.3em] shadow-2xl shadow-[#8b5cf6]/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-6 shrink-0 group/btn"
-                >
-                    <Sparkles size={24} className="group-hover/btn:rotate-12 transition-transform" />
-                    Launch PD Hub
-                    <ArrowUpRight size={24} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                </button>
-            </div>
-        </motion.div>
-    </motion.div>
+        <Outlet />
+    </DashboardLayout>
 );
 
-const HubAction = ({ onClick, icon: Icon, label, color, bg, border }) => (
-    <motion.button
-        whileHover={{ y: -6, scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={onClick}
-        className={`flex flex-col items-center justify-end p-8 h-40 ${bg} backdrop-blur-xl border ${border || 'border-white/10'} rounded-[2.5rem] hover:bg-white/10 transition-all group flex-1 min-w-[120px] relative overflow-hidden`}
-    >
-        <div className="absolute top-4 right-4 text-foreground/10 group-hover:text-foreground/30 transition-colors">
-            <ArrowUpRight size={24} />
-        </div>
-        <div className={`w-16 h-16 rounded-[1.5rem] flex items-center justify-center ${bg} ${color} transition-transform group-hover:scale-110 shadow-2xl mb-6`}>
-            <Icon size={28} />
-        </div>
-        <span className={`text-[10px] font-black uppercase tracking-[0.3em] ${color} opacity-70 group-hover:opacity-100 transition-opacity`}>{label}</span>
-        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
-    </motion.button>
-);
+export default function PDDepartmentHub() {
+    const { user, loading } = useAuth();
 
-const PDDepartmentHub = () => {
-    const { user } = useAuth();
-    const navigate = useNavigate();
-
+    if (loading) return null;
     if (!user) return <Navigate to="/login" replace />;
 
-    const role = user.role?.toUpperCase() || 'TEACHER';
+    const role = normalisePDIRole(user.role);
 
     const Providers = ({ children }) => (
-        <QueryClientProvider client={queryClient}>
+        <QueryClientProvider client={pdiQueryClient}>
             <TooltipProvider>
                 <AIProvider>
                     <PermissionProvider>
@@ -189,37 +168,191 @@ const PDDepartmentHub = () => {
     );
 
     return (
-        <div className="min-h-screen bg-[#18181b] text-foreground">
+        <Providers>
             <Routes>
-                {/* Landing hub page */}
-                <Route index element={<PDHubLanding role={role} navigate={navigate} />} />
+                {/* Default → role-based landing */}
+                <Route index element={<Navigate to={roleDefaultPath(role)} replace />} />
 
-                {/* Full PDI dashboards */}
-                <Route path="teacher/*" element={
-                    <Providers><TeacherDashboard /></Providers>
-                } />
-                <Route path="leader/*" element={
-                    <Providers><LeaderDashboard /></Providers>
-                } />
-                <Route path="admin/*" element={
-                    <Providers><LeaderDashboard /></Providers>
-                } />
-                <Route path="management/*" element={
-                    <Providers><LeaderDashboard /></Providers>
-                } />
+                {/* ── Dashboard routes (Internal layout) ── */}
+                <Route path="teacher/*" element={<TeacherDashboard />} />
+                <Route path="leader/*"  element={<LeaderDashboard />} />
+                <Route path="admin/*"   element={<LeaderDashboard />} />
+                <Route path="management/*" element={<ManagementDashboard />} />
+                <Route path="coordinator/*" element={<CoordinatorDashboard />} />
 
-                {/* Default role-based redirect */}
-                <Route path="*" element={
-                    <Providers>
-                        {role === 'ADMIN' || role === 'SUPERADMIN' ? <LeaderDashboard /> :
-                         role === 'LEADER' || role === 'SCHOOL_LEADER' ? <LeaderDashboard /> :
-                         role === 'MANAGEMENT' ? <LeaderDashboard /> :
-                         <TeacherDashboard />}
-                    </Providers>
-                } />
+                {/* ── Shell-wrapped routes (Need shared layout) ── */}
+                <Route element={<PDIShell role={role} user={user} />}>
+                    {/* Shared module routes */}
+                    <Route path="growth"                      element={<GrowthPage />} />
+                    <Route path="leader/growth"               element={<LeaderGrowthPage />} />
+                    <Route path="leader/growth/:teacherId"    element={<LeaderGrowthPage />} />
+                    <Route path="admin/growth-analytics"      element={<AdminGrowthAnalyticsPage />} />
+                    
+                    {/* Observations (leader) */}
+                    <Route path="leader/danielson-framework"          element={<DanielsonDashboard />} />
+                    <Route path="leader/danielson-framework/new"      element={<DanielsonFrameworkPage />} />
+                    <Route path="leader/danielson-framework/:teacherId" element={<DanielsonFrameworkPage />} />
+                    <Route path="leader/quick-feedback"               element={<QuickFeedbackDashboard />} />
+                    <Route path="leader/quick-feedback/new"           element={<QuickFeedbackPage />} />
+                    <Route path="leader/quick-feedback/:teacherId"    element={<QuickFeedbackPage />} />
+                    <Route path="leader/performing-arts-obs"          element={<PerformingArtsObsDashboard />} />
+                    <Route path="leader/performing-arts-obs/new"      element={<PerformingArtsObsPage />} />
+                    <Route path="leader/life-skills-obs"              element={<LifeSkillsObsDashboard />} />
+                    <Route path="leader/life-skills-obs/new"          element={<LifeSkillsObsPage />} />
+                    <Route path="leader/pe-obs"                       element={<PEObsDashboard />} />
+                    <Route path="leader/pe-obs/new"                   element={<PEObsPage />} />
+                    <Route path="leader/va-obs"                       element={<VAObsDashboard />} />
+                    <Route path="leader/va-obs/new"                   element={<VAObsPage />} />
+                    <Route path="leader/notes"                        element={<NotesPage />} />
+
+                    {/* Meetings */}
+                    <Route path="meetings"               element={<MeetingsDashboard />} />
+                    <Route path="meetings/:meetingId"    element={<MeetingMoMForm />} />
+                    <Route path="meetings/:meetingId/mom" element={<MeetingMoMForm />} />
+
+                    {/* Portfolio */}
+                    <Route path="portfolio"              element={<PortfolioIndex />} />
+                    <Route path="portfolio/:teacherId"   element={<TeacherPortfolio />} />
+                    <Route path="teacher/portfolio"      element={<TeacherPortfolio />} />
+
+                    {/* Announcements / OKR / Survey */}
+                    <Route path="announcements"          element={<AnnouncementsPage />} />
+                    <Route path="okr"                    element={<OKRDashboard />} />
+                    <Route path="survey"                 element={<SurveyPage />} />
+
+                    {/* Learning Festival */}
+                    <Route path="festival"               element={<FestivalManagementDashboard />} />
+                    <Route path="festival/page"          element={<LearningFestivalPage />} />
+
+                    {/* Documents & Attendance */}
+                    <Route path="documents"              element={<AdminDocumentManagement />} />
+                    <Route path="attendance"             element={<AttendanceRegister />} />
+                    <Route path="attendance/:id"         element={<EventAttendanceView />} />
+
+                    {/* Leader sub-pages */}
+                    <Route path="leader/performance"     element={<LeaderPerformanceAnalytics />} />
+                    <Route path="leader/goals"           element={<AdminGoalsView />} />
+                    <Route path="leader/insights"        element={<LearningInsightsView />} />
+                    <Route path="leader/participation"   element={<PDHoursAnalyticsView />} />
+                    <Route path="leader/courses"         element={<CourseManagementView />} />
+                    <Route path="leader/courses/assessments" element={<InProgress />} />
+                    <Route path="leader/mooc"            element={<MoocManagementView />} />
+                    <Route path="leader/hours"           element={<PDHoursAnalyticsView />} />
+                    <Route path="leader/reports"         element={<AdminReportsView />} />
+                    <Route path="leader/survey"          element={<SurveyPage />} />
+                    <Route path="leader/meetings"        element={<MeetingsDashboard />} />
+                    <Route path="leader/meetings/:meetingId" element={<MeetingMoMForm />} />
+                    <Route path="leader/team"            element={<TeamMembersPage />} />
+                    <Route path="leader/users"           element={<UserManagementView />} />
+                    <Route path="leader/forms"           element={<FormTemplatesView />} />
+                    <Route path="leader/settings"        element={<SystemSettingsView />} />
+                    <Route path="leader/calendar"        element={<AdminCalendarView />} />
+                    <Route path="leader/attendance"      element={<AttendanceRegister />} />
+                    <Route path="leader/festival"        element={<LearningFestivalPage />} />
+
+                    {/* Admin sub-pages */}
+                    <Route path="admin/goals"            element={<AdminGoalsView />} />
+                    <Route path="admin/reports"          element={<AdminReportsView />} />
+                    <Route path="admin/calendar"         element={<AdminCalendarView />} />
+                    <Route path="admin/hours"            element={<PDHoursAnalyticsView />} />
+                    <Route path="admin/users"            element={<UserManagementView />} />
+                    <Route path="admin/forms"            element={<FormTemplatesView />} />
+                    <Route path="admin/settings"         element={<SystemSettingsView />} />
+                    <Route path="admin/superadmin"       element={<SuperAdminView />} />
+                    <Route path="admin/courses"          element={<CourseManagementView />} />
+                    <Route path="admin/courses/assessments" element={<InProgress />} />
+                    <Route path="admin/festival"         element={<FestivalManagementDashboard />} />
+                    <Route path="admin/mooc"             element={<MoocManagementView />} />
+                    <Route path="admin/meetings"         element={<MeetingsDashboard />} />
+                    <Route path="admin/meetings/:meetingId" element={<MeetingMoMForm />} />
+                    <Route path="admin/survey"           element={<SurveyPage />} />
+                    <Route path="admin/attendance"       element={<AttendanceRegister />} />
+
+                    {/* Management sub-pages (shell-wrapped variants) */}
+                    <Route path="management/growth-analytics" element={<ManagementGrowthAnalyticsPage />} />
+                    <Route path="management/goals"       element={<ManagementGoalsView />} />
+                    <Route path="management/pdi-health"  element={<ManagementInsightsView />} />
+                    <Route path="management/hours"       element={<PDHoursAnalyticsView />} />
+                    <Route path="management/meetings"    element={<MeetingsDashboard />} />
+                    <Route path="management/survey"      element={<SurveyPage />} />
+                    <Route path="management/attendance"  element={<AttendanceRegister />} />
+                    <Route path="management/courses/assessments" element={<InProgress />} />
+                    <Route path="management/campus-performance" element={<AdminReportsView />} />
+                    <Route path="management/pd-impact"   element={<PDHoursAnalyticsView />} />
+                    <Route path="management/training-analytics" element={<PDHoursAnalyticsView />} />
+
+                    {/* Teacher sub-pages */}
+                    <Route path="teacher/observations"  element={<GrowthPage />} />
+                    <Route path="teacher/goals"         element={<AdminGoalsView />} />
+                    <Route path="teacher/courses"       element={<CourseManagementView />} />
+                    <Route path="teacher/courses/assessments" element={<InProgress />} />
+                    <Route path="teacher/festival"      element={<LearningFestivalPage />} />
+                    <Route path="teacher/mooc"          element={<MoocManagementView />} />
+                    <Route path="teacher/calendar"      element={<AdminCalendarView />} />
+                    <Route path="teacher/hours"         element={<PDHoursAnalyticsView />} />
+                    <Route path="teacher/meetings"      element={<MeetingsDashboard />} />
+                    <Route path="teacher/meetings/:meetingId" element={<MeetingMoMForm />} />
+                    <Route path="teacher/survey"        element={<SurveyPage />} />
+                    <Route path="teacher/attendance"    element={<TeacherAttendance />} />
+                    <Route path="teacher/profile"       element={<InProgress />} />
+                    <Route path="teacher/documents"     element={<AdminDocumentManagement />} />
+
+                    {/* Educator Hub & Campus Routes */}
+                    <Route path="edu-hub/*"             element={<EduHubIndex />} />
+                    <Route path="educator-hub/institutional-identity" element={<InstitutionalIdentity />} />
+                    <Route path="educator-hub/institutional-identity/legacy" element={<LegacyPage />} />
+                    <Route path="educator-hub/institutional-identity/teams-vision" element={<TeamsVisionPage />} />
+                    <Route path="educator-hub/institutional-identity/philosophy" element={<PhilosophyPage />} />
+                    <Route path="educator-hub/institutional-identity/prayer" element={<SchoolPrayerPage />} />
+                    <Route path="educator-hub/institutional-identity/founders-message" element={<FoundersMessagePage />} />
+                    <Route path="educator-hub/institutional-identity/schools" element={<OurSchoolsPage />} />
+                    <Route path="educator-hub/institutional-identity/our-teams/cmr-nps" element={<CMRNPSPage />} />
+
+                    <Route path="campuses/ekya-byrathi" element={<EkyaByrathiPage />} />
+                    <Route path="campuses/ekya-btm-layout" element={<EkyaBtmLayoutPage />} />
+                    <Route path="campuses/ekya-itpl" element={<EkyaItplPage />} />
+                    <Route path="campuses/ekya-jp-nagar" element={<EkyaJpNagarPage />} />
+                    <Route path="campuses/ekya-nice-road" element={<EkyaNiceRoadPage />} />
+                    <Route path="campuses/cmrpu-hrbr" element={<CmrpuhRbrPage />} />
+                    <Route path="campuses/cmrpu-itpl" element={<CmrpuhItplPage />} />
+                    <Route path="campuses/cmrpu-btm" element={<CmrpuhBtmPage />} />
+
+                    <Route path="educator-hub/academic-operations" element={<AcademicOperations />} />
+                    <Route path="educator-hub/pedagogy-learning" element={<PedagogyLearning />} />
+                    <Route path="educator-hub/professional-development" element={<ProfessionalDevelopment />} />
+                    <Route path="educator-hub/interactions" element={<Interactions />} />
+                    <Route path="educator-hub/management-support" element={<ManagementSupport />} />
+
+                    {/* HR & Wellbeing Routes */}
+                    <Route path="hr/resources" element={<ResourcesHub />} />
+                    <Route path="hr/educator-guide" element={<EducatorGuide />} />
+                    <Route path="hr/educator-essentials" element={<EducatorEssentials />} />
+                    <Route path="hr/wellbeing" element={<WellBeing />} />
+                    <Route path="hr/*" element={<InProgress />} />
+
+                    {/* Technology Routes */}
+                    <Route path="technology/tech-sites-login" element={<TechSitesLogin />} />
+                    <Route path="technology/greythr" element={<GreytHRPage />} />
+                    <Route path="technology/schoology" element={<SchoologyPage />} />
+                    <Route path="technology/google-workspace" element={<GoogleWorkspacePage />} />
+                    <Route path="technology/google-forms" element={<GoogleFormsPage />} />
+                    <Route path="technology/google-slides" element={<GoogleSlidesPage />} />
+                    <Route path="technology/google-sheets" element={<GoogleSheetsPage />} />
+                    <Route path="technology/google-docs" element={<GoogleDocsPage />} />
+                    <Route path="technology/google-calendar" element={<GoogleCalendarPage />} />
+                    <Route path="technology/google-hangouts-meet" element={<GoogleMeetPage />} />
+                    <Route path="technology/google-mail" element={<GoogleMailPage />} />
+                    <Route path="technology/zoom" element={<ZoomPage />} />
+                    <Route path="technology/slack" element={<SlackPage />} />
+                    <Route path="technology/email-signature-templates" element={<EmailSignaturePage />} />
+                    <Route path="technology/ekyaverse" element={<EkyaversePage />} />
+                    <Route path="technology/audit" element={<InProgress />} />
+                    <Route path="technology/*" element={<InProgress />} />
+
+                    {/* Catch-all — must be last */}
+                    <Route path="*" element={<InProgress />} />
+                </Route>
             </Routes>
-        </div>
+        </Providers>
     );
-};
-
-export default PDDepartmentHub;
+}

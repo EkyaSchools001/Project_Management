@@ -430,24 +430,24 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
 
     if (!chat) return (
         <div className="flex-1 flex flex-col items-center justify-center p-12 bg-slate-50/20 backdrop-blur-3xl overflow-hidden relative group">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[150px] pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-rose-500/5 rounded-full blur-[150px] pointer-events-none" />
             <motion.div 
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 className="text-center space-y-10 max-w-lg relative z-10"
             >
-                <div className="w-32 h-32 bg-white rounded-[3rem] shadow-2xl border border-slate-100 flex items-center justify-center mx-auto transition-all hover:scale-110 hover:shadow-indigo-500/10 group/icon">
-                    <MessageSquare size={56} className="text-slate-300 group-hover/icon:text-indigo-400 transition-colors" />
+                <div className="w-32 h-32 bg-white rounded-[3rem] shadow-2xl border border-slate-100 flex items-center justify-center mx-auto transition-all hover:scale-110 hover:shadow-rose-500/10 group/icon">
+                    <MessageSquare size={56} className="text-slate-300 group-hover/icon:text-rose-400 transition-colors" />
                 </div>
                 <div className="space-y-4">
                     <h2 className="text-4xl font-black text-slate-950 uppercase tracking-tighter">Archives Unlinked</h2>
                     <p className="text-[11px] font-black text-muted-foreground uppercase tracking-[0.4em] leading-relaxed">Select an active neural node to begin <br />secure synchronization protocol.</p>
                 </div>
                 <div className="flex justify-center flex-wrap gap-4">
-                    <div className="px-6 py-2 bg-indigo-50 text-indigo-600 rounded-full text-[10px] font-black uppercase tracking-widest border border-indigo-100 flex items-center gap-3">
+                    <div className="px-6 py-2 bg-rose-50 text-rose-600 rounded-full text-[10px] font-black uppercase tracking-widest border border-rose-100 flex items-center gap-3">
                         <Activity size={14} /> System Latency: 0.2ms
                     </div>
-                    <div className="px-6 py-2 bg-violet-50 text-violet-600 rounded-full text-[10px] font-black uppercase tracking-widest border border-violet-100 flex items-center gap-3">
+                    <div className="px-6 py-2 bg-red-50 text-red-600 rounded-full text-[10px] font-black uppercase tracking-widest border border-red-100 flex items-center gap-3">
                         <Shield size={14} /> Encryption: Layer 7
                     </div>
                 </div>
@@ -475,7 +475,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
             return (
                 <div className="mb-4 p-5 bg-backgroundlack/5 rounded-3xl border border-white/10 backdrop-blur-xl min-w-[280px]">
                     <div className="flex items-center gap-4 mb-4">
-                        <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-indigo-600 shadow-xl">
+                        <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-rose-600 shadow-xl">
                             <Mic size={20} />
                         </div>
                         <div className="flex-1">
@@ -490,7 +490,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
 
         return (
             <div className="flex items-center gap-5 bg-white/10 p-5 rounded-3xl mb-4 border border-white/20 hover:bg-white/20 transition-all group/file shadow-2xl">
-                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-indigo-600 shadow-2xl group-hover/file:scale-110 transition-transform">
+                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-rose-600 shadow-2xl group-hover/file:scale-110 transition-transform">
                     <Paperclip size={24} />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -505,7 +505,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
         <div className="flex-1 flex flex-col bg-white overflow-hidden relative">
             {/* Header Strategy */}
             <div className="h-24 bg-slate-950 px-8 flex items-center justify-between shrink-0 border-b border-white/5 relative z-30 group">
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 via-transparent to-rose-600/10 opacity-40 group-hover:opacity-100 transition-opacity duration-1000" />
+                <div className="absolute inset-0 bg-gradient-to-r from-rose-600/20 via-transparent to-rose-600/10 opacity-40 group-hover:opacity-100 transition-opacity duration-1000" />
                 
                 <div className="flex items-center gap-6 relative z-10">
                     <button onClick={onBack} className="lg:hidden w-12 h-12 flex items-center justify-center hover:bg-white/10 rounded-2xl text-foreground transition-all active:scale-90 border border-white/10">
@@ -515,16 +515,16 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                         <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
                             <img src={`https://ui-avatars.com/api/?name=${getChatName()}&background=random&color=fff&bold=true`} alt="" className="w-full h-full object-cover" />
                         </div>
-                        <div className="absolute -bottom-1 -right-1 w-4.5 h-4.5 bg-violet-400 rounded-full border-4 border-slate-950 animate-pulse shadow-glow shadow-violet-400/50" />
+                        <div className="absolute -bottom-1 -right-1 w-4.5 h-4.5 bg-red-400 rounded-full border-4 border-slate-950 animate-pulse shadow-glow shadow-red-400/50" />
                     </div>
                     <div>
                         <h2 className="text-xl font-black text-foreground uppercase tracking-tighter leading-none mb-2">{getChatName()}</h2>
                         <div className="flex items-center gap-3">
                             {Object.keys(typingUsers).length > 0 ? (
-                                <p className="text-[10px] text-violet-400 font-black uppercase tracking-[0.4em] animate-pulse">Synchronizing Data Node...</p>
+                                <p className="text-[10px] text-red-400 font-black uppercase tracking-[0.4em] animate-pulse">Synchronizing Data Node...</p>
                             ) : (
                                 <div className="flex items-center gap-3">
-                                    <div className="w-2 h-2 rounded-full bg-violet-500 shadow-glow shadow-violet-500/50 animate-pulse" />
+                                    <div className="w-2 h-2 rounded-full bg-red-500 shadow-glow shadow-red-500/50 animate-pulse" />
                                     <p className="text-[10px] text-foreground/40 font-black uppercase tracking-[0.5em]">Direct Link Active</p>
                                 </div>
                             )}
@@ -571,7 +571,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
 
             {/* Neural Streams Canvas */}
             <div className="flex-1 overflow-y-auto p-6 sm:p-12 custom-scrollbar bg-slate-50/20 relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/2 via-transparent to-rose-500/2 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-br from-rose-500/2 via-transparent to-rose-500/2 pointer-events-none" />
                 <div className="flex flex-col gap-12 max-w-5xl mx-auto relative z-10">
                     <AnimatePresence initial={false}>
                         {messages.filter(m => !localDeletedIds.includes(m.id)).map((msg, index) => {
@@ -599,13 +599,13 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                                         <div className={`
                                             group/bubble relative p-6 rounded-[2.5rem] text-sm leading-relaxed transition-all duration-500 border border-transparent shadow-xl
                                             ${isSelf
-                                                ? 'bg-slate-950 text-foreground rounded-br-none hover:shadow-indigo-500/20 translate-z-0'
+                                                ? 'bg-slate-950 text-foreground rounded-br-none hover:shadow-rose-500/20 translate-z-0'
                                                 : 'bg-white text-slate-950 border-slate-100 rounded-bl-none hover:shadow-slate-200'
                                             }
                                             ${attachments.length > 0 ? 'p-3' : ''}
                                         `}>
                                             {msg.replyTo && (
-                                                <div className={`mb-4 p-4 rounded-2xl border-l-4 text-[10px] ${isSelf ? 'bg-white/5 border-indigo-400/50 text-indigo-100' : 'bg-slate-50 border-indigo-600 text-muted-foreground'}`}>
+                                                <div className={`mb-4 p-4 rounded-2xl border-l-4 text-[10px] ${isSelf ? 'bg-white/5 border-rose-400/50 text-rose-100' : 'bg-slate-50 border-rose-600 text-muted-foreground'}`}>
                                                     <p className="font-black uppercase tracking-widest mb-1">{msg.replyTo.sender.name}</p>
                                                     <p className="opacity-60 truncate italic">{msg.replyTo.content}</p>
                                                 </div>
@@ -630,7 +630,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                                             <div className={`text-[9px] mt-4 flex items-center gap-3 font-black uppercase tracking-[0.2em] ${isSelf ? 'text-foreground/30' : 'text-slate-300'}`}>
                                                 {format(new Date(msg.createdAt), 'HH:mm')}
                                                 {isSelf && !msg.deletedAt && (
-                                                    <CheckCircle size={12} className={msg.isRead ? 'text-violet-400' : 'text-foreground/20'} />
+                                                    <CheckCircle size={12} className={msg.isRead ? 'text-red-400' : 'text-foreground/20'} />
                                                 )}
                                             </div>
 
@@ -696,20 +696,20 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
             {/* Neural Uplink Input Terminal */}
             <div className="bg-white px-8 py-8 border-t border-slate-100 relative z-40">
                 <div className="max-w-5xl mx-auto flex items-end gap-6">
-                    <button onClick={handleFileSelect} className="w-16 h-16 flex items-center justify-center rounded-2xl bg-slate-50 text-muted-foreground hover:text-indigo-600 hover:bg-indigo-50 border border-slate-100 transition-all active:scale-90 shadow-sm shrink-0">
+                    <button onClick={handleFileSelect} className="w-16 h-16 flex items-center justify-center rounded-2xl bg-slate-50 text-muted-foreground hover:text-rose-600 hover:bg-rose-50 border border-slate-100 transition-all active:scale-90 shadow-sm shrink-0">
                         <Paperclip size={24} className={isUploading ? 'animate-pulse' : ''} />
                         <input type="file" ref={fileInputRef} className="hidden" onChange={handleFileChange} />
                     </button>
 
-                    <div className="flex-1 bg-slate-50 rounded-[2.5rem] border border-slate-100 focus-within:bg-white focus-within:ring-8 focus-within:ring-indigo-600/5 focus-within:border-indigo-600/20 transition-all overflow-hidden flex flex-col shadow-inner">
+                    <div className="flex-1 bg-slate-50 rounded-[2.5rem] border border-slate-100 focus-within:bg-white focus-within:ring-8 focus-within:ring-rose-600/5 focus-within:border-rose-600/20 transition-all overflow-hidden flex flex-col shadow-inner">
                         <AnimatePresence>
                             {replyTo && (
-                                <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="bg-indigo-50/50 border-b border-indigo-100 px-8 py-4 flex items-center justify-between">
-                                    <div className="border-l-4 border-indigo-600 pl-4">
-                                        <p className="text-[9px] font-black text-indigo-600 uppercase tracking-widest leading-none mb-1">Targeting Node: {replyTo.sender.name}</p>
+                                <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="bg-rose-50/50 border-b border-rose-100 px-8 py-4 flex items-center justify-between">
+                                    <div className="border-l-4 border-rose-600 pl-4">
+                                        <p className="text-[9px] font-black text-rose-600 uppercase tracking-widest leading-none mb-1">Targeting Node: {replyTo.sender.name}</p>
                                         <p className="text-xs text-slate-500 truncate font-medium">{replyTo.content}</p>
                                     </div>
-                                    <button onClick={() => setReplyTo(null)} className="w-8 h-8 flex items-center justify-center hover:bg-indigo-100 rounded-xl text-indigo-600 transition-all active:scale-90"><X size={18} /></button>
+                                    <button onClick={() => setReplyTo(null)} className="w-8 h-8 flex items-center justify-center hover:bg-rose-100 rounded-xl text-rose-600 transition-all active:scale-90"><X size={18} /></button>
                                 </motion.div>
                             )}
                         </AnimatePresence>
@@ -717,10 +717,10 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                         {recordedAudio ? (
                             <div className="flex items-center justify-between p-6">
                                 <div className="flex items-center gap-6">
-                                    <button onClick={toggleAudioPreview} className="w-14 h-14 flex items-center justify-center bg-indigo-600 text-foreground rounded-2xl hover:bg-indigo-700 shadow-2xl shadow-indigo-600/20 transition-all active:scale-95">
+                                    <button onClick={toggleAudioPreview} className="w-14 h-14 flex items-center justify-center bg-rose-600 text-foreground rounded-2xl hover:bg-rose-700 shadow-2xl shadow-rose-600/20 transition-all active:scale-95">
                                         {isPlayingPreview ? <Pause size={24} /> : <Play size={24} className="ml-1" />}
                                     </button>
-                                    <div className="text-[10px] font-black text-indigo-600 uppercase tracking-[0.5em] animate-pulse">Uplink Packet Ready for Transmission</div>
+                                    <div className="text-[10px] font-black text-rose-600 uppercase tracking-[0.5em] animate-pulse">Uplink Packet Ready for Transmission</div>
                                     <audio ref={audioPreviewRef} src={recordedAudio} onEnded={() => setIsPlayingPreview(false)} className="hidden" />
                                 </div>
                                 <button onClick={handleCancelRecording} className="w-12 h-12 flex items-center justify-center text-rose-500 hover:bg-rose-50 rounded-2xl transition-all"><X size={24} /></button>
@@ -740,7 +740,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
 
                     <button
                         onClick={recordedAudio ? handleSendAudio : (isRecording ? stopRecording : (newMessage.trim() ? handleSend : startRecording))}
-                        className={`w-16 h-16 flex items-center justify-center rounded-[1.8rem] transition-all shadow-2xl shrink-0 ${isRecording ? 'bg-rose-600 text-foreground animate-pulse' : (newMessage.trim() || recordedAudio ? 'bg-indigo-600 text-foreground hover:bg-indigo-700' : 'bg-slate-950 text-foreground hover:bg-backgroundlack')}`}
+                        className={`w-16 h-16 flex items-center justify-center rounded-[1.8rem] transition-all shadow-2xl shrink-0 ${isRecording ? 'bg-rose-600 text-foreground animate-pulse' : (newMessage.trim() || recordedAudio ? 'bg-rose-600 text-foreground hover:bg-rose-700' : 'bg-slate-950 text-foreground hover:bg-backgroundlack')}`}
                     >
                         {isRecording ? <Square size={20} fill="currentColor" /> : (newMessage.trim() || recordedAudio ? <Send size={24} /> : <Mic size={24} />)}
                     </button>
@@ -791,10 +791,10 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                                             value={searchQuery}
                                             onChange={(e) => setSearchQuery(e.target.value)}
                                             placeholder="Search messages..."
-                                            className="w-full pl-12 pr-4 py-4 bg-slate-50 rounded-2xl focus:ring-4 focus:ring-indigo-600/10 focus:border-indigo-600 outline-none"
+                                            className="w-full pl-12 pr-4 py-4 bg-slate-50 rounded-2xl focus:ring-4 focus:ring-rose-600/10 focus:border-rose-600 outline-none"
                                         />
                                     </div>
-                                    <button type="submit" className="px-8 bg-indigo-600 text-foreground rounded-2xl font-black uppercase">
+                                    <button type="submit" className="px-8 bg-rose-600 text-foreground rounded-2xl font-black uppercase">
                                         Search
                                     </button>
                                     <button type="button" onClick={() => setShowSearch(false)} className="px-4 text-muted-foreground">
@@ -805,7 +805,7 @@ const ChatWindow = ({ chat, onBack, onChatUpdated }) => {
                             <div className="flex-1 overflow-y-auto p-6">
                                 {isSearching ? (
                                     <div className="flex items-center justify-center py-12">
-                                        <div className="w-10 h-10 border-4 border-indigo-100 border-t-indigo-600 rounded-full animate-spin" />
+                                        <div className="w-10 h-10 border-4 border-rose-100 border-t-rose-600 rounded-full animate-spin" />
                                     </div>
                                 ) : searchResults.length === 0 ? (
                                     <div className="text-center py-12">
@@ -843,7 +843,7 @@ const OptionButton = ({ icon: Icon, label, onClick, color = "text-slate-900" }) 
 );
 
 const BubbleAction = ({ icon: Icon, onClick }) => (
-    <button onClick={onClick} className="w-10 h-10 flex items-center justify-center bg-white/90 backdrop-blur-md rounded-xl text-muted-foreground hover:text-indigo-600 hover:shadow-xl transition-all active:scale-90 border border-slate-100">
+    <button onClick={onClick} className="w-10 h-10 flex items-center justify-center bg-white/90 backdrop-blur-md rounded-xl text-muted-foreground hover:text-rose-600 hover:shadow-xl transition-all active:scale-90 border border-slate-100">
         <Icon size={18} />
     </button>
 );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { Button } from "@pdi/components/ui/button";
@@ -129,8 +129,8 @@ const MatrixTable = ({
                             className={cn(
                                 "w-8 h-8 rounded-full border-2 text-xs font-bold transition-all",
                                 (form[field] as Record<string, MatrixVal>)[row] === val
-                                    ? "text-foreground border-transparent scale-110"
-                                    : "border-slate-200 text-muted-foreground hover:border-slate-400",
+                                    ? "text-white border-transparent scale-110"
+                                    : "border-slate-200 text-slate-400 hover:border-slate-400",
                                 readOnly && "cursor-default"
                             )}
                             style={(form[field] as Record<string, MatrixVal>)[row] === val ? { background: ACCENT } : {}}
@@ -428,10 +428,10 @@ const LifeSkillsObsPage: React.FC = () => {
                         <Card className="  shadow-lg animate-in fade-in slide-in-from-bottom-4 duration-500">
                             <CardHeader className="rounded-t-xl pb-4" style={{ background: DARK }}>
                                 <div className="flex items-center gap-3">
-                                    <div className="p-2 rounded-xl bg-white/10"><Users className="w-5 h-5 text-foreground" /></div>
+                                    <div className="p-2 rounded-xl bg-white/10"><Users className="w-5 h-5 text-white" /></div>
                                     <div>
-                                        <CardTitle className="text-foreground">Observer Details</CardTitle>
-                                        <CardDescription className="text-foreground/70">Page 1 of 4</CardDescription>
+                                        <CardTitle className="text-white">Observer Details</CardTitle>
+                                        <CardDescription className="text-white/70">Page 1 of 4</CardDescription>
                                     </div>
                                 </div>
                             </CardHeader>
@@ -483,10 +483,10 @@ const LifeSkillsObsPage: React.FC = () => {
                         <Card className="  shadow-lg animate-in fade-in slide-in-from-bottom-4 duration-500">
                             <CardHeader className="rounded-t-xl pb-4" style={{ background: DARK }}>
                                 <div className="flex items-center gap-3">
-                                    <div className="p-2 rounded-xl bg-white/10"><BookOpen className="w-5 h-5 text-foreground" /></div>
+                                    <div className="p-2 rounded-xl bg-white/10"><BookOpen className="w-5 h-5 text-white" /></div>
                                     <div>
-                                        <CardTitle className="text-foreground">Classroom Details</CardTitle>
-                                        <CardDescription className="text-foreground/70">Page 2 of 4</CardDescription>
+                                        <CardTitle className="text-white">Classroom Details</CardTitle>
+                                        <CardDescription className="text-white/70">Page 2 of 4</CardDescription>
                                     </div>
                                 </div>
                             </CardHeader>
@@ -497,7 +497,7 @@ const LifeSkillsObsPage: React.FC = () => {
                                         {["Early Years", "Primary", "Middle", "Senior"].map(b => (
                                             <button key={b} type="button" onClick={() => !isViewMode && set("block", b)}
                                                 disabled={isViewMode}
-                                                className={cn("px-5 py-2.5 rounded-xl border-2 text-sm font-semibold transition-all", form.block === b ? "text-foreground border-transparent" : "border-slate-200 hover:border-amber-300", isViewMode && "cursor-default")}
+                                                className={cn("px-5 py-2.5 rounded-xl border-2 text-sm font-semibold transition-all", form.block === b ? "text-white border-transparent" : "border-slate-200 hover:border-amber-300", isViewMode && "cursor-default")}
                                                 style={form.block === b ? { background: ACCENT } : {}}>
                                                 {b}
                                             </button>
@@ -526,10 +526,10 @@ const LifeSkillsObsPage: React.FC = () => {
                         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
                             <div className="p-5 rounded-2xl border" style={{ background: DARK }}>
                                 <div className="flex items-center gap-3">
-                                    <div className="p-2 rounded-xl bg-white/10"><ClipboardCheck className="w-5 h-5 text-foreground" /></div>
+                                    <div className="p-2 rounded-xl bg-white/10"><ClipboardCheck className="w-5 h-5 text-white" /></div>
                                     <div>
-                                        <h2 className="text-lg font-bold text-foreground">Life Skills Observation Matrix</h2>
-                                        <p className="text-foreground/60 text-sm">Page 3 of 4 — Rate each indicator</p>
+                                        <h2 className="text-lg font-bold text-white">Life Skills Observation Matrix</h2>
+                                        <p className="text-white/60 text-sm">Page 3 of 4 — Rate each indicator</p>
                                     </div>
                                 </div>
                             </div>
@@ -547,7 +547,7 @@ const LifeSkillsObsPage: React.FC = () => {
                             {/* Section B */}
                             <Card className="  shadow-md">
                                 <CardHeader className="rounded-t-xl py-4 px-5" style={{ background: "#F0FDF4" }}>
-                                    <h3 className="font-bold text-violet-800">🟦 Section B – Culture and Environment</h3>
+                                    <h3 className="font-bold text-green-800">🟦 Section B – Culture and Environment</h3>
                                 </CardHeader>
                                 <CardContent className="p-5">
                                     <MatrixTable rows={SECTION_B_ROWS} field="sectionBResponses" label="B" form={form} setMatrix={setMatrix} set={set} DARK={DARK} ACCENT={ACCENT} readOnly={isViewMode} />
@@ -598,10 +598,10 @@ const LifeSkillsObsPage: React.FC = () => {
                         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
                             <div className="p-5 rounded-2xl border" style={{ background: DARK }}>
                                 <div className="flex items-center gap-3">
-                                    <div className="p-2 rounded-xl bg-white/10"><MessageSquare className="w-5 h-5 text-foreground" /></div>
+                                    <div className="p-2 rounded-xl bg-white/10"><MessageSquare className="w-5 h-5 text-white" /></div>
                                     <div>
-                                        <h2 className="text-lg font-bold text-foreground">Feedback Section</h2>
-                                        <p className="text-foreground/60 text-sm">Page 4 of 4</p>
+                                        <h2 className="text-lg font-bold text-white">Feedback Section</h2>
+                                        <p className="text-white/60 text-sm">Page 4 of 4</p>
                                     </div>
                                 </div>
                             </div>
@@ -636,7 +636,7 @@ const LifeSkillsObsPage: React.FC = () => {
 
                             <Card className="  shadow-md">
                                 <CardHeader className="rounded-t-xl py-4 px-5" style={{ background: DARK }}>
-                                    <h3 className="font-bold text-foreground">Meta Tags (select at least 1) *</h3>
+                                    <h3 className="font-bold text-white">Meta Tags (select at least 1) *</h3>
                                 </CardHeader>
                                 <CardContent className="p-5">
                                     <CheckboxGroup items={META_TAGS} field="metaTags" label="" form={form} toggleList={toggleList} readOnly={isViewMode} />
@@ -661,7 +661,7 @@ const LifeSkillsObsPage: React.FC = () => {
                                 Next <ChevronRight className="w-4 h-4" />
                             </Button>
                         ) : isViewMode ? (
-                            <Button onClick={() => navigate(`/leader/growth/${form.teacherId}`)} className="gap-2 text-foreground" style={{ background: DARK }}>
+                            <Button onClick={() => navigate(`/leader/growth/${form.teacherId}`)} className="gap-2 text-white" style={{ background: DARK }}>
                                 <ChevronLeft className="w-4 h-4" /> Back to Growth
                             </Button>
                         ) : (

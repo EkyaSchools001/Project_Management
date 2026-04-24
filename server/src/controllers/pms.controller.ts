@@ -4,7 +4,7 @@ import { PmsService } from '../services/pms.service';
 
 export const getProjects = async (req: AuthRequest, res: Response) => {
     try {
-        const projects = await PmsService.getProjects(req.user.id, req.user.role);
+        const projects = await PmsService.getProjects(req.user);
         res.json({ status: 'success', data: projects });
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch projects' });
@@ -13,7 +13,7 @@ export const getProjects = async (req: AuthRequest, res: Response) => {
 
 export const getProjectById = async (req: AuthRequest, res: Response) => {
     try {
-        const project = await PmsService.getProjectById(req.params.id as string, req.user.id, req.user.role);
+        const project = await PmsService.getProjectById(req.params.id as string, req.user);
         if (!project) {
             return res.status(404).json({ error: 'Project not found' });
         }
@@ -121,7 +121,7 @@ export const deleteTask = async (req: AuthRequest, res: Response) => {
 
 export const getPmsStats = async (req: AuthRequest, res: Response) => {
     try {
-        const stats = await PmsService.getPmsStats(req.user.id, req.user.role);
+        const stats = await PmsService.getPmsStats(req.user);
         res.json({ status: 'success', data: stats });
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch stats' });

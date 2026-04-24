@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8888/api';
+const RAW_API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8888/api/v1';
+const API_BASE_URL = RAW_API_URL.endsWith('/') ? RAW_API_URL.slice(0, -1) : RAW_API_URL;
 const MAX_RETRIES = 3;
 const RETRY_DELAY = 1000;
 
@@ -28,6 +29,9 @@ const processQueue = (error, token = null) => {
 
 api.interceptors.request.use(
     (config) => {
+        if (config.url?.startsWith('/')) {
+            config.url = config.url.substring(1);
+        }
         const token = sessionStorage.getItem('auth_token') || localStorage.getItem('auth_token');
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
@@ -56,7 +60,7 @@ api.interceptors.response.use(
             isRefreshing = true;
 
             try {
-                const refreshToken = localStorage.getItem('refresh_token');
+                const refreshToken = localStorage.getItem('auth_refresh_token');
                 if (refreshToken) {
                     const response = await axios.post(`${API_BASE_URL}/auth/refresh`, { refreshToken });
                     const { token } = response.data;

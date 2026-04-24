@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@pdi/components/ui/card";
 import { ScrollArea } from "@pdi/components/ui/scroll-area";
 import { Badge } from "@pdi/components/ui/badge";
@@ -71,7 +71,7 @@ export const NotesReferencePanel: React.FC<NotesReferencePanelProps> = ({ notes,
                                                 className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
                                                 onClick={() => copyToClipboard(note.text, note.id)}
                                             >
-                                                {copiedId === note.id ? <Check className="w-3 h-3 text-violet-500" /> : <Copy className="w-3 h-3" />}
+                                                {copiedId === note.id ? <Check className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3" />}
                                             </Button>
                                         </div>
                                         <p className="text-xs text-foreground leading-relaxed">

@@ -44,14 +44,14 @@ export function ChallengeCard({ challenge, userProgress = null, onJoin, onViewDe
     <Card 
       className={`
         relative p-5 rounded-2xl border transition-all duration-300 cursor-pointer
-        ${isActive ? 'bg-[#161B22] border-[#8b5cf6]/20 hover:border-[#8b5cf6]/40' : 'bg-[#161B22] border-white/5'}
+        ${isActive ? 'bg-[#161B22] border-[#ef4444]/20 hover:border-[#ef4444]/40' : 'bg-[#161B22] border-white/5'}
       `}
       onClick={onViewDetails}
     >
       <div className="flex items-start gap-4">
         <div className={`
           w-14 h-14 rounded-xl flex items-center justify-center text-3xl shrink-0
-          ${isActive ? 'bg-[#8b5cf6]/20' : 'bg-white/5'}
+          ${isActive ? 'bg-[#ef4444]/20' : 'bg-white/5'}
         `}>
           {icon}
           {!isActive && <div className="absolute inset-0 bg-backgroundlack/60 rounded-xl flex items-center justify-center"><Clock size={20} className="text-foreground/40" /></div>}
@@ -60,7 +60,7 @@ export function ChallengeCard({ challenge, userProgress = null, onJoin, onViewDe
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
             <h3 className="font-bold text-foreground">{challenge.name}</h3>
-            {isCompleted && <Check size={18} className="text-[#8b5cf6] shrink-0" />}
+            {isCompleted && <Check size={18} className="text-[#ef4444] shrink-0" />}
           </div>
           
           <p className="text-xs text-foreground/50 mt-1 line-clamp-2">
@@ -72,7 +72,7 @@ export function ChallengeCard({ challenge, userProgress = null, onJoin, onViewDe
               <Users size={12} />
               <span className="text-[10px]">{challenge.participantCount}/{challenge.maxParticipants || '∞'}</span>
             </div>
-            <div className="flex items-center gap-1 text-[#8b5cf6]">
+            <div className="flex items-center gap-1 text-[#ef4444]">
               <Gift size={12} />
               <span className="text-xs font-bold">{challenge.points} pts</span>
             </div>
@@ -88,7 +88,7 @@ export function ChallengeCard({ challenge, userProgress = null, onJoin, onViewDe
             <div className="mt-4 space-y-2">
               <div className="h-2 bg-white/10 rounded-full overflow-hidden">
                 <div 
-                  className={`h-full rounded-full transition-all duration-500 ${isCompleted ? 'bg-[#8b5cf6]' : 'bg-[#8b5cf6]/50'}`}
+                  className={`h-full rounded-full transition-all duration-500 ${isCompleted ? 'bg-[#ef4444]' : 'bg-[#ef4444]/50'}`}
                   style={{ width: `${progress}%` }}
                 />
               </div>
@@ -100,7 +100,7 @@ export function ChallengeCard({ challenge, userProgress = null, onJoin, onViewDe
             <Button 
               onClick={(e) => { e.stopPropagation(); handleJoin(); }}
               disabled={joining}
-              className="mt-4 bg-[#8b5cf6] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#a6e600]"
+              className="mt-4 bg-[#ef4444] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#a6e600]"
             >
               {joining ? 'Joining...' : 'Join Challenge'}
             </Button>

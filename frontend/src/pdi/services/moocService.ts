@@ -1,4 +1,4 @@
-import api from '@pdi/lib/api';
+﻿import api from '@pdi/lib/api';
 
 export interface MoocSubmission {
     id: string;
@@ -27,16 +27,16 @@ export interface MoocSubmission {
 export const moocService = {
     async submitEvidence(data: any) {
         const response = await api.post('/mooc/submit', data);
-        return response.data?.data?.submission;
+        return response.data.data.submission;
     },
 
     async getAllSubmissions() {
         const response = await api.get('/mooc');
-        return response.data?.data?.submissions || [];
+        return response.data.data.submissions;
     },
 
     async updateStatus(id: string, status: string) {
         const response = await api.patch(`/mooc/${id}/status`, { status });
-        return response.data?.data?.submission;
-    },
+        return response.data.data.submission;
+    }
 };

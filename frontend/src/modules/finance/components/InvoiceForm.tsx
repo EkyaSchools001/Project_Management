@@ -78,7 +78,7 @@ export function InvoiceForm({ invoice, onSubmit, onClose }: InvoiceFormProps) {
                 type="text"
                 value={formData.client}
                 onChange={(e) => setFormData({ ...formData, client: e.target.value })}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#8b5cf6]/50"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#ef4444]/50"
                 required
               />
             </div>
@@ -88,7 +88,7 @@ export function InvoiceForm({ invoice, onSubmit, onClose }: InvoiceFormProps) {
                 type="email"
                 value={formData.clientEmail}
                 onChange={(e) => setFormData({ ...formData, clientEmail: e.target.value })}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#8b5cf6]/50"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#ef4444]/50"
               />
             </div>
           </div>
@@ -99,7 +99,7 @@ export function InvoiceForm({ invoice, onSubmit, onClose }: InvoiceFormProps) {
               type="date"
               value={formData.dueDate}
               onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#8b5cf6]/50"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#ef4444]/50"
               required
             />
           </div>
@@ -110,7 +110,7 @@ export function InvoiceForm({ invoice, onSubmit, onClose }: InvoiceFormProps) {
               <button
                 type="button"
                 onClick={addItem}
-                className="flex items-center gap-1 text-sm text-[#8b5cf6] hover:text-[#8b5cf6]/80"
+                className="flex items-center gap-1 text-sm text-[#ef4444] hover:text-[#ef4444]/80"
               >
                 <Plus className="w-4 h-4" /> Add Item
               </button>
@@ -123,21 +123,21 @@ export function InvoiceForm({ invoice, onSubmit, onClose }: InvoiceFormProps) {
                     placeholder="Description"
                     value={item.description}
                     onChange={(e) => updateItem(index, 'description', e.target.value)}
-                    className="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#8b5cf6]/50"
+                    className="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#ef4444]/50"
                   />
                   <input
                     type="number"
                     placeholder="Qty"
                     value={item.quantity}
                     onChange={(e) => updateItem(index, 'quantity', parseInt(e.target.value))}
-                    className="w-16 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#8b5cf6]/50"
+                    className="w-16 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#ef4444]/50"
                   />
                   <input
                     type="number"
                     placeholder="Price"
                     value={item.price}
                     onChange={(e) => updateItem(index, 'price', parseFloat(e.target.value))}
-                    className="w-24 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#8b5cf6]/50"
+                    className="w-24 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-foreground text-sm focus:outline-none focus:border-[#ef4444]/50"
                   />
                   <button
                     type="button"
@@ -156,7 +156,7 @@ export function InvoiceForm({ invoice, onSubmit, onClose }: InvoiceFormProps) {
             <textarea
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#8b5cf6]/50"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-foreground focus:outline-none focus:border-[#ef4444]/50"
               rows={3}
             />
           </div>
@@ -176,7 +176,7 @@ export function InvoiceForm({ invoice, onSubmit, onClose }: InvoiceFormProps) {
               </button>
               <button
                 type="submit"
-                className="px-6 py-3 bg-[#8b5cf6] text-black rounded-xl font-bold hover:bg-[#8b5cf6]/80 transition-colors"
+                className="px-6 py-3 bg-[#ef4444] text-black rounded-xl font-bold hover:bg-[#ef4444]/80 transition-colors"
               >
                 {invoice ? 'Update' : 'Create'} Invoice
               </button>

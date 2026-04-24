@@ -44,7 +44,7 @@ export const TenantManagementPage = () => {
     if (isLoading && tenants.length === 0) {
         return (
             <div className="flex items-center justify-center h-64">
-                <div className="w-8 h-8 border-2 border-[#8b5cf6]/20 border-t-[#8b5cf6] rounded-full animate-spin"></div>
+                <div className="w-8 h-8 border-2 border-[#ef4444]/20 border-t-[#ef4444] rounded-full animate-spin"></div>
             </div>
         );
     }
@@ -58,7 +58,7 @@ export const TenantManagementPage = () => {
                 </div>
                 <button
                     onClick={() => setShowCreateModal(true)}
-                    className="flex items-center gap-2 px-4 py-2 bg-[#8b5cf6] text-black rounded-lg hover:bg-[#7c3aed] transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-[#ef4444] text-black rounded-lg hover:bg-[#e11d48] transition-colors"
                 >
                     <Plus className="w-4 h-4" />
                     Create Tenant
@@ -99,7 +99,7 @@ export const TenantManagementPage = () => {
                                 {tenant.logo ? (
                                     <img src={tenant.logo} alt={tenant.name} className="w-full h-full object-contain" />
                                 ) : (
-                                    <Building className="w-6 h-6 text-[#8b5cf6]" />
+                                    <Building className="w-6 h-6 text-[#ef4444]" />
                                 )}
                             </div>
                             <div className="flex-1 min-w-0">
@@ -114,7 +114,7 @@ export const TenantManagementPage = () => {
                         <div className="mt-4 flex items-center justify-between">
                             <div className="flex items-center gap-2">
                                 <span className={`w-2 h-2 rounded-full ${
-                                    tenant.status === 'Active' ? 'bg-violet-400' : 'bg-yellow-400'
+                                    tenant.status === 'Active' ? 'bg-red-400' : 'bg-yellow-400'
                                 }`}></span>
                                 <span className="text-sm text-foreground/60">{tenant.status}</span>
                             </div>

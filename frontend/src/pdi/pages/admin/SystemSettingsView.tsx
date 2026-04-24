@@ -1,4 +1,4 @@
-
+﻿
 import { useState, useEffect } from "react";
 import { PageHeader } from "@pdi/components/layout/PageHeader";
 import { Button } from "@pdi/components/ui/button";
@@ -664,7 +664,7 @@ export function SystemSettingsView() {
                                 {/* Google Workspace */}
                                 <div className="flex items-start justify-between p-4 border rounded-lg bg-card hover:shadow-sm transition-shadow">
                                     <div className="flex gap-4">
-                                        <div className="p-2 bg-violet-100 dark:bg-violet-900/20 rounded-lg">
+                                        <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
                                             <Globe className="w-8 h-8 text-blue-600 dark:text-blue-400" />
                                         </div>
                                         <div>
@@ -673,7 +673,7 @@ export function SystemSettingsView() {
                                             <div className="flex gap-2">
                                                 {integrationStatuses['google'] === 'active' ? (
                                                     <>
-                                                        <Badge variant="outline" className="bg-violet-50 text-violet-700 border-violet-200">Active</Badge>
+                                                        <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">Active</Badge>
                                                         <Badge variant="outline">SSO Enabled</Badge>
                                                     </>
                                                 ) : (
@@ -701,7 +701,7 @@ export function SystemSettingsView() {
                                             <p className="text-sm text-muted-foreground mb-2">Calendar sync and Outlook integration.</p>
                                             <div className="flex gap-2">
                                                 {integrationStatuses['microsoft'] === 'active' ? (
-                                                    <Badge variant="outline" className="bg-violet-50 text-violet-700 border-violet-200">Active</Badge>
+                                                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">Active</Badge>
                                                 ) : (
                                                     <Badge variant="secondary">Not Connected</Badge>
                                                 )}
@@ -755,7 +755,7 @@ export function SystemSettingsView() {
                                             <p className="text-sm text-muted-foreground mb-2">Import course completion data.</p>
                                             <div className="flex gap-2">
                                                 {integrationStatuses['canvas'] === 'active' ? (
-                                                    <Badge variant="outline" className="bg-violet-50 text-violet-700 border-violet-200">Active</Badge>
+                                                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">Active</Badge>
                                                 ) : (
                                                     <Badge variant="secondary">Not Connected</Badge>
                                                 )}
@@ -782,8 +782,8 @@ export function SystemSettingsView() {
                                         <CardTitle>Automation Workflows (n8n)</CardTitle>
                                         <CardDescription>Manage automated backend processes and integrations.</CardDescription>
                                     </div>
-                                    <Badge variant="outline" className="bg-violet-50 text-violet-700 border-violet-200 flex gap-2 items-center px-3 py-1">
-                                        <div className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
+                                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 flex gap-2 items-center px-3 py-1">
+                                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                                         Service Online
                                     </Badge>
                                 </div>
@@ -845,7 +845,7 @@ export function SystemSettingsView() {
                                                     <div className="flex items-start gap-4">
                                                         <div className={cn(
                                                             "p-3 rounded-2xl transition-colors",
-                                                            isActive ? "bg-violet-50 text-violet-600" : "bg-zinc-100 text-muted-foreground"
+                                                            isActive ? "bg-emerald-50 text-emerald-600" : "bg-zinc-100 text-zinc-400"
                                                         )}>
                                                             {getIcon(workflow.id)}
                                                         </div>
@@ -856,7 +856,7 @@ export function SystemSettingsView() {
                                                                     variant="outline"
                                                                     className={cn(
                                                                         "text-[10px] capitalize font-black px-1.5 py-0",
-                                                                        isActive ? "bg-violet-500 text-foreground border-none" : "bg-zinc-400 text-foreground border-none"
+                                                                        isActive ? "bg-emerald-500 text-white border-none" : "bg-zinc-400 text-white border-none"
                                                                     )}
                                                                 >
                                                                     {workflow.status}
@@ -865,7 +865,7 @@ export function SystemSettingsView() {
                                                             <p className="text-sm text-zinc-500 font-medium leading-relaxed max-w-md">
                                                                 {workflow.description}
                                                             </p>
-                                                            <div className="flex items-center gap-4 text-[11px] font-bold capitalize tracking-wider text-muted-foreground pt-2">
+                                                            <div className="flex items-center gap-4 text-[11px] font-bold capitalize tracking-wider text-zinc-400 pt-2">
                                                                 <span className="flex items-center gap-1.5">
                                                                     <RotateCw className="w-3 h-3" /> {workflow.schedule}
                                                                 </span>
@@ -873,7 +873,7 @@ export function SystemSettingsView() {
                                                                     <span className="flex items-center gap-1.5">
                                                                         <div className={cn(
                                                                             "w-2 h-2 rounded-full",
-                                                                            workflow.lastStatus === 'success' ? "bg-violet-500" : "bg-rose-500"
+                                                                            workflow.lastStatus === 'success' ? "bg-emerald-500" : "bg-rose-500"
                                                                         )} />
                                                                         Last run: {workflow.lastRun}
                                                                     </span>
@@ -886,7 +886,7 @@ export function SystemSettingsView() {
                                                         <Switch
                                                             checked={isActive}
                                                             onCheckedChange={() => toggleWorkflow(workflow.id)}
-                                                            className="data-[state=checked]:bg-violet-500"
+                                                            className="data-[state=checked]:bg-emerald-500"
                                                         />
                                                         <Button
                                                             size="lg"
@@ -895,7 +895,7 @@ export function SystemSettingsView() {
                                                             onClick={() => runWorkflow(workflow.id)}
                                                             className={cn(
                                                                 "h-11 px-6 rounded-xl border-zinc-200 font-bold transition-all",
-                                                                isActive && "hover:bg-violet-50 hover:text-violet-700 hover:border-violet-200"
+                                                                isActive && "hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200"
                                                             )}
                                                         >
                                                             {isRunning ? (
@@ -908,7 +908,7 @@ export function SystemSettingsView() {
                                                                 </>
                                                             )}
                                                         </Button>
-                                                        <Button size="icon" variant="ghost" className="h-11 w-11 rounded-xl text-muted-foreground hover:text-zinc-600 hover:bg-zinc-100">
+                                                        <Button size="icon" variant="ghost" className="h-11 w-11 rounded-xl text-zinc-400 hover:text-zinc-600 hover:bg-zinc-100">
                                                             <Settings className="w-5 h-5" />
                                                         </Button>
                                                     </div>

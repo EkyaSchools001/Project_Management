@@ -1,0 +1,42 @@
+  passwordHash                 String?                       @default("")
+  profilePicture               String?
+  campusId                     String?
+  department                   String?
+  lastActive                   DateTime?
+  lastSeen                     DateTime?
+  campusAccess                 String?
+  dateOfBirth                  String?
+  managerId                    String?
+  academics                    String?                       @default("CORE")
+  category                     String?                       @default("IN_SERVICE")
+  createdAnnouncements         PDIAnnouncement[]                @relation("AnnouncementCreator")
+  announcementAcknowledgements PDIAnnouncementAcknowledgement[]
+  createdAssessments           Assessment[]
+  assignedByMe                 AssessmentAssignment[]        @relation("AssignedBy")
+  assessmentAssignments        AssessmentAssignment[]        @relation("AssignedTo")
+  assessmentAttempts           AssessmentAttempt[]
+  enrollments                  PDICourseEnrollment[]
+  createdDocuments             PDIDocument[]
+  acknowledgements             PDIDocumentAcknowledgement[]
+  attendanceRecords            EventAttendance[]
+  goals                        Goal[]
+  reviewedApplications         LearningFestivalApplication[] @relation("ApplicationReviewer")
+  festivalApplications         LearningFestivalApplication[] @relation("Applicant")
+  createdMeetings              Meeting[]                     @relation("MeetingCreator")
+  meetingAttendees             MeetingAttendee[]
+  momCreated                   MeetingMinutes[]              @relation("MoMCreator")
+  meetingReplies               MeetingReply[]
+  moocSubmissions              MoocSubmission[]
+  notifications                PDINotification[]
+  sentObservations             Observation[]                 @relation("Observer")
+  receivedObservations         Observation[]                 @relation("Teacher")
+  pdHours                      PDHour[]
+  registrations                Registration[]
+  createdEvents                TrainingEvent[]               @relation("CreatedEvents")
+  proposedEvents               TrainingEvent[]               @relation("ProposedEvents")
+  trainingFeedbacks            TrainingFeedback[]
+  postOrientationAssessments   PostOrientationAssessment[]
+  surveyResponses              SurveyResponse[]
+  growthObservationsSent       GrowthObservation[]           @relation("GrowthObserver")
+  growthObservationsReceived   GrowthObservation[]           @relation("GrowthTeacher")
+  achievements                 PortfolioAchievement[]

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useState, useEffect, useMemo } from "react";
 import { PageHeader } from "@pdi/components/layout/PageHeader";
 import { Button } from "@pdi/components/ui/button";
@@ -52,7 +51,7 @@ import { Input } from "@pdi/components/ui/input";
 import { CAMPUS_OPTIONS } from "@pdi/lib/constants";
 import { getSocket } from "@pdi/lib/socket";
 
-const COLORS = ['#8884d8', '#a78bfa', '#ffc658', '#ff8042', '#6366f1', '#c084fc', '#FFBB28', '#FF8042'];
+const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 export function PDHoursAnalyticsView() {
     const [loading, setLoading] = useState(true);
@@ -280,7 +279,7 @@ export function PDHoursAnalyticsView() {
                             </CardHeader>
                             <CardContent className="h-[350px]">
                                 <ResponsiveContainer width="100%" height="100%">
-                                    <BarChart data={avgHoursData} onClick={(data) => data && data.activeLabel && handleCampusClick(data.activeLabel)}>
+                                    <BarChart data={avgHoursData} onClick={(data) => data && data.activeLabel && handleCampusClick(data.activeLabel.toString())}>
                                         <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
                                         <XAxis dataKey="campus" axisLine={false} tickLine={false} />
                                         <YAxis axisLine={false} tickLine={false} />
@@ -290,10 +289,10 @@ export function PDHoursAnalyticsView() {
                                         />
                                         <Legend verticalAlign="top" height={36} />
                                         <Bar dataKey="Workshop" stackId="a" fill="#8884d8" name="Workshops" />
-                                        <Bar dataKey="MOOC" stackId="a" fill="#a78bfa" name="MOOCs" />
+                                        <Bar dataKey="MOOC" stackId="a" fill="#82ca9d" name="MOOCs" />
                                         <Bar dataKey="In-house Training" stackId="a" fill="#ffc658" name="In-house" />
                                         <Bar dataKey="Self-study" stackId="a" fill="#ff8042" name="Self-study" radius={[6, 6, 0, 0]} />
-                                        <Bar dataKey="Other" stackId="a" fill="#6366f1" name="Other" radius={[6, 6, 0, 0]} />
+                                        <Bar dataKey="Other" stackId="a" fill="#0088FE" name="Other" radius={[6, 6, 0, 0]} />
                                     </BarChart>
                                 </ResponsiveContainer>
                             </CardContent>
@@ -454,7 +453,7 @@ export function PDHoursAnalyticsView() {
                                                 <TableCell className="text-muted-foreground">{teacher.email}</TableCell>
                                                 <TableCell className="text-right font-bold">{teacher.totalHours}h</TableCell>
                                                 <TableCell className="text-right">
-                                                    <Badge className={teacher.totalHours >= cutoff ? "bg-violet-100 text-violet-700 hover:bg-violet-100 border-none px-3" : "bg-yellow-100 text-yellow-700 hover:bg-yellow-100 border-none px-3"}>
+                                                    <Badge className={teacher.totalHours >= cutoff ? "bg-green-100 text-green-700 hover:bg-green-100 border-none px-3" : "bg-yellow-100 text-yellow-700 hover:bg-yellow-100 border-none px-3"}>
                                                         {teacher.totalHours >= cutoff ? "Requirement Met" : "Hours Pending"}
                                                     </Badge>
                                                 </TableCell>
@@ -463,7 +462,7 @@ export function PDHoursAnalyticsView() {
                                                         <Button
                                                             variant="ghost"
                                                             size="icon"
-                                                            className="h-8 w-8 text-blue-500 hover:bg-violet-50 hover:text-blue-600"
+                                                            className="h-8 w-8 text-blue-500 hover:bg-blue-50 hover:text-blue-600"
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 handleSendSnapshot(teacher.id, teacher.fullName);
@@ -492,8 +491,8 @@ export function PDHoursAnalyticsView() {
 
 function StatSummaryCard({ title, value, subtitle, icon: Icon, color }: any) {
     const colorClasses: any = {
-        blue: "bg-violet-500/10 text-blue-600",
-        green: "bg-violet-500/10 text-violet-600",
+        blue: "bg-blue-500/10 text-blue-600",
+        green: "bg-green-500/10 text-green-600",
         purple: "bg-purple-500/10 text-purple-600",
         amber: "bg-amber-500/10 text-amber-600",
     };

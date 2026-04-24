@@ -1,0 +1,136 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  role      String
+  campusId  String?
+  teacherId String?
+  createdAt DateTime @default(now())
+}
+
+model Campus {
+  id        String    @id @default(cuid())
+  name      String
+  city      String
+  teachers  Teacher[]
+  students  Student[]
+  policies  Policy[]
+  classes   Class[]
+}
+
+model Teacher {
+  id         String      @id @default(cuid())
+  name       String
+  email      String      @unique
+  campus     Campus      @relation(fields: [campusId], references: [id])
+  campusId   String
+  classes    Class[]
+  microPlans MicroPlan[]
+  evidences  CPSEvidence[]
+  observations Observation[]
+}
+
+model Class {
+  id        String      @id @default(cuid())
+  name      String
+  teacher   Teacher     @relation(fields: [teacherId], references: [id])
+  teacherId String
+  campus    Campus      @relation(fields: [campusId], references: [id])
+  campusId  String
+  students  Student[]
+  timetable Timetable[]
+}
+
+model Student {
+  id        String   @id @default(cuid())
+  name      String
+  class     Class    @relation(fields: [classId], references: [id])
+  classId   String
+  campus    Campus   @relation(fields: [campusId], references: [id])
+  campusId  String
+  attendance Attendance[]
+  lacScores LACScore[]
+}
+
+model Timetable {
+  id        String   @id @default(cuid())
+  day       String
+  subject   String
+  period    Int
+  class     Class    @relation(fields: [classId], references: [id])
+  classId   String
+}
+
+model Attendance {
+  id        String   @id @default(cuid())
+  date      DateTime
+  status    String
+  student   Student  @relation(fields: [studentId], references: [id])
+  studentId String
+}
+
+model MicroPlan {
+  id         String   @id @default(cuid())
+  title      String
+  summary    String
+  teacher    Teacher  @relation(fields: [teacherId], references: [id])
+  teacherId  String
+  createdAt  DateTime @default(now())
+}
+
+model LACScore {
+  id        String   @id @default(cuid())
+  dimension String
+  score     Int
+  student   Student  @relation(fields: [studentId], references: [id])
+  studentId String
+}
+
+model MOOC {
+  id       String   @id @default(cuid())
+  title    String
+  provider String
+  url      String
+}
+
+model CPSEvidence {
+  id         String   @id @default(cuid())
+  title      String
+  summary    String
+  teacher    Teacher  @relation(fields: [teacherId], references: [id])
+  teacherId  String
+  createdAt  DateTime @default(now())
+}
+
+model Observation {
+  id        String   @id @default(cuid())
+  note      String
+  teacher   Teacher  @relation(fields: [teacherId], references: [id])
+  teacherId String
+  createdAt DateTime @default(now())
+}
+
+model Policy {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  campus      Campus   @relation(fields: [campusId], references: [id])
+  campusId    String
+  published   Boolean  @default(false)
+}
+
+model Announcement {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+}

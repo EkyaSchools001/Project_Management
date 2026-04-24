@@ -1,4 +1,4 @@
-import api from "@pdi/lib/api";
+﻿import api from "@pdi/lib/api";
 
 export interface DashboardWidget {
   id: string;

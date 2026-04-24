@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@pdi/components/ui/card";
 import { Button } from "@pdi/components/ui/button";
 import { Badge } from "@pdi/components/ui/badge";
@@ -167,9 +167,9 @@ export function FormWorkflowsConfig() {
 
     return (
         <div className="space-y-6">
-            <Card className="border-violet-600 border">
+            <Card className="border-green-600 border">
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-violet-700">
+                    <CardTitle className="flex items-center gap-2 text-green-700">
                         <WorkflowIcon className="w-5 h-5" />
                         Advanced Form Workflows
                     </CardTitle>
@@ -179,21 +179,21 @@ export function FormWorkflowsConfig() {
                 </CardHeader>
                 <CardContent className="space-y-6 bg-slate-50/50 p-6 rounded-b-lg">
                     {workflows.map((flow, index) => (
-                        <Card key={flow.id} className="border-violet-300 shadow-sm relative overflow-hidden bg-white">
-                            <div className="absolute top-0 left-0 w-1 h-full bg-violet-500"></div>
+                        <Card key={flow.id} className="border-green-300 shadow-sm relative overflow-hidden bg-white">
+                            <div className="absolute top-0 left-0 w-1 h-full bg-green-500"></div>
                             <CardContent className="p-4 space-y-4">
 
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-4 flex-1">
-                                        <div className="bg-violet-50 p-2 rounded-md border border-violet-200 w-1/3">
-                                            <div className="flex items-center gap-2 text-sm text-violet-700 font-medium mb-1">
+                                        <div className="bg-green-50 p-2 rounded-md border border-green-200 w-1/3">
+                                            <div className="flex items-center gap-2 text-sm text-green-700 font-medium mb-1">
                                                 <LayoutTemplate className="w-4 h-4" /> Form Template
                                             </div>
                                             <Select
                                                 value={flow.formTemplateId}
                                                 onValueChange={(val) => handleChange(flow.id, 'formTemplateId', val)}
                                             >
-                                                <SelectTrigger className="bg-white border-violet-300">
+                                                <SelectTrigger className="bg-white border-green-300">
                                                     <SelectValue placeholder="Select a template" />
                                                 </SelectTrigger>
                                                 <SelectContent className="max-h-[400px]">
@@ -206,7 +206,7 @@ export function FormWorkflowsConfig() {
                                                         }, {} as Record<string, FormTemplate[]>)
                                                     ).map(([type, groupTemplates], groupIdx, arr) => (
                                                         <SelectGroup key={type}>
-                                                            <SelectLabel className="text-blue-600 font-bold bg-violet-50/50 py-1 px-3 mb-1 rounded-sm text-xs capitalize tracking-wider">
+                                                            <SelectLabel className="text-blue-600 font-bold bg-blue-50/50 py-1 px-3 mb-1 rounded-sm text-xs capitalize tracking-wider">
                                                                 {type} ({groupTemplates.length})
                                                             </SelectLabel>
                                                             {groupTemplates.map(t => {
@@ -214,12 +214,12 @@ export function FormWorkflowsConfig() {
                                                                 return (
                                                                     <HoverCard key={t.id} openDelay={200}>
                                                                         <HoverCardTrigger asChild>
-                                                                            <SelectItem value={t.id} className="pl-4 pr-10 cursor-pointer relative data-[highlighted]:bg-violet-50">
+                                                                            <SelectItem value={t.id} className="pl-4 pr-10 cursor-pointer relative data-[highlighted]:bg-green-50">
                                                                                 <span className="flex-1 text-left block w-full pr-6 truncate">{t.name}</span>
-                                                                                <Info className="w-4 h-4 text-muted-foreground absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+                                                                                <Info className="w-4 h-4 text-slate-400 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
                                                                             </SelectItem>
                                                                         </HoverCardTrigger>
-                                                                        <HoverCardContent side="right" align="start" sideOffset={10} className="w-[320px] max-w-[90vw] z-[100] max-h-[350px] overflow-y-auto pointer-events-none shadow-2xl border-violet-200 bg-white/95 backdrop-blur-sm">
+                                                                        <HoverCardContent side="right" align="start" sideOffset={10} className="w-[320px] max-w-[90vw] z-[100] max-h-[350px] overflow-y-auto pointer-events-none shadow-2xl border-green-200 bg-white/95 backdrop-blur-sm">
                                                                             <h4 className="font-semibold text-sm mb-3 pb-2 border-b text-slate-800 border-slate-200 flex items-center justify-between">
                                                                                 <span>{t.name} Fields</span>
                                                                                 <Badge variant="outline" className="text-[10px] bg-slate-50">{fields.length} item{fields.length !== 1 && 's'}</Badge>
@@ -232,7 +232,7 @@ export function FormWorkflowsConfig() {
                                                                                         <span className="break-words mt-0.5">{f.label || f.id || 'Unnamed field'}</span>
                                                                                     </li>
                                                                                 ))}
-                                                                                {fields.length === 0 && <li className="text-muted-foreground italic text-center py-4 bg-slate-50 rounded-md">No fields defined for this template.</li>}
+                                                                                {fields.length === 0 && <li className="text-slate-400 italic text-center py-4 bg-slate-50 rounded-md">No fields defined for this template.</li>}
                                                                             </ul>
                                                                         </HoverCardContent>
                                                                     </HoverCard>
@@ -285,7 +285,7 @@ export function FormWorkflowsConfig() {
                                         <Button variant="ghost" size="icon" className="text-red-500 hover:bg-red-50 hover:text-red-600" onClick={() => handleDelete(flow.id)}>
                                             <Trash2 className="w-4 h-4" />
                                         </Button>
-                                        <Button variant="ghost" size="icon" className="text-blue-500 hover:bg-violet-50 hover:text-blue-600" onClick={() => handleSaveFlow(flow.id)}>
+                                        <Button variant="ghost" size="icon" className="text-blue-500 hover:bg-blue-50 hover:text-blue-600" onClick={() => handleSaveFlow(flow.id)}>
                                             <Save className="w-4 h-4" />
                                         </Button>
                                     </div>
@@ -358,7 +358,7 @@ export function FormWorkflowsConfig() {
                     <Button
                         variant="outline"
                         onClick={handleAddFlow}
-                        className="w-full border-dashed border-2 border-violet-300 text-violet-700 hover:bg-violet-50 hover:text-violet-800 bg-[#fbf9eb]"
+                        className="w-full border-dashed border-2 border-green-300 text-green-700 hover:bg-green-50 hover:text-green-800 bg-[#fbf9eb]"
                     >
                         <Plus className="w-4 h-4 mr-2" /> Add New Form Flow
                     </Button>

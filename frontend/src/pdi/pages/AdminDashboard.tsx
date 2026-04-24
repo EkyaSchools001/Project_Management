@@ -1,5 +1,4 @@
-// @ts-nocheck
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useAuth } from "@pdi/hooks/useAuth";
 import { useAccessControl } from "@pdi/hooks/useAccessControl";
@@ -139,16 +138,16 @@ const AdminOverview = ({ userName }: { userName: string }) => {
                     <div className="space-y-4">
                         <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
                             <ShieldCheck className="w-4 h-4 text-primary" />
-                            <span className="text-xs font-bold tracking-[0.2em] text-foreground/80 uppercase">Platform Admin</span>
-                            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-violet-500/20 border border-violet-500/30">
-                                <div className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-                                <span className="text-[9px] font-black text-violet-400 tracking-widest uppercase">Live Sync</span>
+                            <span className="text-xs font-bold tracking-[0.2em] text-white/80 uppercase">Platform Admin</span>
+                            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-500/20 border border-emerald-500/30">
+                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+                                <span className="text-[9px] font-black text-emerald-400 tracking-widest uppercase">Live Sync</span>
                             </div>
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-black text-foreground tracking-tight">
+                        <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                             Welcome, <span className="text-primary">{userName}</span>
                         </h1>
-                        <p className="text-muted-foreground max-w-xl text-lg leading-relaxed">
+                        <p className="text-slate-400 max-w-xl text-lg leading-relaxed">
                             {selectedCampus === "all" 
                                 ? "Oversee the Teacher Development ecosystem, manage workflows, and configure system-wide parameters from your central command center."
                                 : `Reviewing academic performance and teacher development metrics for ${selectedCampus}.`}
@@ -158,7 +157,7 @@ const AdminOverview = ({ userName }: { userName: string }) => {
                     <div className="flex flex-wrap gap-3">
                         <Button
                             onClick={() => navigate("superadmin")}
-                            className="h-14 px-8 rounded-2xl bg-primary hover:bg-primary/90 text-foreground font-bold shadow-lg shadow-primary/20 transition-all hover:scale-105"
+                            className="h-14 px-8 rounded-2xl bg-primary hover:bg-primary/90 text-white font-bold shadow-lg shadow-primary/20 transition-all hover:scale-105"
                         >
                             <Gear className="w-5 h-5 mr-2" />
                             System Config
@@ -166,7 +165,7 @@ const AdminOverview = ({ userName }: { userName: string }) => {
                         <Button
                             onClick={() => navigate("users")}
                             variant="outline"
-                            className="h-14 px-8 rounded-2xl border-white/10 bg-white/5 text-foreground hover:bg-white/10 backdrop-blur-md font-bold transition-all"
+                            className="h-14 px-8 rounded-2xl border-white/10 bg-white/5 text-white hover:bg-white/10 backdrop-blur-md font-bold transition-all"
                         >
                             <UsersThree className="w-5 h-5 mr-2" />
                             User Directory
@@ -267,7 +266,7 @@ const AdminOverview = ({ userName }: { userName: string }) => {
                     </CardContent>
                 </Card>
 
-                <div className="rounded-[2rem] overflow-hidden shadow-xl bg-background">
+                <div className="rounded-[2rem] overflow-hidden shadow-xl bg-slate-900">
                     <SecurityFeed />
                 </div>
             </div>
@@ -281,7 +280,7 @@ const ModuleActionCard = ({ title, description, icon: Icon, onClick, color }: an
         rose: "bg-rose-500/10 text-rose-600",
         amber: "bg-amber-500/10 text-amber-600",
         slate: "bg-slate-500/10 text-slate-600",
-        emerald: "bg-violet-500/10 text-violet-600",
+        emerald: "bg-emerald-500/10 text-emerald-600",
         cyan: "bg-cyan-500/10 text-cyan-600",
         violet: "bg-violet-500/10 text-violet-600",
     };

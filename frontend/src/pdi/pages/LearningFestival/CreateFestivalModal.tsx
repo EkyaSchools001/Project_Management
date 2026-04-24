@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from 'react';
 import {
     Dialog,
@@ -11,7 +10,13 @@ import { Button } from "@pdi/components/ui/button";
 import { Input } from "@pdi/components/ui/input";
 import { Label } from "@pdi/components/ui/label";
 import { Textarea } from "@pdi/components/ui/textarea";
-
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@pdi/components/ui/select";
 import { Checkbox } from "@pdi/components/ui/checkbox";
 import { toast } from 'sonner';
 import { learningFestivalService } from '@pdi/services/learningFestivalService';
@@ -70,9 +75,9 @@ export function CreateFestivalModal({ isOpen, onOpenChange, onSuccess }: CreateF
         setLoading(true);
         try {
             // Parse documents string into JSON array if provided
-            let documentsPayload = [];
-            if (documentsStr && typeof documentsStr === 'string' && documentsStr.trim()) {
-                documentsPayload = documentsStr.split(',').map((d: any) => d.trim()).filter((d: any) => !!d);
+            let documentsPayload: string[] = [];
+            if (documentsStr.trim()) {
+                documentsPayload = documentsStr.split(',').map(d => d.trim()).filter(d => !!d);
             }
 
             const payload = {
@@ -173,7 +178,7 @@ export function CreateFestivalModal({ isOpen, onOpenChange, onSuccess }: CreateF
                         <Input
                             id="documents"
                             value={documentsStr}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDocumentsStr(e.target.value)}
+                            onChange={(e) => setDocumentsStr(e.target.value)}
                             placeholder="Comma separated URLs (e.g. https://drive.link/doc1, https://drive.link/doc2)"
                         />
                         <p className="text-xs text-muted-foreground">Attach external drive links or schedule PDFs here.</p>

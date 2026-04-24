@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { learningFestivalService, LearningFestival, LearningFestivalApplication } from '@pdi/services/learningFestivalService';
 import { useAuth } from '@pdi/hooks/useAuth';
@@ -98,7 +98,7 @@ export function FestivalApplicationForm() {
             />
 
             {existingApp && (
-                <div className="bg-violet-50 border border-blue-100 rounded-xl p-4 flex items-start gap-3">
+                <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 flex items-start gap-3">
                     <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5" />
                     <div>
                         <h4 className="font-bold text-blue-900">Application Submitted</h4>

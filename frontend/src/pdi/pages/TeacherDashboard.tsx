@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useState, useEffect, useMemo } from "react";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
@@ -215,23 +214,23 @@ const DashboardOverview = ({
 
   return (
     <div className="space-y-8 animate-in fade-in duration-700">
-      <div className="relative overflow-hidden border border-white/10 bg-backgroundlack p-6 md:p-10 mb-8 shadow-2xl industrial-grid">
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-slate-900 p-8 md:p-12 mb-8 shadow-2xl">
         {/* Background decorative elements */}
-        <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-[#00f0ff]/5 rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-72 h-72 bg-[#ff0055]/5 rounded-full blur-[80px]" />
+        <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-72 h-72 bg-indigo-500/20 rounded-full blur-[80px]" />
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div className="space-y-4">
             <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
               <Sparkles className="w-4 h-4 text-primary animate-pulse" />
-              <span className="text-xs font-bold tracking-[0.2em] text-foreground/80 uppercase mr-1">Teacher Platform</span>
-              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-violet-500/20 border border-violet-500/30">
-                <div className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-                <span className="text-[10px] font-black text-violet-400 tracking-widest uppercase">Live Sync Active</span>
+              <span className="text-xs font-bold tracking-[0.2em] text-white/80 uppercase mr-1">Teacher Platform</span>
+              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-500/20 border border-emerald-500/30">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+                <span className="text-[10px] font-black text-emerald-400 tracking-widest uppercase">Live Sync Active</span>
               </div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-black text-foreground tracking-tight">
-              Welcome back, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400">{(userName || "Educator").split(' ')[0]}!</span>
+            <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
+              Welcome back, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400">{userName.split(' ')[0]}!</span>
             </h1>
             <p className="text-zinc-100 text-lg font-bold max-w-xl leading-relaxed">
               Your professional journey starts here.
@@ -284,9 +283,9 @@ const DashboardOverview = ({
       </div>
 
       {/* PD Progress Widget */}
-      <Card className="relative overflow-hidden border border-white/10 shadow-2xl rounded-none bg-[#050505] text-foreground mb-10 group">
+      <Card className="relative overflow-hidden border-none shadow-2xl rounded-[2rem] bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-700 text-white mb-10 group">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay group-hover:scale-110 transition-transform duration-700" />
-        <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#00f0ff]/5 rounded-full blur-[80px]" />
+        <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-[80px]" />
 
         <CardContent className="p-8 md:p-10 relative z-10">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
@@ -311,13 +310,13 @@ const DashboardOverview = ({
                     <span className="text-xl font-medium opacity-60 italic">/ 20 hrs</span>
                   </div>
                 </div>
-                <Badge className="bg-white/20 hover:bg-white/30 text-foreground border-none py-1.5 px-4 rounded-xl backdrop-blur-md font-black text-sm tracking-widest animate-pulse">
+                <Badge className="bg-white/20 hover:bg-white/30 text-white border-none py-1.5 px-4 rounded-xl backdrop-blur-md font-black text-sm tracking-widest animate-pulse">
                   {Math.max(0, 20 - pdHours.total)} hrs to go
                 </Badge>
               </div>
-              <div className="relative h-2 w-full bg-white/5 border border-white/10 shadow-inner">
+              <div className="relative h-4 w-full bg-black/20 rounded-full overflow-hidden border border-white/10 shadow-inner">
                 <div
-                  className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#00f0ff] to-[#ff0055] transition-all duration-1000 ease-out"
+                  className="absolute top-0 left-0 h-full bg-gradient-to-r from-yellow-300 to-emerald-400 rounded-full shadow-[0_0_15px_rgba(250,204,21,0.5)] transition-all duration-1000 ease-out"
                   style={{ width: `${Math.min(100, (pdHours.total / 20) * 100)}%` }}
                 />
               </div>
@@ -343,7 +342,7 @@ const DashboardOverview = ({
                 <h2 className="text-2xl font-black text-foreground tracking-tight">Recent Observations</h2>
               </div>
               <Button variant="ghost" size="sm" asChild className="hover:bg-primary/5 text-primary font-bold">
-                <Link to="/departments/pd/teacher/observations">
+                <Link to="/teacher/observations">
                   View All
                   <TrendingUp className="ml-2 w-4 h-4" />
                 </Link>
@@ -363,14 +362,14 @@ const DashboardOverview = ({
                   />
                 ))
               ) : (
-                <Card className="bg-backgroundlack/40 border border-white/5 p-12 flex flex-col items-center justify-center text-center space-y-4 rounded-none">
-                  <div className="w-16 h-16 rounded-none bg-white/5 flex items-center justify-center border border-white/10">
-                    <Eye className="w-8 h-8 text-foreground/20" />
+                <Card className="bg-white border-2 border-dashed border-muted shadow-sm p-12 flex flex-col items-center justify-center text-center space-y-4 rounded-[2rem]">
+                  <div className="w-16 h-16 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 shadow-sm">
+                    <Eye className="w-8 h-8 text-slate-300" />
                   </div>
                   <div className="space-y-1">
-                    <p className="text-lg font-bold text-foreground uppercase tracking-tighter">No observations yet</p>
-                    <p className="text-[10px] text-foreground/40 font-mono tracking-widest uppercase max-w-[280px] mx-auto">
-                      Wait for leader verification.
+                    <p className="text-lg font-bold text-slate-900">No observations yet</p>
+                    <p className="text-sm text-zinc-900 font-bold max-w-[280px] mx-auto">
+                      Once your school leader records an observation, you'll see the details and feedback right here.
                     </p>
                   </div>
                 </Card>
@@ -383,11 +382,11 @@ const DashboardOverview = ({
           <div>
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <div className="w-1.5 h-8 rounded-none bg-[#fff600] shadow-[0_0_15px_rgba(255,246,0,0.3)]"></div>
-                <h2 className="text-2xl font-black text-foreground tracking-tight uppercase">My Goals</h2>
+                <div className="w-1.5 h-8 rounded-full bg-primary shadow-[0_0_15px_rgba(234,16,74,0.3)]"></div>
+                <h2 className="text-2xl font-black text-foreground tracking-tight">My Goals</h2>
               </div>
-              <Button variant="ghost" size="sm" asChild className="hover:bg-white/5 text-[#fff600] font-mono text-[10px] uppercase tracking-widest">
-                <Link to="/departments/pd/teacher/goals">View All</Link>
+              <Button variant="ghost" size="sm" asChild className="hover:bg-primary/5 text-primary font-bold">
+                <Link to="/teacher/goals">View All</Link>
               </Button>
             </div>
             <div className="space-y-4">
@@ -396,14 +395,14 @@ const DashboardOverview = ({
                   <GoalCard key={goal.id} goal={goal} />
                 ))
               ) : (
-                <Card className="bg-backgroundlack/40 border border-white/5 p-12 flex flex-col items-center justify-center text-center space-y-4 rounded-none">
-                  <div className="w-16 h-16 rounded-none bg-white/5 flex items-center justify-center border border-white/10">
-                    <Target className="w-8 h-8 text-foreground/20" />
+                <Card className="bg-white border-2 border-dashed border-muted shadow-sm p-12 flex flex-col items-center justify-center text-center space-y-4 rounded-[2rem]">
+                  <div className="w-16 h-16 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 shadow-sm">
+                    <Target className="w-8 h-8 text-slate-300" />
                   </div>
                   <div className="space-y-1">
-                    <p className="text-lg font-bold text-foreground uppercase tracking-tighter">No goals set yet</p>
-                    <p className="text-[10px] text-foreground/40 font-mono tracking-widest uppercase max-w-[280px] mx-auto">
-                      Coordinate with school leadership.
+                    <p className="text-lg font-bold text-slate-900">No goals set yet</p>
+                    <p className="text-sm text-zinc-900 font-bold max-w-[280px] mx-auto">
+                      Work with your school leader to define your Teacher Development goals for this academic year.
                     </p>
                   </div>
                 </Card>
@@ -417,11 +416,11 @@ const DashboardOverview = ({
         <div className="mt-12">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
-              <div className="w-1.5 h-8 rounded-none bg-[#00f0ff] shadow-[0_0_15px_rgba(0,240,255,0.3)]"></div>
-              <h2 className="text-2xl font-black text-foreground tracking-tight uppercase">Upcoming Training</h2>
+              <div className="w-1.5 h-8 rounded-full bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.3)]"></div>
+              <h2 className="text-2xl font-black text-foreground tracking-tight">Upcoming Training</h2>
             </div>
-            <Button variant="ghost" size="sm" asChild className="hover:bg-white/5 text-[#00f0ff] font-mono text-[10px] uppercase tracking-widest">
-              <Link to="/departments/pd/teacher/calendar">View Calendar</Link>
+            <Button variant="ghost" size="sm" asChild className="hover:bg-emerald-50 text-emerald-600 font-bold">
+              <Link to="/teacher/calendar">View Calendar</Link>
             </Button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -795,13 +794,13 @@ function ObservationsView({
             <TableBody className="divide-y divide-zinc-100">
               {filteredObservations.map((obs, index) => (
                 <TableRow key={obs.id} className="hover:bg-primary/5 transition-colors group">
-                  <TableCell className="p-6 text-xs font-bold text-muted-foreground">
+                  <TableCell className="p-6 text-xs font-bold text-zinc-400">
                     {index + 1}
                   </TableCell>
                   <TableCell className="p-6">
                     <div className="flex flex-col">
                       <span className="font-bold text-zinc-900">{obs.date}</span>
-                      <span className="text-[10px] text-muted-foreground font-medium">Recorded</span>
+                      <span className="text-[10px] text-zinc-400 font-medium">Recorded</span>
                     </div>
                   </TableCell>
                   <TableCell className="p-6">
@@ -809,7 +808,7 @@ function ObservationsView({
                       <span className="font-bold text-zinc-900 group-hover:text-primary transition-colors">
                         {obs.learningArea || (obs as any).subject || "General"}
                       </span>
-                      <span className="text-[10px] text-muted-foreground font-medium flex items-center gap-1 mt-0.5">
+                      <span className="text-[10px] text-zinc-400 font-medium flex items-center gap-1 mt-0.5">
                         <User className="w-3 h-3" />
                         {obs.observerName || "Leader"}
                       </span>
@@ -821,7 +820,7 @@ function ObservationsView({
                         {String((obs as any).moduleType || obs.domain).replace('_', ' ')}
                       </Badge>
                       {(obs.type === "Quick Feedback" || obs.domain === "Quick Feedback" || (obs as any).moduleType === "QUICK_FEEDBACK" || obs.domain === "QUICK_FEEDBACK") && (
-                        <Badge className="bg-indigo-500 text-foreground border-none font-bold text-[10px] uppercase tracking-wider gap-1">
+                        <Badge className="bg-indigo-500 text-white border-none font-bold text-[10px] uppercase tracking-wider gap-1">
                           <Zap className="w-3 h-3 fill-current" />
                           Quick
                         </Badge>
@@ -830,7 +829,7 @@ function ObservationsView({
                   </TableCell>
                   <TableCell className="p-6 max-w-[250px]">
                     {(obs.type === "Quick Feedback" || obs.domain === "Quick Feedback" || (obs as any).moduleType === "QUICK_FEEDBACK" || obs.domain === "QUICK_FEEDBACK") ? (
-                      <p className="text-xs text-muted-foreground font-medium italic">NA</p>
+                      <p className="text-xs text-zinc-400 font-medium italic">NA</p>
                     ) : (
                       <p className="text-xs text-zinc-500 line-clamp-2 italic leading-relaxed">
                         "{obs.notes || "No summary notes provided."}"
@@ -839,11 +838,11 @@ function ObservationsView({
                   </TableCell>
                   <TableCell className="p-6 text-center">
                     {(obs.type === "Quick Feedback" || obs.domain === "Quick Feedback" || (obs as any).moduleType === "QUICK_FEEDBACK" || obs.domain === "QUICK_FEEDBACK") ? (
-                      <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-zinc-100 text-muted-foreground font-black text-xs border border-zinc-200 shadow-sm">
+                      <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-zinc-100 text-zinc-400 font-black text-xs border border-zinc-200 shadow-sm">
                         NA
                       </div>
                     ) : obs.score !== undefined ? (
-                      <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-violet-50 text-violet-700 font-black text-xs border border-violet-100 shadow-sm">
+                      <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-emerald-50 text-emerald-700 font-black text-xs border border-emerald-100 shadow-sm">
                         {obs.score}
                       </div>
                     ) : (
@@ -852,7 +851,7 @@ function ObservationsView({
                   </TableCell>
                   <TableCell className="p-6">
                     {obs.hasReflection ? (
-                      <Badge className="bg-violet-50 text-violet-700 border-violet-100 text-[10px] font-black uppercase tracking-widest gap-1 border h-6">
+                      <Badge className="bg-emerald-50 text-emerald-700 border-emerald-100 text-[10px] font-black uppercase tracking-widest gap-1 border h-6">
                         <CheckCircle2 className="w-3 h-3" />
                         Reflected
                       </Badge>
@@ -1114,7 +1113,7 @@ function GoalsView({ goals, fetchGoals, userName, role }: { goals: any[], fetchG
             </DropdownMenuContent>
           </DropdownMenu>
           {isReflectionWindowOpen && !hasExistingReflection && (
-            <Button size="sm" className="h-10 gap-2 rounded-xl bg-violet-600 hover:bg-violet-700 text-foreground" onClick={handleInitiateReflection} disabled={isInitiating}>
+            <Button size="sm" className="h-10 gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white" onClick={handleInitiateReflection} disabled={isInitiating}>
               {isInitiating ? "Initiating..." : "Start Annual Reflection"}
             </Button>
           )}
@@ -1130,7 +1129,7 @@ function GoalsView({ goals, fetchGoals, userName, role }: { goals: any[], fetchG
               <DialogFooter className="gap-2">
                 <Button variant="outline" onClick={() => setShowClosedPopup(false)}>Got it</Button>
                 <Button
-                  className="bg-primary text-foreground"
+                  className="bg-primary text-white"
                   onClick={handleNotifyAdmin}
                   disabled={isNotifying}
                 >
@@ -1225,7 +1224,7 @@ function GoalsView({ goals, fetchGoals, userName, role }: { goals: any[], fetchG
 
                 <TableRow key={goal.id} className="hover:bg-primary/5 transition-colors group">
 
-                  <TableCell className="p-6 text-xs font-bold text-muted-foreground">{index + 1}</TableCell>
+                  <TableCell className="p-6 text-xs font-bold text-zinc-400">{index + 1}</TableCell>
 
                   <TableCell className="p-6 max-w-[280px]">
 
@@ -1239,7 +1238,7 @@ function GoalsView({ goals, fetchGoals, userName, role }: { goals: any[], fetchG
 
                       {goal.description && (
 
-                        <span className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">{goal.description}</span>
+                        <span className="text-xs text-zinc-400 line-clamp-2 leading-relaxed">{goal.description}</span>
 
                       )}
 
@@ -1287,7 +1286,7 @@ function GoalsView({ goals, fetchGoals, userName, role }: { goals: any[], fetchG
 
                     {(goal.progress || 0) >= 100 ? (
 
-                      <Badge className="bg-violet-50 text-violet-700 border-violet-100 text-[10px] font-black uppercase tracking-widest gap-1 border h-6">
+                      <Badge className="bg-emerald-50 text-emerald-700 border-emerald-100 text-[10px] font-black uppercase tracking-widest gap-1 border h-6">
 
                         <CheckCircle2 className="w-3 h-3" />
 
@@ -1430,7 +1429,7 @@ function CalendarView({
       />
 
       <div className="w-full space-y-6">
-        <Card className="  shadow-2xl bg-zinc-950 text-foreground overflow-hidden relative">
+        <Card className="  shadow-2xl bg-zinc-950 text-white overflow-hidden relative">
           {/* decorative gradient blob */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -translate-y-10 translate-x-10 pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-info/20 rounded-full blur-3xl translate-y-10 -translate-x-10 pointer-events-none" />
@@ -1443,7 +1442,7 @@ function CalendarView({
                   <h3 className="text-xl font-bold bg-gradient-to-r from-primary via-info to-accent bg-clip-text text-transparent">
                     Activity Summary
                   </h3>
-                  <p className="text-muted-foreground text-xs uppercase tracking-wider font-medium">
+                  <p className="text-zinc-400 text-xs uppercase tracking-wider font-medium">
                     {formatDateStr(new Date())}
                   </p>
                 </div>
@@ -1452,24 +1451,24 @@ function CalendarView({
                   mode="single"
                   selected={date}
                   onSelect={setDate}
-                  className="rounded-2xl border-none bg-background/50 p-6 w-full"
+                  className="rounded-2xl border-none bg-zinc-900/50 p-6 w-full"
                   classNames={{
                     months: "flex flex-col space-y-4",
                     month: "space-y-4 w-full",
                     caption: "flex justify-center pt-1 relative items-center mb-6",
-                    caption_label: "text-base font-bold text-foreground",
+                    caption_label: "text-base font-bold text-white",
                     nav: "space-x-1 flex items-center",
-                    nav_button: "h-8 w-8 bg-transparent p-0 text-muted-foreground hover:text-foreground border-zinc-700 hover:bg-card",
+                    nav_button: "h-8 w-8 bg-transparent p-0 text-zinc-400 hover:text-white border-zinc-700 hover:bg-zinc-800",
                     nav_button_previous: "absolute left-2",
                     nav_button_next: "absolute right-2",
                     table: "w-full border-collapse",
                     head_row: "flex w-full mt-2",
-                    head_cell: "text-muted-foreground rounded-md w-10 font-bold text-[0.85rem] uppercase tracking-wider flex items-center justify-center",
+                    head_cell: "text-zinc-400 rounded-md w-10 font-bold text-[0.85rem] uppercase tracking-wider flex items-center justify-center",
                     row: "flex w-full mt-3",
-                    cell: "h-10 w-10 text-center text-base p-0 relative [&:has([aria-selected])]:bg-card first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-                    day: "h-10 w-10 p-0 font-semibold aria-selected:opacity-100 text-foreground hover:bg-card rounded-full transition-all flex items-center justify-center",
-                    day_selected: "bg-primary text-foreground hover:bg-primary/90 focus:bg-primary shadow-lg shadow-primary/30",
-                    day_today: "bg-card text-foreground font-black ring-2 ring-zinc-700",
+                    cell: "h-10 w-10 text-center text-base p-0 relative [&:has([aria-selected])]:bg-zinc-800 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
+                    day: "h-10 w-10 p-0 font-semibold aria-selected:opacity-100 text-white hover:bg-zinc-800 rounded-full transition-all flex items-center justify-center",
+                    day_selected: "bg-primary text-white hover:bg-primary/90 focus:bg-primary shadow-lg shadow-primary/30",
+                    day_today: "bg-zinc-800 text-white font-black ring-2 ring-zinc-700",
                     day_outside: "text-zinc-500 opacity-40",
                   }}
                   modifiers={{
@@ -1484,13 +1483,13 @@ function CalendarView({
               {/* Right side: Legend and Actions */}
               <div className="lg:col-span-5 h-full flex flex-col justify-center pt-10">
                 <div className="space-y-6">
-                  <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-widest mb-4">Legend</h4>
+                  <h4 className="text-sm font-semibold text-zinc-400 uppercase tracking-widest mb-4">Legend</h4>
                   <div className="space-y-4">
                     <div className="flex items-center justify-between p-3 rounded-xl bg-primary/5 border border-primary/10">
                       <span className="flex items-center gap-3 text-sm text-zinc-300">
                         <span className="w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_rgba(var(--primary),0.6)]"></span> Pedagogy
                       </span>
-                      <span className="font-mono text-foreground text-sm bg-primary/20 px-2 py-0.5 rounded-md">
+                      <span className="font-mono text-white text-sm bg-primary/20 px-2 py-0.5 rounded-md">
                         {events.filter((t: any) => (t.topic || t.type) === 'Pedagogy').length}
                       </span>
                     </div>
@@ -1498,7 +1497,7 @@ function CalendarView({
                       <span className="flex items-center gap-3 text-sm text-zinc-300">
                         <span className="w-3 h-3 rounded-full bg-info shadow-[0_0_10px_rgba(var(--info),0.6)]"></span> Technology
                       </span>
-                      <span className="font-mono text-foreground text-sm bg-info/20 px-2 py-0.5 rounded-md">
+                      <span className="font-mono text-white text-sm bg-info/20 px-2 py-0.5 rounded-md">
                         {events.filter((t: any) => (t.topic || t.type) === 'Technology').length}
                       </span>
                     </div>
@@ -1506,7 +1505,7 @@ function CalendarView({
                       <span className="flex items-center gap-3 text-sm text-zinc-300">
                         <span className="w-3 h-3 rounded-full bg-accent shadow-[0_0_10px_rgba(var(--accent),0.6)]"></span> Culture
                       </span>
-                      <span className="font-mono text-foreground text-sm bg-accent/20 px-2 py-0.5 rounded-md">
+                      <span className="font-mono text-white text-sm bg-accent/20 px-2 py-0.5 rounded-md">
                         {events.filter((t: any) => (t.topic || t.type) === 'Culture').length}
                       </span>
                     </div>
@@ -1515,7 +1514,7 @@ function CalendarView({
                   <div className="pt-8 space-y-4">
                     <div className="grid grid-cols-2 gap-3">
                       <Select value={selectedType} onValueChange={setSelectedType}>
-                        <SelectTrigger className="bg-background border-zinc-800 text-foreground rounded-xl focus:ring-primary h-12">
+                        <SelectTrigger className="bg-zinc-900 border-zinc-800 text-white rounded-xl focus:ring-primary h-12">
                           <SelectValue placeholder="Topic" />
                         </SelectTrigger>
                         <SelectContent>
@@ -1526,7 +1525,7 @@ function CalendarView({
                         </SelectContent>
                       </Select>
                       <Select value={selectedCampus} onValueChange={setSelectedCampus}>
-                        <SelectTrigger className="bg-background border-zinc-800 text-foreground rounded-xl focus:ring-primary h-12">
+                        <SelectTrigger className="bg-zinc-900 border-zinc-800 text-white rounded-xl focus:ring-primary h-12">
                           <SelectValue placeholder="Campus" />
                         </SelectTrigger>
                         <SelectContent>
@@ -1542,14 +1541,14 @@ function CalendarView({
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
                       <Input
                         placeholder="Search sessions..."
-                        className="pl-10 bg-background border-zinc-800 text-foreground rounded-xl focus:ring-primary"
+                        className="pl-10 bg-zinc-900 border-zinc-800 text-white rounded-xl focus:ring-primary"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                       />
                     </div>
                     <Button
                       variant="outline"
-                      className="w-full py-6 bg-background border-zinc-800 text-muted-foreground hover:bg-card hover:text-foreground transition-all text-base rounded-xl"
+                      className="w-full py-6 bg-zinc-900 border-zinc-800 text-zinc-400 hover:bg-zinc-800 hover:text-white transition-all text-base rounded-xl"
                       onClick={() => {
                         setDate(undefined);
                         setSelectedType("all");
@@ -1676,7 +1675,7 @@ function CalendarView({
                           <span className={cn(
                             "inline-flex items-center px-4 py-1.5 rounded-xl text-xs font-black uppercase tracking-widest border shadow-sm",
                             session.status === "Approved"
-                              ? "bg-violet-500/5 text-violet-600 border-violet-500/20"
+                              ? "bg-emerald-500/5 text-emerald-600 border-emerald-500/20"
                               : "bg-amber-500/5 text-amber-600 border-amber-500/20"
                           )}>
                             {session.status}
@@ -1684,13 +1683,13 @@ function CalendarView({
                         </td>
                         <td className="px-8 py-7 text-right">
                           {session.isRegistered ? (
-                            <div className="flex items-center justify-end gap-2 text-violet-600 font-bold">
+                            <div className="flex items-center justify-end gap-2 text-emerald-600 font-bold">
                               <CheckCircle2 className="w-5 h-5" />
                               Registered
                             </div>
                           ) : (
                             <Button
-                              className="h-10 px-6 rounded-xl bg-[#1e293b] hover:bg-[#0f172a] text-foreground shadow-lg shadow-slate-900/20 transition-all active:scale-[0.98] font-bold"
+                              className="h-10 px-6 rounded-xl bg-[#1e293b] hover:bg-[#0f172a] text-white shadow-lg shadow-slate-900/20 transition-all active:scale-[0.98] font-bold"
                               onClick={() => onRegister(session.id)}
                             >
                               Register Now
@@ -1821,7 +1820,7 @@ function CoursesView({ courses = [], enrolledCourses = [], onEnrollSuccess }: { 
         {/* Completed */}
         <section>
           <div className="flex items-center gap-2 mb-4">
-            <Trophy className="w-5 h-5 text-violet-500" />
+            <Trophy className="w-5 h-5 text-emerald-500" />
             <h3 className="text-xl font-bold">Completed Courses</h3>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1871,6 +1870,7 @@ function MoocEvidencePage() {
   const [moocStatusFilter, setMoocStatusFilter] = useState('all');
   const [moocSearchQuery, setMoocSearchQuery] = useState('');
   const [currentDraftMoocId, setCurrentDraftMoocId] = useState<string | null>(null);
+  const [selectedDraftData, setSelectedDraftData] = useState<any>(null);
 
   const fetchSubmissions = async () => {
     try {
@@ -1894,7 +1894,7 @@ function MoocEvidencePage() {
     try {
       const payload = { ...data, status: 'DRAFT' };
       if (currentDraftMoocId) {
-        await api.patch(`/mooc/${currentDraftMoocId}/status`, payload);
+        await api.patch(`/mooc/${currentDraftMoocId}/draft`, payload);
       } else {
         const res = await api.post('/mooc/submit', payload);
         if (res.data?.status === 'success' && res.data?.data?.submission?.id) {
@@ -1915,6 +1915,7 @@ function MoocEvidencePage() {
         />
         <Button onClick={() => {
           setCurrentDraftMoocId(null);
+          setSelectedDraftData(null);
           setIsMoocFormOpen(true);
         }} className="gap-2 rounded-xl group shadow-lg shadow-primary/20 transition-all hover:shadow-primary/30 active:scale-95">
           <PlusCircle className="w-5 h-5 transition-transform group-hover:rotate-90" />
@@ -1924,19 +1925,23 @@ function MoocEvidencePage() {
 
       <Dialog open={isMoocFormOpen} onOpenChange={setIsMoocFormOpen}>
         <DialogContent className="max-w-5xl h-[90vh] overflow-y-auto bg-background/95 backdrop-blur-xl shadow-2xl">
+          <div className="sr-only"><DialogTitle>Submit MOOC Evidence</DialogTitle></div>
           <MoocEvidenceForm
             onCancel={() => {
               setIsMoocFormOpen(false);
               setCurrentDraftMoocId(null);
+              setSelectedDraftData(null);
             }}
             onSubmitSuccess={() => {
               setIsMoocFormOpen(false);
               setCurrentDraftMoocId(null);
+              setSelectedDraftData(null);
               fetchSubmissions();
             }}
             onAutoSave={handleAutoSave}
             userEmail={user?.email || ""}
             userName={user?.fullName || ""}
+            initialData={selectedDraftData}
           />
         </DialogContent>
       </Dialog>
@@ -1990,7 +1995,7 @@ function MoocEvidencePage() {
                   <TableCell colSpan={6} className="p-20 text-center">
                     <div className="flex flex-col items-center gap-3">
                       <Loader2 className="w-10 h-10 text-primary animate-spin opacity-20" />
-                      <p className="text-muted-foreground font-bold text-sm tracking-widest uppercase">Fetching Records...</p>
+                      <p className="text-zinc-400 font-bold text-sm tracking-widest uppercase">Fetching Records...</p>
                     </div>
                   </TableCell>
                 </TableRow>
@@ -2010,12 +2015,23 @@ function MoocEvidencePage() {
                   .filter(s => moocPlatformFilter === 'all' || (s.platform === 'Other' ? s.otherPlatform : s.platform) === moocPlatformFilter)
                   .filter(s => moocStatusFilter === 'all' || (s.status || 'PENDING') === moocStatusFilter)
                   .map((sub, idx) => (
-                <TableRow key={sub.id} className="hover:bg-primary/[0.02] transition-colors group">
+                <TableRow 
+                  key={sub.id} 
+                  className={cn("hover:bg-primary/[0.02] transition-colors group", sub.status === 'DRAFT' && "cursor-pointer title")}
+                  onClick={() => {
+                    if (sub.status === 'DRAFT') {
+                      setCurrentDraftMoocId(sub.id);
+                      setSelectedDraftData(sub);
+                      setIsMoocFormOpen(true);
+                    }
+                  }}
+                  title={sub.status === 'DRAFT' ? "Click to resume draft" : ""}
+                >
                   <TableCell className="p-8 text-xs font-black text-zinc-300 text-center">{(idx + 1).toString().padStart(2, '0')}</TableCell>
                   <TableCell className="p-8">
                     <div className="flex flex-col gap-1">
                       <span className="font-black text-zinc-900 group-hover:text-primary transition-colors text-base tracking-tight leading-tight">{sub.courseName}</span>
-                      <span className="text-xs font-bold text-muted-foreground flex items-center gap-1.5 uppercase tracking-wide">
+                      <span className="text-xs font-bold text-zinc-400 flex items-center gap-1.5 uppercase tracking-wide">
                         <Calendar className="w-3 h-3" />
                         Completed: {new Date(sub.endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                       </span>
@@ -2029,7 +2045,7 @@ function MoocEvidencePage() {
                   <TableCell className="p-8">
                     <div className="flex flex-col">
                       <span className="text-base font-black text-zinc-900">{sub.hours}</span>
-                      <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Hours</span>
+                      <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Hours</span>
                     </div>
                   </TableCell>
                   <TableCell className="p-8">
@@ -2040,7 +2056,7 @@ function MoocEvidencePage() {
                   <TableCell className="p-8 text-right">
                     <Badge className={cn(
                       "text-[10px] font-black uppercase tracking-[0.2em] border px-4 py-1.5 rounded-xl shadow-sm",
-                      sub.status === 'APPROVED' ? "bg-violet-500/10 text-violet-600 border-violet-500/20" :
+                      sub.status === 'APPROVED' ? "bg-black text-white shadow-sm" :
                         sub.status === 'REJECTED' ? "bg-rose-500/10 text-rose-600 border-rose-500/20" :
                           "bg-amber-500/10 text-amber-600 border-amber-500/20"
                     )}>
@@ -2064,7 +2080,7 @@ function CourseCard({ course, onEnrollSuccess }: { course: any, onEnrollSuccess?
   return (
     <Card className="group hover:shadow-2xl transition-all duration-300   bg-background/50 backdrop-blur-sm overflow-hidden flex flex-col">
       <div className={cn("h-32 w-full relative", course.thumbnail)}>
-        <div className="absolute inset-0 bg-backgroundlack/20 group-hover:bg-backgroundlack/10 transition-colors" />
+        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
         <div className="absolute top-3 left-3">
           <Badge variant="secondary" className="bg-white/90 text-black border-none backdrop-blur-sm">
             {course.category}
@@ -2098,7 +2114,7 @@ function CourseCard({ course, onEnrollSuccess }: { course: any, onEnrollSuccess?
             </div>
           </div>
         ) : course.status === 'completed' ? (
-          <div className="flex items-center gap-2 text-violet-600 text-sm font-medium mt-2">
+          <div className="flex items-center gap-2 text-emerald-600 text-sm font-medium mt-2">
             <CheckCircle2 className="w-4 h-4" />
             Course Completed
           </div>
@@ -2272,7 +2288,7 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
                         <div className="text-xs font-medium text-zinc-900 whitespace-nowrap">{hoursLeft}h left</div>
                       </div>
                       <Progress value={(cat.hours / cat.target) * 100} className="h-1"
-                        style={{ '--progress-background': 'var(--muted)', '--progress-foreground': `var(--${(cat.color || 'blue-500').split('-')[1]})` } as any}
+                        style={{ '--progress-background': 'var(--muted)', '--progress-foreground': `var(--${cat.color.split('-')[1]})` } as any}
                       />
                     </div>
                   );
@@ -2284,15 +2300,15 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
 
         {/* Quick Stats */}
         <div className="space-y-4">
-          <Card className="shadow-lg bg-violet-500 text-foreground">
+          <Card className="shadow-lg bg-emerald-500 text-white">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <p className="text-violet-50/80 text-sm font-medium">Achieved hours</p>
+                  <p className="text-emerald-50/80 text-sm font-medium">Achieved hours</p>
                   <p className="text-3xl font-bold">{pdHours.total}h</p>
                 </div>
                 <div className="p-3 bg-white/20 rounded-xl">
-                  <FileCheck className="w-6 h-6 text-foreground" />
+                  <FileCheck className="w-6 h-6 text-white" />
                 </div>
               </div>
             </CardContent>
@@ -2408,7 +2424,7 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
               <Download className="w-4 h-4" />
               Export PDF
             </Button>
-            <Button variant="default" size="sm" className="gap-2 bg-primary hover:bg-primary/90 text-foreground" onClick={handleEmailReport} disabled={isEmailing}>
+            <Button variant="default" size="sm" className="gap-2 bg-primary hover:bg-primary/90 text-white" onClick={handleEmailReport} disabled={isEmailing}>
               <Mail className="w-4 h-4" />
               {isEmailing ? "Preparing..." : "Email Record"}
             </Button>
@@ -2436,7 +2452,7 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
                   <TableCell className="text-zinc-900 text-sm">{row.date}</TableCell>
                   <TableCell className="text-right font-bold">{row.hours}h</TableCell>
                   <TableCell>
-                    <div className="flex items-center gap-1.5 text-violet-600 font-medium">
+                    <div className="flex items-center gap-1.5 text-emerald-600 font-medium">
                       <CheckCircle2 className="w-3.5 h-3.5" />
                       {row.status}
                     </div>
@@ -2477,7 +2493,7 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
               <div className="space-y-6 pt-4">
                 {/* Header Stats */}
                 <div className="grid grid-cols-3 gap-4">
-                  <Card className="  shadow-lg bg-gradient-to-br from-blue-500 to-blue-600 text-foreground">
+                  <Card className="  shadow-lg bg-gradient-to-br from-blue-500 to-blue-600 text-white">
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between">
                         <div>
@@ -2489,7 +2505,7 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
                     </CardContent>
                   </Card>
 
-                  <Card className="  shadow-lg bg-gradient-to-br from-purple-500 to-purple-600 text-foreground">
+                  <Card className="  shadow-lg bg-gradient-to-br from-purple-500 to-purple-600 text-white">
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between">
                         <div>
@@ -2502,9 +2518,9 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
                   </Card>
 
                   <Card className={cn(
-                    "border-none shadow-lg text-foreground",
+                    "border-none shadow-lg text-white",
                     selectedActivity.status === "Approved"
-                      ? "bg-gradient-to-br from-violet-500 to-violet-600"
+                      ? "bg-gradient-to-br from-emerald-500 to-emerald-600"
                       : "bg-gradient-to-br from-amber-500 to-amber-600"
                   )}>
                     <CardContent className="p-4">
@@ -2512,13 +2528,13 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
                         <div>
                           <p className={cn(
                             "text-xs font-medium mb-1",
-                            selectedActivity.status === "Approved" ? "text-violet-50/80" : "text-amber-50/80"
+                            selectedActivity.status === "Approved" ? "text-emerald-50/80" : "text-amber-50/80"
                           )}>Status</p>
                           <p className="text-xl font-bold">{selectedActivity.status}</p>
                         </div>
                         <ShieldCheck className={cn(
                           "w-8 h-8",
-                          selectedActivity.status === "Approved" ? "text-violet-50/50" : "text-amber-50/50"
+                          selectedActivity.status === "Approved" ? "text-emerald-50/50" : "text-amber-50/50"
                         )} />
                       </div>
                     </CardContent>
@@ -2612,7 +2628,7 @@ function PlaceholderView({ title, icon: Icon }: { title: string; icon: React.Com
         This module will be available in the next platform update.
       </p>
       <Button asChild>
-        <Link to="/departments/pd/teacher">Return to Dashboard</Link>
+        <Link to="/teacher">Return to Dashboard</Link>
       </Button>
     </div>
   );
@@ -2625,7 +2641,7 @@ const ModuleGuard = ({ modulePath, children, role, isModuleEnabled }: { modulePa
   const fullPath = `/teacher/${baseModulePath}`;
 
   if (!isModuleEnabled(fullPath, role)) {
-    return <Navigate to="/departments/pd/teacher" replace />;
+    return <Navigate to="/teacher" replace />;
   }
   return <>{children}</>;
 };
@@ -2644,7 +2660,14 @@ export default function TeacherDashboard() {
   const [courses, setCourses] = useState<any[]>([]);
   const [enrolledCourses, setEnrolledCourses] = useState<any[]>([]);
   const [observations, setObservations] = useState<Observation[]>([]);
-  const [pdHours, setPdHours] = useState({
+  interface PDHoursState {
+    total: number;
+    target: number;
+    categories: { name: string; hours: number; target: number; color: string; }[];
+    history: any[];
+  }
+
+  const [pdHours, setPdHours] = useState<PDHoursState>({
     total: 0,
     target: 30, // overall target
     categories: [
@@ -2652,7 +2675,7 @@ export default function TeacherDashboard() {
       { name: "Primary", hours: 0, target: 6, color: "bg-amber-500" },
       { name: "Middle School", hours: 0, target: 6, color: "bg-sky-500" },
       { name: "High School", hours: 0, target: 6, color: "bg-indigo-500" },
-      { name: "Online Courses", hours: 0, target: 6, color: "bg-violet-500" }
+      { name: "Online Courses", hours: 0, target: 6, color: "bg-emerald-500" }
     ],
     history: []
   });
@@ -3180,7 +3203,7 @@ function ObservationDetailView({ observations }: { observations: Observation[] }
             <Button
               onClick={() => setIsAIModalOpen(true)}
               size="sm"
-              className="gap-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 shadow-lg shadow-violet-500/20 font-bold border-none"
+              className="gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-lg shadow-emerald-500/20 font-bold border-none"
             >
               <Sparkles className="w-4 h-4 text-amber-300" />
               AI Smart Analysis
@@ -3193,7 +3216,7 @@ function ObservationDetailView({ observations }: { observations: Observation[] }
         <div className="lg:col-span-2 space-y-8">
           {/* Main Assessment Card - Similar to Leader View but read-only for teacher */}
           <Card className="  shadow-2xl bg-background/50 backdrop-blur-sm overflow-hidden">
-            <div className="h-4 bg-backgroundlack" />
+            <div className="h-4 bg-black" />
             <CardHeader className="bg-muted/10 pb-8">
               <div className="flex justify-between items-start">
                 <div>
@@ -3240,7 +3263,7 @@ function ObservationDetailView({ observations }: { observations: Observation[] }
                 <div className={cn(
                   "w-20 h-20 rounded-2xl flex flex-col items-center justify-center font-black border-4 shadow-xl",
                   (observation.type === "Quick Feedback" || String(observation.domain).toUpperCase() === "QUICK FEEDBACK" || String(observation.domain).toUpperCase() === "QUICK_FEEDBACK")
-                    ? "bg-slate-100 text-muted-foreground border-slate-200"
+                    ? "bg-slate-100 text-slate-400 border-slate-200"
                     : observation.score >= 4
                       ? "bg-success/10 text-success border-success/20"
                       : "bg-warning/10 text-warning border-warning/20"
@@ -3393,7 +3416,7 @@ function ObservationDetailView({ observations }: { observations: Observation[] }
                                     variant={answer === "Yes" ? "default" : answer === "No" ? "destructive" : "outline"}
                                     className={cn(
                                       "flex-shrink-0 font-bold px-3",
-                                      answer === "Yes" && "bg-violet-500 hover:bg-violet-600",
+                                      answer === "Yes" && "bg-black text-white hover:bg-black",
                                       answer === "No" && "bg-rose-500 hover:bg-rose-600"
                                     )}
                                   >
@@ -3429,13 +3452,13 @@ function ObservationDetailView({ observations }: { observations: Observation[] }
                     {/* Culture Tools */}
                     {(observation as any).cultureTools?.length > 0 && (
                       <div className="space-y-4">
-                        <h3 className="text-lg font-bold flex items-center gap-2 text-violet-600">
+                        <h3 className="text-lg font-bold flex items-center gap-2 text-emerald-600">
                           <Zap className="w-5 h-5" />
                           Culture Tools
                         </h3>
                         <div className="flex flex-wrap gap-2">
                           {(observation as any).cultureTools.map((tool: string, idx: number) => (
-                            <Badge key={idx} variant="secondary" className="bg-violet-50 text-violet-700 border-violet-100 uppercase text-[10px] tracking-wider font-bold">
+                            <Badge key={idx} variant="secondary" className="bg-emerald-50 text-emerald-700 border-emerald-100 uppercase text-[10px] tracking-wider font-bold">
                               {tool}
                             </Badge>
                           ))}
@@ -3452,7 +3475,7 @@ function ObservationDetailView({ observations }: { observations: Observation[] }
                         </h3>
                         <div className="flex flex-wrap gap-2">
                           {(observation as any).learningTools.map((tool: string, idx: number) => (
-                            <Badge key={idx} variant="secondary" className="bg-violet-50 text-blue-700 border-blue-100 uppercase text-[10px] tracking-wider font-bold">
+                            <Badge key={idx} variant="secondary" className="bg-blue-50 text-blue-700 border-blue-100 uppercase text-[10px] tracking-wider font-bold">
                               {tool}
                             </Badge>
                           ))}

@@ -51,7 +51,7 @@ const STATUS_COLUMNS = [
 ];
 
 const PRIORITY_CONFIG = {
-    'LOW': { color: '#8b5cf6', bg: 'bg-violet-50', border: 'border-violet-200', label: 'Low' },
+    'LOW': { color: '#ef4444', bg: 'bg-red-50', border: 'border-red-200', label: 'Low' },
     'MEDIUM': { color: '#f59e0b', bg: 'bg-amber-50', border: 'border-amber-200', label: 'Medium' },
     'HIGH': { color: '#f97316', bg: 'bg-orange-50', border: 'border-orange-200', label: 'High' },
     'CRITICAL': { color: '#ef4444', bg: 'bg-rose-50', border: 'border-rose-200', label: 'Critical' }
@@ -310,16 +310,16 @@ const KanbanColumn = ({
 
     const columnColors = {
         slate: { bg: 'bg-slate-50', border: 'border-slate-200', text: 'text-slate-600', ring: 'ring-slate-200' },
-        indigo: { bg: 'bg-indigo-50', border: 'border-indigo-200', text: 'text-indigo-600', ring: 'ring-indigo-200' },
+        indigo: { bg: 'bg-rose-50', border: 'border-rose-200', text: 'text-rose-600', ring: 'ring-rose-200' },
         amber: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-600', ring: 'ring-amber-200' },
-        emerald: { bg: 'bg-violet-50', border: 'border-violet-200', text: 'text-violet-600', ring: 'ring-violet-200' }
+        emerald: { bg: 'bg-red-50', border: 'border-red-200', text: 'text-red-600', ring: 'ring-red-200' }
     };
 
     const colors = columnColors[column.color] || columnColors.slate;
 
     return (
         <div className={`w-80 shrink-0 transition-all duration-300 ${isCollapsed ? 'w-16' : ''}`}>
-            <div className={`rounded-2xl border ${colors.border} ${colors.bg} p-4 transition-all ${isOver ? 'ring-2 ring-indigo-400 scale-[1.02]' : ''} ${isWipExceeded ? 'ring-2 ring-rose-500 animate-pulse' : ''}`}>
+            <div className={`rounded-2xl border ${colors.border} ${colors.bg} p-4 transition-all ${isOver ? 'ring-2 ring-rose-400 scale-[1.02]' : ''} ${isWipExceeded ? 'ring-2 ring-rose-500 animate-pulse' : ''}`}>
                 <div className="flex items-center justify-between mb-4">
                     <button
                         onClick={onToggleCollapse}
@@ -379,12 +379,12 @@ const KanbanColumn = ({
                                             onChange={(e) => onQuickAddTitleChange(e.target.value)}
                                             onKeyDown={(e) => e.key === 'Enter' && onQuickAddSubmit()}
                                             placeholder="Task title..."
-                                            className="flex-1 px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                                            className="flex-1 px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-400"
                                             autoFocus
                                         />
                                         <button
                                             onClick={onQuickAddSubmit}
-                                            className="p-2 bg-indigo-600 text-foreground rounded-lg hover:bg-indigo-700"
+                                            className="p-2 bg-rose-600 text-foreground rounded-lg hover:bg-rose-700"
                                         >
                                             <Plus size={16} />
                                         </button>
@@ -461,8 +461,8 @@ export const TaskCard = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9 }}
             className={`group relative bg-white rounded-xl border ${
-                isDragging ? 'shadow-2xl ring-2 ring-indigo-500 scale-105' : 'border-slate-200 hover:border-indigo-300 shadow-sm hover:shadow-md'
-            } ${isSelected ? 'ring-2 ring-indigo-500' : ''} p-4 cursor-pointer transition-all duration-200`}
+                isDragging ? 'shadow-2xl ring-2 ring-rose-500 scale-105' : 'border-slate-200 hover:border-rose-300 shadow-sm hover:shadow-md'
+            } ${isSelected ? 'ring-2 ring-rose-500' : ''} p-4 cursor-pointer transition-all duration-200`}
             onClick={onClick}
             onMouseEnter={() => setShowQuickActions(true)}
             onMouseLeave={() => setShowQuickActions(false)}
@@ -472,7 +472,7 @@ export const TaskCard = ({
                     <button
                         onClick={(e) => { e.stopPropagation(); onToggleSelection?.(); }}
                         className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
-                            isSelected ? 'bg-indigo-600 border-indigo-600' : 'border-slate-300 hover:border-indigo-400'
+                            isSelected ? 'bg-rose-600 border-rose-600' : 'border-slate-300 hover:border-rose-400'
                         }`}
                     >
                         {isSelected && <CheckCircle2 size={12} className="text-foreground" />}
@@ -513,7 +513,7 @@ export const TaskCard = ({
                 <div className="mb-3">
                     <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
                         <div
-                            className="h-full bg-indigo-500 rounded-full transition-all duration-300"
+                            className="h-full bg-rose-500 rounded-full transition-all duration-300"
                             style={{ width: `${progress}%` }}
                         />
                     </div>
@@ -535,7 +535,7 @@ export const TaskCard = ({
 
                 {task.assignee && (
                     <div
-                        className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-[10px] font-bold"
+                        className="w-6 h-6 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-[10px] font-bold"
                         title={task.assignee.name}
                     >
                         {task.assignee.name.charAt(0)}
@@ -563,7 +563,7 @@ const KanbanToolbar = ({
                     <button
                         onClick={() => onFilterChange(null)}
                         className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
-                            !filterPriority ? 'bg-indigo-600 text-foreground' : 'text-slate-600 hover:bg-slate-100'
+                            !filterPriority ? 'bg-rose-600 text-foreground' : 'text-slate-600 hover:bg-slate-100'
                         }`}
                     >
                         All
@@ -573,7 +573,7 @@ const KanbanToolbar = ({
                             key={key}
                             onClick={() => onFilterChange(key)}
                             className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
-                                filterPriority === key ? 'bg-indigo-600 text-foreground' : 'text-slate-600 hover:bg-slate-100'
+                                filterPriority === key ? 'bg-rose-600 text-foreground' : 'text-slate-600 hover:bg-slate-100'
                             }`}
                             style={filterPriority === key ? {} : { color: config.color }}
                         >

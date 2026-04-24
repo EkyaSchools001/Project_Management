@@ -1,7 +1,10 @@
 import { Router } from 'express';
 import { gamificationController } from '../controllers/gamification.controller';
+import { authenticate } from '../middlewares/auth.middleware';
 
 const router = Router();
+
+router.use(authenticate);
 
 router.get('/badges', gamificationController.getBadges);
 router.get('/badges/:id', gamificationController.getBadgeById);

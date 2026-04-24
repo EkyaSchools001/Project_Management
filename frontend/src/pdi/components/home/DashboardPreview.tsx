@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@pdi/components/ui/card";
+﻿import { Card, CardContent, CardHeader, CardTitle } from "@pdi/components/ui/card";
 import { Users, Activity, DollarSign, ArrowUpRight } from "lucide-react";
 import { AreaChart, Area, BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
 
@@ -32,7 +32,7 @@ export function DashboardPreview() {
                         <div className="flex gap-1.5">
                             <div className="w-3 h-3 rounded-full bg-red-400" />
                             <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                            <div className="w-3 h-3 rounded-full bg-violet-400" />
+                            <div className="w-3 h-3 rounded-full bg-green-400" />
                         </div>
                     </div>
                     <div className="h-2 w-32 bg-muted rounded-full" />
@@ -49,7 +49,7 @@ export function DashboardPreview() {
                             </CardHeader>
                             <CardContent>
                                 <div className="text-2xl font-bold">$45,231.89</div>
-                                <p className="text-xs text-muted-foreground flex items-center text-violet-500">
+                                <p className="text-xs text-muted-foreground flex items-center text-green-500">
                                     +20.1% <ArrowUpRight className="h-3 w-3 ml-1" />
                                 </p>
                             </CardContent>
@@ -61,7 +61,7 @@ export function DashboardPreview() {
                             </CardHeader>
                             <CardContent>
                                 <div className="text-2xl font-bold">+2350</div>
-                                <p className="text-xs text-muted-foreground flex items-center text-violet-500">
+                                <p className="text-xs text-muted-foreground flex items-center text-green-500">
                                     +180.1% <ArrowUpRight className="h-3 w-3 ml-1" />
                                 </p>
                             </CardContent>
@@ -73,7 +73,7 @@ export function DashboardPreview() {
                             </CardHeader>
                             <CardContent>
                                 <div className="text-2xl font-bold">+12,234</div>
-                                <p className="text-xs text-muted-foreground flex items-center text-violet-500">
+                                <p className="text-xs text-muted-foreground flex items-center text-green-500">
                                     +19% <ArrowUpRight className="h-3 w-3 ml-1" />
                                 </p>
                             </CardContent>

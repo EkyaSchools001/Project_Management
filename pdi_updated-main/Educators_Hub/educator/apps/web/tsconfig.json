@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "composite": true,
+    "noEmit": false,
+    "outDir": "dist",
+    "baseUrl": "./src",
+    "paths": {
+      "@ekya/ui": ["../../packages/ui/src"],
+      "@ekya/config": ["../../packages/config/src"]
+    }
+  },
+  "include": ["src"],
+  "references": [
+    { "path": "../../packages/ui" },
+    { "path": "../../packages/config" }
+  ]
+}

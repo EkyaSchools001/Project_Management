@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "@pdi/lib/api";
 import { trainingService } from "@pdi/services/trainingService";
@@ -132,7 +132,7 @@ export default function EventAttendanceView() {
                 <div className="ml-auto flex items-center gap-3">
                     <Button
                         variant="default"
-                        className="bg-primary hover:bg-primary/90 text-foreground font-bold"
+                        className="bg-primary hover:bg-primary/90 text-white font-bold"
                         onClick={async () => {
                             try {
                                 const response = await api.post(`/attendance/${id}/award`);
@@ -206,7 +206,7 @@ export default function EventAttendanceView() {
                                                 <TableCell>{format(new Date(record.submittedAt), "MMM d, h:mm a")}</TableCell>
                                                 <TableCell>{record.department || "-"}</TableCell>
                                                 <TableCell>
-                                                    <Badge variant="secondary" className="bg-violet-500/10 text-violet-600 hover:bg-violet-500/20">Present</Badge>
+                                                    <Badge variant="secondary" className="bg-green-500/10 text-green-600 hover:bg-green-500/20">Present</Badge>
                                                 </TableCell>
                                             </TableRow>
                                         ))
@@ -254,7 +254,7 @@ export default function EventAttendanceView() {
                                                 <TableCell>{registrant.dateRegistered}</TableCell>
                                                 <TableCell className="text-right">
                                                     {attendance.some(a => a.teacherEmail === registrant.email) ? (
-                                                        <Badge className="bg-violet-100 text-violet-700 border-none">
+                                                        <Badge className="bg-green-100 text-green-700 border-none">
                                                             <CheckCircle2 className="w-3 h-3 mr-1" />
                                                             Recorded
                                                         </Badge>

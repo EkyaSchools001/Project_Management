@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { authenticate } from '../middlewares/auth';
+import { protect as authenticate } from '../middlewares/auth';
 import {
     uploadFile,
     uploadFiles,

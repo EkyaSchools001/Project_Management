@@ -1,0 +1,33 @@
+{
+  "name": "ekya-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "dependencies": {
+    "@radix-ui/react-dropdown-menu": "^1.0.0",
+    "@radix-ui/react-tabs": "^1.0.0",
+    "@tanstack/react-query": "^4.40.0",
+    "@tanstack/react-query-devtools": "^4.40.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.14.2",
+    "zustand": "^4.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.36",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.1"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b tsconfig.json && vite build",
+    "preview": "vite preview",
+    "lint": "echo \"No lint configured for web yet\""
+  }
+}

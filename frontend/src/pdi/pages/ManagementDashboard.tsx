@@ -1,5 +1,4 @@
-// @ts-nocheck
-import { useState, useEffect, useMemo } from "react";
+﻿import { useState, useEffect, useMemo } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import api from "@pdi/lib/api";
 import { useAuth } from "@pdi/hooks/useAuth";
@@ -10,7 +9,17 @@ import { getSocket } from "@pdi/lib/socket";
 import { toast } from "sonner";
 import { PageHeader } from "@pdi/components/layout/PageHeader";
 import { StatCard } from "@pdi/components/StatCard";
-import { Users, Eye, TrendingUp, Calendar, Target, ChevronLeft, Search, Filter, MapPin, Awards, Clock, Zap, ShieldCheck, ArrowUpRight } from "lucide-react";
+import {
+    Users,
+    TrendingUp,
+    Target,
+    Book,
+    ShieldCheck,
+    Zap,
+    BarChart2,
+    Building2,
+    Calendar,
+} from "lucide-react";
 import { Badge } from "@pdi/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@pdi/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@pdi/components/ui/select";
@@ -69,24 +78,24 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
 
     return (
         <div className="space-y-8 animate-in fade-in duration-700">
-            <div className="relative overflow-hidden border border-white/10 bg-backgroundlack p-6 md:p-10 mb-8 shadow-2xl industrial-grid">
-                <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-[#00f0ff]/5 rounded-full blur-[100px]" />
-                <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-72 h-72 bg-[#ff0055]/5 rounded-full blur-[80px]" />
+            <div className="relative overflow-hidden rounded-[2.5rem] bg-slate-900 p-8 md:p-12 mb-8 shadow-2xl">
+                <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
+                <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-72 h-72 bg-indigo-500/20 rounded-full blur-[80px]" />
 
                 <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
                     <div className="space-y-4">
                         <div className="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
                             <ShieldCheck className="w-4 h-4 text-primary" />
-                            <span className="text-[10px] font-bold tracking-[0.2em] text-foreground/80 uppercase">Management Console</span>
-                            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-violet-500/20 border border-violet-500/30">
-                                <div className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-                                <span className="text-[9px] font-black text-violet-400 tracking-widest uppercase">Live Sync</span>
+                            <span className="text-[10px] font-bold tracking-[0.2em] text-white/80 uppercase">Management Console</span>
+                            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-500/20 border border-emerald-500/30">
+                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+                                <span className="text-[9px] font-black text-emerald-400 tracking-widest uppercase">Live Sync</span>
                             </div>
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-black text-foreground tracking-tight">
-                            Hi, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400">{(userName || "Manager").split(' ')[0]}</span>
+                        <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
+                            Hi, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400">{userName.split(' ')[0]}</span>
                         </h1>
-                        <p className="text-muted-foreground text-lg font-medium max-w-xl leading-relaxed">
+                        <p className="text-slate-400 text-lg font-medium max-w-xl leading-relaxed">
                             A strategic overview of Teacher Development progress across the organization.
                         </p>
                     </div>
@@ -101,7 +110,7 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
                     <p className="text-zinc-900 text-sm font-medium">Real-time performance metrics across the network</p>
                 </div>
                 <Select value={selectedCampus} onValueChange={setSelectedCampus}>
-                    <SelectTrigger className="w-[220px] bg-white/5 border-white/10 h-11 rounded-none text-foreground font-mono uppercase text-[10px] tracking-widest">
+                    <SelectTrigger className="w-[200px] bg-white border-slate-200 shadow-sm h-11 rounded-xl">
                         <SelectValue placeholder="All Campuses" />
                     </SelectTrigger>
                     <SelectContent>
@@ -115,11 +124,11 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
 
             <div className="grid grid-cols-1 gap-8 pb-12">
                 {filteredCampusData.map((data, idx) => (
-                    <Card key={idx} className="shadow-2xl overflow-hidden rounded-none bg-backgroundlack/40 border-white/5 hover:border-[#00f0ff]/20 transition-all duration-500">
-                        <CardHeader className="bg-white/5 border-b border-white/5 pb-6 px-8">
-                            <CardTitle className="text-2xl flex items-center justify-between text-foreground uppercase font-black">
-                                <span className="tracking-tighter font-mono">{data.campus}</span>
-                                <Badge className="bg-[#00f0ff]/20 border border-[#00f0ff]/30 text-[#00f0ff] rounded-none font-mono text-[9px] uppercase tracking-widest">PERFORMANCE_NODE</Badge>
+                    <Card key={idx} className="shadow-2xl overflow-hidden rounded-[2.5rem] bg-white border-transparent hover:shadow-primary/10 transition-shadow duration-500">
+                        <CardHeader className="bg-slate-50/50 border-b pb-6 px-8">
+                            <CardTitle className="text-2xl flex items-center justify-between text-slate-800">
+                                <span className="font-black bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-slate-500">{data.campus}</span>
+                                <Badge className="bg-white border text-primary shadow-sm hover:bg-white">{data.campus} Performance</Badge>
                             </CardTitle>
                         </CardHeader>
                         <CardContent className="p-8">
@@ -132,7 +141,7 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
                                 </div>
                                 
                                 {/* Metric 2 */}
-                                <div className="space-y-2 p-4 rounded-3xl bg-violet-50/50 border border-blue-100/50 hover:bg-violet-100/50 transition-colors">
+                                <div className="space-y-2 p-4 rounded-3xl bg-blue-50/50 border border-blue-100/50 hover:bg-blue-100/50 transition-colors">
                                     <div className="text-[10px] font-bold text-blue-700 uppercase tracking-widest flex items-center gap-1.5"><Target className="w-3 h-3" /> Instr. Tools</div>
                                     <div className="text-3xl font-black text-blue-950">{data.instructionalTools}%</div>
                                     <div className="text-xs text-blue-950 font-bold">Avg Implementation Score</div>
@@ -146,10 +155,10 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
                                 </div>
 
                                 {/* Metric 4 */}
-                                <div className="space-y-2 p-4 rounded-3xl bg-violet-50/50 border border-violet-100/50 hover:bg-violet-100/50 transition-colors">
-                                    <div className="text-[10px] font-bold text-violet-700 uppercase tracking-widest flex items-center gap-1.5"><BarChart2 className="w-3 h-3" /> Observations</div>
-                                    <div className="text-3xl font-black text-violet-950">{data.obsCompletion}%</div>
-                                    <div className="text-xs text-violet-950 font-bold">Completion Rate</div>
+                                <div className="space-y-2 p-4 rounded-3xl bg-emerald-50/50 border border-emerald-100/50 hover:bg-emerald-100/50 transition-colors">
+                                    <div className="text-[10px] font-bold text-emerald-700 uppercase tracking-widest flex items-center gap-1.5"><BarChart2 className="w-3 h-3" /> Observations</div>
+                                    <div className="text-3xl font-black text-emerald-950">{data.obsCompletion}%</div>
+                                    <div className="text-xs text-emerald-950 font-bold">Completion Rate</div>
                                 </div>
 
                                 {/* Metric 5 */}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { PageHeader } from "@pdi/components/layout/PageHeader";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@pdi/components/ui/card";
 import {
@@ -184,7 +184,7 @@ export function MoocManagementView() {
                                         <TableCell>
                                             <Badge
                                                 variant={submission.status === 'Approved' ? 'default' : submission.status === 'Pending' ? 'secondary' : 'destructive'}
-                                                className={submission.status === 'Approved' ? 'bg-violet-500' : submission.status === 'Pending' ? 'bg-amber-500 text-amber-950' : ''}
+                                                className={submission.status === 'Approved' ? 'bg-black text-white hover:bg-black cursor-default' : submission.status === 'Pending' ? 'bg-amber-500 text-amber-950' : ''}
                                             >
                                                 {submission.status}
                                             </Badge>
@@ -205,7 +205,7 @@ export function MoocManagementView() {
                                                         <Button 
                                                             variant="default" 
                                                             size="icon"
-                                                            className="h-8 w-8 bg-violet-600 hover:bg-violet-700"
+                                                            className="h-8 w-8 bg-emerald-600 hover:bg-emerald-700"
                                                             title="Approve"
                                                             onClick={() => handleApprove(submission.id)}
                                                         >

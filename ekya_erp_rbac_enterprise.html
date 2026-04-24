@@ -1,0 +1,686 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--s1:#533AB7;--s1b:#EEEDFE;--s1t:#3C3489;--s2:#1D9E75;--s2b:#E1F5EE;--s2t:#085041;--s3:#D85A30;--s3b:#FAECE7;--s3t:#712B13;--s4a:#378ADD;--s4ab:#E6F1FB;--s4at:#0C447C;--s4b:#639922;--s4bb:#EAF3DE;--s4bt:#27500A;--s4c:#BA7517;--s4cb:#FAEEDA;--s4ct:#633806;--s5a:#888780;--s5ab:#F1EFE8;--s5at:#444441;--s5b:#D4537E;--s5bb:#FBEAF0;--s5bt:#72243E;--s5c:#0C447C;--s5cb:#E6F1FB;--s5ct:#042C53;--s6:#D4537E;--s6b:#FBEAF0;--s6t:#72243E;--s7:#BA7517;--s7b:#FAEEDA;--s7t:#633806}
+body{font-family:var(--font-sans);font-size:13px;color:var(--color-text-primary);line-height:1.5}
+.shell{display:grid;grid-template-columns:210px minmax(0,1fr);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;min-height:700px}
+.sb{background:var(--color-background-secondary);border-right:0.5px solid var(--color-border-tertiary)}
+.sb-logo{padding:14px 16px 10px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.sb-logo-name{font-size:13px;font-weight:500}
+.sb-logo-sub{font-size:10px;color:var(--color-text-secondary);margin-top:1px}
+.sb-sect{padding:8px 0 2px}
+.sb-lbl{font-size:10px;color:var(--color-text-tertiary);padding:4px 14px 2px;letter-spacing:.06em;text-transform:uppercase}
+.ni{display:flex;align-items:center;gap:7px;padding:6px 14px;cursor:pointer;font-size:12px;color:var(--color-text-secondary);border-left:2px solid transparent}
+.ni:hover{background:var(--color-background-primary);color:var(--color-text-primary)}
+.ni.on{background:var(--color-background-primary);color:var(--color-text-primary);border-left-color:var(--color-text-primary);font-weight:500}
+.dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.main{background:var(--color-background-primary);display:flex;flex-direction:column}
+.topbar{display:flex;align-items:center;gap:10px;padding:10px 18px;border-bottom:0.5px solid var(--color-border-tertiary);flex-shrink:0}
+.topbar-title{font-size:14px;font-weight:500;flex:1}
+.topbar select{padding:4px 8px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);background:var(--color-background-secondary);font-size:11px;color:var(--color-text-primary)}
+.content{padding:16px 18px;flex:1}
+.pg{display:none}.pg.on{display:block}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px}
+.scard{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px}
+.scard-n{font-size:20px;font-weight:500}
+.scard-l{font-size:10px;color:var(--color-text-secondary);margin-top:1px}
+.badge{display:inline-flex;align-items:center;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:500;white-space:nowrap}
+.pill{display:inline-block;padding:1px 6px;border-radius:3px;font-size:10px;border:0.5px solid;line-height:1.5;white-space:nowrap}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);margin-bottom:10px;overflow:hidden}
+.ch{display:flex;align-items:center;gap:8px;padding:10px 12px;cursor:pointer}
+.ch:hover{background:var(--color-background-secondary)}
+.cb{padding:12px;display:none;border-top:0.5px solid var(--color-border-tertiary)}
+.cb.open{display:block}
+.av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;flex-shrink:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.modbox{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:8px 10px}
+.modbox-hd{font-size:11px;font-weight:500;color:var(--color-text-secondary);margin-bottom:5px}
+.modbox-item{display:flex;align-items:center;gap:5px;font-size:11px;padding:1px 0}
+.modbox-item::before{content:"";width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.modbox-item.full::before{background:#3B6D11}
+.modbox-item.scoped::before{background:#BA7517}
+.modbox-item.none::before{background:var(--color-border-secondary)}
+table.t{width:100%;border-collapse:collapse;font-size:11px}
+table.t th{font-size:10px;font-weight:500;color:var(--color-text-secondary);padding:5px 8px;text-align:left;border-bottom:0.5px solid var(--color-border-tertiary);white-space:nowrap;background:var(--color-background-secondary)}
+table.t td{padding:6px 8px;border-bottom:0.5px solid var(--color-border-tertiary);vertical-align:middle}
+table.t tr:last-child td{border-bottom:none}
+table.t tr:hover td{background:var(--color-background-secondary)}
+.search{display:flex;gap:6px;margin-bottom:10px}
+.search input{flex:1;padding:5px 9px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);background:var(--color-background-secondary);font-size:12px;color:var(--color-text-primary)}
+.chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.chip{padding:3px 9px;border:0.5px solid var(--color-border-tertiary);border-radius:20px;background:none;cursor:pointer;font-size:11px;color:var(--color-text-secondary)}
+.chip.on{background:var(--color-text-primary);color:var(--color-background-primary);border-color:var(--color-text-primary)}
+.sec-title{font-size:10px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;margin-top:14px}
+.sec-title:first-child{margin-top:0}
+.mxwrap{overflow-x:auto;margin-top:4px}
+.mx{border-collapse:collapse;font-size:10px}
+.mx th,.mx td{padding:5px 7px;border:0.5px solid var(--color-border-tertiary);white-space:nowrap;text-align:center}
+.mx th{background:var(--color-background-secondary);font-weight:500}
+.mx th.lh,.mx td.lh{text-align:left;min-width:140px;background:var(--color-background-secondary);position:sticky;left:0}
+.mx td.lh{font-weight:500}
+.ck{color:#3B6D11;font-weight:500}
+.sc{color:#BA7517;font-size:9px}
+.no{color:var(--color-border-secondary)}
+.form-r{margin-bottom:10px}
+.form-r label{display:block;font-size:10px;font-weight:500;color:var(--color-text-secondary);margin-bottom:3px}
+.form-r select,.form-r input{width:100%;padding:5px 9px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);background:var(--color-background-secondary);font-size:12px;color:var(--color-text-primary)}
+.tagpick{display:flex;flex-wrap:wrap;gap:5px}
+.tagopt{padding:3px 9px;border:0.5px solid var(--color-border-tertiary);border-radius:4px;cursor:pointer;font-size:11px;color:var(--color-text-secondary)}
+.tagopt.sel{border-color:#3B6D11;color:#27500A;background:#EAF3DE}
+.prevbox{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px;font-size:11px;margin-top:10px;display:none}
+.modal-wrap{background:rgba(0,0,0,0.2);border-radius:var(--border-radius-lg);padding:16px;display:flex;align-items:flex-start;justify-content:center;min-height:400px;margin-top:10px}
+.modal{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:18px;width:100%;max-width:440px}
+.infobox{padding:8px 12px;border-radius:0;font-size:11px;line-height:1.7;border-left:3px solid;margin-bottom:8px}
+.hier-row{display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.hier-row:last-child{border-bottom:none}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.ag-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:8px 10px;margin-bottom:6px}
+.ag-head{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.tag-table-row{display:flex;align-items:start;padding:8px 12px;border-bottom:0.5px solid var(--color-border-tertiary);gap:8px}
+.tag-table-row:last-child{border-bottom:none}
+</style>
+
+<h2 class="sr-only">Ekya Schools Enterprise ERP RBAC — 45 modules, all role families, agents, non-teaching roles</h2>
+
+<div class="shell">
+<div class="sb">
+  <div class="sb-logo">
+    <div class="sb-logo-name">Ekya ERP</div>
+    <div class="sb-logo-sub">RBAC Architecture v1.0</div>
+  </div>
+  <div class="sb-sect">
+    <div class="sb-lbl">Overview</div>
+    <div class="ni on" onclick="go('dashboard',this)"><div class="dot" style="background:var(--s1)"></div>Dashboard</div>
+  </div>
+  <div class="sb-sect">
+    <div class="sb-lbl">Role architecture</div>
+    <div class="ni" onclick="go('roles',this)"><div class="dot" style="background:var(--s2)"></div>Role families</div>
+    <div class="ni" onclick="go('agents',this)"><div class="dot" style="background:var(--s3)"></div>Agents</div>
+    <div class="ni" onclick="go('subtags',this)"><div class="dot" style="background:var(--s4c)"></div>Sub-tags & mapping</div>
+  </div>
+  <div class="sb-sect">
+    <div class="sb-lbl">Modules</div>
+    <div class="ni" onclick="go('modules',this)"><div class="dot" style="background:var(--s4a)"></div>45 ERP modules</div>
+    <div class="ni" onclick="go('matrix',this)"><div class="dot" style="background:var(--s4b)"></div>Access matrix</div>
+  </div>
+  <div class="sb-sect">
+    <div class="sb-lbl">Users</div>
+    <div class="ni" onclick="go('users',this)"><div class="dot" style="background:var(--s5a)"></div>User directory</div>
+    <div class="ni" onclick="go('assign',this)"><div class="dot" style="background:var(--s5b)"></div>Assign role</div>
+  </div>
+  <div class="sb-sect">
+    <div class="sb-lbl">Design</div>
+    <div class="ni" onclick="go('schema',this)"><div class="dot" style="background:var(--s5c)"></div>DB schema</div>
+    <div class="ni" onclick="go('principles',this)"><div class="dot" style="background:var(--s7)"></div>Architecture principles</div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-title" id="ptitle">Dashboard</div>
+    <select id="camp-sel" onchange="campChange()">
+      <option value="ALL">All campuses</option>
+      <option value="CMRNPS">CMRNPS</option>
+      <option value="EITPL">EITPL</option>
+      <option value="EBYR">EBYR</option>
+      <option value="EBTM">EBTM</option>
+      <option value="ENICE">ENICE</option>
+    </select>
+  </div>
+  <div class="content">
+
+  <div id="p-dashboard" class="pg on">
+    <div class="stats">
+      <div class="scard"><div class="scard-n">4</div><div class="scard-l">Role families</div></div>
+      <div class="scard"><div class="scard-n">16</div><div class="scard-l">Total roles</div></div>
+      <div class="scard"><div class="scard-n">45</div><div class="scard-l">ERP modules</div></div>
+      <div class="scard"><div class="scard-n">8</div><div class="scard-l">Agent types</div></div>
+      <div class="scard"><div class="scard-n">5</div><div class="scard-l">Campuses</div></div>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="sec-title">Role family hierarchy</div>
+        <div id="hier"></div>
+        <div class="sec-title">Scope model</div>
+        <div style="display:flex;flex-direction:column;gap:4px" id="scopemod"></div>
+      </div>
+      <div>
+        <div class="sec-title">ERP module groups (45 modules)</div>
+        <div id="mod-groups"></div>
+        <div class="sec-title">Campus distribution</div>
+        <div id="camp-bars"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="p-roles" class="pg">
+    <div id="roles-out"></div>
+  </div>
+
+  <div id="p-agents" class="pg">
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:12px;line-height:1.6">Agents are automated system actors — they hold roles just like humans but act on behalf of processes (notifications, sync, reports). They are scoped and audited identically to human users.</div>
+    <div id="agents-out"></div>
+    <div class="sec-title" style="margin-top:16px">Agent permission model</div>
+    <div class="infobox" style="border-color:#1D9E75;background:var(--s2b)"><span style="color:var(--s2t)">Agents use service accounts with JWT tokens. Tokens expire every 24h. Each agent has a whitelist of exact API endpoints it may call — no wildcard access. All agent actions are written to the audit log with agent_id + triggered_by context.</span></div>
+    <div class="infobox" style="border-color:#BA7517;background:var(--s4cb)"><span style="color:var(--s4ct)">Agents never hold roles above Coordinator level. Any action requiring HoS or above approval must be queued as a human-approval workflow — the agent cannot self-approve.</span></div>
+  </div>
+
+  <div id="p-subtags" class="pg">
+    <div class="sec-title">Teaching sub-tags</div>
+    <div class="infobox" style="border-color:#533AB7;background:var(--s1b)"><span style="color:var(--s1t)">Sub-tags are stored as a <code style="font-family:var(--font-mono)">staff_subtype</code> enum on the user record. They narrow permissions inside a role — they never grant extra access beyond the base role.</span></div>
+    <div id="teaching-tags"></div>
+    <div class="sec-title">Non-teaching staff sub-tags</div>
+    <div class="infobox" style="border-color:#378ADD;background:var(--s4ab)"><span style="color:var(--s4at)">Non-teaching roles follow the same pattern. Each designation maps to one system role + one sub-tag. This covers all current and future hires without creating new roles.</span></div>
+    <div id="nonteaching-tags"></div>
+  </div>
+
+  <div id="p-modules" class="pg">
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:12px">45 modules grouped into 9 functional domains. Click any group to expand.</div>
+    <div id="mod-cards"></div>
+  </div>
+
+  <div id="p-matrix" class="pg">
+    <div class="chips" id="mx-group-chips"></div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:8px;display:flex;gap:14px">
+      <span><span class="ck">✓</span> full</span><span><span class="sc">◆</span> scoped</span><span><span class="no">—</span> none</span>
+    </div>
+    <div class="mxwrap"><table class="mx" id="mx-table"></table></div>
+  </div>
+
+  <div id="p-users" class="pg">
+    <div class="search"><input type="text" id="usrq" placeholder="Search name, email, subject..." oninput="renderUsers()"></div>
+    <div class="chips" id="role-chips-u"></div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:8px" id="ucnt"></div>
+    <div style="overflow-x:auto"><table class="t"><thead><tr><th>Name</th><th>Family</th><th>Role</th><th>Sub-tag</th><th>Campus</th><th>Subject / dept</th><th>Grades</th><th>Email</th></tr></thead><tbody id="utbody"></tbody></table></div>
+  </div>
+
+  <div id="p-assign" class="pg">
+    <div class="modal-wrap">
+      <div class="modal">
+        <div style="font-size:14px;font-weight:500;margin-bottom:14px">Assign role to user</div>
+        <div class="form-r"><label>Full name</label><input id="fn" placeholder="e.g. Rekha Umesh"></div>
+        <div class="form-r"><label>Employee / Student ID</label><input id="feid" placeholder="e.g. 10006"></div>
+        <div class="form-r"><label>Email</label><input id="fem" placeholder="user@school.ac.in"></div>
+        <div class="form-r"><label>Campus</label>
+          <select id="fcamp"><option value="CMRNPS">CMRNPS</option><option value="EITPL">EITPL</option><option value="EBYR">EBYR</option><option value="EBTM">EBTM</option><option value="ENICE">ENICE</option><option value="ALL">All (system-wide)</option></select>
+        </div>
+        <div class="form-r"><label>Role family</label>
+          <select id="ffam" onchange="famChange()"><option value="">— select —</option><option value="academic">Academic staff</option><option value="nonteaching">Non-teaching staff</option><option value="leadership">Leadership</option><option value="stakeholder">Stakeholder</option><option value="agent">Agent / system</option></select>
+        </div>
+        <div class="form-r" id="frole-row" style="display:none"><label>System role</label><select id="frole" onchange="roleChange()"><option value="">— select —</option></select></div>
+        <div class="form-r" id="ftag-row" style="display:none"><label>Sub-tag</label><div class="tagpick" id="ftags"></div></div>
+        <div class="prevbox" id="fprev"></div>
+        <div style="display:flex;gap:8px;margin-top:14px">
+          <button style="padding:6px 14px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-text-primary);color:var(--color-background-primary);cursor:pointer;font-size:12px" onclick="submitAssign()">Assign role</button>
+          <button style="padding:6px 14px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:none;cursor:pointer;font-size:12px;color:var(--color-text-primary)" onclick="resetAssign()">Reset</button>
+        </div>
+        <div id="fmsg" style="margin-top:8px;font-size:11px;display:none"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="p-schema" class="pg">
+    <div class="sec-title">Core tables</div>
+    <div class="grid2">
+      <div>
+        <div class="card"><div class="ch" onclick="tc(this)"><div style="font-size:12px;font-weight:500;flex:1">users</div><span style="color:var(--color-text-tertiary)">▸</span></div>
+        <div class="cb"><pre style="font-size:10px;font-family:var(--font-mono);line-height:1.6;color:var(--color-text-secondary)">id            UUID PK
+name          VARCHAR
+email         VARCHAR UNIQUE
+campus_id     FK → campuses
+role_id       FK → roles
+role_family   ENUM
+staff_subtype VARCHAR (nullable)
+agent_type    VARCHAR (nullable)
+is_active     BOOLEAN
+created_at    TIMESTAMP
+last_login    TIMESTAMP</pre></div></div>
+        <div class="card"><div class="ch" onclick="tc(this)"><div style="font-size:12px;font-weight:500;flex:1">roles</div><span style="color:var(--color-text-tertiary)">▸</span></div>
+        <div class="cb"><pre style="font-size:10px;font-family:var(--font-mono);line-height:1.6;color:var(--color-text-secondary)">id            UUID PK
+name          VARCHAR
+family        ENUM
+level         INT (1–7)
+scope         ENUM (system|campus|section|own)
+is_agent_role BOOLEAN
+parent_role   FK → roles (nullable)</pre></div></div>
+        <div class="card"><div class="ch" onclick="tc(this)"><div style="font-size:12px;font-weight:500;flex:1">permissions</div><span style="color:var(--color-text-tertiary)">▸</span></div>
+        <div class="cb"><pre style="font-size:10px;font-family:var(--font-mono);line-height:1.6;color:var(--color-text-secondary)">id            UUID PK
+role_id       FK → roles
+module_id     FK → modules
+action        ENUM(view|create|edit|delete|approve|export)
+scope_filter  ENUM(all|campus|section|own|none)
+subtype_lock  VARCHAR (nullable — restrict to subtag)</pre></div></div>
+      </div>
+      <div>
+        <div class="card"><div class="ch" onclick="tc(this)"><div style="font-size:12px;font-weight:500;flex:1">modules</div><span style="color:var(--color-text-tertiary)">▸</span></div>
+        <div class="cb"><pre style="font-size:10px;font-family:var(--font-mono);line-height:1.6;color:var(--color-text-secondary)">id            UUID PK
+name          VARCHAR
+group_id      FK → module_groups
+code          VARCHAR (e.g. ATT, FEE, HR)
+is_active     BOOLEAN
+added_at      DATE</pre></div></div>
+        <div class="card"><div class="ch" onclick="tc(this)"><div style="font-size:12px;font-weight:500;flex:1">audit_log</div><span style="color:var(--color-text-tertiary)">▸</span></div>
+        <div class="cb"><pre style="font-size:10px;font-family:var(--font-mono);line-height:1.6;color:var(--color-text-secondary)">id            UUID PK
+user_id       FK → users
+action        VARCHAR
+module_id     FK → modules
+record_id     UUID
+campus_id     FK → campuses
+ip_address    VARCHAR
+agent_id      FK → users (nullable)
+timestamp     TIMESTAMP</pre></div></div>
+        <div class="card"><div class="ch" onclick="tc(this)"><div style="font-size:12px;font-weight:500;flex:1">role_override</div><span style="color:var(--color-text-tertiary)">▸</span></div>
+        <div class="cb"><pre style="font-size:10px;font-family:var(--font-mono);line-height:1.6;color:var(--color-text-secondary)">id            UUID PK
+user_id       FK → users
+module_id     FK → modules
+action        ENUM
+granted_by    FK → users
+reason        TEXT
+expires_at    TIMESTAMP
+is_active     BOOLEAN</pre></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="p-principles" class="pg">
+    <div id="princ-out"></div>
+    <div style="margin-top:14px">
+      <button style="padding:6px 14px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:none;cursor:pointer;font-size:12px;color:var(--color-text-primary)" onclick="sendPrompt('Generate a full technical spec document for the Ekya ERP RBAC system including API design, middleware, and implementation roadmap')">Generate full tech spec ↗</button>
+    </div>
+  </div>
+
+  </div>
+</div>
+</div>
+
+<script>
+const RF={
+  academic:{label:"Academic staff",color:"#888780",bg:"#F1EFE8",tc:"#444441",roles:[
+    {id:"teacher_core",name:"Teacher — core",short:"TC",level:5,scope:"own classes",desc:"Full teaching duties: marks, attendance, student profiles, parent comms."},
+    {id:"teacher_specialist",name:"Teacher — specialist",short:"TS",level:5,scope:"own classes",desc:"PE/VA/PA/Coach/Counselor — same base role, restricted to their domain modules."},
+    {id:"teacher_senior",name:"Advance faculty",short:"AF",level:5,scope:"own classes",desc:"Senior/advance faculty. Same base + exam analytics, result approval inputs."},
+    {id:"teacher_parttime",name:"Part-time teacher",short:"PT",level:5,scope:"own classes",desc:"Same as teacher_core but no timetable editing, no HR modules."},
+  ]},
+  nonteaching:{label:"Non-teaching staff",color:"#378ADD",bg:"#E6F1FB",tc:"#0C447C",roles:[
+    {id:"admin_ops",name:"Admin — operations",short:"AO",level:4,scope:"campus",desc:"Front office, admissions intake, fee collection, transport, notices."},
+    {id:"admin_finance",name:"Admin — finance",short:"AF",level:4,scope:"campus",desc:"Fee management, expense tracking, payroll view, invoice generation."},
+    {id:"admin_hr",name:"Admin — HR",short:"HR",level:4,scope:"campus",desc:"Staff records, leave management, payroll processing, recruitment."},
+    {id:"admin_it",name:"Admin — IT / system",short:"IT",level:4,scope:"campus",desc:"System config, integrations, user provisioning, audit log access."},
+    {id:"librarian",name:"Librarian",short:"LB",level:5,scope:"campus",desc:"Library catalogue, issue/return, fine management, reading reports."},
+    {id:"nurse",name:"School nurse / medical",short:"NR",level:5,scope:"campus",desc:"Health records, medical alerts, sick leave logging."},
+    {id:"transport_mgr",name:"Transport manager",short:"TR",level:5,scope:"campus",desc:"Route management, vehicle tracking, driver records, student transport assignment."},
+    {id:"canteen_mgr",name:"Canteen manager",short:"CN",level:5,scope:"campus",desc:"Menu management, order tracking, nutrition records."},
+    {id:"security",name:"Security / gate staff",short:"SG",level:6,scope:"campus",desc:"Visitor log, gate pass, student pickup authorisation."},
+    {id:"support_staff",name:"Support staff",short:"SS",level:6,scope:"campus",desc:"Housekeeping, maintenance requests — very limited read-only access."},
+  ]},
+  leadership:{label:"Leadership",color:"#D85A30",bg:"#FAECE7",tc:"#712B13",roles:[
+    {id:"super_admin",name:"Super admin",short:"SA",level:1,scope:"system",desc:"Full system. Manage all schools, roles, modules, system config."},
+    {id:"management",name:"Management / director",short:"MG",level:2,scope:"system read",desc:"Cross-campus analytics, strategic reports. No operational edits."},
+    {id:"hos",name:"Head of school",short:"HS",level:3,scope:"campus",desc:"Full campus control — staff, academics, HR approvals, operational oversight."},
+    {id:"coordinator",name:"Coordinator",short:"CR",level:4,scope:"section",desc:"Grade/dept lead. Timetable, results, section reports, teacher oversight."},
+  ]},
+  stakeholder:{label:"Stakeholders",color:"#D4537E",bg:"#FBEAF0",tc:"#72243E",roles:[
+    {id:"parent",name:"Parent / guardian",short:"PG",level:6,scope:"own child",desc:"Child's attendance, grades, fees, health, notices. Fee payment."},
+    {id:"student",name:"Student",short:"ST",level:7,scope:"own",desc:"Own timetable, homework, grades, library, notices, events."},
+  ]},
+};
+
+const AGENTS=[
+  {id:"notif_agent",name:"Notification agent",color:"#533AB7",bg:"#EEEDFE",tc:"#3C3489",scope:"campus",apis:["POST /notifications","GET /students/ids","GET /events"],trigger:"Scheduled / event-driven",desc:"Sends SMS/email/push for attendance alerts, fee reminders, exam schedules, notices."},
+  {id:"sync_agent",name:"Data sync agent",color:"#1D9E75",bg:"#E1F5EE",tc:"#085041",scope:"system",apis:["GET /all-modules/delta","PUT /sync/status"],trigger:"Scheduled nightly",desc:"Cross-campus data synchronisation. Replicates attendance, results, HR data to analytics layer."},
+  {id:"report_agent",name:"Report generation agent",color:"#D85A30",bg:"#FAECE7",tc:"#712B13",scope:"campus",apis:["GET /reports/*","POST /reports/generate","PUT /reports/publish"],trigger:"Scheduled / on-demand",desc:"Auto-generates progress reports, attendance summaries, fee outstanding lists, audit reports."},
+  {id:"fee_agent",name:"Fee & payment agent",color:"#378ADD",bg:"#E6F1FB",tc:"#0C447C",scope:"campus",apis:["GET /fees/due","POST /payments/reconcile","PUT /invoices/status"],trigger:"Payment gateway webhook",desc:"Reconciles online payments, updates fee ledger, triggers receipts, flags overdue accounts."},
+  {id:"attendance_agent",name:"Attendance agent",color:"#639922",bg:"#EAF3DE",tc:"#27500A",scope:"campus",apis:["POST /attendance/auto-mark","GET /biometric/feed"],trigger:"Biometric device push",desc:"Auto-marks attendance from biometric/RFID data. Triggers late/absence alerts."},
+  {id:"admit_agent",name:"Admissions agent",color:"#BA7517",bg:"#FAEEDA",tc:"#633806",scope:"campus",apis:["GET /applications","POST /applications/status","POST /users/provision"],trigger:"Admissions workflow event",desc:"Provisions new student accounts, sends welcome emails, generates IDs on enrolment confirmation."},
+  {id:"audit_agent",name:"Audit & compliance agent",color:"#888780",bg:"#F1EFE8",tc:"#444441",scope:"system",apis:["GET /audit-log","POST /compliance/flag"],trigger:"Continuous / threshold alert",desc:"Watches for anomalous access patterns, failed logins, role escalations. Flags to Super Admin."},
+  {id:"analytics_agent",name:"Analytics agent",color:"#D4537E",bg:"#FBEAF0",tc:"#72243E",scope:"system",apis:["GET /*/aggregate","POST /analytics/compute"],trigger:"Nightly batch",desc:"Computes academic performance indices, staff utilisation, fee recovery rates for management dashboard."},
+];
+
+const MODULES=[
+  {g:"Academics",gc:"#533AB7",gb:"#EEEDFE",mods:["Timetable & scheduling","Curriculum management","Marks & gradebook","Progress reports","Exam management","Homework & assignments","Co-curricular activities","Academic calendar"]},
+  {g:"Attendance",gc:"#1D9E75",gb:"#E1F5EE",mods:["Student attendance","Staff attendance","Leave management","Biometric integration","Attendance reports"]},
+  {g:"Finance",gc:"#D85A30",gb:"#FAECE7",mods:["Fee management","Online payments","Expense tracking","Payroll","Invoicing & receipts","Financial reports","Scholarship management"]},
+  {g:"HR & payroll",gc:"#378ADD",gb:"#E6F1FB",mods:["Staff records","Recruitment","Appraisal","Leave calendar","PF / statutory compliance","Employee self-service"]},
+  {g:"Student lifecycle",gc:"#639922",gb:"#EAF3DE",mods:["Admissions","Student profiles","ID card management","Alumni management","Health records","Transport assignment"]},
+  {g:"Communication",gc:"#BA7517",gb:"#FAEEDA",mods:["Announcements","Parent messaging","SMS / email / push","Event management","Circular management"]},
+  {g:"Operations",gc:"#888780",gb:"#F1EFE8",mods:["Library management","Transport & fleet","Canteen management","Asset & inventory","Maintenance requests","Visitor management"]},
+  {g:"Analytics & BI",gc:"#D4537E",gb:"#FBEAF0",mods:["Campus dashboard","Management BI","Academic analytics","Finance analytics","Audit log & compliance"]},
+  {g:"System",gc:"#0C447C",gb:"#E6F1FB",mods:["User & role management","Module configuration","Integration hub","Notification config","Security & access log"]},
+];
+
+const TEACH_TAGS=[
+  {desig:"Teaching Staff",role:"Teacher — core",tag:"core",color:"#444441",bg:"#F1EFE8",restrict:"Full teacher access to all academic modules"},
+  {desig:"Advance Faculty",role:"Advance faculty",tag:"senior",color:"#3C3489",bg:"#EEEDFE",restrict:"Core + exam analytics + result approval input"},
+  {desig:"PE Specialist / Educator",role:"Teacher — specialist",tag:"pe",color:"#085041",bg:"#E1F5EE",restrict:"Attendance only; no core marks; PE scheduling"},
+  {desig:"VA Specialist / Educator",role:"Teacher — specialist",tag:"va",color:"#712B13",bg:"#FAECE7",restrict:"Art portfolio module; no core marks"},
+  {desig:"PA / Performing Arts Specialist",role:"Teacher — specialist",tag:"pa",color:"#712B13",bg:"#FAECE7",restrict:"Performance module; no core marks"},
+  {desig:"Behavioural Counselor",role:"Teacher — specialist",tag:"counselor",color:"#0C447C",bg:"#E6F1FB",restrict:"Student wellness; confidential notes; no marks"},
+  {desig:"Swimming / Sports Coach",role:"Teacher — specialist",tag:"coach",color:"#27500A",bg:"#EAF3DE",restrict:"Attendance only; co-curricular module"},
+  {desig:"Part Time - Teaching Staff",role:"Part-time teacher",tag:"part-time",color:"#633806",bg:"#FAEEDA",restrict:"No timetable edit; no HR; own subject marks only"},
+  {desig:"Makery & Arts Specialist",role:"Teacher — specialist",tag:"va",color:"#712B13",bg:"#FAECE7",restrict:"Art / makery portfolio; no core marks"},
+];
+
+const NONTEACH_TAGS=[
+  {desig:"Front office / receptionist",role:"Admin — operations",tag:"frontoffice",color:"#0C447C",bg:"#E6F1FB",restrict:"Visitor log, admissions intake, notices"},
+  {desig:"Accounts / finance officer",role:"Admin — finance",tag:"accounts",color:"#633806",bg:"#FAEEDA",restrict:"Fee, invoicing, expense — no HR or payroll"},
+  {desig:"Payroll officer",role:"Admin — finance",tag:"payroll",color:"#633806",bg:"#FAEEDA",restrict:"Payroll only; no student finance"},
+  {desig:"HR executive",role:"Admin — HR",tag:"hr-exec",color:"#3C3489",bg:"#EEEDFE",restrict:"Staff records, leave, appraisal — no student data"},
+  {desig:"IT administrator",role:"Admin — IT / system",tag:"it-admin",color:"#712B13",bg:"#FAECE7",restrict:"System config, user provisioning, audit log"},
+  {desig:"Librarian",role:"Librarian",tag:"library",color:"#444441",bg:"#F1EFE8",restrict:"Library module full; view student profiles (name only)"},
+  {desig:"School nurse / medical officer",role:"School nurse",tag:"medical",color:"#085041",bg:"#E1F5EE",restrict:"Health records full; no academic or finance"},
+  {desig:"Transport coordinator",role:"Transport manager",tag:"transport",color:"#27500A",bg:"#EAF3DE",restrict:"Transport module full; route & vehicle records"},
+  {desig:"Canteen / food service",role:"Canteen manager",tag:"canteen",color:"#444441",bg:"#F1EFE8",restrict:"Canteen module only"},
+  {desig:"Security / gate staff",role:"Security / gate staff",tag:"security",color:"#444441",bg:"#F1EFE8",restrict:"Visitor log + gate pass only"},
+  {desig:"Housekeeping / support",role:"Support staff",tag:"support",color:"#444441",bg:"#F1EFE8",restrict:"Maintenance requests only — very limited"},
+  {desig:"Driver / fleet staff",role:"Transport manager",tag:"driver",color:"#27500A",bg:"#EAF3DE",restrict:"Own vehicle record + route — read only"},
+];
+
+const USERS=[
+  {name:"Santhosh S",fam:"academic",role:"Teacher — specialist",tag:"pe",camp:"CMRNPS",subj:"PE",grades:"Gr 4–12",email:"santhoshs@cmrnps.ac.in"},
+  {name:"Simran Sangai",fam:"academic",role:"Teacher — specialist",tag:"counselor",camp:"CMRNPS",subj:"Life Skills",grades:"Gr 1–6",email:"simrans@cmrnps.ac.in"},
+  {name:"Binesh Thomas",fam:"academic",role:"Advance faculty",tag:"senior",camp:"EITPL",subj:"Chemistry",grades:"Senior",email:"binesht@ekyaschools.com"},
+  {name:"Sujimol Thomas",fam:"academic",role:"Part-time teacher",tag:"part-time",camp:"EBYR",subj:"French",grades:"Gr 5–9",email:"sujimolt@ekyaschools.com"},
+  {name:"Abhayan R S",fam:"academic",role:"Teacher — specialist",tag:"coach",camp:"EBTM",subj:"Swimming",grades:"Whole School",email:"abhayanrs@ekyaschools.com"},
+  {name:"Karthik E",fam:"academic",role:"Teacher — specialist",tag:"va",camp:"EBTM",subj:"Makery",grades:"Senior",email:"karthike@ekyaschools.com"},
+  {name:"Sangeeta Saxena",fam:"academic",role:"Teacher — specialist",tag:"counselor",camp:"EBTM",subj:"Psychology",grades:"Mid–Senior",email:"sangeetas@ekyaschools.com"},
+  {name:"Rituparna Maiti",fam:"academic",role:"Teacher — specialist",tag:"pa",camp:"EBTM",subj:"Performing Arts",grades:"Pri–Middle",email:"rituparnam@ekyaschools.com"},
+  {name:"Susan George",fam:"academic",role:"Teacher — specialist",tag:"counselor",camp:"ENICE",subj:"Counselling",grades:"Whole",email:"susang@ekyaschools.com"},
+  {name:"HoS — CMRNPS",fam:"leadership",role:"Head of school",tag:"—",camp:"CMRNPS",subj:"—",grades:"—",email:"hos@cmrnps.ac.in"},
+  {name:"HoS — EITPL",fam:"leadership",role:"Head of school",tag:"—",camp:"EITPL",subj:"—",grades:"—",email:"hos.eitpl@ekyaschools.com"},
+  {name:"Grade 6 Coord — EITPL",fam:"leadership",role:"Coordinator",tag:"—",camp:"EITPL",subj:"Grade 6",grades:"Gr 6",email:"coord6@ekyaschools.com"},
+  {name:"Management — Group",fam:"leadership",role:"Management",tag:"—",camp:"ALL",subj:"—",grades:"—",email:"mgmt@ekyaschools.com"},
+  {name:"Super Admin",fam:"leadership",role:"Super admin",tag:"—",camp:"ALL",subj:"—",grades:"—",email:"admin@ekya.in"},
+  {name:"Campus Admin — CMRNPS",fam:"nonteaching",role:"Admin — operations",tag:"frontoffice",camp:"CMRNPS",subj:"Operations",grades:"—",email:"admin@cmrnps.ac.in"},
+  {name:"Finance Officer — EITPL",fam:"nonteaching",role:"Admin — finance",tag:"accounts",camp:"EITPL",subj:"Finance",grades:"—",email:"finance@ekyaschools.com"},
+  {name:"HR Executive — EBTM",fam:"nonteaching",role:"Admin — HR",tag:"hr-exec",camp:"EBTM",subj:"HR",grades:"—",email:"hr.ebtm@ekyaschools.com"},
+  {name:"IT Admin — Ekya Group",fam:"nonteaching",role:"Admin — IT / system",tag:"it-admin",camp:"ALL",subj:"IT",grades:"—",email:"it@ekya.in"},
+  {name:"Librarian — CMRNPS",fam:"nonteaching",role:"Librarian",tag:"library",camp:"CMRNPS",subj:"Library",grades:"—",email:"library@cmrnps.ac.in"},
+  {name:"School Nurse — EITPL",fam:"nonteaching",role:"School nurse",tag:"medical",camp:"EITPL",subj:"Medical",grades:"—",email:"nurse@ekyaschools.com"},
+  {name:"Transport Coord — EBTM",fam:"nonteaching",role:"Transport manager",tag:"transport",camp:"EBTM",subj:"Transport",grades:"—",email:"transport.ebtm@ekyaschools.com"},
+  {name:"Security — CMRNPS",fam:"nonteaching",role:"Security / gate staff",tag:"security",camp:"CMRNPS",subj:"Security",grades:"—",email:"security@cmrnps.ac.in"},
+  {name:"Sample Parent",fam:"stakeholder",role:"Parent / guardian",tag:"—",camp:"CMRNPS",subj:"—",grades:"—",email:"parent@gmail.com"},
+  {name:"Sample Student",fam:"stakeholder",role:"Student",tag:"—",camp:"CMRNPS",subj:"—",grades:"Gr 7",email:"student@cmrnps.ac.in"},
+  {name:"Notification Agent",fam:"agent",role:"Agent",tag:"notif",camp:"ALL",subj:"System",grades:"—",email:"agent-notif@sys.ekya.in"},
+];
+
+const MX_DATA={
+  "Academics":       {super_admin:"✓",management:"✓view",hos:"✓",coordinator:"◆section",teacher_core:"◆own",nonteach:"—",librarian:"—",medical:"—",parent:"◆child",student:"◆own"},
+  "Attendance":      {super_admin:"✓",management:"✓view",hos:"✓",coordinator:"◆section",teacher_core:"◆own",nonteach:"◆mark",librarian:"—",medical:"◆view",parent:"◆child",student:"◆own"},
+  "Finance":         {super_admin:"✓",management:"✓view",hos:"✓view",coordinator:"—",teacher_core:"—",nonteach:"◆role",librarian:"—",medical:"—",parent:"◆own",student:"◆own"},
+  "HR & payroll":    {super_admin:"✓",management:"✓view",hos:"✓campus",coordinator:"◆view",teacher_core:"◆own leave",nonteach:"◆role",librarian:"◆own",medical:"◆own",parent:"—",student:"—"},
+  "Admissions":      {super_admin:"✓",management:"✓view",hos:"✓",coordinator:"—",teacher_core:"—",nonteach:"◆ops",librarian:"—",medical:"—",parent:"◆apply",student:"—"},
+  "Communication":   {super_admin:"✓",management:"✓",hos:"✓",coordinator:"◆section",teacher_core:"◆own",nonteach:"◆ops",librarian:"◆notices",medical:"◆alerts",parent:"◆receive",student:"◆receive"},
+  "Library":         {super_admin:"✓",management:"—",hos:"✓view",coordinator:"—",teacher_core:"◆view",nonteach:"—",librarian:"✓",medical:"—",parent:"—",student:"◆borrow"},
+  "Transport":       {super_admin:"✓",management:"✓view",hos:"✓view",coordinator:"—",teacher_core:"—",nonteach:"◆transport",librarian:"—",medical:"—",parent:"◆view",student:"◆view"},
+  "Health records":  {super_admin:"✓",management:"—",hos:"✓view",coordinator:"—",teacher_core:"◆alerts",nonteach:"—",librarian:"—",medical:"✓",parent:"◆child",student:"◆own"},
+  "Analytics & BI":  {super_admin:"✓",management:"✓",hos:"◆campus",coordinator:"◆section",teacher_core:"—",nonteach:"—",librarian:"—",medical:"—",parent:"—",student:"—"},
+  "System config":   {super_admin:"✓",management:"—",hos:"◆campus",coordinator:"—",teacher_core:"—",nonteach:"◆IT only",librarian:"—",medical:"—",parent:"—",student:"—"},
+  "Audit log":       {super_admin:"✓",management:"✓view",hos:"◆campus",coordinator:"—",teacher_core:"—",nonteach:"◆IT only",librarian:"—",medical:"—",parent:"—",student:"—"},
+  "Canteen":         {super_admin:"✓",management:"✓view",hos:"✓view",coordinator:"—",teacher_core:"—",nonteach:"◆canteen",librarian:"—",medical:"◆menu",parent:"◆order",student:"◆order"},
+  "Asset & maint.":  {super_admin:"✓",management:"✓view",hos:"✓view",coordinator:"—",teacher_core:"◆request",nonteach:"◆ops",librarian:"◆request",medical:"◆request",parent:"—",student:"—"},
+};
+
+const PRINCIPLES=[
+  {title:"Principle 1 — role families, not role explosion",color:"#533AB7",bg:"#EEEDFE",tc:"#3C3489",body:"Group all roles into 4 families: Academic, Non-teaching, Leadership, Stakeholder. Adding a new job title never creates a new role — it maps to an existing role + a new sub-tag. The system will always have exactly 16 roles regardless of how many designations exist."},
+  {title:"Principle 2 — scope binding is mandatory",color:"#1D9E75",bg:"#E1F5EE",tc:"#085041",body:"Every permission record carries a scope_filter: all | campus | section | own | none. A HoS of CMRNPS physically cannot read EITPL records — the query is scoped at the data layer, not just the UI. This is enforced in the ORM, not in frontend guards."},
+  {title:"Principle 3 — sub-tags narrow, never expand",color:"#D85A30",bg:"#FAECE7",tc:"#712B13",body:"Sub-tags (teacher specialisation, non-teaching role type) can only restrict access within a role — they cannot grant access beyond the role's ceiling. A PE teacher sub-tag hides the marks module. It cannot grant access to HR."},
+  {title:"Principle 4 — agents are first-class principals",color:"#378ADD",bg:"#E6F1FB",tc:"#0C447C",body:"Automated agents hold roles in the same users table. They have API-key auth, endpoint whitelists, and 24h token expiry. All agent actions appear in the audit log with agent_id. Agents cannot self-approve — anything requiring HoS+ goes into a human approval queue."},
+  {title:"Principle 5 — override table for exceptions",color:"#639922",bg:"#EAF3DE",tc:"#27500A",body:"Never modify a role to accommodate one person's exception. Use the role_override table with a granted_by, reason, and expires_at. Overrides auto-expire and appear in compliance dashboards. This keeps the base role model clean."},
+  {title:"Principle 6 — module registry drives scalability",color:"#BA7517",bg:"#FAEEDA",tc:"#633806",body:"Adding a new ERP module (module 46, 47…) is a database operation: insert into modules, then insert permission rows per role. No code change required. Roles are automatically restricted from new modules until permissions are explicitly granted — default deny."},
+  {title:"Principle 7 — audit everything",color:"#888780",bg:"#F1EFE8",tc:"#444441",body:"Every create/edit/delete/approve/export action is written to audit_log with user_id, module_id, record_id, campus_id, ip_address, and timestamp. The audit agent monitors for anomalies. Logs are immutable — no user role can delete them, including Super Admin."},
+  {title:"Principle 8 — parent & student are consumers, not operators",color:"#D4537E",bg:"#FBEAF0",tc:"#72243E",body:"Parents and students have their own onboarding flow separate from staff provisioning. Parent accounts link to student records via a guardian_of junction table. Students are provisioned by the admissions agent on enrolment confirmation, not manually."},
+];
+
+const SCOPES=[
+  {s:"system",l:"Super Admin / Management",c:"#533AB7"},
+  {s:"campus",l:"HoS / Admin / Non-teaching leads",c:"#D85A30"},
+  {s:"section",l:"Coordinator",c:"#639922"},
+  {s:"own classes",l:"Teachers",c:"#888780"},
+  {s:"own child",l:"Parents",c:"#D4537E"},
+  {s:"own",l:"Students",c:"#BA7517"},
+];
+
+let activeFam="ALL";let activeMxGroup=0;let selTag="";let selRole="";let campFilt="ALL";
+
+function go(page,el){
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('p-'+page).classList.add('on');
+  const t={dashboard:'Dashboard',roles:'Role families',agents:'Agents',subtags:'Sub-tags & mapping',modules:'45 ERP modules',matrix:'Access matrix',users:'User directory',assign:'Assign role',schema:'DB schema',principles:'Architecture principles'};
+  document.getElementById('ptitle').textContent=t[page]||page;
+}
+function tc(h){const b=h.nextElementSibling;const o=b.classList.toggle('open');h.querySelector('span:last-child').textContent=o?'▾':'▸';}
+function campChange(){campFilt=document.getElementById('camp-sel').value;renderUsers();}
+
+function buildDashboard(){
+  document.getElementById('hier').innerHTML=Object.values(RF).flatMap(f=>f.roles.map(r=>`<div class="hier-row" style="padding-left:${(r.level-1)*10}px">
+    <div class="dot" style="background:${f.color}"></div>
+    <span style="font-size:12px;font-weight:${r.level<=3?'500':'400'}">${r.name}</span>
+    <span class="badge" style="background:${f.bg};color:${f.tc};margin-left:auto">L${r.level}</span>
+    <span style="font-size:10px;color:var(--color-text-tertiary);margin-left:6px;width:70px;text-align:right">${r.scope}</span>
+  </div>`)).join('');
+  document.getElementById('scopemod').innerHTML=SCOPES.map(s=>`<div style="display:flex;align-items:center;gap:7px;padding:4px 0;border-bottom:0.5px solid var(--color-border-tertiary)">
+    <div class="dot" style="background:${s.c}"></div><span style="font-size:11px;font-weight:500;width:80px">${s.s}</span>
+    <span style="font-size:11px;color:var(--color-text-secondary)">${s.l}</span></div>`).join('');
+  document.getElementById('mod-groups').innerHTML=MODULES.map(g=>`<div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+    <div style="width:8px;height:8px;border-radius:2px;background:${g.gc};flex-shrink:0"></div>
+    <span style="font-size:12px;font-weight:500;width:120px">${g.g}</span>
+    <div style="flex:1;height:6px;background:${g.gb};border-radius:3px;overflow:hidden"><div style="height:100%;width:${Math.round(g.mods.length/8*100)}%;background:${g.gc};border-radius:3px"></div></div>
+    <span style="font-size:10px;color:var(--color-text-secondary);width:20px;text-align:right">${g.mods.length}</span></div>`).join('');
+  const camps=[{c:"CMRNPS",n:51},{c:"EITPL",n:52},{c:"EBYR",n:15},{c:"EBTM",n:48},{c:"ENICE",n:11}];
+  document.getElementById('camp-bars').innerHTML=camps.map(c=>`<div class="bar-row">
+    <div style="width:52px;font-size:11px;font-weight:500">${c.c}</div>
+    <div style="flex:1;height:7px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden"><div style="height:100%;width:${Math.round(c.n/52*100)}%;background:#533AB7;border-radius:3px"></div></div>
+    <span style="font-size:10px;color:var(--color-text-secondary);width:22px;text-align:right">${c.n}</span></div>`).join('');
+}
+
+function buildRoles(){
+  document.getElementById('roles-out').innerHTML=Object.entries(RF).map(([fid,f])=>`
+    <div class="sec-title">${f.label}</div>
+    ${f.roles.map(r=>`<div class="card">
+      <div class="ch" onclick="tc(this)">
+        <div class="av" style="background:${f.bg};color:${f.tc}">${r.short}</div>
+        <div style="flex:1"><div style="font-size:12px;font-weight:500">${r.name}</div><div style="font-size:11px;color:var(--color-text-secondary)">${r.desc}</div></div>
+        <span class="badge" style="background:${f.bg};color:${f.tc}">L${r.level}</span>
+        <span style="font-size:10px;color:var(--color-text-tertiary);margin:0 8px">${r.scope}</span>
+        <span style="color:var(--color-text-tertiary)">▸</span>
+      </div>
+      <div class="cb">
+        <div class="grid3">${MODULES.slice(0,6).map(mg=>`<div class="modbox"><div class="modbox-hd">${mg.g}</div>${mg.mods.slice(0,3).map(m=>`<div class="modbox-item ${r.level<=2?'full':r.level===3?'full':r.scope==='section'?'scoped':r.scope==='own classes'?'scoped':r.scope==='campus'?'full':'none'}">${m}</div>`).join('')}</div>`).join('')}</div>
+      </div>
+    </div>`).join('')}`).join('');
+}
+
+function buildAgents(){
+  document.getElementById('agents-out').innerHTML=AGENTS.map(a=>`<div class="ag-card">
+    <div class="ag-head"><div class="av" style="background:${a.bg};color:${a.tc};width:26px;height:26px;font-size:9px">AG</div>
+      <div style="flex:1"><div style="font-size:12px;font-weight:500">${a.name}</div><div style="font-size:11px;color:var(--color-text-secondary)">${a.desc}</div></div>
+      <span class="badge" style="background:${a.bg};color:${a.tc}">${a.scope}</span>
+      <span style="font-size:10px;color:var(--color-text-tertiary);margin-left:8px">${a.trigger}</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px">${a.apis.map(ep=>`<code style="font-family:var(--font-mono);font-size:10px;padding:1px 5px;background:var(--color-background-secondary);border-radius:3px;color:var(--color-text-secondary)">${ep}</code>`).join('')}</div>
+  </div>`).join('');
+}
+
+function buildSubtags(){
+  const thdr=`<div style="display:flex;gap:8px;padding:6px 12px;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary)"><div style="flex:0 0 160px;font-size:10px;font-weight:500;color:var(--color-text-secondary)">Designation</div><div style="flex:0 0 130px;font-size:10px;font-weight:500;color:var(--color-text-secondary)">System role</div><div style="flex:0 0 80px;font-size:10px;font-weight:500;color:var(--color-text-secondary)">Sub-tag</div><div style="flex:1;font-size:10px;font-weight:500;color:var(--color-text-secondary)">Access restriction</div></div>`;
+  const rows=arr=>arr.map(r=>`<div class="tag-table-row"><div style="flex:0 0 160px;font-size:11px;font-weight:500">${r.desig}</div><div style="flex:0 0 130px"><span class="badge" style="background:${r.bg};color:${r.color}">${r.role}</span></div><div style="flex:0 0 80px"><span class="pill" style="background:${r.bg};color:${r.color};border-color:${r.color}">${r.tag}</span></div><div style="flex:1;font-size:11px;color:var(--color-text-secondary)">${r.restrict}</div></div>`).join('');
+  document.getElementById('teaching-tags').innerHTML=`<div class="card">${thdr}${rows(TEACH_TAGS)}</div>`;
+  document.getElementById('nonteaching-tags').innerHTML=`<div class="card">${thdr}${rows(NONTEACH_TAGS)}</div>`;
+}
+
+function buildModules(){
+  document.getElementById('mod-cards').innerHTML=MODULES.map((g,i)=>`<div class="card">
+    <div class="ch" onclick="tc(this)">
+      <div style="width:10px;height:10px;border-radius:2px;background:${g.gc};flex-shrink:0"></div>
+      <div style="flex:1;font-size:12px;font-weight:500">${g.g}</div>
+      <span class="badge" style="background:${g.gb};color:${g.gc}">${g.mods.length} modules</span>
+      <span style="color:var(--color-text-tertiary);margin-left:8px">▸</span>
+    </div>
+    <div class="cb">
+      <div style="display:flex;flex-wrap:wrap;gap:5px">${g.mods.map((m,j)=>`<span style="padding:3px 9px;border:0.5px solid ${g.gc};border-radius:4px;font-size:11px;color:${g.gc};background:${g.gb}">${m}</span>`).join('')}</div>
+    </div>
+  </div>`).join('');
+}
+
+function buildMatrix(){
+  const grpChips=document.getElementById('mx-group-chips');
+  grpChips.innerHTML=`<button class="chip on" onclick="setMxGroup(-1,this)">All modules</button>`+
+    MODULES.map((g,i)=>`<button class="chip" onclick="setMxGroup(${i},this)">${g.g}</button>`).join('');
+  renderMatrix(-1);
+}
+
+function setMxGroup(idx,btn){
+  document.querySelectorAll('#mx-group-chips .chip').forEach(c=>c.classList.remove('on'));
+  btn.classList.add('on');
+  renderMatrix(idx);
+}
+
+function renderMatrix(idx){
+  const cols=["super_admin","management","hos","coordinator","teacher_core","nonteach","librarian","medical","parent","student"];
+  const colLabels=["Super admin","Management","HoS","Coordinator","Teacher","Non-teaching","Librarian","Medical","Parent","Student"];
+  const colColors=["#533AB7","#1D9E75","#D85A30","#639922","#888780","#378ADD","#444441","#085041","#D4537E","#BA7517"];
+  const rows=idx<0?Object.keys(MX_DATA):Object.keys(MX_DATA).filter((_,i)=>i>=idx*1.5&&i<idx*1.5+2);
+  const useRows=Object.entries(MX_DATA);
+  let filtered=idx<0?useRows:useRows.filter(([k])=>{
+    const g=MODULES[idx];return g&&g.mods.some(m=>k.toLowerCase().includes(m.toLowerCase().split(' ')[0]))||true;
+  });
+  if(idx>=0){const g=MODULES[idx];filtered=useRows.slice(idx,idx+Math.min(g.mods.length,4));}
+  let html=`<thead><tr><th class="lh">Module</th>${cols.map((c,i)=>`<th><div style="display:flex;flex-direction:column;align-items:center;gap:2px"><div class="dot" style="background:${colColors[i]}"></div><span style="font-size:9px">${colLabels[i].split(' ')[0]}</span></div></th>`).join('')}</tr></thead><tbody>`;
+  filtered.forEach(([mod,vals])=>{
+    html+=`<tr><td class="lh">${mod}</td>`;
+    cols.forEach(c=>{
+      const v=vals[c]||"—";
+      if(v==="✓"||v.startsWith("✓"))html+=`<td><span class="ck" title="${v}">✓</span></td>`;
+      else if(v.startsWith("◆"))html+=`<td><span class="sc" title="${v}">◆</span></td>`;
+      else html+=`<td><span class="no">—</span></td>`;
+    });
+    html+=`</tr>`;
+  });
+  html+=`</tbody>`;
+  document.getElementById('mx-table').innerHTML=html;
+}
+
+function buildRoleChipsU(){
+  document.getElementById('role-chips-u').innerHTML=`<button class="chip on" onclick="setFamFilt('ALL',this)">All</button>`+
+    Object.entries(RF).map(([k,f])=>`<button class="chip" onclick="setFamFilt('${k}',this)">${f.label}</button>`).join('')+
+    `<button class="chip" onclick="setFamFilt('agent',this)">Agents</button>`;
+}
+function setFamFilt(f,btn){activeFam=f;document.querySelectorAll('#role-chips-u .chip').forEach(c=>c.classList.remove('on'));btn.classList.add('on');renderUsers();}
+
+function renderUsers(){
+  const q=(document.getElementById('usrq')?.value||'').toLowerCase();
+  let list=USERS.filter(u=>{
+    if(activeFam!=='ALL'&&u.fam!==activeFam)return false;
+    if(campFilt!=='ALL'&&u.camp!==campFilt&&u.camp!=='ALL')return false;
+    if(q&&!`${u.name}${u.email}${u.subj}${u.role}${u.tag}`.toLowerCase().includes(q))return false;
+    return true;
+  });
+  document.getElementById('ucnt').textContent=`${list.length} user${list.length!==1?'s':''} shown`;
+  const fam=id=>Object.values(RF).find(f=>f.roles.some(r=>r.name===id))||{color:'#888780',bg:'#F1EFE8',tc:'#444441'};
+  document.getElementById('utbody').innerHTML=list.map(u=>{
+    const f=fam(u.role);
+    const rf=Object.entries(RF).find(([,fv])=>fv.label.toLowerCase()===u.fam||fv.roles.some(r=>r.name===u.role));
+    const fc=rf?rf[1]:{color:'#888780',bg:'#F1EFE8',tc:'#444441'};
+    return`<tr>
+      <td><div style="display:flex;align-items:center;gap:6px"><div class="av" style="background:${fc.bg};color:${fc.tc};width:24px;height:24px;font-size:9px">${u.name.split(' ').slice(0,2).map(w=>w[0]).join('')}</div><span style="font-weight:500">${u.name}</span></div></td>
+      <td><span class="badge" style="background:${fc.bg};color:${fc.tc}">${u.fam}</span></td>
+      <td style="font-size:11px">${u.role}</td>
+      <td>${u.tag!=='—'?`<span class="pill" style="background:${fc.bg};color:${fc.tc};border-color:${fc.color}">${u.tag}</span>`:'<span style="color:var(--color-text-tertiary)">—</span>'}</td>
+      <td><span class="badge" style="background:var(--color-background-secondary);color:var(--color-text-secondary)">${u.camp}</span></td>
+      <td style="color:var(--color-text-secondary);font-size:11px">${u.subj}</td>
+      <td style="color:var(--color-text-secondary);font-size:11px">${u.grades}</td>
+      <td style="color:var(--color-text-secondary);font-size:10px">${u.email}</td>
+    </tr>`;
+  }).join('');
+}
+
+function famChange(){
+  const fam=document.getElementById('ffam').value;
+  const roleRow=document.getElementById('frole-row');
+  const tagRow=document.getElementById('ftag-row');
+  const sel=document.getElementById('frole');
+  roleRow.style.display=fam?'block':'none';
+  tagRow.style.display='none';
+  document.getElementById('fprev').style.display='none';
+  selTag='';selRole='';
+  if(!fam){sel.innerHTML='<option value="">— select —</option>';return;}
+  const famObj=RF[fam];
+  if(fam==='agent'){sel.innerHTML='<option value="">— select —</option>'+AGENTS.map(a=>`<option value="${a.id}">${a.name}</option>`).join('');return;}
+  if(!famObj){sel.innerHTML='<option value="">— select —</option>';return;}
+  sel.innerHTML='<option value="">— select —</option>'+famObj.roles.map(r=>`<option value="${r.id}">${r.name}</option>`).join('');
+}
+
+function roleChange(){
+  const fam=document.getElementById('ffam').value;
+  const role=document.getElementById('frole').value;
+  selRole=role;
+  const tagRow=document.getElementById('ftag-row');
+  const prev=document.getElementById('fprev');
+  if(!role){tagRow.style.display='none';prev.style.display='none';return;}
+  const needsTag=fam==='academic'||fam==='nonteaching';
+  if(needsTag){
+    tagRow.style.display='block';
+    const tags=fam==='academic'?TEACH_TAGS:NONTEACH_TAGS;
+    document.getElementById('ftags').innerHTML=tags.map(t=>`<div class="tagopt" onclick="pickTag(this,'${t.tag}','${t.color}','${t.bg}')">${t.tag}</div>`).join('');
+  } else {tagRow.style.display='none';}
+  showPrev();
+}
+
+function pickTag(el,tag,color,bg){
+  document.querySelectorAll('.tagopt').forEach(o=>o.classList.remove('sel'));
+  el.classList.add('sel');selTag=tag;showPrev();
+}
+
+function showPrev(){
+  const prev=document.getElementById('fprev');
+  const fam=document.getElementById('ffam').value;
+  const roleId=document.getElementById('frole').value;
+  if(!roleId){prev.style.display='none';return;}
+  const famObj=RF[fam];
+  const roleObj=famObj?famObj.roles.find(r=>r.id===roleId):null;
+  const fc=famObj||{color:'#888780',bg:'#F1EFE8',tc:'#444441'};
+  const tagData=(fam==='academic'?TEACH_TAGS:NONTEACH_TAGS).find(t=>t.tag===selTag);
+  prev.style.display='block';
+  prev.innerHTML=`<div style="font-size:10px;font-weight:500;color:var(--color-text-secondary);margin-bottom:5px">Permission preview</div>
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+      <div class="av" style="background:${fc.bg};color:${fc.tc};width:22px;height:22px;font-size:9px">${roleObj?roleObj.short:'?'}</div>
+      <span style="font-size:12px;font-weight:500">${roleObj?roleObj.name:'—'}</span>
+      ${selTag?`<span style="font-size:10px;color:var(--color-text-secondary)">+</span><span class="pill" style="background:${tagData?.bg||'#F1EFE8'};color:${tagData?.color||'#444441'};border-color:${tagData?.color||'#888'}">${selTag}</span>`:''}
+    </div>
+    <div style="font-size:11px;color:var(--color-text-secondary)">Scope: ${roleObj?roleObj.scope:'—'}</div>
+    ${tagData?`<div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Restriction: ${tagData.restrict}</div>`:''}`;
+}
+
+function submitAssign(){
+  const name=document.getElementById('fn').value.trim();
+  const role=document.getElementById('frole').value;
+  const msg=document.getElementById('fmsg');
+  if(!name||!role){msg.style.display='block';msg.style.color='#A32D2D';msg.textContent='Please fill name and select a role.';return;}
+  const fam=RF[document.getElementById('ffam').value];
+  const roleObj=fam?fam.roles.find(r=>r.id===role):{name:role};
+  msg.style.display='block';msg.style.color='#3B6D11';
+  msg.innerHTML=`<strong>${name}</strong> assigned: <strong>${roleObj?roleObj.name:role}</strong>${selTag?' + sub-tag <strong>'+selTag+'</strong>':''}. Ready to persist.`;
+}
+
+function resetAssign(){
+  ['fn','feid','fem'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  document.getElementById('ffam').value='';
+  document.getElementById('frole-row').style.display='none';
+  document.getElementById('ftag-row').style.display='none';
+  document.getElementById('fprev').style.display='none';
+  document.getElementById('fmsg').style.display='none';
+  selTag='';selRole='';
+}
+
+function buildPrinciples(){
+  document.getElementById('princ-out').innerHTML=PRINCIPLES.map(p=>`<div class="infobox" style="border-color:${p.color};background:${p.bg};margin-bottom:6px">
+    <div style="font-size:12px;font-weight:500;color:${p.tc};margin-bottom:3px">${p.title}</div>
+    <div style="font-size:11px;color:${p.tc};line-height:1.7">${p.body}</div>
+  </div>`).join('');
+}
+
+buildDashboard();buildRoles();buildAgents();buildSubtags();buildModules();buildMatrix();buildRoleChipsU();renderUsers();buildPrinciples();
+</script>

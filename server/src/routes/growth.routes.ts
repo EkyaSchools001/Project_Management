@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { getMetrics, createMetric, getTeamMetrics } from '../controllers/growth.controller';
-import { authenticate } from '../middlewares/auth';
+import { protect } from '../middlewares/auth';
 
 const router = Router();
 
-router.use(authenticate);
+router.use(protect);
 
 router.get('/metrics', getMetrics);
 router.post('/metrics', createMetric);

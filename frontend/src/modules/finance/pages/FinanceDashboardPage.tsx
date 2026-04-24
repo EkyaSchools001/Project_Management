@@ -44,7 +44,7 @@ export default function FinanceDashboardPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="w-8 h-8 border-2 border-[#8b5cf6] border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-[#ef4444] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -71,7 +71,7 @@ export default function FinanceDashboardPage() {
         <div className="flex gap-2">
           <button
             onClick={() => navigate('/finance/expenses')}
-            className="flex items-center gap-2 px-4 py-2 bg-[#8b5cf6] text-black rounded-xl font-bold text-sm hover:bg-[#8b5cf6]/80"
+            className="flex items-center gap-2 px-4 py-2 bg-[#ef4444] text-black rounded-xl font-bold text-sm hover:bg-[#ef4444]/80"
           >
             <Plus className="w-4 h-4" /> Add Expense
           </button>
@@ -87,8 +87,8 @@ export default function FinanceDashboardPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-xl bg-[#8b5cf6]/10 flex items-center justify-center">
-              <DollarSign className="w-5 h-5 text-[#8b5cf6]" />
+            <div className="w-10 h-10 rounded-xl bg-[#ef4444]/10 flex items-center justify-center">
+              <DollarSign className="w-5 h-5 text-[#ef4444]" />
             </div>
             <span className="text-sm text-foreground/40">Total Budget</span>
           </div>
@@ -117,8 +117,8 @@ export default function FinanceDashboardPage() {
 
         <div className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-xl bg-violet-500/10 flex items-center justify-center">
-              <FileText className="w-5 h-5 text-blue-500" />
+            <div className="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center">
+              <FileText className="w-5 h-5 text-red-500" />
             </div>
             <span className="text-sm text-foreground/40">Outstanding</span>
           </div>
@@ -180,7 +180,7 @@ export default function FinanceDashboardPage() {
             <h3 className="font-bold text-foreground">Recent Expenses</h3>
             <button
               onClick={() => navigate('/finance/expenses')}
-              className="text-sm text-[#8b5cf6] hover:text-[#8b5cf6]/80"
+              className="text-sm text-[#ef4444] hover:text-[#ef4444]/80"
             >
               View all
             </button>
@@ -193,7 +193,7 @@ export default function FinanceDashboardPage() {
             <h3 className="font-bold text-foreground">Recent Invoices</h3>
             <button
               onClick={() => navigate('/finance/invoices')}
-              className="text-sm text-[#8b5cf6] hover:text-[#8b5cf6]/80"
+              className="text-sm text-[#ef4444] hover:text-[#ef4444]/80"
             >
               View all
             </button>

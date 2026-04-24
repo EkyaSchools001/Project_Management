@@ -68,7 +68,7 @@ export const useTenantTheme = () => {
     const { tenant } = useTenantContext();
 
     return {
-        '--primary-color': tenant?.primaryColor || '#3B82F6',
+        '--primary-color': tenant?.primaryColor || '#ef4444',
         '--secondary-color': tenant?.secondaryColor || '#10B981',
         '--accent-color': tenant?.accentColor || '#F59E0B',
         '--background-color': tenant?.backgroundColor || '#FFFFFF',

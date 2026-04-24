@@ -1,0 +1,15 @@
+{
+  "name": "pdi-updated-root",
+  "private": true,
+  "scripts": {
+    "build": "cd frontend && npm install --include=dev --legacy-peer-deps && npm run build && cd ../backend && npm install && npx prisma generate --schema=../database/prisma/schema.prisma && npx prisma db push --force-reset --schema=../database/prisma/schema.prisma && npm run build && npx prisma db seed && cd ../frontend && npm run build",
+    "start": "cd backend && npm start"
+  },
+  "devDependencies": {
+    "@testsprite/testsprite-mcp": "^0.0.29",
+    "prisma": "^6.19.2"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.2"
+  }
+}

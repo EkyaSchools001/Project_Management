@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+﻿import React, { useState, useEffect, useRef } from "react";
 import { GrowthLayout } from "@pdi/components/growth/GrowthLayout";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@pdi/components/ui/card";
 import { FileText, Plus, Play, Square, Timer, Send, Trash2, User as UserIcon, History, TrendingUp, Loader2, Clock, ChevronLeft, ChevronRight as ChevronRightIcon } from "lucide-react";
@@ -350,7 +350,7 @@ const NotesPage = () => {
                                                     </Button>
                                                     <Button 
                                                         size="sm" 
-                                                        className="flex-1 text-[10px] font-black uppercase tracking-tighter bg-primary/10 text-primary hover:bg-primary hover:text-foreground rounded-xl h-8"
+                                                        className="flex-1 text-[10px] font-black uppercase tracking-tighter bg-primary/10 text-primary hover:bg-primary hover:text-white rounded-xl h-8"
                                                         onClick={() => resumeObservation(obs)}
                                                     >
                                                         Resume

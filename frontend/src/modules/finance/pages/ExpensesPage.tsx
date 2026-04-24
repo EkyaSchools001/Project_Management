@@ -101,7 +101,7 @@ export default function ExpensesPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="w-8 h-8 border-2 border-[#8b5cf6] border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-[#ef4444] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -119,7 +119,7 @@ export default function ExpensesPage() {
         </div>
         <button
           onClick={() => setShowForm(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-[#8b5cf6] text-black rounded-xl font-bold text-sm hover:bg-[#8b5cf6]/80"
+          className="flex items-center gap-2 px-4 py-2 bg-[#ef4444] text-black rounded-xl font-bold text-sm hover:bg-[#ef4444]/80"
         >
           <Plus className="w-4 h-4" /> Add Expense
         </button>
@@ -136,7 +136,7 @@ export default function ExpensesPage() {
         </div>
         <div className="bg-[#1a1d24] rounded-2xl p-6 border border-white/5">
           <p className="text-sm text-foreground/40 mb-1">Approved</p>
-          <p className="text-2xl font-black text-violet-500">{approvedCount}</p>
+          <p className="text-2xl font-black text-red-500">{approvedCount}</p>
         </div>
       </div>
 

@@ -1,0 +1,562 @@
+/* ════════════════════════════════════════════════════
+   PDI Platform – Comprehensive Animation System
+   Toddle-inspired micro-interactions & transitions
+   ════════════════════════════════════════════════════ */
+
+/* ── Global smooth defaults ── */
+*,
+*::before,
+*::after {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Page enter: every route fades + slides up ── */
+#root>* {
+  animation: pageEnter 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.993);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Staggered child entry (apply .animate-stagger to container) ── */
+.animate-stagger>* {
+  animation: fadeSlideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-stagger>*:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.animate-stagger>*:nth-child(2) {
+  animation-delay: 60ms;
+}
+
+.animate-stagger>*:nth-child(3) {
+  animation-delay: 120ms;
+}
+
+.animate-stagger>*:nth-child(4) {
+  animation-delay: 180ms;
+}
+
+.animate-stagger>*:nth-child(5) {
+  animation-delay: 240ms;
+}
+
+.animate-stagger>*:nth-child(6) {
+  animation-delay: 300ms;
+}
+
+.animate-stagger>*:nth-child(7) {
+  animation-delay: 360ms;
+}
+
+.animate-stagger>*:nth-child(8) {
+  animation-delay: 420ms;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Fade-in only ── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── Scale-in (for tooltips, dropdowns, badges) ── */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── Slide-in from left (sidebar drawer fallback) ── */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── Slide-in from top (dropdowns, toasts from top) ── */
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Slide-in from bottom (toasts, floating panels) ── */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Spring pop (modals, dialogs) ── */
+@keyframes springPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.90) translateY(12px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.02) translateY(-2px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ── Chart bars grow up from bottom ── */
+@keyframes barGrowUp {
+  from {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+
+  to {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+}
+
+/* ── Progress bar slide in ── */
+@keyframes progressSlide {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: var(--progress-target, 100%);
+  }
+}
+
+/* ── Badge pulse (notification dots, counts) ── */
+@keyframes badgePulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 hsl(var(--primary) / 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 6px hsl(var(--primary) / 0);
+  }
+}
+
+/* ── Shimmer loading skeleton ── */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ── Ripple (button click feedback) ── */
+@keyframes ripple {
+  from {
+    transform: scale(0);
+    opacity: 0.35;
+  }
+
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ── Spin (loading spinners) ── */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Heartbeat (active indicators) ── */
+@keyframes heartbeat {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  14% {
+    transform: scale(1.08);
+  }
+
+  28% {
+    transform: scale(1);
+  }
+
+  42% {
+    transform: scale(1.05);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+}
+
+/* ── Wiggle (error/alert shake) ── */
+@keyframes wiggle {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(-6px);
+  }
+
+  40% {
+    transform: translateX(6px);
+  }
+
+  60% {
+    transform: translateX(-4px);
+  }
+
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+/* ── Float (hero icons / empty states) ── */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ── Number count-up shimmer overlay ── */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ════ UTILITY CLASSES ════ */
+
+/* Page sections */
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out both;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-up {
+  animation: slideInUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-down {
+  animation: slideInDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-spring-pop {
+  animation: springPop 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 0.5s ease-out;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-bar-grow {
+  animation: barGrowUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-count-up {
+  animation: countUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Animation delays */
+.delay-0 {
+  animation-delay: 0ms;
+}
+
+.delay-75 {
+  animation-delay: 75ms;
+}
+
+.delay-150 {
+  animation-delay: 150ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-450 {
+  animation-delay: 450ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+.delay-600 {
+  animation-delay: 600ms;
+}
+
+.delay-700 {
+  animation-delay: 700ms;
+}
+
+/* Notification badge pulse */
+.badge-pulse {
+  animation: badgePulse 2s infinite;
+}
+
+/* ── Dashboard card – hover lift + shadow ── */
+.dashboard-card-hover {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.2s ease;
+}
+
+.dashboard-card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px -8px rgba(0, 0, 0, 0.14);
+  border-color: hsl(var(--primary) / 0.25);
+}
+
+/* ── Sidebar hover-rail smooth expand ── */
+.sidebar-hover-rail {
+  /* Width transition is driven by inline style for precise spring easing */
+  box-shadow: none;
+  transition: box-shadow 300ms ease;
+}
+
+.sidebar-hover-rail:hover,
+.sidebar-hover-rail[data-expanded="true"] {
+  box-shadow: 4px 0 28px -4px rgba(0, 0, 0, 0.30);
+}
+
+/* ── Shimmer loading skeleton ── */
+.shimmer {
+  background: linear-gradient(90deg,
+      hsl(var(--muted)) 25%,
+      hsl(var(--border)) 50%,
+      hsl(var(--muted)) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+/* ── Radix UI Tooltip pop-in ── */
+[data-radix-popper-content-wrapper] {
+  animation: scaleIn 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Radix/shadcn Dialog spring-pop ── */
+[role="dialog"]>div {
+  animation: springPop 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Dialog overlay fade */
+[data-radix-dialog-overlay] {
+  animation: fadeIn 0.25s ease-out both;
+}
+
+/* ── Select / Dropdown slide in ── */
+[data-radix-select-content],
+[data-radix-dropdown-menu-content],
+[data-radix-popover-content] {
+  animation: slideInDown 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Table row hover ── */
+tbody tr {
+  transition: background-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.1s ease;
+}
+
+tbody tr:hover {
+  transform: translateX(1px);
+}
+
+/* ── Button active press feedback ── */
+button:active:not(:disabled),
+[role="button"]:active:not(:disabled) {
+  transform: scale(0.975);
+  transition: transform 0.08s ease;
+}
+
+/* ── Nav link active indicator slide ── */
+.nav-active-indicator {
+  transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Progress bar animate ── */
+.progress-bar {
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Link hover underline grow ── */
+a.underline-grow {
+  position: relative;
+  text-decoration: none;
+}
+
+a.underline-grow::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: currentColor;
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+a.underline-grow:hover::after {
+  width: 100%;
+}
+
+/* ── Stat card number pop ── */
+.stat-value {
+  animation: countUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Floating action button bounce-in ── */
+.fab-bounce {
+  animation: springPop 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Toast / Notification slide ── */
+[data-sonner-toast] {
+  animation: slideInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Input focus ring pulse ── */
+input:focus-visible,
+textarea:focus-visible,
+[data-radix-select-trigger]:focus-visible {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+/* ── Accordion content expand ── */
+[data-state="open"]>.accordion-content {
+  animation: slideInDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Selection highlight (coral-red) ── */
+::selection {
+  background: hsl(var(--primary) / 0.18);
+  color: hsl(var(--foreground));
+}
+
+/* ── Scrollbar thin + styled ── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}

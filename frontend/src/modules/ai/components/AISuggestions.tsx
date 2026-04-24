@@ -41,7 +41,7 @@ export default function AISuggestions({ types = ['task', 'project', 'workload'] 
             case 'medium':
                 return <Clock className="w-4 h-4 text-yellow-400" />;
             case 'low':
-                return <Lightbulb className="w-4 h-4 text-violet-400" />;
+                return <Lightbulb className="w-4 h-4 text-red-400" />;
             default:
                 return <Lightbulb className="w-4 h-4 text-gray-400" />;
         }
@@ -49,8 +49,8 @@ export default function AISuggestions({ types = ['task', 'project', 'workload'] 
 
     const getTypeColor = (type) => {
         switch (type) {
-            case 'task': return 'border-blue-500/30 bg-violet-500/10';
-            case 'project': return 'border-purple-500/30 bg-purple-500/10';
+            case 'task': return 'border-red-500/30 bg-red-500/10';
+            case 'project': return 'border-red-500/30 bg-red-500/10';
             case 'workload': return 'border-orange-500/30 bg-orange-500/10';
             default: return 'border-gray-500/30 bg-gray-500/10';
         }
@@ -100,7 +100,7 @@ export default function AISuggestions({ types = ['task', 'project', 'workload'] 
                         <div className="flex flex-col gap-2">
                             <button
                                 onClick={() => handleAccept(suggestion.id)}
-                                className="p-1.5 rounded-lg bg-[#8b5cf6]/20 text-[#8b5cf6] hover:bg-[#8b5cf6]/30 transition-colors"
+                                className="p-1.5 rounded-lg bg-[#ef4444]/20 text-[#ef4444] hover:bg-[#ef4444]/30 transition-colors"
                             >
                                 <Check className="w-4 h-4" />
                             </button>

@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@pdi/components/ui/card";
 import { Button } from "@pdi/components/ui/button";
 import { Eye, MessageSquare, ArrowRight } from "lucide-react";
@@ -28,7 +28,7 @@ const CoreModules: React.FC<CoreModulesProps> = ({ teacherId, teacherName, teach
             description: "Standard Danielson-based academic observation framework.",
             icon: Eye,
             path: getPath("/leader/danielson-framework"),
-            color: "bg-violet-500",
+            color: "bg-blue-500",
         },
         {
             title: "Quick Feedback Master",
@@ -44,7 +44,7 @@ const CoreModules: React.FC<CoreModulesProps> = ({ teacherId, teacherName, teach
             {modules.map((module) => (
                 <Card key={module.title} className="hover:shadow-lg transition-all duration-300 border-l-4 border-l-primary group">
                     <CardHeader className="flex flex-row items-center gap-4">
-                        <div className={`p-3 rounded-xl ${module.color} text-foreground group-hover:scale-110 transition-transform`}>
+                        <div className={`p-3 rounded-xl ${module.color} text-white group-hover:scale-110 transition-transform`}>
                             <module.icon className="w-6 h-6" />
                         </div>
                         <div>

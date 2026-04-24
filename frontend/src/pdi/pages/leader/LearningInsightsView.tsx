@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useAuth } from '@pdi/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { Search, Filter, Award, BookOpen, Target, CheckCircle2, TrendingUp, Calendar, ChevronRight, FileText, Download, UserCircle } from 'lucide-react';
@@ -83,12 +83,12 @@ export function LearningInsightsView() {
     };
 
     const getStatusBadge = (status: string) => {
-        const baseClass = "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm";
+        const baseClass = "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm";
         switch (status) {
-            case 'Submitted': return <Badge className={cn(baseClass, "bg-violet-600")}>Submitted</Badge>;
+            case 'Submitted': return <Badge className={cn(baseClass, "bg-blue-600")}>Submitted</Badge>;
             case 'Under Review': return <Badge className={cn(baseClass, "bg-amber-500")}>Under Review</Badge>;
-            case 'Shortlisted': return <Badge className={cn(baseClass, "bg-violet-600")}>Shortlisted</Badge>;
-            case 'Confirmed': return <Badge className={cn(baseClass, "bg-violet-600")}>Confirmed</Badge>;
+            case 'Shortlisted': return <Badge className={cn(baseClass, "bg-emerald-600")}>Shortlisted</Badge>;
+            case 'Confirmed': return <Badge className={cn(baseClass, "bg-emerald-600")}>Confirmed</Badge>;
             case 'Rejected': return <Badge className={cn(baseClass, "bg-rose-600")}>Rejected</Badge>;
             default: return <Badge className={cn(baseClass, "bg-slate-400")}>{status}</Badge>;
         }
@@ -199,7 +199,7 @@ export function LearningInsightsView() {
                                             {engagementSummary?.totalTeachersActive || 0}
                                         </h3>
                                     </div>
-                                    <UserCircle className="w-5 h-5 text-violet-500" />
+                                    <UserCircle className="w-5 h-5 text-green-500" />
                                 </div>
                             </CardContent>
                         </Card>
@@ -212,7 +212,7 @@ export function LearningInsightsView() {
                                             {engagementSummary?.averageCourseCompletionRate || 0}%
                                         </h3>
                                     </div>
-                                    <CheckCircle2 className="w-5 h-5 text-violet-500" />
+                                    <CheckCircle2 className="w-5 h-5 text-emerald-500" />
                                 </div>
                             </CardContent>
                         </Card>
@@ -265,7 +265,7 @@ export function LearningInsightsView() {
                                             </td>
                                             <td className="px-6 py-4 text-gray-600">{teacher.role}</td>
                                             <td className="px-6 py-4 font-medium">{teacher.coursesEnrolled}</td>
-                                            <td className="px-6 py-4 font-medium text-violet-600">{teacher.coursesCompleted}</td>
+                                            <td className="px-6 py-4 font-medium text-emerald-600">{teacher.coursesCompleted}</td>
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center gap-3">
                                                     <div className="w-full bg-gray-200 rounded-full h-2 max-w-[100px]">
@@ -280,11 +280,11 @@ export function LearningInsightsView() {
                                             <td className="px-6 py-4">
                                                 {teacher.isActive ? (
                                                     <Badge className={cn(
-                                                        "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm bg-violet-600"
+                                                        "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm bg-emerald-600"
                                                     )}>Active</Badge>
                                                 ) : (
                                                     <Badge className={cn(
-                                                        "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm bg-slate-500"
+                                                        "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm bg-slate-500"
                                                     )}>Inactive</Badge>
                                                 )}
                                             </td>
@@ -314,8 +314,8 @@ export function LearningInsightsView() {
                                     <p className="text-xs font-bold text-indigo-400 capitalize tracking-wider">Total Campus Apps</p>
                                 </div>
                                 <div className="text-center">
-                                    <p className="text-2xl font-black text-violet-600">{shortlistedApps.length}</p>
-                                    <p className="text-xs font-bold text-violet-400 capitalize tracking-wider">Shortlisted</p>
+                                    <p className="text-2xl font-black text-green-600">{shortlistedApps.length}</p>
+                                    <p className="text-xs font-bold text-green-400 capitalize tracking-wider">Shortlisted</p>
                                 </div>
                                 <div className="text-center">
                                     <p className="text-2xl font-black text-yellow-600">{filteredApps.filter(a => a.status === 'Submitted' || a.status === 'Under Review').length}</p>

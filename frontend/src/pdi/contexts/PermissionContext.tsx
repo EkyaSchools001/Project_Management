@@ -13,7 +13,9 @@ export interface PermissionSetting {
         ADMIN: boolean;
         LEADER: boolean;
         MANAGEMENT: boolean;
+        COORDINATOR: boolean;
         TEACHER: boolean;
+        TESTER: boolean;
     };
 }
 
@@ -41,41 +43,74 @@ const PermissionContext = createContext<PermissionContextType | undefined>(undef
 // eslint-disable-next-line react-refresh/only-export-components
 export const defaultAccessMatrix: PermissionSetting[] = [
     // ── Core Administration ──────────────────────────────────────────────────
-    { moduleId: 'users', moduleName: 'User Management', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, TEACHER: false } },
-    { moduleId: 'team', moduleName: 'Team Overview', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, TEACHER: false } },
-    { moduleId: 'forms', moduleName: 'Form Templates', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, TEACHER: false } },
-    { moduleId: 'settings', moduleName: 'System Settings', roles: { SUPERADMIN: true, ADMIN: false, LEADER: false, MANAGEMENT: false, TEACHER: false } },
+    { moduleId: 'users', moduleName: 'User Management', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, COORDINATOR: false, TEACHER: false, TESTER: false } },
+    { moduleId: 'team', moduleName: 'Team Overview', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, COORDINATOR: true, TEACHER: false, TESTER: false } },
+    { moduleId: 'forms', moduleName: 'Form Templates', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, COORDINATOR: false, TEACHER: false, TESTER: false } },
+    { moduleId: 'settings', moduleName: 'System Settings', roles: { SUPERADMIN: true, ADMIN: false, LEADER: false, MANAGEMENT: false, COORDINATOR: false, TEACHER: false, TESTER: false } },
 
     // ── Learning & Development ───────────────────────────────────────────────
-    { moduleId: 'courses', moduleName: 'Course Catalogue', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, TEACHER: true } },
-    { moduleId: 'calendar', moduleName: 'Training Calendar', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, TEACHER: true } },
-    { moduleId: 'hours', moduleName: 'Training Hours Tracking', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, TEACHER: true } },
-    { moduleId: 'festival', moduleName: 'Learning Festival', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, TEACHER: true } },
+    { moduleId: 'courses', moduleName: 'Course Catalogue', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'calendar', moduleName: 'Training Calendar', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'hours', moduleName: 'Training Hours Tracking', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'festival', moduleName: 'Learning Festival', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
 
     // ── Observations & Growth ────────────────────────────────────────────────
-    { moduleId: 'observations', moduleName: 'Observations (General)', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, TEACHER: true } },
-    { moduleId: 'danielson', moduleName: 'Danielson Framework Obs.', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, TEACHER: false } },
-    { moduleId: 'quick-feedback', moduleName: 'Quick Feedback Obs.', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, TEACHER: false } },
-    { moduleId: 'performing-arts', moduleName: 'Performing Arts Obs.', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, TEACHER: false } },
-    { moduleId: 'life-skills', moduleName: 'Life Skills Obs.', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, TEACHER: false } },
-    { moduleId: 'pe-obs', moduleName: 'Physical Education Obs.', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, TEACHER: false } },
-    { moduleId: 'va-obs', moduleName: 'Visual Arts Obs.', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, TEACHER: false } },
+    { moduleId: 'observations', moduleName: 'Observations (General)', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: false } },
+    { moduleId: 'danielson', moduleName: 'Danielson Framework Obs.', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, COORDINATOR: true, TEACHER: false, TESTER: false } },
+    { moduleId: 'quick-feedback', moduleName: 'Quick Feedback Obs.', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, COORDINATOR: true, TEACHER: false, TESTER: false } },
+    { moduleId: 'performing-arts', moduleName: 'Performing Arts Obs.', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, COORDINATOR: true, TEACHER: false, TESTER: false } },
+    { moduleId: 'life-skills', moduleName: 'Life Skills Obs.', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, COORDINATOR: true, TEACHER: false, TESTER: false } },
+    { moduleId: 'pe-obs', moduleName: 'Physical Education Obs.', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, COORDINATOR: true, TEACHER: false, TESTER: false } },
+    { moduleId: 'va-obs', moduleName: 'Visual Arts Obs.', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, COORDINATOR: true, TEACHER: false, TESTER: false } },
 
     // ── Analytics & Goals ────────────────────────────────────────────────────
-    { moduleId: 'growth-analytics', moduleName: 'Growth Analytics', roles: { SUPERADMIN: true, ADMIN: true, LEADER: false, MANAGEMENT: true, TEACHER: false } },
-    { moduleId: 'goals', moduleName: 'Goal Management', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, TEACHER: true } },
-    { moduleId: 'okr', moduleName: 'OKR / Progress Dashboard', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, TEACHER: true } },
-    { moduleId: 'portfolio', moduleName: 'Portfolio', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, TEACHER: true } },
-    { moduleId: 'reports', moduleName: 'Reports & Analytics', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, TEACHER: false } },
-    { moduleId: 'insights', moduleName: 'Data Insights', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, TEACHER: true } },
-    { moduleId: 'assessments', moduleName: 'Assessments', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, TEACHER: true } },
+    { moduleId: 'growth-analytics', moduleName: 'Growth Analytics', roles: { SUPERADMIN: true, ADMIN: true, LEADER: false, MANAGEMENT: true, COORDINATOR: true, TEACHER: false, TESTER: false } },
+    { moduleId: 'goals', moduleName: 'Goal Management', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'okr', moduleName: 'OKR / Progress Dashboard', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'portfolio', moduleName: 'Portfolio', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'reports', moduleName: 'Reports & Analytics', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: false, TESTER: false } },
+    { moduleId: 'insights', moduleName: 'Data Insights', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'assessments', moduleName: 'Assessments', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
 
     // ── Operations & Engagement ──────────────────────────────────────────────
-    { moduleId: 'attendance', moduleName: 'Attendance', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, TEACHER: true } },
-    { moduleId: 'meetings', moduleName: 'Meetings', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, TEACHER: true } },
-    { moduleId: 'announcements', moduleName: 'Announcements', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, TEACHER: true } },
-    { moduleId: 'survey', moduleName: 'Surveys', roles: { SUPERADMIN: true, ADMIN: true, LEADER: false, MANAGEMENT: true, TEACHER: true } },
-    { moduleId: 'documents', moduleName: 'Documents', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, TEACHER: true } },
+    { moduleId: 'attendance', moduleName: 'Attendance', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'meetings', moduleName: 'Meetings', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'announcements', moduleName: 'Announcements', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'survey', moduleName: 'Surveys', roles: { SUPERADMIN: true, ADMIN: true, LEADER: false, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'documents', moduleName: 'Documents', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'inst_identity', moduleName: 'Institutional Identity', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'acad_ops', moduleName: 'Academic Operations', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'peda_learn', moduleName: 'Pedagogy & Learning', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'prof_dev', moduleName: 'Professional Development', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'mgmt_support', moduleName: 'Management & Support', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'ai_assistant', moduleName: 'Ekya AI Assistant', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+
+    // ── Educator Hub ──────────────────────────────────────────────────────────
+    { moduleId: 'edu-hub', moduleName: 'Home (Edu Hub)', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'who-we-are', moduleName: 'Who we are', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'my-campus', moduleName: 'My campus', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'teaching', moduleName: 'Teaching', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'my-classroom', moduleName: 'My classroom', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'interactions', moduleName: 'Interactions', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'tickets', moduleName: 'Tickets', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'grow', moduleName: 'Grow', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+
+    // ── HR & WellBeing ────────────────────────────────────────────────────────
+    { moduleId: 'resources', moduleName: 'Resources', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'educator-essentials', moduleName: 'Educator Essentials', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'educator-guide', moduleName: 'Educator Guide', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'wellbeing', moduleName: 'WellBeing', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+
+    // ── Technology ────────────────────────────────────────────────────────────
+    { moduleId: 'tech-sites-login', moduleName: 'Educator Site', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'greythr', moduleName: 'GreytHR', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'schoology', moduleName: 'Schoology', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'google-workspace', moduleName: 'Google Workspace', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'zoom', moduleName: 'Zoom', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'slack', moduleName: 'Slack', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'email-signature', moduleName: 'Email Signature Templates', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'ekyaverse', moduleName: 'Ekyaverse-Neverskip', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'audit-reports', moduleName: 'Audit & Reports', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
 ];
 
 // ─── Frontend Path → Module ID Mapping ───────────────────────────────────────
@@ -135,6 +170,38 @@ const FRONTEND_MODULE_MAP: Record<string, string> = {
     'superadmin': 'settings',
     'profile': 'users',
     'assessment-analytics': 'reports',
+    'institutional-identity': 'inst_identity',
+    'academic-operations': 'acad_ops',
+    'pedagogy-learning': 'peda_learn',
+    'professional-development': 'prof_dev',
+    'management-support': 'mgmt_support',
+    'educator-hub': 'inst_identity',
+    'edu-hub': 'edu-hub',
+    'work-in-progress': 'edu-hub',
+    'who-we-are': 'who-we-are',
+    'my-campus': 'my-campus',
+    'teaching': 'teaching',
+    'my-classroom': 'my-classroom',
+    'interactions': 'interactions',
+    'tickets': 'tickets',
+    'grow': 'grow',
+    'resources': 'resources',
+    'educator-essentials': 'educator-essentials',
+    'educator-guide': 'educator-guide',
+    'wellbeing': 'wellbeing',
+    'tech-sites-login': 'tech-sites-login',
+    'greythr': 'greythr',
+    'schoology': 'schoology',
+    'google-workspace': 'google-workspace',
+    'zoom': 'zoom',
+    'slack': 'slack',
+    'email-signature': 'email-signature',
+    'email-signature-templates': 'email-signature',
+    'ekyaverse': 'ekyaverse',
+    'audit': 'audit-reports',
+    'audit-reports': 'audit-reports',
+    'ai-assistant': 'ai_assistant',
+    'chat': 'ai_assistant',
 };
 
 // ─── Role Normalization ──────────────────────────────────────────────────────
@@ -142,13 +209,19 @@ const FRONTEND_MODULE_MAP: Record<string, string> = {
 const normalizeRole = (raw: string | null | undefined): keyof PermissionSetting['roles'] | '' => {
     if (!raw) return 'TEACHER'; // Default to TEACHER if role is null/undefined/empty
 
-    const role = raw.toUpperCase().replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
+    let role = raw.toUpperCase().replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
 
-    if (role.includes('SCHOOL LEADER') || role === 'LEADER') return 'LEADER';
-    if (role.includes('MANAGEMENT') || role === 'MANAGEMENT') return 'MANAGEMENT';
-    if (role.includes('TEACHER') || role === 'TEACHER') return 'TEACHER';
-    if (role.includes('ADMIN') && role !== 'SUPERADMIN') return 'ADMIN';
-    if (role === 'SUPERADMIN') return 'SUPERADMIN';
+    // Map ERP Enterprise roles to PDI Legacy Matrix Roles
+    if (role.includes('HOS') || role.includes('SCHOOL LEADER') || role === 'LEADER') return 'LEADER';
+    if (role.includes('MANAGEMENT')) return 'MANAGEMENT';
+    if (role.includes('COORDINATOR')) return 'COORDINATOR';
+    if (role.includes('TEACHER')) return 'TEACHER';
+    if (role.includes('ADMIN_OPS') || role.includes('ADMIN_FINANCE') || role.includes('ADMIN_HR') || role.includes('ADMIN_IT')) return 'ADMIN';
+    if (role.includes('ADMIN') || role.includes('ELC') || role.includes('PDI')) {
+        if (role !== 'SUPERADMIN' && role !== 'SUPER ADMIN') return 'ADMIN';
+    }
+    if (role === 'SUPERADMIN' || role === 'SUPER ADMIN') return 'SUPERADMIN';
+    if (role.includes('TESTER')) return 'TESTER';
 
     return 'TEACHER';
 }
@@ -160,15 +233,20 @@ export function PermissionProvider({ children }: { children: React.ReactNode }) 
     const [formFlows, setFormFlows] = useState<FormFlowConfig[]>([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    const fetchConfig = useCallback(async () => {
-        const storedToken = sessionStorage.getItem('auth_token');
-        if (!isAuthenticated && !storedToken) {
-            setIsLoading(false);
-            return;
-        }
+    const isSyncing = React.useRef(false);
+    const lastSyncedToken = React.useRef<string | null>(null);
+
+    const syncPermissions = useCallback(async (authToken?: string | null) => {
+        if (isSyncing.current) return;
+        
+        const activeToken = authToken || token || sessionStorage.getItem('auth_token');
+        if (!activeToken) return;
+
         try {
+            isSyncing.current = true;
             console.log('[PERMISSIONS] Fetching latest access matrix...');
             const response = await api.get('/settings/access_matrix_config');
+            
             if (response.data.status === 'success' && response.data.data.setting) {
                 const valueData = response.data.data.setting.value;
                 let value: any = null;
@@ -177,11 +255,10 @@ export function PermissionProvider({ children }: { children: React.ReactNode }) 
                     value = typeof valueData === 'string' ? JSON.parse(valueData) : valueData;
                 } catch (e) {
                     console.error('[PERMISSIONS] Failed to parse matrix configuration:', e);
-                    return; // Fallback to defaults already in state
+                    return; 
                 }
 
                 if (value && value.accessMatrix) {
-                    // Merge loaded matrix with defaults (so new modules get defaults)
                     const mergedMatrix = defaultAccessMatrix.map(defaultItem => {
                         const loadedItem = value.accessMatrix.find((item: any) => item.moduleId === defaultItem.moduleId);
                         if (loadedItem) {
@@ -193,18 +270,31 @@ export function PermissionProvider({ children }: { children: React.ReactNode }) 
                                     ADMIN: loadedItem.roles?.ADMIN ?? defaultItem.roles.ADMIN,
                                     LEADER: loadedItem.roles?.LEADER ?? defaultItem.roles.LEADER,
                                     MANAGEMENT: loadedItem.roles?.MANAGEMENT ?? defaultItem.roles.MANAGEMENT,
+                                    COORDINATOR: loadedItem.roles?.COORDINATOR ?? defaultItem.roles.COORDINATOR,
                                     TEACHER: loadedItem.roles?.TEACHER ?? defaultItem.roles.TEACHER,
+                                    TESTER: loadedItem.roles?.TESTER ?? (defaultItem.roles as any).TESTER ?? false,
                                 }
                             };
                         }
                         return defaultItem;
                     });
-                    console.log('[PERMISSIONS] Matrix synced successfully');
-                    setMatrix(mergedMatrix);
+
+                    setMatrix(prev => {
+                        if (JSON.stringify(prev) === JSON.stringify(mergedMatrix)) return prev;
+                        console.log('[PERMISSIONS] Matrix synced successfully');
+                        return mergedMatrix;
+                    });
                 }
+                
                 if (value && value.formFlows) {
-                    setFormFlows(value.formFlows);
+                    setFormFlows(prev => {
+                        if (JSON.stringify(prev) === JSON.stringify(value.formFlows)) return prev;
+                        return value.formFlows;
+                    });
                 }
+                
+                // Track successful sync for this token
+                lastSyncedToken.current = activeToken;
             }
         } catch (error: any) {
             if (error?.response?.status !== 401 && error?.response?.status !== 404) {
@@ -212,15 +302,17 @@ export function PermissionProvider({ children }: { children: React.ReactNode }) 
             }
         } finally {
             setIsLoading(false);
+            isSyncing.current = false;
         }
-    }, [isAuthenticated]);
+    }, [token]); // token is now a dependency to keep closure somewhat fresh, though we mostly use argument
 
     useEffect(() => {
-        // Fetch once auth resolves and we have a token
-        if (!authLoading && token) {
-            fetchConfig();
+        // Initial sync when token becomes available
+        if (!authLoading && token && lastSyncedToken.current !== token) {
+            syncPermissions(token);
         } else if (!authLoading && !token) {
             setIsLoading(false);
+            lastSyncedToken.current = null;
         }
 
         // ── Real-time sync via Socket.io ──
@@ -232,7 +324,7 @@ export function PermissionProvider({ children }: { children: React.ReactNode }) 
                     duration: 3000,
                     icon: '🔄'
                 });
-                fetchConfig();
+                syncPermissions(token);
             }
         };
         socket.on('SETTINGS_UPDATED', handleSettingsUpdate);
@@ -240,22 +332,22 @@ export function PermissionProvider({ children }: { children: React.ReactNode }) 
         // ── Tab visibility fallback ──
         const handleVisibility = () => {
             if (document.visibilityState === 'visible' && token) {
-                fetchConfig();
+                syncPermissions(token);
             }
         };
         document.addEventListener('visibilitychange', handleVisibility);
 
-        // ── Polling fallback (30s) ──
+        // ── Polling fallback (60s) ──
         const pollInterval = setInterval(() => {
-            if (token) fetchConfig();
-        }, 30_000);
+            if (token) syncPermissions(token);
+        }, 60_000);
 
         return () => {
             socket.off('SETTINGS_UPDATED', handleSettingsUpdate);
             document.removeEventListener('visibilitychange', handleVisibility);
             clearInterval(pollInterval);
         };
-    }, [fetchConfig, authLoading, token]);
+    }, [syncPermissions, authLoading, token]);
 
     // ─── Core Permission Check ───────────────────────────────────────────
     const isModuleEnabled = useCallback((modulePath: string, role: string): boolean => {
@@ -300,8 +392,8 @@ export function PermissionProvider({ children }: { children: React.ReactNode }) 
         formFlows,
         isLoading,
         isModuleEnabled,
-        refreshConfig: fetchConfig
-    }), [matrix, formFlows, isLoading, isModuleEnabled, fetchConfig]);
+        refreshConfig: syncPermissions
+    }), [matrix, formFlows, isLoading, isModuleEnabled, syncPermissions]);
 
     return (
         <PermissionContext.Provider value={contextValue}>

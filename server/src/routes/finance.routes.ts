@@ -1,52 +1,53 @@
 import { Router } from 'express';
 import { financeController } from '../controllers/finance.controller';
-import { authenticate } from '../middlewares/auth';
+import { protect as authenticate } from '../middlewares/auth';
+import { checkPermission } from '../middlewares/rbac.middleware';
 
 const router = Router();
 
 router.use(authenticate);
 
 // Budget Routes
-router.get('/budgets', financeController.getBudgets);
-router.post('/budgets', financeController.createBudget);
-router.get('/budgets/:id', financeController.getBudgetById);
-router.patch('/budgets/:id', financeController.updateBudget);
-router.delete('/budgets/:id', financeController.deleteBudget);
+router.get('/budgets', checkPermission('Expense Tracking', 'view'), financeController.getBudgets);
+router.post('/budgets', checkPermission('Expense Tracking', 'create'), financeController.createBudget);
+router.get('/budgets/:id', checkPermission('Expense Tracking', 'view'), financeController.getBudgetById);
+router.patch('/budgets/:id', checkPermission('Expense Tracking', 'edit'), financeController.updateBudget);
+router.delete('/budgets/:id', checkPermission('Expense Tracking', 'delete'), financeController.deleteBudget);
 
 // Expense Routes
-router.get('/expenses', financeController.getExpenses);
-router.post('/expenses', financeController.createExpense);
-router.get('/expenses/:id', financeController.getExpenseById);
-router.patch('/expenses/:id', financeController.updateExpense);
-router.delete('/expenses/:id', financeController.deleteExpense);
+router.get('/expenses', checkPermission('Expense Tracking', 'view'), financeController.getExpenses);
+router.post('/expenses', checkPermission('Expense Tracking', 'create'), financeController.createExpense);
+router.get('/expenses/:id', checkPermission('Expense Tracking', 'view'), financeController.getExpenseById);
+router.patch('/expenses/:id', checkPermission('Expense Tracking', 'edit'), financeController.updateExpense);
+router.delete('/expenses/:id', checkPermission('Expense Tracking', 'delete'), financeController.deleteExpense);
 
 // Invoice Routes
-router.get('/invoices', financeController.getInvoices);
-router.post('/invoices', financeController.createInvoice);
-router.get('/invoices/:id', financeController.getInvoiceById);
-router.patch('/invoices/:id', financeController.updateInvoice);
-router.delete('/invoices/:id', financeController.deleteInvoice);
+router.get('/invoices', checkPermission('Payments', 'view'), financeController.getInvoices);
+router.post('/invoices', checkPermission('Payments', 'create'), financeController.createInvoice);
+router.get('/invoices/:id', checkPermission('Payments', 'view'), financeController.getInvoiceById);
+router.patch('/invoices/:id', checkPermission('Payments', 'edit'), financeController.updateInvoice);
+router.delete('/invoices/:id', checkPermission('Payments', 'delete'), financeController.deleteInvoice);
 
 // Vendor Routes
-router.get('/vendors', financeController.getVendors);
-router.post('/vendors', financeController.createVendor);
-router.get('/vendors/:id', financeController.getVendorById);
-router.patch('/vendors/:id', financeController.updateVendor);
-router.delete('/vendors/:id', financeController.deleteVendor);
+router.get('/vendors', checkPermission('Payments', 'view'), financeController.getVendors);
+router.post('/vendors', checkPermission('Payments', 'create'), financeController.createVendor);
+router.get('/vendors/:id', checkPermission('Payments', 'view'), financeController.getVendorById);
+router.patch('/vendors/:id', checkPermission('Payments', 'edit'), financeController.updateVendor);
+router.delete('/vendors/:id', checkPermission('Payments', 'delete'), financeController.deleteVendor);
 
 // Purchase Order Routes
-router.get('/purchase-orders', financeController.getPurchaseOrders);
-router.post('/purchase-orders', financeController.createPurchaseOrder);
-router.get('/purchase-orders/:id', financeController.getPurchaseOrderById);
-router.patch('/purchase-orders/:id', financeController.updatePurchaseOrder);
-router.delete('/purchase-orders/:id', financeController.deletePurchaseOrder);
+router.get('/purchase-orders', checkPermission('Payments', 'view'), financeController.getPurchaseOrders);
+router.post('/purchase-orders', checkPermission('Payments', 'create'), financeController.createPurchaseOrder);
+router.get('/purchase-orders/:id', checkPermission('Payments', 'view'), financeController.getPurchaseOrderById);
+router.patch('/purchase-orders/:id', checkPermission('Payments', 'edit'), financeController.updatePurchaseOrder);
+router.delete('/purchase-orders/:id', checkPermission('Payments', 'delete'), financeController.deletePurchaseOrder);
 
 // Reports Routes
-router.get('/reports', financeController.getReports);
-router.post('/reports', financeController.generateReport);
+router.get('/reports', checkPermission('Finance Reports', 'view'), financeController.getReports);
+router.post('/reports', checkPermission('Finance Reports', 'create'), financeController.generateReport);
 
 // Dashboard & Analytics
-router.get('/dashboard', financeController.getDashboard);
-router.get('/pnl', financeController.getPnL);
+router.get('/dashboard', checkPermission('Finance Analytics', 'view'), financeController.getDashboard);
+router.get('/pnl', checkPermission('Finance Analytics', 'view'), financeController.getPnL);
 
 export default router;

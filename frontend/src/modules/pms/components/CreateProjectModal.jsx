@@ -129,9 +129,9 @@ const CreateProjectModal = ({ isOpen, onClose, onAdd }) => {
                         </div>
                         
                         {aiTasks && (
-                            <div className="bg-violet-500/5 border border-violet-500/20 p-4 rounded-2xl">
-                                <p className="text-[10px] font-bold text-violet-400 uppercase tracking-[0.2em] mb-2">AI Blueprint Generated</p>
-                                <p className="text-xs text-violet-300/60 leading-relaxed italic">
+                            <div className="bg-red-500/5 border border-red-500/20 p-4 rounded-2xl">
+                                <p className="text-[10px] font-bold text-red-400 uppercase tracking-[0.2em] mb-2">AI Blueprint Generated</p>
+                                <p className="text-xs text-red-300/60 leading-relaxed italic">
                                     "{aiTasks.length} task milestones have been optimized for this roadmap based on industry benchmarks."
                                 </p>
                             </div>

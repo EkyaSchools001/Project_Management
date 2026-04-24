@@ -50,7 +50,7 @@ interface MeetingModalProps {
 
 const getStatusBadge = (status: MeetingStatus) => {
     const badges = {
-        scheduled: <Badge variant="outline" className="bg-violet-50 text-blue-700 border-blue-200">Upcoming</Badge>,
+        scheduled: <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200">Upcoming</Badge>,
         live: <Badge className="bg-red-500 animate-pulse">Live Now</Badge>,
         ended: <Badge variant="secondary">Ended</Badge>,
         cancelled: <Badge variant="destructive">Cancelled</Badge>
@@ -139,7 +139,7 @@ export function MeetingModal({ meeting, onClose, onJoin, onEdit }: MeetingModalP
                                     className="flex-1 text-sm bg-muted px-3 py-2 rounded-md border"
                                 />
                                 <Button variant="outline" size="icon" onClick={copyMeetingLink}>
-                                    {copied ? <Check className="h-4 w-4 text-violet-500" /> : <Copy className="h-4 w-4" />}
+                                    {copied ? <Check className="h-4 w-4 text-red-500" /> : <Copy className="h-4 w-4" />}
                                 </Button>
                             </div>
                         </div>

@@ -25,8 +25,8 @@ export default function AICenterPage() {
                 <div className="flex items-center justify-between mb-8">
                     <div>
                         <h1 className="text-2xl font-bold text-foreground flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-xl bg-[#8b5cf6]/20 flex items-center justify-center">
-                                <Brain className="w-5 h-5 text-[#8b5cf6]" />
+                            <div className="w-10 h-10 rounded-xl bg-[#ef4444]/20 flex items-center justify-center">
+                                <Brain className="w-5 h-5 text-[#ef4444]" />
                             </div>
                             AI Center
                         </h1>
@@ -34,7 +34,7 @@ export default function AICenterPage() {
                     </div>
                     <button
                         onClick={() => setChatOpen(true)}
-                        className="flex items-center gap-2 px-4 py-2 bg-[#8b5cf6] text-black font-bold rounded-xl hover:bg-[#8b5cf6]/90 transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 bg-[#ef4444] text-black font-bold rounded-xl hover:bg-[#ef4444]/90 transition-colors"
                     >
                         <MessageCircle className="w-4 h-4" />
                         Open Chatbot
@@ -48,7 +48,7 @@ export default function AICenterPage() {
                             onClick={() => setActiveTab(tab.id)}
                             className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm transition-all ${
                                 activeTab === tab.id
-                                    ? 'bg-[#8b5cf6] text-black'
+                                    ? 'bg-[#ef4444] text-black'
                                     : 'bg-white/5 text-foreground/60 hover:bg-white/10'
                             }`}
                         >
@@ -67,7 +67,7 @@ export default function AICenterPage() {
                             <div className="lg:col-span-2">
                                 <div className="bg-[#161B22] rounded-2xl p-6 border border-white/5">
                                     <h3 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
-                                        <TrendingUp className="w-5 h-5 text-[#8b5cf6]" />
+                                        <TrendingUp className="w-5 h-5 text-[#ef4444]" />
                                         AI Analytics Overview
                                     </h3>
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -78,7 +78,7 @@ export default function AICenterPage() {
                                             { label: 'Suggestions', value: '12', icon: Brain }
                                         ].map((stat, i) => (
                                             <div key={i} className="p-4 bg-white/5 rounded-xl">
-                                                <stat.icon className="w-5 h-5 text-[#8b5cf6] mb-2" />
+                                                <stat.icon className="w-5 h-5 text-[#ef4444] mb-2" />
                                                 <p className="text-2xl font-bold text-foreground">{stat.value}</p>
                                                 <p className="text-xs text-foreground/40">{stat.label}</p>
                                             </div>
@@ -93,7 +93,7 @@ export default function AICenterPage() {
                         <div className="lg:col-span-2">
                             <div className="bg-[#161B22] rounded-2xl p-6 border border-white/5">
                                 <h3 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
-                                    <Zap className="w-5 h-5 text-[#8b5cf6]" />
+                                    <Zap className="w-5 h-5 text-[#ef4444]" />
                                     AI Suggestions
                                 </h3>
                                 <AISuggestions />

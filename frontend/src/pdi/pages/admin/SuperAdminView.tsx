@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 import { useState, useEffect } from "react";
 import { useAuth } from "@pdi/hooks/useAuth";
@@ -10,6 +9,7 @@ import { Label } from "@pdi/components/ui/label";
 import { Switch } from "@pdi/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@pdi/components/ui/tabs";
 import { Shield, FileText, Workflow, Save, AlertCircle, Database, Layout, Smartphone, Key, Trash2, Info, LayoutDashboard, Search, Check, MapPin, Users, Activity, Download, Upload, Eye, Clock, RotateCcw } from "lucide-react";
+import { Lightning, UsersThree, Desktop } from "@phosphor-icons/react";
 
 import { DashboardBuilder } from "@pdi/components/DashboardBuilder";
 import { Badge } from "@pdi/components/ui/badge";
@@ -20,25 +20,16 @@ import { useSearchParams } from "react-router-dom";
 import { ScrollArea } from "@pdi/components/ui/scroll-area";
 import { Checkbox } from "@pdi/components/ui/checkbox";
 import { Popover, PopoverContent, PopoverTrigger } from "@pdi/components/ui/popover";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@pdi/components/ui/accordion";
 import { CAMPUS_OPTIONS } from "@pdi/lib/constants";
 
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@pdi/components/ui/alert-dialog";
 import { toast } from "sonner";
 import api from "@pdi/lib/api";
 import { getSocket } from "@pdi/lib/socket";
-import { defaultAccessMatrix } from "@pdi/contexts/PermissionContext";
+import { defaultAccessMatrix, PermissionSetting } from "@pdi/contexts/PermissionContext";
 
-interface PermissionSetting {
-    moduleId: string;
-    moduleName: string;
-    roles: {
-        SUPERADMIN: boolean;
-        ADMIN: boolean;
-        LEADER: boolean;
-        MANAGEMENT: boolean;
-        TEACHER: boolean;
-    };
-}
+
 
 interface FormFlowConfig {
     id: string;
@@ -83,6 +74,28 @@ const FORM_NAME_OPTIONS = [
 const coreSubjects = ["Mathematics", "Science", "English", "Social Science", "Hindi", "Kannada", "Biology", "Physics", "Chemistry", "Computer Science"];
 const nonCoreSubjects = ["Life Skills", "Physical Education", "Visual Arts", "Music", "Value Education"];
 
+const getModuleCategory = (moduleId: string) => {
+    if (['okr', 'portfolio', 'superadmin'].includes(moduleId)) return 'Super Admin Console';
+    if (['observations', 'growth-analytics', 'goals', 'danielson', 'quick-feedback', 'performing-arts', 'life-skills', 'pe-obs', 'va-obs'].includes(moduleId)) return 'Observation & Goals';
+    if (['users', 'settings', 'forms', 'team'].includes(moduleId)) return 'Administration & Settings';
+    if (['courses', 'assessments', 'festival', 'mooc'].includes(moduleId)) return 'Courses';
+    if (['calendar', 'hours'].includes(moduleId)) return 'Training';
+    if (['attendance', 'meetings', 'reports', 'insights', 'survey', 'announcements'].includes(moduleId)) return 'Operations';
+    
+    // educator-hub modules
+    if (['edu-hub', 'who-we-are', 'my-campus', 'teaching', 'my-classroom', 'interactions', 'tickets', 'grow', 'inst_identity', 'acad_ops', 'peda_learn', 'prof_dev', 'mgmt_support', 'documents'].includes(moduleId)) return 'Educator Hub';
+    
+    // hr modules
+    if (['resources', 'educator-essentials', 'educator-guide', 'wellbeing'].includes(moduleId)) return 'HR & WellBeing';
+    
+    // technology modules
+    if (['tech-sites-login', 'greythr', 'schoology', 'google-workspace', 'zoom', 'slack', 'email-signature', 'ekyaverse', 'audit-reports'].includes(moduleId)) return 'Technology';
+    
+    return 'Other Modules';
+};
+
+const CATEGORIES_ORDER = ['Super Admin Console', 'Observation & Goals', 'Administration & Settings', 'Courses', 'Training', 'Operations', 'Educator Hub', 'HR & WellBeing', 'Technology', 'Other Modules'];
+
 
 export function SuperAdminView() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -110,6 +123,7 @@ export function SuperAdminView() {
     const [userSearch, setUserSearch] = useState("");
     const [userFilterCampus, setUserFilterCampus] = useState("all");
     const [userFilterRole, setUserFilterRole] = useState("all");
+    const [selectedRoleTab, setSelectedRoleTab] = useState<keyof PermissionSetting['roles']>('SUPERADMIN');
 
     // States for adding new module to access matrix
     const [newModuleName, setNewModuleName] = useState("");
@@ -185,6 +199,7 @@ export function SuperAdminView() {
                                         ADMIN: loadedItem.roles?.ADMIN ?? defaultItem.roles.ADMIN,
                                         LEADER: loadedItem.roles?.LEADER ?? defaultItem.roles.LEADER,
                                         MANAGEMENT: loadedItem.roles?.MANAGEMENT ?? defaultItem.roles.MANAGEMENT,
+                                        COORDINATOR: loadedItem.roles?.COORDINATOR ?? defaultItem.roles.COORDINATOR,
                                         TEACHER: loadedItem.roles?.TEACHER ?? defaultItem.roles.TEACHER,
                                     }
                                 };
@@ -290,7 +305,7 @@ export function SuperAdminView() {
             for (let i = 1; i < lines.length; i++) {
                 // Parse CSV correctly with quotes
                 const regex = /(".*?"|[^",\s]+)(?=\s*,|\s*$)/g;
-                const matches = [];
+                const matches: any[] = [];
                 let match;
                 while ((match = regex.exec(lines[i])) !== null) {
                     matches.push(match[1]);
@@ -384,7 +399,7 @@ export function SuperAdminView() {
         setAccessMatrix(prev => [...prev, {
             moduleId: cleanModuleId,
             moduleName: newModuleName.trim(),
-            roles: { SUPERADMIN: true, ADMIN: false, LEADER: false, MANAGEMENT: false, TEACHER: false }
+            roles: { SUPERADMIN: true, ADMIN: false, LEADER: false, MANAGEMENT: false, COORDINATOR: false, TEACHER: false, TESTER: false }
         }]);
         setNewModuleName("");
         setNewModuleId("");
@@ -473,7 +488,7 @@ export function SuperAdminView() {
                                 </AlertDialogHeader>
                                 <AlertDialogFooter className="mt-4">
                                     <AlertDialogCancel className="font-bold">Abort Mission</AlertDialogCancel>
-                                    <AlertDialogAction onClick={handleSave} className="bg-primary text-foreground hover:bg-primary/90 font-bold">
+                                    <AlertDialogAction onClick={handleSave} className="bg-primary text-white hover:bg-primary/90 font-bold">
                                         Proceed & Broadcast Sync
                                     </AlertDialogAction>
                                 </AlertDialogFooter>
@@ -531,7 +546,7 @@ export function SuperAdminView() {
                                 <p className="text-xs text-zinc-900 font-bold mt-1">Rerouting form data across dashboards</p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-violet-500/5 border-blue-500/20">
+                        <Card className="bg-blue-500/5 border-blue-500/20">
                             <CardHeader className="pb-2">
                                 <CardTitle className="text-sm font-medium flex items-center gap-2">
                                     <Database className="w-4 h-4 text-blue-600" /> Platform Mapping
@@ -556,75 +571,136 @@ export function SuperAdminView() {
                                 </div>
                             </CardHeader>
                             <CardContent>
-                                <div className="overflow-x-auto">
-                                    <table className="w-full border-collapse">
-                                        <thead>
-                                            <tr className="border-b bg-muted/30">
-                                                <th className="p-3 text-left font-bold text-sm text-zinc-900 uppercase">Module Name</th>
-                                                <th className="p-3 text-center font-bold text-sm text-zinc-900 uppercase">SuperAdmin</th>
-                                                <th className="p-3 text-center font-bold text-sm text-zinc-900 uppercase">Admin</th>
-                                                <th className="p-3 text-center font-bold text-sm text-zinc-900 uppercase">Leader</th>
-                                                <th className="p-3 text-center font-bold text-sm text-zinc-900 uppercase">Management</th>
-                                                <th className="p-3 text-center font-bold text-sm text-zinc-900 uppercase">Teacher</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="divide-y">
-                                            {accessMatrix.map((module) => (
-                                                <tr key={module.moduleId} className="hover:bg-muted/10 transition-colors">
-                                                    <td className="p-3">
-                                                        <div className="flex items-center justify-between">
-                                                            <div>
-                                                                <div className="font-medium text-sm flex items-center gap-2">
-                                                                    {module.moduleName}
-                                                                    {!defaultAccessMatrix.find(m => m.moduleId === module.moduleId) && (
-                                                                        <Badge variant="outline" className="text-[9px] h-4 px-1 bg-amber-50 text-amber-600 border-amber-200">Custom</Badge>
-                                                                    )}
-                                                                </div>
-                                                                <div className="text-[10px] text-zinc-900 font-bold">{module.moduleId}</div>
+                                {(() => {
+                                    const groupedMatrix = accessMatrix.reduce((acc, module) => {
+                                        const category = getModuleCategory(module.moduleId);
+                                        if (!acc[category]) acc[category] = [];
+                                        acc[category].push(module);
+                                        return acc;
+                                    }, {} as Record<string, PermissionSetting[]>);
+                                    
+                                    return (
+                                        <div className="flex flex-col gap-6">
+                                            {/* Top Role Selector */}
+                                            <div className="flex flex-col gap-4 bg-[#24181F] p-4 rounded-xl border border-[#3E2D36] shadow-xl">
+                                                <div className="text-[10px] uppercase tracking-widest font-bold text-[#EA104A] ml-1">Current Configuration Role</div>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {(['SUPERADMIN', 'ADMIN', 'LEADER', 'MANAGEMENT', 'COORDINATOR', 'TEACHER', 'TESTER'] as const).map(role => (
+                                                        <button
+                                                            key={role}
+                                                            onClick={() => setSelectedRoleTab(role)}
+                                                            className={`px-4 py-2 rounded-lg font-bold text-[11px] transition-all tracking-wider focus:outline-none flex-1 md:flex-none min-w-[100px] border ${selectedRoleTab === role ? 'bg-[#EA104A] text-white border-[#EA104A] shadow-lg shadow-[#EA104A]/20' : 'bg-[#31212B] text-white/50 border-[#3E2D36] hover:bg-[#3E2D36] hover:text-white'}`}
+                                                        >
+                                                            {role}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            
+                                            {/* Sidebar-like Accordion */}
+                                            <div className="w-full bg-[#24181F] text-white p-6 rounded-2xl shadow-2xl border border-[#3E2D36]">
+                                                <div className="text-[11px] uppercase tracking-[0.2em] font-black text-[#EA104A] mb-6 flex items-center justify-between">
+                                                    <span>Platform Navigation</span>
+                                                     <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-none mt-2">
+                                                        {/* Section 1: Educator Hub */}
+                                                        <div className="min-w-[140px] bg-[#31212B] p-4 rounded-xl border border-[#3E2D36] shadow-lg animate-in slide-in-from-left-2 duration-500">
+                                                            <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[#3E2D36]/50">
+                                                                <Lightning className="w-4 h-4 text-[#EA104A] font-bold" weight="fill" />
+                                                                <span className="text-[11px] font-black uppercase tracking-wider text-white">Educator Hub</span>
                                                             </div>
-                                                            {!defaultAccessMatrix.find(m => m.moduleId === module.moduleId) && (
-                                                                <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-destructive/70 hover:text-destructive hover:bg-destructive/10" onClick={() => removeModule(module.moduleId)}>
-                                                                    <Trash2 className="w-3.5 h-3.5" />
-                                                                </Button>
-                                                            )}
+                                                            <div className="space-y-2">
+                                                                {['Home', 'Who we are', 'My campus', 'Teaching', 'My classroom', 'Interactions', 'Tickets', 'Grow'].map(item => (
+                                                                    <div key={item} className="text-[10px] text-white/50 font-medium hover:text-white/80 transition-colors cursor-default whitespace-nowrap">{item}</div>
+                                                                ))}
+                                                            </div>
                                                         </div>
-                                                    </td>
-                                                    <td className="p-3 text-center">
-                                                        <Switch
-                                                            checked={module.roles.SUPERADMIN}
-                                                            onCheckedChange={() => togglePermission(module.moduleId, 'SUPERADMIN')}
-                                                            disabled={module.moduleId === 'settings' || module.moduleId === 'access'}
-                                                        />
-                                                    </td>
-                                                    <td className="p-3 text-center">
-                                                        <Switch
-                                                            checked={module.roles.ADMIN}
-                                                            onCheckedChange={() => togglePermission(module.moduleId, 'ADMIN')}
-                                                        />
-                                                    </td>
-                                                    <td className="p-3 text-center">
-                                                        <Switch
-                                                            checked={module.roles.LEADER}
-                                                            onCheckedChange={() => togglePermission(module.moduleId, 'LEADER')}
-                                                        />
-                                                    </td>
-                                                    <td className="p-3 text-center">
-                                                        <Switch
-                                                            checked={module.roles.MANAGEMENT}
-                                                            onCheckedChange={() => togglePermission(module.moduleId, 'MANAGEMENT')}
-                                                        />
-                                                    </td>
-                                                    <td className="p-3 text-center">
-                                                        <Switch
-                                                            checked={module.roles.TEACHER}
-                                                            onCheckedChange={() => togglePermission(module.moduleId, 'TEACHER')}
-                                                        />
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                        
+                                                        {/* Section 2: HR & WellBeing */}
+                                                        <div className="min-w-[140px] bg-[#31212B] p-4 rounded-xl border border-[#3E2D36] shadow-lg animate-in slide-in-from-left-4 duration-700">
+                                                            <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[#3E2D36]/50 border-double">
+                                                                <UsersThree className="w-4 h-4 text-[#EA104A]" weight="fill" />
+                                                                <span className="text-[11px] font-black uppercase tracking-wider text-white">HR & WellBeing</span>
+                                                            </div>
+                                                            <div className="space-y-2">
+                                                                {['Resources', 'Educator Essentials', 'Educator Guide', 'WellBeing'].map(item => (
+                                                                    <div key={item} className="text-[10px] text-white/50 font-medium hover:text-white/80 transition-colors cursor-default whitespace-nowrap">{item}</div>
+                                                                ))}
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        {/* Section 3: Technology */}
+                                                        <div className="min-w-[140px] bg-[#31212B] p-4 rounded-xl border border-[#3E2D36] shadow-lg animate-in slide-in-from-left-6 duration-1000">
+                                                            <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[#3E2D36]/50">
+                                                                <Desktop className="w-4 h-4 text-[#EA104A]" weight="fill" />
+                                                                <span className="text-[11px] font-black uppercase tracking-wider text-white">Technology</span>
+                                                            </div>
+                                                            <div className="space-y-2">
+                                                                {['Educator Site', 'GreytHR', 'Schoology', 'Google Workspace', 'Zoom', 'Slack', 'Email Signature Templates', 'Ekyaverse-Neverskip', 'Audit & Reports'].map(item => (
+                                                                    <div key={item} className="text-[10px] text-white/50 font-medium hover:text-white/80 transition-colors cursor-default whitespace-nowrap">{item}</div>
+                                                                ))}
+                                                            </div>
+                                                        </div>
+                                                     </div>
+                                                </div>
+                                                <Accordion type="multiple" className="w-full space-y-2" defaultValue={['Super Admin Console', 'Administration & Settings']}>
+                                                    {CATEGORIES_ORDER.map(category => {
+                                                        const modules = groupedMatrix[category];
+                                                        if (!modules || modules.length === 0) return null;
+                                                        
+                                                        return (
+                                                            <AccordionItem value={category} key={category} className="border-none bg-[#31212B] rounded-xl overflow-hidden shadow-sm transition-all duration-300">
+                                                                <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-[#3E2D36] transition-all font-bold tracking-wide text-sm">
+                                                                    <div className="flex items-center gap-3">
+                                                                        <div className="w-1.5 h-1.5 rounded-full bg-[#EA104A]/50" />
+                                                                        {category}
+                                                                    </div>
+                                                                </AccordionTrigger>
+                                                                <AccordionContent className="bg-[#24181F]/50 pt-2 pb-3">
+                                                                    <div className="flex flex-col space-y-1 px-2">
+                                                                        {modules.map(module => (
+                                                                            <div key={module.moduleId} className="group flex items-center justify-between px-6 py-3 hover:bg-[#31212B]/80 transition-all rounded-lg border border-transparent hover:border-[#3E2D36]">
+                                                                                <div className="flex flex-col">
+                                                                                    <div className="flex items-center gap-2">
+                                                                                        <span className="font-semibold text-sm text-white/90 group-hover:text-white transition-colors">{module.moduleName}</span>
+                                                                                        {!defaultAccessMatrix.find(m => m.moduleId === module.moduleId) && (
+                                                                                            <Badge variant="outline" className="text-[8px] h-4 px-1.5 shrink-0 bg-[#EA104A]/10 text-[#EA104A] border-[#EA104A]/20">New</Badge>
+                                                                                        )}
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div className="flex items-center gap-6 shrink-0">
+                                                                                    <div className="hidden md:flex flex-col items-end mr-2">
+                                                                                        {module.roles[selectedRoleTab] ? (
+                                                                                            <span className="text-[9px] font-black text-emerald-400 uppercase tracking-widest opacity-80 group-hover:opacity-100">LIVE ACCESS</span>
+                                                                                        ) : (
+                                                                                            <span className="text-[9px] font-black text-white/20 uppercase tracking-widest">Restricted</span>
+                                                                                        )}
+                                                                                    </div>
+                                                                                    <div className="flex items-center gap-2">
+                                                                                        <Switch
+                                                                                            className="data-[state=checked]:bg-[#EA104A] data-[state=unchecked]:bg-[#3E2D36] scale-[0.9]"
+                                                                                            checked={module.roles[selectedRoleTab]}
+                                                                                            onCheckedChange={() => togglePermission(module.moduleId, selectedRoleTab)}
+                                                                                            disabled={(module.moduleId === 'settings' || module.moduleId === 'access') && selectedRoleTab === 'SUPERADMIN'}
+                                                                                        />
+                                                                                        {!defaultAccessMatrix.find(m => m.moduleId === module.moduleId) && (
+                                                                                            <Button variant="ghost" size="icon" className="h-7 w-7 text-white/20 hover:text-red-400 hover:bg-red-400/10 ml-1 rounded-full" onClick={() => removeModule(module.moduleId)}>
+                                                                                                <Trash2 className="w-3.5 h-3.5" />
+                                                                                            </Button>
+                                                                                        )}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        ))}
+                                                                    </div>
+                                                                </AccordionContent>
+                                                            </AccordionItem>
+                                                        );
+                                                    })}
+                                                </Accordion>
+                                            </div>
+                                        </div>
+                                    );
+                                })()}
                                 <div className="mt-4 pt-4 border-t border-dashed">
                                     <h4 className="text-sm font-semibold mb-3">Add Custom Page/Module</h4>
                                     <div className="flex items-end gap-3 flex-wrap md:flex-nowrap">
@@ -705,7 +781,7 @@ export function SuperAdminView() {
                                                                 }, {} as Record<string, { name: string; type: string }[]>)
                                                         ).map(([type, groupTemplates], groupIdx, arr) => (
                                                             <SelectGroup key={type}>
-                                                                <SelectLabel className="text-blue-600 font-bold bg-violet-50/50 py-1 px-3 mb-1 rounded-sm text-xs capitalize tracking-wider">
+                                                                <SelectLabel className="text-blue-600 font-bold bg-blue-50/50 py-1 px-3 mb-1 rounded-sm text-xs capitalize tracking-wider">
                                                                     {type} ({groupTemplates.length})
                                                                 </SelectLabel>
                                                                 {groupTemplates.sort((a, b) => a.name.localeCompare(b.name)).map(t => {
@@ -715,7 +791,7 @@ export function SuperAdminView() {
                                                                             <HoverCardTrigger asChild>
                                                                                 <SelectItem value={t.name} className="pl-4 pr-10 cursor-pointer relative data-[highlighted]:bg-primary/5">
                                                                                     <span className="flex-1 text-left block w-full pr-6 truncate">{t.name}</span>
-                                                                                    <Info className="w-4 h-4 text-muted-foreground absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+                                                                                    <Info className="w-4 h-4 text-slate-400 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
                                                                                 </SelectItem>
                                                                             </HoverCardTrigger>
                                                                             <HoverCardContent side="right" align="start" sideOffset={10} className="w-[320px] max-w-[90vw] z-[100] max-h-[350px] overflow-y-auto pointer-events-none shadow-2xl border-slate-200 bg-white/95 backdrop-blur-sm">
@@ -731,7 +807,7 @@ export function SuperAdminView() {
                                                                                             <span className="break-words mt-0.5">{f.label || f.id || 'Unnamed field'}</span>
                                                                                         </li>
                                                                                     ))}
-                                                                                    {fields.length === 0 && <li className="text-muted-foreground italic text-center py-4 bg-slate-50 rounded-md">No fields defined for this template.</li>}
+                                                                                    {fields.length === 0 && <li className="text-slate-400 italic text-center py-4 bg-slate-50 rounded-md">No fields defined for this template.</li>}
                                                                                 </ul>
                                                                             </HoverCardContent>
                                                                         </HoverCard>
@@ -817,6 +893,7 @@ export function SuperAdminView() {
                                                         <SelectItem value="SUPERADMIN">SuperAdmin</SelectItem>
                                                         <SelectItem value="ADMIN">Admin</SelectItem>
                                                         <SelectItem value="LEADER">Leader</SelectItem>
+                                                        <SelectItem value="COORDINATOR">Coordinator</SelectItem>
                                                         <SelectItem value="MANAGEMENT">Management</SelectItem>
                                                         <SelectItem value="TEACHER">Teacher</SelectItem>
                                                         <SelectItem value="CORE_TEACHER">Core Teacher</SelectItem>
@@ -836,6 +913,7 @@ export function SuperAdminView() {
                                                     <SelectContent>
                                                         <SelectItem value="Admin Dashboard">Admin Dashboard</SelectItem>
                                                         <SelectItem value="Leader Dashboard">Leader Dashboard</SelectItem>
+                                                        <SelectItem value="Coordinator Dashboard">Coordinator Dashboard</SelectItem>
                                                         <SelectItem value="Teacher Dashboard">Teacher Dashboard</SelectItem>
                                                         <SelectItem value="Management Dashboard">Management Dashboard</SelectItem>
                                                     </SelectContent>
@@ -1007,9 +1085,9 @@ export function SuperAdminView() {
                                                         <td className="p-4">
                                                             <div className="flex flex-wrap gap-1.5">
                                                                 {currentAccess.length === 0 ? (
-                                                                    <span className="text-[10px] capitalize font-bold text-muted-foreground tracking-wider">Default only</span>
+                                                                    <span className="text-[10px] capitalize font-bold text-slate-400 tracking-wider">Default only</span>
                                                                 ) : currentAccess.map(c => (
-                                                                    <Badge key={c} variant="secondary" className="text-[9px] font-bold bg-violet-100 text-blue-700 border-blue-200 capitalize tracking-tighter">
+                                                                    <Badge key={c} variant="secondary" className="text-[9px] font-bold bg-blue-100 text-blue-700 border-blue-200 capitalize tracking-tighter">
                                                                         {c}
                                                                     </Badge>
                                                                 ))}
@@ -1018,7 +1096,7 @@ export function SuperAdminView() {
                                                         <td className="p-4 text-right">
                                                             <Popover>
                                                                 <PopoverTrigger asChild>
-                                                                    <Button variant="outline" size="sm" className="h-9 gap-2 font-bold hover:bg-primary hover:text-foreground hover:border-primary transition-all shadow-sm">
+                                                                    <Button variant="outline" size="sm" className="h-9 gap-2 font-bold hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm">
                                                                         <Layout className="w-4 h-4" /> Map Schools
                                                                     </Button>
                                                                 </PopoverTrigger>
@@ -1097,7 +1175,7 @@ export function SuperAdminView() {
                         </CardContent>
                     </Card>
 
-                    <div className="bg-violet-50 border border-blue-200 rounded-xl p-4 flex gap-4 items-start">
+                    <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 flex gap-4 items-start">
                         <Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                         <div>
                             <h4 className="font-bold text-blue-800">Campus Visibility Rules</h4>
@@ -1126,9 +1204,9 @@ export function SuperAdminView() {
                             <CardContent className="pt-6 space-y-4">
                                 {healthMetrics ? (
                                     <>
-                                        <div className="flex justify-between items-center bg-violet-50/50 p-3 rounded-lg border border-violet-100">
-                                            <span className="text-sm font-medium text-muted-foreground flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" /> Active Connections</span>
-                                            <span className="font-bold text-violet-700 text-lg">{healthMetrics.activeConnections}</span>
+                                        <div className="flex justify-between items-center bg-green-50/50 p-3 rounded-lg border border-green-100">
+                                            <span className="text-sm font-medium text-muted-foreground flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" /> Active Connections</span>
+                                            <span className="font-bold text-green-700 text-lg">{healthMetrics.activeConnections}</span>
                                         </div>
                                         <div className="flex justify-between items-center p-3 rounded-lg border bg-muted/20">
                                             <span className="text-sm font-medium text-muted-foreground">Uptime</span>

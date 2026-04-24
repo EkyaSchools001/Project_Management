@@ -103,8 +103,8 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
         <Card className="bg-[#1a1d29] border-white/10">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-[#8b5cf6]/10">
-                <UserCheck className="w-5 h-5 text-[#8b5cf6]" />
+              <div className="p-2 rounded-lg bg-[#ef4444]/10">
+                <UserCheck className="w-5 h-5 text-[#ef4444]" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{checkIns}</p>
@@ -116,8 +116,8 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
         <Card className="bg-[#1a1d29] border-white/10">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-violet-500/10">
-                <UserX className="w-5 h-5 text-blue-400" />
+              <div className="p-2 rounded-lg bg-red-500/10">
+                <UserX className="w-5 h-5 text-red-400" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{checkOuts}</p>
@@ -129,8 +129,8 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
         <Card className="bg-[#1a1d29] border-white/10">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-violet-500/10">
-                <Users className="w-5 h-5 text-violet-400" />
+              <div className="p-2 rounded-lg bg-red-500/10">
+                <Users className="w-5 h-5 text-red-400" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{present}</p>
@@ -142,8 +142,8 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
         <Card className="bg-[#1a1d29] border-white/10">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-purple-500/10">
-                <Clock className="w-5 h-5 text-purple-400" />
+              <div className="p-2 rounded-lg bg-red-500/10">
+                <Clock className="w-5 h-5 text-red-400" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{records.length}</p>
@@ -170,7 +170,7 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
             <Button
               onClick={handleCheckIn}
               disabled={loading || !studentId.trim()}
-              className="bg-[#8b5cf6] text-black hover:bg-[#a8e600]"
+              className="bg-[#ef4444] text-black hover:bg-[#a8e600]"
             >
               Check In
             </Button>
@@ -202,7 +202,7 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
                   <TableCell>
                     <Badge
                       variant={record.type === 'CheckIn' ? 'default' : 'secondary'}
-                      className={record.type === 'CheckIn' ? 'bg-violet-500' : 'bg-violet-500'}
+                      className={record.type === 'CheckIn' ? 'bg-red-500' : 'bg-red-500'}
                     >
                       {record.type}
                     </Badge>
@@ -213,13 +213,13 @@ export function AttendanceTracker({ schoolId, onCheckIn, onCheckOut }: Attendanc
                         variant="ghost"
                         size="sm"
                         onClick={() => handleCheckOut(record)}
-                        className="text-blue-400 hover:text-blue-300"
+                        className="text-red-400 hover:text-red-300"
                       >
                         <ArrowRight className="w-4 h-4 mr-1" />
                         Check Out
                       </Button>
                     ) : (
-                      <span className="text-violet-400">Complete</span>
+                      <span className="text-red-400">Complete</span>
                     )}
                   </TableCell>
                 </TableRow>

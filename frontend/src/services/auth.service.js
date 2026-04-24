@@ -5,7 +5,7 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8888/api'
 
 export const authService = {
     register: async (data) => {
-        const response = await api.post('/v1/auth/register', data);
+        const response = await api.post('/auth/register', data);
         const { token, refreshToken, user } = response.data;
         
         tokenService.setToken(token, data.rememberMe);
@@ -16,7 +16,7 @@ export const authService = {
     },
 
     login: async (email, password, rememberMe = false) => {
-        const response = await api.post('/v1/auth/login', { email, password, rememberMe });
+        const response = await api.post('/auth/login', { email, password, rememberMe });
         
         if (response.data.requires2FA) {
             return {
@@ -37,7 +37,7 @@ export const authService = {
     },
 
     verify2FA: async (code, tempToken) => {
-        const response = await api.post('/v1/auth/verify-2fa', { code, tempToken });
+        const response = await api.post('/auth/verify-2fa', { code, tempToken });
         const { token, refreshToken, user, expiresAt } = response.data;
         
         tokenService.setToken(token, false);
@@ -50,7 +50,7 @@ export const authService = {
 
     logout: async () => {
         try {
-            await api.post('/v1/auth/logout');
+            await api.post('/auth/logout');
         } catch (error) {
             console.error('Logout API error:', error);
         } finally {
@@ -60,7 +60,7 @@ export const authService = {
 
     logoutAll: async () => {
         try {
-            const response = await api.post('/v1/auth/logout-all');
+            const response = await api.post('/auth/logout-all');
             tokenService.clearAuth();
             return response.data;
         } catch (error) {
@@ -69,28 +69,28 @@ export const authService = {
     },
 
     getMe: async () => {
-        const response = await api.get('/v1/auth/me');
+        const response = await api.get('/auth/me');
         return response.data;
     },
 
     updateMe: async (data) => {
-        const response = await api.put('/v1/auth/me', data);
+        const response = await api.put('/auth/me', data);
         tokenService.setUser(response.data);
         return response.data;
     },
 
     changePassword: async (data) => {
-        const response = await api.post('/v1/auth/change-password', data);
+        const response = await api.post('/auth/change-password', data);
         return response.data;
     },
 
     forgotPassword: async (email) => {
-        const response = await api.post('/v1/auth/forgot-password', { email });
+        const response = await api.post('/auth/forgot-password', { email });
         return response.data;
     },
 
     resetPassword: async (token, password) => {
-        const response = await api.post('/v1/auth/reset-password', { token, password, confirmPassword: password });
+        const response = await api.post('/auth/reset-password', { token, password, confirmPassword: password });
         return response.data;
     },
 
@@ -100,7 +100,7 @@ export const authService = {
             throw new Error('No refresh token');
         }
 
-        const response = await api.post('/v1/auth/refresh', { refreshToken });
+        const response = await api.post('/auth/refresh', { refreshToken });
         const { token, refreshToken: newRefreshToken, expiresAt } = response.data;
         
         const rememberMe = !!localStorage.getItem('auth_refresh_token');
@@ -112,37 +112,37 @@ export const authService = {
     },
 
     setup2FA: async () => {
-        const response = await api.post('/v1/auth/2fa/setup');
+        const response = await api.post('/auth/2fa/setup');
         return response.data;
     },
 
     verifySetup2FA: async (code) => {
-        const response = await api.post('/v1/auth/2fa/verify-setup', { code });
+        const response = await api.post('/auth/2fa/verify-setup', { code });
         return response.data;
     },
 
     disable2FA: async () => {
-        const response = await api.post('/v1/auth/2fa/disable');
+        const response = await api.post('/auth/2fa/disable');
         return response.data;
     },
 
     confirmDisable2FA: async (code) => {
-        const response = await api.post('/v1/auth/2fa/confirm-disable', { code });
+        const response = await api.post('/auth/2fa/confirm-disable', { code });
         return response.data;
     },
 
     getSessions: async () => {
-        const response = await api.get('/v1/auth/sessions');
+        const response = await api.get('/auth/sessions');
         return response.data;
     },
 
     revokeSession: async (sessionId) => {
-        const response = await api.delete(`/v1/auth/sessions/${sessionId}`);
+        const response = await api.delete(`/auth/sessions/${sessionId}`);
         return response.data;
     },
 
     googleAuth: async (code, redirectUri) => {
-        const response = await api.post('/v1/auth/google', { code, redirectUri });
+        const response = await api.post('/auth/google', { code, redirectUri });
         const { token, refreshToken, user, expiresAt } = response.data;
         
         tokenService.setToken(token, false);
@@ -154,7 +154,7 @@ export const authService = {
     },
 
     microsoftAuth: async (code, redirectUri) => {
-        const response = await api.post('/v1/auth/microsoft', { code, redirectUri });
+        const response = await api.post('/auth/microsoft', { code, redirectUri });
         const { token, refreshToken, user, expiresAt } = response.data;
         
         tokenService.setToken(token, false);

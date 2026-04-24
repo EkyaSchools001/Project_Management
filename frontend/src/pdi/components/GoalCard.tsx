@@ -1,9 +1,11 @@
+import * as React from 'react';
 import { cn } from "@pdi/lib/utils";
 import { Target, Calendar, User, ArrowRight, Flag } from "lucide-react";
 import { Progress } from "./ui/progress";
 import { format } from "date-fns";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
+import { motion } from "framer-motion";
 
 interface GoalCardProps {
   goal: {
@@ -28,7 +30,6 @@ interface GoalCardProps {
   onReflect?: () => void;
   className?: string;
 }
-
 export function GoalCard({ goal, onReflect, className }: GoalCardProps) {
   const formatDate = (dateString: string) => {
     try {
@@ -42,11 +43,17 @@ export function GoalCard({ goal, onReflect, className }: GoalCardProps) {
   };
 
   return (
-    <div className={cn(
-      "dashboard-card p-5 sm:p-8 relative group overflow-hidden border-l-4",
-      goal.isSchoolAligned ? "border-l-primary" : "border-l-info",
-      className
-    )}>
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className={cn(
+        "dashboard-card p-5 sm:p-8 relative group overflow-hidden border-l-4",
+        goal.isSchoolAligned ? "border-l-primary" : "border-l-info",
+        className
+      )}
+    >
       {/* Background Decor */}
       <div className="absolute -right-6 -top-6 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity pointer-events-none">
         <Target size={120} />
@@ -60,7 +67,7 @@ export function GoalCard({ goal, onReflect, className }: GoalCardProps) {
           </Badge>
         )}
         {goal.reflectionCompleted && (
-          <Badge variant="secondary" className="bg-violet-100 text-violet-700 hover:bg-violet-200 border-none">
+          <Badge variant="secondary" className="bg-emerald-100 text-emerald-700 hover:bg-emerald-200 border-none">
             Reflected
           </Badge>
         )}
@@ -74,7 +81,7 @@ export function GoalCard({ goal, onReflect, className }: GoalCardProps) {
             variant="secondary"
             className={cn(
               "text-[10px] font-black capitalize tracking-wider",
-              goal.academics === "CORE" ? "bg-violet-100 text-blue-700" : "bg-purple-100 text-purple-700"
+              goal.academics === "CORE" ? "bg-blue-100 text-blue-700" : "bg-purple-100 text-purple-700"
             )}
           >
             {goal.academics === "NON_CORE" ? "Non-Core" : "Core"}
@@ -143,7 +150,7 @@ export function GoalCard({ goal, onReflect, className }: GoalCardProps) {
             size="sm"
             className={cn(
               "rounded-full px-5 font-bold shadow-sm transition-all hover:shadow-md active:scale-95",
-              goal.selfReflectionForm && "border-violet-200 text-violet-700 hover:bg-violet-50 hover:text-violet-800"
+              goal.selfReflectionForm && "border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800"
             )}
           >
             {goal.selfReflectionForm ? "View Reflection" : "Self Reflection"}
@@ -151,6 +158,6 @@ export function GoalCard({ goal, onReflect, className }: GoalCardProps) {
           </Button>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }

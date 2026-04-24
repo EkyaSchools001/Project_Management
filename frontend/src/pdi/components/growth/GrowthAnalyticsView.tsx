@@ -1,4 +1,5 @@
-﻿import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@pdi/components/ui/card";
 import { Users, TrendingUp, CheckCircle2, Award, ArrowUp, ArrowDown, Search, Filter, Layers, Target, Eye, ChevronRight, ChevronDown, Sparkles, BookOpen, Palette } from "lucide-react";
 import api from "@pdi/lib/api";
@@ -23,6 +24,12 @@ type TeacherEntry = {
     avgScore: number;
 };
 
+const getDisplayValue = (val: any, fallback: string = "--") => {
+    if (!val) return fallback;
+    if (typeof val === 'object') return val.name || fallback;
+    return val;
+};
+
 const TeacherTable = ({
     teachers,
     campusFilter,
@@ -38,8 +45,12 @@ const TeacherTable = ({
 }) => {
     const filtered = useMemo(() => {
         return teachers.filter(t => {
+            const name = t.name || "";
+            const email = t.email || "";
             const matchesCampus = campusFilter === "all" || t.campusId === campusFilter;
-            const matchesSearch = !searchQuery || t.name.toLowerCase().includes(searchQuery.toLowerCase()) || t.email.toLowerCase().includes(searchQuery.toLowerCase());
+            const matchesSearch = !searchQuery || 
+                name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                email.toLowerCase().includes(searchQuery.toLowerCase());
             return matchesCampus && matchesSearch;
         });
     }, [teachers, campusFilter, searchQuery]);
@@ -61,25 +72,25 @@ const TeacherTable = ({
                     <TableBody>
                         {filtered.length === 0 ? (
                             <TableRow>
-                                <TableCell colSpan={6} className="text-center py-12 text-muted-foreground font-medium">
+                                <TableCell colSpan={6} className="text-center py-12 text-zinc-400 font-medium">
                                     No {label} teachers found.
                                 </TableCell>
                             </TableRow>
                         ) : filtered.map((t, i) => (
                             <TableRow key={t.id} className="hover:bg-zinc-50 transition-colors border-zinc-50 group">
-                                <TableCell className="text-center font-medium text-muted-foreground">{i + 1}</TableCell>
+                                <TableCell className="text-center font-medium text-slate-400">{i + 1}</TableCell>
                                 <TableCell>
                                     <div className="flex flex-col">
                                         <span className="font-bold text-sm text-zinc-800">{t.name}</span>
-                                        <span className="text-[10px] text-muted-foreground">{t.email}</span>
+                                        <span className="text-[10px] text-zinc-400">{t.email}</span>
                                     </div>
                                 </TableCell>
-                                <TableCell className="font-medium text-zinc-600 text-sm">{t.campusId}</TableCell>
+                                <TableCell className="font-medium text-zinc-600 text-sm">{getDisplayValue(t.campusId)}</TableCell>
                                 <TableCell>
                                     <Badge
                                         variant="secondary"
                                         className={t.academics === 'CORE'
-                                            ? 'bg-violet-50 text-blue-700 border-none font-bold text-[10px]'
+                                            ? 'bg-blue-50 text-blue-700 border-none font-bold text-[10px]'
                                             : 'bg-purple-50 text-purple-700 border-none font-bold text-[10px]'}
                                     >
                                         {t.academics === 'CORE' ? 'Core' : 'Non-Core'}
@@ -88,7 +99,7 @@ const TeacherTable = ({
                                 <TableCell className="text-center font-mono font-bold text-zinc-700">{t.observationCount}</TableCell>
                                 <TableCell className="text-center">
                                     <div className="flex items-center justify-center gap-2">
-                                        <div className={`w-2 h-2 rounded-full ${t.avgScore >= 4 ? 'bg-violet-500' : t.avgScore >= 3 ? 'bg-amber-500' : t.avgScore > 0 ? 'bg-rose-500' : 'bg-zinc-200'}`} />
+                                        <div className={`w-2 h-2 rounded-full ${t.avgScore >= 4 ? 'bg-emerald-500' : t.avgScore >= 3 ? 'bg-amber-500' : t.avgScore > 0 ? 'bg-rose-500' : 'bg-zinc-200'}`} />
                                         <span className="font-mono font-bold text-zinc-700">{t.avgScore > 0 ? t.avgScore : '--'}</span>
                                     </div>
                                 </TableCell>
@@ -136,7 +147,7 @@ const GrowthAnalyticsView = () => {
     }, []);
 
     if (loading || !data) {
-        return <div className="p-12 text-center animate-pulse text-muted-foreground font-medium">Crunching growth data insights...</div>;
+        return <div className="p-12 text-center animate-pulse text-zinc-400 font-medium">Crunching growth data insights...</div>;
     }
 
     const toolData = data.toolUsage ? [
@@ -150,15 +161,15 @@ const GrowthAnalyticsView = () => {
     const nonCoreTeachers = allTeachers.filter(t => t.academics === 'NON_CORE');
 
     const stats = [
-        { title: "Total Teachers", value: data.totalTeachers || allTeachers.length, icon: Users, color: "text-blue-600", bg: "bg-violet-100", trend: "All Staff" },
-        { title: "Core Teachers", value: data.totalCore || coreTeachers.length, icon: BookOpen, color: "text-violet-600", bg: "bg-violet-100", trend: "Academic Core" },
+        { title: "Total Teachers", value: data.totalTeachers || allTeachers.length, icon: Users, color: "text-blue-600", bg: "bg-blue-100", trend: "All Staff" },
+        { title: "Core Teachers", value: data.totalCore || coreTeachers.length, icon: BookOpen, color: "text-emerald-600", bg: "bg-emerald-100", trend: "Academic Core" },
         { title: "Non-Core Teachers", value: data.totalNonCore || nonCoreTeachers.length, icon: Palette, color: "text-purple-600", bg: "bg-purple-100", trend: "Non-Core" },
-        { title: "Target Completion", value: `${Math.round(data.observationCompletionRate)}%`, icon: Target, color: "text-amber-600", bg: "bg-amber-100", trend: "Annual Goal" },
+        { title: "Target Completion", value: `${Math.round(data.observationCompletionRate || 0)}%`, icon: Target, color: "text-amber-600", bg: "bg-amber-100", trend: "Annual Goal" },
     ];
 
     const uniqueCampuses = CAMPUS_OPTIONS;
     const filteredCampusMetrics = data.campusMetrics?.filter((c: any) =>
-        selectedCampusFilter === "all" || c.campusId === selectedCampusFilter
+        selectedCampusFilter === "all" || getDisplayValue(c.campusId, "").toLowerCase() === selectedCampusFilter.toLowerCase()
     );
 
     const tabs = [
@@ -173,37 +184,52 @@ const GrowthAnalyticsView = () => {
         <div className="space-y-8 animate-in fade-in duration-700">
             {/* Top Summary Stats */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {stats.map((stat) => (
-                    <Card key={stat.title} className="shadow-premium bg-white overflow-hidden group hover:scale-[1.02] transition-transform duration-300">
-                        <CardContent className="p-6">
-                            <div className="flex items-center justify-between mb-2">
-                                <div className={`p-3 rounded-2xl ${stat.bg} ${stat.color} group-hover:rotate-12 transition-transform`}>
-                                    <stat.icon className="w-5 h-5" />
+                {stats.map((stat, idx) => (
+                    <motion.div
+                        key={stat.title}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: idx * 0.1 }}
+                    >
+                        <Card className="shadow-premium bg-white overflow-hidden group hover:scale-[1.02] transition-transform duration-300">
+                            <CardContent className="p-6">
+                                <div className="flex items-center justify-between mb-2">
+                                    <div className={`p-3 rounded-2xl ${stat.bg} ${stat.color} group-hover:rotate-12 transition-transform`}>
+                                        <stat.icon className="w-5 h-5" />
+                                    </div>
+                                    <Badge variant="secondary" className="bg-zinc-50 text-zinc-500 font-bold border-none text-[10px]">
+                                        {stat.trend}
+                                    </Badge>
                                 </div>
-                                <Badge variant="secondary" className="bg-zinc-50 text-zinc-500 font-bold border-none text-[10px]">
-                                    {stat.trend}
-                                </Badge>
-                            </div>
-                            <h3 className="text-sm font-bold text-muted-foreground tracking-wider">{stat.title}</h3>
-                            <p className="text-3xl font-black text-zinc-900 mt-1">{stat.value}</p>
-                        </CardContent>
-                    </Card>
+                                <h3 className="text-sm font-bold text-zinc-400 tracking-wider">{stat.title}</h3>
+                                <p className="text-3xl font-black text-zinc-900 mt-1">{stat.value}</p>
+                            </CardContent>
+                        </Card>
+                    </motion.div>
                 ))}
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Tool Usage Distribution */}
-                <Card className="shadow-premium bg-white overflow-hidden group">
-                    <CardHeader className="bg-zinc-50/30 border-b border-zinc-100/50">
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <CardTitle className="text-lg font-black tracking-tight">Tool Usage Distribution</CardTitle>
-                                <CardDescription className="font-medium text-[10px]">Instructional vs LA vs Cultural</CardDescription>
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="h-full"
+                >
+                    <Card className="shadow-premium bg-white overflow-hidden group h-full">
+                        <CardHeader className="bg-zinc-50/30 border-b border-zinc-100/50">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <CardTitle className="text-lg font-black tracking-tight">Tool Usage Distribution</CardTitle>
+                                    <CardDescription className="font-medium text-[10px]">Instructional vs LA vs Cultural</CardDescription>
+                                </div>
+                                <Sparkles className="w-6 h-6 text-amber-500" />
                             </div>
-                            <Sparkles className="w-6 h-6 text-amber-500" />
-                        </div>
-                    </CardHeader>
-                    <CardContent className="h-[280px] p-4">
+                        </CardHeader>
+                        <CardContent className="h-[280px] p-4">
                         {data.toolUsage?.total > 0 ? (
                             <ResponsiveContainer width="100%" height="100%">
                                 <PieChart>
@@ -217,29 +243,37 @@ const GrowthAnalyticsView = () => {
                                 </PieChart>
                             </ResponsiveContainer>
                         ) : (
-                            <div className="flex items-center justify-center h-full text-muted-foreground text-sm font-medium">No tool usage data available</div>
+                            <div className="flex items-center justify-center h-full text-zinc-400 text-sm font-medium">No tool usage data available</div>
                         )}
                         {data.toolUsage?.percentages && (
                             <div className="grid grid-cols-3 gap-1 pt-2">
                                 <div className="text-center">
                                     <p className="text-[10px] font-black text-blue-600">{data.toolUsage.percentages.instructional}%</p>
-                                    <p className="text-[8px] font-bold text-muted-foreground">Inst.</p>
+                                    <p className="text-[8px] font-bold text-zinc-400">Inst.</p>
                                 </div>
                                 <div className="text-center">
-                                    <p className="text-[10px] font-black text-violet-600">{data.toolUsage.percentages.la}%</p>
-                                    <p className="text-[8px] font-bold text-muted-foreground">LA</p>
+                                    <p className="text-[10px] font-black text-emerald-600">{data.toolUsage.percentages.la}%</p>
+                                    <p className="text-[8px] font-bold text-zinc-400">LA</p>
                                 </div>
                                 <div className="text-center">
                                     <p className="text-[10px] font-black text-amber-600">{data.toolUsage.percentages.cultural}%</p>
-                                    <p className="text-[8px] font-bold text-muted-foreground">Cult.</p>
+                                    <p className="text-[8px] font-bold text-zinc-400">Cult.</p>
                                 </div>
                             </div>
                         )}
                     </CardContent>
                 </Card>
+                </motion.div>
 
                 {/* Growth Trends Chart */}
-                <Card className="lg:col-span-2 shadow-premium bg-white overflow-hidden">
+                <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="lg:col-span-2 h-full"
+                >
+                <Card className="shadow-premium bg-white overflow-hidden h-full">
                     <CardHeader className="bg-zinc-50/30 border-b border-zinc-100/50">
                         <div className="flex items-center justify-between">
                             <div>
@@ -262,9 +296,16 @@ const GrowthAnalyticsView = () => {
                         </ResponsiveContainer>
                     </CardContent>
                 </Card>
+                </motion.div>
             </div>
 
             {/* ── All / Core / Non-Core Teacher Tables ── */}
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+            >
             <Card className="shadow-premium bg-white">
                 <CardHeader>
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -285,7 +326,7 @@ const GrowthAnalyticsView = () => {
                                 </SelectContent>
                             </Select>
                             <div className="relative">
-                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                                 <Input
                                     placeholder="Search teacher..."
                                     className="pl-9 h-9 rounded-xl w-[180px]"
@@ -308,7 +349,7 @@ const GrowthAnalyticsView = () => {
                                     }`}
                             >
                                 {tab.label}
-                                <span className={`text-[10px] font-black px-1.5 py-0.5 rounded-full ${activeTab === tab.key ? `${tab.color} bg-zinc-50` : 'text-muted-foreground'
+                                <span className={`text-[10px] font-black px-1.5 py-0.5 rounded-full ${activeTab === tab.key ? `${tab.color} bg-zinc-50` : 'text-zinc-400'
                                     }`}>
                                     {tab.count}
                                 </span>
@@ -326,8 +367,15 @@ const GrowthAnalyticsView = () => {
                     />
                 </CardContent>
             </Card>
+            </motion.div>
 
             {/* Campus Benchmarking Table with Drill-down */}
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+            >
             <Card className="shadow-premium bg-white">
                 <CardHeader>
                     <div className="flex items-center justify-between">
@@ -377,12 +425,12 @@ const GrowthAnalyticsView = () => {
                                         <TableCell className="font-medium text-slate-500 text-center">{index + 1}</TableCell>
                                         <TableCell className="font-black text-zinc-800">
                                             <div className="flex items-center gap-2">
-                                                {expandedCampus === campus.campusId ? <ChevronDown className="w-4 h-4 text-muted-foreground" /> : <ChevronRight className="w-4 h-4 text-muted-foreground" />}
-                                                {campus.campusId}
+                                                {expandedCampus === campus.campusId ? <ChevronDown className="w-4 h-4 text-zinc-400" /> : <ChevronRight className="w-4 h-4 text-zinc-400" />}
+                                                {getDisplayValue(campus.campusId)}
                                             </div>
                                         </TableCell>
                                         <TableCell className="text-center">
-                                            <Badge variant="secondary" className="bg-violet-50 text-blue-700 border-none font-bold">
+                                            <Badge variant="secondary" className="bg-blue-50 text-blue-700 border-none font-bold">
                                                 {campus.coreCount} Core
                                             </Badge>
                                         </TableCell>
@@ -393,21 +441,21 @@ const GrowthAnalyticsView = () => {
                                         </TableCell>
                                         <TableCell className="font-mono font-bold text-zinc-700">
                                             <div className="flex items-center gap-2">
-                                                <div className={`w-2 h-2 rounded-full ${campus.avgScore >= 4 ? 'bg-violet-500' : campus.avgScore >= 3 ? 'bg-amber-500' : 'bg-rose-500'}`} />
+                                                <div className={`w-2 h-2 rounded-full ${campus.avgScore >= 4 ? 'bg-emerald-500' : campus.avgScore >= 3 ? 'bg-amber-500' : 'bg-rose-500'}`} />
                                                 {campus.avgScore}
                                             </div>
                                         </TableCell>
                                         <TableCell className="font-medium text-zinc-600">{campus.avgObsPerTeacher}</TableCell>
                                         <TableCell className="w-[200px]">
                                             <div className="space-y-1">
-                                                <div className="flex justify-between text-[10px] font-bold text-muted-foreground">
+                                                <div className="flex justify-between text-[10px] font-bold text-zinc-400">
                                                     <span>{campus.targetCompletion}%</span>
                                                 </div>
                                                 <Progress value={campus.targetCompletion} className="h-2 rounded-full bg-zinc-100" />
                                             </div>
                                         </TableCell>
                                         <TableCell className="text-right">
-                                            <Badge variant="secondary" className="bg-violet-50 text-blue-600 border-none font-bold">
+                                            <Badge variant="secondary" className="bg-blue-50 text-blue-600 border-none font-bold">
                                                 {campus.observationCount} Obs
                                             </Badge>
                                         </TableCell>
@@ -427,11 +475,11 @@ const GrowthAnalyticsView = () => {
                                                                     <div key={teacher.id} className="p-3 bg-white rounded-xl border border-blue-50 shadow-sm flex items-center justify-between">
                                                                         <div>
                                                                             <p className="font-bold text-zinc-800 text-sm">{teacher.name}</p>
-                                                                            <p className="text-[10px] text-muted-foreground font-bold">{teacher.observationCount} Obs</p>
+                                                                            <p className="text-[10px] text-zinc-400 font-bold">{teacher.observationCount} Obs</p>
                                                                         </div>
                                                                         <div className="text-right">
                                                                             <p className="text-lg font-black text-zinc-900 leading-none">{teacher.avgScore || '--'}</p>
-                                                                            <p className="text-[9px] text-muted-foreground font-bold">Avg</p>
+                                                                            <p className="text-[9px] text-zinc-400 font-bold">Avg</p>
                                                                         </div>
                                                                     </div>
                                                                 ))}
@@ -449,11 +497,11 @@ const GrowthAnalyticsView = () => {
                                                                     <div key={teacher.id} className="p-3 bg-white rounded-xl border border-purple-50 shadow-sm flex items-center justify-between">
                                                                         <div>
                                                                             <p className="font-bold text-zinc-800 text-sm">{teacher.name}</p>
-                                                                            <p className="text-[10px] text-muted-foreground font-bold">{teacher.observationCount} Obs</p>
+                                                                            <p className="text-[10px] text-zinc-400 font-bold">{teacher.observationCount} Obs</p>
                                                                         </div>
                                                                         <div className="text-right">
                                                                             <p className="text-lg font-black text-zinc-900 leading-none">{teacher.avgScore || '--'}</p>
-                                                                            <p className="text-[9px] text-muted-foreground font-bold">Avg</p>
+                                                                            <p className="text-[9px] text-zinc-400 font-bold">Avg</p>
                                                                         </div>
                                                                     </div>
                                                                 ))}
@@ -461,7 +509,7 @@ const GrowthAnalyticsView = () => {
                                                         </div>
                                                     )}
                                                     {(!campus.coreTeachers?.length && !campus.nonCoreTeachers?.length) && (
-                                                        <p className="text-xs text-muted-foreground font-medium">No teacher data available for this campus.</p>
+                                                        <p className="text-xs text-zinc-400 font-medium">No teacher data available for this campus.</p>
                                                     )}
                                                 </div>
                                             </TableCell>
@@ -473,8 +521,15 @@ const GrowthAnalyticsView = () => {
                     </Table>
                 </CardContent>
             </Card>
+            </motion.div>
 
             {/* Observer Engagement Table */}
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+            >
             <Card className="shadow-premium bg-white">
                 <CardHeader>
                     <CardTitle className="text-xl font-black">Observer Efficacy</CardTitle>
@@ -486,20 +541,20 @@ const GrowthAnalyticsView = () => {
                             <div className="flex items-center justify-between mb-3">
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center font-black text-blue-600 shadow-sm">
-                                        {observer.name.charAt(0)}
+                                        {(observer.name || "?").charAt(0)}
                                     </div>
                                     <div>
                                         <p className="font-black text-zinc-900 text-sm leading-none">{observer.name}</p>
-                                        <p className="text-[10px] font-bold text-muted-foreground mt-1">{observer.observationCount} Observations</p>
+                                        <p className="text-[10px] font-bold text-zinc-400 mt-1">{observer.observationCount} Observations</p>
                                     </div>
                                 </div>
                                 <div className="text-right">
-                                    <p className="text-lg font-black text-zinc-900 leading-none">{observer.avgScore}</p>
-                                    <p className="text-[9px] font-bold text-muted-foreground">Avg Score</p>
+                                    <p className="text-lg font-black text-zinc-900 leading-none">{getDisplayValue(observer.avgScore, "0.0")}</p>
+                                    <p className="text-[9px] font-bold text-zinc-400">Avg Score</p>
                                 </div>
                             </div>
                             <div className="space-y-1">
-                                <div className="flex justify-between text-[9px] font-black text-muted-foreground">
+                                <div className="flex justify-between text-[9px] font-black text-zinc-400">
                                     <span>Workload Completion</span>
                                     <span>{observer.targetCompletion}%</span>
                                 </div>
@@ -508,10 +563,11 @@ const GrowthAnalyticsView = () => {
                         </div>
                     ))}
                     {(!data.observerMetrics || data.observerMetrics.length === 0) && (
-                        <p className="text-sm text-muted-foreground font-medium col-span-full text-center py-8">No observer data available yet.</p>
+                        <p className="text-sm text-zinc-400 font-medium col-span-full text-center py-8">No observer data available yet.</p>
                     )}
                 </CardContent>
             </Card>
+            </motion.div>
         </div>
     );
 };

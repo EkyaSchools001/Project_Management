@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { useAuth } from '@pdi/hooks/useAuth';
 import { DashboardLayout } from '@pdi/components/layout/DashboardLayout';
 import { PageHeader } from '@pdi/components/layout/PageHeader';
@@ -68,7 +68,7 @@ export default function OKRDashboard() {
             return (
                 <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
                     <Loader2 className="w-10 h-10 text-primary animate-spin" />
-                    <p className="text-muted-foreground text-sm font-medium">Loading your OKR data...</p>
+                    <p className="text-zinc-400 text-sm font-medium">Loading your OKR data...</p>
                 </div>
             );
         }

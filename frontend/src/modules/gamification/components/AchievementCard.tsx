@@ -22,7 +22,7 @@ export function AchievementCard({ achievement, earned = false, onClick }) {
       className={`
         relative p-5 rounded-2xl border transition-all duration-300 cursor-pointer group
         ${earned 
-          ? 'bg-gradient-to-br from-[#161B22] to-[#1a1f28] border-[#8b5cf6]/30 hover:border-[#8b5cf6]/60' 
+          ? 'bg-gradient-to-br from-[#161B22] to-[#1a1f28] border-[#ef4444]/30 hover:border-[#ef4444]/60' 
           : 'bg-[#161B22] border-white/5 hover:border-white/20'
         }
       `}
@@ -31,7 +31,7 @@ export function AchievementCard({ achievement, earned = false, onClick }) {
       <div className="flex items-start gap-4">
         <div className={`
           w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0
-          ${earned ? 'bg-[#8b5cf6]/20' : 'bg-white/5'}
+          ${earned ? 'bg-[#ef4444]/20' : 'bg-white/5'}
         `}>
           {icon}
           {!earned && <Lock size={16} className="absolute text-foreground/20" />}
@@ -42,7 +42,7 @@ export function AchievementCard({ achievement, earned = false, onClick }) {
             <h3 className={`font-bold text-sm truncate ${earned ? 'text-foreground' : 'text-foreground/60'}`}>
               {achievement.name}
             </h3>
-            {earned && <Check size={16} className="text-[#8b5cf6] shrink-0" />}
+            {earned && <Check size={16} className="text-[#ef4444] shrink-0" />}
           </div>
           
           <p className={`text-xs mt-1 ${earned ? 'text-foreground/60' : 'text-foreground/40'} line-clamp-2`}>
@@ -51,8 +51,8 @@ export function AchievementCard({ achievement, earned = false, onClick }) {
 
           <div className="flex items-center justify-between mt-3">
             <div className="flex items-center gap-1.5">
-              <Star size={12} className="text-[#8b5cf6]" />
-              <span className="text-xs font-bold text-[#8b5cf6]">{achievement.points} pts</span>
+              <Star size={12} className="text-[#ef4444]" />
+              <span className="text-xs font-bold text-[#ef4444]">{achievement.points} pts</span>
             </div>
             
             {!earned && achievement.criteria && (

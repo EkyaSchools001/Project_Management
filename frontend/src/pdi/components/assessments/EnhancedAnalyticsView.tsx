@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+﻿import React, { useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@pdi/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@pdi/components/ui/table";
 import { Badge } from "@pdi/components/ui/badge";
@@ -133,7 +133,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                     <TableBody>
                         {campusUsers.length === 0 ? (
                             <TableRow>
-                                <TableCell colSpan={7} className="text-center py-12 text-muted-foreground">No teachers found for this campus.</TableCell>
+                                <TableCell colSpan={7} className="text-center py-12 text-zinc-400">No teachers found for this campus.</TableCell>
                             </TableRow>
                         ) : campusUsers.map((u, index) => {
                             const userAttempts = data.attempts.filter(a => a.userId === u.id);
@@ -169,12 +169,12 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                     <TableCell>
                                         <div className="flex flex-col">
                                             <span className="font-bold text-sm text-zinc-700">{u.fullName}</span>
-                                            <span className="text-[10px] text-muted-foreground">{u.email}</span>
+                                            <span className="text-[10px] text-zinc-400">{u.email}</span>
                                         </div>
                                     </TableCell>
                                     <TableCell>
                                         {poAttempt ? (
-                                            <Badge variant="secondary" className="bg-violet-50 text-violet-700 border-violet-100 font-bold">
+                                            <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 border-emerald-100 font-bold">
                                                 {Math.round(poAttempt.score)}%
                                             </Badge>
                                         ) : (
@@ -192,7 +192,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                     </TableCell>
                                     <TableCell>
                                         {prAttempt ? (
-                                            <Badge variant="secondary" className="bg-violet-50 text-blue-700 border-blue-100 font-bold">
+                                            <Badge variant="secondary" className="bg-blue-50 text-blue-700 border-blue-100 font-bold">
                                                 {Math.round(prAttempt.score)}%
                                             </Badge>
                                         ) : (
@@ -213,16 +213,16 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                             <div className="flex flex-col gap-1 flex-1 min-w-[80px]">
                                                 <div className="w-full h-1.5 bg-zinc-100 rounded-full overflow-hidden">
                                                     <div
-                                                        className={cn("h-full transition-all duration-500", allCompleted ? "bg-violet-500" : "bg-primary")}
+                                                        className={cn("h-full transition-all duration-500", allCompleted ? "bg-emerald-500" : "bg-primary")}
                                                         style={{ width: `${assignedAssessments.length > 0 ? (completedCount / assignedAssessments.length) * 100 : 0}%` }}
                                                     />
                                                 </div>
-                                                <span className="text-[9px] text-muted-foreground font-bold capitalize">
+                                                <span className="text-[9px] text-zinc-400 font-bold capitalize">
                                                     {completedCount}/{assignedAssessments.length} Completed
                                                 </span>
                                             </div>
                                             {allCompleted ? (
-                                                <CheckCircle2 className="w-4 h-4 text-violet-500" />
+                                                <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                                             ) : (
                                                 <Clock className="w-4 h-4 text-amber-500" />
                                             )}
@@ -259,11 +259,11 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <Card className="  shadow-xl shadow-violet-500/5 bg-violet-50/30">
+                    <Card className="  shadow-xl shadow-emerald-500/5 bg-emerald-50/30">
                         <CardContent className="pt-6">
-                            <TrendingUp className="w-5 h-5 text-violet-500 mb-2" />
-                            <p className="text-xs font-bold text-violet-600/60 capitalize tracking-wider">Post-Orientation Avg</p>
-                            <h3 className="text-3xl font-black text-violet-700 mt-1">
+                            <TrendingUp className="w-5 h-5 text-emerald-500 mb-2" />
+                            <p className="text-xs font-bold text-emerald-600/60 capitalize tracking-wider">Post-Orientation Avg</p>
+                            <h3 className="text-3xl font-black text-emerald-700 mt-1">
                                 {myCampusMetric && myCampusMetric.postOrientationAvg !== null
                                     ? `${Math.round(myCampusMetric.postOrientationAvg)}%`
                                     : '--'}
@@ -283,7 +283,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                         </CardContent>
                     </Card>
 
-                    <Card className="  shadow-xl shadow-blue-500/5 bg-violet-50/30">
+                    <Card className="  shadow-xl shadow-blue-500/5 bg-blue-50/30">
                         <CardContent className="pt-6">
                             <TrendingUp className="w-5 h-5 text-blue-500 mb-2" />
                             <p className="text-xs font-bold text-blue-600/60 capitalize tracking-wider">Preparedness Avg</p>
@@ -298,7 +298,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                     <Card className="  shadow-xl shadow-zinc-500/5 bg-zinc-50">
                         <CardContent className="pt-6">
                             <Users className="w-5 h-5 text-zinc-500 mb-2" />
-                            <p className="text-xs font-bold text-muted-foreground capitalize tracking-wider">Total Teachers</p>
+                            <p className="text-xs font-bold text-zinc-400 capitalize tracking-wider">Total Teachers</p>
                             <h3 className="text-3xl font-black text-zinc-800 mt-1">{myCampusMetric?.totalUsers || 0}</h3>
                         </CardContent>
                     </Card>
@@ -334,13 +334,13 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
     return (
         <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <Card className="shadow-2xl shadow-violet-500/10 bg-gradient-to-br from-violet-500 justify-between items-center text-foreground border-none rounded-3xl overflow-hidden relative">
+                <Card className="shadow-2xl shadow-emerald-500/10 bg-gradient-to-br from-emerald-500 justify-between items-center text-white border-none rounded-3xl overflow-hidden relative">
                     <div className="absolute top-0 right-0 -translate-y-4 translate-x-4 w-24 h-24 bg-white/10 rounded-full blur-2xl" />
                     <CardContent className="p-6 relative z-10">
-                        <TrendingUp className="w-6 h-6 text-violet-100 mb-3" />
-                        <p className="text-xs font-bold text-violet-100 uppercase tracking-widest mb-1">Network Post Orientation</p>
+                        <TrendingUp className="w-6 h-6 text-emerald-100 mb-3" />
+                        <p className="text-xs font-bold text-emerald-100 uppercase tracking-widest mb-1">Network Post Orientation</p>
                         <h3 className="text-4xl font-black">{networkPostOrientationAvg !== null ? `${Math.round(networkPostOrientationAvg)}%` : '--'}</h3>
-                        <p className="text-[10px] text-violet-200 mt-2 font-medium">Average across all campuses</p>
+                        <p className="text-[10px] text-emerald-200 mt-2 font-medium">Average across all campuses</p>
                     </CardContent>
                 </Card>
 
@@ -356,7 +356,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                     </CardContent>
                 </Card>
 
-                <Card className="shadow-xl bg-violet-50 rounded-3xl border-none">
+                <Card className="shadow-xl bg-blue-50 rounded-3xl border-none">
                     <CardContent className="p-6">
                         <TrendingUp className="w-5 h-5 text-blue-500 mb-2" />
                         <p className="text-xs font-bold text-blue-600/60 uppercase tracking-widest mb-1">Academic Preparedness</p>
@@ -368,11 +368,11 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                     </CardContent>
                 </Card>
 
-                <Card className="shadow-xl bg-background text-foreground rounded-3xl border-none relative overflow-hidden">
+                <Card className="shadow-xl bg-zinc-900 text-white rounded-3xl border-none relative overflow-hidden">
                     <div className="absolute top-0 right-0 -translate-y-4 translate-x-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl" />
                     <CardContent className="p-6 relative z-10">
                         <CheckCircle2 className="w-5 h-5 text-primary mb-2" />
-                        <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-1">Global Completion</p>
+                        <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Global Completion</p>
                         <h3 className="text-3xl font-black">{Math.round(networkCompletionRate)}%</h3>
                     </CardContent>
                 </Card>
@@ -380,7 +380,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
 
             <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center pt-4">
                 <div className="relative w-full max-w-sm">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                     <Input
                         placeholder="Search campus..."
                         className="pl-10 h-10 rounded-xl"
@@ -389,7 +389,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                     />
                 </div>
                 <div className="flex items-center gap-3">
-                    <p className="text-[10px] font-bold text-muted-foreground bg-zinc-50 px-3 py-1 rounded-full capitalize tracking-tighter border border-zinc-100 italic">
+                    <p className="text-[10px] font-bold text-zinc-400 bg-zinc-50 px-3 py-1 rounded-full capitalize tracking-tighter border border-zinc-100 italic">
                         Tip: Double-tap row for teacher details
                     </p>
                     <Badge variant="outline" className="px-3 py-1 bg-white shadow-sm border-zinc-100 text-zinc-600 font-medium rounded-lg">
@@ -432,8 +432,8 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                     <TableCell className="text-center">
                                         {campus.postOrientationAvg !== null ? (
                                             <div className="flex flex-col items-center">
-                                                <span className="text-lg font-bold text-violet-600">{Math.round(campus.postOrientationAvg)}%</span>
-                                                <span className="text-[10px] text-muted-foreground">Average Score</span>
+                                                <span className="text-lg font-bold text-emerald-600">{Math.round(campus.postOrientationAvg)}%</span>
+                                                <span className="text-[10px] text-zinc-400">Average Score</span>
                                             </div>
                                         ) : (
                                             <span className="text-zinc-300">--</span>
@@ -443,7 +443,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                         {campus.academicOrientationAvg !== null ? (
                                             <div className="flex flex-col items-center">
                                                 <span className="text-lg font-bold text-purple-600">{Math.round(campus.academicOrientationAvg)}%</span>
-                                                <span className="text-[10px] text-muted-foreground">Average Score</span>
+                                                <span className="text-[10px] text-zinc-400">Average Score</span>
                                             </div>
                                         ) : (
                                             <span className="text-zinc-300">--</span>
@@ -453,7 +453,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                         {campus.preparednessAvg !== null ? (
                                             <div className="flex flex-col items-center">
                                                 <span className="text-lg font-bold text-blue-600">{Math.round(campus.preparednessAvg)}%</span>
-                                                <span className="text-[10px] text-muted-foreground">Average Score</span>
+                                                <span className="text-[10px] text-zinc-400">Average Score</span>
                                             </div>
                                         ) : (
                                             <span className="text-zinc-300">--</span>
@@ -463,7 +463,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                         {campus.otherAvg !== null ? (
                                             <div className="flex flex-col items-center">
                                                 <span className="text-lg font-bold text-zinc-600">{Math.round(campus.otherAvg)}%</span>
-                                                <span className="text-[10px] text-muted-foreground">Average Score</span>
+                                                <span className="text-[10px] text-zinc-400">Average Score</span>
                                             </div>
                                         ) : (
                                             <span className="text-zinc-300">--</span>
@@ -473,7 +473,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                         <div className="flex flex-col gap-1">
                                             <div className="flex justify-between items-center w-full">
                                                 <span className="text-xs font-bold">{Math.round(campus.completionRate)}%</span>
-                                                <span className="text-[10px] text-muted-foreground">{campus.totalCompleted}/{campus.totalExpected}</span>
+                                                <span className="text-[10px] text-zinc-400">{campus.totalCompleted}/{campus.totalExpected}</span>
                                             </div>
                                             <div className="w-full h-2 bg-zinc-100 rounded-full overflow-hidden">
                                                 <div
@@ -485,7 +485,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                     </TableCell>
                                     <TableCell>
                                         <Button variant="ghost" size="icon" className="group-hover:translate-x-1 transition-transform">
-                                            <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                                            <ArrowRight className="w-4 h-4 text-zinc-400" />
                                         </Button>
                                     </TableCell>
                                 </TableRow>
@@ -497,7 +497,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
 
             <Dialog open={!!selectedCampus} onOpenChange={() => setSelectedCampus(null)}>
                 <DialogContent className="max-w-4xl p-0 overflow-hidden rounded-3xl   shadow-2xl">
-                    <div className="bg-primary p-6 text-foreground">
+                    <div className="bg-primary p-6 text-white">
                         <DialogHeader>
                             <div className="flex items-center gap-3">
                                 <div className="p-2 bg-white/20 rounded-xl backdrop-blur-sm">
@@ -505,7 +505,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                 </div>
                                 <div>
                                     <DialogTitle className="text-2xl font-bold">{selectedCampus} Details</DialogTitle>
-                                    <p className="text-foreground/70 text-sm">Teacher-level performance and completion</p>
+                                    <p className="text-white/70 text-sm">Teacher-level performance and completion</p>
                                 </div>
                             </div>
                         </DialogHeader>

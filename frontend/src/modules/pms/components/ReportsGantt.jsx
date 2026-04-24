@@ -106,7 +106,7 @@ const ReportsGantt = () => {
             <div className={`flex group hover:bg-slate-50 transition-colors ${isTask ? 'bg-white' : 'bg-white'}`}>
                 <div className={`w-72 p-4 text-[11px] flex items-center gap-3 border-r border-slate-100 sticky left-0 z-10 truncate ${isTask ? 'pl-10 text-muted-foreground bg-white group-hover:bg-slate-50' : 'font-black text-slate-900 bg-white group-hover:bg-slate-50 uppercase tracking-tighter'}`}>
                     {!isTask && (
-                        <button onClick={() => toggleProject(item.id)} className="text-slate-300 hover:text-blue-600 transition-colors active:scale-90">
+                        <button onClick={() => toggleProject(item.id)} className="text-slate-300 hover:text-red-600 transition-colors active:scale-90">
                             {expandedProjects.includes(item.id) ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                         </button>
                     )}
@@ -117,7 +117,7 @@ const ReportsGantt = () => {
                     {/* Grid lines */}
                     <div className="absolute inset-0 flex pointer-events-none">
                         {dates.map((_, i) => (
-                            <div key={i} className={`flex-1 border-r border-slate-50 ${isSameDay(dates[i], today) ? 'bg-violet-50/20' : ''}`}></div>
+                            <div key={i} className={`flex-1 border-r border-slate-50 ${isSameDay(dates[i], today) ? 'bg-red-50/20' : ''}`}></div>
                         ))}
                     </div>
 
@@ -127,8 +127,8 @@ const ReportsGantt = () => {
                             initial={{ scaleX: 0 }}
                             animate={{ scaleX: 1 }}
                             className={`absolute top-3.5 h-7 rounded-xl shadow-sm transition-all hover:scale-y-110 cursor-pointer origin-left flex items-center px-3
-                            ${item.status === 'completed' ? 'bg-violet-600 shadow-violet-600/10' :
-                                     item.status === 'ongoing' ? 'bg-violet-600 shadow-blue-600/10' : 'bg-slate-200'}
+                            ${item.status === 'completed' ? 'bg-red-600 shadow-red-600/10' :
+                                     item.status === 'ongoing' ? 'bg-red-600 shadow-red-600/10' : 'bg-slate-200'}
                             ${isTask ? 'h-5 top-4.5 opacity-80' : ''}`}
                             style={{ left: pos.left, width: pos.width }}
                             title={`${item.name}: ${item.start} - ${item.end}`}
@@ -146,15 +146,15 @@ const ReportsGantt = () => {
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 mb-12">
                 <div className="space-y-2">
                     <h2 className="text-2xl sm:text-3xl font-black text-slate-900 flex items-center gap-4 uppercase tracking-tighter">
-                        <Calendar className="w-8 h-8 text-blue-600" />
+                        <Calendar className="w-8 h-8 text-red-600" />
                         Project Timeline Vector
                     </h2>
                     <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest ml-12">Visualize project scopes and task dependencies across the timeline.</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-6">
                     <div className="flex gap-4 text-[9px] font-black uppercase tracking-widest text-muted-foreground bg-slate-50 px-4 py-2 rounded-full border border-slate-100">
-                        <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-violet-600"></span> Executed</span>
-                        <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-violet-600"></span> Active</span>
+                        <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-red-600"></span> Executed</span>
+                        <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-red-600"></span> Active</span>
                         <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-200"></span> Backlog</span>
                     </div>
                     <button
@@ -175,7 +175,7 @@ const ReportsGantt = () => {
                             <div className="w-72 p-5 font-black text-[10px] text-muted-foreground uppercase tracking-widest border-r border-slate-100 sticky left-0 bg-slate-50 z-20">Deployment Cluster / Node</div>
                             <div className="flex-1 flex">
                                 {dates.map((date, i) => (
-                                    <div key={i} className={`flex-1 min-w-[3.5rem] text-center py-4 border-r border-slate-100/50 ${isSameDay(date, today) ? 'bg-violet-600 text-foreground shadow-xl' : 'text-muted-foreground'}`}>
+                                    <div key={i} className={`flex-1 min-w-[3.5rem] text-center py-4 border-r border-slate-100/50 ${isSameDay(date, today) ? 'bg-red-600 text-foreground shadow-xl' : 'text-muted-foreground'}`}>
                                         <span className="text-xs font-black block leading-none">{format(date, 'dd')}</span>
                                         <span className={`text-[8px] font-black uppercase tracking-wider mt-1 block opacity-60 ${isSameDay(date, today) ? 'text-foreground' : ''}`}>{format(date, 'EEE')}</span>
                                     </div>
@@ -199,7 +199,7 @@ const ReportsGantt = () => {
             </div>
 
             <div className="mt-10 flex justify-end">
-                <button className="text-[10px] font-black text-blue-600 hover:text-blue-700 flex items-center gap-3 uppercase tracking-widest group bg-violet-50 px-6 py-3 rounded-xl border border-blue-100 transition-all active:scale-95">
+                <button className="text-[10px] font-black text-red-600 hover:text-red-700 flex items-center gap-3 uppercase tracking-widest group bg-red-50 px-6 py-3 rounded-xl border border-red-100 transition-all active:scale-95">
                     View Full Roadmap Protocol <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </button>
             </div>

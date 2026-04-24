@@ -48,15 +48,16 @@ export function FestivalManagementDashboard() {
             const [fests, apps, engagementData] = await Promise.all([
                 learningFestivalService.getFestivals(),
                 learningFestivalService.getApplications(),
-                analyticsService.getCampusEngagement()
+                analyticsService.getCampusEngagement().catch(() => ({}))
             ]);
-            setFestivals(fests);
-            setApplications(apps);
-            setEngagementSummary(engagementData.summary);
-            setTeachersStats(engagementData.teachers);
+            setFestivals(Array.isArray(fests) ? fests : []);
+            setApplications(Array.isArray(apps) ? apps : []);
+            setEngagementSummary(engagementData?.summary ?? null);
+            setTeachersStats(Array.isArray(engagementData?.teachers) ? engagementData.teachers : []);
 
-            if (fests.length > 0 && selectedFestival === 'all') {
-                setSelectedFestival(fests[0].id);
+            const safeFests = Array.isArray(fests) ? fests : [];
+            if (safeFests.length > 0 && selectedFestival === 'all') {
+                setSelectedFestival(safeFests[0].id);
             }
         } catch (error) {
             console.error(error);
@@ -210,35 +211,35 @@ export function FestivalManagementDashboard() {
                                         <p className="text-sm font-bold text-gray-500 capitalize">Total Applications</p>
                                         <h3 className="text-3xl font-black text-blue-900 mt-2">{totalApps}</h3>
                                     </div>
-                                    <div className="p-3 bg-violet-100/50 rounded-xl text-blue-600">
+                                    <div className="p-3 bg-blue-100/50 rounded-xl text-blue-600">
                                         <FileText className="w-6 h-6" />
                                     </div>
                                 </div>
                             </CardContent>
                         </Card>
 
-                        <Card className="bg-gradient-to-br from-violet-50 to-white   shadow-sm">
+                        <Card className="bg-gradient-to-br from-green-50 to-white   shadow-sm">
                             <CardContent className="p-6">
                                 <div className="flex justify-between items-start">
                                     <div>
                                         <p className="text-sm font-bold text-gray-500 capitalize">Shortlisted</p>
-                                        <h3 className="text-3xl font-black text-violet-700 mt-2">{shortlistedCount}</h3>
+                                        <h3 className="text-3xl font-black text-green-700 mt-2">{shortlistedCount}</h3>
                                     </div>
-                                    <div className="p-3 bg-violet-100/50 rounded-xl text-violet-600">
+                                    <div className="p-3 bg-green-100/50 rounded-xl text-green-600">
                                         <Target className="w-6 h-6" />
                                     </div>
                                 </div>
                             </CardContent>
                         </Card>
 
-                        <Card className="bg-gradient-to-br from-violet-50 to-white   shadow-sm">
+                        <Card className="bg-gradient-to-br from-emerald-50 to-white   shadow-sm">
                             <CardContent className="p-6">
                                 <div className="flex justify-between items-start">
                                     <div>
                                         <p className="text-sm font-bold text-gray-500 capitalize">Confirmed Participants</p>
-                                        <h3 className="text-3xl font-black text-violet-800 mt-2">{confirmedCount}</h3>
+                                        <h3 className="text-3xl font-black text-emerald-800 mt-2">{confirmedCount}</h3>
                                     </div>
-                                    <div className="p-3 bg-violet-100/50 rounded-xl text-violet-600">
+                                    <div className="p-3 bg-emerald-100/50 rounded-xl text-emerald-600">
                                         <CheckCircle2 className="w-6 h-6" />
                                     </div>
                                 </div>
@@ -259,13 +260,13 @@ export function FestivalManagementDashboard() {
                                     </CardHeader>
                                     <CardContent>
                                         <div className="space-y-3">
-                                            <div className="flex justify-between items-center bg-violet-50/50 p-2 rounded-lg">
+                                            <div className="flex justify-between items-center bg-blue-50/50 p-2 rounded-lg">
                                                 <span className="text-xs font-medium text-gray-600">Total Apps Received</span>
                                                 <span className="font-bold text-blue-700">{stats.total}</span>
                                             </div>
-                                            <div className="flex justify-between items-center bg-violet-50/50 p-2 rounded-lg">
+                                            <div className="flex justify-between items-center bg-green-50/50 p-2 rounded-lg">
                                                 <span className="text-xs font-medium text-gray-600">Shortlisted Apps</span>
-                                                <span className="font-bold text-violet-700">{stats.shortlisted}</span>
+                                                <span className="font-bold text-green-700">{stats.shortlisted}</span>
                                             </div>
                                         </div>
                                     </CardContent>
@@ -351,7 +352,7 @@ export function FestivalManagementDashboard() {
                                                     </td>
                                                 )}
                                                 <td className="px-6 py-4">
-                                                    <Badge variant="outline" className="bg-violet-50 text-blue-700 border-blue-100">
+                                                    <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-100">
                                                         {app.preferredStrand || 'N/A'}
                                                     </Badge>
                                                 </td>
@@ -365,8 +366,8 @@ export function FestivalManagementDashboard() {
                                                                 app.status === 'Rejected' ? 'destructive' :
                                                                     app.status === 'Under Review' ? 'secondary' : 'outline'
                                                     } className={
-                                                        app.status === 'Confirmed' ? 'bg-violet-600' :
-                                                            app.status === 'Shortlisted' ? 'bg-violet-600' : ''
+                                                        app.status === 'Confirmed' ? 'bg-emerald-600' :
+                                                            app.status === 'Shortlisted' ? 'bg-green-600' : ''
                                                     }>
                                                         {app.status}
                                                     </Badge>
@@ -435,7 +436,7 @@ export function FestivalManagementDashboard() {
                                         Reject
                                     </Button>
                                     {(role === 'ADMIN' || role === 'SUPERADMIN' || role === 'MANAGEMENT') && selectedApp.status === 'Shortlisted' ? (
-                                        <Button className="bg-violet-600 hover:bg-violet-700" onClick={() => handleUpdateStatus('Confirmed')}>
+                                        <Button className="bg-emerald-600 hover:bg-emerald-700" onClick={() => handleUpdateStatus('Confirmed')}>
                                             <CheckCircle2 className="w-4 h-4 mr-2" />
                                             Confirm Selection
                                         </Button>
@@ -480,12 +481,12 @@ export function FestivalManagementDashboard() {
                             </CardContent>
                         </Card>
 
-                        <Card className="bg-gradient-to-br from-violet-50 to-white   shadow-sm">
+                        <Card className="bg-gradient-to-br from-green-50 to-white   shadow-sm">
                             <CardHeader className="pb-2">
                                 <CardTitle className="text-sm font-semibold text-gray-500 capitalize">Active Participants</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <div className="text-3xl font-black text-violet-700">
+                                <div className="text-3xl font-black text-green-700">
                                     {engagementSummary?.totalTeachersActive || 0}
                                 </div>
                                 <p className="text-sm text-gray-500 mt-1">Recently active on platform</p>
@@ -567,7 +568,7 @@ export function FestivalManagementDashboard() {
                                                 <div className="flex items-center gap-3">
                                                     <div className="w-full bg-gray-100 rounded-full h-2 max-w-[100px]">
                                                         <div
-                                                            className={`h-2 rounded-full ${teacher.engagementPercent >= 75 ? 'bg-violet-500' :
+                                                            className={`h-2 rounded-full ${teacher.engagementPercent >= 75 ? 'bg-green-500' :
                                                                 teacher.engagementPercent >= 40 ? 'bg-yellow-500' : 'bg-red-500'
                                                                 }`}
                                                             style={{ width: `${Math.min(teacher.engagementPercent, 100)}%` }}
@@ -577,7 +578,7 @@ export function FestivalManagementDashboard() {
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 text-right">
-                                                <Badge variant={teacher.isActive ? 'default' : 'secondary'} className={teacher.isActive ? 'bg-violet-100 text-violet-800' : ''}>
+                                                <Badge variant={teacher.isActive ? 'default' : 'secondary'} className={teacher.isActive ? 'bg-emerald-100 text-emerald-800' : ''}>
                                                     {teacher.isActive ? 'Active' : 'Inactive'}
                                                 </Badge>
                                             </td>

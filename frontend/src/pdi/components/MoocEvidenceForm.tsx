@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useState } from "react";
 import { useAutoSave } from "@pdi/hooks/useAutoSave";
 import { useForm } from "react-hook-form";
@@ -65,25 +64,19 @@ const formSchema = z.object({
     }),
     platform: z.string().min(1, "Please select a platform"),
     otherPlatform: z.string().optional(),
-    startDate: z.date({
-        required_error: "Date of start is required",
-    }).refine((date) => {
+    startDate: z.date().refine((date) => {
         const today = new Date();
         today.setHours(23, 59, 59, 999);
         return date <= today;
     }, "Date cannot be in the future"),
-    endDate: z.date({
-        required_error: "Date of end is required",
-    }).refine((date) => {
+    endDate: z.date().refine((date) => {
         const today = new Date();
         today.setHours(23, 59, 59, 999);
         return date <= today;
     }, "Date cannot be in the future"),
 
     // Section 3: Certificate / Proof
-    hasCertificate: z.enum(["yes", "no"], {
-        required_error: "Please select an option",
-    }),
+    hasCertificate: z.enum(["yes", "no"]),
     proofLink: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
     certificateType: z.enum(["link", "file"]).optional(),
     certificateFile: z.string().optional(),
@@ -185,9 +178,10 @@ interface MoocEvidenceFormProps {
     onAutoSave?: (values: any) => Promise<void>;
     userEmail?: string;
     userName?: string;
+    initialData?: any;
 }
 
-export function MoocEvidenceForm({ onCancel, onSubmitSuccess, onAutoSave, userEmail = "", userName = "" }: MoocEvidenceFormProps) {
+export function MoocEvidenceForm({ onCancel, onSubmitSuccess, onAutoSave, userEmail = "", userName = "", initialData }: MoocEvidenceFormProps) {
     const [campuses, setCampuses] = useState(DEFAULT_CAMPUSES);
     const [platforms, setPlatforms] = useState(DEFAULT_PLATFORMS);
     const { user } = useAuth();
@@ -214,9 +208,34 @@ export function MoocEvidenceForm({ onCancel, onSubmitSuccess, onAutoSave, userEm
 
     const form = useForm<any>({
         resolver: zodResolver(formSchema),
-        defaultValues: {
+        defaultValues: initialData ? {
+            email: initialData.email || userEmail,
+            name: initialData.name || userName,
+            courseName: initialData.courseName || "",
+            hours: initialData.hours !== undefined && initialData.hours !== null ? String(initialData.hours) : "",
+            platform: initialData.platform || "",
+            campus: initialData.campus || initialData.user?.campusId || "",
+            effectivenessRating: initialData.effectivenessRating ? [initialData.effectivenessRating] : [5],
+            hasCertificate: initialData.hasCertificate || "yes",
+            proofLink: initialData.proofLink || "",
+            otherPlatform: initialData.otherPlatform || "",
+            additionalFeedback: initialData.additionalFeedback || "",
+            startDate: initialData.startDate ? new Date(initialData.startDate) : new Date(),
+            endDate: initialData.endDate ? new Date(initialData.endDate) : new Date(),
+            certificateType: initialData.certificateType || "link",
+            certificateFile: initialData.certificateFile || "",
+            certificateFileName: initialData.certificateFileName || "",
+            supportingDocType: initialData.supportingDocType || undefined,
+            supportingDocLink: initialData.supportingDocLink || "",
+            supportingDocFile: initialData.supportingDocFile || "",
+            supportingDocFileName: initialData.supportingDocFileName || "",
+        } : {
             email: userEmail,
             name: userName,
+            courseName: "",
+            hours: "",
+            platform: "",
+            campus: "",
             effectivenessRating: [5], // Default middle value
             hasCertificate: "yes",
             proofLink: "",
@@ -315,9 +334,9 @@ export function MoocEvidenceForm({ onCancel, onSubmitSuccess, onAutoSave, userEm
                         "flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300",
                         isSaving
                             ? "bg-amber-50 text-amber-600 border-amber-100"
-                            : "bg-violet-50 text-violet-600 border-violet-100"
+                            : "bg-emerald-50 text-emerald-600 border-emerald-100"
                     )}>
-                        <Cloud className={cn("w-3.5 h-3.5", isSaving ? "animate-pulse fill-amber-600/20" : "fill-violet-600/20")} />
+                        <Cloud className={cn("w-3.5 h-3.5", isSaving ? "animate-pulse fill-amber-600/20" : "fill-emerald-600/20")} />
                         <span className="text-[10px] font-bold uppercase tracking-wider">
                             {isSaving ? "Saving changes..." : "All changes auto-saved"}
                         </span>
@@ -867,8 +886,8 @@ export function MoocEvidenceForm({ onCancel, onSubmitSuccess, onAutoSave, userEm
                         </div>
 
                         <div className="flex items-center justify-between pt-4 border-t">
-                            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-50 text-violet-600 border border-violet-100 animate-in fade-in duration-1000">
-                                <Cloud className="w-3.5 h-3.5 fill-violet-600/20" />
+                            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100 animate-in fade-in duration-1000">
+                                <Cloud className="w-3.5 h-3.5 fill-emerald-600/20" />
                                 <span className="text-[10px] font-bold uppercase tracking-wider">All changes auto-saved</span>
                             </div>
                             <div className="flex gap-3">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useAutoSave } from '@pdi/hooks/useAutoSave';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
@@ -291,15 +291,15 @@ export function MeetingMoMForm() {
                 <div className="flex items-center gap-3">
                     {isPublished ? (
                         <Badge className={cn(
-                            "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
-                            "bg-backgroundlack hover:bg-backgroundlack/90"
+                            "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
+                            "bg-black hover:bg-black/90"
                         )}>
                             <CheckCircle2 className="w-3 h-3 mr-1" />
                             PUBLISHED
                         </Badge>
                     ) : (
                         <Badge className={cn(
-                            "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
+                            "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
                             "bg-amber-500 hover:bg-amber-600"
                         )}>
                             <HistoryIcon className="w-3 h-3 mr-1" />
@@ -319,9 +319,9 @@ export function MeetingMoMForm() {
                         "hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300",
                         isSaving
                             ? "bg-amber-50 text-amber-600 border-amber-100"
-                            : "bg-violet-50 text-violet-600 border-violet-100"
+                            : "bg-emerald-50 text-emerald-600 border-emerald-100"
                     )}>
-                        <Cloud className={cn("w-3.5 h-3.5", isSaving ? "animate-pulse fill-amber-600/20" : "fill-violet-600/20")} />
+                        <Cloud className={cn("w-3.5 h-3.5", isSaving ? "animate-pulse fill-amber-600/20" : "fill-emerald-600/20")} />
                         <span className="text-[10px] font-bold uppercase tracking-wider">
                             {isSaving ? "Saving changes..." : "All changes auto-saved"}
                         </span>
@@ -358,7 +358,7 @@ export function MeetingMoMForm() {
                     {(isPublished && (isCreator || currentUser?.role === 'ADMIN' || currentUser?.role === 'MANAGEMENT' || (currentUser?.role === 'LEADER' && currentUser.campusId === meeting.campusId))) && (
                         <Dialog open={isShareModalOpen} onOpenChange={setIsShareModalOpen}>
                             <DialogTrigger asChild>
-                                <Button variant="outline" className="border-violet-200 bg-violet-50 text-violet-700 hover:bg-violet-100">
+                                <Button variant="outline" className="border-green-200 bg-green-50 text-green-700 hover:bg-green-100">
                                     <Share2 className="w-4 h-4 mr-2" />
                                     Share MoM
                                 </Button>
@@ -529,19 +529,19 @@ export function MeetingMoMForm() {
                         </div>
 
                         <div className="pt-8 border-t border-gray-100 space-y-4">
-                            <Label className="text-base font-bold text-violet-700 flex items-center gap-2">
+                            <Label className="text-base font-bold text-green-700 flex items-center gap-2">
                                 <CheckSquare className="w-5 h-5" />
                                 Section 3: Key Decisions Taken
                             </Label>
                             {canEdit ? (
                                 <Textarea
                                     placeholder="Enumerate the final decisions reached during the session..."
-                                    className="min-h-[120px] bg-violet-50/20 border-violet-100 focus:bg-white transition-all text-violet-900"
+                                    className="min-h-[120px] bg-green-50/20 border-green-100 focus:bg-white transition-all text-green-900"
                                     value={momData.decisions}
                                     onChange={(e) => setMomData({ ...momData, decisions: e.target.value })}
                                 />
                             ) : (
-                                <div className="p-5 border rounded-xl bg-violet-50/30 text-violet-900 border-violet-100 font-medium leading-relaxed italic">
+                                <div className="p-5 border rounded-xl bg-green-50/30 text-green-900 border-green-100 font-medium leading-relaxed italic">
                                     {momData.decisions || 'No specific decisions were recorded.'}
                                 </div>
                             )}
@@ -557,7 +557,7 @@ export function MeetingMoMForm() {
                                 Section 4: Action Item Tracking
                             </h3>
                             {canEdit && (
-                                <Button size="sm" variant="outline" onClick={handleAddActionItem} className="bg-white border-blue-200 text-blue-700 hover:bg-violet-50">
+                                <Button size="sm" variant="outline" onClick={handleAddActionItem} className="bg-white border-blue-200 text-blue-700 hover:bg-blue-50">
                                     <Plus className="w-4 h-4 mr-2" />
                                     Add New Task
                                 </Button>
@@ -638,8 +638,8 @@ export function MeetingMoMForm() {
                                                         </Select>
                                                     ) : (
                                                         <Badge variant={item.priority === 'High' ? 'destructive' : 'secondary'} className={cn(
-                                                            item.priority === 'Medium' && 'bg-violet-600 text-foreground',
-                                                            item.priority === 'Low' && 'bg-gray-400 text-foreground'
+                                                            item.priority === 'Medium' && 'bg-blue-600 text-white',
+                                                            item.priority === 'Low' && 'bg-gray-400 text-white'
                                                         )}>
                                                             {item.priority}
                                                         </Badge>
@@ -647,8 +647,8 @@ export function MeetingMoMForm() {
                                                 </TableCell>
                                                 <TableCell>
                                                     <Badge className={cn(
-                                                        "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-foreground shadow-sm",
-                                                        item.status === 'Completed' ? 'bg-violet-600' : 
+                                                        "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",
+                                                        item.status === 'Completed' ? 'bg-emerald-600' : 
                                                         item.status === 'Pending' ? 'bg-amber-500' : 
                                                         'bg-slate-400'
                                                     )}>
@@ -809,7 +809,7 @@ export function MeetingMoMForm() {
                                             onChange={(e) => setReplyText(e.target.value)}
                                             className="min-h-[80px] bg-gray-50 border-gray-200 resize-none"
                                         />
-                                        <Button onClick={handleSendReply} className="w-full bg-gray-900 hover:bg-backgroundlack text-foreground">
+                                        <Button onClick={handleSendReply} className="w-full bg-gray-900 hover:bg-black text-white">
                                             Post Reply
                                         </Button>
                                     </div>

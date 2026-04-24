@@ -131,7 +131,7 @@ export default function TicketingPortal() {
     switch (sev) {
       case 'HIGH': return <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest bg-rose-50 text-rose-600 border border-rose-100 shadow-sm shadow-rose-100/50"><div className="w-1.5 h-1.5 rounded-full bg-rose-600 animate-pulse shadow-glow shadow-rose-500"></div>Critical</span>;
       case 'MODERATE': return <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest bg-amber-50 text-amber-600 border border-amber-100"><div className="w-1.5 h-1.5 rounded-full bg-amber-600"></div>Elevated</span>;
-      default: return <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest bg-violet-50 text-violet-600 border border-violet-100"><div className="w-1.5 h-1.5 rounded-full bg-violet-600"></div>Nominal</span>;
+      default: return <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest bg-red-50 text-red-600 border border-red-100"><div className="w-1.5 h-1.5 rounded-full bg-red-600"></div>Nominal</span>;
     }
   };
 
@@ -144,18 +144,18 @@ export default function TicketingPortal() {
   return (
     <div className="h-screen flex flex-col font-sans bg-white overflow-hidden relative">
       {/* High-Vibrancy Orbital Background */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-indigo-500/5 rounded-full blur-[150px] animate-orbit pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-rose-500/5 rounded-full blur-[150px] animate-orbit pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-[600px] h-[600px] bg-rose-500/5 rounded-full blur-[120px] animate-orbit-reverse pointer-events-none" />
 
       {/* Header Strategy */}
       <div className="bg-slate-950 p-10 sm:p-14 flex flex-col md:flex-row items-center justify-between gap-10 shrink-0 border-b border-white/5 relative z-30 group">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/30 via-slate-950 to-rose-900/20 opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-rose-900/30 via-slate-950 to-rose-900/20 opacity-60" />
         
         <div className="relative z-10 flex flex-col gap-6 text-center md:text-left max-w-2xl">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="inline-flex items-center justify-center md:justify-start gap-4 px-6 py-2.5 bg-white/5 text-indigo-400 rounded-full border border-white/10 text-[11px] font-black uppercase tracking-[0.4em] backdrop-blur-xl"
+            className="inline-flex items-center justify-center md:justify-start gap-4 px-6 py-2.5 bg-white/5 text-rose-400 rounded-full border border-white/10 text-[11px] font-black uppercase tracking-[0.4em] backdrop-blur-xl"
           >
             <Shield size={16} /> Secure Triage Protocol Active
           </motion.div>
@@ -164,7 +164,7 @@ export default function TicketingPortal() {
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl sm:text-7xl font-black text-foreground uppercase tracking-tighter leading-none"
           >
-            Support <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-violet-400 to-rose-400">Terminal</span>
+            Support <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-red-400 to-rose-400">Terminal</span>
           </motion.h2>
           <p className="text-sm sm:text-lg text-foreground/40 font-medium tracking-tight">Systemic friction point resolution & pedagogical infrastructure orchestration.</p>
         </div>
@@ -181,7 +181,7 @@ export default function TicketingPortal() {
                 setMessages([{ id: '1', type: 'bot', text: "Neural Link Established. Please state the nature of your operational emergency." }]);
               }
             }}
-            className="w-full md:w-auto flex items-center justify-center gap-4 bg-indigo-600 hover:bg-indigo-500 transition-all px-10 h-20 rounded-[2rem] text-xs font-black uppercase tracking-[0.2em] text-foreground shadow-2xl shadow-indigo-600/30 border border-white/10 relative group/btn overflow-hidden"
+            className="w-full md:w-auto flex items-center justify-center gap-4 bg-rose-600 hover:bg-rose-500 transition-all px-10 h-20 rounded-[2rem] text-xs font-black uppercase tracking-[0.2em] text-foreground shadow-2xl shadow-rose-600/30 border border-white/10 relative group/btn overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000" />
             <Bot className="w-6 h-6 animate-pulse" />
@@ -198,25 +198,25 @@ export default function TicketingPortal() {
               <button 
                 key={status}
                 onClick={() => setFilterStatus(status)}
-                className={`text-[10px] font-black uppercase tracking-widest px-8 py-3 rounded-2xl transition-all ${filterStatus === status ? 'bg-white shadow-2xl text-indigo-600 border border-slate-100' : 'text-muted-foreground hover:text-slate-600'}`}
+                className={`text-[10px] font-black uppercase tracking-widest px-8 py-3 rounded-2xl transition-all ${filterStatus === status ? 'bg-white shadow-2xl text-rose-600 border border-slate-100' : 'text-muted-foreground hover:text-slate-600'}`}
               >
                 {status.replace('_', ' ')}
               </button>
             ))}
           </div>
           <div className="flex items-center gap-4 text-[11px] font-black text-muted-foreground uppercase tracking-widest px-8 border-l border-slate-200">
-             <Activity size={18} className="text-indigo-400" />
+             <Activity size={18} className="text-rose-400" />
              ACTIVE LOGS: <span className="text-slate-900">{filteredTickets.length} VECTORS</span>
           </div>
         </div>
         <div className="relative w-full lg:w-[450px] group">
-          <Search className="w-5 h-5 text-slate-300 absolute left-6 top-1/2 -translate-y-1/2 group-focus-within:text-indigo-600 transition-colors" />
+          <Search className="w-5 h-5 text-slate-300 absolute left-6 top-1/2 -translate-y-1/2 group-focus-within:text-rose-600 transition-colors" />
           <input 
             type="text" 
             placeholder="SCAN VECT-ID OR SUBJECT PROTOCOL..." 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-16 pr-8 h-14 bg-slate-50 border border-slate-100 rounded-3xl text-sm w-full focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-8 focus:ring-indigo-600/5 transition-all font-black uppercase tracking-widest placeholder:text-slate-200"
+            className="pl-16 pr-8 h-14 bg-slate-50 border border-slate-100 rounded-3xl text-sm w-full focus:bg-white focus:outline-none focus:border-rose-600 focus:ring-8 focus:ring-rose-600/5 transition-all font-black uppercase tracking-widest placeholder:text-slate-200"
           />
         </div>
       </div>
@@ -234,7 +234,7 @@ export default function TicketingPortal() {
                 <thead>
                   <tr className="bg-slate-50/50 border-b border-slate-100 text-[10px] uppercase font-black tracking-[0.3em] text-muted-foreground">
                     <th className="p-8 w-16 text-center">
-                      <input type="checkbox" className="w-5 h-5 rounded-lg border-slate-200 text-indigo-600 focus:ring-indigo-600" />
+                      <input type="checkbox" className="w-5 h-5 rounded-lg border-slate-200 text-rose-600 focus:ring-rose-600" />
                     </th>
                     <th className="p-8">LINK_ID</th>
                     <th className="p-8 w-[25%]">LOGGED_OBJECTIVE</th>
@@ -249,10 +249,10 @@ export default function TicketingPortal() {
                   {filteredTickets.map((ticket) => (
                     <tr key={ticket.id} className="hover:bg-slate-50/80 transition-all duration-300 group">
                       <td className="p-8 text-center">
-                        <input type="checkbox" className="w-5 h-5 rounded-lg border-slate-200 text-indigo-600 focus:ring-indigo-600 opacity-20 group-hover:opacity-100 transition-opacity" />
+                        <input type="checkbox" className="w-5 h-5 rounded-lg border-slate-200 text-rose-600 focus:ring-rose-600 opacity-20 group-hover:opacity-100 transition-opacity" />
                       </td>
                       <td className="p-8">
-                        <span className="font-black text-indigo-600 hover:text-indigo-700 underline underline-offset-8 cursor-pointer tracking-tighter text-lg">{ticket.id}</span>
+                        <span className="font-black text-rose-600 hover:text-rose-700 underline underline-offset-8 cursor-pointer tracking-tighter text-lg">{ticket.id}</span>
                       </td>
                       <td className="p-8">
                         <div className="space-y-1">
@@ -266,7 +266,7 @@ export default function TicketingPortal() {
                       </td>
                       <td className="p-8">
                         <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 bg-indigo-50 border border-indigo-100 rounded-xl flex items-center justify-center font-black text-xs text-indigo-600 shrink-0 shadow-sm">
+                          <div className="w-10 h-10 bg-rose-50 border border-rose-100 rounded-xl flex items-center justify-center font-black text-xs text-rose-600 shrink-0 shadow-sm">
                             {ticket.requester ? ticket.requester.charAt(0) : 'A'}
                           </div>
                           <div className="flex flex-col">
@@ -284,14 +284,14 @@ export default function TicketingPortal() {
                             {ticket.resolutionDays || '---'} {ticket.resolutionDays ? (Number(ticket.resolutionDays) === 1 ? 'DAY' : 'DAYS') : 'UNSET'}
                           </span>
                           <div className="w-20 h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                             <div className={`h-full ${Number(ticket.resolutionDays) <= 1 ? 'bg-rose-500' : 'bg-indigo-500'}`} style={{ width: `${Math.max(10, 100 - (Number(ticket.resolutionDays || 0) * 15))}%` }}></div>
+                             <div className={`h-full ${Number(ticket.resolutionDays) <= 1 ? 'bg-rose-500' : 'bg-rose-500'}`} style={{ width: `${Math.max(10, 100 - (Number(ticket.resolutionDays || 0) * 15))}%` }}></div>
                           </div>
                         </div>
                       </td>
                       <td className="p-8">
                         <div className="relative">
                           <select 
-                            className="text-[10px] font-black px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl cursor-pointer focus:ring-0 uppercase tracking-widest text-slate-600 hover:bg-white hover:border-indigo-600 transition-all shadow-sm outline-none appearance-none pr-10"
+                            className="text-[10px] font-black px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl cursor-pointer focus:ring-0 uppercase tracking-widest text-slate-600 hover:bg-white hover:border-rose-600 transition-all shadow-sm outline-none appearance-none pr-10"
                             value={ticket.status}
                             onChange={(e) => handleAssignTicket(ticket.id, 'status', e.target.value as any)}
                           >
@@ -304,7 +304,7 @@ export default function TicketingPortal() {
                       </td>
                       <td className="p-8 text-right">
                         <div className="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-all">
-                           <button className="w-12 h-12 bg-white border border-slate-100 rounded-xl flex items-center justify-center text-muted-foreground hover:text-indigo-600 hover:shadow-xl transition-all"><Cpu size={20} /></button>
+                           <button className="w-12 h-12 bg-white border border-slate-100 rounded-xl flex items-center justify-center text-muted-foreground hover:text-rose-600 hover:shadow-xl transition-all"><Cpu size={20} /></button>
                            <button className="w-12 h-12 bg-white border border-slate-100 rounded-xl flex items-center justify-center text-muted-foreground hover:text-rose-600 hover:shadow-xl transition-all"><Trash2 size={20} /></button>
                         </div>
                       </td>
@@ -342,16 +342,16 @@ export default function TicketingPortal() {
             >
               {/* Modal Terminal Header */}
               <div className="bg-slate-950 p-12 px-16 flex items-center justify-between shrink-0 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 via-transparent to-rose-600/10" />
+                <div className="absolute inset-0 bg-gradient-to-br from-rose-600/30 via-transparent to-rose-600/10" />
                 <div className="flex items-center gap-10 relative z-10">
-                  <div className="w-20 h-20 bg-indigo-600 rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-indigo-600/40 border-2 border-white/20 animate-pulse">
+                  <div className="w-20 h-20 bg-rose-600 rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-rose-600/40 border-2 border-white/20 animate-pulse">
                     <Bot className="w-10 h-10 text-foreground" />
                   </div>
                   <div>
                     <h3 className="font-black text-4xl text-foreground uppercase tracking-tighter mb-2">Triage Terminal</h3>
                     <div className="flex items-center gap-4">
-                      <div className="w-2 h-2 rounded-full bg-violet-500 animate-pulse shadow-glow shadow-violet-500" />
-                      <p className="text-indigo-400 text-[11px] uppercase tracking-[0.5em] font-black">Neural Uplink Synchronized</p>
+                      <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-glow shadow-red-500" />
+                      <p className="text-rose-400 text-[11px] uppercase tracking-[0.5em] font-black">Neural Uplink Synchronized</p>
                     </div>
                   </div>
                 </div>
@@ -362,11 +362,11 @@ export default function TicketingPortal() {
               
               {/* Chat Matrix Body */}
               <div className="flex-1 overflow-y-auto p-12 sm:p-20 bg-slate-50/30 flex flex-col gap-12 custom-scrollbar relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/2 via-transparent to-rose-500/2 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-br from-rose-500/2 via-transparent to-rose-500/2 pointer-events-none" />
                 
                 <div className="flex gap-8 max-w-[85%] relative z-10">
                   <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 flex items-center justify-center shrink-0 shadow-2xl">
-                    <Sparkles className="w-7 h-7 text-indigo-500" />
+                    <Sparkles className="w-7 h-7 text-rose-500" />
                   </div>
                   <div className="bg-white border border-slate-100 p-8 rounded-[3rem] rounded-tl-none shadow-2xl shadow-slate-200/20 text-lg text-slate-800 font-medium leading-relaxed">
                     Uplink engaged. Describe the core friction point. I will execute a severity scan and initiate immediate technical escalation if thresholds are exceeded.
@@ -380,10 +380,10 @@ export default function TicketingPortal() {
                     key={msg.id} 
                     className={`flex gap-8 max-w-[90%] relative z-10 ${msg.type === 'user' ? 'ml-auto flex-row-reverse' : ''}`}
                   >
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 border-2 shadow-2xl transition-all ${msg.type === 'user' ? 'bg-background border-white/20 text-foreground' : 'bg-white border-slate-50 text-indigo-600'}`}>
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 border-2 shadow-2xl transition-all ${msg.type === 'user' ? 'bg-background border-white/20 text-foreground' : 'bg-white border-slate-50 text-rose-600'}`}>
                       {msg.type === 'user' ? <User className="w-7 h-7" /> : <Bot className="w-7 h-7" />}
                     </div>
-                    <div className={`p-8 rounded-[3rem] text-lg font-medium shadow-2xl ${msg.type === 'user' ? 'bg-indigo-600 text-foreground rounded-tr-none shadow-indigo-600/10' : 'bg-white border border-slate-50 text-slate-800 rounded-tl-none shadow-slate-200/20'}`}>
+                    <div className={`p-8 rounded-[3rem] text-lg font-medium shadow-2xl ${msg.type === 'user' ? 'bg-rose-600 text-foreground rounded-tr-none shadow-rose-600/10' : 'bg-white border border-slate-50 text-slate-800 rounded-tl-none shadow-slate-200/20'}`}>
                       <p className="whitespace-pre-wrap leading-relaxed">{msg.text}</p>
                     </div>
                   </motion.div>
@@ -392,11 +392,11 @@ export default function TicketingPortal() {
                 {isTyping && (
                   <div className="flex gap-8 max-w-[80%] relative z-10">
                     <div className="w-14 h-14 rounded-2xl bg-white border border-slate-50 flex items-center justify-center shrink-0 shadow-2xl">
-                      <Bot className="w-7 h-7 text-indigo-600" />
+                      <Bot className="w-7 h-7 text-rose-600" />
                     </div>
                     <div className="bg-white border border-slate-50 px-8 py-6 rounded-[2.5rem] rounded-tl-none shadow-2xl flex items-center gap-4">
                       {[0, 1, 2].map(i => (
-                        <div key={i} className="w-3 h-3 bg-indigo-600 rounded-full animate-bounce shadow-glow shadow-indigo-500/50" style={{ animationDelay: `${i * 150}ms` }} />
+                        <div key={i} className="w-3 h-3 bg-rose-600 rounded-full animate-bounce shadow-glow shadow-rose-500/50" style={{ animationDelay: `${i * 150}ms` }} />
                       ))}
                     </div>
                   </div>
@@ -410,7 +410,7 @@ export default function TicketingPortal() {
                   <div className="flex-1 w-full space-y-4">
                     <label className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.4em] px-4">Node Context</label>
                     <select 
-                      className="w-full h-20 text-[11px] font-black uppercase tracking-[0.2em] px-8 bg-slate-50 border border-slate-100 rounded-[2rem] text-slate-900 focus:bg-white focus:ring-8 focus:ring-indigo-600/5 focus:border-indigo-600 transition-all outline-none appearance-none cursor-pointer"
+                      className="w-full h-20 text-[11px] font-black uppercase tracking-[0.2em] px-8 bg-slate-50 border border-slate-100 rounded-[2rem] text-slate-900 focus:bg-white focus:ring-8 focus:ring-rose-600/5 focus:border-rose-600 transition-all outline-none appearance-none cursor-pointer"
                       value={reportDepartment}
                       onChange={(e) => setReportDepartment(e.target.value)}
                     >
@@ -421,7 +421,7 @@ export default function TicketingPortal() {
                   <div className="flex-1 w-full space-y-4">
                     <label className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.4em] px-4">Urgency Vector</label>
                     <select 
-                      className="w-full h-20 text-[11px] font-black uppercase tracking-[0.2em] px-8 bg-slate-50 border border-slate-100 rounded-[2rem] text-slate-900 focus:bg-white focus:ring-8 focus:ring-indigo-600/5 focus:border-indigo-600 transition-all outline-none appearance-none cursor-pointer"
+                      className="w-full h-20 text-[11px] font-black uppercase tracking-[0.2em] px-8 bg-slate-50 border border-slate-100 rounded-[2rem] text-slate-900 focus:bg-white focus:ring-8 focus:ring-rose-600/5 focus:border-rose-600 transition-all outline-none appearance-none cursor-pointer"
                       value={userUrgency}
                       onChange={(e) => setUserUrgency(e.target.value)}
                     >
@@ -435,14 +435,14 @@ export default function TicketingPortal() {
                     <input 
                       type="number" 
                       placeholder="DAYS" 
-                      className="w-full h-20 text-[11px] font-black uppercase tracking-[0.2em] px-8 bg-slate-50 border border-slate-100 rounded-[2rem] text-slate-900 focus:bg-white focus:ring-8 focus:ring-indigo-600/5 focus:border-indigo-600 transition-all outline-none"
+                      className="w-full h-20 text-[11px] font-black uppercase tracking-[0.2em] px-8 bg-slate-50 border border-slate-100 rounded-[2rem] text-slate-900 focus:bg-white focus:ring-8 focus:ring-rose-600/5 focus:border-rose-600 transition-all outline-none"
                       value={resolutionDays}
                       onChange={(e) => setResolutionDays(e.target.value)}
                     />
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-6 bg-slate-50 p-3 pl-10 rounded-[3rem] border border-slate-100 focus-within:bg-white focus-within:border-indigo-600 focus-within:ring-8 focus-within:ring-indigo-600/5 transition-all group shadow-inner">
+                <div className="flex items-center gap-6 bg-slate-50 p-3 pl-10 rounded-[3rem] border border-slate-100 focus-within:bg-white focus-within:border-rose-600 focus-within:ring-8 focus-within:ring-rose-600/5 transition-all group shadow-inner">
                   <input
                     type="text"
                     className="flex-1 bg-transparent border-none focus:outline-none text-slate-900 font-bold placeholder:text-slate-200 placeholder:text-[11px] placeholder:font-black placeholder:uppercase placeholder:tracking-[0.5em] text-lg h-20"
@@ -454,7 +454,7 @@ export default function TicketingPortal() {
                   <button 
                     onClick={handleSendToAI}
                     disabled={!inputValue.trim() || isTyping}
-                    className="h-20 w-20 bg-indigo-600 text-foreground rounded-[2rem] shadow-2xl shadow-indigo-600/30 disabled:opacity-50 transition-all hover:bg-indigo-500 flex items-center justify-center active:scale-90 group/send"
+                    className="h-20 w-20 bg-rose-600 text-foreground rounded-[2rem] shadow-2xl shadow-rose-600/30 disabled:opacity-50 transition-all hover:bg-rose-500 flex items-center justify-center active:scale-90 group/send"
                   >
                     <Send size={32} className="group-hover/send:translate-x-1 group-hover/send:-translate-y-1 transition-transform stroke-[2.5]" />
                   </button>

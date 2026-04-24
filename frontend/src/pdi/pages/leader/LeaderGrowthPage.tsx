@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { User, userService } from "@pdi/services/userService";
@@ -193,13 +192,22 @@ const LeaderGrowthPage = () => {
         }
         d = d || {};
 
-        const instructionalTools = tryArr(d.instructionalTools || d.instructional_tools || obs.instructionalTools);
-        const genericTools = tryArr(d.tools || obs.tools);
+        const instructionalTools = tryArr(d.instructionalTools || d.instructional_tools || obs.instructionalTools || []);
+        const learningTools = tryArr(d.learningAreaTools || d.learningTools || d.learning_tools || obs.learningTools || []);
+        const culturalTools = tryArr(d.cultureTools || d.culturalTools || d.cultural_tools || obs.culturalTools || []);
+        
+        // If we have specific category counts, we use them.
+        // If we only have the merged obsidian 'tools' column, we only show it as instructional for now
+        // unless we can identify other keys.
+        let genericTools: any[] = [];
+        if (instructionalTools.length === 0 && learningTools.length === 0 && culturalTools.length === 0) {
+            genericTools = tryArr(d.tools || obs.tools || []);
+        }
 
         return {
             instructional: instructionalTools.length + genericTools.length,
-            learning: tryArr(d.learningTools || d.learning_tools || obs.learningTools).length,
-            cultural: tryArr(d.culturalTools || d.cultural_tools || obs.culturalTools).length,
+            learning: learningTools.length,
+            cultural: culturalTools.length,
         };
     };
 
@@ -255,7 +263,7 @@ const LeaderGrowthPage = () => {
                                 <Button
                                     variant="outline"
                                     onClick={() => navigate("/leader/meetings")}
-                                    className="gap-2 border-[#ddd6fe] bg-[#f5f3ff] hover:bg-[#e9e3d8] text-[#4c1d95] shadow-sm font-medium"
+                                    className="gap-2 border-[#c2cca6] bg-[#f4efe6] hover:bg-[#e9e3d8] text-[#3b522d] shadow-sm font-medium"
                                 >
                                     <Users className="w-4 h-4" />
                                     Meetings
@@ -263,7 +271,7 @@ const LeaderGrowthPage = () => {
                                 <Button
                                     variant="outline"
                                     onClick={() => navigate("/leader/notes")}
-                                    className="gap-2 border-[#ddd6fe] bg-[#f5f3ff] hover:bg-[#e9e3d8] text-[#4c1d95] shadow-sm font-medium"
+                                    className="gap-2 border-[#c2cca6] bg-[#f4efe6] hover:bg-[#e9e3d8] text-[#3b522d] shadow-sm font-medium"
                                 >
                                     <FileText className="w-4 h-4" />
                                     Notes
@@ -271,7 +279,7 @@ const LeaderGrowthPage = () => {
                                 <Button
                                     variant="outline"
                                     onClick={() => setIsScheduleOpen(true)}
-                                    className="gap-2 border-[#ddd6fe] bg-[#f5f3ff] hover:bg-[#e9e3d8] text-[#4c1d95] shadow-sm font-medium"
+                                    className="gap-2 border-[#c2cca6] bg-[#f4efe6] hover:bg-[#e9e3d8] text-[#3b522d] shadow-sm font-medium"
                                 >
                                     <Plus className="w-4 h-4" />
                                     Schedule Event/Observations
@@ -316,7 +324,7 @@ const LeaderGrowthPage = () => {
                                                     variant="outline"
                                                     className={
                                                         targetPct >= 100
-                                                            ? "bg-violet-50 text-violet-700 border-violet-200"
+                                                            ? "bg-emerald-50 text-emerald-700 border-emerald-200"
                                                             : targetPct >= 50
                                                                 ? "bg-amber-50 text-amber-700 border-amber-200"
                                                                 : "bg-red-50 text-red-700 border-red-200"
@@ -326,7 +334,7 @@ const LeaderGrowthPage = () => {
                                                 </Badge>
                                                 <Button
                                                     variant="link"
-                                                    className="p-0 h-auto text-[10px] text-violet-600 font-bold group-hover:translate-x-1 transition-transform"
+                                                    className="p-0 h-auto text-[10px] text-emerald-600 font-bold group-hover:translate-x-1 transition-transform"
                                                     onClick={(e) => { e.stopPropagation(); closeAnalytics(); setShowTargetAnalytics(true); }}
                                                 >
                                                     View Full Analytical View →
@@ -348,7 +356,7 @@ const LeaderGrowthPage = () => {
                                             <Wrench className="w-4 h-4 text-blue-600" />
                                         </div>
                                         Avg Tool Usage
-                                        <span className="ml-auto text-[10px] text-violet-600 font-normal hidden sm:inline opacity-0 group-hover:opacity-100 transition-opacity">View Analytics →</span>
+                                        <span className="ml-auto text-[10px] text-emerald-600 font-normal hidden sm:inline opacity-0 group-hover:opacity-100 transition-opacity">View Analytics →</span>
                                     </CardTitle>
                                     <CardDescription className="text-xs">Tools per observation (school-wide)</CardDescription>
                                 </CardHeader>
@@ -376,7 +384,7 @@ const LeaderGrowthPage = () => {
                                             <div className="pt-1">
                                                 <Button
                                                     variant="link"
-                                                    className="p-0 h-auto text-xs text-violet-600 font-semibold group-hover:underline"
+                                                    className="p-0 h-auto text-xs text-emerald-600 font-semibold group-hover:underline"
                                                     onClick={(e) => { e.stopPropagation(); closeAnalytics(); setShowToolAnalytics(true); }}
                                                 >
                                                     View Full Analytics →
@@ -396,8 +404,8 @@ const LeaderGrowthPage = () => {
                             >
                                 <CardHeader className="pb-2">
                                     <CardTitle className="flex items-center gap-2 text-base font-semibold">
-                                        <div className="p-1.5 rounded-lg bg-violet-500/10">
-                                            <BarChart3 className="w-4 h-4 text-violet-600" />
+                                        <div className="p-1.5 rounded-lg bg-emerald-500/10">
+                                            <BarChart3 className="w-4 h-4 text-emerald-600" />
                                         </div>
                                         Avg Obs Score
                                     </CardTitle>
@@ -409,7 +417,7 @@ const LeaderGrowthPage = () => {
                                     ) : (
                                         <div className="space-y-3">
                                             <div className="flex items-end gap-2">
-                                                <span className="text-5xl font-black text-violet-600 leading-none">{avgScore}</span>
+                                                <span className="text-5xl font-black text-emerald-600 leading-none">{avgScore}</span>
                                                 {avgScore !== "—" && <span className="text-muted-foreground text-sm mb-1">/4</span>}
                                             </div>
                                             <p className="text-xs text-muted-foreground">
@@ -498,7 +506,7 @@ const LeaderGrowthPage = () => {
                                                             <Progress value={pct} className="h-2" />
                                                             <div className="flex justify-between text-[10px] font-bold capitalize tracking-wider text-muted-foreground">
                                                                 <span>{pct}% Target Completion</span>
-                                                                <span className={pct >= 100 ? "text-violet-600" : "text-amber-600"}>
+                                                                <span className={pct >= 100 ? "text-emerald-600" : "text-amber-600"}>
                                                                     {pct >= 100 ? "Met" : `${OBSERVATION_TARGET - obs.count} remaining`}
                                                                 </span>
                                                             </div>
@@ -562,7 +570,7 @@ const LeaderGrowthPage = () => {
                                             {/* Tool Usage Over Observations List */}
                                             <div className="bg-zinc-50 rounded-2xl p-6">
                                                 <h4 className="font-bold text-sm mb-4 flex items-center gap-2">
-                                                    <BarChart3 className="w-4 h-4 text-muted-foreground" />
+                                                    <BarChart3 className="w-4 h-4 text-zinc-400" />
                                                     Observation Tool Breakdown
                                                 </h4>
                                                 <div className="space-y-3">
@@ -635,12 +643,12 @@ const LeaderGrowthPage = () => {
                                                                 <div className="flex-1">
                                                                     <div className="h-2 rounded-full bg-muted overflow-hidden">
                                                                         <div
-                                                                            className={`h-full rounded-full transition-all duration-500 ${score >= 3 ? 'bg-violet-500' : score >= 2 ? 'bg-amber-500' : 'bg-red-500'}`}
+                                                                            className={`h-full rounded-full transition-all duration-500 ${score >= 3 ? 'bg-emerald-500' : score >= 2 ? 'bg-amber-500' : 'bg-red-500'}`}
                                                                             style={{ width: `${pct}%` }}
                                                                         />
                                                                     </div>
                                                                 </div>
-                                                                <span className={`text-sm font-bold w-10 text-right tabular-nums ${score >= 3 ? 'text-violet-600' : score >= 2 ? 'text-amber-600' : 'text-red-600'}`}>
+                                                                <span className={`text-sm font-bold w-10 text-right tabular-nums ${score >= 3 ? 'text-emerald-600' : score >= 2 ? 'text-amber-600' : 'text-red-600'}`}>
                                                                     {avg}
                                                                 </span>
                                                             </div>
@@ -677,7 +685,7 @@ const LeaderGrowthPage = () => {
                                 </p>
                             </div>
                             <div className={`px-4 py-2 rounded-xl text-sm font-bold shadow-sm ${selectedTeacher.academics === 'CORE'
-                                ? 'bg-violet-100 text-blue-700 border border-blue-200'
+                                ? 'bg-blue-100 text-blue-700 border border-blue-200'
                                 : 'bg-purple-100 text-purple-700 border border-purple-200'
                                 }`}>
                                 {selectedTeacher.academics === 'CORE' ? 'Ekya ED Track' : 'Specialist Track'}
@@ -703,7 +711,7 @@ const LeaderGrowthPage = () => {
                                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                                             {[
                                                 { label: "Total Observations", value: observations.length, color: "text-primary" },
-                                                { label: "Avg Score", value: `${avg}${avg !== "—" ? " /4" : ""}`, color: "text-violet-600" },
+                                                { label: "Avg Score", value: `${avg}${avg !== "—" ? " /4" : ""}`, color: "text-emerald-600" },
                                                 { label: "Modules Observed", value: modules.length, color: "text-blue-600" },
                                                 { label: "Latest Observation", value: latest, color: "text-muted-foreground" },
                                             ].map(({ label, value, color }) => (
@@ -744,7 +752,7 @@ const LeaderGrowthPage = () => {
                                                 'QUICK_FEEDBACK': '#8b5cf6',
                                                 'PERFORMING_ARTS': '#ec4899',
                                                 'LIFE_SKILLS': '#f59e0b',
-                                                'PE': '#8b5cf6',
+                                                'PE': '#10b981',
                                                 'VISUAL_ARTS': '#f97316',
                                                 'General': '#6b7280',
                                             };
@@ -777,13 +785,13 @@ const LeaderGrowthPage = () => {
                                                         <YAxis domain={[0, 4]} ticks={[0, 1, 2, 3, 4]} tick={{ fontSize: 11 }} />
                                                         <Tooltip
                                                             contentStyle={{ fontSize: 12, borderRadius: 8 }}
-                                                            formatter={(value: any, name: string) => [
+                                                            formatter={(value: any, name: string | undefined) => [
                                                                 `${value} / 4`,
-                                                                name.replace(/_/g, ' ')
+                                                                (name || '').replace(/_/g, ' ')
                                                             ]}
                                                         />
                                                         <Legend
-                                                            formatter={(value) => value.replace(/_/g, ' ')}
+                                                            formatter={(value: string) => value.replace(/_/g, ' ')}
                                                             wrapperStyle={{ fontSize: 11 }}
                                                         />
                                                         {modules.map((m: string) => (

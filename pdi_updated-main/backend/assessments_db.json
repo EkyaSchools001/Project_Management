@@ -1,0 +1,26 @@
+[
+  {
+    "id": "3695abd6-ce45-42a2-9386-9a9012ec7c1c",
+    "title": "Ekya Professional Standards & Pedagogy",
+    "type": "POST_ORIENTATION",
+    "createdById": "a8e9dd2e-f3bc-41c4-b0a7-74f1dc8caffc"
+  },
+  {
+    "id": "daa140b1-ba25-4009-b04f-ce0b2df5ee4d",
+    "title": "Ekya End Orientation Assessment (Senior)",
+    "type": "POST_ORIENTATION",
+    "createdById": "a8e9dd2e-f3bc-41c4-b0a7-74f1dc8caffc"
+  },
+  {
+    "id": "cdab4623-fbdc-4167-9fe7-9c9f8e073c95",
+    "title": "Ekya End Orientation Assessment (Primary & Middle)",
+    "type": "POST_ORIENTATION",
+    "createdById": "a8e9dd2e-f3bc-41c4-b0a7-74f1dc8caffc"
+  },
+  {
+    "id": "4afd86ad-8eb8-4d6a-a59e-dd4b99d1a5f3",
+    "title": "Ekya Academic Orientation",
+    "type": "ACADEMIC_ORIENTATION",
+    "createdById": "a8e9dd2e-f3bc-41c4-b0a7-74f1dc8caffc"
+  }
+]

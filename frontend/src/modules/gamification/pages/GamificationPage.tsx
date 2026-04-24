@@ -80,7 +80,7 @@ export default function GamificationPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="w-8 h-8 border-3 border-[#8b5cf6] border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-3 border-[#ef4444] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -100,7 +100,7 @@ export default function GamificationPage() {
         {stats && (
           <div className="flex items-center gap-6 px-6 py-3 bg-[#161B22] border border-white/5 rounded-2xl">
             <div className="flex items-center gap-2">
-              <Zap size={20} className="text-[#8b5cf6]" />
+              <Zap size={20} className="text-[#ef4444]" />
               <div>
                 <p className="text-xs text-foreground/40">Total Points</p>
                 <p className="text-xl font-black text-foreground">{stats.totalPoints.toLocaleString()}</p>
@@ -125,8 +125,8 @@ export default function GamificationPage() {
           <Card className="bg-[#161B22] border-white/5 p-6 rounded-2xl">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-foreground flex items-center gap-3">
-                <div className="w-10 h-10 bg-purple-500/10 rounded-xl flex items-center justify-center">
-                  <Award size={20} className="text-purple-400" />
+                <div className="w-10 h-10 bg-red-500/10 rounded-xl flex items-center justify-center">
+                  <Award size={20} className="text-red-400" />
                 </div>
                 Badges
               </h2>
@@ -168,8 +168,8 @@ export default function GamificationPage() {
             <Card className="bg-[#161B22] border-white/5 p-6 rounded-2xl">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-foreground flex items-center gap-3">
-                  <div className="w-10 h-10 bg-violet-500/10 rounded-xl flex items-center justify-center">
-                    <Target size={20} className="text-blue-400" />
+                  <div className="w-10 h-10 bg-red-500/10 rounded-xl flex items-center justify-center">
+                    <Target size={20} className="text-red-400" />
                   </div>
                   Active Challenges
                 </h2>
@@ -195,7 +195,7 @@ export default function GamificationPage() {
             <div className="space-y-4">
               <div className="flex items-center justify-between p-3 bg-white/5 rounded-xl">
                 <span className="text-sm text-foreground/60">Total Points</span>
-                <span className="font-black text-[#8b5cf6]">{stats?.totalPoints?.toLocaleString() || 0}</span>
+                <span className="font-black text-[#ef4444]">{stats?.totalPoints?.toLocaleString() || 0}</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-white/5 rounded-xl">
                 <span className="text-sm text-foreground/60">Current Level</span>

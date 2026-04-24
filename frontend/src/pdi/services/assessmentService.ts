@@ -36,7 +36,7 @@ export const assessmentService = {
     // Admin/Leader: Fetch all templates
     async getAllAssessments() {
         const response = await api.get('/assessments');
-        return response.data.data.assessments;
+        return response.data.data?.assessments ?? [];
     },
 
     // Admin/Leader: Create new assessment
@@ -54,7 +54,7 @@ export const assessmentService = {
     // Admin/Leader: Assign to group
     async assignAssessment(assessmentId: string, targetIds: string[], assignToType: 'USER' | 'CAMPUS' | 'ROLE') {
         const response = await api.post(`/assessments/${assessmentId}/assign`, { targetIds, assignToType });
-        return response.data.data.assignments;
+        return response.data.data?.assignments ?? [];
     },
 
     // Teacher: Get assigned assessments & attempts
@@ -96,6 +96,6 @@ export const assessmentService = {
     // AI: Generate questions
     async generateAIQuestions(prompt: string, count: number = 5) {
         const response = await api.post('/ai/generate-questions', { prompt, count });
-        return response.data.data.questions;
+        return response.data.data?.questions ?? [];
     }
 };

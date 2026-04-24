@@ -1,4 +1,4 @@
-import { cn } from "@pdi/lib/utils";
+﻿import { cn } from "@pdi/lib/utils";
 import { User, Sparkles } from "lucide-react";
 
 interface ChatBubbleProps {
@@ -35,7 +35,7 @@ export function ChatBubble({ role, content }: ChatBubbleProps) {
         )}>
             {isAssistant && (
                 <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center shrink-0 shadow-sm">
-                    <Sparkles className="w-4 h-4 text-foreground" />
+                    <Sparkles className="w-4 h-4 text-white" />
                 </div>
             )}
             
@@ -43,7 +43,7 @@ export function ChatBubble({ role, content }: ChatBubbleProps) {
                 "max-w-[85%] px-4 py-3 rounded-2xl text-sm shadow-sm",
                 isAssistant 
                     ? "bg-white border border-indigo-100 text-slate-700 rounded-tl-none" 
-                    : "bg-indigo-600 text-foreground rounded-tr-none"
+                    : "bg-indigo-600 text-white rounded-tr-none"
             )}>
                 {formatContent(content)}
             </div>

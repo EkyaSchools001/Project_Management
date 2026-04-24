@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@pdi/lib/utils";
 import { useIsMobile } from "@pdi/hooks/use-mobile";
+import { useAuth } from "@pdi/hooks/useAuth";
 import {
   SquaresFour,
   ChartLineUp,
@@ -12,18 +13,31 @@ import {
   CaretLeft,
   Student,
   X,
+  Buildings,
   Heartbeat,
   Bell,
   ShieldCheck,
+  MagnifyingGlass,
   ClipboardText,
+  CalendarBlank,
+  ChartBar,
+  Lightning,
+  BookOpen,
   Clock,
-  Cpu,
+  Target,
+  House,
+  Presentation,
+  ChatCircleDots,
+  Globe,
+  Ticket,
+  Desktop,
+  Link,
 } from "@phosphor-icons/react";
-import { Role } from "../RoleBadge";
+import { Role, RoleBadge } from "../RoleBadge";
 import { Button } from "../ui/button";
 import { useAccessControl } from "@pdi/hooks/useAccessControl";
 import { SidebarAccordionItem, SidebarModule } from "./SidebarAccordionItem";
-
+import { Input } from "../ui/input";
 
 interface DashboardSidebarProps {
   role: Role;
@@ -35,21 +49,30 @@ interface DashboardSidebarProps {
   isHoverMode?: boolean;
 }
 
-
 export function DashboardSidebar({
   role,
   userName,
   collapsed,
   onToggle,
   searchQuery,
-  setSearchQuery: _setSearchQuery,
+  setSearchQuery,
   isHoverMode = false
 }: DashboardSidebarProps) {
   const { isModuleEnabled } = useAccessControl();
+  const { logout } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   const isMobile = useIsMobile();
   const [unreadAnnouncements, setUnreadAnnouncements] = useState(0);
   const [openModule, setOpenModule] = useState<string | null>("Dashboard");
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } finally {
+      navigate('/', { replace: true });
+    }
+  };
 
   useEffect(() => {
     const fetchUnread = async () => {
@@ -66,171 +89,281 @@ export function DashboardSidebar({
 
   // Role-based navigation configuration (Unified into a single 'Leader' style view)
   const getNavByRole = (role: string): SidebarModule[] => {
-    const r = role.toLowerCase();
+    const rawRole = (role || "").toUpperCase().replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
 
-    if (r === "teacher") {
+    const isTeacher = rawRole.includes('TEACHER') || rawRole === 'TEACHER';
+    const isLeader = rawRole.includes('SCHOOL LEADER') || rawRole === 'LEADER';
+    const isManagement = rawRole.includes('MANAGEMENT') || rawRole === 'MANAGEMENT';
+    const isCoordinator = rawRole.includes('COORDINATOR') || rawRole === 'COORDINATOR';
+    const isAdmin = rawRole.includes('ADMIN') || rawRole.includes('ELC') || rawRole.includes('PDI');
+    const isSuperAdmin = rawRole === 'SUPERADMIN';
+    const isTester = rawRole === 'TESTER';
+
+    // Unified Sub-modules for Educator Hub
+    const eduHubSubModules = [
+      { title: "Home", path: "/departments/pd/edu-hub", icon: House },
+      { title: "Who we are", path: "/departments/pd/edu-hub/who-we-are", icon: UsersThree },
+      { title: "My campus", path: "/departments/pd/edu-hub/my-campus", icon: Buildings },
+      { title: "Teaching", path: "/departments/pd/edu-hub/teaching", icon: GraduationCap },
+      { title: "My classroom", path: "/departments/pd/edu-hub/my-classroom", icon: Presentation },
+      { title: "Interactions", path: "/departments/pd/edu-hub/interactions", icon: ChatCircleDots },
+      { title: "Tickets", path: "/departments/pd/edu-hub/tickets", icon: Ticket },
+      { title: "Grow", path: "/departments/pd/edu-hub/grow", icon: ChartLineUp },
+    ];
+
+
+    if (isTeacher) {
       return [
+        {
+          title: "Educator Hub",
+          icon: Lightning,
+          subModules: eduHubSubModules,
+        },
         {
           title: "Dashboard",
           icon: SquaresFour,
           subModules: [
-            { title: "Overview", path: "/teacher" },
-            { title: "Progress Dashboard", path: "/okr" },
-            { title: "My Portfolio", path: "/portfolio" },
+            { title: "Overview", path: "/departments/pd/teacher" },
+            { title: "Progress Dashboard", path: "/departments/pd/okr" },
+            { title: "My Portfolio", path: "/departments/pd/portfolio" },
           ],
         },
         {
           title: "Observation",
           icon: ChartLineUp,
           subModules: [
-            { title: "Observations", path: "/teacher/observations" },
-            { title: "Goals", path: "/teacher/goals" },
+            { title: "Observations", path: "/departments/pd/teacher/observations" },
+            { title: "Goals", path: "/departments/pd/teacher/goals" },
           ],
         },
         {
           title: "Courses",
           icon: GraduationCap,
           subModules: [
-            { title: "Course Catalogue", path: "/teacher/courses" },
-            { title: "Assessments", path: "/teacher/courses/assessments" },
-            { title: "Learning Festival", path: "/teacher/festival" },
-            { title: "MOOC Evidence", path: "/teacher/mooc" },
+            { title: "Course Catalogue", path: "/departments/pd/teacher/courses" },
+            { title: "Assessments", path: "/departments/pd/teacher/courses/assessments" },
+            { title: "Learning Festival", path: "/departments/pd/teacher/festival" },
+            { title: "MOOC Evidence", path: "/departments/pd/teacher/mooc" },
           ],
         },
         {
           title: "Training",
           icon: Clock,
           subModules: [
-            { title: "Training Calendar", path: "/teacher/calendar" },
-            { title: "Training Hours", path: "/teacher/hours" },
+            { title: "Training Calendar", path: "/departments/pd/teacher/calendar" },
+            { title: "Training Hours", path: "/departments/pd/teacher/hours" },
           ],
         },
         {
           title: "Engagement",
           icon: Bell,
           subModules: [
-            { title: "Meetings", path: "/meetings" },
-            { title: "Survey", path: "/teacher/survey" },
-            { title: "Announcements", path: "/announcements", badge: unreadAnnouncements },
+            { title: "Meetings", path: "/departments/pd/teacher/meetings" },
+            { title: "Survey", path: "/departments/pd/teacher/survey" },
+            { title: "Announcements", path: "/departments/pd/announcements", badge: unreadAnnouncements },
           ],
         },
         {
           title: "Records",
           icon: ClipboardText,
-          subModules: [{ title: "Attendance", path: "/teacher/attendance" }],
+          subModules: [{ title: "Attendance", path: "/departments/pd/teacher/attendance" }],
+        },
+        {
+          title: "HR & WellBeing",
+          icon: UsersThree,
+          subModules: [
+            { title: "Resources", path: "/departments/pd/hr/resources" },
+            { title: "Educator Essentials", path: "/departments/pd/hr/educator-essentials" },
+            { title: "Educator Guide", path: "/departments/pd/hr/educator-guide" },
+            { title: "WellBeing", path: "/departments/pd/hr/wellbeing" },
+          ],
+        },
+        {
+          title: "Technology",
+          icon: Desktop,
+          subModules: [
+            { title: "Educator Site", path: "/departments/pd/technology/tech-sites-login", icon: Link },
+            { title: "GreytHR", path: "/departments/pd/technology/greythr" },
+            { title: "Schoology", path: "/departments/pd/technology/schoology" },
+            { title: "Google Workspace", path: "/departments/pd/technology/google-workspace" },
+            { title: "Zoom", path: "/departments/pd/technology/zoom" },
+            { title: "Slack", path: "/departments/pd/technology/slack" },
+            { title: "Email Signature Templates", path: "/departments/pd/technology/email-signature-templates" },
+            { title: "Ekyaverse-Neverskip", path: "/departments/pd/technology/ekyaverse" },
+            { title: "Audit & Reports", path: "/departments/pd/technology/audit" },
+          ],
         },
         {
           title: "Profile",
           icon: UsersThree,
-          subModules: [{ title: "My Profile", path: "/teacher/profile" }],
+          subModules: [{ title: "My Profile", path: "/departments/pd/teacher/profile" }],
         },
       ];
     }
 
-    if (r === "school_leader" || r === "leader") {
+    if (isTester) {
       return [
+        {
+          title: "Educator Hub",
+          icon: Lightning,
+          subModules: eduHubSubModules,
+        },
+        {
+          title: "HR & WellBeing",
+          icon: UsersThree,
+          subModules: [
+            { title: "Resources", path: "/departments/pd/hr/resources" },
+            { title: "Educator Essentials", path: "/departments/pd/hr/educator-essentials" },
+            { title: "Educator Guide", path: "/departments/pd/hr/educator-guide" },
+            { title: "WellBeing", path: "/departments/pd/hr/wellbeing" },
+          ],
+        },
+        {
+          title: "Technology",
+          icon: Desktop,
+          subModules: [
+            { title: "Educator Site", path: "/departments/pd/technology/tech-sites-login", icon: Link },
+            { title: "GreytHR", path: "/departments/pd/technology/greythr" },
+            { title: "Schoology", path: "/departments/pd/technology/schoology" },
+            { title: "Google Workspace", path: "/departments/pd/technology/google-workspace" },
+            { title: "Zoom", path: "/departments/pd/technology/zoom" },
+            { title: "Slack", path: "/departments/pd/technology/slack" },
+            { title: "Email Signature Templates", path: "/departments/pd/technology/email-signature-templates" },
+            { title: "Ekyaverse-Neverskip", path: "/departments/pd/technology/ekyaverse" },
+            { title: "Audit & Reports", path: "/departments/pd/technology/audit" },
+          ],
+        },
+      ];
+    }
+
+    if (isLeader) {
+      return [
+        {
+          title: "Educator Hub",
+          icon: Lightning,
+          subModules: eduHubSubModules,
+        },
         {
           title: "Dashboard",
           icon: SquaresFour,
           subModules: [
-            { title: "Overview", path: "/leader" },
-            { title: "Performance", path: "/leader/performance" },
-            { title: "Progress Dashboard", path: "/okr" },
-            { title: "Portfolio", path: "/portfolio" },
+            { title: "Overview", path: "/departments/pd/leader" },
+            { title: "Performance", path: "/departments/pd/leader/performance" },
+            { title: "Progress Dashboard", path: "/departments/pd/okr" },
+            { title: "Portfolio", path: "/departments/pd/portfolio" },
           ],
         },
         {
           title: "Observation & Performance",
           icon: ChartLineUp,
           subModules: [
-            { title: "Observations", path: "/leader/growth" },
-            { title: "Goals", path: "/leader/goals" },
+            { title: "Observations", path: "/departments/pd/leader/growth" },
+            { title: "Goals", path: "/departments/pd/leader/goals" },
           ],
         },
         {
           title: "Team Management",
           icon: UsersThree,
           subModules: [
-            { title: "Team Overview", path: "/leader/team" },
-            { title: "User Management", path: "/leader/users" },
+            { title: "Team Overview", path: "/departments/pd/leader/team" },
+            { title: "User Management", path: "/departments/pd/leader/users" },
           ],
         },
         {
           title: "Courses",
           icon: GraduationCap,
           subModules: [
-            { title: "Course Catalogue", path: "/leader/courses" },
-            { title: "Assessments", path: "/leader/courses/assessments" },
-            { title: "Learning Festival", path: "/leader/festival" },
-            { title: "MOOC Evidence", path: "/leader/mooc" },
+            { title: "Course Catalogue", path: "/departments/pd/leader/courses" },
+            { title: "Assessments", path: "/departments/pd/leader/courses/assessments" },
+            { title: "Learning Festival", path: "/departments/pd/leader/festival" },
+            { title: "MOOC Evidence", path: "/departments/pd/leader/mooc" },
           ],
         },
         {
           title: "Training",
           icon: Clock,
           subModules: [
-            { title: "TD Participation", path: "/leader/participation" },
-            { title: "Learning Insights", path: "/leader/insights" },
-            { title: "Training Calendar", path: "/leader/calendar" },
+            { title: "TD Participation", path: "/departments/pd/leader/participation" },
+            { title: "Learning Insights", path: "/departments/pd/leader/insights" },
+            { title: "Training Calendar", path: "/departments/pd/leader/calendar" },
           ],
         },
         {
           title: "Operations",
           icon: Gear,
           subModules: [
-            { title: "Attendance Register", path: "/leader/attendance" },
-            { title: "Meetings", path: "/meetings" },
-            { title: "Reports", path: "/leader/reports" },
-            { title: "Survey", path: "/leader/survey" },
-            { title: "Announcements", path: "/announcements", badge: unreadAnnouncements },
-            { title: "Form Templates", path: "/leader/forms" },
-            { title: "Settings", path: "/leader/settings" },
+            { title: "Attendance Register", path: "/departments/pd/leader/attendance" },
+            { title: "Meetings", path: "/departments/pd/leader/meetings" },
+            { title: "Reports", path: "/departments/pd/leader/reports" },
+            { title: "Survey", path: "/departments/pd/leader/survey" },
+            { title: "Announcements", path: "/departments/pd/announcements", badge: unreadAnnouncements },
+            { title: "Form Templates", path: "/departments/pd/leader/forms" },
+            { title: "Settings", path: "/departments/pd/leader/settings" },
           ],
         },
         {
-          title: "Smart Campus",
-          icon: Cpu,
+          title: "HR & WellBeing",
+          icon: UsersThree,
           subModules: [
-            { title: "IoT Dashboard", path: "/iot" },
-            { title: "Attendance", path: "/iot/attendance" },
-            { title: "Room Booking", path: "/iot/rooms" },
-            { title: "Visitors", path: "/iot/visitors" },
-            { title: "Maintenance", path: "/iot/maintenance" },
+            { title: "Resources", path: "/departments/pd/hr/resources" },
+            { title: "Educator Essentials", path: "/departments/pd/hr/educator-essentials" },
+            { title: "Educator Guide", path: "/departments/pd/hr/educator-guide" },
+            { title: "WellBeing", path: "/departments/pd/hr/wellbeing" },
+          ],
+        },
+        {
+          title: "Technology",
+          icon: Desktop,
+          subModules: [
+            { title: "Educator Site", path: "/departments/pd/technology/tech-sites-login", icon: Link },
+            { title: "GreytHR", path: "/departments/pd/technology/greythr" },
+            { title: "Schoology", path: "/departments/pd/technology/schoology" },
+            { title: "Google Workspace", path: "/departments/pd/technology/google-workspace" },
+            { title: "Zoom", path: "/departments/pd/technology/zoom" },
+            { title: "Slack", path: "/departments/pd/technology/slack" },
+            { title: "Email Signature Templates", path: "/departments/pd/technology/email-signature-templates" },
+            { title: "Ekyaverse-Neverskip", path: "/departments/pd/technology/ekyaverse" },
+            { title: "Audit & Reports", path: "/departments/pd/technology/audit" },
           ],
         },
       ];
     }
 
-    if (r === "admin" || r === "superadmin") {
+    if (isAdmin || isSuperAdmin) {
       const baseNav: SidebarModule[] = [
         {
-          title: "Dashboard",
+          title: "Educator Hub",
+          icon: Lightning,
+          subModules: eduHubSubModules,
+        },
+        {
+          title: "Super Admin Console",
           icon: SquaresFour,
           subModules: [
-            { title: "Overview", path: "/admin" },
-            { title: "Progress Dashboard", path: "/okr" },
-            { title: "Portfolio", path: "/portfolio" },
+            { title: "Overview", path: "/departments/pd/admin" },
+            { title: "Progress Dashboard", path: "/departments/pd/okr" },
+            { title: "Portfolio", path: "/departments/pd/portfolio" },
           ],
         },
         {
           title: "Observation & Goals",
           icon: ChartLineUp,
           subModules: [
-            { title: "Observations", path: "/admin/growth-analytics" },
-            { title: "Goals", path: "/admin/goals" },
+            { title: "Observations", path: "/departments/pd/admin/growth-analytics" },
+            { title: "Goals", path: "/departments/pd/admin/goals" },
           ],
         },
       ];
 
-      if (r === "superadmin") {
+      if (isSuperAdmin) {
         baseNav.push({
-          title: "User & Configuration",
+          title: "Administration & Settings",
           icon: ShieldCheck,
           subModules: [
-            { title: "User Management", path: "/admin/users" },
-            { title: "Settings", path: "/admin/settings" },
-            { title: "SuperAdmin Console", path: "/admin/superadmin" },
-            { title: "Form Templates", path: "/admin/forms" },
+            { title: "User Management", path: "/departments/pd/admin/users" },
+            { title: "Settings", path: "/departments/pd/admin/settings" },
+            { title: "SuperAdmin Console", path: "/departments/pd/admin/superadmin" },
+            { title: "Form Templates", path: "/departments/pd/admin/forms" },
           ],
         });
       } else {
@@ -238,8 +371,8 @@ export function DashboardSidebar({
           title: "User & Forms",
           icon: UsersThree,
           subModules: [
-            { title: "User Management", path: "/admin/users" },
-            { title: "Form Templates", path: "/admin/forms" },
+            { title: "User Management", path: "/departments/pd/admin/users" },
+            { title: "Form Templates", path: "/departments/pd/admin/forms" },
           ],
         });
       }
@@ -249,99 +382,232 @@ export function DashboardSidebar({
           title: "Courses",
           icon: GraduationCap,
           subModules: [
-            { title: "Course Catalogue", path: "/admin/courses" },
-            { title: "Assessments", path: "/admin/courses/assessments" },
-            { title: "Learning Festival", path: "/admin/festival" },
-            { title: "MOOC Evidence", path: "/admin/mooc" },
+            { title: "Course Catalogue", path: "/departments/pd/admin/courses" },
+            { title: "Assessments", path: "/departments/pd/admin/courses/assessments" },
+            { title: "Learning Festival", path: "/departments/pd/admin/festival" },
+            { title: "MOOC Evidence", path: "/departments/pd/admin/mooc" },
           ],
         },
         {
           title: "Training",
           icon: Clock,
           subModules: [
-            { title: "Training Calendar", path: "/admin/calendar" },
-            { title: "Training Hours", path: "/admin/hours" },
+            { title: "Training Calendar", path: "/departments/pd/admin/calendar" },
+            { title: "Training Hours", path: "/departments/pd/admin/hours" },
           ],
         },
         {
           title: "Operations",
           icon: Gear,
           subModules: [
-            { title: "Attendance Register", path: "/admin/attendance" },
-            { title: "Meetings", path: "/meetings" },
-            { title: "Reports", path: "/admin/reports" },
-            { title: "Survey", path: "/admin/survey" },
-            { title: "Announcements", path: "/announcements", badge: unreadAnnouncements },
+            { title: "Attendance Register", path: "/departments/pd/admin/attendance" },
+            { title: "Meetings", path: "/departments/pd/admin/meetings" },
+            { title: "Reports", path: "/departments/pd/admin/reports" },
+            { title: "Survey", path: "/departments/pd/admin/survey" },
+            { title: "Announcements", path: "/departments/pd/announcements", badge: unreadAnnouncements },
           ],
         },
         {
-          title: "Smart Campus",
-          icon: Cpu,
+          title: "HR & WellBeing",
+          icon: UsersThree,
           subModules: [
-            { title: "IoT Dashboard", path: "/iot" },
-            { title: "Attendance", path: "/iot/attendance" },
-            { title: "Room Booking", path: "/iot/rooms" },
-            { title: "Visitors", path: "/iot/visitors" },
-            { title: "Maintenance", path: "/iot/maintenance" },
+            { title: "Resources", path: "/departments/pd/hr/resources" },
+            { title: "Educator Essentials", path: "/departments/pd/hr/educator-essentials" },
+            { title: "Educator Guide", path: "/departments/pd/hr/educator-guide" },
+            { title: "WellBeing", path: "/departments/pd/hr/wellbeing" },
           ],
-        }
+        },
+        {
+          title: "Technology",
+          icon: Desktop,
+          subModules: [
+            { title: "Educator Site", path: "/departments/pd/technology/tech-sites-login", icon: Link },
+            { title: "GreytHR", path: "/departments/pd/technology/greythr" },
+            { title: "Schoology", path: "/departments/pd/technology/schoology" },
+            { title: "Google Workspace", path: "/departments/pd/technology/google-workspace" },
+            { title: "Zoom", path: "/departments/pd/technology/zoom" },
+            { title: "Slack", path: "/departments/pd/technology/slack" },
+            { title: "Email Signature Templates", path: "/departments/pd/technology/email-signature-templates" },
+            { title: "Ekyaverse-Neverskip", path: "/departments/pd/technology/ekyaverse" },
+            { title: "Audit & Reports", path: "/departments/pd/technology/audit" },
+          ],
+        },
       );
 
       return baseNav;
     }
 
-    if (r === "management") {
+    if (isCoordinator) {
       return [
+        {
+          title: "Educator Hub",
+          icon: Lightning,
+          subModules: eduHubSubModules,
+        },
         {
           title: "Dashboard",
           icon: SquaresFour,
           subModules: [
-            { title: "Overview", path: "/management/overview" },
+            { title: "Overview", path: "/departments/pd/leader" },
+            { title: "Performance", path: "/departments/pd/leader/performance" },
+            { title: "Progress Dashboard", path: "/departments/pd/okr" },
+            { title: "Portfolio", path: "/departments/pd/portfolio" },
+          ],
+        },
+        {
+          title: "Observation & Performance",
+          icon: ChartLineUp,
+          subModules: [
+            { title: "Observations", path: "/departments/pd/leader/growth" },
+            { title: "Goals", path: "/departments/pd/leader/goals" },
+          ],
+        },
+        {
+          title: "Team Management",
+          icon: UsersThree,
+          subModules: [
+            { title: "Team Overview", path: "/departments/pd/leader/team" },
+          ],
+        },
+        {
+          title: "Courses",
+          icon: GraduationCap,
+          subModules: [
+            { title: "Course Catalogue", path: "/departments/pd/leader/courses" },
+            { title: "Assessments", path: "/departments/pd/leader/courses/assessments" },
+            { title: "Learning Festival", path: "/departments/pd/leader/festival" },
+            { title: "MOOC Evidence", path: "/departments/pd/leader/mooc" },
+          ],
+        },
+        {
+          title: "Training",
+          icon: Clock,
+          subModules: [
+            { title: "TD Participation", path: "/departments/pd/leader/participation" },
+            { title: "Learning Insights", path: "/departments/pd/leader/insights" },
+            { title: "Training Calendar", path: "/departments/pd/leader/calendar" },
+          ],
+        },
+        {
+          title: "Operations",
+          icon: Gear,
+          subModules: [
+            { title: "Attendance Register", path: "/departments/pd/leader/attendance" },
+            { title: "Meetings", path: "/departments/pd/leader/meetings" },
+            { title: "Reports", path: "/departments/pd/leader/reports" },
+            { title: "Survey", path: "/departments/pd/leader/survey" },
+            { title: "Announcements", path: "/departments/pd/announcements", badge: unreadAnnouncements },
+          ],
+        },
+        {
+          title: "HR & WellBeing",
+          icon: UsersThree,
+          subModules: [
+            { title: "Resources", path: "/departments/pd/hr/resources" },
+            { title: "Educator Essentials", path: "/departments/pd/hr/educator-essentials" },
+            { title: "Educator Guide", path: "/departments/pd/hr/educator-guide" },
+            { title: "WellBeing", path: "/departments/pd/hr/wellbeing" },
+          ],
+        },
+        {
+          title: "Technology",
+          icon: Desktop,
+          subModules: [
+            { title: "Educator Site", path: "/departments/pd/technology/tech-sites-login", icon: Link },
+            { title: "GreytHR", path: "/departments/pd/technology/greythr" },
+            { title: "Schoology", path: "/departments/pd/technology/schoology" },
+            { title: "Google Workspace", path: "/departments/pd/technology/google-workspace" },
+            { title: "Zoom", path: "/departments/pd/technology/zoom" },
+            { title: "Slack", path: "/departments/pd/technology/slack" },
+            { title: "Email Signature Templates", path: "/departments/pd/technology/email-signature-templates" },
+            { title: "Ekyaverse-Neverskip", path: "/departments/pd/technology/ekyaverse" },
+            { title: "Audit & Reports", path: "/departments/pd/technology/audit" },
+          ],
+        },
+      ];
+    }
+
+    if (isManagement) {
+      return [
+        {
+          title: "Educator Hub",
+          icon: Lightning,
+          subModules: eduHubSubModules,
+        },
+        {
+          title: "Dashboard",
+          icon: SquaresFour,
+          subModules: [
+            { title: "Overview", path: "/departments/pd/management/overview" },
           ],
         },
         {
           title: "Observation & Goals",
           icon: ChartLineUp,
           subModules: [
-            { title: "Observations", path: "/management/growth-analytics" },
-            { title: "Goals", path: "/management/goals" },
-            { title: "Progress Dashboard", path: "/okr" },
-            { title: "Staff Portfolios", path: "/portfolio" },
+            { title: "Observations", path: "/departments/pd/management/growth-analytics" },
+            { title: "Goals", path: "/departments/pd/management/goals" },
+            { title: "Progress Dashboard", path: "/departments/pd/okr" },
+            { title: "Staff Portfolios", path: "/departments/pd/portfolio" },
           ],
         },
         {
           title: "Performance Analytics",
           icon: Heartbeat,
           subModules: [
-            { title: "PDI Health Index", path: "/management/pdi-health" },
-            { title: "Campus Performance", path: "/management/campus-performance" },
-            { title: "Academic TD Impact", path: "/management/pd-impact" },
-            { title: "Training Hours", path: "/management/hours" },
+            { title: "PDI Health Index", path: "/departments/pd/management/pdi-health" },
+            { title: "Campus Performance", path: "/departments/pd/management/campus-performance" },
+            { title: "Academic TD Impact", path: "/departments/pd/management/pd-impact" },
+            { title: "Training Hours", path: "/departments/pd/management/hours" },
           ],
         },
         {
           title: "Courses & Assessments",
           icon: GraduationCap,
           subModules: [
-            { title: "Assessments", path: "/management/courses/assessments" },
+            { title: "Assessments", path: "/departments/pd/management/courses/assessments" },
           ],
         },
         {
           title: "Training",
           icon: Clock,
           subModules: [
-
-            { title: "Training Analytics", path: "/management/training-analytics" },
-            { title: "Attendance Logs", path: "/management/attendance" },
+            { title: "Training Analytics", path: "/departments/pd/management/training-analytics" },
+            { title: "Attendance Logs", path: "/departments/pd/management/attendance" },
           ],
         },
         {
           title: "Operations",
           icon: Gear,
           subModules: [
-            { title: "Meetings", path: "/meetings" },
-            { title: "Survey", path: "/management/survey" },
-            { title: "Announcements", path: "/announcements", badge: unreadAnnouncements },
+            { title: "Meetings", path: "/departments/pd/management/meetings" },
+            { title: "Survey", path: "/departments/pd/management/survey" },
+            { title: "Announcements", path: "/departments/pd/announcements", badge: unreadAnnouncements },
+          ],
+        },
+        {
+          title: "HR & WellBeing",
+          icon: UsersThree,
+          subModules: [
+            { title: "Resources", path: "/departments/pd/hr/resources" },
+            { title: "Educator Essentials", path: "/departments/pd/hr/educator-essentials" },
+            { title: "Educator Guide", path: "/departments/pd/hr/educator-guide" },
+            { title: "WellBeing", path: "/departments/pd/hr/wellbeing" },
+          ],
+        },
+        {
+          title: "Technology",
+          icon: Desktop,
+          subModules: [
+            { title: "Educator Site", path: "/departments/pd/technology/tech-sites-login", icon: Link },
+            { title: "GreytHR", path: "/departments/pd/technology/greythr" },
+            { title: "Schoology", path: "/departments/pd/technology/schoology" },
+            { title: "Google Workspace", path: "/departments/pd/technology/google-workspace" },
+            { title: "Zoom", path: "/departments/pd/technology/zoom" },
+            { title: "Slack", path: "/departments/pd/technology/slack" },
+            { title: "Email Signature Templates", path: "/departments/pd/technology/email-signature-templates" },
+            { title: "Ekyaverse-Neverskip", path: "/departments/pd/technology/ekyaverse" },
+            { title: "Audit & Reports", path: "/departments/pd/technology/audit" },
           ],
         },
       ];
@@ -350,18 +616,7 @@ export function DashboardSidebar({
     return [];
   };
 
-  const rawNav = getNavByRole(role);
-  
-  // Prefix all paths with integration route
-  const basePath = "/departments/pd";
-  const fullNav = rawNav.map(module => ({
-    ...module,
-    path: module.path ? (module.path.startsWith('/') ? `${basePath}${module.path}` : module.path) : undefined,
-    subModules: module.subModules?.map(sub => ({
-      ...sub,
-      path: sub.path.startsWith('/') ? `${basePath}${sub.path}` : sub.path
-    })) || []
-  })) as SidebarModule[];
+  const fullNav = getNavByRole(role);
 
   // Filter modules and sub-modules based on access control and search
   const filteredNav = fullNav
@@ -394,7 +649,7 @@ export function DashboardSidebar({
   useEffect(() => {
     const activeModule = fullNav.find((m) =>
       m.subModules?.some((s) => {
-        const rootPaths = ["/departments/pd/teacher", "/departments/pd/leader", "/departments/pd/admin", "/departments/pd/management"];
+        const rootPaths = ["/teacher", "/leader", "/admin", "/management"];
         return location.pathname === s.path || (!rootPaths.includes(s.path) && location.pathname.startsWith(s.path));
       })
     );
@@ -415,7 +670,7 @@ export function DashboardSidebar({
             collapsed
               ? isMobile
                 ? "-translate-x-full w-64"
-                : "w-0 translate-x-0"
+                : "w-16 translate-x-0"
               : "translate-x-0 w-64"
           )
       )}
@@ -426,11 +681,11 @@ export function DashboardSidebar({
         <div
           className={cn(
             "absolute left-1/2 -translate-x-1/2 transition-all duration-200",
-            collapsed && !isMobile ? "opacity-0 scale-75 pointer-events-none" : "opacity-0 scale-75 pointer-events-none"
+            collapsed && !isMobile ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"
           )}
         >
           <div className="bg-sidebar-primary p-2 rounded-lg">
-            <Student className="w-5 h-5 text-sidebar-primary-foreground" weight="fill" />
+            <Student className="w-5 h-5 text-sidebar-primary-foreground" weight={"fill" as any} />
           </div>
         </div>
 
@@ -443,11 +698,11 @@ export function DashboardSidebar({
               : "opacity-100 translate-x-0 delay-[120ms]"
           )}
         >
-          <div className="sidebar-circle-icon bg-[#8b5cf6]/10 shrink-0">
-            <Student className="w-4 h-4 text-[#8b5cf6]" weight="bold" />
+          <div className="p-2 rounded-lg bg-sidebar-primary shrink-0">
+            <Student className="w-5 h-5 text-sidebar-primary-foreground" weight={"fill" as any} />
           </div>
-          <span className="font-bold text-foreground truncate text-[13px] whitespace-nowrap tracking-tight">
-             Veidence <span className="text-[#8b5cf6]">Pro</span>
+          <span className="font-semibold text-sidebar-foreground truncate text-sm whitespace-nowrap">
+            <span className="text-[#EA104A]">Teacher</span> Platform
           </span>
         </div>
 
@@ -465,7 +720,7 @@ export function DashboardSidebar({
             {isMobile ? (
               <X className="w-5 h-5" />
             ) : (
-              <CaretLeft className={cn("w-4 h-4 transition-transform duration-300", collapsed && "rotate-180")} weight="bold" />
+              <CaretLeft className={cn("w-4 h-4 transition-transform duration-300", collapsed && "rotate-180")} weight={"bold" as any} />
             )}
           </Button>
         )}
@@ -480,9 +735,9 @@ export function DashboardSidebar({
             : "max-h-24 opacity-100 p-4 delay-[140ms]"
         )}
       >
-        <p className="font-bold text-foreground truncate text-xs">{userName}</p>
-        <div className="mt-1">
-          <p className="text-[10px] font-black text-[#8b5cf6] uppercase tracking-widest">{role}</p>
+        <p className="font-medium text-sidebar-foreground truncate text-sm">{userName}</p>
+        <div className="mt-2">
+          <RoleBadge role={role} />
         </div>
       </div>
 
@@ -502,14 +757,14 @@ export function DashboardSidebar({
 
       {/* Footer */}
       <div className="p-3 border-t border-sidebar-border shrink-0">
-        <NavLink
-          to="/"
+        <button
+          onClick={handleLogout}
           className={cn(
-            "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors group overflow-hidden",
+            "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors group overflow-hidden text-left",
             "text-sidebar-foreground hover:bg-destructive hover:text-destructive-foreground"
           )}
         >
-          <SignOut className="w-5 h-5 shrink-0 group-hover:rotate-180 transition-transform duration-500" weight="bold" />
+          <SignOut className="w-5 h-5 shrink-0 group-hover:rotate-180 transition-transform duration-500" weight={"bold" as any} />
           <span
             className={cn(
               "text-sm font-medium whitespace-nowrap transition-all duration-200",
@@ -520,7 +775,7 @@ export function DashboardSidebar({
           >
             Sign Out
           </span>
-        </NavLink>
+        </button>
       </div>
     </aside>
   );

@@ -1,0 +1,948 @@
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\AIAnalysisModal.tsx
+  45:8  warning  React Hook useEffect has missing dependencies: 'analysis', 'loading', and 'performAnalysis'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\AttendanceRegister.tsx
+   22:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   24:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   49:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   64:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  149:83  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\CustomDashboardWrapper.tsx
+   19:41  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+   35:63  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+   44:42  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+   56:6   warning  React Hook useEffect has a missing dependency: 'loadCustomDashboard'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  156:45  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+  175:41  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+  199:41  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\DashboardBuilder.tsx
+   31:27   error    Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+   83:54   error    Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+   92:6    warning  React Hook useEffect has a missing dependency: 'loadData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  117:21   error    Empty block statement                                                                                        no-empty
+  199:36   error    Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+  260:59   error    Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+  364:167  error    Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+  368:147  error    Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+  375:65   error    Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+  385:29   error    Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+  390:104  error    Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+  392:61   error    Unexpected any. Specify a different type                                                                     @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\DynamicDashboard.tsx
+   13:41  error    Unexpected any. Specify a different type                                                                          @typescript-eslint/no-explicit-any
+   27:63  error    Unexpected any. Specify a different type                                                                          @typescript-eslint/no-explicit-any
+   31:6   warning  React Hook useEffect has a missing dependency: 'loadDashboard'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  126:45  error    Unexpected any. Specify a different type                                                                          @typescript-eslint/no-explicit-any
+  146:64  error    Unexpected any. Specify a different type                                                                          @typescript-eslint/no-explicit-any
+  172:41  error    Unexpected any. Specify a different type                                                                          @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\DynamicForm.tsx
+  20:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  23:34  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  28:61  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  30:51  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\EkyaGuide.tsx
+  30:86  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  46:8   warning  React Hook useEffect has a missing dependency: 'user?.role'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  56:34  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  57:34  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\GoalSettingForm.tsx
+  130:60   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  132:76   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  133:76   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  202:95   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  207:116  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\GoalWorkflowForms.tsx
+    22:29  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+    22:44  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   271:11  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   298:46  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   300:44  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   303:34  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   303:42  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   329:28  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   337:8   warning  React Hook useEffect has a missing dependency: 'determinePhase'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+   343:23  error    Empty block statement                                                                                              no-empty
+   398:23  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   504:92  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   533:64  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   555:85  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   608:78  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   640:92  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   669:64  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   686:88  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   709:76  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   730:76  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   761:85  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   792:73  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   804:73  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+   816:73  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  1028:77  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  1044:83  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  1325:64  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  1325:88  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\LeaderPerformanceAnalytics.tsx
+  38:13  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  83:25  error  Empty block statement                     no-empty
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\MoocEvidenceForm.tsx
+  200:76  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  201:78  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  212:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  285:32  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\QuickFeedbackForm.tsx
+   84:35  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   85:32  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   86:35  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   87:39  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   93:48  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   99:38  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  134:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\ReflectionForm.tsx
+  105:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  106:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  157:81  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  159:63  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\TeacherAnalyticsReport.tsx
+  44:20  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  55:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  79:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\TeacherProfileView.tsx
+   34:12  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  375:99  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\TrainingEventCard.tsx
+  27:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\UnifiedObservationForm.tsx
+  229:32  error    Unexpected any. Specify a different type                                                                                             @typescript-eslint/no-explicit-any
+  233:72  error    Unexpected any. Specify a different type                                                                                             @typescript-eslint/no-explicit-any
+  234:72  error    Unexpected any. Specify a different type                                                                                             @typescript-eslint/no-explicit-any
+  235:76  error    Unexpected any. Specify a different type                                                                                             @typescript-eslint/no-explicit-any
+  236:86  error    Unexpected any. Specify a different type                                                                                             @typescript-eslint/no-explicit-any
+  266:58  error    Unexpected any. Specify a different type                                                                                             @typescript-eslint/no-explicit-any
+  267:58  error    Unexpected any. Specify a different type                                                                                             @typescript-eslint/no-explicit-any
+  268:64  error    Unexpected any. Specify a different type                                                                                             @typescript-eslint/no-explicit-any
+  269:53  error    Unexpected any. Specify a different type                                                                                             @typescript-eslint/no-explicit-any
+  284:8   warning  React Hook useEffect has missing dependencies: 'initialData?.id' and 'teachers'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\assessment\AssessmentAnalyticsView.tsx
+   21:38  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   48:49  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   51:50  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   52:63  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  117:72  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  133:64  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  174:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\assessments\AssessmentAnalyticsView.tsx
+  9:48  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\assessments\AssessmentAssignmentModal.tsx
+  50:8  warning  React Hook useEffect has a missing dependency: 'users.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\assessments\AssessmentAttemptView.tsx
+   20:59   error    Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+   30:8    warning  React Hook useEffect has a missing dependency: 'startAssessment'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+   40:53   error    Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+   50:25   error    Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+   67:8    warning  React Hook useEffect has a missing dependency: 'handleSubmit'. Either include it or remove the dependency array     react-hooks/exhaustive-deps
+   69:60   error    Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+  130:137  error    Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+  167:137  error    Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\assessments\AssessmentBuilder.tsx
+   27:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   33:52  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   33:90  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   39:47  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   91:74  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  145:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  315:89  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\assessments\AssessmentManagementDashboard.tsx
+  35:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\assessments\EnhancedAnalyticsView.tsx
+   15:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   16:22  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   17:16  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  109:31  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\assessments\TeacherAssessmentsView.tsx
+   11:52  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  126:51  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\documents\AcknowledgementsView.tsx
+  33:8  warning  React Hook useEffect has a missing dependency: 'fetchAcknowledgements'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\growth\AdminAnalyticsView.tsx
+  8:38  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\growth\GrowthAnalyticsView.tsx
+  102:38   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  157:66   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  279:66   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  301:72   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  342:66   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  368:66   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  423:100  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  445:103  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  481:59   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\growth\GrowthLayout.tsx
+  25:5  error  React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?  react-hooks/rules-of-hooks
+  43:5  error  React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?  react-hooks/rules-of-hooks
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\growth\TeacherSelection.tsx
+  31:8  warning  React Hook React.useEffect has missing dependencies: 'searchParams' and 'setSearchParams'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\layout\DashboardSidebar.tsx
+  306:6  warning  React Hook useEffect has a missing dependency: 'fullNav'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\notifications\NotificationBell.tsx
+  55:8  warning  React Hook useEffect has a missing dependency: 'user'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\survey\QuestionFormModal.tsx
+   96:13  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+  132:54  error  Unexpected any. Specify a different type                                                                             @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\survey\SurveyAnalyticsDashboard.tsx
+  26:8  warning  React Hook useEffect has a missing dependency: 'fetchAnalytics'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\survey\SurveyHistoryView.tsx
+  79:90  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  80:66  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  81:66  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\survey\SurveyManagementView.tsx
+  56:17  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+  68:65  error  Unexpected any. Specify a different type                                                                             @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\survey\SurveyResponseView.tsx
+  24:32  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\survey\SurveyWizard.tsx
+   18:22  error    Unexpected any. Specify a different type                                                                                                    @typescript-eslint/no-explicit-any
+   27:18  error    Unexpected any. Specify a different type                                                                                                    @typescript-eslint/no-explicit-any
+  117:13  error    Unexpected lexical declaration in case block                                                                                                no-case-declarations
+  118:13  error    Unexpected lexical declaration in case block                                                                                                no-case-declarations
+  119:13  error    Unexpected lexical declaration in case block                                                                                                no-case-declarations
+  233:8   warning  React Hook useEffect has missing dependencies: 'initialAnswers' and 'survey.questions'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  235:41  error    Unexpected any. Specify a different type                                                                                                    @typescript-eslint/no-explicit-any
+  241:27  error    Unexpected any. Specify a different type                                                                                                    @typescript-eslint/no-explicit-any
+  279:8   warning  React Hook useEffect has a missing dependency: 'saveDraft'. Either include it or remove the dependency array                                react-hooks/exhaustive-deps
+  285:59  error    Unexpected any. Specify a different type                                                                                                    @typescript-eslint/no-explicit-any
+  300:35  error    Unexpected any. Specify a different type                                                                                                    @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\ui\badge.tsx
+  58:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\ui\button.tsx
+  84:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\ui\form.tsx
+  129:10  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\ui\navigation-menu.tsx
+  111:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\ui\sidebar.tsx
+  636:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\ui\sonner.tsx
+  27:19  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\components\ui\toggle.tsx
+  37:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\contexts\PermissionContext.tsx
+   41:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+  140:9   error    'role' is never reassigned. Use 'const' instead                                                                                 prefer-const
+  169:28  error    Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  181:75  error    Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  204:25  error    Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  301:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\data\guideContent.ts
+   97:30  error  Unnecessary escape character: \"          no-useless-escape
+   97:51  error  Unnecessary escape character: \"          no-useless-escape
+  330:74  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\hooks\useApi.ts
+   6:54  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  21:44  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  41:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\hooks\useAuth.tsx
+  99:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\hooks\useCustomDashboard.ts
+   8:63  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+  13:6   warning  React Hook useEffect has a missing dependency: 'loadCustomDashboard'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\lib\api.ts
+  75:54  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\lib\apiHelpers.ts
+  30:17  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  46:17  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\lib\groq.ts
+  58:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  70:52  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  93:31  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\lib\socket.ts
+  51:46  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\AdminDashboard.tsx
+   54:43  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?   react-hooks/rules-of-hooks
+   55:41  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?   react-hooks/rules-of-hooks
+   56:47  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?   react-hooks/rules-of-hooks
+   56:56  error  Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   57:47  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?   react-hooks/rules-of-hooks
+   57:56  error  Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   59:29  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?   react-hooks/rules-of-hooks
+   66:3   error  React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?  react-hooks/rules-of-hooks
+  105:23  error  Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  158:50  error  Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  295:10  error  Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  296:19  error  Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  297:19  error  Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  309:43  error  Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  377:74  error  Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  414:57  error  Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  447:54  error  Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  480:48  error  Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  643:42  error  Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\AdminDocumentManagement.tsx
+  174:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  249:17  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  249:49  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  249:81  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  645:81  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\AnnouncementsPage.tsx
+   68:88   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  417:110  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\AttendanceForm.tsx
+  21:40  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  22:38  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  44:8   warning  React Hook useEffect has a missing dependency: 'fetchEvent'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  52:66  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  90:25  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\AttendanceRegister.tsx
+  21:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  60:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  65:34  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  73:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  98:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\Auth.tsx
+  41:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\CreateMeetingForm.tsx
+   66:8   warning  React Hook useEffect has a missing dependency: 'fetchMeetingDetails'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+   79:39  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+   81:55  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+  121:22  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+  127:22  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+  246:62  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\EventAttendanceView.tsx
+   18:50  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   19:40  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   25:8   warning  React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+   28:34  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   35:8   warning  React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+   51:25  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   77:46  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   89:51  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  220:76  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\GrowthPage.tsx
+   30:96  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+   46:8   warning  React Hook useEffect has missing dependencies: 'searchParams' and 'setSearchParams'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+   62:8   warning  React Hook useEffect has a missing dependency: 'fetchObservations'. Either include it or remove the dependency array                     react-hooks/exhaustive-deps
+   68:93  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+  153:59  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\LeaderDashboard.tsx
+    81:27   error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?   react-hooks/rules-of-hooks
+    81:36   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+    82:43   error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?   react-hooks/rules-of-hooks
+    83:29   error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?   react-hooks/rules-of-hooks
+    83:38   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+    84:35   error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?   react-hooks/rules-of-hooks
+    84:44   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+    87:26   error    React Hook "useMemo" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?    react-hooks/rules-of-hooks
+   102:26   error    React Hook "useMemo" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?    react-hooks/rules-of-hooks
+   116:85   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   187:35   error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?   react-hooks/rules-of-hooks
+   187:44   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   188:49   error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?   react-hooks/rules-of-hooks
+   188:58   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   215:3    error    React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?  react-hooks/rules-of-hooks
+   239:61   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   243:66   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   266:3    error    React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?  react-hooks/rules-of-hooks
+   278:47   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   284:21   error    Empty block statement                                                                                                                                                                        no-empty
+   301:51   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   307:21   error    Empty block statement                                                                                                                                                                        no-empty
+   312:41   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   324:40   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   331:44   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   339:46   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   374:3    error    React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?  react-hooks/rules-of-hooks
+   383:50   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   463:9    error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   467:19   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   480:43   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   599:84   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   610:6    warning  React Hook useEffect has missing dependencies: 'searchParams' and 'setSearchParams'. Either include them or remove the dependency array                                                      react-hooks/exhaustive-deps
+   768:68   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   796:58   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+   796:75   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1115:13   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1116:52   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1117:10   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1143:6    warning  React Hook useEffect has missing dependencies: 'searchParams' and 'setSearchParams'. Either include them or remove the dependency array                                                      react-hooks/exhaustive-deps
+  1146:52   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1151:66   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1304:41   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1311:35   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1428:53   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1428:105  error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1429:55   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1429:109  error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1430:55   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1430:109  error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1431:50   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1431:137  error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1452:48   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1460:48   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1468:48   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  1651:42   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  2065:96   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  2230:54   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  2234:58   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  2256:6    warning  React Hook useEffect has missing dependencies: 'searchParams' and 'setSearchParams'. Either include them or remove the dependency array                                                      react-hooks/exhaustive-deps
+  2274:39   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  2531:52   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  2558:6    warning  React Hook useEffect has missing dependencies: 'searchParams' and 'setSearchParams'. Either include them or remove the dependency array                                                      react-hooks/exhaustive-deps
+  2822:93   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  2822:108  error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  2912:50   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+  2915:64   error    Unexpected any. Specify a different type                                                                                                                                                     @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\LearningFestival\CreateFestivalModal.tsx
+  108:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\LearningFestival\FestivalApplicationForm.tsx
+  71:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\LearningFestival\FestivalManagementDashboard.tsx
+   37:64  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   38:56  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   42:8   warning  React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  556:69  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\ManagementDashboard.tsx
+  135:54  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  247:54  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  332:81  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  348:54  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  427:72  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  459:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  460:50  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  716:54  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\MeetingDetailsView.tsx
+  39:8  warning  React Hook useEffect has a missing dependency: 'fetchMeetingDetails'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\MeetingMoMForm.tsx
+  100:8   warning  React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  138:29  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  162:74  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  181:28  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\MeetingsDashboard.tsx
+  79:48  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\OKRDashboard.tsx
+  64:10  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\ObserveView_new.tsx
+  16:20  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  20:50  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  21:11  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  28:46  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  37:55  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\SurveyPage.tsx
+   32:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  110:57  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\TeacherAttendance.tsx
+  16:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  45:54  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\TeacherDashboard.tsx
+   169:10   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   170:11   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   176:12   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   216:43   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   301:39   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   301:72   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   386:12   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   399:73   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   432:68   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   433:57   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   442:43   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   442:95   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   444:52   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   444:91   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   450:36   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   456:66   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   457:64   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   683:54   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   694:41   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   777:68   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   777:124  error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   778:66   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+   784:42   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1195:11   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1301:44   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1309:44   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1317:44   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1501:91   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1501:116  error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1632:65   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1632:89   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1668:60   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1731:27   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1749:74   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1749:95   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1752:60   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1756:65   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1758:57   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1778:50   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1876:47   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1889:47   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1902:141  error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  1964:112  error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2012:44   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2042:42   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2235:151  error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2254:20   error    React Hook "useNavigate" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?  react-hooks/rules-of-hooks
+  2255:29   error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?     react-hooks/rules-of-hooks
+  2255:38   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2256:31   error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?     react-hooks/rules-of-hooks
+  2256:40   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2257:33   error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?     react-hooks/rules-of-hooks
+  2257:42   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2258:49   error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?     react-hooks/rules-of-hooks
+  2258:58   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2259:43   error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?     react-hooks/rules-of-hooks
+  2260:33   error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?     react-hooks/rules-of-hooks
+  2270:55   error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?     react-hooks/rules-of-hooks
+  2271:43   error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?     react-hooks/rules-of-hooks
+  2288:3    error    React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?    react-hooks/rules-of-hooks
+  2293:87   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2312:40   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2373:60   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2374:67   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2458:112  error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2462:43   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2470:41   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2475:45   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2483:44   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2506:44   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2522:42   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2536:39   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2562:6    warning  React Hook useEffect has a missing dependency: 'navigate'. Either include it or remove the dependency array                                                                                    react-hooks/exhaustive-deps
+  2630:28   error    React Hook "useMemo" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?      react-hooks/rules-of-hooks
+  2638:21   error    React Hook "useMemo" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?      react-hooks/rules-of-hooks
+  2645:55   error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?     react-hooks/rules-of-hooks
+  2645:64   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2647:3    error    React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?    react-hooks/rules-of-hooks
+  2653:45   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2664:50   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  2750:16   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  3005:97   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  3008:61   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  3010:58   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  3053:33   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  3054:33   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  3055:33   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  3056:33   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  3058:38   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  3065:44   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  3074:38   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  3081:44   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  3090:38   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  3097:44   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  3106:38   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+  3113:44   error    Unexpected any. Specify a different type                                                                                                                                                       @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\TeacherDocuments.tsx
+  69:57  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  72:79  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\admin\AdminCalendarView.tsx
+   67:46   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   94:54   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   95:68   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  150:42   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  175:43   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  186:41   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  195:43   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  211:48   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  361:71   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  361:123  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  362:73   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  362:127  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  363:73   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  363:127  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  364:68   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  364:155  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  391:70   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  399:70   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  407:70   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\admin\AdminGoalsView.tsx
+  37:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  42:54  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\admin\AdminGrowthAnalyticsPage.tsx
+  13:59  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\admin\AdminReportsView.tsx
+   52:40  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+   81:8   warning  React Hook useEffect has missing dependencies: 'searchParams' and 'setSearchParams'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+   85:60  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+  301:91  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\admin\CourseManagementView.tsx
+   27:23   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   30:43   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   35:44   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   36:58   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   83:56   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   84:54   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  114:58   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  169:73   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  820:140  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\admin\FormTemplatesView.tsx
+   39:48   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   48:31   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   57:62   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  104:43   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  109:60   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  110:62   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  111:60   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  300:31   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  309:33   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  314:34   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  319:42   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  453:154  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  590:158  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  709:158  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  805:135  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  942:15   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  943:17   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  944:19   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  945:20   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  946:22   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\admin\FormWorkflowsConfig.tsx
+   16:26  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   36:40  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   64:8   warning  React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  106:73  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  123:13  error    'schoolText' is never reassigned. Use 'const' instead                                                         prefer-const
+  227:97  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\admin\PDHoursAnalyticsView.tsx
+   53:54   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   54:52   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   55:58   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   56:54   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   57:58   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   60:58   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   68:8    warning  React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  297:75   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  297:83   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  297:130  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  356:70   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  385:73   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  386:25   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  411:27   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\admin\SuperAdminView.tsx
+   82:42   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   83:40   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  114:79   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  148:80   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  520:105  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  535:101  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\admin\SystemSettingsView.tsx
+   45:11  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+  213:25  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+  257:55  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+  285:67  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+  296:37  error    Empty block statement                                                                                                   no-empty
+  310:8   warning  React Hook useEffect has a missing dependency: 'integrationStatuses'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  338:67  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+  366:89  error    Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\admin\UserManagementView.tsx
+   76:25   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  130:25   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  153:25   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  171:25   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  190:25   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  275:140  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  340:166  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\leader\DanielsonDashboard.tsx
+   36:54  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+   50:8   warning  React Hook useEffect has missing dependencies: 'searchParams' and 'setSearchParams'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+   56:31  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+   61:58  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+   95:8   warning  React Hook useEffect has a missing dependency: 'teacherId'. Either include it or remove the dependency array                             react-hooks/exhaustive-deps
+  100:32  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+  105:26  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+  106:26  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+  134:59  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\leader\DanielsonFrameworkPage.tsx
+  98:59  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\leader\LeaderGrowthPage.tsx
+   40:22  error  React Hook "useNavigate" is called conditionally. React Hooks must be called in the exact same order in every component render  react-hooks/rules-of-hooks
+   41:27  error  React Hook "useParams" is called conditionally. React Hooks must be called in the exact same order in every component render    react-hooks/rules-of-hooks
+   42:37  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render     react-hooks/rules-of-hooks
+   43:51  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render     react-hooks/rules-of-hooks
+   44:35  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render     react-hooks/rules-of-hooks
+   47:39  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render     react-hooks/rules-of-hooks
+   47:48  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+   48:53  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render     react-hooks/rules-of-hooks
+   49:61  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render     react-hooks/rules-of-hooks
+   50:59  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render     react-hooks/rules-of-hooks
+   51:55  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render     react-hooks/rules-of-hooks
+   54:49  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render     react-hooks/rules-of-hooks
+   55:37  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render     react-hooks/rules-of-hooks
+   98:45  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render     react-hooks/rules-of-hooks
+   98:54  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+   99:41  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render     react-hooks/rules-of-hooks
+  101:5   error  React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render    react-hooks/rules-of-hooks
+  118:5   error  React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render    react-hooks/rules-of-hooks
+  137:5   error  React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render    react-hooks/rules-of-hooks
+  168:13  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  173:36  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  174:30  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  174:36  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  188:15  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  188:25  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  200:44  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  202:46  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  208:47  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  210:47  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  214:21  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  225:59  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  599:67  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  599:75  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  600:88  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  668:80  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  670:77  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  672:90  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  711:91  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  711:99  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  715:92  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  729:68  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  739:82  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  742:66  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  754:84  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  825:65  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\leader\LearningInsightsView.tsx
+  24:64  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  25:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\leader\LifeSkillsObsDashboard.tsx
+   32:54  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+   46:8   warning  React Hook useEffect has missing dependencies: 'searchParams' and 'setSearchParams'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+   52:31  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+   56:91  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+   88:8   warning  React Hook useEffect has a missing dependency: 'teacherId'. Either include it or remove the dependency array                             react-hooks/exhaustive-deps
+  116:59  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\leader\LifeSkillsObsPage.tsx
+  104:11  error    Unexpected any. Specify a different type                                                                          @typescript-eslint/no-explicit-any
+  105:16  error    Unexpected any. Specify a different type                                                                          @typescript-eslint/no-explicit-any
+  106:10  error    Unexpected any. Specify a different type                                                                          @typescript-eslint/no-explicit-any
+  147:33  error    Unexpected any. Specify a different type                                                                          @typescript-eslint/no-explicit-any
+  160:11  error    Unexpected any. Specify a different type                                                                          @typescript-eslint/no-explicit-any
+  161:17  error    Unexpected any. Specify a different type                                                                          @typescript-eslint/no-explicit-any
+  232:36  error    Unexpected any. Specify a different type                                                                          @typescript-eslint/no-explicit-any
+  247:63  error    Unexpected any. Specify a different type                                                                          @typescript-eslint/no-explicit-any
+  281:8   warning  React Hook useEffect has a missing dependency: 'ratingMapping'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  291:58  error    Unexpected any. Specify a different type                                                                          @typescript-eslint/no-explicit-any
+  371:59  error    Unexpected any. Specify a different type                                                                          @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\leader\PEObsDashboard.tsx
+   32:54  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+   46:8   warning  React Hook useEffect has missing dependencies: 'searchParams' and 'setSearchParams'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+   52:31  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+   56:91  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+   88:8   warning  React Hook useEffect has a missing dependency: 'teacherId'. Either include it or remove the dependency array                             react-hooks/exhaustive-deps
+  116:59  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\leader\PEObsPage.tsx
+   97:11   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   97:27   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   97:37   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  121:33   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  127:187  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  127:204  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  188:36   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  203:63   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  237:8    warning  React Hook useEffect has a missing dependency: 'ratingMap'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  247:58   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  324:59   error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\leader\PerformingArtsObsDashboard.tsx
+   28:25  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+   57:8   warning  React Hook useEffect has missing dependencies: 'searchParams' and 'setSearchParams'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+   63:31  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+   71:91  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+  103:8   warning  React Hook useEffect has a missing dependency: 'teacherId'. Either include it or remove the dependency array                             react-hooks/exhaustive-deps
+  127:59  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\leader\PerformingArtsObsPage.tsx
+  249:63  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  411:59  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\leader\QuickFeedbackDashboard.tsx
+   29:54  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   39:31  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   44:58  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   79:8   warning  React Hook useEffect has a missing dependency: 'teacherId'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+   83:32  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   88:26  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+   89:26  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+  114:59  error    Unexpected any. Specify a different type                                                                      @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\leader\QuickFeedbackPage.tsx
+  90:59  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\leader\VAObsDashboard.tsx
+   29:54  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+   43:8   warning  React Hook useEffect has missing dependencies: 'searchParams' and 'setSearchParams'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+   49:31  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+   53:91  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+   85:8   warning  React Hook useEffect has a missing dependency: 'teacherId'. Either include it or remove the dependency array                             react-hooks/exhaustive-deps
+  113:59  error    Unexpected any. Specify a different type                                                                                                 @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\leader\VAObsPage.tsx
+  116:11   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  116:27   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  116:37   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  153:119  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  153:136  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  246:32   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  342:59   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\management\ManagementGoalsView.tsx
+  16:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  17:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\pages\management\ManagementInsightsView.tsx
+  20:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  56:55  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\services\analyticsService.ts
+   4:44  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   8:44  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  12:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  16:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  20:46  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\services\announcementService.ts
+  50:79  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\services\assessmentService.ts
+  19:15  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  30:15  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  43:34  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  49:46  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  73:52  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  79:54  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\services\courseService.ts
+  14:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\services\dashboardService.ts
+   9:12  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  36:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\services\documentService.ts
+  47:35  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  50:86  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  51:81  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\services\learningFestivalService.ts
+  83:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\services\meetingService.ts
+  22:15  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  30:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  32:16  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  35:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  36:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  90:90  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  95:90  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\services\moocService.ts
+  28:32  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\services\settingsService.ts
+  15:52  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  31:47  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\services\templateService.ts
+  20:53  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  36:34  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  46:46  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\services\trainingService.ts
+  12:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  26:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  46:41  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Administartor\Desktop\Ekya projects\pdi_updated\frontend\src\services\userService.ts
+  27:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 710 problems (651 errors, 59 warnings)
+  2 errors and 0 warnings potentially fixable with the `--fix` option.
+

@@ -7,6 +7,7 @@ export interface User {
     role: string;
     department?: string;
     campusId?: string;
+    campus?: string;
     status: string;
     academics?: 'CORE' | 'NON_CORE';
     category?: 'IN_SERVICE' | 'NEW_JOINER';
@@ -21,16 +22,8 @@ export const userService = {
 
             if (response.data?.status === 'success') {
                 return response.data.data?.users || [];
-            } else if (Array.isArray(response.data)) {
-                return response.data;
-            } else if (Array.isArray(response.data?.data)) {
-                return response.data.data;
             } else {
-                if (typeof response.data === 'string' && response.data.toLowerCase().includes('<!doctype html>')) {
-                    console.warn('UserService: API endpoint missing or backend is down. Received HTML fallback.');
-                } else {
-                    console.warn('UserService: Unexpected response format/status:', response.data);
-                }
+                console.warn('UserService: Non-success status:', response.data?.status);
                 return [];
             }
         } catch (error: any) {
@@ -41,7 +34,7 @@ export const userService = {
     },
 
     async getTeachers() {
-        const teachers = await this.getAllUsers('TEACHER');
+        const teachers = await this.getAllUsers('TeacherStaff');
         console.log('UserService: getTeachers returned', teachers?.length || 0, 'teachers');
         return teachers || [];
     },

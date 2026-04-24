@@ -649,7 +649,18 @@ export function DashboardSidebar({
   useEffect(() => {
     const activeModule = fullNav.find((m) =>
       m.subModules?.some((s) => {
-        const rootPaths = ["/teacher", "/leader", "/admin", "/management"];
+        const rootPaths = [
+          "/departments/pd/teacher", 
+          "/departments/pd/leader", 
+          "/departments/pd/admin", 
+          "/departments/pd/management", 
+          "/departments/pd/hr",
+          "/teacher",
+          "/leader",
+          "/admin",
+          "/management",
+          "/hr"
+        ];
         return location.pathname === s.path || (!rootPaths.includes(s.path) && location.pathname.startsWith(s.path));
       })
     );

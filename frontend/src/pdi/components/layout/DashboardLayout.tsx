@@ -1,4 +1,4 @@
-﻿import { ReactNode, useState, useCallback, useEffect } from "react";
+import { ReactNode, useState, useCallback, useEffect } from "react";
 import { DashboardSidebar } from "./DashboardSidebar";
 import { Role } from "../RoleBadge";
 import { cn } from "@pdi/lib/utils";
@@ -46,8 +46,8 @@ export function DashboardLayout({ children, role, userName }: DashboardLayoutPro
 
   // Whether sidebar is visually expanded
   const sidebarExpanded = isMobile ? mobileMenuOpen : hovered;
-  // Width the main content should offset by (pushes content on hover)
-  const mainOffset = isMobile ? "ml-0" : hovered ? "ml-64" : "ml-16";
+  // Width the main content should offset by (does NOT push content on hover)
+  const mainOffset = isMobile ? "ml-0" : "ml-16";
 
   return (
     <div className="min-h-screen bg-background flex flex-col md:flex-row overflow-x-hidden">

@@ -42,7 +42,18 @@ export function SidebarAccordionItem({
     const isActive = isDirectLink
         ? location.pathname === module.path
         : module.subModules?.some((sub) => {
-            const rootPaths = ["/teacher", "/leader", "/admin", "/management", "/hr"];
+            const rootPaths = [
+                "/departments/pd/teacher", 
+                "/departments/pd/leader", 
+                "/departments/pd/admin", 
+                "/departments/pd/management", 
+                "/departments/pd/hr",
+                "/teacher",
+                "/leader",
+                "/admin",
+                "/management",
+                "/hr"
+            ];
             return (
                 location.pathname === sub.path ||
                 (!rootPaths.includes(sub.path) && location.pathname.startsWith(sub.path))
@@ -188,7 +199,18 @@ export function SidebarAccordionItem({
             {isOpen && (
                 <div className="pl-9 space-y-1 animate-in slide-in-from-top-1 duration-200">
                     {module.subModules?.map((sub) => {
-                        const rootPaths = ["/teacher", "/leader", "/admin", "/management", "/hr"];
+                        const rootPaths = [
+                            "/departments/pd/teacher", 
+                            "/departments/pd/leader", 
+                            "/departments/pd/admin", 
+                            "/departments/pd/management", 
+                            "/departments/pd/hr",
+                            "/teacher",
+                            "/leader",
+                            "/admin",
+                            "/management",
+                            "/hr"
+                        ];
                         const isSubActive =
                             location.pathname === sub.path ||
                             (!rootPaths.includes(sub.path) && location.pathname.startsWith(sub.path));

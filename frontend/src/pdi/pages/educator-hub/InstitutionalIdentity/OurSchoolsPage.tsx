@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { SchoolRow } from "@pdi/components/educator-hub/InstitutionalIdentity/SchoolRow";
 import { SectionHeader } from "@pdi/components/educator-hub/InstitutionalIdentity/SectionHeader";
 import { schools } from "@pdi/data/schools";

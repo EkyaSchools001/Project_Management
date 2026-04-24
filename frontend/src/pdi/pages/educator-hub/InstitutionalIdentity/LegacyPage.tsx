@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { 
   CaretLeft, 
   Trophy, 
@@ -111,7 +111,7 @@ const LegacyPage = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-white rounded-[3rem] p-12 md:p-20 shadow-2xl border border-slate-100 flex flex-col md:flex-row gap-12 items-start"
+          className="bg-white rounded-[3rem] p-12 md:p-20 shadow-2xl border border-primary/20 flex flex-col md:flex-row gap-12 items-start"
         >
           <div className="w-20 h-20 rounded-3xl bg-[#FEF2F2] flex items-center justify-center shrink-0 shadow-inner">
             <Trophy size={48} className="text-[#E63946]" weight="duotone" />

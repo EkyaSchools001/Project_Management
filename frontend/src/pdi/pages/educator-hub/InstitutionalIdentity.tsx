@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { useAuth } from "@pdi/hooks/useAuth";
 import { InstitutionalIdentityView } from "@pdi/components/educator-hub/InstitutionalIdentity/IdentityView";
 import { PageHeader } from "@pdi/components/layout/PageHeader";

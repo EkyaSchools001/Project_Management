@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { useAuth } from "@pdi/hooks/useAuth";
 import { TeacherProfDev } from "@pdi/components/educator-hub/ProfessionalDevelopment/TeacherDashboard";
 import { LeaderProfDev } from "@pdi/components/educator-hub/ProfessionalDevelopment/LeaderDashboard";

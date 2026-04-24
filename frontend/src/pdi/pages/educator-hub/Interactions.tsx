@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { InteractionsDashboard } from "@pdi/components/educator-hub/interactions/InteractionsDashboard";
 import { PageHeader } from "@pdi/components/layout/PageHeader";
 import { UsersThree } from "@phosphor-icons/react";

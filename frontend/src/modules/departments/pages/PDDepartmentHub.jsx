@@ -74,6 +74,28 @@ import LegacyPage from "@pdi/pages/educator-hub/InstitutionalIdentity/LegacyPage
 import TeamsVisionPage from "@pdi/pages/educator-hub/InstitutionalIdentity/TeamsVisionPage";
 import SchoolPrayerPage from "@pdi/pages/educator-hub/InstitutionalIdentity/SchoolPrayerPage";
 import EduHubIndex from "@pdi/pages/edu-hub/EduHubIndex";
+import MyDutiesPage from "@pdi/pages/edu-hub/MyDutiesPage";
+
+// Campus Duties & Info Pages
+import CMRNPSInfoPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/CMRNPSInfoPage";
+import CmrNpsDutiesPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/CmrNpsDutiesPage";
+import EkyaByrathiInfoPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/EkyaByrathiInfoPage";
+import EkyaByrathiDutiesPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/EkyaByrathiDutiesPage";
+import EkyaBtmLayoutInfoPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/EkyaBtmLayoutInfoPage";
+import EkyaBtmLayoutDutiesPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/EkyaBtmLayoutDutiesPage";
+import EkyaItplInfoPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/EkyaItplInfoPage";
+import EkyaItplDutiesPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/EkyaItplDutiesPage";
+import EkyaJpNagarInfoPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/EkyaJpNagarInfoPage";
+import EkyaJpNagarDutiesPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/EkyaJpNagarDutiesPage";
+import EkyaNiceRoadInfoPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/EkyaNiceRoadInfoPage";
+import EkyaNiceRoadDutiesPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/EkyaNiceRoadDutiesPage";
+import CmrpuhRbrInfoPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/CmrpuhRbrInfoPage";
+import CmrpuHrbrDutiesPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/CmrpuHrbrDutiesPage";
+import CmrpuhItplInfoPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/CmrpuhItplInfoPage";
+import CmrpuItplDutiesPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/CmrpuItplDutiesPage";
+import CmrpuhBtmInfoPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/CmrpuhBtmInfoPage";
+import CmrpuBtmDutiesPage from "@pdi/pages/educator-hub/InstitutionalIdentity/OurTeams/CmrpuBtmDutiesPage";
+
 import ResourcesHub from "@pdi/pages/hr/ResourcesHub";
 import EducatorGuide from "@pdi/pages/hr/EducatorGuide";
 import EducatorEssentials from "@pdi/pages/hr/EducatorEssentials";
@@ -299,6 +321,7 @@ export default function PDDepartmentHub() {
 
                     {/* Educator Hub & Campus Routes */}
                     <Route path="edu-hub/*"             element={<EduHubIndex />} />
+                    <Route path="edu-hub/my-duties"     element={<MyDutiesPage />} />
                     <Route path="educator-hub/institutional-identity" element={<InstitutionalIdentity />} />
                     <Route path="educator-hub/institutional-identity/legacy" element={<LegacyPage />} />
                     <Route path="educator-hub/institutional-identity/teams-vision" element={<TeamsVisionPage />} />
@@ -307,15 +330,40 @@ export default function PDDepartmentHub() {
                     <Route path="educator-hub/institutional-identity/founders-message" element={<FoundersMessagePage />} />
                     <Route path="educator-hub/institutional-identity/schools" element={<OurSchoolsPage />} />
                     <Route path="educator-hub/institutional-identity/our-teams/cmr-nps" element={<CMRNPSPage />} />
+                    <Route path="campuses/cmr-nps/info" element={<CMRNPSInfoPage />} />
+                    <Route path="campuses/cmr-nps/duties" element={<CmrNpsDutiesPage />} />
 
                     <Route path="campuses/ekya-byrathi" element={<EkyaByrathiPage />} />
+                    <Route path="campuses/ekya-byrathi/info" element={<EkyaByrathiInfoPage />} />
+                    <Route path="campuses/ekya-byrathi/duties" element={<EkyaByrathiDutiesPage />} />
+
                     <Route path="campuses/ekya-btm-layout" element={<EkyaBtmLayoutPage />} />
+                    <Route path="campuses/ekya-btm-layout/info" element={<EkyaBtmLayoutInfoPage />} />
+                    <Route path="campuses/ekya-btm-layout/duties" element={<EkyaBtmLayoutDutiesPage />} />
+
                     <Route path="campuses/ekya-itpl" element={<EkyaItplPage />} />
+                    <Route path="campuses/ekya-itpl/info" element={<EkyaItplInfoPage />} />
+                    <Route path="campuses/ekya-itpl/duties" element={<EkyaItplDutiesPage />} />
+
                     <Route path="campuses/ekya-jp-nagar" element={<EkyaJpNagarPage />} />
+                    <Route path="campuses/ekya-jp-nagar/info" element={<EkyaJpNagarInfoPage />} />
+                    <Route path="campuses/ekya-jp-nagar/duties" element={<EkyaJpNagarDutiesPage />} />
+
                     <Route path="campuses/ekya-nice-road" element={<EkyaNiceRoadPage />} />
+                    <Route path="campuses/ekya-nice-road/info" element={<EkyaNiceRoadInfoPage />} />
+                    <Route path="campuses/ekya-nice-road/duties" element={<EkyaNiceRoadDutiesPage />} />
+
                     <Route path="campuses/cmrpu-hrbr" element={<CmrpuhRbrPage />} />
+                    <Route path="campuses/cmrpu-hrbr/info" element={<CmrpuhRbrInfoPage />} />
+                    <Route path="campuses/cmrpu-hrbr/duties" element={<CmrpuHrbrDutiesPage />} />
+
                     <Route path="campuses/cmrpu-itpl" element={<CmrpuhItplPage />} />
+                    <Route path="campuses/cmrpu-itpl/info" element={<CmrpuhItplInfoPage />} />
+                    <Route path="campuses/cmrpu-itpl/duties" element={<CmrpuItplDutiesPage />} />
+
                     <Route path="campuses/cmrpu-btm" element={<CmrpuhBtmPage />} />
+                    <Route path="campuses/cmrpu-btm/info" element={<CmrpuhBtmInfoPage />} />
+                    <Route path="campuses/cmrpu-btm/duties" element={<CmrpuBtmDutiesPage />} />
 
                     <Route path="educator-hub/academic-operations" element={<AcademicOperations />} />
                     <Route path="educator-hub/pedagogy-learning" element={<PedagogyLearning />} />

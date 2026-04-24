@@ -6,6 +6,7 @@ import { CultureEnvironmentSection } from './components/CultureEnvironmentSectio
 import CoCurricularActivities from "./components/CoCurricularActivities";
 import LACModule from "./components/LACModule";
 import { useAuth } from '@pdi/hooks/useAuth';
+import { useAccessControl } from '@pdi/hooks/useAccessControl';
 
 const campusSlugMap: Record<string, string> = {
   'ENICE': 'ekya-nice-road',
@@ -37,7 +38,8 @@ import {
   BookOpen,
   ArrowRight,
   ChatCircleDots,
-  Ticket
+  Ticket,
+  ShieldCheck
 } from "@phosphor-icons/react";
 import { PageHeader } from '@pdi/components/layout/PageHeader';
 
@@ -63,6 +65,7 @@ const EMPTY_SECTION = (title: string, subtitle: string, navigate: any) => (
 
 export function TeacherPortal({ section }: { section: string }) {
   const { user } = useAuth();
+  const { isModuleEnabled } = useAccessControl();
   const navigate = useNavigate();
   const [activeTeachingView, setActiveTeachingView] = useState<'stage' | 'la'>('stage');
 
@@ -128,14 +131,15 @@ export function TeacherPortal({ section }: { section: string }) {
           <div className="px-12 md:px-16 lg:px-20 xl:px-24 2xl:px-28 3xl:px-32">
             <div className="grid gap-4 lg:grid-cols-3">
               {[
-                { title: 'Just joined', icon: Rocket, desc: 'Get set up with pre-service essentials, platform access, and your onboarding checklist.', bar: 'bg-gradient-to-r from-amber-400 to-amber-600 shadow-[0_0_10px_rgba(251,191,36,0.5)]', path: '/edu-hub/joining' },
-                { title: 'Teaching', icon: GraduationCap, desc: 'Stage-specific curriculum, subjects, assessment, and learning area resources.', bar: 'bg-gradient-to-r from-primary to-accent shadow-[0_0_10px_rgba(247,53,88,0.5)]', path: '/edu-hub/teaching' },
-                { title: 'My classroom', icon: ChalkboardTeacher, desc: 'Attendance, student lists, micro plans, environment, and records â€” everything daily.', bar: 'bg-gradient-to-r from-blue-400 to-blue-600 shadow-[0_0_10px_rgba(96,165,250,0.5)]', path: '/edu-hub/my-classroom' },
-                { title: 'My campus', icon: Buildings, desc: 'School details, leadership, history, affiliation, and your class and timetable.', bar: 'bg-gradient-to-r from-purple-400 to-purple-600 shadow-[0_0_10px_rgba(192,132,252,0.5)]', path: '/edu-hub/my-campus' },
-                { title: 'Who we are', icon: Users, desc: 'Our vision, mission, 15-year legacy, leadership team, and all campuses.', bar: 'bg-gradient-to-r from-rose-400 to-rose-600 shadow-[0_0_10px_rgba(251,113,133,0.5)]', path: '/edu-hub/who-we-are' },
-                { title: 'Grow', icon: TrendUp, desc: 'MOOCs, CPS evidence, your learning purpose, and the educator toolkit.', bar: 'bg-gradient-to-r from-teal-400 to-teal-600 shadow-[0_0_10px_rgba(45,212,191,0.5)]', path: '/edu-hub/grow' },
-                { title: 'LAC', icon: ClipboardText, desc: 'Learning Accountability Checklist â€” monitor and track curriculum delivery.', bar: 'bg-gradient-to-r from-indigo-400 to-indigo-600 shadow-[0_0_10px_rgba(79,70,229,0.5)]', path: '/edu-hub/lac' }
-              ].map((card) => (
+                { title: 'Just joined', icon: Rocket, desc: 'Get set up with pre-service essentials, platform access, and your onboarding checklist.', bar: 'bg-gradient-to-r from-amber-400 to-amber-600 shadow-[0_0_10px_rgba(251,191,36,0.5)]', path: '/departments/pd/edu-hub/joining' },
+                { title: 'Teaching', icon: GraduationCap, desc: 'Stage-specific curriculum, subjects, assessment, and learning area resources.', bar: 'bg-gradient-to-r from-primary to-accent shadow-[0_0_10px_rgba(247,53,88,0.5)]', path: '/departments/pd/edu-hub/teaching' },
+                { title: 'My classroom', icon: ChalkboardTeacher, desc: 'Attendance, student lists, micro plans, environment, and records â€” everything daily.', bar: 'bg-gradient-to-r from-blue-400 to-blue-600 shadow-[0_0_10px_rgba(96,165,250,0.5)]', path: '/departments/pd/edu-hub/my-classroom' },
+                { title: 'My campus', icon: Buildings, desc: 'School details, leadership, history, affiliation, and your class and timetable.', bar: 'bg-gradient-to-r from-purple-400 to-purple-600 shadow-[0_0_10px_rgba(192,132,252,0.5)]', path: '/departments/pd/edu-hub/my-campus' },
+                { title: 'Who we are', icon: Users, desc: 'Our vision, mission, 15-year legacy, leadership team, and all campuses.', bar: 'bg-gradient-to-r from-rose-400 to-rose-600 shadow-[0_0_10px_rgba(251,113,133,0.5)]', path: '/departments/pd/edu-hub/who-we-are' },
+                { title: 'Grow', icon: TrendUp, desc: 'MOOCs, CPS evidence, your learning purpose, and the educator toolkit.', bar: 'bg-gradient-to-r from-teal-400 to-teal-600 shadow-[0_0_10px_rgba(45,212,191,0.5)]', path: '/departments/pd/edu-hub/grow' },
+                { title: 'Culture & Environment', icon: ShieldCheck, desc: 'Institutional standards, classroom climate, and environmental excellence.', bar: 'bg-gradient-to-r from-emerald-400 to-emerald-600 shadow-[0_0_10px_rgba(52,211,153,0.5)]', path: '/departments/pd/edu-hub/culture-environment' },
+                { title: 'LAC', icon: ClipboardText, desc: 'Learning Accountability Checklist â€” monitor and track curriculum delivery.', bar: 'bg-gradient-to-r from-indigo-400 to-indigo-600 shadow-[0_0_10px_rgba(79,70,229,0.5)]', path: '/departments/pd/edu-hub/lac' }
+              ].filter(card => isModuleEnabled(card.path, user?.role || 'TEACHER')).map((card) => (
                 <div 
                   key={card.title} 
                   onClick={() => navigate(card.path)}

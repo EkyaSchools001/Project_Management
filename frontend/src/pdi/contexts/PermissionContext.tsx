@@ -111,6 +111,8 @@ export const defaultAccessMatrix: PermissionSetting[] = [
     { moduleId: 'email-signature', moduleName: 'Email Signature Templates', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
     { moduleId: 'ekyaverse', moduleName: 'Ekyaverse-Neverskip', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
     { moduleId: 'audit-reports', moduleName: 'Audit & Reports', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'lac', moduleName: 'LAC (Checklist)', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'culture-environment', moduleName: 'Culture & Environment', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
 ];
 
 // ─── Frontend Path → Module ID Mapping ───────────────────────────────────────
@@ -202,6 +204,8 @@ const FRONTEND_MODULE_MAP: Record<string, string> = {
     'audit-reports': 'audit-reports',
     'ai-assistant': 'ai_assistant',
     'chat': 'ai_assistant',
+    'lac': 'lac',
+    'culture-environment': 'culture-environment',
 };
 
 // ─── Role Normalization ──────────────────────────────────────────────────────

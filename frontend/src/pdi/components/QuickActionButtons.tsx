@@ -1,13 +1,15 @@
-import { CalendarBlank, ChartBar } from "@phosphor-icons/react";
+import { CalendarBlank, ChartBar, ShieldCheck, ClipboardCheck } from "@phosphor-icons/react";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 import { Role } from "./RoleBadge";
+import { useAccessControl } from "@pdi/hooks/useAccessControl";
 
 interface QuickActionButtonsProps {
     role: Role;
 }
 
 export function QuickActionButtons({ role }: QuickActionButtonsProps) {
+    const { isModuleEnabled } = useAccessControl();
     const navigate = useNavigate();
 
     const getRoleRoute = (baseRoute: string) => {
@@ -36,6 +38,12 @@ export function QuickActionButtons({ role }: QuickActionButtonsProps) {
                     navigate(getRoleRoute("reports"));
                 }
                 break;
+            case "culture":
+                navigate("/departments/pd/edu-hub/culture-environment");
+                break;
+            case "lac":
+                navigate("/departments/pd/edu-hub/lac");
+                break;
         }
     };
 
@@ -57,6 +65,27 @@ export function QuickActionButtons({ role }: QuickActionButtonsProps) {
                 <ChartBar className="w-4 h-4" weight="fill" />
                 {role.toLowerCase() === 'teacher' ? 'Observations' : 'Reports'}
             </Button>
+            {/* Culture – teal/emerald */}
+            {isModuleEnabled('/departments/pd/edu-hub/culture-environment', role) && (
+                <Button
+                    className="h-9 px-4 rounded-xl font-medium gap-2 bg-teal-500 text-white hover:bg-teal-600 shadow-md shadow-teal-500/25 transition-all duration-200 hover:scale-[1.03] active:scale-95"
+                    onClick={() => handleNavigation("culture")}
+                >
+                    <ShieldCheck className="w-4 h-4" weight="fill" />
+                    Culture
+                </Button>
+            )}
+            {/* LAC – violet/indigo */}
+            {isModuleEnabled('/departments/pd/edu-hub/lac', role) && (
+                <Button
+                    className="h-9 px-4 rounded-xl font-medium gap-2 bg-violet-500 text-white hover:bg-violet-600 shadow-md shadow-violet-500/25 transition-all duration-200 hover:scale-[1.03] active:scale-95"
+                    onClick={() => handleNavigation("lac")}
+                >
+                    <ClipboardCheck className="w-4 h-4" weight="fill" />
+                    LAC
+                </Button>
+            )}
         </div>
     );
 }
+

@@ -109,6 +109,8 @@ export function DashboardSidebar({
       { title: "Interactions", path: "/departments/pd/edu-hub/interactions", icon: ChatCircleDots },
       { title: "Tickets", path: "/departments/pd/edu-hub/tickets", icon: Ticket },
       { title: "Grow", path: "/departments/pd/edu-hub/grow", icon: ChartLineUp },
+      { title: "Culture & Environment", path: "/departments/pd/edu-hub/culture-environment", icon: ShieldCheck },
+      { title: "LAC", path: "/departments/pd/edu-hub/lac", icon: ClipboardText },
     ];
 
 

@@ -200,6 +200,103 @@ export const getSetting = async (req: Request, res: Response, next: NextFunction
                 });
             }
 
+            // Provide a default page_tech_sites_login if not yet initialized
+            if (key === 'page_tech_sites_login') {
+                return res.status(200).json({
+                    status: 'success',
+                    data: {
+                        setting: {
+                            key: 'page_tech_sites_login',
+                            value: JSON.stringify({
+                                title: "Educator ",
+                                titleAccent: "Site",
+                                subtitle: "Access all your essential school platforms and external tools from one unified secure gateway.",
+                                bannerUrl: "/assets/tech-sites/banner.png",
+                                sitesText: "Ekya/CMR Email | https://mail.google.com | Access your official Google Workspace email and collaboration tools.\ngreytHR | https://ekyacmr.greythr.com/uas/portal/auth/login?login_challenge=k1uNF2YVIGN-nMgoRA1BYeNqvnoAK-wgvAAlIxvXOkIADmYtWoudSbvEweSEpk93PrawmKBtQRmJM-gPsnBHj1JkoPSCcR1MLw69i8cyMec927P7WTQ4jpm5XfI8rj5ArG3CPcciuDOG-cDQcrbsm58C83o2w5qdqTBc_X6f3ymDxcqHGvMSbJ38S6b0ZY9Kw9N--PeFODCFFPRGpPjI9jasV3s-rd5sW5UgkomR0knUxBACvzE_MxNpJm4l0T4Ugfa-9o2XJKCbBrzCc4w93b19lqEibMRCYyT-bjt6lfOYCCAuq7CRyfdwRcMzvfFJlcO0huuLCKBBfNmKLDBtTwBG81vXbWtAQt4wUIOFimAh0NaXBKIOqGuCpjHUHe-D9GJhcYRGrwLimBYCI_d041bi818UQ-vW7yaE55RDJn5Dk5A1r78fudA6VkD71kaSoQ2xJOfFL9BjTX4mJr5ndLxi4buuYf3POhUnU0k5n8BGji6gMDepgyZXDaLeVEypyK322gcZzuxDzOISEsP_BvgoYNdtLKVQsmevb4D2BMBOnegz7CuO79fi8PKKbgkEHYaHDsD3di1aAcwcWoWxyzk5oXCjawmDvNrHGtZ6jv3ku3QfhlAuL2oJuk5aG4VRaVub-mfplcsB8ARTmh-N2XqvFW3SzakAM3-D_GhagkN334mCIafb4HPe9VPEn9r07PR4IIjBGXTtSK7bhQgBXHjomqKxYz54o3UwLeYaPHkquW0OMRRrQWaM5lmJjB6P3C4L-3N466VSeFCx67fc_D4Bu9Mx6s-B9Al2uzodOIIVCmhzisjrkhWrKqhyZzKc2XIvK8n0dOtkoRtz8luIhRVdxlTRb7V0Ksume3pvigSLZ0xgsiRoxfYUgL3J4ddfTcn3EmgmI5SX-_11Z-9pkn961DBi3KnqFK6rG_a_73O8h6hnmZl2ut1VxdJn1hP9-1UmGGDtBM-XFnUxNH4fLvMiPO9S2FnTh9HJ7_KXwcKNJlWOONfZpN817smgRLo6iPezlmVxGMT94YJR2oQTxFMCA4ThlU1e6e7vTWoM8yStMrpz-je3iYpQoJaifoXsLeMQVqXZGD9GG3Wx0gTgZh_e8Jd8618ZrtSZGYH5QC7k9XPS4Xs-NtJ_8P4AJC-kvw32H1sFKkrQ1cYFSW-RPTqJSh0nbywWK2BRwIfC5r83gfAen2v0oJvtq9oAhxMGm7AfINV4umpqFjCm7Pdico_GAttWPtz7k8prkgsCcC-enX9q7b3eWKdMd4QdG5YHB3ypDD-wLUwWbCfjv4hZdCxFnLGlMnZ69Xtz5edDv3am2MaGe8Qa3qjCOGP9k_mHnnkSSsJi-AtKu-D2yy18fRRgEVEj3i90iZt1pgM%3D | Payroll, leave management, and employee self-service portal.\nEkyaverse - Neverskip | https://app.neverskip.com/appnew/login.php | Core school management system for attendance, grades, and records.\nSchoology | https://app.schoology.com | Learning Management System for course content and student engagement.\nPowerSchool | https://powerschool.com | Curriculum & Instruction platform for academic planning and tracking."
+                            })
+                        }
+                    }
+                });
+            }
+
+            // Provide a default page_tech_greythr if not yet initialized
+            if (key === 'page_tech_greythr') {
+                return res.status(200).json({
+                    status: 'success',
+                    data: {
+                        setting: {
+                            key: 'page_tech_greythr',
+                            value: JSON.stringify({
+                                heroTitle: "GREYTHR",
+                                heroImage: "/assets/technology/greythr_banner.png",
+                                description: "GreytHR is a 24x7 Employee Self Service portal.",
+                                points: "Effective management of attendance, leaves & payroll.\nSeamless payroll process.\nFAQ document prepared to address the commonly captured queries or issues.",
+                                tutorialTitle: "TUTORIAL",
+                                knowledgeBankLabel: "Knowledge Bank",
+                                knowledgeBankUrl: "https://ekyacmr.greythr.com/uas/portal/auth/login?login_challenge=k1uNF2YVIGN-nMgoRA1BYeNqvnoAK-wgvAAlIxvXOkIADmYtWoudSbvEweSEpk93PrawmKBtQRmJM-gPsnBHj1JkoPSCcR1MLw69i8cyMec927P7WTQ4jpm5XfI8rj5ArG3CPcciuDOG-cDQcrbsm58C83o2w5qdqTBc_X6f3ymDxcqHGvMSbJ38S6b0ZY9Kw9N--PeFODCFFPRGpPjI9jasV3s-rd5sW5UgkomR0knUxBACvzE_MxNpJm4l0T4Ugfa-9o2XJKCbBrzCc4w93b19lqEibMRCYyT-bjt6lfOYCCAuq7CRyfdwRcMzvfFJlcO0huuLCKBBfNmKLDBtTwBG81vXbWtAQt4wUIOFimAh0NaXBKIOqGuCpjHUHe-D9GJhcYRGrwLimBYCI_d041bi818UQ-vW7yaE55RDJn5Dk5A1r78fudA6VkD71kaSoQ2xJOfFL9BjTX4mJr5ndLxi4buuYf3POhUnU0k5n8BGji6gMDepgyZXDaLeVEypyK322gcZzuxDzOISEsP_BvgoYNdtLKVQsmevb4D2BMBOnegz7CuO79fi8PKKbgkEHYaHDsD3di1aAcwcWoWxyzk5oXCjawmDvNrHGtZ6jv3ku3QfhlAuL2oJuk5aG4VRaVub-mfplcsB8ARTmh-N2XqvFW3SzakAM3-D_GhagkN334mCIafb4HPe9VPEn9r07PR4IIjBGXTtSK7bhQgBXHjomqKxYz54o3UwLeYaPHkquW0OMRRrQWaM5lmJjB6P3C4L-3N466VSeFCx67fc_D4Bu9Mx6s-B9Al2uzodOIIVCmhzisjrkhWrKqhyZzKc2XIvK8n0dOtkoRtz8luIhRVdxlTRb7V0Ksume3pvigSLZ0xgsiRoxfYUgL3J4ddfTcn3EmgmI5SX-_11Z-9pkn961DBi3KnqFK6rG_a_73O8h6hnmZl2ut1VxdJn1hP9-1UmGGDtBM-XFnUxNH4fLvMiPO9S2FnTh9HJ7_KXwcKNJlWOONfZpN817smgRLo6iPezlmVxGMT94YJR2oQTxFMCA4ThlU1e6e7vTWoM8yStMrpz-je3iYpQoJaifoXsLeMQVqXZGD9GG3Wx0gTgZh_e8Jd8618ZrtSZGYH5QC7k9XPS4Xs-NtJ_8P4AJC-kvw32H1sFKkrQ1cYFSW-RPTqJSh0nbywWK2BRwIfC5r83gfAen2v0oJvtq9oAhxMGm7AfINV4umpqFjCm7Pdico_GAttWPtz7k8prkgsCcC-enX9q7b3eWKdMd4QdG5YHB3ypDD-wLUwWbCfjv4hZdCxFnLGlMnZ69Xtz5edDv3am2MaGe8Qa3qjCOGP9k_mHnnkSSsJi-AtKu-D2yy18fRRgEVEj3i90iZt1pgM%3D"
+                            })
+                        }
+                    }
+                });
+            }
+
+            // Provide a default page_tech_schoology if not yet initialized
+            if (key === 'page_tech_schoology') {
+                return res.status(200).json({
+                    status: 'success',
+                    data: {
+                        setting: {
+                            key: 'page_tech_schoology',
+                            value: JSON.stringify({
+                                heroTitle: "SCHOOLOGY",
+                                heroImage: "/assets/technology/schoology_banner.png",
+                                introTitle: "INTRODUCTION",
+                                introContent1: "Schoology is a social networking service virtual learning environment for K-12 school and higher education institutions that allows users to create, manage, and share academic content.",
+                                introContent2: "Also known as a learning management system (LMS) or course management system (CMS), the cloud-based platform provides tools needed to manage an online classroom. Schoology can help teachers contact students with homework and more. They can post daily reminders or updates. They can message students, manage the assignment calendar and put new assignments.",
+                                tutorialTitle: "TUTORIAL ON HOW TO LOGIN",
+                                tutorialInstruction: "Please click on the links below to see how to login to Schoology",
+                                desktopLoginUrl: "https://drive.google.com/file/d/1khDIHWoF647eN1UVPpJcGr8fGmx0X-iW/view",
+                                mobileLoginUrl: "https://drive.google.com/file/d/1s953WKne7hRqIr9fjamyNTpyrZPtG1ak/view",
+                                onboardingTitle: "SCHOOLOGY ONBOARDING COURSE FOR ALL TEACHERS",
+                                onboardingDesc: "We understand that many of you may want to practice using Schoology on your own. For this reason, we have put together a Schoology Onboarding tutorial. It is essential for everyone to join the Schoology onboarding course. Click the link below to see how to join the course. Within the course, please explore all the materials and other features to know more about the platform.",
+                                onboardingLinkTitle: "How to join a course with access code",
+                                onboardingLinkUrl: "https://drive.google.com/file/d/137uw0wo2FRXHb5g99TbRa7hwhWp1bWN-/view",
+                                accessCode: "HZ9R-C83S-GCB2T",
+                                loginLinksText: "Desktop/Browser | https://drive.google.com/file/d/1khDIHWoF647eN1UVPpJcGr8fGmx0X-iW/view\nMobile/tablet app (Android/iOS) | https://drive.google.com/file/d/1s953WKne7hRqIr9fjamyNTpyrZPtG1ak/view"
+                            })
+                        }
+                    }
+                });
+            }
+
+            // Provide a default page_tech_zoom if not yet initialized
+            if (key === 'page_tech_zoom') {
+                return res.status(200).json({
+                    status: 'success',
+                    data: {
+                        setting: {
+                            key: 'page_tech_zoom',
+                            value: JSON.stringify({
+                                heroTitle: "ZOOM",
+                                heroImage: "",
+                                introContent: "While we are running virtual school, the platform that we will be using at Ekya and CMR K-12 is Zoom. Typically, free Zoom accounts have a 40 minute limit per meeting. However, as a service offered to schools impacted by COVID-19 lockdown, Zoom has offered to remove the 40-minute limit for accounts from verified domains. Currently, the 40 minute limit has been removed for all @ekyaschools.com and @cmrnps.ac.in accounts. Each teacher will need to create their own account at Zoom using your official email address.",
+                                tutorialsTitle: "TUTORIALS",
+                                settingsTitle: "ZOOM SETTINGS",
+                                engagementTitle: "TOOLS FOR CALL ENGAGEMENT",
+                                engagementInstruction: "Some tools you may want to consider using to engage students when on a Zoom call include:",
+                                onlineLearningUrl: "https://docs.google.com/document/d/1iyWiXttxQxWA1qrArjyxzNb9T8BvZgUVCjfgSMWuvE8/edit?tab=t.0#heading=h.vulj2cokosps",
+                                tutorialsText: "How to join a meeting | https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0060732\nSharing Your Screen | https://www.youtube.com/embed/YA6SGQlVmcA?rel=0&autoplay=1&cc_load_policy=1\nHost Controls in a Meeting | https://www.youtube.com/embed/ygZ96J_z4AY?rel=0&autoplay=1&cc_load_policy=1\nUsing Annotation Tools on a Shared Screen or Whiteboard | https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067931\nBreakout rooms | https://www.youtube.com/embed/ygZ96J_z4AY?rel=0&autoplay=1&cc_load_policy=1",
+                                toolsText: "Mentimeter | ask poll questions to an audience, create word clouds, quizzes etc | https://www.mentimeter.com/plans\nNearpod | ask poll questions, quizzes, gamify a quiz etc | https://nearpod.com/\nPadlet | build a board with student thoughts | https://padlet.com/\nKahoot | to game-ify learning (games and quizzes created by other educators already exist) | https://kahoot.com/schools/",
+                                setUpPointsText: "Require a meeting password\nEnable your waiting room\nParticipant mic and video to be turned off when joining\nDo not allow join before host",
+                                duringPointsText: "Do not allow participants to rename themselves\nDo not allow participants to chat with everyone - only host, or everyone publicly\nDo not allow participants to annotate on the screen",
+                                afterPointsText: "When you leave the session, do make sure that you end the call for everyone"
+                            })
+                        }
+                    }
+                });
+            }
+
+            // Provide a default page_tech_slack if not yet initialized
             return next(new AppError('Setting not found', 404));
         }
 

@@ -92,6 +92,8 @@ const API_MODULE_MAP: Record<string, string> = {
     'leadership': 'team',
     'superadmin': 'settings',
     'profile': 'users',
+    'lac': 'lac',
+    'page_culture_environment': 'culture-environment',
 };
 
 // ─── Paths that bypass access control entirely ───────────────────────────────
@@ -156,7 +158,8 @@ export const roleModuleAuth = async (req: Request, res: Response, next: NextFunc
         }
 
         // 5. Determine which module this API path belongs to
-        const segments = req.path.split('/').filter(Boolean);
+        // We check segments in reverse to prioritize specific sub-paths (e.g. settings/page_culture_environment)
+        const segments = req.path.split('/').filter(Boolean).reverse();
         let moduleId: string | undefined;
 
         for (const segment of segments) {

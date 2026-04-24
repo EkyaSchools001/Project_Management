@@ -5,8 +5,8 @@ import { format } from "date-fns";
 import api from "@pdi/lib/api";
 import { getSocket } from "@pdi/lib/socket";
 import { useAuth } from "@pdi/hooks/useAuth";
-import { AssessmentManagementDashboard } from "@pdi/components/assessments/AssessmentManagementDashboard";
 import { useAccessControl } from "@pdi/hooks/useAccessControl";
+import { AssessmentManagementDashboard } from "@pdi/components/assessments/AssessmentManagementDashboard";
 import { DashboardLayout } from "@pdi/components/layout/DashboardLayout";
 import { formatRole } from "@pdi/lib/utils";
 import { PageHeader } from "@pdi/components/layout/PageHeader";
@@ -85,6 +85,9 @@ import { MoocResponsesView as MoocResponsesRegistry } from "@pdi/components/mooc
 
 export default function LeaderDashboard() {
   const { user } = useAuth();
+  const { isModuleEnabled } = useAccessControl();
+  const navigate = useNavigate();
+
   if (!user) return null;
 
   const userName = user.fullName;
@@ -646,16 +649,63 @@ function DashboardOverview({
             onClick={() => navigate("/leader/participation")}
           />
         )}
-        {isModuleEnabled('/leader/goals', role) && (
-          <StatCard
-            title="Active Goals"
-            value={goals.filter(g => g.status !== 'GOAL_COMPLETED').length}
-            subtitle="Pending Completion"
-            icon={Target}
-            onClick={() => navigate("/leader/goals")}
-          />
-        )}
       </div>
+
+      {/* Key PDI Modules Section */}
+      <div className="space-y-6 mb-8">
+        <div className="flex items-center gap-3">
+          <div className="w-1.5 h-8 rounded-full bg-indigo-500 shadow-[0_0_15px_rgba(79,70,229,0.3)]"></div>
+          <h2 className="text-2xl font-black text-foreground tracking-tight">Key PDI Modules</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {isModuleEnabled('/departments/pd/edu-hub/culture-environment', role) && (
+            <Card 
+              className="group cursor-pointer border-none shadow-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white overflow-hidden rounded-[2rem] transition-all hover:scale-[1.02]"
+              onClick={() => navigate("/departments/pd/edu-hub/culture-environment")}
+            >
+              <CardContent className="p-8 relative">
+                <div className="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
+                <div className="flex items-start justify-between">
+                  <div className="space-y-4">
+                    <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-xl flex items-center justify-center border border-white/20">
+                      <ShieldCheck className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-black">Culture & Environment</h3>
+                      <p className="text-emerald-50/80 font-medium mt-1">Institutional standards and classroom excellence.</p>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="w-6 h-6 text-white/60 group-hover:text-white transition-colors" />
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {isModuleEnabled('/departments/pd/edu-hub/lac', role) && (
+            <Card 
+              className="group cursor-pointer border-none shadow-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white overflow-hidden rounded-[2rem] transition-all hover:scale-[1.02]"
+              onClick={() => navigate("/departments/pd/edu-hub/lac")}
+            >
+              <CardContent className="p-8 relative">
+                <div className="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
+                <div className="flex items-start justify-between">
+                  <div className="space-y-4">
+                    <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-xl flex items-center justify-center border border-white/20">
+                      <ClipboardCheck className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-black">LAC</h3>
+                      <p className="text-indigo-50/80 font-medium mt-1">Learning Accountability Checklist & curriculum tracking.</p>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="w-6 h-6 text-white/60 group-hover:text-white transition-colors" />
+                </div>
+              </CardContent>
+            </Card>
+          )}
+        </div>
+      </div>
+
 
       {isModuleEnabled('/leader/team', role) && (
         <div className="space-y-6">

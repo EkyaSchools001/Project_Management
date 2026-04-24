@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { globalRBAC } from '../../middlewares/rbac.middleware';
+import { roleModuleAuth } from '../../middlewares/accessControl';
 import authRoutes from './authRoutes';
 import goalRoutes from './goalRoutes';
 import userRoutes from './userRoutes';
@@ -31,12 +31,13 @@ import formWorkflowRoutes from './formWorkflowRoutes';
 import goalWindowRoutes from './goalWindowRoutes';
 import aiRoutes from './aiRoutes';
 import portfolioRoutes from './portfolioRoutes';
+import lacRoutes from './lacRoutes';
 
 
 const router = Router();
 
-// Apply enterprise RBAC globally to PDI routes
-router.use(globalRBAC);
+// Apply centralized Access Matrix RBAC globally to PDI routes
+router.use(roleModuleAuth);
 
 router.use('/auth', authRoutes);
 router.use('/observations', observationRoutes);
@@ -67,6 +68,7 @@ router.use('/form-workflows', formWorkflowRoutes);
 router.use('/okr', okrRoutes);
 router.use('/ai', aiRoutes);
 router.use('/portfolio', portfolioRoutes);
+router.use('/lac', lacRoutes);
 
 
 export default router;

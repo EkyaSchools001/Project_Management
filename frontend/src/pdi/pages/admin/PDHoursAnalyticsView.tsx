@@ -16,7 +16,8 @@ import {
     MessageSquare,
     ClipboardCheck,
     Mail,
-    Send
+    Send,
+    RefreshCw
 } from "lucide-react";
 import {
     BarChart,
@@ -47,6 +48,7 @@ import {
 } from "@pdi/components/ui/table";
 import { Badge } from "@pdi/components/ui/badge";
 import { Input } from "@pdi/components/ui/input";
+import { StatCard } from "@pdi/components/StatCard";
 
 import { CAMPUS_OPTIONS } from "@pdi/lib/constants";
 import { getSocket } from "@pdi/lib/socket";
@@ -236,46 +238,42 @@ export function PDHoursAnalyticsView() {
             {viewMode === 'overview' ? (
                 <>
                     {/* Top Row Stats */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <StatSummaryCard
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <StatCard
                             title="Avg. Training Hours"
                             value={`${stats.avgHours}h`}
                             subtitle={globalSchool === "all" ? "Global average per teacher" : `${globalSchool} average`}
                             icon={Clock}
-                            color="blue"
                         />
-                        <StatSummaryCard
+                        <StatCard
                             title="Goal Achievement"
                             value={`${stats.percentMeetingGoal}%`}
                             subtitle={`Teachers meeting ${cutoff}h goal`}
                             icon={CheckCircle2}
-                            color="green"
                         />
-                        <StatSummaryCard
+                        <StatCard
                             title="Avg. Attendance"
                             value={`${stats.avgAttendance}%`}
                             subtitle="Participation in live training"
                             icon={Users}
-                            color="purple"
                         />
-                        <StatSummaryCard
+                        <StatCard
                             title="Feedback Score"
                             value={`${stats.globalFeedback}/5`}
                             subtitle="Global event rating average"
                             icon={MessageSquare}
-                            color="amber"
                         />
                     </div>
 
                     {/* Main Charts Row */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        <Card className="glass-card shadow-xl overflow-hidden   bg-background/50 backdrop-blur-xl">
-                            <CardHeader className="flex flex-row items-center justify-between space-y-0">
+                        <Card className="shadow-premium bg-white overflow-hidden border-none">
+                            <CardHeader className="bg-zinc-50/30 border-b border-zinc-100/50 flex flex-row items-center justify-between space-y-0">
                                 <div>
-                                    <CardTitle className="text-lg">Average Training Hours by Campus</CardTitle>
-                                    <CardDescription>Click a bar to view individual teacher hours</CardDescription>
+                                    <CardTitle className="text-xl font-black tracking-tight">Average Training Hours by Campus</CardTitle>
+                                    <CardDescription className="font-medium text-xs">Click a bar to view individual teacher hours</CardDescription>
                                 </div>
-                                <BarChart3 className="w-5 h-5 text-muted-foreground" />
+                                <BarChart3 className="w-6 h-6 text-zinc-300" />
                             </CardHeader>
                             <CardContent className="h-[350px] min-w-0">
                                 <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
@@ -288,23 +286,23 @@ export function PDHoursAnalyticsView() {
                                             cursor={{ fill: 'rgba(0,0,0,0.05)' }}
                                         />
                                         <Legend verticalAlign="top" height={36} />
-                                        <Bar dataKey="Workshop" stackId="a" fill="#8884d8" name="Workshops" />
-                                        <Bar dataKey="MOOC" stackId="a" fill="#82ca9d" name="MOOCs" />
-                                        <Bar dataKey="In-house Training" stackId="a" fill="#ffc658" name="In-house" />
-                                        <Bar dataKey="Self-study" stackId="a" fill="#ff8042" name="Self-study" radius={[6, 6, 0, 0]} />
-                                        <Bar dataKey="Other" stackId="a" fill="#0088FE" name="Other" radius={[6, 6, 0, 0]} />
+                                        <Bar dataKey="Workshop" stackId="a" fill="#3B82F6" name="Workshops" />
+                                        <Bar dataKey="MOOC" stackId="a" fill="#10B981" name="MOOCs" />
+                                        <Bar dataKey="In-house Training" stackId="a" fill="#F59E0B" name="In-house" />
+                                        <Bar dataKey="Self-study" stackId="a" fill="#8B5CF6" name="Self-study" radius={[4, 4, 0, 0]} />
+                                        <Bar dataKey="Other" stackId="a" fill="#EC4899" name="Other" radius={[4, 4, 0, 0]} />
                                     </BarChart>
                                 </ResponsiveContainer>
                             </CardContent>
                         </Card>
 
-                        <Card className="glass-card shadow-xl overflow-hidden   bg-background/50 backdrop-blur-xl">
-                            <CardHeader className="flex flex-row items-center justify-between space-y-0">
+                        <Card className="shadow-premium bg-white overflow-hidden border-none">
+                            <CardHeader className="bg-zinc-50/30 border-b border-zinc-100/50 flex flex-row items-center justify-between space-y-0">
                                 <div>
-                                    <CardTitle className="text-lg">Goal Compliance ( {cutoff}h )</CardTitle>
-                                    <CardDescription>Teachers meeting mandatory PD hour requirements</CardDescription>
+                                    <CardTitle className="text-xl font-black tracking-tight">Goal Compliance ( {cutoff}h )</CardTitle>
+                                    <CardDescription className="font-medium text-xs">Teachers meeting mandatory PD hour requirements</CardDescription>
                                 </div>
-                                <TrendingUp className="w-5 h-5 text-muted-foreground" />
+                                <TrendingUp className="w-6 h-6 text-zinc-300" />
                             </CardHeader>
                             <CardContent className="h-[350px] min-w-0">
                                 <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
@@ -326,13 +324,13 @@ export function PDHoursAnalyticsView() {
 
                     {/* Secondary Metrics Row */}
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <Card className="lg:col-span-2 glass-card shadow-xl overflow-hidden   bg-background/50 backdrop-blur-xl">
-                            <CardHeader className="flex flex-row items-center justify-between space-y-0">
+                        <Card className="lg:col-span-2 shadow-premium bg-white overflow-hidden border-none">
+                            <CardHeader className="bg-zinc-50/30 border-b border-zinc-100/50 flex flex-row items-center justify-between space-y-0">
                                 <div>
-                                    <CardTitle className="text-lg">Training Event Performance</CardTitle>
-                                    <CardDescription>Attendance rates for recent PD sessions</CardDescription>
+                                    <CardTitle className="text-xl font-black tracking-tight">Training Event Performance</CardTitle>
+                                    <CardDescription className="font-medium text-xs">Attendance rates for recent PD sessions</CardDescription>
                                 </div>
-                                <ClipboardCheck className="w-5 h-5 text-muted-foreground" />
+                                <ClipboardCheck className="w-6 h-6 text-zinc-300" />
                             </CardHeader>
                             <CardContent className="h-[300px] min-w-0">
                                 <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
@@ -352,10 +350,10 @@ export function PDHoursAnalyticsView() {
                             </CardContent>
                         </Card>
 
-                        <Card className="glass-card shadow-xl overflow-hidden   bg-background/50 backdrop-blur-xl">
-                            <CardHeader>
-                                <CardTitle className="text-lg">Event Feedback</CardTitle>
-                                <CardDescription>Top rated sessions this semester</CardDescription>
+                        <Card className="shadow-premium bg-white overflow-hidden border-none">
+                            <CardHeader className="bg-zinc-50/30 border-b border-zinc-100/50">
+                                <CardTitle className="text-xl font-black tracking-tight">Event Feedback</CardTitle>
+                                <CardDescription className="font-medium text-xs">Top rated sessions this semester</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-4">
                                 {feedbackData.events.slice(0, 5).sort((a: any, b: any) => b.avgRating - a.avgRating).map((event: any, i: number) => (
@@ -378,13 +376,13 @@ export function PDHoursAnalyticsView() {
 
                     {/* Tertiary Metrics Row */}
                     <div className="grid grid-cols-1 mt-6">
-                        <Card className="glass-card shadow-xl overflow-hidden   bg-background/50 backdrop-blur-xl">
-                            <CardHeader className="flex flex-row items-center justify-between space-y-0">
+                        <Card className="shadow-premium bg-white overflow-hidden border-none">
+                            <CardHeader className="bg-zinc-50/30 border-b border-zinc-100/50 flex flex-row items-center justify-between space-y-0">
                                 <div>
-                                    <CardTitle className="text-lg">Attendance Rate by Campus</CardTitle>
-                                    <CardDescription>Average Event Participation %</CardDescription>
+                                    <CardTitle className="text-xl font-black tracking-tight">Attendance Rate by Campus</CardTitle>
+                                    <CardDescription className="font-medium text-xs">Average Event Participation %</CardDescription>
                                 </div>
-                                <BarChart3 className="w-5 h-5 text-muted-foreground" />
+                                <Users className="w-6 h-6 text-zinc-300" />
                             </CardHeader>
                             <CardContent className="h-[300px] min-w-0">
                                 <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
@@ -408,29 +406,36 @@ export function PDHoursAnalyticsView() {
             ) : (
                 /* Drill Down View */
                 <div className="animate-in slide-in-from-right-5 duration-500">
-                    <div className="flex items-center gap-4 mb-6">
-                        <Button variant="ghost" size="sm" onClick={() => setViewMode('overview')}>
-                            <ArrowLeft className="w-4 h-4 mr-2" />
-                            Back to Overview
-                        </Button>
-                        <h2 className="text-2xl font-bold">{selectedCampus} - Detailed Teacher Training Hours</h2>
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                        <div className="flex items-center gap-4">
+                            <Button variant="ghost" size="icon" onClick={() => setViewMode('overview')} className="rounded-full hover:bg-slate-100">
+                                <ArrowLeft className="w-5 h-5" />
+                            </Button>
+                            <div>
+                                <h2 className="text-3xl font-black text-zinc-900 tracking-tight uppercase">{selectedCampus}</h2>
+                                <p className="text-sm font-medium text-zinc-500">Detailed Educator PD Registry</p>
+                            </div>
+                        </div>
+                        <Badge className="bg-primary/10 text-primary border-none px-4 py-2 font-black text-sm">
+                            Mandatory Goal: {cutoff}h
+                        </Badge>
                     </div>
 
-                    <Card className="glass-card shadow-xl   bg-background/50 backdrop-blur-xl overflow-hidden">
-                        <CardHeader>
-                            <CardTitle>Teacher PD Registry</CardTitle>
-                            <CardDescription>Individual hours breakdown for {selectedCampus}</CardDescription>
+                    <Card className="shadow-premium bg-white overflow-hidden border-none">
+                        <CardHeader className="bg-zinc-50/30 border-b border-zinc-100/50">
+                            <CardTitle className="text-lg font-black">Professional Development Registry</CardTitle>
+                            <CardDescription className="font-medium text-xs text-slate-400">Reviewing training hours for {campusTeachers.length} educators</CardDescription>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="p-0">
                             <Table>
                                 <TableHeader>
-                                    <TableRow className="bg-muted/50 hover:bg-muted/50">
-                                        <TableHead className="w-[60px] text-center">S.No.</TableHead>
-                                        <TableHead>Teacher Name</TableHead>
-                                        <TableHead>Email</TableHead>
-                                        <TableHead className="text-right">Total Training Hours</TableHead>
-                                        <TableHead className="text-right">Status</TableHead>
-                                        <TableHead className="w-[100px]"></TableHead>
+                                    <TableRow className="bg-zinc-50/50 hover:bg-zinc-50/50 border-zinc-100">
+                                        <TableHead className="font-black text-zinc-900 w-[80px] text-center">S.No.</TableHead>
+                                        <TableHead className="font-black text-zinc-900">Educator Name</TableHead>
+                                        <TableHead className="font-black text-zinc-900">Email Address</TableHead>
+                                        <TableHead className="font-black text-zinc-900 text-right">Total PD Hours</TableHead>
+                                        <TableHead className="font-black text-zinc-900 text-right w-[180px]">Status</TableHead>
+                                        <TableHead className="w-[80px]"></TableHead>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -448,12 +453,14 @@ export function PDHoursAnalyticsView() {
                                     ) : (
                                         campusTeachers.map((teacher: any, index: number) => (
                                             <TableRow key={teacher.id} className="hover:bg-muted/30 transition-colors">
-                                                <TableCell className="font-medium text-slate-500 text-center">{index + 1}</TableCell>
-                                                <TableCell className="font-medium">{teacher.fullName}</TableCell>
-                                                <TableCell className="text-muted-foreground">{teacher.email}</TableCell>
-                                                <TableCell className="text-right font-bold">{teacher.totalHours}h</TableCell>
+                                                <TableCell className="font-medium text-slate-400 text-center">{index + 1}</TableCell>
+                                                <TableCell className="font-bold text-zinc-800">{teacher.fullName}</TableCell>
+                                                <TableCell className="text-zinc-500 font-medium text-sm">{teacher.email}</TableCell>
+                                                <TableCell className="text-right font-black text-lg text-zinc-900">{teacher.totalHours}h</TableCell>
                                                 <TableCell className="text-right">
-                                                    <Badge className={teacher.totalHours >= cutoff ? "bg-green-100 text-green-700 hover:bg-green-100 border-none px-3" : "bg-yellow-100 text-yellow-700 hover:bg-yellow-100 border-none px-3"}>
+                                                    <Badge className={teacher.totalHours >= cutoff 
+                                                        ? "bg-emerald-50 text-emerald-700 border-none px-4 py-1 font-black text-[10px] uppercase tracking-wider" 
+                                                        : "bg-amber-50 text-amber-700 border-none px-4 py-1 font-black text-[10px] uppercase tracking-wider"}>
                                                         {teacher.totalHours >= cutoff ? "Requirement Met" : "Hours Pending"}
                                                     </Badge>
                                                 </TableCell>
@@ -486,53 +493,5 @@ export function PDHoursAnalyticsView() {
                 </div>
             )}
         </div>
-    );
-}
-
-function StatSummaryCard({ title, value, subtitle, icon: Icon, color }: any) {
-    const colorClasses: any = {
-        blue: "bg-blue-500/10 text-blue-600",
-        green: "bg-green-500/10 text-green-600",
-        purple: "bg-purple-500/10 text-purple-600",
-        amber: "bg-amber-500/10 text-amber-600",
-    };
-
-    return (
-        <Card className="glass-card shadow-lg   bg-background/50 backdrop-blur-xl hover:translate-y-[-4px] transition-all duration-300">
-            <CardContent className="pt-6">
-                <div className="flex items-center justify-between mb-2">
-                    <p className="text-sm font-medium text-muted-foreground">{title}</p>
-                    <div className={`p-2 rounded-lg ${colorClasses[color]}`}>
-                        <Icon className="w-4 h-4" />
-                    </div>
-                </div>
-                <div className="space-y-1">
-                    <h3 className="text-2xl font-bold tracking-tight">{value}</h3>
-                    <p className="text-xs text-muted-foreground">{subtitle}</p>
-                </div>
-            </CardContent>
-        </Card>
-    );
-}
-
-function RefreshCw(props: any) {
-    return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        >
-            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
-            <path d="M21 3v5h-5" />
-            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
-            <path d="M3 21v-5h5" />
-        </svg>
     );
 }

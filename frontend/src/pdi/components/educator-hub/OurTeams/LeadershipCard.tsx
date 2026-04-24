@@ -12,7 +12,7 @@ export const LeadershipCard = ({ member, accentColor = "#e53935" }: LeadershipCa
   return (
     <motion.div
       whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)" }}
-      className="bg-white rounded-[8px] shadow-sm overflow-hidden flex flex-col p-6 border border-slate-100 transition-shadow duration-300"
+      className="bg-white rounded-[8px] shadow-sm overflow-hidden flex flex-col p-6 border border-primary/20 transition-shadow duration-300"
     >
       {/* Profile Image */}
       <div className="aspect-[3/4] w-full mb-6 overflow-hidden rounded-[8px] bg-slate-50">

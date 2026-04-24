@@ -1,7 +1,7 @@
 import { Routes, Route, useParams, Navigate } from 'react-router-dom';
-import { DashboardLayout } from '@/components/layout/DashboardLayout';
+import { DashboardLayout } from '@pdi/components/layout/DashboardLayout';
 import { TeacherPortal } from './TeacherPortal';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@pdi/hooks/useAuth';
 
 const pathToSection: Record<string, string> = {
   'home': 'home',

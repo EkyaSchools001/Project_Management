@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import { 
   Folder, FileText, Plus, Trash, PencilSimple,
   MagnifyingGlass, CloudArrowUp
@@ -182,7 +182,7 @@ export function AdminPedagogyLearning() {
                   <div>
                     <div className="text-sm font-semibold">{item.title}</div>
                     <div className="text-xs text-muted-foreground flex items-center gap-2">
-                      {item.type} • {item.author}
+                      {item.type} â€¢ {item.author}
                     </div>
                   </div>
                 </div>

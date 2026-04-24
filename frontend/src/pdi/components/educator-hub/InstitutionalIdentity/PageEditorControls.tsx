@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { Button } from "@pdi/components/ui/button";
 import { PencilSimple, Image as ImageIcon, UploadSimple, X, Plus, Trash } from "@phosphor-icons/react";
 import { useAuth } from "@pdi/hooks/useAuth";
@@ -215,7 +215,7 @@ export const PageEditorControls = ({
                     value={value} 
                     onChange={(e) => updateField(fullPath, e.target.value)}
                     placeholder="Image URL"
-                    className="bg-white h-8 text-xs border-gray-100"
+                    className="bg-white h-8 text-xs border-primary/20"
                   />
                 </div>
                 <div className="relative">
@@ -240,7 +240,7 @@ export const PageEditorControls = ({
           </div>
         ) : field.type === "list" && field.itemFields ? (
           <div className="space-y-4">
-            <div className="flex items-center justify-between pt-4 pb-2 border-b border-gray-100">
+            <div className="flex items-center justify-between pt-4 pb-2 border-b border-primary/20">
               <Label className="text-xs font-black uppercase tracking-[0.15em] text-slate-800">
                 {field.label}
               </Label>
@@ -274,7 +274,7 @@ export const PageEditorControls = ({
               ))}
               
               {(Array.isArray(value) ? value : []).length === 0 && (
-                <div className="py-12 text-center border-2 border-dashed rounded-2xl bg-gray-50/50 border-gray-100">
+                <div className="py-12 text-center border-2 border-dashed rounded-2xl bg-gray-50/50 border-primary/20">
                   <p className="text-sm text-muted-foreground font-medium italic">No items added yet. Click the button above to start.</p>
                 </div>
               )}

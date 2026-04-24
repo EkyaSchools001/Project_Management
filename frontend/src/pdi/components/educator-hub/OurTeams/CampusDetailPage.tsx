@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { CampusPageLayout } from "./CampusPageLayout";
 import { CampusHero } from "./CampusHero";
 import { CampusMessage } from "./CampusMessage";
@@ -7,6 +7,8 @@ import { InstructionList } from "./InstructionList";
 import { SchoolTeamData } from "@pdi/types/schoolTeam";
 import { PageEditorControls } from "../InstitutionalIdentity/PageEditorControls";
 import { settingsService } from "@pdi/services/settingsService";
+import { Link } from "react-router-dom";
+import { Calendar, CaretRight } from "@phosphor-icons/react";
 
 interface CampusDetailPageProps {
   data: SchoolTeamData;
@@ -137,6 +139,7 @@ export const CampusDetailPage = ({ data }: CampusDetailPageProps) => {
         ))
       ) : (
         <InstructionList 
+          id="instructions"
           instructions={campusData.instructions || []}
           accentColor={highlightColor}
         />

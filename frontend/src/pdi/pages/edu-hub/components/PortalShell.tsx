@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@pdi/hooks/useAuth';
 import { hubTabs } from '../config';
 
 const roleGradients: Record<string, string> = {
@@ -13,12 +13,12 @@ const roleGradients: Record<string, string> = {
 };
 
 const roleIcons: Record<string, string> = {
-  teacher: '📚',
-  hos: '🏛',
-  leader: '🏛',
-  admin: '⚙️',
-  management: '📊',
-  superadmin: '👑'
+  teacher: 'ðŸ“š',
+  hos: 'ðŸ›',
+  leader: 'ðŸ›',
+  admin: 'âš™ï¸',
+  management: 'ðŸ“Š',
+  superadmin: 'ðŸ‘‘'
 };
 
 export function PortalShell({ children }: { children: ReactNode }) {
@@ -27,7 +27,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
   
   const role = (user?.role || 'teacher').toLowerCase();
   const gradient = roleGradients[role] || roleGradients.teacher;
-  const roleIcon = roleIcons[role] || '📚';
+  const roleIcon = roleIcons[role] || 'ðŸ“š';
 
   const isActiveTab = (path: string) => {
     if (path === '/edu-hub') return location.pathname === '/edu-hub';
@@ -56,7 +56,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <span className="px-3 py-1 rounded-full bg-white/20 font-medium whitespace-nowrap">Academic year 2025–26</span>
+            <span className="px-3 py-1 rounded-full bg-white/20 font-medium whitespace-nowrap">Academic year 2025â€“26</span>
           </div>
         </div>
       </div>
@@ -135,7 +135,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
             </div>
             <div className="flex items-center gap-3 text-xs text-slate-500">
               <span className="px-2 py-1 rounded-md bg-amber-100 text-amber-700 font-medium">Term 2</span>
-              <span>·</span>
+              <span>Â·</span>
               <span>Week 18</span>
             </div>
           </div>

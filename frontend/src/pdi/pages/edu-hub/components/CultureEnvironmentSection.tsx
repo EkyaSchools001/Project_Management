@@ -7,7 +7,7 @@ import {
   Trophy, SquaresFour, Books, BookOpen, PresentationChart, IdentificationBadge,
   FacebookLogo, TwitterLogo, InstagramLogo, LinkedinLogo, QrCode, Sparkle, CaretLeft, Buildings, PencilSimple
 } from '@phosphor-icons/react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@pdi/components/ui/button';
 import { PageEditorControls } from "@pdi/components/educator-hub/InstitutionalIdentity/PageEditorControls";
 import { settingsService } from "@pdi/services/settingsService";
 import { useAuth } from "@pdi/hooks/useAuth";
@@ -249,7 +249,7 @@ export const CultureEnvironmentSection = () => {
               </div>
             </div>
             <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-4">
-               © Ekya Schools – Educator Hub
+               Â© Ekya Schools â€“ Educator Hub
             </p>
           </div>
 

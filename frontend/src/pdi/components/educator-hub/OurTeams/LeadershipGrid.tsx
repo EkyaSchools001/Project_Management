@@ -31,7 +31,7 @@ export const LeadershipGrid = ({ leaders, coordinators, welcomeMessage, accentCo
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6 }}
-                  className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-slate-100 italic text-slate-600 leading-relaxed text-lg"
+                  className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-primary/20 italic text-slate-600 leading-relaxed text-lg"
                 >
                   <span className="text-4xl font-serif pr-2" style={{ color: highlightColor }}>"</span>
                   {welcomeMessage}

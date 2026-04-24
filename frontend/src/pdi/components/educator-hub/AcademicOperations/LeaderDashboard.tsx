@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   Users, 
   Warning, 
@@ -119,7 +119,7 @@ export function LeaderAcademicOps() {
                     </div>
                     <div>
                       <div className="text-sm font-medium">{name}</div>
-                      <div className="text-xs text-muted-foreground">Senior Secondary • Math</div>
+                      <div className="text-xs text-muted-foreground">Senior Secondary â€¢ Math</div>
                     </div>
                   </div>
                   <Badge variant={i === 1 ? "secondary" : "outline"} className="text-[10px]">
@@ -173,7 +173,7 @@ export function LeaderAcademicOps() {
                             <div>
                               <div className="text-sm font-black text-slate-900">{person.fullName}</div>
                               <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                                {person.role} • {person.department || "General"}
+                                {person.role} â€¢ {person.department || "General"}
                               </div>
                             </div>
                           </div>

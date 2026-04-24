@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@pdi/components/ui/card';
 import { Button } from '@pdi/components/ui/button';
 import { Badge } from '@pdi/components/ui/badge';
@@ -370,7 +370,7 @@ export function TicketsDashboard() {
                     <SelectItem key={s.id} value={s.id}>
                       <div className="flex flex-col">
                         <span className="font-bold text-sm">{s.fullName}</span>
-                        <span className="text-[10px] font-medium text-slate-400">{s.email} • {s.role}</span>
+                        <span className="text-[10px] font-medium text-slate-400">{s.email} â€¢ {s.role}</span>
                       </div>
                     </SelectItem>
                   ))}
@@ -378,7 +378,7 @@ export function TicketsDashboard() {
               </Select>
             </div>
             
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 italic text-xs text-slate-500 flex gap-3">
+            <div className="p-4 rounded-2xl bg-slate-50 border border-primary/20 italic text-xs text-slate-500 flex gap-3">
                <Warning size={18} className="shrink-0 text-slate-400" weight="bold" />
                Once assigned, the staff member will receive a notification and the ticket status will change to "In Progress".
             </div>
@@ -404,11 +404,11 @@ export function TicketsDashboard() {
           
           <div className="space-y-6 pt-2">
             <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+              <div className="p-4 bg-slate-50 rounded-2xl border border-primary/20">
                 <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Parent</p>
                 <p className="font-bold text-slate-800 text-sm">{takeActionTicket?.parentName}</p>
               </div>
-              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+              <div className="p-4 bg-slate-50 rounded-2xl border border-primary/20">
                 <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Student</p>
                 <p className="font-bold text-slate-800 text-sm">{takeActionTicket?.studentName}</p>
               </div>

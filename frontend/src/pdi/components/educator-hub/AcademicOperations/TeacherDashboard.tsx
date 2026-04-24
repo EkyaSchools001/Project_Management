@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { 
   Calendar, 
   Users, 
@@ -77,7 +77,7 @@ export function TeacherAcademicOps() {
                   <div className="w-24 text-sm font-medium text-muted-foreground">{item.time}</div>
                   <div>
                     <div className="font-semibold">{item.subject}</div>
-                    <div className="text-xs text-muted-foreground">{item.class} • {item.room}</div>
+                    <div className="text-xs text-muted-foreground">{item.class} â€¢ {item.room}</div>
                   </div>
                 </div>
                 <Button variant="ghost" size="icon">

@@ -20,8 +20,8 @@ import {
   CheckSquare
 } from '@phosphor-icons/react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import api from '@/lib/api';
-import { useAuth } from '@/hooks/useAuth';
+import api from '@pdi/lib/api';
+import { useAuth } from '@pdi/hooks/useAuth';
 import { toast } from 'sonner';
 
 interface Subject {
@@ -224,7 +224,7 @@ const LACModule = () => {
              </div>
              <h1 className="text-3xl font-black text-slate-800 tracking-tight uppercase italic">LAC Checklist</h1>
           </div>
-          <p className="text-slate-500 font-medium">Learning Accountability Checklist — 2025-26 Term 1</p>
+          <p className="text-slate-500 font-medium">Learning Accountability Checklist â€” 2025-26 Term 1</p>
         </div>
 
         <div className="flex items-center gap-2 p-1.5 bg-slate-100 rounded-2xl w-fit">
@@ -256,7 +256,7 @@ const LACModule = () => {
           )}
         </div>
 
-        {/* Assign Task Button — Coordinator / Leader only */}
+        {/* Assign Task Button â€” Coordinator / Leader only */}
         {isCoordinator && (
           <button
             onClick={() => setShowAssignModal(true)}
@@ -268,7 +268,7 @@ const LACModule = () => {
         )}
       </div>
 
-      {/* ── Assign Task Modal ───────────────────────────────────── */}
+      {/* â”€â”€ Assign Task Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {showAssignModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={() => setShowAssignModal(false)}>
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
@@ -294,7 +294,7 @@ const LACModule = () => {
 
             {/* Step 1: Select Teacher */}
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Step 1 — Select Teacher</label>
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Step 1 â€” Select Teacher</label>
               <select
                 value={assignTeacherId}
                 onChange={(e) => setAssignTeacherId(e.target.value)}
@@ -309,7 +309,7 @@ const LACModule = () => {
 
             {/* Step 2: Filter by Subject */}
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Step 2 — Filter by Subject (optional)</label>
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Step 2 â€” Filter by Subject (optional)</label>
               <select
                 value={assignSubjectFilter}
                 onChange={(e) => { setAssignSubjectFilter(e.target.value); setAssignTaskId(''); }}
@@ -324,7 +324,7 @@ const LACModule = () => {
 
             {/* Step 3: Select Task */}
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Step 3 — Select Task</label>
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Step 3 â€” Select Task</label>
               <select
                 value={assignTaskId}
                 onChange={(e) => setAssignTaskId(e.target.value)}
@@ -334,7 +334,7 @@ const LACModule = () => {
                 {(allTasksData || [])
                   .filter((t: any) => assignSubjectFilter === 'All' || t.subjectId === assignSubjectFilter)
                   .map((t: any) => (
-                    <option key={t.id} value={t.id}>[Wk {t.week}] {t.unit} — {t.task}</option>
+                    <option key={t.id} value={t.id}>[Wk {t.week}] {t.unit} â€” {t.task}</option>
                   ))
                 }
               </select>
@@ -610,11 +610,11 @@ const LACModule = () => {
               <h2 className="text-xl font-black text-slate-800">Teacher Progress Directory</h2>
               <p className="text-sm text-slate-500 mt-0.5">
                 {['SUPERADMIN','MANAGEMENT','ADMIN'].includes(user?.role || '') ? 'All campuses' : 'Your campus only'}
-                {' · '}{teachersData?.length || 0} teachers
+                {' Â· '}{teachersData?.length || 0} teachers
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-3">
-              {/* Campus filter — admins only */}
+              {/* Campus filter â€” admins only */}
               {['SUPERADMIN','MANAGEMENT','ADMIN'].includes(user?.role || '') && (
                 <div className="relative">
                   <Buildings className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={16} />
@@ -948,7 +948,7 @@ const LACModule = () => {
                                  </span>
                                </div>
                              ) : (
-                               <span className="text-[10px] text-slate-300 font-medium">—</span>
+                               <span className="text-[10px] text-slate-300 font-medium">â€”</span>
                              )}
                            </td>
                          )}

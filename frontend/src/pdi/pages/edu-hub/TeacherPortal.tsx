@@ -5,7 +5,7 @@ import { LearningAreasView } from './components/LearningAreasView';
 import { CultureEnvironmentSection } from './components/CultureEnvironmentSection';
 import CoCurricularActivities from "./components/CoCurricularActivities";
 import LACModule from "./components/LACModule";
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@pdi/hooks/useAuth';
 
 const campusSlugMap: Record<string, string> = {
   'ENICE': 'ekya-nice-road',
@@ -19,8 +19,8 @@ const campusSlugMap: Record<string, string> = {
   'PU BTM': 'cmrpu-btm',
   'PU BYR': 'cmrpu-byrathi'
 };
-import { InteractionsDashboard } from '@/components/educator-hub/interactions/InteractionsDashboard';
-import { TicketsDashboard } from '@/components/educator-hub/interactions/TicketsDashboard';
+import { InteractionsDashboard } from '@pdi/components/educator-hub/interactions/InteractionsDashboard';
+import { TicketsDashboard } from '@pdi/components/educator-hub/interactions/TicketsDashboard';
 import { 
   Rocket, 
   GraduationCap, 
@@ -39,7 +39,7 @@ import {
   ChatCircleDots,
   Ticket
 } from "@phosphor-icons/react";
-import { PageHeader } from '@/components/layout/PageHeader';
+import { PageHeader } from '@pdi/components/layout/PageHeader';
 
 const EMPTY_SECTION = (title: string, subtitle: string, navigate: any) => (
   <div className="space-y-6">
@@ -51,7 +51,7 @@ const EMPTY_SECTION = (title: string, subtitle: string, navigate: any) => (
     />
     <div className="rounded-[2.5rem] bg-white border border-slate-200 p-12 text-center shadow-sm">
       <div className="mb-6 mx-auto w-20 h-20 rounded-3xl bg-primary/5 flex items-center justify-center text-4xl shadow-inner border border-primary/10">
-        ✨
+        âœ¨
       </div>
       <h2 className="text-2xl font-bold text-slate-800 tracking-tight mb-4">Curating Resources</h2>
       <p className="text-slate-500 font-medium max-w-lg mx-auto leading-relaxed">
@@ -115,7 +115,7 @@ export function TeacherPortal({ section }: { section: string }) {
         <div className="px-12 md:px-16 lg:px-20 xl:px-24 2xl:px-28 3xl:px-32">
           <PageHeader 
             title="Overview"
-            subtitle={`Good morning, ${firstName}. Everything you need as an educator — your campus, your classroom, your curriculum — all in one place.`}
+            subtitle={`Good morning, ${firstName}. Everything you need as an educator â€” your campus, your classroom, your curriculum â€” all in one place.`}
             icon={<Rocket className="w-8 h-8 text-primary" weight="duotone" />}
             onBack={() => navigate(getDefaultBackPath())}
           />
@@ -130,11 +130,11 @@ export function TeacherPortal({ section }: { section: string }) {
               {[
                 { title: 'Just joined', icon: Rocket, desc: 'Get set up with pre-service essentials, platform access, and your onboarding checklist.', bar: 'bg-gradient-to-r from-amber-400 to-amber-600 shadow-[0_0_10px_rgba(251,191,36,0.5)]', path: '/edu-hub/joining' },
                 { title: 'Teaching', icon: GraduationCap, desc: 'Stage-specific curriculum, subjects, assessment, and learning area resources.', bar: 'bg-gradient-to-r from-primary to-accent shadow-[0_0_10px_rgba(247,53,88,0.5)]', path: '/edu-hub/teaching' },
-                { title: 'My classroom', icon: ChalkboardTeacher, desc: 'Attendance, student lists, micro plans, environment, and records — everything daily.', bar: 'bg-gradient-to-r from-blue-400 to-blue-600 shadow-[0_0_10px_rgba(96,165,250,0.5)]', path: '/edu-hub/my-classroom' },
+                { title: 'My classroom', icon: ChalkboardTeacher, desc: 'Attendance, student lists, micro plans, environment, and records â€” everything daily.', bar: 'bg-gradient-to-r from-blue-400 to-blue-600 shadow-[0_0_10px_rgba(96,165,250,0.5)]', path: '/edu-hub/my-classroom' },
                 { title: 'My campus', icon: Buildings, desc: 'School details, leadership, history, affiliation, and your class and timetable.', bar: 'bg-gradient-to-r from-purple-400 to-purple-600 shadow-[0_0_10px_rgba(192,132,252,0.5)]', path: '/edu-hub/my-campus' },
                 { title: 'Who we are', icon: Users, desc: 'Our vision, mission, 15-year legacy, leadership team, and all campuses.', bar: 'bg-gradient-to-r from-rose-400 to-rose-600 shadow-[0_0_10px_rgba(251,113,133,0.5)]', path: '/edu-hub/who-we-are' },
                 { title: 'Grow', icon: TrendUp, desc: 'MOOCs, CPS evidence, your learning purpose, and the educator toolkit.', bar: 'bg-gradient-to-r from-teal-400 to-teal-600 shadow-[0_0_10px_rgba(45,212,191,0.5)]', path: '/edu-hub/grow' },
-                { title: 'LAC', icon: ClipboardText, desc: 'Learning Accountability Checklist — monitor and track curriculum delivery.', bar: 'bg-gradient-to-r from-indigo-400 to-indigo-600 shadow-[0_0_10px_rgba(79,70,229,0.5)]', path: '/edu-hub/lac' }
+                { title: 'LAC', icon: ClipboardText, desc: 'Learning Accountability Checklist â€” monitor and track curriculum delivery.', bar: 'bg-gradient-to-r from-indigo-400 to-indigo-600 shadow-[0_0_10px_rgba(79,70,229,0.5)]', path: '/edu-hub/lac' }
               ].map((card) => (
                 <div 
                   key={card.title} 
@@ -318,7 +318,7 @@ export function TeacherPortal({ section }: { section: string }) {
       <div className="space-y-6">
         <PageHeader 
           title="My campus"
-          subtitle="Your campus, your class, your timetable — the details specific to where you teach."
+          subtitle="Your campus, your class, your timetable â€” the details specific to where you teach."
           icon={<Buildings className="w-8 h-8 text-primary" weight="duotone" />}
           onBack={() => navigate('/edu-hub')}
         />
@@ -338,7 +338,7 @@ export function TeacherPortal({ section }: { section: string }) {
                 },
                 {
                   title: "Campus leadership",
-                  desc: "Your principal, HODs, and support staff — who to go to for what.",
+                  desc: "Your principal, HODs, and support staff â€” who to go to for what.",
                   tags: ["Principal", "HODs", "Admin"],
                   path: `/campuses/${slug}`
                 },
@@ -402,7 +402,7 @@ export function TeacherPortal({ section }: { section: string }) {
       <div className="space-y-6">
         <PageHeader 
           title="Grow"
-          subtitle="Your professional development — learning goals, evidence, courses, and what you want to explore next."
+          subtitle="Your professional development â€” learning goals, evidence, courses, and what you want to explore next."
           icon={<TrendUp className="w-8 h-8 text-primary" weight="duotone" />}
           onBack={() => navigate('/edu-hub')}
         />
@@ -417,13 +417,13 @@ export function TeacherPortal({ section }: { section: string }) {
               },
               {
                 title: "CPS + evidence",
-                desc: "Document your Continuous Professional Study — goals, reflections, and student work evidence.",
+                desc: "Document your Continuous Professional Study â€” goals, reflections, and student work evidence.",
                 tags: ["CPS goals", "Evidence", "Reflection"],
                 path: "/edu-hub/grow"
               },
               {
                 title: "Toolkit + wishlist",
-                desc: "Resources, templates, and tools you've saved — plus a space to request what you need.",
+                desc: "Resources, templates, and tools you've saved â€” plus a space to request what you need.",
                 tags: ["Templates", "Wishlist", "Saved"],
                 path: "/edu-hub/grow"
               }

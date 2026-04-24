@@ -22,7 +22,7 @@ import { cn } from "@pdi/lib/utils";
 import { PageEditorControls } from "@pdi/components/educator-hub/InstitutionalIdentity/PageEditorControls";
 import { settingsService } from "@pdi/services/settingsService";
 import { useAuth } from "@pdi/hooks/useAuth";
-import { Button } from '@/components/ui/button';
+import { Button } from '@pdi/components/ui/button';
 
 const activityCards = [
     {
@@ -244,7 +244,7 @@ const CoCurricularActivities = () => {
                                 <div className="grid grid-cols-2 gap-4">
                                     {['Experiential Learning', 'Adventure', 'Sustainability', 'Service'].map(tag => (
                                         <div key={tag} className="px-4 py-2 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600 shadow-sm">
-                                            • {tag}
+                                            â€¢ {tag}
                                         </div>
                                     ))}
                                 </div>
@@ -253,7 +253,7 @@ const CoCurricularActivities = () => {
                                     <p className="text-md italic text-slate-700 font-medium leading-relaxed">
                                         "I have learnt to understand and respect the balance of the ecosystem and how human intervention deeply affects the life of the forest."
                                     </p>
-                                    <div className="mt-4 text-[10px] font-black uppercase text-blue-500 tracking-widest">— STUDENT VOICE</div>
+                                    <div className="mt-4 text-[10px] font-black uppercase text-blue-500 tracking-widest">â€” STUDENT VOICE</div>
                                 </div>
                             </motion.div>
                             <div className="rounded-3xl overflow-hidden aspect-square md:aspect-[4/5] shadow-2xl">
@@ -289,7 +289,7 @@ const CoCurricularActivities = () => {
                                     <p className="text-md italic text-slate-700 font-medium leading-relaxed">
                                         "The energy level from the students is great. The fundraiser for cataract surgeries is really amazing. You are supporting 75 underprivileged individuals."
                                     </p>
-                                    <div className="mt-4 text-[10px] font-black uppercase text-primary tracking-widest">— PARENT VOICE</div>
+                                    <div className="mt-4 text-[10px] font-black uppercase text-primary tracking-widest">â€” PARENT VOICE</div>
                                 </div>
                             </motion.div>
                         </div>
@@ -351,7 +351,7 @@ const CoCurricularActivities = () => {
                                     <p className="text-md italic text-slate-700 leading-relaxed">
                                         "WEP helped me improve my skills in writing, speaking as well as presenting. I became even more confident."
                                     </p>
-                                    <div className="mt-4 text-[10px] font-black uppercase text-amber-500 tracking-widest">— STUDENT VOICE</div>
+                                    <div className="mt-4 text-[10px] font-black uppercase text-amber-500 tracking-widest">â€” STUDENT VOICE</div>
                                 </div>
                             </motion.div>
                         </div>
@@ -476,7 +476,7 @@ const CoCurricularActivities = () => {
                     </div>
                     <div className="space-y-2">
                         <p className="text-[10px] text-slate-300 font-bold uppercase tracking-[0.2em]">
-                            © {new Date().getFullYear()} EKYA SCHOOLS. ALL RIGHTS RESERVED.
+                            Â© {new Date().getFullYear()} EKYA SCHOOLS. ALL RIGHTS RESERVED.
                         </p>
                         <p className="text-[9px] text-slate-200 max-w-2xl mx-auto italic">
                             This page is for informational purposes only. The Student Development vertical at Ekya Schools focuses on holistic development through intentional planning and purposeful execution.

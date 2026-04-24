@@ -51,7 +51,7 @@ export function PTILWizardForm({
   const [step, setStep] = useState<1 | 2>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const methods = useForm<any>({
+  const methods = useForm<PTILWizardData>({
     resolver: zodResolver(wizardSchema),
     defaultValues: {
       meetingRequestedBy: 'PARENT',

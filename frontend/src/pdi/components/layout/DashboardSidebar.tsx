@@ -2,16 +2,13 @@ import { useState, useEffect } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@pdi/lib/utils";
 import { useIsMobile } from "@pdi/hooks/use-mobile";
-import { useAuth } from "@pdi/hooks/useAuth";
 import {
   SquaresFour,
   ChartLineUp,
   UsersThree,
   GraduationCap,
   Gear,
-  SignOut,
   CaretLeft,
-  Student,
   X,
   Buildings,
   Heartbeat,
@@ -32,6 +29,7 @@ import {
   Ticket,
   Desktop,
   Link,
+  ArrowUUpLeft,
 } from "@phosphor-icons/react";
 import { Role, RoleBadge } from "../RoleBadge";
 import { Button } from "../ui/button";
@@ -59,20 +57,13 @@ export function DashboardSidebar({
   isHoverMode = false
 }: DashboardSidebarProps) {
   const { isModuleEnabled } = useAccessControl();
-  const { logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   const [unreadAnnouncements, setUnreadAnnouncements] = useState(0);
   const [openModule, setOpenModule] = useState<string | null>("Dashboard");
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-    } finally {
-      navigate('/', { replace: true });
-    }
-  };
+
 
   useEffect(() => {
     const fetchUnread = async () => {
@@ -698,7 +689,7 @@ export function DashboardSidebar({
           )}
         >
           <div className="bg-sidebar-primary p-2 rounded-lg">
-            <Student className="w-5 h-5 text-sidebar-primary-foreground" weight={"fill" as any} />
+            <GraduationCap className="w-5 h-5 text-sidebar-primary-foreground" weight={"fill" as any} />
           </div>
         </div>
 
@@ -712,7 +703,7 @@ export function DashboardSidebar({
           )}
         >
           <div className="p-2 rounded-lg bg-sidebar-primary shrink-0">
-            <Student className="w-5 h-5 text-sidebar-primary-foreground" weight={"fill" as any} />
+            <GraduationCap className="w-5 h-5 text-sidebar-primary-foreground" weight={"fill" as any} />
           </div>
           <span className="font-semibold text-sidebar-foreground truncate text-sm whitespace-nowrap">
             <span className="text-[#EA104A]">Teacher</span> Platform
@@ -771,13 +762,13 @@ export function DashboardSidebar({
       {/* Footer */}
       <div className="p-3 border-t border-sidebar-border shrink-0">
         <button
-          onClick={handleLogout}
+          onClick={() => navigate('/', { replace: true })}
           className={cn(
             "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors group overflow-hidden text-left",
-            "text-sidebar-foreground hover:bg-destructive hover:text-destructive-foreground"
+            "text-sidebar-foreground hover:bg-sidebar-accent"
           )}
         >
-          <SignOut className="w-5 h-5 shrink-0 group-hover:rotate-180 transition-transform duration-500" weight={"bold" as any} />
+          <ArrowUUpLeft className="w-5 h-5 shrink-0 group-hover:-translate-x-1 transition-transform duration-300" weight={"bold" as any} />
           <span
             className={cn(
               "text-sm font-medium whitespace-nowrap transition-all duration-200",
@@ -786,7 +777,7 @@ export function DashboardSidebar({
                 : "opacity-100 translate-x-0 delay-[130ms]"
             )}
           >
-            Sign Out
+            Main Dashboard
           </span>
         </button>
       </div>

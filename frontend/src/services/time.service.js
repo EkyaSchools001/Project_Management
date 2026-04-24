@@ -40,7 +40,7 @@ export const timeService = {
 
     async stopTimer(entryId) {
         try {
-            const response = await api.post(`/time/${entryId}/stop`);
+            const response = await api.post('/time/stop', { entryId });
             if (activeTimer?.id === entryId) {
                 activeTimer = null;
                 localStorage.removeItem('active_timer');
@@ -74,7 +74,7 @@ export const timeService = {
         }
 
         try {
-            const response = await api.get('/time/active');
+            const response = await api.get('/time/timer/status');
             activeTimer = response.data;
             return activeTimer;
         } catch (error) {
@@ -166,7 +166,7 @@ export const timeService = {
 
     async getTimeReport(userId, params = {}) {
         try {
-            return await api.get(`/time/reports/${userId || 'me'}`, { params });
+            return await api.get('/time/report', { params: { userId, ...params } });
         } catch (error) {
             await new Promise(resolve => setTimeout(resolve, 300));
             const entries = getStoredTimeEntries().filter(e => 

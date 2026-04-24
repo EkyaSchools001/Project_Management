@@ -14,12 +14,12 @@ export interface JWTPayload {
     exp?: number;
 }
 
-export const generateTokens = (userId: string, sessionId: string) => {
+export const generateTokens = (userId: string, sessionId: string, role?: string) => {
     const jwtSecret = (process.env.JWT_SECRET || 'your-super-secret-key') as jwt.Secret;
     const jwtRefreshSecret = (process.env.JWT_REFRESH_SECRET || process.env.JWT_SECRET || 'your-super-secret-key-refresh') as jwt.Secret;
 
     const accessToken = jwt.sign(
-        { sub: userId, sessionId },
+        { sub: userId, sessionId, ...(role ? { role } : {}) },
         jwtSecret,
         { expiresIn: (process.env.JWT_EXPIRES_IN || '15m') as any }
     );

@@ -17,7 +17,7 @@ const saveTasks = (tasks) => {
 export const taskService = {
     async getTasks(params = {}) {
         try {
-            const response = await api.get('/tasks', { params });
+            const response = await api.get('/projects/tasks', { params });
             return {
                 data: response.data.data || response.data,
                 total: response.data.total,
@@ -77,7 +77,7 @@ export const taskService = {
 
     async getTask(id) {
         try {
-            return await api.get(`/tasks/${id}`);
+            return await api.get(`/projects/tasks/${id}`);
         } catch (error) {
             console.warn('API unavailable, using mock data');
             await new Promise(resolve => setTimeout(resolve, 200));
@@ -87,7 +87,7 @@ export const taskService = {
 
     async createTask(data) {
         try {
-            return await api.post('/tasks', data);
+            return await api.post('/projects/tasks', data);
         } catch (error) {
             console.warn('API unavailable, using local storage');
             const tasks = getStoredTasks();
@@ -104,7 +104,7 @@ export const taskService = {
 
     async updateTask(id, data) {
         try {
-            return await api.put(`/tasks/${id}`, data);
+            return await api.put(`/projects/tasks/${id}`, data);
         } catch (error) {
             console.warn('API unavailable, using local storage');
             const tasks = getStoredTasks();
@@ -116,7 +116,7 @@ export const taskService = {
 
     async deleteTask(id) {
         try {
-            return await api.delete(`/tasks/${id}`);
+            return await api.delete(`/projects/tasks/${id}`);
         } catch (error) {
             console.warn('API unavailable, using local storage');
             const tasks = getStoredTasks();
@@ -128,7 +128,7 @@ export const taskService = {
 
     async assignTask(id, userId) {
         try {
-            return await api.patch(`/tasks/${id}/assign`, { userId });
+            return await api.patch(`/projects/tasks/${id}/assign`, { userId });
         } catch (error) {
             return this.updateTask(id, { assigneeId: userId });
         }
@@ -136,7 +136,7 @@ export const taskService = {
 
     async updateTaskStatus(id, status) {
         try {
-            return await api.patch(`/tasks/${id}/status`, { status });
+            return await api.patch(`/projects/tasks/${id}/status`, { status });
         } catch (error) {
             return this.updateTask(id, { status });
         }
@@ -144,7 +144,7 @@ export const taskService = {
 
     async getTaskComments(taskId) {
         try {
-            return await api.get(`/tasks/${taskId}/comments`);
+            return await api.get(`/projects/tasks/${taskId}/comments`);
         } catch (error) {
             return [];
         }
@@ -152,7 +152,7 @@ export const taskService = {
 
     async addComment(taskId, content) {
         try {
-            return await api.post(`/tasks/${taskId}/comments`, { content });
+            return await api.post(`/projects/tasks/${taskId}/comments`, { content });
         } catch (error) {
             return {
                 id: `c-${Date.now()}`,
@@ -165,7 +165,7 @@ export const taskService = {
 
     async getTaskAttachments(taskId) {
         try {
-            return await api.get(`/tasks/${taskId}/attachments`);
+            return await api.get(`/projects/tasks/${taskId}/attachments`);
         } catch (error) {
             return [];
         }
@@ -175,7 +175,7 @@ export const taskService = {
         try {
             const formData = new FormData();
             formData.append('file', file);
-            return await api.post(`/tasks/${taskId}/attachments`, formData, {
+            return await api.post(`/projects/tasks/${taskId}/attachments`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
         } catch (error) {
@@ -192,7 +192,7 @@ export const taskService = {
 
     async getTaskActivity(taskId) {
         try {
-            return await api.get(`/tasks/${taskId}/activity`);
+            return await api.get(`/projects/tasks/${taskId}/activity`);
         } catch (error) {
             return [];
         }
@@ -200,7 +200,7 @@ export const taskService = {
 
     async getSubtasks(taskId) {
         try {
-            return await api.get(`/tasks/${taskId}/subtasks`);
+            return await api.get(`/projects/tasks/${taskId}/subtasks`);
         } catch (error) {
             const tasks = getStoredTasks();
             return tasks.filter(t => t.parentId === taskId);
@@ -209,7 +209,7 @@ export const taskService = {
 
     async createSubtask(parentId, data) {
         try {
-            return await api.post(`/tasks/${parentId}/subtasks`, data);
+            return await api.post(`/projects/tasks/${parentId}/subtasks`, data);
         } catch (error) {
             return this.createTask({ ...data, parentId });
         }
@@ -217,7 +217,7 @@ export const taskService = {
 
     async bulkUpdateTasks(ids, data) {
         try {
-            return await api.patch('/tasks/bulk', { ids, data });
+            return await api.patch('/projects/tasks/bulk', { ids, data });
         } catch (error) {
             const tasks = getStoredTasks();
             const updated = tasks.map(t => ids.includes(t.id) ? { ...t, ...data } : t);
@@ -228,7 +228,7 @@ export const taskService = {
 
     async duplicateTask(id) {
         try {
-            return await api.post(`/tasks/${id}/duplicate`);
+            return await api.post(`/projects/tasks/${id}/duplicate`);
         } catch (error) {
             const task = getStoredTasks().find(t => t.id === id);
             const duplicated = {
@@ -262,7 +262,7 @@ export const taskService = {
     },
 
     async exportTasks(params = {}, format = 'csv') {
-        const response = await api.get('/tasks/export', {
+        const response = await api.get('/projects/tasks/export', {
             params: { ...params, format },
             responseType: 'blob'
         });

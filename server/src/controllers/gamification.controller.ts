@@ -18,7 +18,7 @@ export class GamificationController {
 
   async getBadgeById(req: Request, res: Response) {
     try {
-      const badge = await gamificationService.getBadgeById(req.params.i as string);
+      const badge = await gamificationService.getBadgeById(req.params.id as string);
       if (!badge) {
         return res.status(404).json({ status: 'error', message: 'Badge not found' });
       }
@@ -41,7 +41,7 @@ export class GamificationController {
 
   async updateBadge(req: Request, res: Response) {
     try {
-      const badge = await gamificationService.updateBadge(req.params.i as string, req.body);
+      const badge = await gamificationService.updateBadge(req.params.id as string, req.body);
       res.json({ status: 'success', data: badge });
     } catch (error) {
       console.error('Error updating badge:', error);
@@ -51,7 +51,7 @@ export class GamificationController {
 
   async deleteBadge(req: Request, res: Response) {
     try {
-      await gamificationService.deleteBadge(req.params.i as string);
+      await gamificationService.deleteBadge(req.params.id as string);
       res.json({ status: 'success', message: 'Badge deleted successfully' });
     } catch (error) {
       console.error('Error deleting badge:', error);
@@ -110,7 +110,7 @@ export class GamificationController {
 
   async getAchievementById(req: Request, res: Response) {
     try {
-      const achievement = await gamificationService.getAchievementById(req.params.i as string);
+      const achievement = await gamificationService.getAchievementById(req.params.id as string);
       if (!achievement) {
         return res.status(404).json({ status: 'error', message: 'Achievement not found' });
       }
@@ -133,7 +133,7 @@ export class GamificationController {
 
   async updateAchievement(req: Request, res: Response) {
     try {
-      const achievement = await gamificationService.updateAchievement(req.params.i as string, req.body);
+      const achievement = await gamificationService.updateAchievement(req.params.id as string, req.body);
       res.json({ status: 'success', data: achievement });
     } catch (error) {
       console.error('Error updating achievement:', error);
@@ -143,7 +143,7 @@ export class GamificationController {
 
   async deleteAchievement(req: Request, res: Response) {
     try {
-      await gamificationService.deleteAchievement(req.params.i as string);
+      await gamificationService.deleteAchievement(req.params.id as string);
       res.json({ status: 'success', message: 'Achievement deleted successfully' });
     } catch (error) {
       console.error('Error deleting achievement:', error);
@@ -266,7 +266,7 @@ export class GamificationController {
 
   async updateLevel(req: Request, res: Response) {
     try {
-      const level = await gamificationService.updateLevelConfig(req.params.i as string, req.body);
+      const level = await gamificationService.updateLevelConfig(req.params.id as string, req.body);
       res.json({ status: 'success', data: level });
     } catch (error) {
       console.error('Error updating level:', error);

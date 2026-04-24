@@ -15,7 +15,15 @@ export const createSession = async (options: CreateSessionOptions) => {
     const expiresIn = rememberMe ? 30 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000;
     const refreshExpiresIn = rememberMe ? 90 * 24 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000;
 
-    const { accessToken, refreshToken } = generateTokens(userId, '');
+    // Fetch user role so it can be embedded in the JWT payload
+    // This allows accessControl middleware to read decoded.role without a DB round-trip
+    const userRecord = await prisma.user.findUnique({
+        where: { id: userId },
+        select: { role: true }
+    }).catch(() => null);
+    const userRole = userRecord?.role ?? undefined;
+
+    const { accessToken, refreshToken } = generateTokens(userId, '', userRole);
 
     const session = await prisma.session.create({
         data: {
@@ -31,7 +39,7 @@ export const createSession = async (options: CreateSessionOptions) => {
         }
     });
 
-    const { accessToken: newAccessToken, refreshToken: newRefreshToken } = generateTokens(userId, session.id);
+    const { accessToken: newAccessToken, refreshToken: newRefreshToken } = generateTokens(userId, session.id, userRole);
 
     await prisma.session.update({
         where: { id: session.id },
@@ -75,7 +83,8 @@ export const refreshSession = async (refreshToken: string) => {
         throw new Error('Refresh token expired');
     }
 
-    const { accessToken, refreshToken: newRefreshToken } = generateTokens(session.userId, session.id);
+    const userRole = session.user?.role ?? undefined;
+    const { accessToken, refreshToken: newRefreshToken } = generateTokens(session.userId, session.id, userRole);
     const expiresIn = 24 * 60 * 60 * 1000;
 
     await prisma.session.update({

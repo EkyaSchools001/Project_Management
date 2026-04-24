@@ -277,8 +277,8 @@ export function PDHoursAnalyticsView() {
                                 </div>
                                 <BarChart3 className="w-5 h-5 text-muted-foreground" />
                             </CardHeader>
-                            <CardContent className="h-[350px]">
-                                <ResponsiveContainer width="100%" height="100%">
+                            <CardContent className="h-[350px] min-w-0">
+                                <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                                     <BarChart data={avgHoursData} onClick={(data) => data && data.activeLabel && handleCampusClick(data.activeLabel.toString())}>
                                         <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
                                         <XAxis dataKey="campus" axisLine={false} tickLine={false} />
@@ -306,8 +306,8 @@ export function PDHoursAnalyticsView() {
                                 </div>
                                 <TrendingUp className="w-5 h-5 text-muted-foreground" />
                             </CardHeader>
-                            <CardContent className="h-[350px]">
-                                <ResponsiveContainer width="100%" height="100%">
+                            <CardContent className="h-[350px] min-w-0">
+                                <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                                     <BarChart data={cutoffStats} layout="vertical">
                                         <CartesianGrid strokeDasharray="3 3" opacity={0.1} horizontal={false} />
                                         <XAxis type="number" hide />
@@ -334,8 +334,8 @@ export function PDHoursAnalyticsView() {
                                 </div>
                                 <ClipboardCheck className="w-5 h-5 text-muted-foreground" />
                             </CardHeader>
-                            <CardContent className="h-[300px]">
-                                <ResponsiveContainer width="100%" height="100%">
+                            <CardContent className="h-[300px] min-w-0">
+                                <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                                     <AreaChart data={attendanceData}>
                                         <defs>
                                             <linearGradient id="colorRate" x1="0" y1="0" x2="0" y2="1">
@@ -386,8 +386,8 @@ export function PDHoursAnalyticsView() {
                                 </div>
                                 <BarChart3 className="w-5 h-5 text-muted-foreground" />
                             </CardHeader>
-                            <CardContent className="h-[300px]">
-                                <ResponsiveContainer width="100%" height="100%">
+                            <CardContent className="h-[300px] min-w-0">
+                                <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                                     <BarChart data={campusAttendanceData}>
                                         <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
                                         <XAxis dataKey="campus" axisLine={false} tickLine={false} />

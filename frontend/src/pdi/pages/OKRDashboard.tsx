@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '@pdi/hooks/useAuth';
 import { DashboardLayout } from '@pdi/components/layout/DashboardLayout';
 import { PageHeader } from '@pdi/components/layout/PageHeader';
@@ -6,7 +6,7 @@ import { okrService, OKRResponse, TeacherOKRData, HOSOKRData, AdminOKRData } fro
 import { TeacherOKRView } from '@pdi/components/okr/TeacherOKRView';
 import { HOSOKRView } from '@pdi/components/okr/HOSOKRView';
 import { AdminOKRView } from '@pdi/components/okr/AdminOKRView';
-import { Loader2, BarChart3 } from 'lucide-react';
+import { Loader2, BarChart3, Activity } from 'lucide-react';
 import { Card, CardContent } from '@pdi/components/ui/card';
 import { getSocket } from '@pdi/lib/socket';
 
@@ -99,7 +99,21 @@ export default function OKRDashboard() {
             );
         }
 
-        return null;
+        return (
+            <Card className="p-12 text-center shadow-xl rounded-2xl bg-white/50 backdrop-blur-sm border-dashed border-2 border-slate-200">
+                <div className="mb-4 mx-auto w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center">
+                    <Activity className="w-8 h-8 text-slate-400" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-700">No dashboard available</h3>
+                <p className="text-slate-500 mt-2">
+                    Your role ({okrData.role || 'Unknown'}) does not have a specialized OKR view, or the data format was not recognized.
+                </p>
+                <div className="mt-6 p-4 bg-slate-50 rounded-lg text-left text-[10px] font-mono text-slate-400 overflow-auto max-h-40">
+                    <p>Debug Info:</p>
+                    <pre>{JSON.stringify({ role: okrData.role, hasData: !!okrData.data }, null, 2)}</pre>
+                </div>
+            </Card>
+        );
     };
 
     return (

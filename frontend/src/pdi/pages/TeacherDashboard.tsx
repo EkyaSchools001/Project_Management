@@ -698,7 +698,7 @@ function ObservationsView({
           </CardHeader>
           <CardContent className="pt-6 pb-2 px-6">
             <div className="h-[300px] w-full mt-4">
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                 <LineChart data={chartData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} />
                   <XAxis
@@ -1461,15 +1461,15 @@ function CalendarView({
                     nav_button: "h-8 w-8 bg-transparent p-0 text-zinc-400 hover:text-white border-zinc-700 hover:bg-zinc-800",
                     nav_button_previous: "absolute left-2",
                     nav_button_next: "absolute right-2",
-                    table: "w-full border-collapse",
-                    head_row: "flex w-full mt-2",
-                    head_cell: "text-zinc-400 rounded-md w-10 font-bold text-[0.85rem] uppercase tracking-wider flex items-center justify-center",
-                    row: "flex w-full mt-3",
-                    cell: "h-10 w-10 text-center text-base p-0 relative [&:has([aria-selected])]:bg-zinc-800 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-                    day: "h-10 w-10 p-0 font-semibold aria-selected:opacity-100 text-white hover:bg-zinc-800 rounded-full transition-all flex items-center justify-center",
-                    day_selected: "bg-primary text-white hover:bg-primary/90 focus:bg-primary shadow-lg shadow-primary/30",
-                    day_today: "bg-zinc-800 text-white font-black ring-2 ring-zinc-700",
-                    day_outside: "text-zinc-500 opacity-40",
+                    table: "w-full border-collapse border border-zinc-800/50 rounded-2xl overflow-hidden bg-zinc-900/20",
+                    weekdays: "grid grid-cols-7 w-full bg-zinc-800/40 border-b border-zinc-800/50",
+                    weekday: "text-zinc-400 font-bold text-[0.65rem] uppercase tracking-[0.2em] py-4 border-r last:border-r-0 border-zinc-800/30 flex items-center justify-center",
+                    week: "grid grid-cols-7 w-full border-b border-zinc-800/30 last:border-b-0",
+                    day: "h-16 text-center text-base p-0 relative border-r last:border-r-0 border-zinc-800/30 hover:bg-zinc-800/30 transition-all [&:has([aria-selected])]:bg-primary/5",
+                    day_button: "h-10 w-10 p-0 mx-auto font-semibold aria-selected:opacity-100 text-white hover:bg-zinc-800 rounded-xl transition-all flex items-center justify-center",
+                    selected: "bg-primary text-white hover:bg-primary/90 focus:bg-primary shadow-lg shadow-primary/30 scale-105",
+                    today: "bg-zinc-800 text-white font-black ring-2 ring-zinc-700/50",
+                    outside: "text-zinc-500 opacity-10",
                   }}
                   modifiers={{
                     hasEvent: events.map(e => parseEventDate(e.date))

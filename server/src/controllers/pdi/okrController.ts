@@ -3,6 +3,13 @@ import { prisma } from '../../app';
 import { UserRole } from '@prisma/client';
 import { CAMPUS_OPTIONS } from '../../utils/pdi/constants';
 
+const TEACHER_ROLES = [
+    'TEACHER_CORE',
+    'TEACHER_SPECIALIST',
+    'TEACHER_SENIOR',
+    'TEACHER_PARTTIME'
+] as UserRole[];
+
 
 
 export const getOKRData = async (req: Request, res: Response) => {
@@ -10,10 +17,10 @@ export const getOKRData = async (req: Request, res: Response) => {
         const user = (req as any).user;
         const { id: userId, role, campusId } = user;
 
-        const isAdmin = role === UserRole.Admin || role === UserRole.SuperAdmin;
-        const isManagement = role === UserRole.MANAGEMENT;
-        const isHOS = role === UserRole.SCHOOL_LEADER || role === UserRole.LEADER;
-        const isTeacher = role === UserRole.TeacherStaff;
+        const isAdmin = role === UserRole.SUPER_ADMIN || role === 'SUPERADMIN' || role === 'ADMIN';
+        const isManagement = role === UserRole.MANAGEMENT || role === 'MANAGEMENT';
+        const isHOS = role === UserRole.HOS || role === 'HOS' || role === 'SCHOOL_LEADER' || role === 'LEADER';
+        const isTeacher = role.startsWith('TEACHER') || role === 'TEACHER';
 
         // Load targets from settings
         const settings = await prisma.pDISystemSettings.findMany({
@@ -108,7 +115,7 @@ export const getOKRData = async (req: Request, res: Response) => {
 
             return res.status(200).json({
                 status: 'success',
-                role: UserRole.TeacherStaff,
+                role: 'TEACHER',
                 data: {
                     selfReflectionRate: Math.round(reflectionRate),
                     totalObservations: observations.length,
@@ -129,7 +136,7 @@ export const getOKRData = async (req: Request, res: Response) => {
         if (isHOS) {
             const [campusUsers, oldObservations, growthObservations, allGoals, allMoocSubs, allPDHours] = await Promise.all([
                 prisma.user.findMany({
-                    where: { campusId, role: UserRole.TeacherStaff },
+                    where: { campusId, role: { in: TEACHER_ROLES } },
                     select: { id: true, fullName: true, email: true }
                 }),
                 prisma.observation.findMany({
@@ -242,7 +249,7 @@ export const getOKRData = async (req: Request, res: Response) => {
 
             return res.status(200).json({
                 status: 'success',
-                role: UserRole.HOS,
+                role: 'HOS',
                 data: {
                     campusId,
                     totalTeachers: teacherIds.length,
@@ -274,7 +281,7 @@ export const getOKRData = async (req: Request, res: Response) => {
                 campusRecords,
             ] = await Promise.all([
                 prisma.user.findMany({
-                    where: { role: UserRole.TeacherStaff },
+                    where: { role: { in: TEACHER_ROLES } },
                     select: { id: true, campusId: true, role: true, fullName: true }
                 }),
                 prisma.observation.findMany({
@@ -408,7 +415,7 @@ export const getOKRData = async (req: Request, res: Response) => {
 
             return res.status(200).json({
                 status: 'success',
-                role: isAdmin ? UserRole.Admin : UserRole.MANAGEMENT,
+                role: isAdmin ? 'ADMIN' : 'MANAGEMENT',
                 data: {
                     perCampus,
                     overall: {

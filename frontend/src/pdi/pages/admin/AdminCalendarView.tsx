@@ -1,4 +1,4 @@
-﻿
+
 import { useState, useEffect } from "react";
 import { PageHeader } from "@pdi/components/layout/PageHeader";
 import { Button } from "@pdi/components/ui/button";
@@ -431,41 +431,58 @@ export function AdminCalendarView() {
                     <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl translate-y-20 -translate-x-20 pointer-events-none" />
 
                     <CardContent className="p-8 md:p-10 relative z-10">
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-10 items-start">
-                            {/* Left side: Header and Calendar */}
-                            <div className="lg:col-span-7 space-y-8">
-                                <div className="text-left w-full">
-                                    <h3 className="text-2xl font-bold bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">
+                        <div className="flex flex-col gap-10">
+                            {/* Header Section */}
+                            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 px-2">
+                                <div className="text-left">
+                                    <h3 className="text-3xl font-black bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent tracking-tighter">
                                         Activity Summary
                                     </h3>
-                                    <p className="text-zinc-400 text-sm capitalize tracking-widest font-bold mt-1">
+                                    <p className="text-zinc-500 text-sm capitalize tracking-[0.3em] font-bold mt-2">
                                         {formatDateStr(new Date())}
                                     </p>
                                 </div>
 
+                                {/* Compact Legend Overlay */}
+                                <div className="flex flex-wrap items-center gap-6 bg-zinc-900/50 backdrop-blur-md px-6 py-3 rounded-2xl border border-zinc-800/50">
+                                    <div className="flex items-center gap-3">
+                                        <span className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]"></span>
+                                        <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Pedagogy</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <span className="w-2.5 h-2.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+                                        <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Technology</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <span className="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.5)]"></span>
+                                        <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Assessment</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Full Width Grid Calendar */}
+                            <div className="w-full">
                                 <CalendarComponent
                                     mode="single"
                                     selected={date}
                                     onSelect={setDate}
-                                    className="rounded-3xl border-none bg-zinc-900/50 p-8 w-full shadow-inner"
+                                    className="p-0 w-full"
+                                    formatters={{
+                                        formatWeekdayName: (day) => format(day, 'EEEE')
+                                    }}
                                     classNames={{
-                                        months: "flex flex-col space-y-6",
-                                        month: "space-y-6 w-full",
-                                        caption: "flex justify-center pt-1 relative items-center mb-6",
-                                        caption_label: "text-lg font-bold text-white",
-                                        nav: "space-x-2 flex items-center",
-                                        nav_button: "h-9 w-9 bg-transparent p-0 text-zinc-400 hover:text-white border-zinc-700 hover:bg-zinc-800 rounded-xl transition-all",
-                                        nav_button_previous: "absolute left-2",
-                                        nav_button_next: "absolute right-2",
-                                        table: "w-full border-collapse",
-                                        head_row: "flex w-full mt-2",
-                                        head_cell: "text-zinc-500 rounded-md w-full font-bold text-[0.85rem] capitalize tracking-wider flex items-center justify-center",
-                                        row: "flex w-full mt-4",
-                                        cell: "h-12 w-full text-center text-sm p-0 relative [&:has([aria-selected])]:bg-zinc-800/50 first:[&:has([aria-selected])]:rounded-l-xl last:[&:has([aria-selected])]:rounded-r-xl focus-within:relative focus-within:z-20",
-                                        day: "h-12 w-12 p-0 font-medium aria-selected:opacity-100 text-white hover:bg-zinc-800 rounded-2xl transition-all flex items-center justify-center mx-auto",
-                                        day_selected: "bg-gradient-to-br from-pink-500 to-red-600 text-white hover:bg-red-600 focus:bg-red-600 shadow-xl shadow-red-500/40 font-bold scale-110",
-                                        day_today: "bg-zinc-800/80 text-white font-black ring-2 ring-zinc-700/50",
-                                        day_outside: "text-zinc-600 opacity-30",
+                                        months: "w-full",
+                                        month: "space-y-0 w-full",
+                                        caption: "hidden", 
+                                        month_grid: "w-full border-collapse border border-zinc-800/50 rounded-[2rem] overflow-hidden bg-zinc-900/20",
+                                        weekdays: "grid grid-cols-7 w-full bg-zinc-900/80 border-b border-zinc-800/50",
+                                        weekday: "text-zinc-500 font-black text-[10px] uppercase tracking-[0.25em] py-6 border-r last:border-r-0 border-zinc-800/30 flex items-center justify-center",
+                                        week: "grid grid-cols-7 w-full border-b border-zinc-800/30 last:border-b-0",
+                                        day: "min-h-[140px] p-4 relative border-r last:border-r-0 border-zinc-800/30 hover:bg-zinc-800/20 transition-all cursor-pointer group [&:has([aria-selected])]:bg-primary/5",
+                                        day_button: "h-10 w-10 flex items-center justify-center font-black text-sm text-zinc-400 group-hover:text-white aria-selected:bg-primary aria-selected:text-white rounded-xl transition-all shadow-sm mx-auto",
+                                        selected: "bg-primary text-white shadow-lg shadow-primary/20 scale-110",
+                                        today: "bg-zinc-800 text-white ring-2 ring-zinc-700/50 ring-offset-2 ring-offset-zinc-900",
+                                        outside: "text-zinc-700 opacity-20",
                                     }}
                                     modifiers={{
                                         pedagogy: training.filter((e: any) => (e.topic || e.type) === "Pedagogy").map((e: any) => parseEventDate(e.date)),
@@ -474,64 +491,34 @@ export function AdminCalendarView() {
                                         other: training.filter((e: any) => !["Pedagogy", "Technology", "Assessment"].includes(e.topic || e.type)).map((e: any) => parseEventDate(e.date)),
                                     }}
                                     modifiersStyles={{
-                                        pedagogy: { border: '2px solid #3b82f6', color: 'white' }, // Blue
-                                        technology: { border: '2px solid #10b981', color: 'white' }, // Green
-                                        assessment: { border: '2px solid #f43f5e', color: 'white' }, // Red
-                                        other: { border: '2px solid #eab308', color: 'white' } // Yellow
+                                        pedagogy: { borderLeft: '4px solid #3b82f6' },
+                                        technology: { borderLeft: '4px solid #10b981' },
+                                        assessment: { borderLeft: '4px solid #f43f5e' },
+                                        other: { borderLeft: '4px solid #eab308' }
                                     }}
                                 />
                             </div>
 
-                            {/* Right side: Legend and Filters */}
-                            <div className="lg:col-span-5 h-full flex flex-col justify-center pt-8 lg:pt-20">
-                                <div className="bg-zinc-900/40 rounded-3xl p-8 border border-zinc-800/50 backdrop-blur-sm space-y-8">
-                                    <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
-                                        <h4 className="text-sm font-bold text-zinc-400 capitalize tracking-widest">Training Legend</h4>
-                                        <Badge variant="outline" className="bg-white/5 border-zinc-700 text-zinc-300">
-                                            {training.length} Total
-                                        </Badge>
+                            {/* Bottom Actions Bar */}
+                            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-zinc-800/50">
+                                <div className="flex items-center gap-4">
+                                    <div className="p-3 rounded-xl bg-white/5 border border-white/5 text-[10px] text-zinc-500 uppercase tracking-widest font-bold">
+                                        Tip: Select a date to view scheduled sessions
                                     </div>
-
-                                    <div className="space-y-5">
-                                        <div className="flex items-center justify-between group cursor-default">
-                                            <span className="flex items-center gap-4 text-zinc-300 group-hover:text-white transition-colors font-medium">
-                                                <span className="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.5)]"></span> Pedagogy
-                                            </span>
-                                            <span className="font-mono text-zinc-100 bg-blue-500/10 px-3 py-1 rounded-xl border border-blue-500/20">
-                                                {training.filter((t: any) => (t.topic || t.type) === 'Pedagogy').length}
-                                            </span>
-                                        </div>
-                                        <div className="flex items-center justify-between group cursor-default">
-                                            <span className="flex items-center gap-4 text-zinc-300 group-hover:text-white transition-colors font-medium">
-                                                <span className="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_12px_rgba(16,185,129,0.5)]"></span> Technology
-                                            </span>
-                                            <span className="font-mono text-zinc-100 bg-green-500/10 px-3 py-1 rounded-xl border border-green-500/20">
-                                                {training.filter((t: any) => (t.topic || t.type) === 'Technology').length}
-                                            </span>
-                                        </div>
-                                        <div className="flex items-center justify-between group cursor-default">
-                                            <span className="flex items-center gap-4 text-zinc-300 group-hover:text-white transition-colors font-medium">
-                                                <span className="w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_12px_rgba(244,63,94,0.5)]"></span> Assessment
-                                            </span>
-                                            <span className="font-mono text-zinc-100 bg-rose-500/10 px-3 py-1 rounded-xl border border-rose-500/20">
-                                                {training.filter((t: any) => (t.topic || t.type) === 'Assessment').length}
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div className="pt-6 border-t border-zinc-800 flex flex-col gap-4">
-                                        <div className="p-4 rounded-2xl bg-white/5 border border-white/5 text-xs text-zinc-400 italic">
-                                            Tip: Select a date on the calendar to filter the sessions list below.
-                                        </div>
+                                    {date && (
                                         <Button
-                                            variant="outline"
-                                            className="w-full h-12 bg-zinc-800/50 border-zinc-700 text-zinc-300 hover:bg-zinc-700 hover:text-white rounded-2xl transition-all font-bold"
+                                            variant="ghost"
+                                            className="text-primary hover:text-primary/80 hover:bg-primary/10 font-bold text-xs uppercase tracking-widest px-4"
                                             onClick={() => setDate(undefined)}
-                                            disabled={!date}
                                         >
-                                            Clear Date Filter
+                                            Clear Selection
                                         </Button>
-                                    </div>
+                                    )}
+                                </div>
+                                <div className="flex gap-3">
+                                    <Badge variant="outline" className="bg-zinc-900 border-zinc-800 text-zinc-400 py-1.5 px-4 rounded-xl font-bold">
+                                        {training.length} Sessions Total
+                                    </Badge>
                                 </div>
                             </div>
                         </div>

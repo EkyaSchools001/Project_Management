@@ -46,13 +46,11 @@ export function DashboardLayout({ children, role, userName }: DashboardLayoutPro
 
   // Whether sidebar is visually expanded
   const sidebarExpanded = isMobile ? mobileMenuOpen : hovered;
-  // Width the main content should offset by (does NOT push content on hover)
-  const mainOffset = isMobile ? "ml-0" : "ml-16";
 
   return (
-    <div className="min-h-screen bg-background flex flex-col md:flex-row overflow-x-hidden">
+    <div className="min-h-screen bg-background flex flex-col md:flex-row w-full overflow-hidden">
       {/* Mobile Header */}
-      <div className="md:hidden flex items-center justify-between p-4 border-b border-sidebar-border bg-sidebar h-16 sticky top-0 z-50">
+      <div className="md:hidden flex items-center justify-between p-4 border-b border-sidebar-border bg-sidebar h-16 sticky top-0 z-50 shrink-0">
         <div className="flex items-center gap-2 min-w-0 pr-2">
           <div className="p-2 rounded-lg bg-sidebar-primary shrink-0">
             <GraduationCap className="w-5 h-5 text-sidebar-primary-foreground" />
@@ -135,8 +133,8 @@ export function DashboardLayout({ children, role, userName }: DashboardLayoutPro
 
       <main
         className={cn(
-          "flex-1 transition-all duration-300 min-h-screen overflow-x-hidden print:ml-0 flex flex-col",
-          mainOffset
+          "flex-1 min-w-0 transition-all duration-300 min-h-screen overflow-x-auto overflow-y-auto print:pl-0 flex flex-col",
+          isMobile ? "pl-0" : (sidebarExpanded ? "pl-64" : "pl-16")
         )}
       >
         {!isMobile && (

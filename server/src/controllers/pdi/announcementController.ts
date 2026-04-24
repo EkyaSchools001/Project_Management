@@ -15,7 +15,7 @@ export const getAnnouncements = async (req: AuthRequest, res: Response, next: Ne
         const isAdmin = ['ADMIN', 'SUPERADMIN', 'MANAGEMENT'].includes(userRole);
 
         // Fetch announcements. Admins see all. Others see Published or their own.
-        const announcements = await (prisma as any).announcement.findMany({
+        const announcements = await prisma.pDIAnnouncement.findMany({
             where: isAdmin ? {} : {
                 OR: [
                     { status: 'Published' },
@@ -86,7 +86,7 @@ export const createAnnouncement = async (req: AuthRequest, res: Response, next: 
             return next(new AppError('User not authenticated', 401));
         }
 
-        const announcement = await (prisma as any).announcement.create({
+        const announcement = await prisma.pDIAnnouncement.create({
             data: {
                 title,
                 description,
@@ -168,8 +168,8 @@ export const updateAnnouncement = async (req: AuthRequest, res: Response, next: 
         const userId = req.user?.id;
         const userRole = req.user?.role?.toUpperCase() || '';
 
-        const existing = await (prisma as any).announcement.findUnique({
-            where: { id }
+        const existing = await prisma.pDIAnnouncement.findUnique({
+            where: { id: id as string }
         });
 
         if (!existing) {
@@ -184,8 +184,8 @@ export const updateAnnouncement = async (req: AuthRequest, res: Response, next: 
             return next(new AppError('You do not have permission to edit this announcement', 403));
         }
 
-        const updated = await (prisma as any).announcement.update({
-            where: { id },
+        const updated = await prisma.pDIAnnouncement.update({
+            where: { id: id as string },
             data: {
                 ...req.body,
                 updatedAt: new Date()
@@ -217,8 +217,8 @@ export const deleteAnnouncement = async (req: AuthRequest, res: Response, next: 
         const userId = req.user?.id;
         const userRole = req.user?.role?.toUpperCase() || '';
 
-        const existing = await (prisma as any).announcement.findUnique({
-            where: { id }
+        const existing = await prisma.pDIAnnouncement.findUnique({
+            where: { id: id as string }
         });
 
         if (!existing) {
@@ -235,8 +235,8 @@ export const deleteAnnouncement = async (req: AuthRequest, res: Response, next: 
             return next(new AppError('You do not have permission to delete this announcement', 403));
         }
 
-        await (prisma as any).announcement.delete({
-            where: { id }
+        await prisma.pDIAnnouncement.delete({
+            where: { id: id as string }
         });
 
         res.status(204).json({
@@ -258,19 +258,19 @@ export const acknowledgeAnnouncement = async (req: AuthRequest, res: Response, n
         if (!userId) return next(new AppError('User not authenticated', 401));
 
         // Create acknowledgement only if it doesn't exist
-        const ack = await (prisma as any).announcementAcknowledgement.upsert({
+        const ack = await prisma.pDIAnnouncementAcknowledgement.upsert({
             where: {
                 announcementId_userId: {
-                    announcementId: id,
-                    userId: userId
+                    announcementId: id as string,
+                    userId: userId as string
                 }
             },
             update: {
                 acknowledgedAt: new Date()
             },
             create: {
-                announcementId: id,
-                userId: userId
+                announcementId: id as string,
+                userId: userId as string
             }
         });
 
@@ -289,8 +289,8 @@ export const getAnnouncementStats = async (req: AuthRequest, res: Response, next
     try {
         const { id } = req.params;
 
-        const announcement = await (prisma as any).announcement.findUnique({
-            where: { id },
+        const announcement = await prisma.pDIAnnouncement.findUnique({
+            where: { id: id as string },
             include: {
                 acknowledgements: {
                     include: {
@@ -313,8 +313,8 @@ export const getAnnouncementStats = async (req: AuthRequest, res: Response, next
         res.status(200).json({
             status: 'success',
             data: {
-                count: announcement.acknowledgements.length,
-                users: announcement.acknowledgements.map((ack: any) => ack.user)
+                count: (announcement as any).acknowledgements.length,
+                users: (announcement as any).acknowledgements.map((ack: any) => ack.user)
             }
         });
     } catch (err) {

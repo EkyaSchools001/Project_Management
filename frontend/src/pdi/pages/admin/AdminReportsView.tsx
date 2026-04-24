@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { PageHeader } from "@pdi/components/layout/PageHeader";
 import { Button } from "@pdi/components/ui/button";
@@ -259,7 +259,7 @@ export function AdminReportsView() {
                         </CardHeader>
                         <CardContent className="pl-2">
                             <div className="h-[350px]">
-                                <ResponsiveContainer width="100%" height="100%">
+                                <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                                     <AreaChart data={analyticsData.userGrowth} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                                         <defs>
                                             <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
@@ -302,7 +302,7 @@ export function AdminReportsView() {
                         </CardHeader>
                         <CardContent>
                             <div className="h-[350px] relative">
-                                <ResponsiveContainer width="100%" height="100%">
+                                <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                                     <PieChart>
                                         <Pie
                                             data={analyticsData.courseDistribution}
@@ -340,7 +340,7 @@ export function AdminReportsView() {
                         </CardHeader>
                         <CardContent className="pl-2">
                             <div className="h-[300px]">
-                                <ResponsiveContainer width="100%" height="100%">
+                                <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                                     <BarChart data={analyticsData.campusActivity} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                                         <CartesianGrid strokeDasharray="3 3" vertical={false} className="stroke-muted" />
                                         <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
@@ -371,7 +371,7 @@ export function AdminReportsView() {
                         </CardHeader>
                         <CardContent className="pl-2">
                             <div className="h-[300px]">
-                                <ResponsiveContainer width="100%" height="100%">
+                                <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                                     <BarChart data={academicPerformanceData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} layout="vertical">
                                         <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} className="stroke-muted" />
                                         <XAxis type="number" domain={[0, 5]} stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />

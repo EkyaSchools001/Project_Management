@@ -5,25 +5,26 @@ import { toast } from 'sonner';
 // If accessed via tunnel (loca.lt), use tunnel backend
 // If accessed via localhost, use localhost backend
 const getApiUrl = () => {
-    // 1. Prioritize VITE_API_URL if set
+    // 1. Prioritize VITE_API_URL if set, but always append pdi/ namespace
     if (import.meta.env.VITE_API_URL) {
         let url = import.meta.env.VITE_API_URL;
-        return url.endsWith('/') ? url : `${url}/`;
+        url = url.endsWith('/') ? url : `${url}/`;
+        return url.includes('/pdi/') ? url : `${url}pdi/`;
     }
 
     const hostname = window.location.hostname;
     // 2. Fallback for tunneling or current origin
     if (hostname.includes('loca.lt') || hostname.includes('testsprite')) {
-        return '/api/v1/';
+        return '/api/v1/pdi/';
     }
 
     // 3. Cloudflare Pages/Netlify/Production backend routing
     if (import.meta.env.PROD) {
-        return '/api/v1/';
+        return '/api/v1/pdi/';
     }
 
     // 4. Localhost fallback - preferring direct backend connection
-    return 'http://localhost:8888/api/v1/';
+    return 'http://localhost:8888/api/v1/pdi/';
 };
 
 const API_URL = getApiUrl();

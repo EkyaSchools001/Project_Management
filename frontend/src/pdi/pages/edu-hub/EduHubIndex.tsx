@@ -1,5 +1,4 @@
 import { Routes, Route, useParams, Navigate } from 'react-router-dom';
-import { DashboardLayout } from '@pdi/components/layout/DashboardLayout';
 import { TeacherPortal } from './TeacherPortal';
 import { useAuth } from '@pdi/hooks/useAuth';
 
@@ -30,18 +29,12 @@ export default function EduHubIndex() {
   const { user } = useAuth();
   
   return (
-    <DashboardLayout 
-      role={(user?.role?.toLowerCase() as any) || 'teacher'} 
-      userName={user?.fullName || 'Educator'}
-    >
-      <Routes>
-        <Route index element={<TeacherPortal section="home" />} />
-        <Route path=":section" element={<TeacherPortalRoute />} />
-        {/* Fallback */}
-        <Route path="*" element={<Navigate to="" replace />} />
-      </Routes>
-    </DashboardLayout>
+    <Routes>
+      <Route index element={<TeacherPortal section="home" />} />
+      <Route path=":section" element={<TeacherPortalRoute />} />
+      {/* Fallback */}
+      <Route path="*" element={<Navigate to="" replace />} />
+    </Routes>
   );
 }
-
 

@@ -3,10 +3,25 @@ import { prisma } from '../../app';
 import { UserRole } from '@prisma/client';
 import { CAMPUS_OPTIONS } from '../../utils/pdi/constants';
 
+const TEACHER_ROLES = [
+    'TEACHER_CORE',
+    'TEACHER_SPECIALIST',
+    'TEACHER_SENIOR',
+    'TEACHER_PARTTIME'
+] as UserRole[];
+
+const ADMIN_ROLES = [
+    'SUPER_ADMIN',
+    'ADMIN_OPS',
+    'ADMIN_FINANCE',
+    'ADMIN_HR',
+    'ADMIN_IT'
+] as UserRole[];
+
 export const getAvgHoursPerSchool = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const teachers = await prisma.user.findMany({
-            where: { role: UserRole.TeacherStaff },
+            where: { role: { in: TEACHER_ROLES } },
             select: { id: true, campusId: true }
         });
 
@@ -85,7 +100,7 @@ export const getTeacherHoursDetails = async (req: Request, res: Response, next: 
     try {
         const teachers = await prisma.user.findMany({
             where: {
-                role: UserRole.TeacherStaff,
+                role: { in: TEACHER_ROLES },
                 campusId: campusId === 'Unassigned' ? null : campusId
             } as any,
             include: {
@@ -115,7 +130,7 @@ export const getCutoffStats = async (req: Request, res: Response, next: NextFunc
     const cutoff = parseInt(req.query.cutoff as string) || 20;
     try {
         const teachers = await prisma.user.findMany({
-            where: { role: UserRole.TeacherStaff },
+            where: { role: { in: TEACHER_ROLES } },
             select: {
                 id: true,
                 campusId: true,
@@ -307,7 +322,7 @@ export const getFeedbackAnalytics = async (req: Request, res: Response, next: Ne
                 feedbackCount: e.feedbacks?.length || 0
             }));
 
-            const allFeedbacks = await (prisma as any).trainingFeedback.findMany();
+            const allFeedbacks = await prisma.trainingFeedback.findMany();
             globalAvg = allFeedbacks.length > 0
                 ? parseFloat((allFeedbacks.reduce((sum: number, f: any) => sum + f.rating, 0) / allFeedbacks.length).toFixed(1))
                 : 0;
@@ -344,7 +359,7 @@ export const getCampusEngagement = async (req: Request, res: Response) => {
         }
 
         // We only want data for TEACHER roles in this context
-        whereClause.role = 'TEACHER';
+        whereClause.role = { in: TEACHER_ROLES };
 
         // Fetch teachers in scope with their course enrollments
         const teachers = await prisma.user.findMany({
@@ -430,10 +445,10 @@ export const getManagementOverview = async (req: Request, res: Response, next: N
 
         const totalUsers = await prisma.user.count();
         const activeTeachers = await prisma.user.count({
-            where: { role: UserRole.TeacherStaff, status: 'Active' }
+            where: { role: { in: TEACHER_ROLES }, status: 'Active' }
         });
         const admins = await prisma.user.count({
-            where: { role: { in: [UserRole.Admin, UserRole.SuperAdmin, UserRole.MANAGEMENT] } }
+            where: { role: { in: [...ADMIN_ROLES, 'MANAGEMENT' as UserRole] } }
         });
 
         // --- NEW MANAGEMENT KPIs ---
@@ -478,7 +493,7 @@ export const getManagementOverview = async (req: Request, res: Response, next: N
         }));
 
         // 3. Average PD Feedback
-        const feedbacks = await (prisma as any).trainingFeedback.findMany({ select: { rating: true } });
+        const feedbacks = await prisma.trainingFeedback.findMany({ select: { rating: true } });
         const avgPdFeedback = feedbacks.length > 0 ? parseFloat((feedbacks.reduce((sum: number, f: any) => sum + f.rating, 0) / feedbacks.length).toFixed(1)) : 0;
 
         // 4. Observation Completion % (Assumed Target = 2 per active teacher)
@@ -592,7 +607,7 @@ export const getManagementOverview = async (req: Request, res: Response, next: N
 
             const [total, teachers, goalsCount] = await Promise.all([
                 prisma.user.count({ where: { createdAt: { lte: endDate } } }),
-                prisma.user.count({ where: { role: UserRole.TeacherStaff, createdAt: { lte: endDate } } }),
+                prisma.user.count({ where: { role: { in: TEACHER_ROLES }, createdAt: { lte: endDate } } }),
                 prisma.goal.count({ where: { createdAt: { lte: endDate } } })
             ]);
 

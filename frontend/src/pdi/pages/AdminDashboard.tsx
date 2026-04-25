@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useAuth } from "@pdi/hooks/useAuth";
 import { useAccessControl } from "@pdi/hooks/useAccessControl";
@@ -106,23 +106,23 @@ const AdminOverview = ({ userName }: { userName: string }) => {
     }, []);
 
     return (
-        <div className="space-y-8 animate-in fade-in duration-700">
+        <div className="space-y-8 animate-in fade-in duration-700 pb-12">
             {/* Header with Filter */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-4 px-2">
                 <div>
-                    <h2 className="text-2xl font-bold tracking-tight">System Overview</h2>
-                    <p className="text-muted-foreground text-sm">Real-time performance metrics across the network</p>
+                    <h2 className="text-3xl font-black tracking-tight text-foreground uppercase">System Command Center</h2>
+                    <p className="text-muted-foreground text-sm font-medium mt-1">Real-time performance metrics across the institutional network</p>
                 </div>
-                <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-muted-foreground">Filter by School:</span>
+                <div className="flex items-center gap-4 bg-white p-2 rounded-2xl shadow-sm border border-primary/5">
+                    <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest ml-4">Filter by School</span>
                     <Select value={selectedCampus} onValueChange={setSelectedCampus}>
-                        <SelectTrigger className="w-[200px] h-10 rounded-xl border-slate-200 bg-white">
+                        <SelectTrigger className="w-[220px] h-12 rounded-xl border-none bg-primary/5 text-primary font-black text-[10px] uppercase tracking-widest">
                             <SelectValue placeholder="All Schools" />
                         </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="all">All Schools</SelectItem>
+                        <SelectContent className="rounded-2xl border-primary/10 shadow-2xl p-2">
+                            <SelectItem value="all" className="rounded-xl font-black text-[10px] uppercase tracking-widest focus:bg-primary/5 focus:text-primary py-3">All Strategic Hubs</SelectItem>
                             {CAMPUS_OPTIONS.map(campus => (
-                                <SelectItem key={campus} value={campus}>{campus}</SelectItem>
+                                <SelectItem key={campus} value={campus} className="rounded-xl font-black text-[10px] uppercase tracking-widest focus:bg-primary/5 focus:text-primary py-3">{campus}</SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
@@ -130,44 +130,44 @@ const AdminOverview = ({ userName }: { userName: string }) => {
             </div>
 
             {/* Hero Section */}
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-slate-950 p-8 md:p-12 mb-8 shadow-2xl border border-white/5">
-                <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
-                <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-72 h-72 bg-purple-500/20 rounded-full blur-[80px]" />
+            <div className="relative overflow-hidden rounded-[2.5rem] bg-white p-10 md:p-14 mb-8 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-primary/5">
+                <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-primary/[0.03] rounded-full blur-[100px]" />
+                <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-72 h-72 bg-primary/[0.02] rounded-full blur-[80px]" />
 
-                <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
-                    <div className="space-y-4">
-                        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+                <div className="relative z-10 flex flex-col xl:flex-row xl:items-center justify-between gap-10">
+                    <div className="space-y-6">
+                        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-xl bg-primary/5 border border-primary/10 shadow-sm">
                             <ShieldCheck className="w-4 h-4 text-primary" />
-                            <span className="text-xs font-bold tracking-[0.2em] text-white/80 uppercase">Platform Admin</span>
-                            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-500/20 border border-emerald-500/30">
-                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-                                <span className="text-[9px] font-black text-emerald-400 tracking-widest uppercase">Live Sync</span>
+                            <span className="text-[10px] font-black tracking-[0.2em] text-primary uppercase">Platform Administrator</span>
+                            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-emerald-50 border border-emerald-100">
+                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                                <span className="text-[9px] font-black text-emerald-600 tracking-widest uppercase">Systems Active</span>
                             </div>
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
+                        <h1 className="text-5xl md:text-6xl font-black text-foreground tracking-tighter leading-tight">
                             Welcome, <span className="text-primary">{userName}</span>
                         </h1>
-                        <p className="text-slate-400 max-w-xl text-lg leading-relaxed">
+                        <p className="text-muted-foreground max-w-2xl text-xl font-medium leading-relaxed">
                             {selectedCampus === "all" 
-                                ? "Oversee the Teacher Development ecosystem, manage workflows, and configure system-wide parameters from your central command center."
+                                ? "Oversee the Teacher Development ecosystem, manage enterprise workflows, and configure system-wide parameters from your central command center."
                                 : `Reviewing academic performance and teacher development metrics for ${selectedCampus}.`}
                         </p>
                     </div>
 
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-4">
                         <Button
                             onClick={() => navigate("superadmin")}
-                            className="h-14 px-8 rounded-2xl bg-primary hover:bg-primary/90 text-white font-bold shadow-lg shadow-primary/20 transition-all hover:scale-105"
+                            className="h-16 px-10 rounded-[1.5rem] bg-primary hover:bg-primary/90 text-white font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl shadow-primary/20 transition-all active:scale-95 group"
                         >
-                            <Gear className="w-5 h-5 mr-2" />
+                            <Gear className="w-5 h-5 mr-3 group-hover:rotate-90 transition-transform" />
                             System Config
                         </Button>
                         <Button
                             onClick={() => navigate("users")}
                             variant="outline"
-                            className="h-14 px-8 rounded-2xl border-white/10 bg-white/5 text-white hover:bg-white/10 backdrop-blur-md font-bold transition-all"
+                            className="h-16 px-10 rounded-[1.5rem] border-primary/10 bg-white text-primary font-black text-[11px] uppercase tracking-[0.2em] hover:bg-primary/5 transition-all shadow-xl shadow-primary/5 active:scale-95"
                         >
-                            <UsersThree className="w-5 h-5 mr-2" />
+                            <UsersThree className="w-5 h-5 mr-3" />
                             User Directory
                         </Button>
                     </div>
@@ -175,98 +175,105 @@ const AdminOverview = ({ userName }: { userName: string }) => {
             </div>
 
             {/* Core Management Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <StatCard
                     title="Platform Users"
                     value={stats?.users.total.toLocaleString() || "2,450"}
                     icon={Users}
+                    color="bg-primary"
                     trend={{ value: 12, isPositive: true }}
                 />
                 <StatCard
                     title="PD Programs"
                     value={stats?.courses.total.toLocaleString() || "42"}
                     icon={GraduationCap}
+                    color="bg-primary"
                     trend={{ value: 5, isPositive: true }}
                 />
                 <StatCard
                     title="System Health"
                     value="Optimal"
                     icon={Pulse}
+                    color="bg-primary"
                     subtitle="All services live"
                 />
                 <StatCard
                     title="Global Goals"
                     value="890"
                     icon={Target}
+                    color="bg-primary"
                     trend={{ value: 76, isPositive: true }}
                     onClick={() => navigate("goals")}
                 />
             </div>
 
             {/* Workflow Management */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <Card className="lg:col-span-2 rounded-[2rem] border-none shadow-xl bg-white/50 backdrop-blur-md">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <div>
-                            <CardTitle className="text-2xl font-bold">Platform Management</CardTitle>
-                            <p className="text-muted-foreground text-sm">Quick access to essential admin modules</p>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <Card className="lg:col-span-2 rounded-[2.5rem] border-primary/5 shadow-[0_20px_50px_rgba(0,0,0,0.03)] bg-white overflow-hidden">
+                    <CardHeader className="p-10 border-b border-primary/5 bg-primary/[0.01]">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <CardTitle className="text-2xl font-black uppercase tracking-tight">Platform Management</CardTitle>
+                                <p className="text-muted-foreground font-black text-[10px] uppercase tracking-widest mt-1">Quick access to essential admin modules</p>
+                            </div>
+                            <div className="p-3 rounded-2xl bg-primary/5 border border-primary/10">
+                                <Layout className="w-6 h-6 text-primary" />
+                            </div>
                         </div>
-                        <Layout className="w-6 h-6 text-primary opacity-50" />
                     </CardHeader>
-                    <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                    <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-10">
                         <ModuleActionCard
                             title="Growth Analytics"
                             description="Monitor system-wide teacher growth trends and metrics."
                             icon={ChartLineUp}
                             onClick={() => navigate("growth-analytics")}
-                            color="indigo"
                         />
                         <ModuleActionCard
                             title="Form Templates"
                             description="Design and manage evaluation and observation forms."
                             icon={FileText}
                             onClick={() => navigate("forms")}
-                            color="rose"
                         />
                         <ModuleActionCard
                             title="Course Management"
                             description="Maintain the course catalogue and manage enrollments."
                             icon={GraduationCap}
                             onClick={() => navigate("courses")}
-                            color="cyan"
                         />
                         <ModuleActionCard
                             title="Learning Festival"
                             description="Oversee festival applications and strand selections."
                             icon={BookOpen}
                             onClick={() => navigate("festival")}
-                            color="indigo"
                         />
                         <ModuleActionCard
                             title="MOOC Evidence"
                             description="Review and approve teacher MOOC certifications."
                             icon={ShieldCheck}
                             onClick={() => navigate("mooc")}
-                            color="emerald"
                         />
                         <ModuleActionCard
                             title="Goals Management"
                             description="Oversee goal setting, reflections, and metrics per campus."
                             icon={Target}
                             onClick={() => navigate("goals")}
-                            color="amber"
                         />
                         <ModuleActionCard
                             title="Platform Reports"
                             description="Generate comprehensive system-wide performance reports."
                             icon={ChartBar}
                             onClick={() => navigate("reports")}
-                            color="violet"
+                        />
+                        <ModuleActionCard
+                            title="System Settings"
+                            description="Configure security, notifications, and platform variables."
+                            icon={Gear}
+                            onClick={() => navigate("settings")}
                         />
                     </CardContent>
                 </Card>
 
-                <div className="rounded-[2rem] overflow-hidden shadow-xl bg-slate-900">
+                <div className="rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.03)] bg-white border border-primary/5">
                     <SecurityFeed />
                 </div>
             </div>
@@ -274,27 +281,18 @@ const AdminOverview = ({ userName }: { userName: string }) => {
     );
 };
 
-const ModuleActionCard = ({ title, description, icon: Icon, onClick, color }: any) => {
-    const colorMap: any = {
-        indigo: "bg-indigo-500/10 text-indigo-600",
-        rose: "bg-rose-500/10 text-rose-600",
-        amber: "bg-amber-500/10 text-amber-600",
-        slate: "bg-slate-500/10 text-slate-600",
-        emerald: "bg-emerald-500/10 text-emerald-600",
-        cyan: "bg-cyan-500/10 text-cyan-600",
-        violet: "bg-violet-500/10 text-violet-600",
-    };
-
+const ModuleActionCard = ({ title, description, icon: Icon, onClick }: any) => {
     return (
         <div
             onClick={onClick}
-            className="group p-6 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-primary/20 transition-all cursor-pointer"
+            className="group p-8 rounded-[2rem] bg-white border border-primary/5 shadow-sm hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] hover:border-primary/20 hover:-translate-y-1 transition-all cursor-pointer relative overflow-hidden"
         >
-            <div className={`w-12 h-12 rounded-2xl ${colorMap[color]} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                <Icon className="w-6 h-6" />
+            <div className="absolute top-0 right-0 w-24 h-24 bg-primary/[0.02] rounded-full blur-2xl -translate-y-12 translate-x-12 group-hover:bg-primary/[0.05] transition-colors" />
+            <div className="w-14 h-14 rounded-2xl bg-primary/5 border border-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                <Icon className="w-7 h-7 text-primary" />
             </div>
-            <h3 className="font-bold text-lg mb-1 group-hover:text-primary transition-colors">{title}</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+            <h3 className="font-black text-xl mb-2 group-hover:text-primary transition-colors tracking-tight uppercase">{title}</h3>
+            <p className="text-[11px] font-medium text-muted-foreground leading-relaxed">{description}</p>
         </div>
     );
 };

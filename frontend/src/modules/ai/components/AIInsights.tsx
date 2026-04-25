@@ -2,20 +2,25 @@
 import React, { useEffect, useState } from 'react';
 import { Brain, AlertTriangle, TrendingUp, Clock, CheckCircle, XCircle } from 'lucide-react';
 import { aiService } from '../../../services/ai.service';
+import { useAuth } from '../../auth/authContext';
 
 export default function AIInsights({ tasks = [], project = null }) {
     const [insights, setInsights] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const { user } = useAuth();
+
     useEffect(() => {
-        loadInsights();
-    }, []);
+        if (user?.id) {
+            loadInsights();
+        }
+    }, [user?.id]);
 
     const loadInsights = async () => {
         try {
             setLoading(true);
-            const suggestions = await aiService.getSuggestions('current-user');
+            const suggestions = await aiService.getSuggestions(user?.id || 'current-user');
             setInsights(suggestions || []);
         } catch (err) {
             console.error('Failed to load AI insights:', err);

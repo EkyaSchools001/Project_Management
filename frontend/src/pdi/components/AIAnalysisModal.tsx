@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
     Dialog,
     DialogContent,
@@ -123,8 +123,8 @@ export function AIAnalysisModal({ isOpen, onClose, data, type, title }: AIAnalys
                 <div className="p-4 bg-muted/20 border-t flex justify-end">
                     <Button onClick={onClose} variant="secondary" className="font-bold px-8">Close Analysis</Button>
                 </div>
-            </DialogContent >
-        </Dialog >
+            </DialogContent>
+        </Dialog>
     );
 }
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Plus, Search, Filter } from 'lucide-react';
+import api from '../../../services/api';
 import { InvoiceCard } from '../components/InvoiceCard';
 import { InvoiceForm } from '../components/InvoiceForm';
 
@@ -30,12 +31,9 @@ export default function InvoicesPage() {
 
   const fetchInvoices = async () => {
     try {
-      const response = await fetch('/api/v1/finance/invoices', {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-      });
-      const result = await response.json();
-      if (result.status === 'success') {
-        setInvoices(result.data);
+      const response = await api.get('/finance/invoices');
+      if (response.data && response.data.status === 'success') {
+        setInvoices(response.data.data);
       }
     } catch (error) {
       console.error('Failed to fetch invoices:', error);
@@ -46,16 +44,8 @@ export default function InvoicesPage() {
 
   const handleCreateInvoice = async (data: any) => {
     try {
-      const response = await fetch('/api/v1/finance/invoices', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify(data)
-      });
-      const result = await response.json();
-      if (result.status === 'success') {
+      const response = await api.post('/finance/invoices', data);
+      if (response.data && response.data.status === 'success') {
         setShowForm(false);
         fetchInvoices();
       }
@@ -66,16 +56,8 @@ export default function InvoicesPage() {
 
   const handleMarkPaid = async (id: string) => {
     try {
-      const response = await fetch(`/api/v1/finance/invoices/${id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify({ status: 'Paid', paidDate: new Date() })
-      });
-      const result = await response.json();
-      if (result.status === 'success') {
+      const response = await api.patch(`/finance/invoices/${id}`, { status: 'Paid', paidDate: new Date() });
+      if (response.data && response.data.status === 'success') {
         fetchInvoices();
       }
     } catch (error) {
@@ -85,16 +67,8 @@ export default function InvoicesPage() {
 
   const handleVoid = async (id: string) => {
     try {
-      const response = await fetch(`/api/v1/finance/invoices/${id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify({ status: 'Void' })
-      });
-      const result = await response.json();
-      if (result.status === 'success') {
+      const response = await api.patch(`/finance/invoices/${id}`, { status: 'Void' });
+      if (response.data && response.data.status === 'success') {
         fetchInvoices();
       }
     } catch (error) {

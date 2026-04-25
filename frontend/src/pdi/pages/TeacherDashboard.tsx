@@ -213,59 +213,64 @@ const DashboardOverview = ({
   const nextEventSubtitle = nextEvent ? `Next: ${nextEvent.date}` : "No sessions found";
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-700">
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-slate-900 p-8 md:p-12 mb-8 shadow-2xl">
+    <div className="space-y-12 animate-in fade-in duration-1000 slide-in-from-bottom-8">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden rounded-[3rem] bg-white p-10 md:p-20 mb-12 shadow-[0_20px_50px_-20px_rgba(234,16,74,0.15)] border border-primary/5">
         {/* Background decorative elements */}
-        <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-72 h-72 bg-indigo-500/20 rounded-full blur-[80px]" />
+        <div className="absolute top-0 right-0 -translate-y-24 translate-x-24 w-[600px] h-[600px] bg-primary/[0.04] rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 translate-y-24 -translate-x-24 w-[500px] h-[500px] bg-primary/[0.06] rounded-full blur-[100px]" />
 
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
-          <div className="space-y-4">
-            <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
-              <Sparkles className="w-4 h-4 text-primary animate-pulse" />
-              <span className="text-xs font-bold tracking-[0.2em] text-white/80 uppercase mr-1">Teacher Platform</span>
-              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-500/20 border border-emerald-500/30">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-                <span className="text-[10px] font-black text-emerald-400 tracking-widest uppercase">Live Sync Active</span>
+        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-12">
+          <div className="space-y-8 flex-1">
+            <div className="inline-flex items-center gap-4 px-6 py-2.5 rounded-2xl bg-white border border-primary/10 shadow-sm backdrop-blur-xl">
+              <Sparkles className="w-5 h-5 text-primary animate-pulse" />
+              <span className="text-[11px] font-black tracking-[0.4em] text-primary uppercase">Elite Educator Platform</span>
+              <div className="h-4 w-px bg-primary/10 mx-1" />
+              <div className="flex items-center gap-2.5">
+                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-[10px] font-black text-emerald-600 tracking-widest uppercase">Growth Loop Active</span>
               </div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
-              Welcome back, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400">{userName.split(' ')[0]}!</span>
-            </h1>
-            <p className="text-zinc-100 text-lg font-bold max-w-xl leading-relaxed">
-              Your professional journey starts here.
-            </p>
+            <div className="space-y-4">
+              <h1 className="text-6xl md:text-7xl font-black text-slate-900 tracking-tighter leading-[1.1]">
+                Hello, <span className="text-primary">{userName.split(' ')[0]}!</span>
+              </h1>
+              <p className="text-slate-600 text-2xl font-medium max-w-2xl leading-relaxed">
+                Your journey of <span className="text-slate-900 font-black">impact and excellence</span> continues here. Empowering every classroom moment.
+              </p>
+            </div>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col sm:flex-row gap-4 shrink-0">
             <QuickActionButtons role={role as any} />
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+      {/* Primary KPI Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         {isModuleEnabled('/teacher/observations', role) && (
           <StatCard
-            title="Observations"
+            title="Professional Observations"
             value={observations.length}
-            subtitle={`${reflectionsCount} Reflected • Avg ${avgScore}`}
+            subtitle={`${reflectionsCount} Growth Loops Completed`}
             icon={TrendingUp}
             onClick={() => navigate("/teacher/observations")}
           />
         )}
         {isModuleEnabled('/teacher/goals', role) && (
           <StatCard
-            title="Active Goals"
+            title="Strategic Goals"
             value={goals.length}
-            subtitle={`${schoolAlignedGoals} School-Aligned`}
+            subtitle={`${schoolAlignedGoals} Mission Aligned`}
             icon={Target}
             onClick={() => navigate("/teacher/goals")}
           />
         )}
         {isModuleEnabled('/teacher/hours', role) && (
           <StatCard
-            title="Training Hours"
+            title="Academic Credits"
             value={pdHours.total}
-            subtitle="Current Academic Year"
+            subtitle="Training Hours Accrued"
             icon={Clock}
             trend={pdHours.total > 0 ? { value: 12, isPositive: true } : undefined}
             onClick={() => navigate("/teacher/hours")}
@@ -273,7 +278,7 @@ const DashboardOverview = ({
         )}
         {isModuleEnabled('/teacher/calendar', role) && upcomingTrainings > 0 && (
           <StatCard
-            title="Upcoming Training"
+            title="Next Milestone"
             value={upcomingTrainings}
             subtitle={nextEventSubtitle}
             icon={Calendar}
@@ -282,31 +287,33 @@ const DashboardOverview = ({
         )}
       </div>
 
-      {/* Key PDI Modules Section */}
-      <div className="space-y-6 mb-8">
-        <div className="flex items-center gap-3">
-          <div className="w-1.5 h-8 rounded-full bg-indigo-500 shadow-[0_0_15px_rgba(79,70,229,0.3)]"></div>
-          <h2 className="text-2xl font-black text-foreground tracking-tight">Key PDI Modules</h2>
+      {/* Key Domain Hubs */}
+      <div className="space-y-10 mb-16">
+        <div className="flex items-center gap-5">
+          <div className="w-2.5 h-12 rounded-full bg-primary shadow-[0_0_25px_rgba(234,16,74,0.4)]"></div>
+          <h2 className="text-4xl font-black text-slate-900 tracking-tighter uppercase">Professional Domain Hubs</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {isModuleEnabled('/departments/pd/edu-hub/culture-environment', role) && (
             <Card 
-              className="group cursor-pointer border-none shadow-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white overflow-hidden rounded-[2rem] transition-all hover:scale-[1.02]"
+              className="group cursor-pointer border border-primary/5 shadow-[0_20px_50px_rgba(0,0,0,0.03)] bg-white overflow-hidden rounded-[2.5rem] transition-all duration-500 hover:shadow-[0_30px_70px_rgba(234,16,74,0.08)] hover:-translate-y-2"
               onClick={() => navigate("/departments/pd/edu-hub/culture-environment")}
             >
-              <CardContent className="p-8 relative">
-                <div className="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
+              <CardContent className="p-12 relative">
+                <div className="absolute -right-16 -top-16 w-56 h-56 bg-primary/[0.02] rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
                 <div className="flex items-start justify-between">
-                  <div className="space-y-4">
-                    <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-xl flex items-center justify-center border border-white/20">
-                      <ShieldCheck className="w-8 h-8 text-white" />
+                  <div className="space-y-8">
+                    <div className="w-20 h-20 rounded-3xl bg-primary/5 flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:scale-110 group-hover:rotate-6 shadow-sm transition-all duration-500">
+                      <ShieldCheck className="w-10 h-10 text-primary group-hover:text-white transition-colors" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-black">Culture & Environment</h3>
-                      <p className="text-emerald-50/80 font-medium mt-1">Institutional standards and classroom excellence.</p>
+                      <h3 className="text-3xl font-black text-slate-900 tracking-tight">Culture & Environment</h3>
+                      <p className="text-slate-500 font-semibold mt-3 text-lg max-w-sm leading-relaxed">Institutional standards and classroom excellence framework.</p>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-6 h-6 text-white/60 group-hover:text-white transition-colors" />
+                  <div className="w-14 h-14 rounded-full border border-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:border-primary shadow-sm transition-all duration-500">
+                    <ArrowUpRight className="w-6 h-6 text-primary group-hover:text-white transition-colors" />
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -314,22 +321,24 @@ const DashboardOverview = ({
 
           {isModuleEnabled('/departments/pd/edu-hub/lac', role) && (
             <Card 
-              className="group cursor-pointer border-none shadow-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white overflow-hidden rounded-[2rem] transition-all hover:scale-[1.02]"
+              className="group cursor-pointer border border-primary/5 shadow-[0_20px_50px_rgba(0,0,0,0.03)] bg-white overflow-hidden rounded-[2.5rem] transition-all duration-500 hover:shadow-[0_30px_70px_rgba(234,16,74,0.08)] hover:-translate-y-2"
               onClick={() => navigate("/departments/pd/edu-hub/lac")}
             >
-              <CardContent className="p-8 relative">
-                <div className="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
+              <CardContent className="p-12 relative">
+                <div className="absolute -right-16 -top-16 w-56 h-56 bg-primary/[0.02] rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
                 <div className="flex items-start justify-between">
-                  <div className="space-y-4">
-                    <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-xl flex items-center justify-center border border-white/20">
-                      <ClipboardCheck className="w-8 h-8 text-white" />
+                  <div className="space-y-8">
+                    <div className="w-20 h-20 rounded-3xl bg-primary/5 flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:scale-110 group-hover:-rotate-6 shadow-sm transition-all duration-500">
+                      <ClipboardCheck className="w-10 h-10 text-primary group-hover:text-white transition-colors" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-black">LAC</h3>
-                      <p className="text-indigo-50/80 font-medium mt-1">Learning Accountability Checklist & curriculum tracking.</p>
+                      <h3 className="text-3xl font-black text-slate-900 tracking-tight">LAC Framework</h3>
+                      <p className="text-slate-500 font-semibold mt-3 text-lg max-w-sm leading-relaxed">Learning Accountability Checklist & curriculum alignment tracking.</p>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-6 h-6 text-white/60 group-hover:text-white transition-colors" />
+                  <div className="w-14 h-14 rounded-full border border-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:border-primary shadow-sm transition-all duration-500">
+                    <ArrowUpRight className="w-6 h-6 text-primary group-hover:text-white transition-colors" />
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -337,74 +346,75 @@ const DashboardOverview = ({
         </div>
       </div>
 
-
       {/* PD Progress Widget */}
-      <Card className="relative overflow-hidden border-none shadow-2xl rounded-[2rem] bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-700 text-white mb-10 group">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay group-hover:scale-110 transition-transform duration-700" />
-        <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-[80px]" />
+      <Card className="relative overflow-hidden border-none shadow-[0_40px_80px_-20px_rgba(234,16,74,0.15)] rounded-[3.5rem] bg-white mb-16 group">
+        <div className="absolute inset-0 bg-primary/[0.01] group-hover:bg-primary/[0.03] transition-colors duration-700" />
+        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-primary/[0.04] rounded-full blur-[120px]" />
 
-        <CardContent className="p-8 md:p-10 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
-            <div className="flex items-center gap-6">
-              <div className="w-20 h-20 rounded-[2rem] bg-white/15 backdrop-blur-xl flex items-center justify-center border border-white/20 shadow-2xl group-hover:rotate-6 transition-transform">
-                <Trophy className="w-10 h-10 text-yellow-300 drop-shadow-[0_0_10px_rgba(253,224,71,0.5)]" />
+        <CardContent className="p-14 md:p-20 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-20">
+            <div className="flex items-center gap-12">
+              <div className="w-28 h-28 rounded-[2.5rem] bg-primary/5 flex items-center justify-center border border-primary/10 shadow-inner group-hover:rotate-12 transition-all duration-700">
+                <Trophy className="w-14 h-14 text-primary" />
               </div>
-              <div className="space-y-1">
-                <h3 className="text-2xl md:text-3xl font-black tracking-tight">Annual Development Target</h3>
-                <div className="flex items-center gap-2 text-indigo-100/80 font-bold text-sm tracking-wider">
-                  <Zap className="w-4 h-4 fill-current" />
-                  20-Hour Mandatory Requirement
+              <div className="space-y-4">
+                <h3 className="text-4xl md:text-5xl font-black tracking-tighter text-slate-900 uppercase">Development Target</h3>
+                <div className="flex items-center gap-4 text-primary font-black text-sm tracking-[0.25em] uppercase bg-primary/5 px-6 py-2 rounded-2xl border border-primary/10 w-fit">
+                  <Zap className="w-5 h-5 fill-current" />
+                  20-Hour Annual Requirement
                 </div>
               </div>
             </div>
 
-            <div className="flex-1 w-full max-w-xl space-y-4">
+            <div className="flex-1 w-full max-w-3xl space-y-8">
               <div className="flex justify-between items-end">
-                <div className="space-y-1">
-                  <div className="text-5xl font-black flex items-baseline gap-2">
+                <div className="space-y-2">
+                  <div className="text-7xl font-black text-slate-900 flex items-baseline gap-4">
                     {pdHours.total}
-                    <span className="text-xl font-medium opacity-60 italic">/ 20 hrs</span>
+                    <span className="text-3xl font-bold text-slate-400 tracking-tight">/ 20 hrs</span>
                   </div>
                 </div>
-                <Badge className="bg-white/20 hover:bg-white/30 text-white border-none py-1.5 px-4 rounded-xl backdrop-blur-md font-black text-sm tracking-widest animate-pulse">
-                  {Math.max(0, 20 - pdHours.total)} hrs to go
-                </Badge>
+                <div className="px-6 py-3 bg-primary text-white rounded-2xl font-black text-[11px] tracking-[0.25em] uppercase shadow-[0_10px_25px_rgba(234,16,74,0.3)] animate-pulse">
+                  {Math.max(0, 20 - pdHours.total)} hrs remaining
+                </div>
               </div>
-              <div className="relative h-4 w-full bg-black/20 rounded-full overflow-hidden border border-white/10 shadow-inner">
+              <div className="relative h-8 w-full bg-slate-50 rounded-full overflow-hidden border border-slate-100 shadow-inner p-1.5">
                 <div
-                  className="absolute top-0 left-0 h-full bg-gradient-to-r from-yellow-300 to-emerald-400 rounded-full shadow-[0_0_15px_rgba(250,204,21,0.5)] transition-all duration-1000 ease-out"
+                  className="h-full bg-primary rounded-full shadow-[0_0_25px_rgba(234,16,74,0.4)] transition-all duration-1000 ease-out relative"
                   style={{ width: `${Math.min(100, (pdHours.total / 20) * 100)}%` }}
-                />
+                >
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 animate-shimmer" />
+                </div>
               </div>
             </div>
 
             <Button
-              className="bg-white text-indigo-600 hover:bg-indigo-50 font-black px-10 h-14 rounded-2xl shadow-xl transition-all hover:scale-105 active:scale-95 group/btn"
+              className="bg-primary text-white hover:bg-primary/90 font-black px-16 h-20 rounded-[2rem] shadow-[0_20px_40px_rgba(234,16,74,0.2)] transition-all duration-500 hover:scale-105 active:scale-95 group/btn uppercase tracking-widest text-sm"
               onClick={() => navigate("/teacher/calendar")}
             >
-              {pdHours.total >= 20 ? "Browse Trainings" : pdHours.total > 0 ? "Continue Training" : "Start Training"}
-              <ArrowUpRight className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              {pdHours.total >= 20 ? "Explore Modules" : pdHours.total > 0 ? "Resume Learning" : "Begin Training"}
+              <ArrowUpRight className="ml-4 w-7 h-7 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </Button>
           </div>
         </CardContent>
       </Card>
 
-      <div className="grid lg:grid-cols-3 gap-8">
+      <div className="grid lg:grid-cols-3 gap-12">
         {isModuleEnabled('/teacher/observations', role) && (
           <div className="lg:col-span-2">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-3">
-                <div className="w-1.5 h-8 rounded-full bg-primary shadow-[0_0_15px_rgba(234,16,74,0.3)]"></div>
-                <h2 className="text-2xl font-black text-foreground tracking-tight">Recent Observations</h2>
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-4">
+                <div className="w-2 h-10 rounded-full bg-primary shadow-[0_0_20px_rgba(234,16,74,0.3)]"></div>
+                <h2 className="text-3xl font-black text-slate-900 tracking-tighter uppercase">Recent Observations</h2>
               </div>
-              <Button variant="ghost" size="sm" asChild className="hover:bg-primary/5 text-primary font-bold">
+              <Button variant="ghost" size="sm" asChild className="hover:bg-primary/5 text-primary font-black text-xs uppercase tracking-widest px-6">
                 <Link to="/teacher/observations">
                   View All
-                  <TrendingUp className="ml-2 w-4 h-4" />
+                  <TrendingUp className="ml-3 w-5 h-5" />
                 </Link>
               </Button>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-6">
               {observations.length > 0 ? (
                 observations.slice(0, 3).map((obs) => (
                   <ObservationCard
@@ -418,13 +428,13 @@ const DashboardOverview = ({
                   />
                 ))
               ) : (
-                <Card className="bg-white border-2 border-dashed border-muted shadow-sm p-12 flex flex-col items-center justify-center text-center space-y-4 rounded-[2rem]">
-                  <div className="w-16 h-16 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 shadow-sm">
-                    <Eye className="w-8 h-8 text-slate-300" />
+                <Card className="bg-white border border-primary/5 shadow-[0_20px_50px_rgba(0,0,0,0.02)] p-16 flex flex-col items-center justify-center text-center space-y-6 rounded-[2.5rem]">
+                  <div className="w-20 h-20 rounded-[1.5rem] bg-slate-50 flex items-center justify-center border border-slate-100 shadow-sm">
+                    <Eye className="w-10 h-10 text-slate-300" />
                   </div>
-                  <div className="space-y-1">
-                    <p className="text-lg font-bold text-slate-900">No observations yet</p>
-                    <p className="text-sm text-zinc-900 font-bold max-w-[280px] mx-auto">
+                  <div className="space-y-3">
+                    <p className="text-2xl font-black text-slate-900 tracking-tight uppercase">No observations yet</p>
+                    <p className="text-slate-500 font-semibold max-w-[320px] mx-auto text-lg">
                       Once your school leader records an observation, you'll see the details and feedback right here.
                     </p>
                   </div>
@@ -436,29 +446,29 @@ const DashboardOverview = ({
 
         {isModuleEnabled('/teacher/goals', role) && (
           <div>
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-3">
-                <div className="w-1.5 h-8 rounded-full bg-primary shadow-[0_0_15px_rgba(234,16,74,0.3)]"></div>
-                <h2 className="text-2xl font-black text-foreground tracking-tight">My Goals</h2>
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-4">
+                <div className="w-2 h-10 rounded-full bg-primary shadow-[0_0_20px_rgba(234,16,74,0.3)]"></div>
+                <h2 className="text-3xl font-black text-slate-900 tracking-tighter uppercase">My Goals</h2>
               </div>
-              <Button variant="ghost" size="sm" asChild className="hover:bg-primary/5 text-primary font-bold">
+              <Button variant="ghost" size="sm" asChild className="hover:bg-primary/5 text-primary font-black text-xs uppercase tracking-widest px-6">
                 <Link to="/teacher/goals">View All</Link>
               </Button>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-6">
               {goals.length > 0 ? (
                 goals.map((goal) => (
                   <GoalCard key={goal.id} goal={goal} />
                 ))
               ) : (
-                <Card className="bg-white border-2 border-dashed border-muted shadow-sm p-12 flex flex-col items-center justify-center text-center space-y-4 rounded-[2rem]">
-                  <div className="w-16 h-16 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 shadow-sm">
-                    <Target className="w-8 h-8 text-slate-300" />
+                <Card className="bg-white border border-primary/5 shadow-[0_20px_50px_rgba(0,0,0,0.02)] p-16 flex flex-col items-center justify-center text-center space-y-6 rounded-[2.5rem]">
+                  <div className="w-20 h-20 rounded-[1.5rem] bg-slate-50 flex items-center justify-center border border-slate-100 shadow-sm">
+                    <Target className="w-10 h-10 text-slate-300" />
                   </div>
-                  <div className="space-y-1">
-                    <p className="text-lg font-bold text-slate-900">No goals set yet</p>
-                    <p className="text-sm text-zinc-900 font-bold max-w-[280px] mx-auto">
-                      Work with your school leader to define your Teacher Development goals for this academic year.
+                  <div className="space-y-3">
+                    <p className="text-2xl font-black text-slate-900 tracking-tight uppercase">No goals set yet</p>
+                    <p className="text-slate-500 font-semibold max-w-[320px] mx-auto text-lg">
+                      Work with your school leader to define your development goals for this academic year.
                     </p>
                   </div>
                 </Card>
@@ -469,17 +479,17 @@ const DashboardOverview = ({
       </div>
 
       {isModuleEnabled('/teacher/calendar', role) && futureEvents.length > 0 && (
-        <div className="mt-12">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <div className="w-1.5 h-8 rounded-full bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.3)]"></div>
-              <h2 className="text-2xl font-black text-foreground tracking-tight">Upcoming Training</h2>
+        <div className="mt-16">
+          <div className="flex items-center justify-between mb-10">
+            <div className="flex items-center gap-5">
+              <div className="w-2.5 h-12 rounded-full bg-emerald-500 shadow-[0_0_25px_rgba(16,185,129,0.4)]"></div>
+              <h2 className="text-4xl font-black text-slate-900 tracking-tighter uppercase">Upcoming Training</h2>
             </div>
-            <Button variant="ghost" size="sm" asChild className="hover:bg-emerald-50 text-emerald-600 font-bold">
+            <Button variant="ghost" size="sm" asChild className="hover:bg-emerald-50 text-emerald-600 font-black text-xs uppercase tracking-widest px-8 h-14 rounded-2xl border border-emerald-100">
               <Link to="/teacher/calendar">View Calendar</Link>
             </Button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {futureEvents.slice(0, 3).map((event) => (
               <TrainingEventCard
                 key={event.id}
@@ -492,8 +502,8 @@ const DashboardOverview = ({
       )}
     </div>
   );
-
 }
+
 
 
 function ObservationsView({
@@ -671,66 +681,71 @@ function ObservationsView({
       </div>
 
       {(showUpcoming || upcomingObservations.length > 0) && (
-        <Card className="shadow-xl bg-background/50 backdrop-blur-sm overflow-hidden mb-8">
-          <CardHeader className="border-b bg-muted/20">
-            <div className="flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-primary" />
+        <Card className="shadow-[0_20px_50px_rgba(0,0,0,0.04)] border border-primary/5 bg-white overflow-hidden mb-12 rounded-[2.5rem]">
+          <CardHeader className="border-b border-slate-50 bg-slate-50/30 p-10">
+            <div className="flex items-center gap-5">
+              <div className="w-12 h-12 rounded-2xl bg-primary/5 flex items-center justify-center border border-primary/10">
+                <Calendar className="w-6 h-6 text-primary" />
+              </div>
               <div>
-                <CardTitle>Upcoming Scheduled Observations</CardTitle>
-                <CardDescription>Scheduled check-ins from school leadership.</CardDescription>
+                <CardTitle className="text-2xl font-black text-slate-900 uppercase tracking-tight">Upcoming Scheduled Observations</CardTitle>
+                <CardDescription className="text-slate-500 font-semibold text-base mt-1">Scheduled check-ins from school leadership.</CardDescription>
               </div>
             </div>
           </CardHeader>
           <CardContent className="p-0">
             <Table>
               <TableHeader>
-                <TableRow className="bg-muted/30">
-                  <TableHead className="py-4 px-6 font-bold uppercase tracking-wider text-[10px] w-[60px] text-center text-zinc-900">S.No.</TableHead>
-                  <TableHead className="py-4 px-6 font-bold uppercase tracking-wider text-[10px] text-zinc-900">Observation Title</TableHead>
-                  <TableHead className="py-4 px-6 font-bold uppercase tracking-wider text-[10px] text-zinc-900">Type</TableHead>
-                  <TableHead className="py-4 px-6 font-bold uppercase tracking-wider text-[10px] text-zinc-900">Date</TableHead>
-                  <TableHead className="py-4 px-6 font-bold uppercase tracking-wider text-[10px] text-zinc-900">Time</TableHead>
-                  <TableHead className="py-4 px-6 font-bold uppercase tracking-wider text-[10px] text-zinc-900">Location</TableHead>
+                <TableRow className="hover:bg-transparent border-b border-slate-100">
+                  <TableHead className="py-6 px-10 font-black uppercase tracking-[0.2em] text-[10px] w-[100px] text-center text-slate-400">S.No.</TableHead>
+                  <TableHead className="py-6 px-10 font-black uppercase tracking-[0.2em] text-[10px] text-slate-400">Observation Title</TableHead>
+                  <TableHead className="py-6 px-10 font-black uppercase tracking-[0.2em] text-[10px] text-slate-400">Type</TableHead>
+                  <TableHead className="py-6 px-10 font-black uppercase tracking-[0.2em] text-[10px] text-slate-400">Schedule</TableHead>
+                  <TableHead className="py-6 px-10 font-black uppercase tracking-[0.2em] text-[10px] text-slate-400">Location</TableHead>
                 </TableRow>
               </TableHeader>
-              <TableBody className="divide-y divide-muted-foreground/10">
+              <TableBody>
                 {upcomingObservations.length > 0 ? upcomingObservations.map((obs, index) => (
-                  <TableRow key={obs.id} className="hover:bg-primary/5 transition-colors group">
-                    <TableCell className="font-medium text-slate-500 text-center">{index + 1}</TableCell>
-                    <TableCell className="p-6">
-                      <p className="font-bold text-foreground">{obs.title}</p>
+                  <TableRow key={obs.id} className="hover:bg-slate-50/50 transition-colors group border-b border-slate-50 last:border-0">
+                    <TableCell className="font-black text-slate-400 text-center text-sm px-10 py-8">{String(index + 1).padStart(2, '0')}</TableCell>
+                    <TableCell className="px-10 py-8">
+                      <p className="font-black text-slate-900 text-lg tracking-tight">{obs.title}</p>
                     </TableCell>
-                    <TableCell className="p-6">
-                      <Badge variant="secondary" className="bg-primary/10 text-primary border-none text-[10px] font-bold uppercase tracking-wider">
+                    <TableCell className="px-10 py-8">
+                      <Badge className="bg-primary/5 text-primary border border-primary/10 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-lg shadow-sm">
                         Observation
                       </Badge>
                     </TableCell>
-                    <TableCell className="p-6">
-                      <div className="flex items-center gap-2 text-sm font-medium">
-                        <Calendar className="w-4 h-4 text-zinc-900" />
-                        {obs.date}
+                    <TableCell className="px-10 py-8">
+                      <div className="space-y-1.5">
+                        <div className="flex items-center gap-2.5 text-sm font-black text-slate-900 uppercase tracking-tight">
+                          <Calendar className="w-4 h-4 text-primary" />
+                          {obs.date}
+                        </div>
+                        <div className="flex items-center gap-2.5 text-[11px] font-bold text-slate-400 uppercase tracking-widest ml-6">
+                          <Clock className="w-3.5 h-3.5" />
+                          {obs.time}
+                        </div>
                       </div>
                     </TableCell>
-                    <TableCell className="p-6">
-                      <div className="flex items-center gap-2 text-sm font-medium">
-                        <Clock className="w-4 h-4 text-zinc-900" />
-                        {obs.time}
-                      </div>
-                    </TableCell>
-                    <TableCell className="p-6">
-                      <div className="flex items-center gap-2 text-sm font-medium">
-                        <MapPin className="w-4 h-4 text-primary" />
+                    <TableCell className="px-10 py-8">
+                      <div className="flex items-center gap-2.5 text-sm font-bold text-slate-600">
+                        <div className="w-8 h-8 rounded-xl bg-slate-50 flex items-center justify-center border border-slate-100">
+                          <MapPin className="w-4 h-4 text-primary" />
+                        </div>
                         {obs.location}
                       </div>
                     </TableCell>
                   </TableRow>
                 )) : (
                   <TableRow>
-                    <TableCell colSpan={6} className="py-10 text-center">
-                      <div className="flex flex-col items-center gap-2 text-zinc-900">
-                        <Calendar className="w-8 h-8 opacity-30" />
-                        <p className="text-sm font-medium">No upcoming observations scheduled</p>
-                        <p className="text-xs opacity-70">Check back later or contact your school leader.</p>
+                    <TableCell colSpan={5} className="py-24 text-center">
+                      <div className="flex flex-col items-center gap-4">
+                        <div className="w-20 h-20 rounded-3xl bg-slate-50 flex items-center justify-center border border-slate-100 mb-2">
+                          <Calendar className="w-10 h-10 text-slate-200" />
+                        </div>
+                        <p className="text-xl font-black text-slate-900 uppercase tracking-tight">No upcoming observations</p>
+                        <p className="text-slate-400 font-semibold max-w-[300px] mx-auto">Check back later or contact your school leader for scheduling.</p>
                       </div>
                     </TableCell>
                   </TableRow>
@@ -742,21 +757,29 @@ function ObservationsView({
       )}
 
       {chartData.length > 0 && (
-        <Card className="border-none shadow-xl bg-white overflow-hidden mb-8">
-          <CardHeader className="border-b bg-muted/20">
-            <div className="flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-primary" />
+        <Card className="border-none shadow-[0_20px_50px_rgba(0,0,0,0.04)] bg-white overflow-hidden mb-12 rounded-[2.5rem]">
+          <CardHeader className="border-b border-slate-50 bg-slate-50/30 p-10">
+            <div className="flex items-center gap-5">
+              <div className="w-12 h-12 rounded-2xl bg-primary/5 flex items-center justify-center border border-primary/10">
+                <TrendingUp className="w-6 h-6 text-primary" />
+              </div>
               <div>
-                <CardTitle>Observation Score Progression</CardTitle>
-                <CardDescription>Visualizing your scores across formal observations over time.</CardDescription>
+                <CardTitle className="text-2xl font-black text-slate-900 uppercase tracking-tight">Observation Score Progression</CardTitle>
+                <CardDescription className="text-slate-500 font-semibold text-base mt-1">Visualizing your scores across formal observations over time.</CardDescription>
               </div>
             </div>
           </CardHeader>
-          <CardContent className="pt-6 pb-2 px-6">
-            <div className="h-[300px] w-full mt-4">
-              <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
-                <LineChart data={chartData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} />
+          <CardContent className="pt-12 pb-6 px-10">
+            <div className="h-[350px] w-full mt-4">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="colorScore" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#EA104A" stopOpacity={0.15}/>
+                      <stop offset="95%" stopColor="#EA104A" stopOpacity={0}/>
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                   <XAxis
                     dataKey="date"
                     tickLine={false}
@@ -769,31 +792,37 @@ function ObservationsView({
                         return value;
                       }
                     }}
-                    tick={{ fontSize: 12, fill: '#888888' }}
-                    dy={10}
+                    tick={{ fontSize: 11, fill: '#94a3b8', fontWeight: 600 }}
+                    dy={15}
                   />
                   <YAxis
                     domain={[0, 5]}
                     tickCount={6}
                     tickLine={false}
                     axisLine={false}
-                    tick={{ fontSize: 12, fill: '#888888' }}
-                    dx={-10}
+                    tick={{ fontSize: 11, fill: '#94a3b8', fontWeight: 600 }}
+                    dx={-15}
                   />
                   <RechartsTooltip
-                    contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)' }}
-                    labelStyle={{ fontWeight: 'bold', color: '#111827', marginBottom: '4px' }}
-                    itemStyle={{ color: '#EA104A', fontWeight: 600 }}
+                    contentStyle={{ 
+                      borderRadius: '20px', 
+                      border: '1px solid rgba(234, 16, 74, 0.1)', 
+                      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.05)',
+                      padding: '16px'
+                    }}
+                    labelStyle={{ fontWeight: '900', color: '#0f172a', marginBottom: '8px', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.05em' }}
+                    itemStyle={{ color: '#EA104A', fontWeight: 700, fontSize: '14px' }}
                   />
-                  <Line
+                  <Area
                     type="monotone"
                     dataKey="score"
                     stroke="#EA104A"
-                    strokeWidth={3}
-                    dot={{ r: 6, fill: '#EA104A', strokeWidth: 2, stroke: '#ffffff' }}
-                    activeDot={{ r: 8, strokeWidth: 0 }}
+                    strokeWidth={4}
+                    fillOpacity={1}
+                    fill="url(#colorScore)"
+                    animationDuration={2000}
                   />
-                </LineChart>
+                </AreaChart>
               </ResponsiveContainer>
             </div>
           </CardContent>
@@ -802,141 +831,140 @@ function ObservationsView({
 
 
 
-      <Card className="border-none shadow-2xl bg-white overflow-hidden rounded-[2rem]">
+
+
+      <Card className="border-none shadow-[0_20px_50px_rgba(0,0,0,0.03)] bg-white overflow-hidden rounded-[2.5rem]">
         <div className="overflow-x-auto scrollbar-hide">
           <Table>
             <TableHeader>
-              <TableRow className="bg-zinc-50/80 hover:bg-zinc-50/80 border-b border-zinc-100">
-                <TableHead className="w-16 p-6 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-900">#</TableHead>
-                <TableHead className="p-6 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-900">Date & Session</TableHead>
-                <TableHead className="p-6 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-900">
-                  <div className="flex items-center gap-2 whitespace-nowrap">
-                    <span>Focus Area</span>
+              <TableRow className="bg-slate-50/50 hover:bg-slate-50/50 border-b border-slate-100">
+                <TableHead className="w-16 px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">#</TableHead>
+                <TableHead className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Record Data</TableHead>
+                <TableHead className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
+                  <div className="flex items-center gap-3 whitespace-nowrap">
+                    <span>Taxonomy</span>
                     <select
-                      className="text-[10px] font-bold border border-zinc-200 rounded-md px-1 py-0.5 bg-white text-zinc-600 cursor-pointer hover:border-primary focus:outline-none focus:ring-1 focus:ring-primary normal-case tracking-normal"
+                      className="text-[9px] font-black border border-slate-200 rounded-xl px-3 py-1.5 bg-white text-slate-900 cursor-pointer hover:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 uppercase tracking-widest transition-all"
                       value={learningAreaFilter}
                       onChange={(e) => setLearningAreaFilter(e.target.value)}
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <option value="all">All</option>
+                      <option value="all">All Fields</option>
                       {focusAreas.map(f => (
                         <option key={String(f)} value={String(f)}>{String(f)}</option>
                       ))}
                     </select>
                   </div>
                 </TableHead>
-                <TableHead className="p-6 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-900">
-                  <div className="flex items-center gap-2 whitespace-nowrap">
+                <TableHead className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
+                  <div className="flex items-center gap-3 whitespace-nowrap">
                     <span>Performance</span>
                     <select
-                      className="text-[10px] font-bold border border-zinc-200 rounded-md px-1 py-0.5 bg-white text-zinc-600 cursor-pointer hover:border-primary focus:outline-none focus:ring-1 focus:ring-primary normal-case tracking-normal"
+                      className="text-[9px] font-black border border-slate-200 rounded-xl px-3 py-1.5 bg-white text-slate-900 cursor-pointer hover:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 uppercase tracking-widest transition-all"
                       value={ratingFilter}
                       onChange={(e) => setRatingFilter(e.target.value)}
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <option value="all">All</option>
-                      <option value="highly-effective">Highly Eff</option>
+                      <option value="all">All Ranges</option>
+                      <option value="highly-effective">Highly Effective</option>
                       <option value="effective">Effective</option>
                       <option value="developing">Developing</option>
                       <option value="basic">Basic</option>
                     </select>
                   </div>
                 </TableHead>
-                <TableHead className="p-6 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-900">Observer</TableHead>
-                <TableHead className="p-6 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-900 text-center">Score</TableHead>
-                <TableHead className="p-6 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-900 text-right">Actions</TableHead>
+                <TableHead className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 text-center">Index</TableHead>
+                <TableHead className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Loop Status</TableHead>
+                <TableHead className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody className="divide-y divide-zinc-100">
+            <TableBody>
               {filteredObservations.map((obs, index) => (
-                <TableRow key={obs.id} className="hover:bg-primary/5 transition-colors group">
-                  <TableCell className="p-6 text-xs font-bold text-zinc-400">
-                    {index + 1}
+                <TableRow key={obs.id} className="hover:bg-slate-50/50 transition-all duration-300 group border-b border-slate-50 last:border-0">
+                  <TableCell className="px-8 py-8 text-[10px] font-black text-slate-300 uppercase">
+                    {String(index + 1).padStart(2, '0')}
                   </TableCell>
-                  <TableCell className="p-6">
-                    <div className="flex flex-col">
-                      <span className="font-bold text-zinc-900">{obs.date}</span>
-                      <span className="text-[10px] text-zinc-400 font-medium">Recorded</span>
+                  <TableCell className="px-8 py-8">
+                    <div className="flex flex-col gap-1.5">
+                      <span className="text-sm font-black text-slate-900 uppercase tracking-tight">{obs.date}</span>
+                      <span className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Official Academic Record</span>
                     </div>
                   </TableCell>
-                  <TableCell className="p-6">
-                    <div className="flex flex-col">
-                      <span className="font-bold text-zinc-900 group-hover:text-primary transition-colors">
-                        {obs.learningArea || (obs as any).subject || "General"}
+                  <TableCell className="px-8 py-8">
+                    <div className="flex flex-col gap-2">
+                      <span className="text-sm font-black text-slate-900 group-hover:text-primary transition-colors uppercase tracking-tight">
+                        {obs.learningArea || (obs as any).subject || "General Pedagogical Review"}
                       </span>
-                      <span className="text-[10px] text-zinc-400 font-medium flex items-center gap-1 mt-0.5">
-                        <User className="w-3 h-3" />
-                        {obs.observerName || "Leader"}
-                      </span>
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-5 h-5 rounded-md bg-primary/5 flex items-center justify-center border border-primary/10">
+                            <User className="w-3 h-3 text-primary" />
+                        </div>
+                        <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest">
+                          {obs.observerName || "Campus Leader"}
+                        </span>
+                      </div>
                     </div>
                   </TableCell>
-                  <TableCell className="p-6">
-                    <div className="flex flex-wrap gap-1">
-                      <Badge variant="outline" className="bg-zinc-50 text-zinc-600 border-zinc-200 font-bold text-[10px] uppercase tracking-wider">
+                  <TableCell className="px-8 py-8">
+                    <div className="flex flex-wrap gap-2">
+                      <Badge className="bg-slate-100 text-slate-600 border-none font-black text-[9px] uppercase tracking-widest px-3 py-1 rounded-lg">
                         {String((obs as any).moduleType || obs.domain).replace('_', ' ')}
                       </Badge>
                       {(obs.type === "Quick Feedback" || obs.domain === "Quick Feedback" || (obs as any).moduleType === "QUICK_FEEDBACK" || obs.domain === "QUICK_FEEDBACK") && (
-                        <Badge className="bg-indigo-500 text-white border-none font-bold text-[10px] uppercase tracking-wider gap-1">
+                        <Badge className="bg-primary text-white shadow-lg shadow-primary/20 border-none font-black text-[9px] uppercase tracking-widest px-3 py-1 rounded-lg gap-1.5">
                           <Zap className="w-3 h-3 fill-current" />
-                          Quick
+                          Impact
                         </Badge>
                       )}
                     </div>
                   </TableCell>
-                  <TableCell className="p-6 max-w-[250px]">
+                  <TableCell className="px-8 py-8 text-center">
                     {(obs.type === "Quick Feedback" || obs.domain === "Quick Feedback" || (obs as any).moduleType === "QUICK_FEEDBACK" || obs.domain === "QUICK_FEEDBACK") ? (
-                      <p className="text-xs text-zinc-400 font-medium italic">NA</p>
-                    ) : (
-                      <p className="text-xs text-zinc-500 line-clamp-2 italic leading-relaxed">
-                        "{obs.notes || "No summary notes provided."}"
-                      </p>
-                    )}
-                  </TableCell>
-                  <TableCell className="p-6 text-center">
-                    {(obs.type === "Quick Feedback" || obs.domain === "Quick Feedback" || (obs as any).moduleType === "QUICK_FEEDBACK" || obs.domain === "QUICK_FEEDBACK") ? (
-                      <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-zinc-100 text-zinc-400 font-black text-xs border border-zinc-200 shadow-sm">
-                        NA
+                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-slate-50 text-slate-300 font-black text-[10px] uppercase tracking-widest border border-slate-100">
+                        N/A
                       </div>
                     ) : obs.score !== undefined ? (
-                      <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-emerald-50 text-emerald-700 font-black text-xs border border-emerald-100 shadow-sm">
+                      <div className={cn(
+                        "inline-flex items-center justify-center w-14 h-14 rounded-2xl font-black text-base shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:rotate-6",
+                        obs.score >= 3.5 ? "bg-emerald-500 text-white shadow-emerald-500/30" :
+                        obs.score >= 2.5 ? "bg-amber-500 text-white shadow-amber-500/30" : "bg-primary text-white shadow-primary/30"
+                      )}>
                         {obs.score}
                       </div>
                     ) : (
-                      <span className="text-zinc-300">--</span>
+                      <span className="text-slate-200 font-black">--</span>
                     )}
                   </TableCell>
-                  <TableCell className="p-6">
+                  <TableCell className="px-8 py-8">
                     {obs.hasReflection ? (
-                      <Badge className="bg-emerald-50 text-emerald-700 border-emerald-100 text-[10px] font-black uppercase tracking-widest gap-1 border h-6">
-                        <CheckCircle2 className="w-3 h-3" />
-                        Reflected
+                      <Badge className="bg-emerald-50 text-emerald-600 border border-emerald-100 text-[9px] font-black uppercase tracking-widest gap-2 py-2.5 px-4 rounded-xl shadow-sm">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        Loop Closed
                       </Badge>
                     ) : (
-                      <Badge className="bg-amber-50 text-amber-700 border-amber-100 text-[10px] font-black uppercase tracking-widest border h-6">
-                        Pending
+                      <Badge className="bg-amber-50 text-amber-600 border border-amber-100 text-[9px] font-black uppercase tracking-widest py-2.5 px-4 rounded-xl shadow-sm">
+                        Action Required
                       </Badge>
                     )}
                   </TableCell>
-                  <TableCell className="p-6 text-right">
-                    <div className="flex items-center justify-end gap-2 text-primary">
+                  <TableCell className="px-8 py-8 text-right">
+                    <div className="flex items-center justify-end gap-3">
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="h-8 w-8 hover:bg-primary/10 hover:text-primary rounded-xl"
+                        className="h-12 w-12 hover:bg-primary/5 hover:text-primary rounded-2xl border border-transparent hover:border-primary/10 transition-all shadow-sm bg-white"
                         onClick={() => onView(obs.id)}
-                        title="View Report"
                       >
-                        <Eye className="w-4 h-4" />
+                        <Eye className="w-5 h-5" />
                       </Button>
                       {!obs.hasReflection && (
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-8 w-8 hover:bg-primary/10 hover:text-primary rounded-xl"
+                          className="h-12 w-12 hover:bg-primary/5 hover:text-primary rounded-2xl border border-transparent hover:border-primary/10 transition-all shadow-sm bg-white"
                           onClick={() => onReflect(obs)}
-                          title="Add Comment"
                         >
-                          <MessageSquare className="w-4 h-4" />
+                          <MessageSquare className="w-5 h-5 text-amber-500" />
                         </Button>
                       )}
                     </div>
@@ -945,12 +973,14 @@ function ObservationsView({
               ))}
               {filteredObservations.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={8} className="p-20 text-center">
-                    <div className="flex flex-col items-center justify-center space-y-4 grayscale opacity-40">
-                      <Eye className="w-16 h-16" />
-                      <div className="space-y-1">
-                        <p className="text-xl font-bold text-zinc-300">No observations found</p>
-                        <p className="text-zinc-900 font-bold text-sm">Try adjusting your filters or search query</p>
+                  <TableCell colSpan={8} className="py-32 text-center">
+                    <div className="flex flex-col items-center justify-center space-y-6">
+                      <div className="w-24 h-24 rounded-[2.5rem] bg-slate-50 flex items-center justify-center border-4 border-dashed border-slate-100">
+                        <Eye className="w-12 h-12 text-slate-200" />
+                      </div>
+                      <div className="space-y-2">
+                        <p className="text-2xl font-black text-slate-900 uppercase tracking-tight">No records identified</p>
+                        <p className="text-slate-400 font-semibold text-sm">Refine your strategic filters or search criteria.</p>
                       </div>
                     </div>
                   </TableCell>
@@ -960,7 +990,7 @@ function ObservationsView({
           </Table>
         </div>
       </Card>
-    </div >
+    </div>
   );
 }
 
@@ -1109,321 +1139,187 @@ function GoalsView({ goals, fetchGoals, userName, role }: { goals: any[], fetchG
 
   return (
 
-    <div className="space-y-6">
-
+    <div className="space-y-10 animate-in fade-in duration-500 slide-in-from-bottom-6">
       {selectedReflectGoal && (
-
         <GoalWorkflowForms
           goal={selectedReflectGoal}
           role={role === 'LEADER' ? 'LEADER' : role === 'ADMIN' ? 'ADMIN' : 'TEACHER'}
           onComplete={() => { setSelectedReflectGoal(null); fetchGoals(); }}
           onClose={() => { setSelectedReflectGoal(null); fetchGoals(); }}
         />
-
       )}
 
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
+        <PageHeader title="Professional Growth Goals" subtitle="Strategic objectives aligned with academic excellence" />
 
-
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-
-        <PageHeader title="Professional Goals" subtitle="Track your growth and align with school priorities" />
-
-        <div className="flex flex-wrap gap-2">
-
-          <div className="relative w-full md:w-64">
-
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-900" />
-
+        <div className="flex flex-wrap gap-4">
+          <div className="relative w-full md:w-96 group">
+            <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-primary transition-colors group-hover:text-primary" />
             <Input
-
-              placeholder="Search goals..."
-
-              className="pl-9 h-10 rounded-xl"
-
+              placeholder="Search growth objectives..."
+              className="pl-14 h-16 rounded-[1.5rem] border-primary/5 focus:border-primary/20 focus:ring-8 focus:ring-primary/5 transition-all bg-white shadow-[0_10px_30px_rgba(0,0,0,0.02)] font-semibold text-lg"
               value={searchQuery}
-
               onChange={(e) => setSearchQuery(e.target.value)}
-
             />
-
           </div>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="h-10 gap-2 rounded-xl">
-                <Filter className="w-4 h-4" />
-                {filter === "all" ? "All Goals" :
-                  filter === "school" ? "School Priorities" :
+              <Button variant="outline" className="h-16 px-8 gap-4 rounded-[1.5rem] border-primary/5 hover:border-primary/20 hover:bg-primary/5 font-black text-[11px] uppercase tracking-widest transition-all shadow-sm bg-white">
+                <Filter className="w-5 h-5 text-primary" />
+                {filter === "all" ? "All Strategic Tracks" :
+                  filter === "school" ? "Core Institutional Alignment" :
                     filter === "professional" ? "Professional Practice" :
-                      filter === "completed" ? "Completed" : "In Progress"}
+                      filter === "completed" ? "Successfully Achieved" : "Active Development"}
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Filter Goals</DropdownMenuLabel>
-              <DropdownMenuItem onClick={() => setFilter("all")} className={filter === "all" ? "bg-muted" : ""}>All Goals</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setFilter("school")} className={filter === "school" ? "bg-muted" : ""}>School Priorities</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setFilter("professional")} className={filter === "professional" ? "bg-muted" : ""}>Professional Practice</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => setFilter("completed")} className={filter === "completed" ? "bg-muted" : ""}>Completed</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setFilter("in-progress")} className={filter === "in-progress" ? "bg-muted" : ""}>In Progress</DropdownMenuItem>
+            <DropdownMenuContent align="end" className="rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.1)] border-primary/5 p-3 min-w-[280px]">
+              <DropdownMenuLabel className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400 p-4">Filter Dimensions</DropdownMenuLabel>
+              <DropdownMenuItem onClick={() => setFilter("all")} className="rounded-xl font-black text-[11px] uppercase tracking-widest py-4 px-6 hover:bg-primary/5 hover:text-primary transition-colors">All Strategic Goals</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setFilter("school")} className="rounded-xl font-black text-[11px] uppercase tracking-widest py-4 px-6 hover:bg-primary/5 hover:text-primary transition-colors">School Priorities</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setFilter("professional")} className="rounded-xl font-black text-[11px] uppercase tracking-widest py-4 px-6 hover:bg-primary/5 hover:text-primary transition-colors">Professional Practice</DropdownMenuItem>
+              <DropdownMenuSeparator className="bg-slate-100 my-2" />
+              <DropdownMenuItem onClick={() => setFilter("completed")} className="rounded-xl font-black text-[11px] uppercase tracking-widest py-4 px-6 hover:bg-emerald-50 hover:text-emerald-600 transition-colors">Completed Milestones</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setFilter("in-progress")} className="rounded-xl font-black text-[11px] uppercase tracking-widest py-4 px-6 hover:bg-amber-50 hover:text-amber-600 transition-colors">Active Development</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+
           {isReflectionWindowOpen && !hasExistingReflection && (
-            <Button size="sm" className="h-10 gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white" onClick={handleInitiateReflection} disabled={isInitiating}>
-              {isInitiating ? "Initiating..." : "Start Annual Reflection"}
+            <Button className="h-16 px-10 gap-4 rounded-[1.5rem] bg-primary text-white shadow-[0_20px_40px_rgba(234,16,74,0.2)] hover:scale-105 active:scale-95 transition-all font-black text-[11px] uppercase tracking-widest" onClick={handleInitiateReflection} disabled={isInitiating}>
+              {isInitiating ? "Processing Hub..." : "Open Annual Reflection"}
+              <Sparkles className="w-5 h-5 animate-pulse" />
             </Button>
           )}
 
           <Dialog open={showClosedPopup} onOpenChange={setShowClosedPopup}>
-            <DialogContent>
+            <DialogContent className="rounded-[3rem] p-16 border-none shadow-[0_40px_100px_rgba(0,0,0,0.1)] overflow-hidden bg-white">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-primary/[0.03] rounded-full blur-[100px] -translate-y-16 translate-x-16" />
               <DialogHeader>
-                <DialogTitle>Goal Window Closed</DialogTitle>
-                <DialogDescription className="pt-2 text-base text-zinc-600">
-                  Goal window is closed. Ask your administrator to open the goal self-reflection window or click notify below.
+                <div className="w-20 h-20 rounded-[1.5rem] bg-primary/5 flex items-center justify-center mb-10 border border-primary/10 shadow-inner">
+                    <Lock className="w-10 h-10 text-primary" />
+                </div>
+                <DialogTitle className="text-4xl font-black text-slate-900 uppercase tracking-tighter leading-none">Access Restricted</DialogTitle>
+                <DialogDescription className="pt-6 text-xl font-semibold text-slate-500 leading-relaxed">
+                  The strategic reflection window is currently <span className="text-primary font-black">LOCKED</span>. Coordinate with your department lead or notify administration to request an override.
                 </DialogDescription>
               </DialogHeader>
-              <DialogFooter className="gap-2">
-                <Button variant="outline" onClick={() => setShowClosedPopup(false)}>Got it</Button>
+              <DialogFooter className="gap-6 pt-16">
+                <Button variant="ghost" onClick={() => setShowClosedPopup(false)} className="rounded-2xl h-16 px-10 font-black text-[11px] uppercase tracking-widest text-slate-400 hover:bg-slate-50">Dismiss</Button>
                 <Button
-                  className="bg-primary text-white"
+                  className="bg-primary text-white h-16 px-12 rounded-2xl shadow-[0_20px_40px_rgba(234,16,74,0.2)] font-black uppercase tracking-widest text-[11px] transition-all hover:scale-105"
                   onClick={handleNotifyAdmin}
                   disabled={isNotifying}
                 >
                   {isNotifying ? (
                     <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Notifying...
+                      <Loader2 className="mr-3 h-5 w-5 animate-spin" />
+                      Dispatching Alert...
                     </>
-                  ) : 'Notify Admin'}
+                  ) : 'Notify Academic Admin'}
                 </Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>
-
         </div>
-
       </div>
 
-
-
-      <Card className="border-none shadow-xl bg-white overflow-hidden">
-
-        <div className="overflow-x-auto">
-
+      <Card className="border-none shadow-[0_20px_50px_rgba(0,0,0,0.03)] bg-white overflow-hidden rounded-[2.5rem]">
+        <div className="overflow-x-auto scrollbar-hide">
           <Table>
-
             <TableHeader>
-
-              <TableRow className="bg-muted/30 hover:bg-muted/30 border-b">
-
-                <TableHead className="w-12 p-6 text-xs font-bold uppercase tracking-wider text-zinc-900">#</TableHead>
-
-                <TableHead className="p-6 text-xs font-bold uppercase tracking-wider text-zinc-900">
-                  <div className="flex items-center gap-2">
-                    <span>Goal</span>
-                    <input 
-                      type="text"
-                      className="text-[10px] font-bold border border-zinc-200 rounded-md px-2 py-0.5 bg-white text-zinc-600 focus:outline-none focus:ring-1 focus:ring-primary w-20 normal-case tracking-normal"
-                      placeholder="Search..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      onClick={(e) => e.stopPropagation()}
-                    />
-                  </div>
-                </TableHead>
-
-                <TableHead className="p-6 text-xs font-bold uppercase tracking-wider text-zinc-900">
-                  <div className="flex items-center gap-1.5">
-                    <span>Track</span>
-                    <select
-                      className="text-[10px] font-bold border border-zinc-200 rounded-md px-1 py-0.5 bg-white text-zinc-600 cursor-pointer hover:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                      value={filter}
-                      onChange={(e) => setFilter(e.target.value)}
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <option value="all">All</option>
-                      <option value="school">Core Track</option>
-                      <option value="professional">Professional</option>
-                    </select>
-                  </div>
-                </TableHead>
-
-                <TableHead className="p-6 text-xs font-bold uppercase tracking-wider text-zinc-900">Progress</TableHead>
-
-                <TableHead className="p-6 text-xs font-bold uppercase tracking-wider text-zinc-900">Due Date</TableHead>
-
-                <TableHead className="p-6 text-xs font-bold uppercase tracking-wider text-zinc-900">
-                  <div className="flex items-center gap-1.5">
-                    <span>Status</span>
-                    <select
-                      className="text-[10px] font-bold border border-zinc-200 rounded-md px-1 py-0.5 bg-white text-zinc-600 cursor-pointer hover:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                      value={filter === 'completed' || filter === 'in-progress' ? filter : 'all'}
-                      onChange={(e) => setFilter(e.target.value)}
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <option value="all">All</option>
-                      <option value="completed">Completed</option>
-                      <option value="in-progress">In Progress</option>
-                    </select>
-                  </div>
-                </TableHead>
-
-                <TableHead className="p-6 text-xs font-bold uppercase tracking-wider text-zinc-900 text-right">Actions</TableHead>
-
+              <TableRow className="bg-slate-50/50 hover:bg-slate-50/50 border-b border-slate-100">
+                <TableHead className="w-16 px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">#</TableHead>
+                <TableHead className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Strategic Objective</TableHead>
+                <TableHead className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Alignment Track</TableHead>
+                <TableHead className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Development Velocity</TableHead>
+                <TableHead className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Milestone</TableHead>
+                <TableHead className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Execution</TableHead>
+                <TableHead className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 text-right">Review</TableHead>
               </TableRow>
-
             </TableHeader>
-
-            <TableBody className="divide-y divide-zinc-100">
-
+            <TableBody>
               {filteredGoals.map((goal, index) => (
-
-                <TableRow key={goal.id} className="hover:bg-primary/5 transition-colors group">
-
-                  <TableCell className="p-6 text-xs font-bold text-zinc-400">{index + 1}</TableCell>
-
-                  <TableCell className="p-6 max-w-[280px]">
-
-                    <div className="flex flex-col gap-0.5">
-
-                      <span className="font-bold text-zinc-900 group-hover:text-primary transition-colors text-sm leading-snug">
-
+                <TableRow key={goal.id} className="hover:bg-slate-50/50 transition-all duration-300 group border-b border-slate-50 last:border-0">
+                  <TableCell className="px-8 py-10 text-[10px] font-black text-slate-300 uppercase">{String(index + 1).padStart(2, '0')}</TableCell>
+                  <TableCell className="px-8 py-10 max-w-[320px]">
+                    <div className="flex flex-col gap-2.5">
+                      <span className="font-black text-slate-900 group-hover:text-primary transition-colors text-base uppercase tracking-tight leading-tight">
                         {goal.title}
-
                       </span>
-
                       {goal.description && (
-
-                        <span className="text-xs text-zinc-400 line-clamp-2 leading-relaxed">{goal.description}</span>
-
+                        <span className="text-xs text-slate-500 font-semibold line-clamp-2 leading-relaxed">{goal.description}</span>
                       )}
-
                     </div>
-
                   </TableCell>
-
-                  <TableCell className="p-6">
-
-                    <Badge variant="outline" className={goal.isSchoolAligned
-
-                      ? "bg-indigo-50 text-indigo-700 border-indigo-200 font-bold text-[10px] uppercase tracking-wider"
-
-                      : "bg-zinc-50 text-zinc-600 border-zinc-200 font-bold text-[10px] uppercase tracking-wider"}>
-
-                      {goal.isSchoolAligned ? "Core Track" : "Professional"}
-
+                  <TableCell className="px-8 py-10">
+                    <Badge className={cn(
+                        "font-black text-[9px] uppercase tracking-widest px-4 py-1.5 rounded-lg border-none shadow-sm",
+                        goal.isSchoolAligned ? "bg-primary text-white shadow-primary/20" : "bg-slate-100 text-slate-600"
+                    )}>
+                      {goal.isSchoolAligned ? "Core Institutional" : "Professional Practice"}
                     </Badge>
-
                   </TableCell>
-
-                  <TableCell className="p-6 w-40">
-
-                    <div className="flex flex-col gap-1">
-
-                      <span className="text-xs text-zinc-500 font-medium">{goal.progress || 0}%</span>
-
-                      <Progress value={goal.progress || 0} className="h-1.5" />
-
-                    </div>
-
-                  </TableCell>
-
-                  <TableCell className="p-6">
-
-                    <span className="text-sm font-medium text-zinc-700">
-
-                      {formatDate(goal.dueDate || goal.endDate)}
-
-                    </span>
-
-                  </TableCell>
-
-                  <TableCell className="p-6">
-
-                    {(goal.progress || 0) >= 100 ? (
-
-                      <Badge className="bg-emerald-50 text-emerald-700 border-emerald-100 text-[10px] font-black uppercase tracking-widest gap-1 border h-6">
-
-                        <CheckCircle2 className="w-3 h-3" />
-
-                        Completed
-
-                      </Badge>
-
-                    ) : (
-
-                      <Badge className="bg-amber-50 text-amber-700 border-amber-100 text-[10px] font-black uppercase tracking-widest border h-6">
-
-                        In Progress
-
-                      </Badge>
-
-                    )}
-
-                  </TableCell>
-
-                  <TableCell className="p-6 text-right">
-
-                    <div className="flex items-center justify-end gap-2">
-
-                      <Button
-
-                        variant="ghost"
-
-                        size="sm"
-
-                        className="h-8 px-3 hover:bg-primary/10 hover:text-primary rounded-xl text-xs font-bold"
-
-                        onClick={() => setSelectedReflectGoal(goal)}
-
-                      >
-
-                        {goal.selfReflection ? "View Reflection" : "Reflect"}
-
-                      </Button>
-
-                    </div>
-
-                  </TableCell>
-
-                </TableRow>
-
-              ))}
-
-              {filteredGoals.length === 0 && (
-
-                <TableRow>
-
-                  <TableCell colSpan={7} className="p-20 text-center">
-
-                    <div className="flex flex-col items-center justify-center space-y-4 grayscale opacity-40">
-
-                      <Target className="w-16 h-16" />
-
-                      <div className="space-y-1">
-
-                        <p className="text-xl font-bold text-zinc-300">No goals found</p>
-
-                        <p className="text-zinc-900 font-bold text-sm">Try adjusting your filters or search query</p>
-
+                  <TableCell className="px-8 py-10 w-64">
+                    <div className="flex flex-col gap-4">
+                      <div className="flex justify-between items-center">
+                        <span className="text-[10px] text-primary font-black uppercase tracking-widest">{goal.progress || 0}% Mastery</span>
                       </div>
-
+                      <div className="h-2.5 w-full bg-slate-50 rounded-full overflow-hidden shadow-inner p-0.5 border border-slate-100">
+                        <Progress value={goal.progress || 0} className="h-full bg-primary rounded-full transition-all duration-1000 shadow-[0_0_15px_rgba(234,16,74,0.3)]" />
+                      </div>
                     </div>
-
                   </TableCell>
-
+                  <TableCell className="px-8 py-10">
+                    <div className="flex flex-col gap-1.5">
+                        <span className="text-sm font-black text-slate-900 uppercase tracking-tight">
+                        {formatDate(goal.dueDate || goal.endDate)}
+                        </span>
+                        <span className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Strategic Deadline</span>
+                    </div>
+                  </TableCell>
+                  <TableCell className="px-8 py-10">
+                    {(goal.progress || 0) >= 100 ? (
+                      <Badge className="bg-emerald-50 text-emerald-600 border border-emerald-100 text-[9px] font-black uppercase tracking-widest gap-2 py-2.5 px-4 rounded-xl shadow-sm">
+                        <CheckCircle2 className="w-4 h-4" />
+                        Achieved
+                      </Badge>
+                    ) : (
+                      <Badge className="bg-amber-50 text-amber-600 border border-amber-100 text-[9px] font-black uppercase tracking-widest py-2.5 px-4 rounded-xl shadow-sm">
+                        In Progress
+                      </Badge>
+                    )}
+                  </TableCell>
+                  <TableCell className="px-8 py-10 text-right">
+                    <Button
+                      variant="ghost"
+                      className="h-12 px-8 hover:bg-primary/5 hover:text-primary rounded-2xl text-[11px] font-black uppercase tracking-widest border border-transparent hover:border-primary/10 transition-all bg-white shadow-sm"
+                      onClick={() => setSelectedReflectGoal(goal)}
+                    >
+                      {goal.selfReflection ? "Open Journal" : "Reflection"}
+                      <ArrowUpRight className="ml-3 w-4 h-4" />
+                    </Button>
+                  </TableCell>
                 </TableRow>
-
+              ))}
+              {filteredGoals.length === 0 && (
+                <TableRow>
+                  <TableCell colSpan={7} className="py-40 text-center">
+                    <div className="flex flex-col items-center justify-center space-y-8">
+                      <div className="w-24 h-24 rounded-[2.5rem] bg-slate-50 flex items-center justify-center border-4 border-dashed border-slate-100">
+                        <Target className="w-12 h-12 text-slate-200" />
+                      </div>
+                      <div className="space-y-3">
+                        <p className="text-3xl font-black text-slate-900 uppercase tracking-tighter">No Active Objectives</p>
+                        <p className="text-slate-400 font-semibold text-lg">Refine your strategic filters or initiate a new growth objective.</p>
+                      </div>
+                    </div>
+                  </TableCell>
+                </TableRow>
               )}
-
             </TableBody>
-
           </Table>
-
         </div>
-
       </Card>
-
     </div>
 
   );
@@ -1478,133 +1374,129 @@ function CalendarView({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-10 animate-in fade-in duration-700 slide-in-from-bottom-8">
       <PageHeader
-        title="Training Calendar"
-        subtitle="Discover and register for Teacher Development sessions"
+        title="Development Calendar"
+        subtitle="Discover and coordinate your professional learning sessions"
       />
 
-      <div className="w-full space-y-6">
-        <Card className="  shadow-2xl bg-zinc-950 text-white overflow-hidden relative">
-          {/* decorative gradient blob */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -translate-y-10 translate-x-10 pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-info/20 rounded-full blur-3xl translate-y-10 -translate-x-10 pointer-events-none" />
+      <div className="w-full space-y-12">
+        <Card className="shadow-[0_20px_50px_-20px_rgba(234,16,74,0.15)] bg-white overflow-hidden relative border border-primary/5 rounded-[3.5rem]">
+          {/* decorative gradient blobs */}
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/[0.03] rounded-full blur-[120px] -translate-y-32 translate-x-32 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/[0.04] rounded-full blur-[100px] translate-y-32 -translate-x-32 pointer-events-none" />
 
-          <CardContent className="p-6 md:p-10 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <CardContent className="p-12 md:p-20 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
               {/* Left side: Header and Calendar */}
-              <div className="lg:col-span-7 space-y-6">
-                <div className="text-left w-full">
-                  <h3 className="text-xl font-bold bg-gradient-to-r from-primary via-info to-accent bg-clip-text text-transparent">
-                    Activity Summary
-                  </h3>
-                  <p className="text-zinc-400 text-xs uppercase tracking-wider font-medium">
-                    {formatDateStr(new Date())}
-                  </p>
+              <div className="lg:col-span-7 space-y-12">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-4xl font-black text-slate-900 tracking-tighter uppercase leading-none">Academic Schedule</h3>
+                    <p className="text-primary text-sm font-black uppercase tracking-[0.3em] mt-4 flex items-center gap-3">
+                        <Calendar className="w-5 h-5" />
+                        {formatDateStr(new Date())}
+                    </p>
+                  </div>
                 </div>
 
                 <CalendarUI
                   mode="single"
                   selected={date}
                   onSelect={setDate}
-                  className="rounded-2xl border-none bg-zinc-900/50 p-6 w-full"
+                  className="rounded-[3rem] border border-slate-100 bg-slate-50/30 p-12 w-full shadow-inner"
                   classNames={{
-                    months: "flex flex-col space-y-4",
-                    month: "space-y-4 w-full",
-                    caption: "flex justify-center pt-1 relative items-center mb-6",
-                    caption_label: "text-base font-bold text-white",
-                    nav: "space-x-1 flex items-center",
-                    nav_button: "h-8 w-8 bg-transparent p-0 text-zinc-400 hover:text-white border-zinc-700 hover:bg-zinc-800",
-                    nav_button_previous: "absolute left-2",
-                    nav_button_next: "absolute right-2",
-                    table: "w-full border-collapse border border-zinc-800/50 rounded-2xl overflow-hidden bg-zinc-900/20",
-                    weekdays: "grid grid-cols-7 w-full bg-zinc-800/40 border-b border-zinc-800/50",
-                    weekday: "text-zinc-400 font-bold text-[0.65rem] uppercase tracking-[0.2em] py-4 border-r last:border-r-0 border-zinc-800/30 flex items-center justify-center",
-                    week: "grid grid-cols-7 w-full border-b border-zinc-800/30 last:border-b-0",
-                    day: "h-16 text-center text-base p-0 relative border-r last:border-r-0 border-zinc-800/30 hover:bg-zinc-800/30 transition-all [&:has([aria-selected])]:bg-primary/5",
-                    day_button: "h-10 w-10 p-0 mx-auto font-semibold aria-selected:opacity-100 text-white hover:bg-zinc-800 rounded-xl transition-all flex items-center justify-center",
-                    selected: "bg-primary text-white hover:bg-primary/90 focus:bg-primary shadow-lg shadow-primary/30 scale-105",
-                    today: "bg-zinc-800 text-white font-black ring-2 ring-zinc-700/50",
-                    outside: "text-zinc-500 opacity-10",
+                    months: "flex flex-col space-y-10",
+                    month: "space-y-10 w-full",
+                    caption: "flex justify-between items-center mb-12 px-6",
+                    caption_label: "text-3xl font-black text-slate-900 uppercase tracking-tighter",
+                    nav: "flex items-center gap-4",
+                    nav_button: "h-14 w-14 bg-white rounded-2xl flex items-center justify-center text-primary hover:bg-primary hover:text-white border border-slate-200 shadow-sm transition-all duration-500 hover:scale-110",
+                    nav_button_previous: "",
+                    nav_button_next: "",
+                    table: "w-full border-collapse",
+                    weekdays: "flex w-full mb-6",
+                    weekday: "text-slate-400 font-black text-[11px] uppercase tracking-[0.4em] w-full text-center py-6",
+                    week: "flex w-full mb-3 last:mb-0",
+                    day: "w-full text-center p-0 relative min-h-[90px] flex items-center justify-center",
+                    day_button: "h-16 w-16 p-0 mx-auto font-black text-base text-slate-900 hover:bg-primary/5 hover:text-primary rounded-[1.5rem] transition-all duration-300 flex items-center justify-center relative",
+                    selected: "bg-primary text-white hover:bg-primary/90 focus:bg-primary shadow-[0_15px_30px_rgba(234,16,74,0.3)] scale-110 rotate-3 z-10",
+                    today: "bg-slate-100 text-slate-900 ring-4 ring-primary/10",
+                    outside: "text-slate-200 opacity-20",
                   }}
                   modifiers={{
                     hasEvent: events.map(e => parseEventDate(e.date))
                   }}
                   modifiersStyles={{
-                    hasEvent: { border: '2px solid hsl(var(--primary))', color: 'white' }
+                    hasEvent: { border: '3px solid #EA104A', color: '#EA104A', fontWeight: '900' }
                   }}
                 />
               </div>
 
               {/* Right side: Legend and Actions */}
-              <div className="lg:col-span-5 h-full flex flex-col justify-center pt-10">
-                <div className="space-y-6">
-                  <h4 className="text-sm font-semibold text-zinc-400 uppercase tracking-widest mb-4">Legend</h4>
+              <div className="lg:col-span-5 h-full flex flex-col justify-center">
+                <div className="space-y-12">
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between p-3 rounded-xl bg-primary/5 border border-primary/10">
-                      <span className="flex items-center gap-3 text-sm text-zinc-300">
-                        <span className="w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_rgba(var(--primary),0.6)]"></span> Pedagogy
-                      </span>
-                      <span className="font-mono text-white text-sm bg-primary/20 px-2 py-0.5 rounded-md">
-                        {events.filter((t: any) => (t.topic || t.type) === 'Pedagogy').length}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between p-3 rounded-xl bg-info/5 border border-info/10">
-                      <span className="flex items-center gap-3 text-sm text-zinc-300">
-                        <span className="w-3 h-3 rounded-full bg-info shadow-[0_0_10px_rgba(var(--info),0.6)]"></span> Technology
-                      </span>
-                      <span className="font-mono text-white text-sm bg-info/20 px-2 py-0.5 rounded-md">
-                        {events.filter((t: any) => (t.topic || t.type) === 'Technology').length}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between p-3 rounded-xl bg-accent/5 border border-accent/10">
-                      <span className="flex items-center gap-3 text-sm text-zinc-300">
-                        <span className="w-3 h-3 rounded-full bg-accent shadow-[0_0_10px_rgba(var(--accent),0.6)]"></span> Culture
-                      </span>
-                      <span className="font-mono text-white text-sm bg-accent/20 px-2 py-0.5 rounded-md">
-                        {events.filter((t: any) => (t.topic || t.type) === 'Culture').length}
-                      </span>
+                    <h4 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em] mb-8">Professional Streams</h4>
+                    <div className="grid gap-5">
+                        <div className="flex items-center justify-between p-6 rounded-[2rem] bg-white border border-slate-100 shadow-sm group hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
+                        <span className="flex items-center gap-5 text-sm font-black text-slate-900 uppercase tracking-widest">
+                            <div className="w-4 h-4 rounded-full bg-primary shadow-[0_0_15px_rgba(234,16,74,0.5)] group-hover:scale-125 transition-transform"></div> Pedagogy
+                        </span>
+                        <Badge className="bg-primary/5 text-primary border-none px-5 py-1.5 rounded-xl font-black text-[11px] uppercase tracking-widest">
+                            {events.filter((t: any) => (t.topic || t.type) === 'Pedagogy').length} Sessions
+                        </Badge>
+                        </div>
+                        <div className="flex items-center justify-between p-6 rounded-[2rem] bg-white border border-slate-100 shadow-sm group hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
+                        <span className="flex items-center gap-5 text-sm font-black text-slate-900 uppercase tracking-widest">
+                            <div className="w-4 h-4 rounded-full bg-slate-400 shadow-[0_0_15px_rgba(148,163,184,0.3)] group-hover:scale-125 transition-transform"></div> Technology
+                        </span>
+                        <Badge className="bg-slate-50 text-slate-500 border-none px-5 py-1.5 rounded-xl font-black text-[11px] uppercase tracking-widest">
+                            {events.filter((t: any) => (t.topic || t.type) === 'Technology').length} Sessions
+                        </Badge>
+                        </div>
+                        <div className="flex items-center justify-between p-6 rounded-[2rem] bg-white border border-slate-100 shadow-sm group hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
+                        <span className="flex items-center gap-5 text-sm font-black text-slate-900 uppercase tracking-widest">
+                            <div className="w-4 h-4 rounded-full bg-slate-200 group-hover:scale-125 transition-transform"></div> Culture
+                        </span>
+                        <Badge className="bg-slate-50 text-slate-400 border-none px-5 py-1.5 rounded-xl font-black text-[11px] uppercase tracking-widest">
+                            {events.filter((t: any) => (t.topic || t.type) === 'Culture').length} Sessions
+                        </Badge>
+                        </div>
                     </div>
                   </div>
 
-                  <div className="pt-8 space-y-4">
-                    <div className="grid grid-cols-2 gap-3">
+                  <div className="pt-12 space-y-8">
+                    <h4 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em] mb-6">Discovery Filters</h4>
+                    <div className="grid gap-6">
                       <Select value={selectedType} onValueChange={setSelectedType}>
-                        <SelectTrigger className="bg-zinc-900 border-zinc-800 text-white rounded-xl focus:ring-primary h-12">
-                          <SelectValue placeholder="Topic" />
+                        <SelectTrigger className="bg-white border-slate-100 text-slate-900 rounded-[1.5rem] h-16 px-8 text-[11px] font-black uppercase tracking-widest focus:ring-primary/10 shadow-sm hover:border-primary/20 transition-all">
+                          <SelectValue placeholder="Select Focus Stream" />
                         </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="all">All Topics</SelectItem>
+                        <SelectContent className="rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.1)] border-slate-100 p-2">
+                          <SelectItem value="all" className="text-[11px] font-black uppercase tracking-widest py-4 px-6 rounded-xl hover:bg-primary/5 hover:text-primary transition-colors">All Learning Streams</SelectItem>
                           {eventTypes.map(type => (
-                            <SelectItem key={type} value={type}>{type}</SelectItem>
+                            <SelectItem key={type} value={type} className="text-[11px] font-black uppercase tracking-widest py-4 px-6 rounded-xl hover:bg-primary/5 hover:text-primary transition-colors">{type}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
                       <Select value={selectedCampus} onValueChange={setSelectedCampus}>
-                        <SelectTrigger className="bg-zinc-900 border-zinc-800 text-white rounded-xl focus:ring-primary h-12">
-                          <SelectValue placeholder="Campus" />
+                        <SelectTrigger className="bg-white border-slate-100 text-slate-900 rounded-[1.5rem] h-16 px-8 text-[11px] font-black uppercase tracking-widest focus:ring-primary/10 shadow-sm hover:border-primary/20 transition-all">
+                          <SelectValue placeholder="Select Campus" />
                         </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="all">All Campuses</SelectItem>
-                          <SelectItem value="EBTM">BTM Layout</SelectItem>
-                          <SelectItem value="EJPN">JP Nagar</SelectItem>
-                          <SelectItem value="EITPL">ITPL</SelectItem>
-                          <SelectItem value="ENICE">NICE Road</SelectItem>
+                        <SelectContent className="rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.1)] border-slate-100 p-2">
+                          <SelectItem value="all" className="text-[11px] font-black uppercase tracking-widest py-4 px-6 rounded-xl hover:bg-primary/5 hover:text-primary transition-colors">All Global Campuses</SelectItem>
+                          <SelectItem value="EBTM" className="text-[11px] font-black uppercase tracking-widest py-4 px-6 rounded-xl hover:bg-primary/5 hover:text-primary transition-colors">BTM Layout</SelectItem>
+                          <SelectItem value="EJPN" className="text-[11px] font-black uppercase tracking-widest py-4 px-6 rounded-xl hover:bg-primary/5 hover:text-primary transition-colors">JP Nagar</SelectItem>
+                          <SelectItem value="EITPL" className="text-[11px] font-black uppercase tracking-widest py-4 px-6 rounded-xl hover:bg-primary/5 hover:text-primary transition-colors">ITPL</SelectItem>
+                          <SelectItem value="ENICE" className="text-[11px] font-black uppercase tracking-widest py-4 px-6 rounded-xl hover:bg-primary/5 hover:text-primary transition-colors">NICE Road</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
-                    <div className="relative mb-4">
-                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
-                      <Input
-                        placeholder="Search sessions..."
-                        className="pl-10 bg-zinc-900 border-zinc-800 text-white rounded-xl focus:ring-primary"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                      />
-                    </div>
+                    
                     <Button
-                      variant="outline"
-                      className="w-full py-6 bg-zinc-900 border-zinc-800 text-zinc-400 hover:bg-zinc-800 hover:text-white transition-all text-base rounded-xl"
+                      variant="ghost"
+                      className="w-full py-8 text-slate-400 hover:text-primary hover:bg-primary/5 transition-all font-black text-[11px] uppercase tracking-[0.3em] rounded-2xl border border-transparent hover:border-primary/10"
                       onClick={() => {
                         setDate(undefined);
                         setSelectedType("all");
@@ -1613,7 +1505,7 @@ function CalendarView({
                       }}
                       disabled={!date && selectedType === "all" && selectedCampus === "all" && searchQuery === ""}
                     >
-                      Clear All Filters
+                      Reset Discovery Parameters
                     </Button>
                   </div>
                 </div>
@@ -1685,89 +1577,96 @@ function CalendarView({
           </CardHeader>
           <CardContent className="p-0">
             <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="bg-white border-b">
-                    <th className="text-left px-8 py-5 text-xs font-black uppercase tracking-[0.2em] text-zinc-900/70">Session Title</th>
-                    <th className="text-left px-8 py-5 text-xs font-black uppercase tracking-[0.2em] text-zinc-900/70">Type</th>
-                    <th className="text-left px-8 py-5 text-xs font-black uppercase tracking-[0.2em] text-zinc-900/70">Time</th>
-                    <th className="text-left px-8 py-5 text-xs font-black uppercase tracking-[0.2em] text-zinc-900/70">Location</th>
-                    <th className="text-left px-8 py-5 text-xs font-black uppercase tracking-[0.2em] text-zinc-900/70">Status</th>
-                    <th className="text-right px-8 py-5 text-xs font-black uppercase tracking-[0.2em] text-zinc-900/70">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-muted/10">
+            <Table>
+              <TableHeader>
+                <TableRow className="bg-white border-b hover:bg-transparent">
+                  <TableHead className="px-8 py-5 text-xs font-black uppercase tracking-[0.2em] text-zinc-900/70">Session Title</TableHead>
+                  <TableHead className="px-8 py-5 text-xs font-black uppercase tracking-[0.2em] text-zinc-900/70">Type</TableHead>
+                  <TableHead className="px-8 py-5 text-xs font-black uppercase tracking-[0.2em] text-zinc-900/70">Time</TableHead>
+                  <TableHead className="px-8 py-5 text-xs font-black uppercase tracking-[0.2em] text-zinc-900/70">Location</TableHead>
+                  <TableHead className="px-8 py-5 text-xs font-black uppercase tracking-[0.2em] text-zinc-900/70">Status</TableHead>
+                  <TableHead className="px-8 py-5 text-xs font-black uppercase tracking-[0.2em] text-zinc-900/70 text-right">Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody className="divide-y divide-muted/10">
+
                   {filteredEvents.length > 0 ? (
-                    filteredEvents.map((session) => (
-                      <tr key={session.id} className="hover:bg-primary/[0.02] transition-colors group">
-                        <td className="px-8 py-7">
-                          <div className="flex flex-col">
-                            <span className="font-bold text-lg text-foreground group-hover:text-primary transition-colors">{session.title}</span>
+                    filteredEvents.map((session, index) => (
+                      <TableRow key={session.id} className="hover:bg-slate-50/50 transition-all duration-300 group border-b border-slate-50 last:border-0">
+                        <TableCell className="px-8 py-10">
+                          <div className="flex flex-col gap-2">
+                            <span className="font-black text-lg text-slate-900 group-hover:text-primary transition-colors uppercase tracking-tight leading-tight">{session.title}</span>
                             {!date && (
-                              <span className="text-xs font-bold text-zinc-900 mt-1 flex items-center gap-1.5 uppercase tracking-wide">
-                                <Calendar className="w-3 h-3" /> {session.date}
-                              </span>
+                              <div className="flex items-center gap-2.5">
+                                <Calendar className="w-4 h-4 text-primary" />
+                                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                                    {session.date}
+                                </span>
+                              </div>
                             )}
                           </div>
-                        </td>
-                        <td className="px-8 py-7">
-                          <Badge variant="outline" className="px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest bg-primary/5 text-primary border-primary/20">
-                            {session.entryType === 'Observation' ? 'Observation' : (session.topic || session.type)}
+                        </TableCell>
+                        <TableCell className="px-8 py-10">
+                          <Badge className="px-4 py-1.5 rounded-xl text-[9px] font-black uppercase tracking-widest bg-slate-100 text-slate-600 border-none shadow-sm">
+                            {session.entryType === 'Observation' ? 'Strategic Observation' : (session.topic || session.type)}
                           </Badge>
-                        </td>
-                        <td className="px-8 py-7">
-                          <div className="text-sm font-bold text-foreground flex items-center gap-2.5">
-                            <Clock className="w-4 h-4 text-zinc-900" />
+                        </TableCell>
+                        <TableCell className="px-8 py-10">
+                          <div className="text-sm font-black text-slate-900 flex items-center gap-3 uppercase tracking-tight">
+                            <Clock className="w-4.5 h-4.5 text-primary" />
                             {session.time}
                           </div>
-                        </td>
-                        <td className="px-8 py-7">
-                          <div className="text-sm font-medium text-zinc-900 flex items-center gap-2.5">
-                            <MapPin className="w-4 h-4 text-primary" />
+                        </TableCell>
+                        <TableCell className="px-8 py-10">
+                          <div className="text-xs font-black text-slate-500 flex items-center gap-3 uppercase tracking-widest">
+                            <MapPin className="w-4.5 h-4.5 text-slate-300" />
                             {session.location}
                           </div>
-                        </td>
-                        <td className="px-8 py-7">
+                        </TableCell>
+                        <TableCell className="px-8 py-10">
                           <span className={cn(
-                            "inline-flex items-center px-4 py-1.5 rounded-xl text-xs font-black uppercase tracking-widest border shadow-sm",
+                            "inline-flex items-center px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-sm border",
                             session.status === "Approved"
-                              ? "bg-emerald-500/5 text-emerald-600 border-emerald-500/20"
-                              : "bg-amber-500/5 text-amber-600 border-amber-500/20"
+                              ? "bg-emerald-50 text-emerald-600 border-emerald-100"
+                              : "bg-amber-50 text-amber-600 border-amber-100"
                           )}>
                             {session.status}
                           </span>
-                        </td>
-                        <td className="px-8 py-7 text-right">
+                        </TableCell>
+                        <TableCell className="px-8 py-10 text-right">
                           {session.isRegistered ? (
-                            <div className="flex items-center justify-end gap-2 text-emerald-600 font-bold">
+                            <div className="flex items-center justify-end gap-3 text-emerald-600 font-black text-[11px] uppercase tracking-widest">
                               <CheckCircle2 className="w-5 h-5" />
-                              Registered
+                              Registration Confirmed
                             </div>
                           ) : (
                             <Button
-                              className="h-10 px-6 rounded-xl bg-[#1e293b] hover:bg-[#0f172a] text-white shadow-lg shadow-slate-900/20 transition-all active:scale-[0.98] font-bold"
+                              className="h-12 px-8 rounded-2xl bg-primary hover:bg-primary/90 text-white shadow-[0_15px_30px_rgba(234,16,74,0.2)] transition-all hover:scale-105 active:scale-95 font-black text-[11px] uppercase tracking-widest"
                               onClick={() => onRegister(session.id)}
                             >
-                              Register Now
+                              Secure Slot
                             </Button>
                           )}
-                        </td>
-                      </tr>
+                        </TableCell>
+                      </TableRow>
                     ))
                   ) : (
-                    <tr>
-                      <td colSpan={6} className="px-8 py-20 text-center">
-                        <div className="flex flex-col items-center gap-3">
-                          <div className="w-16 h-16 rounded-3xl bg-muted flex items-center justify-center text-zinc-900">
-                            <Calendar className="w-8 h-8" />
+                    <TableRow>
+                      <TableCell colSpan={6} className="py-40 text-center">
+                        <div className="flex flex-col items-center gap-8">
+                          <div className="w-24 h-24 rounded-[2.5rem] bg-slate-50 flex items-center justify-center border-4 border-dashed border-slate-100">
+                            <Calendar className="w-12 h-12 text-slate-200" />
                           </div>
-                          <p className="text-zinc-900 font-bold italic">No sessions found for this selection.</p>
+                          <div className="space-y-3">
+                            <p className="text-2xl font-black text-slate-900 uppercase tracking-tight">No Sessions Identified</p>
+                            <p className="text-slate-400 font-semibold text-lg italic">Adjust your discovery parameters for broader results.</p>
+                          </div>
                         </div>
-                      </td>
-                    </tr>
+                      </TableCell>
+                    </TableRow>
                   )}
-                </tbody>
-              </table>
+                </TableBody>
+              </Table>
             </div>
           </CardContent>
         </Card>
@@ -1775,6 +1674,7 @@ function CalendarView({
     </div>
   );
 }
+
 
 function CoursesView({ courses = [], enrolledCourses = [], onEnrollSuccess }: { courses?: any[], enrolledCourses?: any[], onEnrollSuccess?: () => void }) {
   const { user } = useAuth();
@@ -1808,32 +1708,30 @@ function CoursesView({ courses = [], enrolledCourses = [], onEnrollSuccess }: { 
     return matchesSearch && matchesCategory;
   });
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-end gap-4">
-        <div className="flex items-center gap-2">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-900" />
+    <div className="space-y-12 animate-in fade-in duration-700 slide-in-from-bottom-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-end gap-8">
+        <div className="flex items-center gap-6">
+          <div className="relative group w-full md:w-[450px]">
+            <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-primary transition-colors group-hover:text-primary" />
             <Input
-              className="pl-9 w-[200px] lg:w-[300px]"
-              placeholder="Search courses..."
+              className="pl-16 h-16 rounded-[1.5rem] border-primary/5 focus:border-primary/20 focus:ring-8 focus:ring-primary/5 transition-all bg-white shadow-[0_10px_30px_rgba(0,0,0,0.02)] font-semibold text-lg"
+              placeholder="Search academic catalogue..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon" className={selectedCategory !== "all" ? "bg-accent text-accent-foreground border-accent" : ""}>
-                <Filter className="w-4 h-4" />
+              <Button variant="outline" className="h-16 w-16 rounded-[1.5rem] border-primary/5 hover:border-primary/20 hover:bg-primary/5 transition-all p-0 shadow-sm bg-white">
+                <Filter className="w-6 h-6 text-primary" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Filter by Category</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => setSelectedCategory("all")}>
-                All Categories
-              </DropdownMenuItem>
+            <DropdownMenuContent align="end" className="rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.1)] border-primary/5 p-3 min-w-[240px]">
+              <DropdownMenuLabel className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400 p-4">Academic Streams</DropdownMenuLabel>
+              <DropdownMenuItem onClick={() => setSelectedCategory("all")} className="rounded-xl font-black text-[11px] uppercase tracking-widest py-4 px-6 hover:bg-primary/5 hover:text-primary transition-colors">All Disciplines</DropdownMenuItem>
+              <DropdownMenuSeparator className="bg-slate-100 my-2" />
               {allCategories.map(category => (
-                <DropdownMenuItem key={category} onClick={() => setSelectedCategory(category)}>
+                <DropdownMenuItem key={category} onClick={() => setSelectedCategory(category)} className="rounded-xl font-black text-[11px] uppercase tracking-widest py-4 px-6 hover:bg-primary/5 hover:text-primary transition-colors">
                   {category}
                 </DropdownMenuItem>
               ))}
@@ -1842,31 +1740,39 @@ function CoursesView({ courses = [], enrolledCourses = [], onEnrollSuccess }: { 
         </div>
       </div>
 
-
-
-
-
-      <div className="space-y-8">
+      <div className="space-y-24">
         {/* In Progress */}
-        <section>
-          <div className="flex items-center gap-2 mb-4">
-            <Play className="w-5 h-5 text-primary fill-primary" />
-            <h3 className="text-xl font-bold">Continue Learning</h3>
+        <section className="space-y-10">
+          <div className="flex items-center gap-6">
+            <div className="w-2 h-12 rounded-full bg-primary shadow-[0_0_25px_rgba(234,16,74,0.4)]"></div>
+            <div className="space-y-1">
+                <h3 className="text-4xl font-black text-slate-900 tracking-tighter uppercase leading-none">Active Curriculum</h3>
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Continue your professional development journey</p>
+            </div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {filteredCourses.filter(c => c.status === 'in-progress').map(course => (
               <CourseCard key={course.id} course={course} onEnrollSuccess={onEnrollSuccess} />
             ))}
+            {filteredCourses.filter(c => c.status === 'in-progress').length === 0 && (
+                <div className="col-span-full py-16 rounded-[2.5rem] bg-slate-50/50 border-4 border-dashed border-slate-100 flex flex-col items-center justify-center text-center space-y-4">
+                    <p className="text-lg font-black text-slate-300 uppercase tracking-widest">No Active Courses</p>
+                    <p className="text-sm text-slate-400 font-semibold italic">Explore the catalogue below to commence your next module.</p>
+                </div>
+            )}
           </div>
         </section>
 
         {/* Recommended */}
-        <section>
-          <div className="flex items-center gap-2 mb-4">
-            <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
-            <h3 className="text-xl font-bold">Recommended for You</h3>
+        <section className="space-y-10">
+          <div className="flex items-center gap-6">
+            <div className="w-2 h-12 rounded-full bg-amber-500 shadow-[0_0_25px_rgba(245,158,11,0.4)]"></div>
+            <div className="space-y-1">
+                <h3 className="text-4xl font-black text-slate-900 tracking-tighter uppercase leading-none">Strategic Catalysts</h3>
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Recommended pathways aligned with institutional goals</p>
+            </div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {filteredCourses.filter(c => c.status === 'recommended').map(course => (
               <CourseCard key={course.id} course={course} onEnrollSuccess={onEnrollSuccess} />
             ))}
@@ -1874,19 +1780,22 @@ function CoursesView({ courses = [], enrolledCourses = [], onEnrollSuccess }: { 
         </section>
 
         {/* Completed */}
-        <section>
-          <div className="flex items-center gap-2 mb-4">
-            <Trophy className="w-5 h-5 text-emerald-500" />
-            <h3 className="text-xl font-bold">Completed Courses</h3>
+        <section className="space-y-10">
+          <div className="flex items-center gap-6">
+            <div className="w-2 h-12 rounded-full bg-emerald-500 shadow-[0_0_25px_rgba(16,185,129,0.4)]"></div>
+            <div className="space-y-1">
+                <h3 className="text-4xl font-black text-slate-900 tracking-tighter uppercase leading-none">Secured Credentials</h3>
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Successfully completed professional learning modules</p>
+            </div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {filteredCourses.filter(c => c.status === 'completed').map(course => (
               <CourseCard key={course.id} course={course} onEnrollSuccess={onEnrollSuccess} />
             ))}
           </div>
         </section>
       </div>
-    </div >
+    </div>
   );
 }
 
@@ -1963,24 +1872,24 @@ function MoocEvidencePage() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div className="space-y-10">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <PageHeader
-          title="MOOC Evidence"
-          subtitle="Submit and track your Massive Open Online Course certifications"
+          title="MOOC Portfolio"
+          subtitle="Manage and showcase your certified online learning achievements"
         />
         <Button onClick={() => {
           setCurrentDraftMoocId(null);
           setSelectedDraftData(null);
           setIsMoocFormOpen(true);
-        }} className="gap-2 rounded-xl group shadow-lg shadow-primary/20 transition-all hover:shadow-primary/30 active:scale-95">
+        }} className="h-14 px-8 gap-3 rounded-2xl bg-primary text-white shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all font-black text-[10px] uppercase tracking-widest group">
           <PlusCircle className="w-5 h-5 transition-transform group-hover:rotate-90" />
-          Submit New Evidence
+          Log New Certification
         </Button>
       </div>
 
       <Dialog open={isMoocFormOpen} onOpenChange={setIsMoocFormOpen}>
-        <DialogContent className="max-w-5xl h-[90vh] overflow-y-auto bg-background/95 backdrop-blur-xl shadow-2xl">
+        <DialogContent className="max-w-5xl h-[90vh] overflow-y-auto bg-white/95 backdrop-blur-2xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] border-none rounded-[3rem] p-0">
           <div className="sr-only"><DialogTitle>Submit MOOC Evidence</DialogTitle></div>
           <MoocEvidenceForm
             onCancel={() => {
@@ -2002,68 +1911,71 @@ function MoocEvidencePage() {
         </DialogContent>
       </Dialog>
 
-      <Card className="border-none shadow-2xl bg-white overflow-hidden rounded-[2.5rem]">
-        <div className="overflow-x-auto">
+      <Card className="border-none shadow-[0_20px_50px_rgba(0,0,0,0.03)] bg-white overflow-hidden rounded-[2.5rem]">
+        <div className="overflow-x-auto scrollbar-hide">
           <Table>
             <TableHeader>
-              <TableRow className="bg-zinc-50/80 hover:bg-zinc-50/80 border-b border-zinc-100">
-                <TableHead className="w-16 p-8 text-[11px] font-black uppercase tracking-[0.2em] text-zinc-900 text-center">#</TableHead>
-                <TableHead className="p-8 text-[11px] font-black uppercase tracking-[0.2em] text-zinc-900">Course Details</TableHead>
-                <TableHead className="p-8 text-[11px] font-black uppercase tracking-[0.2em] text-zinc-900">
-                  <div className="flex items-center gap-1.5">
+              <TableRow className="bg-slate-50/50 hover:bg-slate-50/50 border-b border-slate-100">
+                <TableHead className="w-16 px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 text-center">#</TableHead>
+                <TableHead className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Certification Details</TableHead>
+                <TableHead className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
+                  <div className="flex items-center gap-4">
                     <span>Platform</span>
                     <select
-                      className="text-[10px] font-bold border border-zinc-200 rounded-md px-1 py-0.5 bg-white text-zinc-600 cursor-pointer hover:border-primary focus:outline-none focus:ring-1 focus:ring-primary normal-case tracking-normal"
+                      className="text-[9px] font-black border border-slate-200 rounded-xl px-3 py-1.5 bg-white text-slate-900 cursor-pointer hover:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 uppercase tracking-widest transition-all"
                       value={moocPlatformFilter}
                       onChange={(e) => setMoocPlatformFilter(e.target.value)}
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <option value="all">All</option>
+                      <option value="all">All Channels</option>
                       {Array.from(new Set(submissions.map(s => s.platform === 'Other' ? s.otherPlatform : s.platform).filter(Boolean))).map(p => (
                         <option key={String(p)} value={String(p)}>{String(p)}</option>
                       ))}
                     </select>
                   </div>
                 </TableHead>
-                <TableHead className="p-8 text-[11px] font-black uppercase tracking-[0.2em] text-zinc-900">Hours</TableHead>
-                <TableHead className="p-8 text-[11px] font-black uppercase tracking-[0.2em] text-zinc-900">Submission Date</TableHead>
-                <TableHead className="p-8 text-[11px] font-black uppercase tracking-[0.2em] text-zinc-900 text-right">
-                  <div className="flex items-center justify-end gap-1.5">
-                    <span>Status</span>
+                <TableHead className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Hours</TableHead>
+                <TableHead className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Logged On</TableHead>
+                <TableHead className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 text-right">
+                  <div className="flex items-center justify-end gap-4">
+                    <span>Audit Status</span>
                     <select
-                      className="text-[10px] font-bold border border-zinc-200 rounded-md px-1 py-0.5 bg-white text-zinc-600 cursor-pointer hover:border-primary focus:outline-none focus:ring-1 focus:ring-primary normal-case tracking-normal"
+                      className="text-[9px] font-black border border-slate-200 rounded-xl px-3 py-1.5 bg-white text-slate-900 cursor-pointer hover:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 uppercase tracking-widest transition-all"
                       value={moocStatusFilter}
                       onChange={(e) => setMoocStatusFilter(e.target.value)}
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <option value="all">All</option>
-                      <option value="PENDING">Pending</option>
-                      <option value="APPROVED">Approved</option>
-                      <option value="REJECTED">Rejected</option>
+                      <option value="all">All States</option>
+                      <option value="PENDING">Pending Review</option>
+                      <option value="APPROVED">Verified</option>
+                      <option value="REJECTED">Flagged</option>
                     </select>
                   </div>
                 </TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody className="divide-y divide-zinc-50">
+            <TableBody>
               {loading ? (
                 <TableRow>
-                  <TableCell colSpan={6} className="p-20 text-center">
-                    <div className="flex flex-col items-center gap-3">
-                      <Loader2 className="w-10 h-10 text-primary animate-spin opacity-20" />
-                      <p className="text-zinc-400 font-bold text-sm tracking-widest uppercase">Fetching Records...</p>
+                  <TableCell colSpan={6} className="py-40 text-center">
+                    <div className="flex flex-col items-center gap-8">
+                      <div className="w-16 h-16 rounded-2xl bg-primary/5 flex items-center justify-center border-4 border-slate-100 border-t-primary animate-spin" />
+                      <p className="text-primary font-black text-xs tracking-[0.3em] uppercase">Syncing Portfolio Records...</p>
                     </div>
                   </TableCell>
                 </TableRow>
               ) : submissions.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={6} className="p-20 text-center">
-                    <div className="flex flex-col items-center gap-4">
-                      <div className="w-20 h-20 rounded-full bg-zinc-50 flex items-center justify-center">
-                        <History className="w-10 h-10 text-zinc-200" />
+                  <TableCell colSpan={6} className="py-40 text-center">
+                    <div className="flex flex-col items-center gap-10">
+                      <div className="w-24 h-24 rounded-[2.5rem] bg-slate-50 flex items-center justify-center border-4 border-dashed border-slate-100">
+                        <History className="w-12 h-12 text-slate-200" />
                       </div>
-                      <p className="text-zinc-500 font-bold">No MOOC submissions found.</p>
-                      <Button variant="outline" size="sm" onClick={() => setIsMoocFormOpen(true)}>Submit your first evidence</Button>
+                      <div className="space-y-4">
+                        <p className="text-3xl font-black text-slate-900 uppercase tracking-tight leading-none">No Certifications Logged</p>
+                        <p className="text-slate-400 font-semibold text-lg italic max-w-md mx-auto">Upload your MOOC evidence to start accruing professional credits toward your annual target.</p>
+                      </div>
+                      <Button variant="outline" className="h-14 px-10 rounded-2xl font-black text-[11px] uppercase tracking-widest border-primary/10 hover:bg-primary/5 transition-all shadow-sm bg-white" onClick={() => setIsMoocFormOpen(true)}>Initialize First Submission</Button>
                     </div>
                   </TableCell>
                 </TableRow>
@@ -2073,7 +1985,7 @@ function MoocEvidencePage() {
                   .map((sub, idx) => (
                 <TableRow 
                   key={sub.id} 
-                  className={cn("hover:bg-primary/[0.02] transition-colors group", sub.status === 'DRAFT' && "cursor-pointer title")}
+                  className={cn("hover:bg-slate-50/50 transition-all duration-300 group border-b border-slate-50 last:border-0", sub.status === 'DRAFT' && "cursor-pointer")}
                   onClick={() => {
                     if (sub.status === 'DRAFT') {
                       setCurrentDraftMoocId(sub.id);
@@ -2081,40 +1993,46 @@ function MoocEvidencePage() {
                       setIsMoocFormOpen(true);
                     }
                   }}
-                  title={sub.status === 'DRAFT' ? "Click to resume draft" : ""}
                 >
-                  <TableCell className="p-8 text-xs font-black text-zinc-300 text-center">{(idx + 1).toString().padStart(2, '0')}</TableCell>
-                  <TableCell className="p-8">
-                    <div className="flex flex-col gap-1">
-                      <span className="font-black text-zinc-900 group-hover:text-primary transition-colors text-base tracking-tight leading-tight">{sub.courseName}</span>
-                      <span className="text-xs font-bold text-zinc-400 flex items-center gap-1.5 uppercase tracking-wide">
-                        <Calendar className="w-3 h-3" />
-                        Completed: {new Date(sub.endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                      </span>
+                  <TableCell className="px-8 py-10 text-[10px] font-black text-slate-300 text-center uppercase">{(idx + 1).toString().padStart(2, '0')}</TableCell>
+                  <TableCell className="px-8 py-10">
+                    <div className="flex flex-col gap-2.5">
+                      <span className="font-black text-slate-900 group-hover:text-primary transition-colors text-base tracking-tight leading-tight uppercase">{sub.courseName}</span>
+                      <div className="flex items-center gap-3">
+                        <div className="w-5 h-5 rounded-md bg-primary/5 flex items-center justify-center border border-primary/10">
+                            <Calendar className="w-3 h-3 text-primary" />
+                        </div>
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                            {new Date(sub.endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                        </span>
+                      </div>
                     </div>
                   </TableCell>
-                  <TableCell className="p-8">
-                    <Badge variant="outline" className="bg-zinc-50 text-zinc-600 border-zinc-200 text-[10px] font-black uppercase tracking-widest px-3 py-1">
+                  <TableCell className="px-8 py-10">
+                    <Badge className="bg-slate-100 text-slate-600 border-none text-[9px] font-black uppercase tracking-widest px-4 py-1.5 rounded-lg shadow-sm">
                       {sub.platform === 'Other' ? sub.otherPlatform : sub.platform}
                     </Badge>
                   </TableCell>
-                  <TableCell className="p-8">
-                    <div className="flex flex-col">
-                      <span className="text-base font-black text-zinc-900">{sub.hours}</span>
-                      <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Hours</span>
+                  <TableCell className="px-8 py-10">
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-xl font-black text-slate-900 uppercase tracking-tight">{sub.hours}</span>
+                      <span className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em]">Academic Hrs</span>
                     </div>
                   </TableCell>
-                  <TableCell className="p-8">
-                    <span className="text-sm font-bold text-zinc-500">
-                      {new Date(sub.submittedAt || sub.createdAt).toLocaleDateString()}
-                    </span>
+                  <TableCell className="px-8 py-10">
+                    <div className="flex flex-col gap-1.5">
+                        <span className="text-sm font-black text-slate-900 uppercase tracking-tight">
+                        {new Date(sub.submittedAt || sub.createdAt).toLocaleDateString()}
+                        </span>
+                        <span className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Submission Date</span>
+                    </div>
                   </TableCell>
-                  <TableCell className="p-8 text-right">
+                  <TableCell className="px-8 py-10 text-right">
                     <Badge className={cn(
-                      "text-[10px] font-black uppercase tracking-[0.2em] border px-4 py-1.5 rounded-xl shadow-sm",
-                      sub.status === 'APPROVED' ? "bg-black text-white shadow-sm" :
-                        sub.status === 'REJECTED' ? "bg-rose-500/10 text-rose-600 border-rose-500/20" :
-                          "bg-amber-500/10 text-amber-600 border-amber-500/20"
+                      "text-[10px] font-black uppercase tracking-widest px-6 py-2.5 rounded-2xl shadow-[0_10px_20px_rgba(0,0,0,0.03)] border transition-all group-hover:scale-105",
+                      sub.status === 'APPROVED' ? "bg-emerald-50 text-emerald-600 border-emerald-100" :
+                        sub.status === 'REJECTED' ? "bg-primary text-white border-none shadow-primary/20" :
+                          "bg-amber-50 text-amber-600 border-amber-100"
                     )}>
                       {sub.status || 'PENDING'}
                     </Badge>
@@ -2134,56 +2052,64 @@ function MoocEvidencePage() {
 function CourseCard({ course, onEnrollSuccess }: { course: any, onEnrollSuccess?: () => void }) {
   const [enrolling, setEnrolling] = useState(false);
   return (
-    <Card className="group hover:shadow-2xl transition-all duration-300   bg-background/50 backdrop-blur-sm overflow-hidden flex flex-col">
-      <div className={cn("h-32 w-full relative", course.thumbnail)}>
-        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-        <div className="absolute top-3 left-3">
-          <Badge variant="secondary" className="bg-white/90 text-black border-none backdrop-blur-sm">
+    <Card className="group hover:shadow-2xl transition-all duration-500 bg-white border border-primary/5 rounded-[2rem] overflow-hidden flex flex-col h-full hover:-translate-y-2">
+      <div className={cn("h-48 w-full relative overflow-hidden", course.thumbnail)}>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+        <div className="absolute top-4 left-4">
+          <Badge className="bg-white text-primary border-none shadow-lg font-black text-[9px] uppercase tracking-widest px-3 py-1.5 rounded-lg">
             {course.category}
           </Badge>
         </div>
+        <div className="absolute bottom-4 left-4 right-4">
+            <div className="flex items-center gap-2 text-white/90 text-[10px] font-black uppercase tracking-[0.2em]">
+                <Clock className="w-3 h-3" />
+                {course.duration}
+            </div>
+        </div>
       </div>
-      <CardHeader className="p-4 pb-2">
-        <div className="flex justify-between items-start gap-2">
-          <CardTitle className="text-lg leading-tight group-hover:text-primary transition-colors cursor-pointer">
+      <CardHeader className="p-8 pb-4">
+        <div className="flex justify-between items-start gap-4">
+          <CardTitle className="text-xl font-black leading-tight group-hover:text-primary transition-colors cursor-pointer uppercase tracking-tight">
             {course.title}
           </CardTitle>
-          <div className="flex items-center gap-1 text-sm font-bold text-yellow-600">
-            <Star className="w-3 h-3 fill-yellow-600" />
+          <div className="flex items-center gap-1.5 text-xs font-black text-amber-500 bg-amber-500/5 px-2 py-1 rounded-lg">
+            <Star className="w-3.5 h-3.5 fill-amber-500" />
             {course.rating}
           </div>
         </div>
-        <CardDescription className="text-xs">By {course.instructor} • {course.duration}</CardDescription>
+        <CardDescription className="text-xs font-bold text-muted-foreground pt-1">Academic Facilitator: <span className="text-foreground uppercase tracking-wider">{course.instructor}</span></CardDescription>
       </CardHeader>
-      <CardContent className="p-4 pt-0 flex-1">
+      <CardContent className="p-8 pt-0 flex-1">
         {course.status === 'in-progress' ? (
-          <div className="space-y-2 mt-2">
-            <div className="flex justify-between text-xs font-medium">
-              <span>Progress</span>
+          <div className="space-y-4 mt-2">
+            <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-primary">
+              <span>Syllabus Mastery</span>
               <span>{course.progress}%</span>
             </div>
-            <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
+            <div className="h-2 w-full bg-primary/5 rounded-full overflow-hidden shadow-inner p-0.5">
               <div
-                className="h-full bg-primary transition-all duration-500"
+                className="h-full bg-primary rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(234,16,74,0.3)]"
                 style={{ width: `${course.progress}% ` }}
               />
             </div>
           </div>
         ) : course.status === 'completed' ? (
-          <div className="flex items-center gap-2 text-emerald-600 text-sm font-medium mt-2">
+          <div className="flex items-center gap-3 text-emerald-500 text-[10px] font-black uppercase tracking-widest mt-4 bg-emerald-500/5 p-3 rounded-2xl border border-emerald-500/10">
             <CheckCircle2 className="w-4 h-4" />
-            Course Completed
+            Certification Secured
           </div>
         ) : (
-          <p className="text-sm text-zinc-900 mt-2 line-clamp-2">
-            Master the essentials of {course.title.toLowerCase()} in this comprehensive guide.
+          <p className="text-sm text-muted-foreground mt-2 line-clamp-2 font-medium leading-relaxed italic">
+            "Strategic exploration of {course.title.toLowerCase()} methodologies designed for high-impact educational delivery."
           </p>
         )}
       </CardContent>
-      <div className="p-4 pt-0">
+      <div className="p-8 pt-0 mt-auto">
         <Button
-          className="w-full gap-2 group/btn"
-          variant={course.status === 'in-progress' ? 'default' : 'outline'}
+          className={cn(
+            "w-full h-14 rounded-2xl gap-3 group/btn font-black text-[10px] uppercase tracking-widest transition-all",
+            course.status === 'in-progress' ? "bg-primary text-white shadow-lg shadow-primary/20 hover:scale-[1.02]" : "bg-white text-primary border-primary/20 border-2 hover:bg-primary/5"
+          )}
           disabled={enrolling}
           onClick={async () => {
             if (course.isDownloadable && course.url) {
@@ -2192,23 +2118,23 @@ function CourseCard({ course, onEnrollSuccess }: { course: any, onEnrollSuccess?
               setEnrolling(true);
               try {
                 await api.post(`/courses/${course.id}/enroll`);
-                toast.success("Enrolled in course!");
+                toast.success("Academic enrollment confirmed!");
                 onEnrollSuccess?.();
               } catch (e: any) {
-                toast.error(e.response?.data?.message || "Failed to enroll");
+                toast.error(e.response?.data?.message || "Enrollment failure");
               } finally {
                 setEnrolling(false);
               }
             } else {
-              toast.info("Course access coming soon!");
+              toast.info("Curriculum access coming soon!");
             }
           }}
         >
-          {enrolling ? 'Enrolling...' : course.status === 'in-progress' ? 'Continue Lesson' : course.status === 'completed' ? 'Review Course' : 'Start Learning'}
+          {enrolling ? 'Processing...' : course.status === 'in-progress' ? 'Continue Practicum' : course.status === 'completed' ? 'Review Synthesis' : 'Commence Learning'}
           {course.isDownloadable ? <ExternalLink className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" /> : <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />}
-        </Button >
-      </div >
-    </Card >
+        </Button>
+      </div>
+    </Card>
   );
 }
 
@@ -2255,7 +2181,7 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
       startY: 45,
       theme: 'grid',
       styles: { fontSize: 10, cellPadding: 3 },
-      headStyles: { fillColor: [41, 128, 185], textColor: 255, fontStyle: 'bold' },
+      headStyles: { fillColor: [234, 16, 74], textColor: 255, fontStyle: 'bold' },
     });
     doc.save("activity_history.pdf");
   };
@@ -2271,7 +2197,7 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
       const canvas = await html2canvas(pdHoursElement, {
         scale: 2,
         useCORS: true,
-        backgroundColor: "#fdfbf7"
+        backgroundColor: "#ffffff"
       });
       const imageDataUrl = canvas.toDataURL("image/png");
       const link = document.createElement('a');
@@ -2291,61 +2217,70 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <PageHeader title="Training Hours Tracking" subtitle="" />
+    <div className="space-y-10">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <PageHeader title="Training Hours Protocol" subtitle="Strategic tracking of professional development milestones" />
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-6" id="pd-hours-summary-container">
+      <div className="grid lg:grid-cols-3 gap-8" id="pd-hours-summary-container">
         {/* Progress Card */}
-        <Card className="lg:col-span-2 border-none shadow-xl bg-white">
-          <CardHeader>
-            <CardTitle className="text-xl font-bold">Annual Target Progress</CardTitle>
-            <CardDescription className="flex flex-wrap items-center gap-x-4 gap-y-1">
-              <span>Achieved hours: <span className="font-bold text-foreground">{pdHours.total}h</span></span>
-              <span className="text-zinc-900">|</span>
-              <span>Target: <span className="font-bold text-foreground">{pdHours.target}h</span></span>
-              <span className="text-zinc-900">|</span>
-              <Badge variant="outline" className="bg-primary/5 text-primary border-primary/20">
-                {Math.max(0, pdHours.target - pdHours.total)}h Remaining
+        <Card className="lg:col-span-2 border-none shadow-2xl bg-white rounded-[2.5rem] border border-primary/5">
+          <CardHeader className="p-10 pb-6">
+            <CardTitle className="text-3xl font-black text-foreground uppercase tracking-tight">Annual Target Progress</CardTitle>
+            <CardDescription className="flex flex-wrap items-center gap-6 pt-4">
+              <div className="flex flex-col">
+                  <span className="text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground">Achieved Credits</span>
+                  <span className="text-xl font-black text-primary">{pdHours.total}h</span>
+              </div>
+              <div className="w-px h-10 bg-primary/10" />
+              <div className="flex flex-col">
+                  <span className="text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground">Target Quota</span>
+                  <span className="text-xl font-black text-foreground">{pdHours.target}h</span>
+              </div>
+              <div className="w-px h-10 bg-primary/10" />
+              <Badge variant="outline" className="bg-primary/5 text-primary border-primary/10 font-black text-[10px] uppercase tracking-widest px-4 py-2 rounded-xl">
+                {Math.max(0, pdHours.target - pdHours.total)}h Remaining To Goal
               </Badge>
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm font-medium">
-                <span>Completion Status</span>
-                <span>{Math.round((pdHours.total / pdHours.target) * 100)}%</span>
+          <CardContent className="px-10 pb-10 space-y-10">
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground">Strategic Completion Velocity</span>
+                <span className="text-xl font-black text-primary">{Math.round((pdHours.total / pdHours.target) * 100)}%</span>
               </div>
-              <div className="h-4 w-full bg-muted rounded-full overflow-hidden flex">
+              <div className="h-6 w-full bg-primary/5 rounded-full overflow-hidden shadow-inner p-1 flex">
                 {pdHours.categories.map((cat: any, idx: number) => (
                   <div
                     key={idx}
-                    className={cn("h-full transition-all duration-500", cat.color)}
+                    className={cn("h-full transition-all duration-1000 first:rounded-l-full last:rounded-r-full shadow-lg", cat.color.replace('bg-', 'bg-'))}
                     style={{ width: `${(cat.hours / pdHours.target) * 100}%` }}
                     title={`${cat.name}: ${cat.hours}h (${cat.target - cat.hours}h left)`}
                   />
                 ))}
               </div>
             </div>
-            <div className="pt-4 border-t">
-              <h4 className="text-sm font-bold text-zinc-900 uppercase tracking-widest mb-3">Targets by Block</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="pt-10 border-t border-primary/5">
+              <h4 className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em] mb-8">Strategic Development Blocks</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 {pdHours.categories.map((cat: any, idx: number) => {
                   const hoursLeft = Math.max(0, cat.target - cat.hours);
                   return (
-                    <div key={idx} className="space-y-2 p-3 rounded-lg bg-white border">
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-foreground">
-                        <div className={cn("w-2 h-2 rounded-full", cat.color)} />
-                        {cat.name}
+                    <div key={idx} className="space-y-4 p-6 rounded-[2rem] bg-primary/[0.02] border border-primary/5 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all">
+                      <div className="flex items-center gap-3">
+                        <div className={cn("w-3 h-3 rounded-full shadow-[0_0_10px]", cat.color.replace('bg-', 'text-'), "bg-current")} />
+                        <span className="text-[10px] font-black text-foreground uppercase tracking-widest">{cat.name}</span>
                       </div>
                       <div className="flex justify-between items-end">
-                        <div className="text-2xl font-black">{cat.hours}<span className="text-sm font-normal text-zinc-900">/{cat.target}h</span></div>
-                        <div className="text-xs font-medium text-zinc-900 whitespace-nowrap">{hoursLeft}h left</div>
+                        <div className="text-3xl font-black text-foreground">{cat.hours}<span className="text-sm font-medium text-muted-foreground ml-1">/{cat.target}h</span></div>
                       </div>
-                      <Progress value={(cat.hours / cat.target) * 100} className="h-1"
-                        style={{ '--progress-background': 'var(--muted)', '--progress-foreground': `var(--${cat.color.split('-')[1]})` } as any}
-                      />
+                      <div className="h-1.5 w-full bg-primary/5 rounded-full overflow-hidden">
+                        <div 
+                          className={cn("h-full rounded-full transition-all duration-1000", cat.color)}
+                          style={{ width: `${(cat.hours / cat.target) * 100}%` }}
+                        />
+                      </div>
+                      <p className="text-[9px] font-black text-primary uppercase tracking-[0.15em]">{hoursLeft}h required</p>
                     </div>
                   );
                 })}
@@ -2355,29 +2290,31 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
         </Card>
 
         {/* Quick Stats */}
-        <div className="space-y-4">
-          <Card className="shadow-lg bg-emerald-500 text-white">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div className="space-y-1">
-                  <p className="text-emerald-50/80 text-sm font-medium">Achieved hours</p>
-                  <p className="text-3xl font-bold">{pdHours.total}h</p>
+        <div className="space-y-6">
+          <Card className="border-none shadow-2xl bg-emerald-500 text-white rounded-[2.5rem] overflow-hidden group">
+            <CardContent className="p-10 relative">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl -translate-y-12 translate-x-12 group-hover:scale-150 transition-transform duration-700" />
+              <div className="flex items-center justify-between relative z-10">
+                <div className="space-y-3">
+                  <p className="text-white/60 text-[10px] font-black uppercase tracking-[0.3em]">Verified Credits</p>
+                  <p className="text-5xl font-black tracking-tight">{pdHours.total}<span className="text-xl ml-1 opacity-60">Hrs</span></p>
                 </div>
-                <div className="p-3 bg-white/20 rounded-xl">
-                  <FileCheck className="w-6 h-6 text-white" />
+                <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-xl">
+                  <FileCheck className="w-8 h-8 text-white" />
                 </div>
               </div>
             </CardContent>
           </Card>
-          <Card className="border-none shadow-lg bg-white">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div className="space-y-1">
-                  <p className="text-zinc-900 text-sm font-medium">Target</p>
-                  <p className="text-3xl font-bold">{pdHours.target - pdHours.total}h</p>
+          <Card className="border-none shadow-2xl bg-white rounded-[2.5rem] overflow-hidden group border border-primary/5">
+            <CardContent className="p-10 relative">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -translate-y-12 translate-x-12 group-hover:scale-150 transition-transform duration-700" />
+              <div className="flex items-center justify-between relative z-10">
+                <div className="space-y-3">
+                  <p className="text-muted-foreground text-[10px] font-black uppercase tracking-[0.3em]">Delta to Target</p>
+                  <p className="text-5xl font-black text-foreground tracking-tight">{pdHours.target - pdHours.total}<span className="text-xl ml-1 text-primary">Hrs</span></p>
                 </div>
-                <div className="p-3 bg-primary/10 rounded-xl">
-                  <TrendingUp className="w-6 h-6 text-primary" />
+                <div className="w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center border border-primary/10 shadow-inner">
+                  <TrendingUp className="w-8 h-8 text-primary" />
                 </div>
               </div>
             </CardContent>
@@ -2386,24 +2323,26 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
       </div>
 
       {/* Upcoming PDI Trainings */}
-      <Card className="border-none shadow-xl bg-white mt-8 overflow-hidden">
-        <CardHeader className="border-b border-muted/50 pb-4 flex flex-row items-center justify-between">
-          <div>
-            <CardTitle className="text-xl font-bold flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-primary" />
-              Upcoming Trainings
+      <Card className="border-none shadow-2xl bg-white mt-12 overflow-hidden rounded-[2.5rem] border border-primary/5">
+        <CardHeader className="p-10 border-b border-primary/5 flex flex-row items-center justify-between">
+          <div className="space-y-2">
+            <CardTitle className="text-2xl font-black flex items-center gap-4 uppercase tracking-tight">
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
+                    <Calendar className="w-6 h-6 text-primary" />
+                </div>
+                Upcoming Registrations
             </CardTitle>
-            <CardDescription>Register for upcoming Teacher Development sessions to meet your targets.</CardDescription>
+            <CardDescription className="text-muted-foreground font-medium pl-16 italic">Strategic session alignment for professional quota fulfillment.</CardDescription>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
             <Select value={selectedCampus} onValueChange={setSelectedCampus}>
-              <SelectTrigger className="w-[180px] h-9 text-xs rounded-xl border-muted/50">
-                <SelectValue placeholder="All schools" />
+              <SelectTrigger className="w-[240px] h-12 rounded-xl border-primary/10 bg-primary/5 font-black text-[10px] uppercase tracking-widest focus:ring-4 focus:ring-primary/10 transition-all">
+                <SelectValue placeholder="All Academic Campuses" />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All schools</SelectItem>
+              <SelectContent className="rounded-2xl shadow-2xl border-primary/5 p-2">
+                <SelectItem value="all" className="rounded-xl font-bold py-3">All Global Campuses</SelectItem>
                 {CAMPUS_OPTIONS.map((school: string) => (
-                  <SelectItem key={school} value={school}>{school}</SelectItem>
+                  <SelectItem key={school} value={school} className="rounded-xl font-bold py-3">{school}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -2412,33 +2351,52 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
         <div className="overflow-x-auto">
           <Table>
             <TableHeader>
-              <TableRow className="hover:bg-transparent border-muted/50">
-                <TableHead className="text-zinc-900 font-bold">Training Session</TableHead>
-                <TableHead className="text-zinc-900 font-bold">Block / Category</TableHead>
-                <TableHead className="text-zinc-900 font-bold">Date & Time</TableHead>
-                <TableHead className="text-zinc-900 font-bold">Location</TableHead>
-                <TableHead className="w-[150px] text-zinc-900 font-bold">Action</TableHead>
+              <TableRow className="bg-primary/[0.02] hover:bg-primary/[0.02] border-b border-primary/5">
+                <TableHead className="p-8 text-[10px] font-black uppercase tracking-[0.25em] text-foreground">Curriculum Session</TableHead>
+                <TableHead className="p-8 text-[10px] font-black uppercase tracking-[0.25em] text-foreground">Strategic Block</TableHead>
+                <TableHead className="p-8 text-[10px] font-black uppercase tracking-[0.25em] text-foreground">Schedule</TableHead>
+                <TableHead className="p-8 text-[10px] font-black uppercase tracking-[0.25em] text-foreground">Campus Location</TableHead>
+                <TableHead className="w-[180px] p-8 text-[10px] font-black uppercase tracking-[0.25em] text-foreground text-right">Execution</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody className="divide-y divide-primary/5">
               {filteredUpcoming.length > 0 ? filteredUpcoming.slice(0, 5).map((event: any) => (
-                <TableRow key={event.id}>
-                  <TableCell className="font-bold">{event.title}</TableCell>
-                  <TableCell>
-                    <Badge variant="outline">{event.topic || event.type}</Badge>
+                <TableRow key={event.id} className="hover:bg-primary/[0.03] transition-all duration-300 group">
+                  <TableCell className="p-8 font-black text-foreground uppercase tracking-tight group-hover:text-primary transition-colors">{event.title}</TableCell>
+                  <TableCell className="p-8">
+                    <Badge variant="outline" className="bg-primary/5 text-primary border-primary/10 text-[9px] font-black uppercase tracking-[0.15em] px-4 py-1.5 rounded-lg">{event.topic || event.type}</Badge>
                   </TableCell>
-                  <TableCell className="text-zinc-900 text-sm flex flex-col">
-                    <span>{event.date}</span>
-                    <span className="text-xs">{event.time}</span>
+                  <TableCell className="p-8">
+                    <div className="flex flex-col gap-1">
+                        <span className="text-xs font-black text-foreground uppercase tracking-tight">{event.date}</span>
+                        <span className="text-[10px] text-muted-foreground font-black uppercase tracking-widest">{event.time}</span>
+                    </div>
                   </TableCell>
-                  <TableCell className="text-zinc-900 text-sm">{event.location}</TableCell>
-                  <TableCell>
-                    <Button size="sm" onClick={() => onRegister(event.id)}>Register</Button>
+                  <TableCell className="p-8">
+                    <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground uppercase tracking-wide">
+                        <MapPin className="w-3.5 h-3.5 text-primary" />
+                        {event.location}
+                    </div>
+                  </TableCell>
+                  <TableCell className="p-8 text-right">
+                    <Button 
+                        className="h-10 px-8 rounded-xl bg-primary text-white shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all font-black text-[10px] uppercase tracking-widest"
+                        onClick={() => onRegister(event.id)}
+                    >
+                        Register
+                    </Button>
                   </TableCell>
                 </TableRow>
               )) : (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center py-6 text-zinc-900">No upcoming trainings available for this selection.</TableCell>
+                  <TableCell colSpan={5} className="p-32 text-center">
+                    <div className="flex flex-col items-center gap-6 grayscale opacity-20">
+                        <div className="w-20 h-20 rounded-[2rem] bg-primary/5 flex items-center justify-center border-4 border-dashed border-primary/20">
+                            <Calendar className="w-10 h-10 text-primary" />
+                        </div>
+                        <p className="text-xl font-black text-foreground uppercase tracking-tight">No Strategic Sessions Available</p>
+                    </div>
+                  </TableCell>
                 </TableRow>
               )}
             </TableBody>
@@ -2446,82 +2404,86 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
         </div>
       </Card>
 
-      <div className="mt-8" />
+      <div className="mt-12" />
 
       {/* History Table */}
-      <Card className="border-none shadow-xl bg-white overflow-hidden">
-        <CardHeader className="flex flex-row items-center justify-between border-b border-muted/50 pb-4">
-          <div>
-            <CardTitle className="text-xl font-bold">Activity History</CardTitle>
-            <CardDescription>A detailed log of all your PD activities</CardDescription>
+      <Card className="border-none shadow-2xl bg-white overflow-hidden rounded-[2.5rem] border border-primary/5">
+        <CardHeader className="p-10 border-b border-primary/5 flex flex-row items-center justify-between">
+          <div className="space-y-2">
+            <CardTitle className="text-2xl font-black flex items-center gap-4 uppercase tracking-tight">
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
+                    <History className="w-6 h-6 text-primary" />
+                </div>
+                Academic Engagement History
+            </CardTitle>
+            <CardDescription className="text-muted-foreground font-medium pl-16 italic">Comprehensive audit log of professional development milestones.</CardDescription>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="gap-2">
-                  <Filter className="w-4 h-4" />
-                  {selectedCategory === "all" ? "All Categories" : selectedCategory}
+                <Button variant="outline" className="h-12 px-6 gap-3 rounded-xl border-primary/10 hover:border-primary hover:bg-primary/5 font-black text-[10px] uppercase tracking-widest transition-all">
+                  <Filter className="w-4 h-4 text-primary" />
+                  {selectedCategory === "all" ? "All Block Dimensions" : selectedCategory}
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>Filter by Category</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => setSelectedCategory("all")}>
-                  All Categories
-                </DropdownMenuItem>
+              <DropdownMenuContent align="end" className="rounded-2xl shadow-2xl border-primary/5 p-2">
+                <DropdownMenuLabel className="text-[9px] font-black uppercase tracking-widest text-muted-foreground p-3">Filter by Strategic Block</DropdownMenuLabel>
+                <DropdownMenuSeparator className="bg-primary/5" />
+                <DropdownMenuItem onClick={() => setSelectedCategory("all")} className="rounded-xl font-bold py-3">Global View</DropdownMenuItem>
                 {categories.map((category: any) => (
-                  <DropdownMenuItem key={category} onClick={() => setSelectedCategory(category)}>
+                  <DropdownMenuItem key={category} onClick={() => setSelectedCategory(category)} className="rounded-xl font-bold py-3">
                     {category}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <Button variant="outline" size="sm" className="gap-2" onClick={handleExportPDF}>
-              <Download className="w-4 h-4" />
-              Export PDF
+            <Button variant="outline" className="h-12 px-6 gap-3 rounded-xl border-primary/10 hover:border-primary hover:bg-primary/5 font-black text-[10px] uppercase tracking-widest transition-all" onClick={handleExportPDF}>
+              <Download className="w-4 h-4 text-primary" />
+              Generate Audit PDF
             </Button>
-            <Button variant="default" size="sm" className="gap-2 bg-primary hover:bg-primary/90 text-white" onClick={handleEmailReport} disabled={isEmailing}>
+            <Button className="h-12 px-8 gap-3 rounded-xl bg-primary text-white shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all font-black text-[10px] uppercase tracking-widest" onClick={handleEmailReport} disabled={isEmailing}>
               <Mail className="w-4 h-4" />
-              {isEmailing ? "Preparing..." : "Email Record"}
+              {isEmailing ? "Syncing..." : "Transmit Record"}
             </Button>
           </div>
         </CardHeader>
         <div className="overflow-x-auto">
           <Table>
             <TableHeader>
-              <TableRow className="hover:bg-transparent border-muted/50">
-                <TableHead className="w-[300px] text-zinc-900 font-bold">Activity</TableHead>
-                <TableHead className="text-zinc-900 font-bold">Category</TableHead>
-                <TableHead className="text-zinc-900 font-bold">Date</TableHead>
-                <TableHead className="text-right text-zinc-900 font-bold">Hours</TableHead>
-                <TableHead className="text-zinc-900 font-bold">Status</TableHead>
-                <TableHead className="w-[150px] text-zinc-900 font-bold">Actions</TableHead>
+              <TableRow className="bg-primary/[0.02] hover:bg-primary/[0.02] border-b border-primary/5">
+                <TableHead className="p-8 text-[10px] font-black uppercase tracking-[0.25em] text-foreground">Logged Activity</TableHead>
+                <TableHead className="p-8 text-[10px] font-black uppercase tracking-[0.25em] text-foreground">Strategic Block</TableHead>
+                <TableHead className="p-8 text-[10px] font-black uppercase tracking-[0.25em] text-foreground">Completion Date</TableHead>
+                <TableHead className="p-8 text-[10px] font-black uppercase tracking-[0.25em] text-foreground text-right">Academic Hrs</TableHead>
+                <TableHead className="p-8 text-[10px] font-black uppercase tracking-[0.25em] text-foreground">Validation</TableHead>
+                <TableHead className="w-[180px] p-8 text-[10px] font-black uppercase tracking-[0.25em] text-foreground text-right">Details</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody className="divide-y divide-primary/5">
               {filteredHistory.map((row: any) => (
-                <TableRow key={row.id} className="group hover:bg-muted/30 border-muted/50 transition-colors">
-                  <TableCell className="font-medium">{row.activity}</TableCell>
-                  <TableCell>
-                    <Badge variant="outline" className="font-normal text-xs">{row.category}</Badge>
+                <TableRow key={row.id} className="group hover:bg-primary/[0.03] transition-all duration-300 border-primary/5">
+                  <TableCell className="p-8 font-black text-foreground uppercase tracking-tight group-hover:text-primary transition-colors">{row.activity}</TableCell>
+                  <TableCell className="p-8">
+                    <Badge variant="outline" className="bg-primary/5 text-primary border-primary/10 text-[9px] font-black uppercase tracking-[0.15em] px-4 py-1.5 rounded-lg">{row.category}</Badge>
                   </TableCell>
-                  <TableCell className="text-zinc-900 text-sm">{row.date}</TableCell>
-                  <TableCell className="text-right font-bold">{row.hours}h</TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-1.5 text-emerald-600 font-medium">
+                  <TableCell className="p-8">
+                    <span className="text-xs font-black text-muted-foreground uppercase tracking-tight">{row.date}</span>
+                  </TableCell>
+                  <TableCell className="p-8 text-right text-lg font-black text-foreground uppercase tracking-tight">{row.hours}<span className="text-[10px] ml-1 text-muted-foreground">h</span></TableCell>
+                  <TableCell className="p-8">
+                    <div className="flex items-center gap-3 text-emerald-500 font-black text-[9px] uppercase tracking-widest bg-emerald-500/5 px-4 py-2 rounded-xl border border-emerald-500/10">
                       <CheckCircle2 className="w-3.5 h-3.5" />
                       {row.status}
                     </div>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="p-8 text-right">
                     <Button
                       variant="outline"
-                      size="sm"
-                      className="gap-2"
+                      className="h-10 px-6 rounded-xl border-primary/10 hover:border-primary hover:bg-primary/5 font-black text-[10px] uppercase tracking-widest transition-all"
                       onClick={() => setSelectedActivity(row)}
                     >
                       <Eye className="w-3.5 h-3.5" />
-                      View Details
+                      View
                     </Button>
                   </TableCell>
                 </TableRow>
@@ -2532,8 +2494,8 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
       </Card>
 
       {/* Activity Detail Dialog */}
-      {
-        selectedActivity && (
+      {selectedActivity && (
+
           <Dialog open={!!selectedActivity} onOpenChange={() => setSelectedActivity(null)}>
             <DialogContent className="max-w-4xl bg-background/95 backdrop-blur-xl  ">
               <DialogHeader>
@@ -2658,7 +2620,7 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
           </Dialog>
         )
       }
-    </div >
+    </div>
   );
 }
 

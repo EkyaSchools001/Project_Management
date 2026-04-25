@@ -109,8 +109,8 @@ app.use('/api/v1/reports', reportRoutes);
 app.use('/api/v1/finance', financeRoutes);
 app.use('/api/v1/tenants', tenantRoutes);
 app.use('/api/v1/gamification', gamificationRoutes);
-app.use('/api/v1/projects', globalRBAC, pmsRoutes);
-app.use('/api/v1/lms', globalRBAC, lmsRoutes);
+app.use('/api/v1/projects', authenticate, globalRBAC, pmsRoutes);
+app.use('/api/v1/lms', authenticate, globalRBAC, lmsRoutes);
 app.use('/api/v1/pdi', authenticate, pdiRouter);
 // Note: /api/v1/notifications stub handlers below take priority for no-DB dev mode
 

@@ -130,7 +130,7 @@ export function MeetingsPage() {
             startTime: new Date(data.startDate.getTime() + parseTime(data.startTime)),
             duration: data.duration,
             meetingType: data.meetingType as MeetingProvider,
-            hostId: 'current-user',
+            hostId: user?.id || 'current-user',
             hostName: 'Current User',
             attendees: [],
             status: 'scheduled'

@@ -38,63 +38,65 @@ export function BadgeCard({ badge, earned = false, progress = null, onClick }) {
   return (
     <Card 
       className={`
-        relative p-6 rounded-2xl border transition-all duration-300 cursor-pointer group
+        relative p-6 rounded-3xl border transition-all duration-500 cursor-pointer group shadow-sm
         ${earned 
-          ? 'bg-[#161B22] border-[#ef4444]/30 hover:border-[#ef4444]/60 hover:shadow-[0_0_30px_rgba(186,255,0,0.1)]' 
-          : 'bg-[#161B22] border-white/5 hover:border-white/20 hover:bg-white/5'
+          ? 'bg-card border-primary/30 hover:border-primary hover:shadow-xl hover:shadow-primary/5' 
+          : 'bg-card border-border hover:border-primary/20 hover:bg-muted'
         }
       `}
       onClick={onClick}
     >
-      <div className="flex flex-col items-center text-center gap-4">
+      <div className="flex flex-col items-center text-center gap-5">
         <div className={`
-          relative w-16 h-16 rounded-full flex items-center justify-center text-3xl
-          ${earned ? 'bg-[#ef4444]/20 shadow-[0_0_20px_rgba(186,255,0,0.2)]' : 'bg-white/5'}
+          relative w-20 h-20 rounded-[2rem] flex items-center justify-center text-4xl transition-all duration-500
+          ${earned ? 'bg-primary/10 shadow-lg shadow-primary/10 scale-110' : 'bg-muted'}
         `}>
           {icon}
           {earned && (
-            <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#ef4444] rounded-full flex items-center justify-center">
-              <Check size={14} className="text-black" />
+            <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-success rounded-full flex items-center justify-center border-4 border-background shadow-lg">
+              <Check size={16} className="text-white" />
             </div>
           )}
           {!earned && (
-            <div className="absolute inset-0 flex items-center justify-center bg-backgroundlack/40 rounded-full">
-              <Lock size={16} className="text-foreground/40" />
+            <div className="absolute inset-0 flex items-center justify-center bg-background/60 rounded-[2rem] backdrop-blur-[1px]">
+              <Lock size={18} className="text-muted-foreground/40" />
             </div>
           )}
         </div>
 
-        <div className="space-y-2">
-          <h3 className={`font-bold text-sm ${earned ? 'text-foreground' : 'text-foreground/60'}`}>
+        <div className="space-y-1.5">
+          <h3 className={`font-black text-sm uppercase tracking-tight ${earned ? 'text-foreground' : 'text-muted-foreground'}`}>
             {badge.name}
           </h3>
-          <p className={`text-xs ${earned ? 'text-foreground/60' : 'text-foreground/40'}`}>
+          <p className={`text-[11px] font-bold leading-tight ${earned ? 'text-muted-foreground' : 'text-muted-foreground/40'}`}>
             {badge.description}
           </p>
         </div>
 
         <div className={`
-          px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest
-          ${categoryClass}
+          px-4 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border
+          ${earned ? 'bg-primary/10 border-primary/20 text-primary' : 'bg-muted border-border text-muted-foreground/40'}
         `}>
           {badge.category}
         </div>
 
-        <div className="flex items-center gap-2 text-[#ef4444]">
-          <span className="text-xs font-bold">+{badge.points}</span>
-          <span className="text-[10px] text-foreground/40">points</span>
+        <div className="flex items-center gap-2">
+          <span className="text-sm font-black text-primary tracking-tighter">+{badge.points}</span>
+          <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Growth Pts</span>
         </div>
 
         {progress !== null && !earned && (
-          <div className="w-full space-y-2">
-            <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
-              <div 
-                className="h-full bg-[#ef4444] rounded-full transition-all duration-500"
-                style={{ width: `${Math.min(100, progress)}%` }}
+          <div className="w-full space-y-2 mt-2">
+            <div className="h-2 bg-muted rounded-full overflow-hidden border border-border shadow-inner">
+              <motion.div 
+                initial={{ width: 0 }}
+                animate={{ width: `${Math.min(100, progress)}%` }}
+                transition={{ duration: 1, delay: 0.2 }}
+                className="h-full bg-primary rounded-full transition-all duration-500"
               />
             </div>
-            <p className="text-[10px] text-foreground/40 text-center">
-              {progress.toFixed(0)}% complete
+            <p className="text-[9px] font-black text-muted-foreground uppercase tracking-[0.2em] text-center">
+              {progress.toFixed(0)}% to achievement
             </p>
           </div>
         )}

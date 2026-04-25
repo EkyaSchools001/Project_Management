@@ -139,7 +139,7 @@ export default function ReportBuilder() {
         filters,
         widgets,
         groupBy,
-        createdBy: 'current-user'
+        createdBy: user?.id || 'current-user'
       };
 
       await reportService.createReport(reportData);

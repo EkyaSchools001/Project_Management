@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { aiService } from '../services/ai.service';
+import { useAuth } from '../modules/auth/authContext';
 
 export function useAIInsights(options = {}) {
     const {
@@ -11,10 +12,13 @@ export function useAIInsights(options = {}) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const { user } = useAuth();
+
     const fetchInsights = useCallback(async () => {
+        if (!user?.id) return;
         try {
             setError(null);
-            const data = await aiService.getSuggestions('current-user', types);
+            const data = await aiService.getSuggestions(user.id, types);
             setInsights(data || []);
         } catch (err) {
             console.error('Failed to fetch AI insights:', err);
@@ -22,7 +26,7 @@ export function useAIInsights(options = {}) {
         } finally {
             setLoading(false);
         }
-    }, [types]);
+    }, [types, user?.id]);
 
     const dismissInsight = useCallback((id) => {
         setInsights(prev => prev.filter(i => i.id !== id));

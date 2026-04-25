@@ -77,3 +77,27 @@ export const getUserById = async (req: Request, res: Response) => {
         });
     }
 };
+
+export const assignRole = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const { role, staffSubtype, roleScope } = req.body;
+        
+        const user = await prisma.user.update({
+            where: { id },
+            data: { 
+                role: role as any,
+                staffSubtype,
+                roleScope: roleScope as any
+            }
+        });
+
+        res.status(200).json({
+            status: 'success',
+            data: { user }
+        });
+    } catch (error) {
+        console.error('Error assigning role:', error);
+        res.status(500).json({ status: 'error', message: 'Failed to assign role' });
+    }
+};

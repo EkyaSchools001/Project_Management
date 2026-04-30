@@ -41,6 +41,21 @@ import TenantManagementPage from '../../modules/tenant/pages/TenantManagementPag
 import TenantSettingsPage from '../../modules/tenant/pages/TenantSettingsPage';
 import RBACDashboard from '../../modules/admin/pages/RBACDashboard';
 
+const TestPage = () => (
+    <div className="p-20 flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white font-sans">
+        <h1 className="text-5xl font-black mb-4">Frontend Active ✅</h1>
+        <p className="text-slate-400 text-lg">If you can see this, your Vite server and React app are running correctly.</p>
+        <div className="mt-10 p-6 bg-slate-800 rounded-2xl border border-slate-700">
+            <p className="text-primary font-bold">Next Steps:</p>
+            <ul className="list-disc ml-5 mt-2 space-y-2 text-sm">
+                <li>Check the <code className="bg-slate-700 px-2 py-1 rounded">/login</code> route.</li>
+                <li>Ensure the backend is running at <code className="bg-slate-700 px-2 py-1 rounded">port 8888</code>.</li>
+            </ul>
+        </div>
+        <a href="/login" className="mt-8 px-8 py-3 bg-blue-600 rounded-xl font-bold hover:bg-blue-500 transition-colors">Go to Login</a>
+    </div>
+);
+
 const ProtectedRoute = ({ children, permission }) => {
     const { user, loading } = useAuth();
     if (loading) return null;
@@ -61,6 +76,7 @@ const RoleBasedRedirect = () => {
 export default function AppRoutes() {
     return (
         <Routes>
+            <Route path="/test" element={<TestPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />

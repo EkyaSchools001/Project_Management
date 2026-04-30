@@ -7,14 +7,14 @@ export const getGrowthAnalytics = async (req: Request, res: Response, next: Next
     try {
         // --- Teacher counts by academic type ---
         const [coreCount, nonCoreCount, totalTeachers] = await Promise.all([
-            prisma.user.count({ where: { academics: 'CORE', role: UserRole.TeacherStaff } }),
-            prisma.user.count({ where: { academics: 'NON_CORE', role: UserRole.TeacherStaff } }),
-            prisma.user.count({ where: { role: UserRole.TeacherStaff } }),
+            prisma.user.count({ where: { academics: 'CORE', role: UserRole.TEACHER_CORE } }),
+            prisma.user.count({ where: { academics: 'NON_CORE', role: UserRole.TEACHER_CORE } }),
+            prisma.user.count({ where: { role: UserRole.TEACHER_CORE } }),
         ]);
 
         // --- All teachers with campus & academic info ---
         const allTeachers = await prisma.user.findMany({
-            where: { role: UserRole.TeacherStaff },
+            where: { role: UserRole.TEACHER_CORE },
             select: { id: true, fullName: true, campusId: true, academics: true, email: true },
         });
 

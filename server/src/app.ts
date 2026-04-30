@@ -77,10 +77,32 @@ const app = express();
 export const prisma = new PrismaClient();
 
 // ─── Middleware ──────────────────────────────────────────────────────────────
-app.use(helmet());
+app.use(helmet({
+    contentSecurityPolicy: process.env.NODE_ENV === 'production' ? undefined : false,
+}));
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
+
+// ─── Base Routes ─────────────────────────────────────────────────────────────
+app.get('/', async (_req, res) => {
+    let dbStatus = 'Unknown';
+    try {
+        await prisma.$queryRaw`SELECT 1`;
+        dbStatus = 'Connected';
+    } catch (e) {
+        dbStatus = 'Disconnected (Check if Docker is running)';
+    }
+
+    res.json({
+        status: 'success',
+        message: 'Welcome to SchoolOS API',
+        environment: process.env.NODE_ENV || 'development',
+        database: dbStatus,
+        documentation: '/api/v1/docs',
+        health: '/health'
+    });
+});
 
 // ─── Static Files ───────────────────────────────────────────────────────────
 const uploadsDir = process.env.UPLOAD_DIR || './uploads';

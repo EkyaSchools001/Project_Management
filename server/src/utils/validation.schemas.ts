@@ -10,7 +10,7 @@ export const registerSchema = z.object({
     .regex(/[0-9]/, 'Password must contain at least one number')
     .regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character'),
   name: z.string().min(2, 'Name must be at least 2 characters').max(100),
-  role: z.enum(['SuperAdmin', 'ManagementAdmin', 'Admin', 'TeacherStaff', 'Guest']).optional(),
+  role: z.enum(['SUPER_ADMIN', 'MANAGEMENT', 'TEACHER_CORE', 'GUEST']).optional(),
 });
 
 export const loginSchema = z.object({

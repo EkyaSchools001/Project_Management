@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, CourseStatus, LessonType } from '@prisma/client';
 import { MOCK_COURSES, MOCK_CATEGORIES, MOCK_LEARNING_PATHS } from '../data/lms_mocks';
 
 const prisma = new PrismaClient();
@@ -71,7 +71,7 @@ export const lmsService = {
     thumbnail?: string;
     duration?: number;
     category?: string;
-    status?: string;
+    status?: CourseStatus;
   }) {
     return prisma.course.create({ data });
   },
@@ -82,7 +82,7 @@ export const lmsService = {
     thumbnail: string;
     duration: number;
     category: string;
-    status: string;
+    status: CourseStatus;
   }>) {
     return prisma.course.update({ where: { id }, data });
   },
@@ -113,7 +113,7 @@ export const lmsService = {
     videoUrl?: string;
     duration?: number;
     order: number;
-    type?: string;
+    type?: LessonType;
   }) {
     return prisma.lesson.create({ data });
   },
@@ -124,7 +124,7 @@ export const lmsService = {
     videoUrl: string;
     duration: number;
     order: number;
-    type: string;
+    type: LessonType;
   }>) {
     return prisma.lesson.update({ where: { id }, data });
   },

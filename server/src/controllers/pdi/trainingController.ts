@@ -69,7 +69,7 @@ export const getAllTrainingEvents = async (req: AuthRequest, res: Response) => {
                 id: reg.user?.id || 'N/A',
                 name: reg.user?.fullName || 'Unknown',
                 email: reg.user?.email || 'N/A',
-                role: reg.user?.role || UserRole.TeacherStaff,
+                role: reg.user?.role || UserRole.TEACHER_CORE,
                 dateRegistered: reg.registrationDate ? new Date(reg.registrationDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'N/A'
             })),
             attendanceCount: (event as any)._count?.attendanceRecords || 0
@@ -130,7 +130,7 @@ export const getTrainingEvent = async (req: AuthRequest, res: Response) => {
                 id: reg.user?.id || 'N/A',
                 name: reg.user?.fullName || 'Unknown',
                 email: reg.user?.email || 'N/A',
-                role: reg.user?.role || UserRole.TeacherStaff,
+                role: reg.user?.role || UserRole.TEACHER_CORE,
                 campusId: reg.user?.campusId || 'N/A',
                 department: reg.user?.department || 'N/A',
                 dateRegistered: reg.registrationDate ? new Date(reg.registrationDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'N/A'
@@ -210,7 +210,7 @@ export const createTrainingEvent = async (req: AuthRequest, res: Response) => {
             const teachers = await prisma.user.findMany({
                 where: {
                     campusId: event.schoolId,
-                    role: UserRole.TeacherStaff
+                    role: UserRole.TEACHER_CORE
                 },
                 select: { id: true }
             });

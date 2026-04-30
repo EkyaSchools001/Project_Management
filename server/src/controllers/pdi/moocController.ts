@@ -79,7 +79,7 @@ export const submitMoocEvidence = async (req: AuthRequest, res: Response) => {
         if (submission.status !== 'DRAFT' && submission.user?.campusId) {
             const leaders = await prisma.user.findMany({
                 where: {
-                    role: { in: [UserRole.LEADER, UserRole.SCHOOL_LEADER, UserRole.Admin] },
+                    role: { in: [UserRole.HOS, UserRole.COORDINATOR, UserRole.ADMIN_OPS] },
                     campusId: submission.user.campusId
                 },
                 select: { id: true }
@@ -127,12 +127,12 @@ export const getAllMoocSubmissions = async (req: AuthRequest, res: Response) => 
         const userId = req.user?.id;
 
         let submissions;
-        if (role === UserRole.TeacherStaff) {
+        if (role === UserRole.TEACHER_CORE) {
             submissions = await prisma.moocSubmission.findMany({
                 where: { userId },
                 orderBy: { submittedAt: 'desc' }
             });
-        } else if (role === UserRole.LEADER || role === UserRole.SCHOOL_LEADER) {
+        } else if (role === UserRole.HOS) {
             submissions = await prisma.moocSubmission.findMany({
                 where: { user: { campusId: req.user?.campusId } },
                 include: {
@@ -207,7 +207,7 @@ export const updateMoocStatus = async (req: AuthRequest, res: Response) => {
         // Determine routing for the update notification (Teacher side)
         const routing = await getFormRouting(
             'MOOC Evidence',
-            UserRole.TeacherStaff, // The teacher is receiving the notification
+            UserRole.TEACHER_CORE, // The teacher is receiving the notification
             submission.user?.campusId || undefined,
             undefined
         );

@@ -19,7 +19,7 @@ export const getActiveSurvey = async (req: AuthRequest, res: Response, next: Nex
 
         // For Admin/Management: Find active if exists, otherwise find the absolute latest to allow activation
         // For Teachers: Only find active
-        const isAdmin = [UserRole.Admin, UserRole.MANAGEMENT, UserRole.SuperAdmin].includes(req.user?.role as any || '');
+        const isAdmin = [UserRole.ADMIN_OPS, UserRole.MANAGEMENT, UserRole.SUPER_ADMIN].includes(req.user?.role as any || '');
 
         let survey = await prisma.survey.findFirst({
             where: { ...whereClause, isActive: true },
@@ -217,7 +217,7 @@ export const submitSurvey = async (req: AuthRequest, res: Response, next: NextFu
 
             // Find admins to notify
             const admins = await prisma.user.findMany({
-                where: { role: { in: [UserRole.Admin, UserRole.SuperAdmin, UserRole.MANAGEMENT] } }
+                where: { role: { in: [UserRole.ADMIN_OPS, UserRole.SUPER_ADMIN, UserRole.MANAGEMENT] } }
             });
 
             for (const admin of admins) {
@@ -249,7 +249,7 @@ export const getSurveyAnalytics = async (req: Request, res: Response, next: Next
         // 1. Completion Rate by Campus
         const totalTeachersByCampus = await prisma.user.groupBy({
             by: ['campusId'],
-            where: { role: UserRole.TeacherStaff, status: 'Active' },
+            where: { role: UserRole.TEACHER_CORE, status: 'Active' },
             _count: { id: true }
         });
 
@@ -385,7 +385,7 @@ export const updateSurvey = async (req: AuthRequest, res: Response, next: NextFu
         // If status changed, notify teachers
         if (updateData.hasOwnProperty('isActive') && oldSurvey.isActive !== survey.isActive) {
             const teachers = await prisma.user.findMany({
-                where: { role: UserRole.TeacherStaff, status: 'Active' },
+                where: { role: UserRole.TEACHER_CORE, status: 'Active' },
                 select: { id: true }
             });
 

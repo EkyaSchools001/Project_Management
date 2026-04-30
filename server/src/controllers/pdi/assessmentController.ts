@@ -413,7 +413,7 @@ export const getAnalytics = async (req: AuthRequest, res: Response) => {
         const role = req.user?.role as string;
         const campusId = req.user?.campusId as string;
 
-        const isGlobalView = role === UserRole.Admin || role === UserRole.SuperAdmin || role === UserRole.MANAGEMENT;
+        const isGlobalView = role === UserRole.ADMIN_OPS || role === UserRole.SUPER_ADMIN || role === UserRole.MANAGEMENT;
 
         const whereClause: any = isGlobalView
             ? {}
@@ -448,7 +448,7 @@ export const getAnalytics = async (req: AuthRequest, res: Response) => {
         // Fetch users to map assignments to individuals
         const users = await prisma.user.findMany({
             where: {
-                role: { in: [UserRole.TeacherStaff, UserRole.SCHOOL_LEADER, UserRole.LEADER] },
+                role: { in: [UserRole.TEACHER_CORE, UserRole.HOS] },
                 ...(isGlobalView ? {} : { campusId: campusId })
             },
             select: { id: true, fullName: true, campusId: true, role: true, email: true }

@@ -1,0 +1,122 @@
+name: ⚙️ Deploy Backend
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'server/**'
+      - '.github/workflows/deploy-backend.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-backend-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '20'
+  APP_DIR: /home/ubuntu/schoolos
+
+jobs:
+  deploy-backend:
+    name: ⚙️ Deploy Backend to EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout code
+        uses: actions/checkout@v4
+
+      # ── Type-check before deploying ──────────────────────────
+      - name: 🟢 Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: server/package-lock.json
+
+      - name: 📦 Install dependencies (local check)
+        working-directory: ./server
+        run: npm ci
+
+      - name: 🔍 TypeScript type-check
+        working-directory: ./server
+        run: npx tsc --noEmit
+
+      # ── SSH Deploy to EC2 ────────────────────────────────────
+      - name: 🔑 Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/schoolos.pem
+          chmod 600 ~/.ssh/schoolos.pem
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+      - name: 🚀 Deploy to EC2
+        run: |
+          ssh -i ~/.ssh/schoolos.pem ubuntu@${{ secrets.EC2_HOST }} << 'ENDSSH'
+            set -e
+
+            echo "📂 Moving to project directory..."
+            cd ${{ env.APP_DIR }}
+
+            echo "⬇️ Pulling latest changes from master..."
+            git fetch origin master
+            git reset --hard origin/master
+
+            echo "📦 Installing server dependencies..."
+            cd server
+            npm ci --only=production
+
+            echo "🔧 Generating Prisma client..."
+            npx prisma generate
+
+            echo "🗄️ Applying database schema (prisma db push)..."
+            npx prisma db push --accept-data-loss
+
+            echo "♻️ Restarting backend with PM2..."
+            if pm2 describe schoolos-backend > /dev/null 2>&1; then
+              pm2 restart schoolos-backend --update-env
+            else
+              pm2 start "npx ts-node --transpile-only src/server.ts" \
+                --name schoolos-backend \
+                --log /home/ubuntu/logs/backend.log \
+                --time
+            fi
+
+            pm2 save
+            echo "✅ Deployment done on EC2!"
+            pm2 status
+          ENDSSH
+
+      # ── Health Check ─────────────────────────────────────────
+      - name: 🏥 Health check API
+        run: |
+          echo "Waiting 15s for server to stabilize..."
+          sleep 15
+
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            --max-time 10 \
+            https://${{ secrets.EC2_API_DOMAIN }}/api/health || echo "000")
+
+          echo "Health check HTTP status: $STATUS"
+
+          if [ "$STATUS" = "200" ]; then
+            echo "✅ Backend is healthy and responding!"
+          else
+            echo "❌ Health check failed with status $STATUS"
+            echo "Check PM2 logs on EC2: pm2 logs schoolos-backend"
+            exit 1
+          fi
+
+      # ── Cleanup ──────────────────────────────────────────────
+      - name: 🧹 Cleanup SSH key
+        if: always()
+        run: rm -f ~/.ssh/schoolos.pem
+
+      - name: ✅ Deployment complete
+        run: |
+          echo "================================================"
+          echo "  ✅ Backend Deployed Successfully!"
+          echo "  Branch : ${{ github.ref_name }}"
+          echo "  Commit : ${{ github.sha }}"
+          echo "  By     : ${{ github.actor }}"
+          echo "  API    : https://${{ secrets.EC2_API_DOMAIN }}"
+          echo "================================================"

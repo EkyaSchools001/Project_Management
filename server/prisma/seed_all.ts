@@ -59,7 +59,7 @@ async function main() {
   
   for (const role of roles) {
     for (const mod of allModules) {
-      let access = AccessLevel.NONE;
+      let access: AccessLevel = AccessLevel.NONE;
 
       if (role === UserRole.SUPER_ADMIN) access = AccessLevel.FULL;
       else if (role === UserRole.MANAGEMENT) access = AccessLevel.FULL;

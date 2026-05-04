@@ -1,4 +1,5 @@
 import { CalendarBlank, ChartBar, ShieldCheck, Clipboard } from "@phosphor-icons/react";
+import { ClipboardCheck } from "lucide-react";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 import { Role } from "./RoleBadge";
@@ -81,7 +82,7 @@ export function QuickActionButtons({ role }: QuickActionButtonsProps) {
                     className="h-9 px-4 rounded-xl font-medium gap-2 bg-violet-500 text-white hover:bg-violet-600 shadow-md shadow-violet-500/25 transition-all duration-200 hover:scale-[1.03] active:scale-95"
                     onClick={() => handleNavigation("lac")}
                 >
-                    <ClipboardCheck className="w-4 h-4" weight="fill" />
+                    <ClipboardCheck className="w-4 h-4" />
                     LAC
                 </Button>
             )}

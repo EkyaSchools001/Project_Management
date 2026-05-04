@@ -1,0 +1,93 @@
+name: 🌐 Deploy Frontend
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/deploy-frontend.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-frontend-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  deploy-frontend:
+    name: 🌐 Build & Deploy to S3 + CloudFront
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: 📦 Install dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: 🔧 Create production .env
+        working-directory: ./frontend
+        run: |
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > .env.production
+          echo "VITE_APP_ENV=production" >> .env.production
+
+      - name: 🏗️ Build frontend
+        working-directory: ./frontend
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: 📁 Verify build output
+        run: |
+          echo "Build output:"
+          ls -la frontend/dist/
+
+      - name: 🔑 Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: 🪣 Upload assets to S3 (long-term cache)
+        run: |
+          aws s3 sync frontend/dist/ s3://${{ secrets.S3_BUCKET_NAME }} \
+            --delete \
+            --exclude "index.html" \
+            --cache-control "public, max-age=31536000, immutable"
+
+      - name: 🪣 Upload index.html to S3 (no cache)
+        run: |
+          aws s3 cp frontend/dist/index.html \
+            s3://${{ secrets.S3_BUCKET_NAME }}/index.html \
+            --cache-control "no-cache, no-store, must-revalidate" \
+            --content-type "text/html"
+
+      - name: 🔄 Invalidate CloudFront cache
+        run: |
+          INVALIDATION_ID=$(aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*" \
+            --query 'Invalidation.Id' \
+            --output text)
+          echo "CloudFront invalidation started: $INVALIDATION_ID"
+
+      - name: ✅ Deployment complete
+        run: |
+          echo "================================================"
+          echo "  ✅ Frontend Deployed Successfully!"
+          echo "  Branch : ${{ github.ref_name }}"
+          echo "  Commit : ${{ github.sha }}"
+          echo "  By     : ${{ github.actor }}"
+          echo "  URL    : https://${{ secrets.CLOUDFRONT_DOMAIN }}"
+          echo "================================================"

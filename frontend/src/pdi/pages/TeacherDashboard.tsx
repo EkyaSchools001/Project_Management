@@ -64,7 +64,8 @@ import {
   ArrowLeft,
   PenTool,
   Palette,
-  Loader2
+  Loader2,
+  Lock as LockIcon
 } from "lucide-react";
 import { ScrollToTop } from "@pdi/components/ui/ScrollToTop";
 import { GoalWorkflowForms } from "@pdi/components/GoalWorkflowForms";
@@ -1196,7 +1197,7 @@ function GoalsView({ goals, fetchGoals, userName, role }: { goals: any[], fetchG
               <div className="absolute top-0 right-0 w-48 h-48 bg-primary/[0.03] rounded-full blur-[100px] -translate-y-16 translate-x-16" />
               <DialogHeader>
                 <div className="w-20 h-20 rounded-[1.5rem] bg-primary/5 flex items-center justify-center mb-10 border border-primary/10 shadow-inner">
-                    <Lock className="w-10 h-10 text-primary" />
+                    <LockIcon className="w-10 h-10 text-primary" />
                 </div>
                 <DialogTitle className="text-4xl font-black text-slate-900 uppercase tracking-tighter leading-none">Access Restricted</DialogTitle>
                 <DialogDescription className="pt-6 text-xl font-semibold text-slate-500 leading-relaxed">

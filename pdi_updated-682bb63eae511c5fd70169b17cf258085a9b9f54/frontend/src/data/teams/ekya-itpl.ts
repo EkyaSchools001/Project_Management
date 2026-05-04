@@ -20,7 +20,7 @@ What makes our journey special at Ekya is not just what we accomplish, but how w
 There’s a sense of freshness and renewal in the air—literally, with newly painted walls and revitalised spaces—and metaphorically, with renewed energy and enthusiasm. Our campus is buzzing with possibility, and we’re thrilled to welcome new educators who have joined the Ekya ITPL family. To our new team members: welcome to a community that believes in lifelong learning, collaboration, and meaningful impact.
 
 This year, we continue to be anchored by our shared vision:
-**"Empowering young minds to make a difference in the world."**
+"Empowering young minds to make a difference in the world."
 
 Let this be our daily inspiration—to teach, to nurture, and to grow alongside our students and each other.
 

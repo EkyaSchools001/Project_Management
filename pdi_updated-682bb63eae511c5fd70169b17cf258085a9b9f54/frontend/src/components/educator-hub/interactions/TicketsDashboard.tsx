@@ -184,19 +184,19 @@ export function TicketsDashboard() {
       {activeTab === 'list' ? (
         <>
           {/* Filters */}
-          <Card className="border-none shadow-sm bg-white/50 backdrop-blur-md">
+          <Card className="border-none shadow-sm bg-white/50 backdrop-blur-md rounded-[2.5rem]">
             <CardContent className="p-4 flex flex-wrap gap-4 items-center">
                 <div className="relative flex-1 min-w-[240px]">
                     <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                     <Input 
                         placeholder="Search by Parent, Student, or Ticket ID..." 
-                        className="pl-10 h-11 rounded-xl border-slate-200"
+                        className="pl-10 h-11 rounded-full border-slate-200"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
                 </div>
                 <Select value={statusFilter} onValueChange={setStatusFilter}>
-                    <SelectTrigger className="w-[160px] h-11 rounded-xl border-slate-200">
+                    <SelectTrigger className="w-[160px] h-11 rounded-full border-slate-200">
                         <SelectValue placeholder="Status" />
                     </SelectTrigger>
                     <SelectContent>
@@ -208,7 +208,7 @@ export function TicketsDashboard() {
                     </SelectContent>
                 </Select>
                 <Select value={campusFilter} onValueChange={setCampusFilter}>
-                    <SelectTrigger className="w-[180px] h-11 rounded-xl border-slate-200">
+                    <SelectTrigger className="w-[180px] h-11 rounded-full border-slate-200">
                         <SelectValue placeholder="All Campuses" />
                     </SelectTrigger>
                     <SelectContent>
@@ -222,7 +222,7 @@ export function TicketsDashboard() {
           </Card>
 
           {/* Table */}
-          <Card className="border-none shadow-xl rounded-3xl overflow-hidden bg-white">
+          <Card className="border-none shadow-xl rounded-[2.5rem] overflow-hidden bg-white">
             <div className="overflow-x-auto">
               <table className="w-full text-left">
                 <thead className="bg-slate-50 border-b border-slate-100">

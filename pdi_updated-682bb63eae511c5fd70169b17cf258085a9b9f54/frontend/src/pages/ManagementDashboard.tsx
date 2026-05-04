@@ -31,7 +31,7 @@ import { ManagementGoalsView } from "./management/ManagementGoalsView";
 import ManagementGrowthAnalyticsPage from "./management/ManagementGrowthAnalyticsPage";
 import { ManagementInsightsView } from "./management/ManagementInsightsView";
 import { MeetingsDashboard } from "./MeetingsDashboard";
-import { MoocResponsesView as MoocResponsesRegistry } from "@/components/mooc/MoocResponsesRegistry";
+import MoocAdminPage from "./admin/MoocAdminPage";
 import { AssessmentManagementDashboard } from "@/components/assessments/AssessmentManagementDashboard";
 import { PDHoursAnalyticsView } from "./admin/PDHoursAnalyticsView";
 import SurveyPage from "./SurveyPage";
@@ -47,7 +47,7 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
     // Initialize data for all campuses ensuring 0s are shown if missing
     const campusData = useMemo(() => {
         const campusMap: Record<string, any> = {};
-        
+
         CAMPUS_OPTIONS.forEach(c => {
             campusMap[c] = {
                 campus: c,
@@ -62,9 +62,9 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
         // Map extended KPIs (if any data is coming from the backend properly)
         if (stats?.extendedKpis?.campusMetrics) {
             stats.extendedKpis.campusMetrics.forEach((m: any) => {
-               if (campusMap[m.campus]) {
-                   campusMap[m.campus] = { ...campusMap[m.campus], ...m };
-               }
+                if (campusMap[m.campus]) {
+                    campusMap[m.campus] = { ...campusMap[m.campus], ...m };
+                }
             });
         }
 
@@ -130,6 +130,9 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
                                 <span className="font-black bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-slate-500">{data.campus}</span>
                                 <Badge className="bg-white border text-primary shadow-sm hover:bg-white">{data.campus} Performance</Badge>
                             </CardTitle>
+                            <Button variant="ghost" size="sm" className="rounded-xl opacity-0 group-hover:opacity-100 transition-opacity">
+                                View Details <TrendingUp className="w-4 h-4 ml-2" />
+                            </Button>
                         </CardHeader>
                         <CardContent className="p-8">
                             <div className="grid grid-cols-2 lg:grid-cols-5 gap-6">
@@ -139,7 +142,7 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
                                     <div className="text-3xl font-black text-amber-950">{data.postOrientation}%</div>
                                     <div className="text-xs text-amber-950 font-bold">Avg Assessment Score</div>
                                 </div>
-                                
+
                                 {/* Metric 2 */}
                                 <div className="space-y-2 p-4 rounded-3xl bg-blue-50/50 border border-blue-100/50 hover:bg-blue-100/50 transition-colors">
                                     <div className="text-[10px] font-bold text-blue-700 uppercase tracking-widest flex items-center gap-1.5"><Target className="w-3 h-3" /> Instr. Tools</div>
@@ -271,10 +274,10 @@ export default function ManagementDashboard() {
                 <Route path="pd-impact" element={<ManagementInsightsView />} />
                 <Route path="training-analytics" element={<ManagementInsightsView />} />
                 <Route path="hours" element={<PDHoursAnalyticsView />} />
-                
+
                 <Route path="courses/assessments" element={<AssessmentManagementDashboard />} />
-                <Route path="mooc" element={<MoocResponsesRegistry backPath="/management" />} />
-                
+                <Route path="mooc" element={<MoocAdminPage />} />
+
                 <Route path="meetings" element={<MeetingsDashboard />} />
                 <Route path="survey" element={<SurveyPage />} />
                 <Route path="portfolio" element={<PortfolioIndex />} />

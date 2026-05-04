@@ -53,7 +53,6 @@ pdi_updated/
 │   └── test_api.cjs            # API test script
 │
 ├── config/                     # ⚙️ DEPLOYMENT CONFIGS
-│   ├── docker-compose.yml      # Full-stack Docker Compose
 │   ├── railway.json            # Railway deployment config
 │   ├── render.yaml             # Render deployment config
 │   └── render-build.sh         # Render build script

@@ -11,9 +11,8 @@ const InstitutionalIdentity = () => {
     const raw = user?.role?.toUpperCase() || "";
     return raw.includes("ADMIN") || raw === "SUPERADMIN" || raw.includes("ELC") || raw.includes("PDI") || raw.includes("LEADER") || raw === "TESTER";
   };
-
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-4">
       <PageHeader 
         title="Institutional Identity" 
         subtitle="Core values, mission, and community"

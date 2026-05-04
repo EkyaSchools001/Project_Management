@@ -1,0 +1,339 @@
+[
+  {
+    "id": "teacher-portfolio",
+    "title": "How to view my Growth Portfolio?",
+    "content": "Your Growth Portfolio acts as a comprehensive summary of your professional journey.\n      \n        Go to your Dashboard.\n        Scroll down to the My Growth Portfolio section.\n        Here, you will find your Recent Observations, Annual Goals, and Completed MOOCs.\n      \n      \ud83d\udca1 Tip: Use the",
+    "keywords": [
+      "portfolio",
+      "growth",
+      "teacher dashboard",
+      "my progress"
+    ]
+  },
+  {
+    "id": "submit-mooc",
+    "title": "How do I submit a new MOOC or Certification?",
+    "content": "Submitting external certifications is easy:\n      \n        Navigate to the Courses module in the sidebar.\n        Click the Add Certification/MOOC button.\n        Fill in the course details, duration, platform, and paste your certificate Drive link.\n        Click Submit. Your campus Admin will review and approve it.",
+    "keywords": [
+      "mooc",
+      "course",
+      "certification",
+      "submit",
+      "add",
+      "evidence"
+    ]
+  },
+  {
+    "id": "teacher-reflection",
+    "title": "How do I reflect on a completed Observation?",
+    "content": "Reflecting on leadership feedback is a core part of the TD cycle.\n      \n        On your Dashboard, look for the Recent Observations section.\n        If an observation has a",
+    "keywords": [
+      "reflect",
+      "reflection",
+      "observation",
+      "feedback",
+      "post-observation"
+    ]
+  },
+  {
+    "id": "schedule-observation",
+    "title": "How do I schedule an Observation?",
+    "content": "To schedule a classroom visit:\n      \n        Go to the Leader Dashboard.\n        Locate the TD Calendar section.\n        Click the Schedule Event button.\n        Select",
+    "keywords": [
+      "schedule",
+      "observation",
+      "calendar",
+      "plan",
+      "book",
+      "visit"
+    ]
+  },
+  {
+    "id": "leader-analytics",
+    "title": "How do I view Target vs Actual Observation Analytics?",
+    "content": "To track your observation progress against targets:\n      \n        Go to the Reports & Analytics module.\n        Select the Growth Analytics tab.\n        You will see a",
+    "keywords": [
+      "analytics",
+      "target",
+      "actual",
+      "reports",
+      "leader",
+      "overview",
+      "progress"
+    ]
+  },
+  {
+    "id": "assign-goal",
+    "title": "How do I assign a goal to a teacher?",
+    "content": "To assign professional goals:\n      \n        Go to the Goals module from the sidebar.\n        Click Assign New Goal.\n        Select the Teacher, set the Goal description, timeline, and link it to an Ekya Pillar.\n        Click Assign.",
+    "keywords": [
+      "goal",
+      "assign",
+      "target",
+      "okr",
+      "performance"
+    ]
+  },
+  {
+    "id": "admin-moocs",
+    "title": "How do I review and approve MOOC submissions?",
+    "content": "As an admin, you verify teacher certifications:\n      \n        Navigate to the Courses dashboard.\n        You will see a Pending Reviews queue.\n        Click on a submission to view the details and evidence link.\n        Click Approve or Request Changes.",
+    "keywords": [
+      "review",
+      "approve",
+      "reject",
+      "mooc",
+      "admin",
+      "certifications"
+    ]
+  },
+  {
+    "id": "admin-analytics",
+    "title": "Where can I see System-Wide Analytics?",
+    "content": "System-Wide insights are available in the Reports module.\n      \n        Go to Reports & Analytics.\n        The default view acts as a",
+    "keywords": [
+      "system-wide",
+      "analytics",
+      "all campuses",
+      "admin",
+      "reports"
+    ]
+  },
+  {
+    "id": "tech-support",
+    "title": "I found a bug. How do I report it?",
+    "content": "We",
+    "keywords": [
+      "bug",
+      "error",
+      "problem",
+      "support",
+      "help",
+      "broken"
+    ]
+  },
+  {
+    "id": "nav-dashboard",
+    "title": "Where can I find my Dashboard and Overview?",
+    "content": "Your Dashboard is the central hub of your platform. It provides an overview of your current progress and pending tasks.\n      \n        You can find it at the top of the sidebar under the Dashboard module.\n        Click Overview to return to your main home page.",
+    "keywords": [
+      "dashboard",
+      "overview",
+      "home",
+      "main page",
+      "sections"
+    ]
+  },
+  {
+    "id": "nav-growth",
+    "title": "How do I find Growth, Observations, and Goals?",
+    "content": "All teacher development tracking is located in the Growth (or Growth & Performance) module.\n      \n        Observation: Detailed classroom visit feedback.\n        Goals: Your professional targets and OKRs.\n        Progress Dashboard: A bird",
+    "keywords": [
+      "growth",
+      "observation",
+      "goals",
+      "performance",
+      "okr",
+      "progress",
+      "sections"
+    ]
+  },
+  {
+    "id": "nav-learning",
+    "title": "Where are the Courses and TD Calendar located?",
+    "content": "The Learning & Training section houses all your educational resources.\n      \n        Courses: Your current MOOCs and certifications.\n        Training & Training Calendar: Upcoming school workshops and sessions.\n        Training Hours: A log of your total teacher development time.",
+    "keywords": [
+      "learning",
+      "training",
+      "courses",
+      "calendar",
+      "training hours",
+      "teacher development",
+      "sections"
+    ]
+  },
+  {
+    "id": "nav-engagement",
+    "title": "Where do I find Meetings and Announcements?",
+    "content": "The Engagement (or Operations) section is for coordination and school-wide updates.\n      \n        Meetings: View upcoming meetings and Minutes of Meetings (MoM).\n        Announcements: Stay updated with school notifications.\n        Survey: Participate in school feedback surveys.",
+    "keywords": [
+      "engagement",
+      "meetings",
+      "announcements",
+      "survey",
+      "notifications",
+      "sections"
+    ]
+  },
+  {
+    "id": "nav-admin-ops",
+    "title": "Admin: Where is User Management and Reports?",
+    "content": "For Leaders and Admins, the Operations and User Management sections provide system-wide controls.\n      \n        User Management: Add or manage platform users.\n        Reports: Access campus or system-wide analytics.\n        Attendance Register: Manage teacher/student attendance logs.\n        Settings: Configure system preferences.\n        SuperAdmin Console: (SuperAdmin only) Technical platform settings.",
+    "keywords": [
+      "operations",
+      "admin",
+      "reports",
+      "users",
+      "user management",
+      "settings",
+      "attendance",
+      "forms",
+      "console",
+      "sections"
+    ]
+  },
+  {
+    "id": "nav-management",
+    "title": "Management: Where is TD Index and Campus Performance?",
+    "content": "Management specific sections provide high-level insights into school performance.\n      \n        TD Index: Strategic overview of platform health.\n        Campus Performance: Comparing metrics across different locations.\n        TD Impact: Measuring the effectiveness of training.\n        Learning Festival: Governance and achievement showcase.",
+    "keywords": [
+      "management",
+      "health",
+      "tdi health",
+      "performance",
+      "impact",
+      "campus performance",
+      "survey",
+      "festival",
+      "learning festival",
+      "sections"
+    ]
+  },
+  {
+    "id": "change-password",
+    "title": "How do I change my password?",
+    "content": "To update your security details:\n      \n        Click your Profile Avatar in the top right corner.\n        Select View Profile.\n        Go to the Settings tab.\n        Enter your new password in the Security section and click Save Changes.",
+    "keywords": [
+      "password",
+      "change",
+      "reset",
+      "login",
+      "security",
+      "profile"
+    ]
+  },
+  {
+    "id": "hr-resources",
+    "title": "HR Resources Hub",
+    "content": "The HR Resources Hub contains all institutional policies, staff handbooks, and official documents.",
+    "keywords": [
+      "hr",
+      "resources",
+      "human resources",
+      "staff hub",
+      "documents",
+      "policies"
+    ]
+  },
+  {
+    "id": "hr-wellbeing",
+    "title": "Educator Well-Being",
+    "content": "Resources and support systems dedicated to the physical and mental well-being of our educators.",
+    "keywords": [
+      "wellbeing",
+      "health",
+      "mental health",
+      "support",
+      "teacher care"
+    ]
+  },
+  {
+    "id": "tech-schoology",
+    "title": "Schoology Integration",
+    "content": "Access and manage your Schoology classroom directly from the PDI platform.",
+    "keywords": [
+      "schoology",
+      "lms",
+      "learning management",
+      "classroom",
+      "online classes"
+    ]
+  },
+  {
+    "id": "tech-google-workspace",
+    "title": "Google Workspace Hub",
+    "content": "A centralized location for all Google Workspace tools including Docs, Sheets, Slides, and Calendar.",
+    "keywords": [
+      "google",
+      "workspace",
+      "drive",
+      "docs",
+      "sheets",
+      "slides",
+      "forms",
+      "meet",
+      "calendar"
+    ]
+  },
+  {
+    "id": "tech-greythr",
+    "title": "GreytHR Payroll & Leave",
+    "content": "Direct access to GreytHR for managing your leave, viewing payslips, and tracking attendance.",
+    "keywords": [
+      "greythr",
+      "payroll",
+      "payslip",
+      "leave",
+      "attendance",
+      "salary"
+    ]
+  },
+  {
+    "id": "tech-ekyaverse",
+    "title": "Ekyaverse (The Metaverse)",
+    "content": "Explore the virtual learning landscape of Ekyaverse, our institutional metaverse.",
+    "keywords": [
+      "ekyaverse",
+      "metaverse",
+      "vr",
+      "virtual",
+      "3d classroom"
+    ]
+  },
+  {
+    "id": "campus-cmr-nps",
+    "title": "CMR NPS Campus Info",
+    "content": "Detailed information, vision, and leadership specific to the CMR NPS campus.",
+    "keywords": [
+      "cmr nps",
+      "campus",
+      "school info",
+      "cmr",
+      "nps"
+    ]
+  },
+  {
+    "id": "campus-ekya-byrathi",
+    "title": "Ekya Byrathi Campus Info",
+    "content": "Detailed information, vision, and leadership specific to the Ekya Byrathi campus.",
+    "keywords": [
+      "byrathi",
+      "ekya byrathi",
+      "campus",
+      "school info"
+    ]
+  },
+  {
+    "id": "meeting-dashboard",
+    "title": "Meetings & MoM Dashboard",
+    "content": "Track upcoming meetings, view agendas, and manage Minutes of Meetings (MoM).",
+    "keywords": [
+      "meetings",
+      "mom",
+      "minutes of meeting",
+      "agenda",
+      "schedule meeting"
+    ]
+  },
+  {
+    "id": "portfolio-directory",
+    "title": "Staff Portfolio Directory",
+    "content": "Browse and search through the professional growth portfolios of all campus staff.",
+    "keywords": [
+      "portfolios",
+      "staff directory",
+      "teacher records",
+      "profiles"
+    ]
+  }
+]

@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { getAssetUrl } from "@/lib/utils";
 
 interface CampusMessageProps {
   image: string;
@@ -12,9 +13,7 @@ export const CampusMessage = ({ image, content, author, designation }: CampusMes
   // Simple keyword highlighting logic for specific EKYA terms
   const highlightedContent = content.split('\n').map((line, i) => (
     <p key={i} className="mb-4 text-slate-600 leading-relaxed text-lg">
-      {line.split('**').map((part, index) => 
-        index % 2 === 1 ? <span key={index} className="font-bold text-[#1F2839]">{part}</span> : part
-      )}
+      {line}
     </p>
   ));
 
@@ -32,7 +31,7 @@ export const CampusMessage = ({ image, content, author, designation }: CampusMes
           >
             <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
               <img 
-                src={image} 
+                src={getAssetUrl(image)} 
                 alt={author}
                 className="w-full h-full object-cover object-top"
               />
@@ -48,7 +47,6 @@ export const CampusMessage = ({ image, content, author, designation }: CampusMes
             className="lg:col-span-8 flex flex-col justify-center"
           >
             <div className="relative">
-              <span className="text-7xl absolute -top-10 -left-6 text-slate-100 font-serif leading-none italic select-none">“</span>
               <div className="relative z-10 pt-4">
                 {highlightedContent}
               </div>

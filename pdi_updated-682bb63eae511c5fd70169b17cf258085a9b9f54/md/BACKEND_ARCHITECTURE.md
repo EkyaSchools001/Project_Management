@@ -58,7 +58,7 @@ The School Growth Hub is a comprehensive platform for managing educator observat
 - **Validation**: Sanitization of all inputs via Zod to prevent injection and ensuring data integrity.
 
 ## 6. Infrastructure & Deployment
-- **Containerization**: Docker for local development and production consistency.
+- **Environment**: Node.js natively managed for development.
 - **CI/CD**: GitHub Actions for automated testing and deployment.
 - **Hosting**: AWS (EC2/RDS) or Supabase (Database + Edge Functions).
 - **Environment Management**: `.env` for secrets (DB URLs, API Keys).

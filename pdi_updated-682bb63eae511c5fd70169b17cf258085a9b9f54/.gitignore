@@ -76,3 +76,21 @@ local_test_results.log
 # Google OAuth credentials (NEVER commit these)
 client_secret*.json
 *.apps.googleusercontent.com.json
+
+# Virtual Environments
+venv/
+.venv/
+backend/ai_service/venv/
+
+# Large binaries/files
+*.pdf
+*.xlsx
+*.csv
+*.exe
+wishlist.json
+wishlist.html
+wishlist.txt
+plan.txt
+mooc_rbac_v3 (1).html
+26-27 MOOC Menu Handout (1).pdf
+

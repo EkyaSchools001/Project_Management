@@ -1,0 +1,98 @@
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',system-ui,sans-serif}
+.mooc-shell{display:flex;height:100%;background:#f8f9fa; width: 100%;}
+.mooc-sb{display:none !important}
+.mooc-topbar{display:none !important}
+.mooc-mn{flex:1;min-width:0;display:flex;flex-direction:column;background:#f4f5f7; height: 100%; overflow: auto;}
+.mooc-cnt{flex:1;min-width:0;padding:24px;}
+/* ROLE INFO */
+.mooc-ri{background:#fff;border:1px solid #e8e8ee;border-radius:16px;padding:16px;margin-bottom:20px;display:flex;align-items:center;gap:12px;box-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1)}
+.mooc-ri-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.mooc-ri-t{font-size:14px;font-weight:600;color:#1a1025}
+.mooc-ri-d{font-size:12px;color:#666;margin-top:2px}
+.mooc-ri-sc{font-size:11px;font-weight:600;padding:4px 12px;border-radius:24px;white-space:nowrap;flex-shrink:0}
+/* PAGE HEADER */
+.mooc-ph h1{font-size:24px;font-weight:800;color:#1a1025;letter-spacing:-0.02em}
+.mooc-ph p{font-size:14px;color:#666;margin-top:4px}
+.mooc-bc{font-size:12px;color:#ea104a;margin-bottom:8px;font-weight:600}
+/* TABS */
+.mooc-tab-bar{display:flex;gap:20px;margin:20px 0 24px;border-bottom:1px solid #e8e8ee}
+.mooc-tab-btn{padding:12px 4px;font-size:14px;font-weight:700;cursor:pointer;color:#888;border:none;border-bottom:3px solid transparent;background:none;transition:all 0.2s;white-space:nowrap}
+.mooc-tab-btn.on{color:#ea104a;border-bottom-color:#ea104a}
+.mooc-tab-btn:hover:not(.on){color:#1a1025}
+.mooc-tab-btn.on[data-tab="browse"] { outline: 1px solid #ea104a; outline-offset: 4px; border-radius: 4px; border-bottom: none; }
+
+/* STATS */
+.mooc-sg{display:grid;gap:9px;margin-bottom:13px}
+.mooc-sc{background:#fff;border-radius:12px;padding:16px 20px;border:1px solid #e8e8ee;box-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1)}
+.mooc-sc-n{font-size:24px;font-weight:800;color:#1a1025;line-height:1}
+.mooc-sc-l{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;font-weight:700}
+/* FILTER BAR */
+.mooc-fb{display:flex;gap:7px;margin-bottom:11px;align-items:center;flex-wrap:wrap}
+.mooc-fb input{padding:10px 16px;border:1px solid #e2e8f0;border-radius:8px;font-size:14px;color:#333;background:#fff;min-width:0;flex:1}
+.mooc-fb input:focus{outline:none;border-color:#e84393}
+.mooc-fb select{padding:10px 14px;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;color:#555;background:#fff;cursor:pointer;flex-shrink:0}
+.mooc-fb select:focus{outline:none;border-color:#e84393}
+/* TABLE */
+.mooc-tw{background:#fff;border-radius:24px;border:1px solid #e8e8ee;overflow:hidden;box-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1)}
+.mooc-tw-top{padding:20px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e8e8ee;flex-shrink:0}
+.mooc-tw-top h3{font-size:16px;font-weight:800;color:#1a1025}
+.mooc-tbl-scroll{overflow-x:auto;width:100%}
+.mooc-table{width:100%;border-collapse:collapse;min-width:620px}
+.mooc-thead th{padding:16px 24px;text-align:left;font-size:11px;color:#1a1025;font-weight:900;text-transform:uppercase;letter-spacing:0.2em;border-bottom:1px solid #f1f5f9;background:#f8fafc;white-space:nowrap}
+.mooc-tbody td{padding:20px 24px;border-bottom:1px solid #f1f5f9;font-size:14px;vertical-align:middle}
+.mooc-tbody tr:last-child td{border-bottom:none}
+.mooc-tbody tr:hover td{background:#f1f5f9}
+.mooc-pill{border:1px solid #ddd;border-radius:20px;padding:2px 8px;font-size:10px;color:#555;display:inline-block;white-space:nowrap}
+.mooc-cert{color:#ea104a;font-size:11px;text-decoration:none;white-space:nowrap}
+.mooc-s-app{background:#1a1025;color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px;display:inline-block;white-space:nowrap}
+.mooc-s-pen{background:#ff9800;color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px;display:inline-block;white-space:nowrap}
+.mooc-s-rej{background:#e53935;color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px;display:inline-block;white-space:nowrap}
+.mooc-btn{font-size:10px;padding:3px 9px;border-radius:20px;cursor:pointer;border:1px solid #ddd;background:#fff;color:#555;white-space:nowrap}
+.mooc-btn:hover{border-color:#ea104a;color:#ea104a}
+.mooc-btn-gr{border-color:#2e7d32;color:#2e7d32;background:#f1fff3}
+.mooc-btn-gr:hover{background:#2e7d32;color:#fff;border-color:#2e7d32}
+.mooc-btn-rd{border-color:#c00;color:#c00;background:#fff5f5}
+.mooc-btn-rd:hover{background:#c00;color:#fff}
+.mooc-btn-pk{background:#ea104a;color:#fff;border:none;border-radius:12px;padding:12px 24px;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 6px -1px rgba(234, 16, 74, 0.2)}
+.mooc-btn-pk:hover{transform:translateY(-1px);box-shadow:0 10px 15px -3px rgba(234, 16, 74, 0.3)}
+.mooc-btn-exp{border:1px solid #ea104a;color:#ea104a;border-radius:12px;padding:8px 16px;font-size:13px;background:#fff;cursor:pointer;font-weight:600;transition:all 0.2s}
+/* COURSE CARDS */
+.mooc-cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.mooc-cc{background:#fff;border:1px solid #e8e8ee;border-radius:12px;padding:16px;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;gap:8px;box-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05)}
+.mooc-cc:hover{border-color:#ea104a;transform:translateY(-2px);box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1)}
+.mooc-cc-ttl{font-size:14px;font-weight:700;color:#1a1025;line-height:1.4}
+.mooc-cc-plt{font-size:12px;color:#666}
+.mooc-cc-ft{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:8px;border-top:1px solid #f8f9fa}
+.mooc-cc-hr{font-size:11px;color:#888;font-weight:600}
+.mooc-tg-m{background:#fff1f2;color:#ea104a;font-size:10px;font-weight:700;padding:4px 8px;border-radius:6px;width:fit-content;text-transform:uppercase;letter-spacing:0.02em}
+.mooc-tg-o{background:#f0fdf4;color:#16a34a;font-size:10px;font-weight:700;padding:4px 8px;border-radius:6px;width:fit-content;text-transform:uppercase;letter-spacing:0.02em}
+
+/* FORM */
+.mooc-fc{background:#fff;border-radius:8px;border:1px solid #e8e8ee;padding:16px;max-width:500px}
+.mooc-fc h3{font-size:14px;font-weight:600;color:#1a1025;margin-bottom:2px}
+.mooc-fc-sub{font-size:11px;color:#888;margin-bottom:11px;line-height:1.5}
+.mooc-fg{margin-bottom:10px}
+.mooc-fg label{display:block;font-size:10px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.mooc-fg input,.mooc-fg select,.mooc-fg textarea{width:100%;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:12px;color:#333;background:#fff}
+.mooc-fg input:focus,.mooc-fg select:focus,.mooc-fg textarea:focus{outline:none;border-color:#ea104a}
+.mooc-fg textarea{height:72px;resize:vertical}
+.mooc-fr{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.mooc-ib{background:#fff1f2;border-left:3px solid #ea104a;border-radius:0 6px 6px 0;padding:8px 11px;font-size:11px;color:#ea104a;line-height:1.6;margin-bottom:11px}
+/* TRACK GRID */
+.mooc-tkg{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px}
+.mooc-tkt{background:#fff;border:1px solid #e8e8ee;border-radius:8px;padding:10px;cursor:pointer}
+.mooc-tkt:hover{border-color:#ea104a}
+.mooc-tkt-n{font-size:19px;font-weight:700;color:#1a1025}
+.mooc-tkt-l{font-size:10px;color:#888;margin-top:1px;line-height:1.3}
+/* PROGRESS */
+.mooc-pb-w{height:5px;background:#eee;border-radius:3px;overflow:hidden;margin-top:3px}
+.mooc-pb{height:100%;background:#ea104a;border-radius:3px}
+.mooc-prog-c{background:#fff;border:1px solid #e8e8ee;border-radius:8px;padding:13px;margin-bottom:11px}
+/* DENIED */
+.mooc-denied{background:#fff5f5;border:1px solid #fcc;border-radius:8px;padding:36px;text-align:center}
+.mooc-denied .mooc-di{font-size:30px;margin-bottom:8px}
+.mooc-denied h3{font-size:14px;font-weight:600;color:#c00;margin-bottom:4px}
+.mooc-denied p{font-size:12px;color:#888;line-height:1.6}
+/* MSG */
+.mooc-msg-ok{background:#f1fff3;color:#2e7d32;padding:8px 11px;border-radius:6px;font-size:12px;margin-top:9px}
+.mooc-msg-err{background:#fff5f5;color:#c00;padding:8px 11px;border-radius:6px;font-size:12px;margin-top:9px}

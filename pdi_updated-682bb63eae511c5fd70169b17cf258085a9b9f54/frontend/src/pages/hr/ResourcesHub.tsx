@@ -23,6 +23,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { settingsService } from "@/services/settingsService";
 import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdentity/PageEditorControls";
+import { PortalBanner } from "@/components/layout/PortalBanner";
+import { UsersThree } from "@phosphor-icons/react";
 
 const ResourcesHub = () => {
   const { user } = useAuth();
@@ -90,35 +92,15 @@ const ResourcesHub = () => {
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] text-[#333333] font-sans pb-12">
-      {/* 1. Header Banner */}
-      <header className="bg-gradient-to-r from-[#EA104A] to-[#C40E3E] text-white py-16 px-6 shadow-lg relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-        <div className="max-w-7xl mx-auto relative z-10">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-            {data.headerTitle}
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-2xl font-light">
-            {data.headerSubtitle}
-          </p>
-        </div>
-        {canEdit() && (
-          <Button 
-            className="absolute top-6 right-6 bg-white hover:bg-slate-100 text-[#EA104A] gap-2 z-10 shadow-lg font-bold"
-            onClick={() => setIsEditorOpen(true)}
-          >
-            <PencilSimple size={18} weight="bold" />
-            Edit Content
-          </Button>
-        )}
-        <Button
-          variant="ghost"
-          onClick={() => navigate(-1)}
-          className="absolute top-6 left-6 text-white hover:bg-white/10 gap-2 z-10 font-bold"
-        >
-          <ArrowLeft size={18} />
-          <span>Back</span>
-        </Button>
-      </header>
+      <PortalBanner 
+        title={data.headerTitle}
+        subtitle={data.headerSubtitle}
+        onBack={() => navigate(-1)}
+        onEdit={() => setIsEditorOpen(true)}
+        canEdit={canEdit()}
+        icon={UsersThree}
+        className="mt-6 mb-16"
+      />
 
       <PageEditorControls 
         settingKey="hr_resources_hub"

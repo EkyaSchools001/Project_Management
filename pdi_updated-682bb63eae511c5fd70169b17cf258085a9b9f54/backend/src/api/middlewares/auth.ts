@@ -103,3 +103,68 @@ export const restrictTo = (...roles: string[]) => {
         next();
     };
 };
+
+/**
+ * Middleware to authorize access to specific teacher data.
+ * Logic:
+ * 1. Self: User can always access their own data.
+ * 2. Admin/Superadmin: Always allowed global access.
+ * 3. Principals/Leaders: Allowed access if the teacher belongs to their campus.
+ * 4. Managers: Allowed if the teacher's managerId matches the user.id.
+ */
+export const authorizeTeacherAccess = async (req: AuthRequest, res: Response, next: NextFunction) => {
+    try {
+        const teacherId = req.params.teacherId as string;
+        const currentUser = req.user;
+
+        if (!currentUser) {
+            return next(new AppError('Unauthorized access.', 401));
+        }
+
+        if (!teacherId) {
+            return next(new AppError('No teacher ID provided for authorization.', 400));
+        }
+
+        // 1. Self-access
+        if (currentUser.id === teacherId) {
+            return next();
+        }
+
+        // 2. Admin / Superadmin access
+        const role = currentUser.role.toUpperCase();
+        if (role === 'ADMIN' || role === 'SUPERADMIN') {
+            return next();
+        }
+
+        // Fetch the target teacher's info to check campus/manager affiliation
+        const targetTeacher = await prisma.user.findUnique({
+            where: { id: teacherId },
+            select: { id: true, campusId: true, managerId: true, campusAccess: true }
+        });
+
+        if (!targetTeacher) {
+            return next(new AppError('The teacher you are trying to access does not exist.', 404));
+        }
+
+        // 3. School Leader / Principal access (within same campus)
+        const isLeader = role === 'LEADER' || role === 'PRINCIPAL' || role.includes('SCHOOL LEADER');
+        if (isLeader && targetTeacher.campusId === currentUser.campusId) {
+            return next();
+        }
+
+        // 4. Manager Access
+        if (targetTeacher.managerId === currentUser.id) {
+            return next();
+        }
+
+        // 5. Multi-campus access for specific characters (optional logic based on campusAccess field in schema)
+        if (currentUser.campusAccess && currentUser.campusAccess.includes(targetTeacher.campusId || '')) {
+            return next();
+        }
+
+        return next(new AppError('You do not have permission to view or manage this teacher\'s data.', 403));
+    } catch (error) {
+        console.error('[AUTH] Authorization error:', error);
+        return next(new AppError('An error occurred while verifying permissions.', 500));
+    }
+};

@@ -83,7 +83,7 @@ export function DynamicDashboard({ role, id, fallback }: DynamicDashboardProps) 
       return (
         <div className="flex flex-col items-center justify-center h-full">
           <div className="text-3xl font-bold text-primary">
-            {data?.count || data?.value || data?.total || "--"}
+            {data?.count || data?.value || data?.total || ""}
           </div>
           <div className="text-sm text-muted-foreground mt-1">
             {data?.subtitle || "Total"}
@@ -271,3 +271,4 @@ export function DynamicDashboard({ role, id, fallback }: DynamicDashboardProps) 
 }
 
 export default DynamicDashboard;
+

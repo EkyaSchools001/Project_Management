@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { getAssetUrl } from "@/lib/utils";
 import { Envelope, Phone } from "@phosphor-icons/react";
 import { TeamMember } from "../../../types/schoolTeam";
 
@@ -17,7 +18,7 @@ export const LeadershipCard = ({ member, accentColor = "#e53935" }: LeadershipCa
       {/* Profile Image */}
       <div className="aspect-[3/4] w-full mb-6 overflow-hidden rounded-[8px] bg-slate-50">
         <img 
-          src={member.image} 
+          src={getAssetUrl(member.image)} 
           alt={member.name}
           className="w-full h-full object-cover object-top"
         />

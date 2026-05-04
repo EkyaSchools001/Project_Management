@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { AuthRequest } from '../middlewares/auth';
 import prisma from '../../infrastructure/database/prisma';
 import { CAMPUS_OPTIONS } from '../../utils/constants';
 

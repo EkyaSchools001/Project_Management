@@ -55,7 +55,7 @@ With confidence and conviction, I would like to wish all of you the very best fo
   instructions: [], 
   instructionCategories: [
     {
-      title: "GENERAL INSTRUCTIONS",
+      title: "",
       items: [
         { id: "timings", title: "Timings - Bell Schedule", url: "#", description: "Official daily schedule of periods, breaks, and transition bells for all stages." },
         { id: "class-teacher-lists", title: "Class teachers and non-class teacher lists", url: "#", description: "Designated educators responsible for primary care and administrative support for each class." },

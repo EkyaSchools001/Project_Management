@@ -2,6 +2,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, PencilLine, Trash, UsersThree } from "@phosphor-icons/react";
 import { InstructionLink } from "../../../types/schoolTeam";
+import { useAuth } from "@/hooks/useAuth";
 
 interface InstructionListProps {
   instructions: InstructionLink[];
@@ -23,7 +24,7 @@ interface InstructionListProps {
 export const InstructionList = ({ 
   instructions, 
   accentColor = "#E63946",
-  title = "GENERAL INSTRUCTIONS",
+  title,
   backgroundColor,
   className = "",
   id,
@@ -34,7 +35,9 @@ export const InstructionList = ({
   onDelete,
   integrated = false
 }: InstructionListProps) => {
+  const { user } = useAuth();
   const isDarkBg = backgroundColor && backgroundColor !== "#FFFFFF" && backgroundColor !== "white" && backgroundColor !== "#FAF9F6";
+  const showTitle = title && title !== "GENERAL INSTRUCTIONS";
 
   return (
     <section 
@@ -43,22 +46,26 @@ export const InstructionList = ({
       style={{ backgroundColor: backgroundColor || "transparent" }}
     >
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className={`text-[11px] font-black tracking-[0.4em] uppercase mb-3 ${isDarkBg ? 'text-white/60' : 'text-primary'}`}>
-            {title}
-          </h2>
-          <div className="h-1 w-20 bg-primary mx-auto rounded-full shadow-[0_0_10px_rgba(230,57,70,0.3)]" />
-        </motion.div>
-
+        {showTitle && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className={`text-[11px] font-black tracking-[0.4em] uppercase mb-3 ${isDarkBg ? 'text-white/60' : 'text-primary'}`}>
+              {title}
+            </h2>
+            <div className="h-1 w-20 bg-primary mx-auto rounded-full shadow-[0_0_10px_rgba(230,57,70,0.3)]" />
+          </motion.div>
+        )}
+ 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {instructions.map((item, index) => {
             const dutyAssignments = allAssignments.filter(a => a.dutyId === item.id);
+            const userAssignment = dutyAssignments.find(a => a.teacherId === user?.id);
+            const isUserAssigned = !!userAssignment;
             
             return (
               <motion.div
@@ -97,7 +104,7 @@ export const InstructionList = ({
                     <div className="pt-8 space-y-4">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="h-[2px] flex-1 bg-slate-200" />
-                      <span className="text-[11px] font-black uppercase tracking-[0.3em] text-slate-700">Duty Roster</span>
+                      <span className="text-[11px] font-black uppercase tracking-[0.3em] text-slate-700">Duty Status</span>
                       <div className="h-[2px] flex-1 bg-slate-200" />
                     </div>
 
@@ -172,14 +179,39 @@ export const InstructionList = ({
 
                         ) : (
                           <div className="flex flex-wrap gap-1.5">
-                            {assignments?.[item.id] ? (
-                              assignments[item.id].split(', ').map((name, i) => (
-                                <span key={i} className="px-4 py-2 bg-white border border-slate-200 rounded-full text-[9px] font-black text-slate-600 shadow-sm uppercase tracking-wider">
-                                  {name}
-                                </span>
-                              ))
+                            {isUserAssigned ? (
+                              <div className="flex flex-col gap-3 w-full">
+                                {userAssignment && (
+                                  <div className="flex flex-wrap gap-2 animate-in slide-in-from-top-2 duration-500">
+                                    {userAssignment.day && (
+                                      <div className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 flex flex-col">
+                                        <span className="text-[7px] font-black text-slate-400 uppercase tracking-tighter">Day</span>
+                                        <span className="text-[10px] font-bold text-slate-600 uppercase tracking-tight">{userAssignment.day}</span>
+                                      </div>
+                                    )}
+                                    {userAssignment.grade && (
+                                      <div className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 flex flex-col">
+                                        <span className="text-[7px] font-black text-slate-400 uppercase tracking-tighter">Grade</span>
+                                        <span className="text-[10px] font-bold text-slate-600 uppercase tracking-tight">{userAssignment.grade}</span>
+                                      </div>
+                                    )}
+                                    {userAssignment.floor && (
+                                      <div className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 flex flex-col">
+                                        <span className="text-[7px] font-black text-slate-400 uppercase tracking-tighter">Location</span>
+                                        <span className="text-[10px] font-bold text-slate-600 uppercase tracking-tight">{userAssignment.floor}</span>
+                                      </div>
+                                    )}
+                                    {userAssignment.eventName && (
+                                      <div className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 flex flex-col">
+                                        <span className="text-[7px] font-black text-slate-400 uppercase tracking-tighter">Event</span>
+                                        <span className="text-[10px] font-bold text-slate-600 uppercase tracking-tight">{userAssignment.eventName}</span>
+                                      </div>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
                             ) : (
-                              <span className="text-[10px] text-slate-500 font-black uppercase tracking-widest italic">Pending...</span>
+                              <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest italic opacity-60">Not Assigned</span>
                             )}
                           </div>
                         )}

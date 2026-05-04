@@ -24,7 +24,7 @@ const EkyaNiceRoadInfoPage = () => {
       breadcrumbPath="/campuses/ekya-nice-road/info"
       accentColor={ekyaNiceRoadTeam.accentColor}
     >
-      <div className="max-w-7xl mx-auto px-4 py-12 space-y-24">
+      <div className="max-w-7xl mx-auto px-4 py-8 space-y-12">
         
         {/* Header Section */}
         <section className="text-center space-y-6">

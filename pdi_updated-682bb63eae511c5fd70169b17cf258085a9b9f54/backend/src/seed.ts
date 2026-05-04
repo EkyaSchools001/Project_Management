@@ -604,7 +604,112 @@ async function main() {
         console.log('No assessment_templates.json found, skipping assessment seeds.');
     }
 
-    console.log('\n✅ Seed complete! All teachers now have equal data + Surveys, Meetings, and Attendance entries.');
+    // ── LAC (LEARNING ASSESSMENT & CURRICULUM) ───────────────────────────────
+    console.log('\n--- Seeding LAC Module ---');
+    
+    // 1. Seed LAC Campuses
+    const lacCampuses = [
+        { name: 'CMR NPS', location: 'Bangalore' },
+        { name: 'EJPN', location: 'Bangalore' },
+        { name: 'EITPL', location: 'Bangalore' },
+        { name: 'EBTM', location: 'Bangalore' },
+        { name: 'EBYR', location: 'Bangalore' },
+        { name: 'ENICE', location: 'Bangalore' },
+        { name: 'ENAVA', location: 'Bangalore' },
+        { name: 'PU BTM', location: 'Bangalore' },
+        { name: 'PU BYR', location: 'Bangalore' },
+        { name: 'PU HRBR', location: 'Bangalore' },
+        { name: 'PU ITPL', location: 'Bangalore' },
+        { name: 'PU NICE', location: 'Bangalore' },
+        { name: 'Head Office', location: 'Bangalore' },
+    ];
+
+    const lacCampusMap: Record<string, string> = {};
+    for (const c of lacCampuses) {
+        const res = await prisma.lacCampus.upsert({
+            where: { name: c.name },
+            update: { location: c.location },
+            create: c
+        });
+        lacCampusMap[c.name] = res.id;
+    }
+    console.log('Seeded LAC Campuses');
+
+    // 2. Seed LAC Subjects
+    const lacSubjects = [
+        'Art', 'Computer Science', 'Drama', 'English', 'Global Perspectives',
+        'Hindi', 'Kannada', 'Life Skills', 'Math', 'Music', 'PE', 'Science',
+        'Social Science', 'Spanish', 'VA', 'Mathematics'
+    ];
+
+    const lacSubjectMap: Record<string, string> = {};
+    for (const name of lacSubjects) {
+        const res = await prisma.lacSubject.upsert({
+            where: { name },
+            update: {},
+            create: { name }
+        });
+        lacSubjectMap[name] = res.id;
+    }
+    console.log('Seeded LAC Subjects');
+
+    // 3. Seed LAC Tasks & Statuses (Dummy Data)
+    const teachers = await prisma.user.findMany({ where: { role: 'TEACHER' } });
+    if (teachers.length > 0) {
+        const mathId = lacSubjectMap['Mathematics'] || lacSubjectMap['Math'];
+        const scienceId = lacSubjectMap['Science'];
+
+        const teachersByCampus: Record<string, any[]> = {};
+        for (const t of teachers) {
+            const cId = t.campusId || 'EBTM';
+            if (!teachersByCampus[cId]) teachersByCampus[cId] = [];
+            teachersByCampus[cId].push(t);
+        }
+
+        let taskCount = 0;
+        let statusCount = 0;
+
+        for (const [campusCode, campusTeachers] of Object.entries(teachersByCampus)) {
+            const lacCampusId = lacCampusMap[campusCode];
+            if (!lacCampusId) continue;
+
+            const tasksData = [
+                { subjectId: mathId, campusId: lacCampusId, unit: 'Algebra 1', task: 'Complete Chapter 1 Exercises', type: 'Formative', mode: 'Offline', week: 1, weekCheck: true },
+                { subjectId: mathId, campusId: lacCampusId, unit: 'Algebra 1', task: 'Grade Mid-Term Papers', type: 'Summative', mode: 'Online', week: 2, weekCheck: false },
+                { subjectId: scienceId, campusId: lacCampusId, unit: 'Physics Basics', task: 'Setup Lab Experiment 3', type: 'Practical', mode: 'Offline', week: 1, weekCheck: true },
+                { subjectId: scienceId, campusId: lacCampusId, unit: 'Chemistry', task: 'Review Periodic Table Quiz', type: 'Formative', mode: 'Online', week: 3, weekCheck: true },
+                { subjectId: scienceId, campusId: lacCampusId, unit: 'Biology', task: 'Submit Field Trip Proposal', type: 'Administrative', mode: 'Offline', week: 4, weekCheck: false },
+            ];
+
+            for (const data of tasksData) {
+                if (!data.subjectId) continue;
+                
+                const task = await prisma.lacTask.create({ data });
+                taskCount++;
+
+                for (const teacher of campusTeachers) {
+                    const statuses = ['Pending', 'In Progress', 'Complete'];
+                    const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+
+                    await prisma.lacTaskStatus.create({
+                        data: {
+                            taskId: task.id,
+                            campusId: lacCampusId,
+                            teacherId: teacher.id,
+                            status: randomStatus,
+                            published: true,
+                            scoreEntered: randomStatus === 'Complete',
+                            evidence: false
+                        }
+                    });
+                    statusCount++;
+                }
+            }
+        }
+        console.log(`Created ${taskCount} LAC tasks and ${statusCount} statuses across all campuses.`);
+    }
+
+    console.log('\n✅ Seed complete! All teachers now have equal data + Surveys, Meetings, Attendance, and LAC entries.');
 }
 
 main()

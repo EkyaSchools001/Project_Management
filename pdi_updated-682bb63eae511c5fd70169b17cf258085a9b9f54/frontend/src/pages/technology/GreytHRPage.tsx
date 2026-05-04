@@ -14,6 +14,8 @@ import { Button } from '@/components/ui/button';
 import { useAuth } from "@/hooks/useAuth";
 import { settingsService } from "@/services/settingsService";
 import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdentity/PageEditorControls";
+import { PortalBanner } from "@/components/layout/PortalBanner";
+import { useNavigate } from "react-router-dom";
 
 export default function GreytHRPage() {
   const { user } = useAuth();
@@ -56,17 +58,18 @@ export default function GreytHRPage() {
     }
   };
 
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-white relative">
-      {canEdit() && (
-        <Button 
-          className="absolute top-6 right-6 bg-white/20 hover:bg-white/30 text-white gap-2 z-50 shadow-lg font-bold border border-white/20"
-          onClick={() => setIsEditorOpen(true)}
-        >
-          <PencilSimple size={18} weight="bold" />
-          Edit Content
-        </Button>
-      )}
+      <PortalBanner 
+        title={data.heroTitle}
+        subtitle={data.description}
+        onBack={() => navigate(-1)}
+        onEdit={() => setIsEditorOpen(true)}
+        canEdit={canEdit()}
+        icon={IdentificationCard}
+        className="mt-6 mb-12"
+      />
 
       <PageEditorControls 
         settingKey="page_tech_greythr"
@@ -86,24 +89,6 @@ export default function GreytHRPage() {
           { key: "knowledgeBankUrl", label: "Knowledge Bank URL", type: "input" },
         ]}
       />
-
-      {/* Hero Banner Section */}
-      <div className="relative w-full h-[450px] overflow-hidden">
-        <img 
-          src={data.heroImage} 
-          alt="GreytHR Banner"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-slate-900/10" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <div className="relative z-10 space-y-4">
-            <h1 className="text-8xl font-bold tracking-[0.2em] text-white drop-shadow-2xl uppercase">
-              {data.heroTitle}
-            </h1>
-            <div className="h-2 w-full max-w-[500px] bg-primary mx-auto rounded-full shadow-lg" />
-          </div>
-        </div>
-      </div>
 
       {/* Description Section */}
       <div className="max-w-5xl mx-auto px-8 py-20">
@@ -125,9 +110,11 @@ export default function GreytHRPage() {
       </div>
 
       {/* Tutorial Header */}
-      <div className="bg-primary py-12 text-center overflow-hidden relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1),transparent)]" />
-        <h2 className="text-4xl font-extrabold text-white tracking-widest relative z-10 transition-all hover:scale-105 uppercase">{data.tutorialTitle}</h2>
+      <div className="max-w-7xl mx-auto px-4 md:px-6 mb-12">
+        <div className="bg-primary py-12 rounded-[2rem] text-center overflow-hidden relative shadow-lg">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1),transparent)]" />
+          <h2 className="text-4xl font-extrabold text-white tracking-widest relative z-10 transition-all hover:scale-105 uppercase">{data.tutorialTitle}</h2>
+        </div>
       </div>
 
       {/* Tutorial Content */}

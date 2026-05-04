@@ -43,6 +43,7 @@ const PermissionContext = createContext<PermissionContextType | undefined>(undef
 // eslint-disable-next-line react-refresh/only-export-components
 export const defaultAccessMatrix: PermissionSetting[] = [
     // ── Core Administration ──────────────────────────────────────────────────
+    { moduleId: 'dashboard', moduleName: 'Overview', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
     { moduleId: 'users', moduleName: 'User Management', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, COORDINATOR: false, TEACHER: false, TESTER: false } },
     { moduleId: 'team', moduleName: 'Team Overview', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, COORDINATOR: true, TEACHER: false, TESTER: false } },
     { moduleId: 'forms', moduleName: 'Form Templates', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, COORDINATOR: false, TEACHER: false, TESTER: false } },
@@ -91,6 +92,7 @@ export const defaultAccessMatrix: PermissionSetting[] = [
     { moduleId: 'grow', moduleName: 'Grow', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
     { moduleId: 'culture-environment', moduleName: 'Culture & Environment', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
     { moduleId: 'co-curricular', moduleName: 'Co-Curricular', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'lac', moduleName: 'LAC Checklist', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
 
     // ── HR & WellBeing ────────────────────────────────────────────────────────
     { moduleId: 'resources', moduleName: 'Resources', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
@@ -115,6 +117,12 @@ export const defaultAccessMatrix: PermissionSetting[] = [
 // Must cover ALL path segments used by DashboardSidebar + ModuleGuard.
 const FRONTEND_MODULE_MAP: Record<string, string> = {
     // ── Core Modules (1:1 with Matrix Module IDs) ────────────────────────────
+    'dashboard': 'dashboard',
+    'overview': 'dashboard',
+    'teacher': 'dashboard',
+    'leader': 'dashboard',
+    'admin': 'dashboard',
+    'management': 'dashboard',
     'users': 'users',
     'team': 'team',
     'forms': 'forms',
@@ -195,6 +203,7 @@ const FRONTEND_MODULE_MAP: Record<string, string> = {
     'audit-reports': 'audit-reports',
     'ai-assistant': 'ai_assistant',
     'chat': 'ai_assistant',
+    'lac': 'lac',
 };
 
 // ─── Role Normalization ──────────────────────────────────────────────────────

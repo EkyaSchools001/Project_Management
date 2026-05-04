@@ -17,12 +17,17 @@ import {
   Eye,
   X,
   Plus,
-  CheckSquare
+  CheckSquare,
+  CaretLeft
 } from '@phosphor-icons/react';
+import { useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import api from '@/lib/api';
 import { useAuth } from '@/hooks/useAuth';
 import { toast } from 'sonner';
+import { cn } from "@/lib/utils";
+import { PortalBanner } from '@/components/layout/PortalBanner';
+import { Sparkle } from '@phosphor-icons/react';
 
 interface Subject {
   id: string;
@@ -42,7 +47,8 @@ interface LacTask {
   statuses: any[];
 }
 
-const LACModule = () => {
+const LACModule = ({ hideInternalBanner = false }: { hideInternalBanner?: boolean }) => {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const [selectedSubject, setSelectedSubject] = useState<string>('All');
@@ -54,6 +60,9 @@ const LACModule = () => {
   const [selectedSubjectOverview, setSelectedSubjectOverview] = useState<string>('All');
   const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
   const [selectedTeacherFilter, setSelectedTeacherFilter] = useState<string | null>(null);
+  const [importing, setImporting] = useState(false);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+
   // Assign Task Modal
   const [showAssignModal, setShowAssignModal] = useState(false);
   const [assignTeacherId, setAssignTeacherId] = useState('');
@@ -61,7 +70,7 @@ const LACModule = () => {
   const [assignSubjectFilter, setAssignSubjectFilter] = useState('All');
   const [selectedTeacherName, setSelectedTeacherName] = useState<string | null>(null);
 
-  const isCoordinator = ['COORDINATOR', 'LEADER', 'SCHOOL_LEADER', 'ADMIN', 'MANAGEMENT', 'SUPERADMIN'].includes(user?.role || '');
+  const isCoordinator = ['COORDINATOR', 'LEADER', 'SCHOOL_LEADER', 'ADMIN', 'MANAGEMENT', 'SUPERADMIN', 'TESTER'].includes(user?.role || '');
 
   // Fetch Data
   const { data: tasksData, isLoading: tasksLoading } = useQuery({
@@ -177,6 +186,103 @@ const LACModule = () => {
     setEditingTaskId(null);
   };
 
+  const importMutation = useMutation({
+    mutationFn: async (tasks: any[]) => {
+      return await api.post('/lac/import', { tasks });
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['lac-tasks'] });
+      queryClient.invalidateQueries({ queryKey: ['lac-dashboard'] });
+      toast.success(data.data.message || 'Import successful');
+      setImporting(false);
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message || 'Failed to import tasks');
+      setImporting(false);
+    }
+  });
+
+  const handleImportClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setImporting(true);
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const text = event.target?.result as string;
+        const lines = text.split('\n').map(l => l.trim()).filter(l => l);
+        if (lines.length < 2) throw new Error('File is empty or missing headers');
+        
+        const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+        
+        const tasks = lines.slice(1).map(line => {
+          const values = line.split(',').map(v => v.trim().replace(/^"(.*)"$/, '$1'));
+          const task: any = {};
+          headers.forEach((h, i) => {
+            if (h === 'subject') task.subject = values[i];
+            if (h === 'unit') task.unit = values[i];
+            if (h === 'task') task.task = values[i];
+            if (h === 'type') task.type = values[i];
+            if (h === 'mode') task.mode = values[i];
+            if (h === 'week') task.week = values[i];
+            if (h === 'campus') task.campusId = values[i];
+            if (h === 'teacheremail') task.teacherEmail = values[i];
+          });
+          return task;
+        });
+
+        if (tasks.length === 0) throw new Error('No tasks found in file');
+        importMutation.mutate(tasks);
+      } catch (err: any) {
+        toast.error(err.message || 'Invalid CSV format. Expected headers: Subject, Unit, Task, Type, Mode, Week, Campus, TeacherEmail');
+        setImporting(false);
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = ''; // Reset input
+  };
+
+  const handleExport = () => {
+    if (!filteredTasks.length) {
+      toast.error('No data to export');
+      return;
+    }
+
+    const headers = ['Task', 'Unit', 'Subject', 'Week', 'Teacher', 'Status', 'Evidence', 'Score Entered'];
+    const rows = filteredTasks.map(task => {
+      // For export, we either show the first status (if coordinator) or the user's status
+      const statusObj = task.statuses?.[0] || { status: 'Pending' };
+        
+      return [
+        task.task,
+        task.unit,
+        task.subject?.name || 'N/A',
+        `Week ${task.week}`,
+        statusObj.teacher?.fullName || 'N/A',
+        statusObj.status || 'Pending',
+        statusObj.evidence ? 'Yes' : 'No',
+        statusObj.scoreEntered ? 'Yes' : 'No'
+      ].map(val => `"${String(val).replace(/"/g, '""')}"`).join(',');
+    });
+
+    const csvContent = [headers.join(','), ...rows].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `lac_checklist_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    toast.success('Checklist report exported successfully');
+  };
+
   const filteredTasks = useMemo(() => {
     if (!tasksData) return [];
     return tasksData.filter((task: LacTask) => {
@@ -214,59 +320,59 @@ const LACModule = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className={cn("max-w-7xl mx-auto px-4 md:px-6 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700", !hideInternalBanner && "mt-6")}>
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white p-8 rounded-[2.5rem] shadow-sm border border-primary/20">
-        <div className="space-y-2">
-          <div className="flex items-center gap-3">
-             <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                <ClipboardText size={24} weight="duotone" />
-             </div>
-             <h1 className="text-3xl font-black text-slate-800 tracking-tight uppercase italic">LAC Checklist</h1>
+      {!hideInternalBanner && (
+        <PortalBanner
+          title="LAC Checklist"
+          subtitle="Learning Accountability Checklist : 2025-26 Term 1"
+          icon={Sparkle}
+          onBack={() => navigate('/edu-hub')}
+          backgroundImage="https://images.unsplash.com/photo-1454165833767-027ffea9e772?q=80&w=2070&auto=format&fit=crop"
+          className="mt-6 mb-12"
+        >
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="flex items-center gap-2 p-1.5 bg-[#FAF9F6] border border-slate-200 rounded-2xl">
+              <button 
+                onClick={() => setViewMode('dashboard')}
+                className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${viewMode === 'dashboard' ? 'bg-primary text-white shadow-sm' : 'text-slate-500 hover:text-primary'}`}
+              >
+                Overview
+              </button>
+              <button 
+                onClick={() => setViewMode('checklist')}
+                className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${viewMode === 'checklist' ? 'bg-primary text-white shadow-sm' : 'text-slate-500 hover:text-primary'}`}
+              >
+                Checklist
+              </button>
+              <button 
+                onClick={() => setViewMode('subjects')}
+                className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${viewMode === 'subjects' ? 'bg-primary text-white shadow-sm' : 'text-slate-500 hover:text-primary'}`}
+              >
+                Subjects
+              </button>
+              {isCoordinator && (
+                <button 
+                  onClick={() => setViewMode('teachers')}
+                  className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${viewMode === 'teachers' ? 'bg-primary text-white shadow-sm' : 'text-slate-500 hover:text-primary'}`}
+                >
+                  Teachers
+                </button>
+              )}
+            </div>
+
+            {isCoordinator && (
+              <button
+                onClick={() => setShowAssignModal(true)}
+                className="flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-2xl font-black uppercase tracking-widest text-[10px] shadow-lg hover:bg-primary/90 transition-all duration-200 shrink-0"
+              >
+                <Plus size={16} weight="bold" />
+                Assign Task
+              </button>
+            )}
           </div>
-          <p className="text-slate-500 font-medium">Learning Accountability Checklist — 2025-26 Term 1</p>
-        </div>
-
-        <div className="flex items-center gap-2 p-1.5 bg-slate-100 rounded-2xl w-fit">
-          <button 
-            onClick={() => setViewMode('dashboard')}
-            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${viewMode === 'dashboard' ? 'bg-white text-primary shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-          >
-            Overview
-          </button>
-          <button 
-            onClick={() => setViewMode('checklist')}
-            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${viewMode === 'checklist' ? 'bg-white text-primary shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-          >
-            Checklist
-          </button>
-          <button 
-            onClick={() => setViewMode('subjects')}
-            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${viewMode === 'subjects' ? 'bg-white text-primary shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-          >
-            Subject Overview
-          </button>
-          {isCoordinator && (
-            <button 
-              onClick={() => setViewMode('teachers')}
-              className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${viewMode === 'teachers' ? 'bg-white text-primary shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-            >
-              Teachers
-            </button>
-          )}
-        </div>
-
-        {/* Assign Task Button — Coordinator / Leader only */}
-        {isCoordinator && (
-          <button
-            onClick={() => setShowAssignModal(true)}
-            className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-xl font-bold text-sm shadow-md hover:bg-primary/90 hover:shadow-lg transition-all duration-200 shrink-0"
-          >
-            <Plus size={18} weight="bold" />
-            Assign Task
-          </button>
-        )}
-      </div>
+        </PortalBanner>
+      )}
 
       {/* ── Assign Task Modal ───────────────────────────────────── */}
       {showAssignModal && (
@@ -294,13 +400,13 @@ const LACModule = () => {
 
             {/* Step 1: Select Teacher */}
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Step 1 — Select Teacher</label>
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Step 1 Select Teacher</label>
               <select
                 value={assignTeacherId}
                 onChange={(e) => setAssignTeacherId(e.target.value)}
                 className="w-full h-12 px-4 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold text-slate-700 outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary appearance-none cursor-pointer"
               >
-                <option value="">-- Choose a Teacher --</option>
+                <option value="">Choose a Teacher</option>
                 {(teachersData || []).map((t: any) => (
                   <option key={t.teacherId} value={t.teacherId}>{t.name}</option>
                 ))}
@@ -309,7 +415,7 @@ const LACModule = () => {
 
             {/* Step 2: Filter by Subject */}
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Step 2 — Filter by Subject (optional)</label>
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Step 2 Filter by Subject (optional)</label>
               <select
                 value={assignSubjectFilter}
                 onChange={(e) => { setAssignSubjectFilter(e.target.value); setAssignTaskId(''); }}
@@ -324,17 +430,17 @@ const LACModule = () => {
 
             {/* Step 3: Select Task */}
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Step 3 — Select Task</label>
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Step 3 Select Task</label>
               <select
                 value={assignTaskId}
                 onChange={(e) => setAssignTaskId(e.target.value)}
                 className="w-full h-12 px-4 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold text-slate-700 outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary appearance-none cursor-pointer"
               >
-                <option value="">-- Choose a Task --</option>
+                <option value="">Choose a Task</option>
                 {(allTasksData || [])
                   .filter((t: any) => assignSubjectFilter === 'All' || t.subjectId === assignSubjectFilter)
                   .map((t: any) => (
-                    <option key={t.id} value={t.id}>[Wk {t.week}] {t.unit} — {t.task}</option>
+                    <option key={t.id} value={t.id}>[Wk {t.week}] {t.unit} {t.task}</option>
                   ))
                 }
               </select>
@@ -381,7 +487,7 @@ const LACModule = () => {
           {/* Campus filter for overview */}
           {isCoordinator && (
             <div className="flex items-center gap-4">
-              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Filter by Campus:</label>
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-900">Filter by Campus:</label>
               <div className="relative">
                 <Buildings className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
                 <select
@@ -401,7 +507,7 @@ const LACModule = () => {
           {/* 5 Stat Cards */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             <StatCard title="Completed" value={stats.completed} sub={`of ${stats.total} tasks`} color="text-emerald-600" bg="bg-emerald-50" border="border-emerald-200" />
-            <StatCard title="In Progress" value={stats.inProgress} sub="tasks ongoing" color="text-blue-600" bg="bg-blue-50" border="border-blue-200" />
+            <StatCard title="In Progress" value={stats.inProgress} sub="tasks ongoing" color="text-slate-900" bg="bg-slate-50" border="border-slate-200" />
             <StatCard title="Pending" value={stats.pending} sub="yet to start" color="text-amber-600" bg="bg-amber-50" border="border-amber-200" />
             <StatCard title="Graded Tasks" value={stats.graded} sub="assessment items" color="text-violet-600" bg="bg-violet-50" border="border-violet-200" />
             <StatCard title="Teachers" value={stats.teachers} sub="learning areas" color="text-slate-600" bg="bg-slate-50" border="border-slate-200" />
@@ -422,7 +528,7 @@ const LACModule = () => {
                 ];
                 const c = colors[idx % colors.length];
                 return (
-                  <div key={subject.subjectId} className={`bg-white rounded-2xl p-5 border ${c.border} shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col gap-4`}>
+                  <div key={subject.subjectId} className={`bg-white rounded-[2rem] p-5 border ${c.border} shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col gap-4`}>
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex items-center gap-2">
                         <div className={`w-6 h-6 rounded-md ${c.light} flex items-center justify-center`}>
@@ -479,7 +585,7 @@ const LACModule = () => {
                   ];
                   const cc = campusColors[idx % campusColors.length];
                   return (
-                    <div key={campus.campusId} className={`bg-white rounded-2xl p-5 border ${cc.border} shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200`}>
+                    <div key={campus.campusId} className={`bg-white rounded-[2rem] p-5 border ${cc.border} shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200`}>
                       <div className="flex items-start justify-between gap-3 mb-4">
                         <div className="flex items-center gap-3">
                           <div className={`w-9 h-9 rounded-xl ${cc.bg} ring-4 ${cc.ring} flex items-center justify-center`}>
@@ -515,7 +621,7 @@ const LACModule = () => {
         <div className="space-y-6">
           {/* Subject filter dropdown */}
           <div className="flex items-center gap-3">
-            <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 shrink-0">Filter by Subject:</label>
+            <label className="text-[10px] font-black uppercase tracking-widest text-slate-900 shrink-0">Filter by Subject:</label>
             <div className="relative">
               <BookOpen className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={16} />
               <select
@@ -550,7 +656,7 @@ const LACModule = () => {
               ];
               const c = colors[idx % colors.length];
               return (
-                <div key={subject.subjectId} className={`bg-white rounded-2xl p-6 border ${c.border} shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col gap-5`}>
+                <div key={subject.subjectId} className={`bg-white rounded-[2rem] p-6 border ${c.border} shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col gap-5`}>
                   {/* Header */}
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex items-center gap-3">
@@ -664,7 +770,7 @@ const LACModule = () => {
                         setSelectedTeacherName(teacher.name);
                         setViewMode('checklist');
                     }}
-                    className="bg-white p-5 border border-primary/20 hover:border-primary/50 hover:shadow-md transition-all duration-200 rounded-2xl flex flex-col gap-4 cursor-pointer relative group"
+                    className="bg-white p-6 border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 rounded-[2rem] flex flex-col gap-4 cursor-pointer relative group"
                   >
                     <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
                       <div className="bg-primary/10 text-primary p-1.5 rounded-full">
@@ -837,8 +943,27 @@ const LACModule = () => {
                </div>
             </div>
 
-            <div className={`md:col-span-6 lg:col-span-1`}>
-               <button className="w-full h-14 bg-slate-800 text-white rounded-2xl flex items-center justify-center hover:bg-slate-900 transition-colors shadow-lg active:scale-95 duration-200">
+            <div className={`md:col-span-6 lg:col-span-1 flex gap-2`}>
+               <input 
+                type="file" 
+                ref={fileInputRef} 
+                onChange={handleFileChange} 
+                accept=".csv" 
+                className="hidden" 
+               />
+               <button 
+                onClick={handleImportClick}
+                disabled={importing}
+                className="flex-1 h-14 bg-indigo-600 text-white rounded-2xl flex items-center justify-center hover:bg-indigo-700 transition-colors shadow-lg active:scale-95 duration-200 disabled:opacity-50"
+                title="Import from CSV"
+               >
+                  <CloudArrowUp size={20} weight={importing ? "fill" : "bold"} className={importing ? "animate-bounce" : ""} />
+               </button>
+               <button 
+                onClick={handleExport}
+                className="flex-1 h-14 bg-slate-800 text-white rounded-2xl flex items-center justify-center hover:bg-slate-900 transition-colors shadow-lg active:scale-95 duration-200"
+                title="Export to CSV"
+               >
                   <DownloadSimple size={20} />
                </button>
             </div>
@@ -850,17 +975,17 @@ const LACModule = () => {
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="border-b border-slate-50">
-                    <th className="px-6 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">Task Details</th>
-                    <th className="px-4 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Week</th>
-                    <th className="px-4 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Type / Mode</th>
-                    <th className="px-4 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Published</th>
-                    <th className="px-4 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Score Entered</th>
-                    <th className="px-4 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Status</th>
-                    <th className="px-4 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Evidence</th>
-                    {!isCoordinator && (
-                      <th className="px-4 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Assigned On</th>
+                    <th className="px-6 py-6 text-[10px] font-black text-slate-900 uppercase tracking-widest">Task Details</th>
+                    <th className="px-4 py-6 text-[10px] font-black text-slate-900 uppercase tracking-widest text-center">Week</th>
+                    <th className="px-4 py-6 text-[10px] font-black text-slate-900 uppercase tracking-widest text-center">Type / Mode</th>
+                    <th className="px-4 py-6 text-[10px] font-black text-slate-900 uppercase tracking-widest text-center">Published</th>
+                    <th className="px-4 py-6 text-[10px] font-black text-slate-900 uppercase tracking-widest text-center">Score Entered</th>
+                    <th className="px-4 py-6 text-[10px] font-black text-slate-900 uppercase tracking-widest text-center">Status</th>
+                    <th className="px-4 py-6 text-[10px] font-black text-slate-900 uppercase tracking-widest text-center">Evidence</th>
+                    {isCoordinator && (
+                      <th className="px-4 py-6 text-[10px] font-black text-slate-900 uppercase tracking-widest text-center">Assigned On</th>
                     )}
-                    <th className="px-4 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-right">Actions</th>
+                    <th className="px-4 py-6 text-[10px] font-black text-slate-900 uppercase tracking-widest text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50">
@@ -995,7 +1120,7 @@ const LACModule = () => {
 
 const StatCard = ({ title, value, sub, color, bg, border }: any) => (
   <div className={`bg-white p-6 rounded-2xl shadow-sm border ${border || 'border-primary/20'} space-y-3 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200`}>
-    <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">{title}</p>
+    <p className="text-[10px] font-black text-slate-900 uppercase tracking-[0.2em]">{title}</p>
     <h3 className={`text-4xl font-black tracking-tight ${color}`}>{value}</h3>
     {sub && <p className="text-xs text-slate-400 font-medium">{sub}</p>}
   </div>
@@ -1004,7 +1129,7 @@ const StatCard = ({ title, value, sub, color, bg, border }: any) => (
 const StatusBadge = ({ status }: { status: string }) => {
   const styles: any = {
     'Complete': 'bg-emerald-50 text-emerald-600',
-    'In Progress': 'bg-blue-50 text-blue-600',
+    'In Progress': 'bg-slate-100 text-slate-900',
     'Pending': 'bg-amber-50 text-amber-600',
   };
   return (

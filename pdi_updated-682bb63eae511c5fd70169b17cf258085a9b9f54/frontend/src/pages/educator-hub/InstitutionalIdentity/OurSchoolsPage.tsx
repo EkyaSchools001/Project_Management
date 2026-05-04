@@ -9,6 +9,8 @@ import { motion } from "framer-motion";
 import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdentity/PageEditorControls";
 import { settingsService } from "@/services/settingsService";
 import { useAuth } from "@/hooks/useAuth";
+import { PortalBanner } from "@/components/layout/PortalBanner";
+import { Building } from "@phosphor-icons/react";
 
 const OurSchoolsPage = () => {
   const navigate = useNavigate();
@@ -65,44 +67,18 @@ const OurSchoolsPage = () => {
 
   return (
     <div className="min-h-screen bg-white pb-12">
-      {/* Header Banner */}
-      <div className="relative bg-white py-12 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            className="absolute top-6 left-6 hover:bg-slate-100 flex items-center gap-2"
-            onClick={() => navigate(-1)}
-          >
-            <ArrowLeft weight="bold" /> Back
-          </Button>
-
-          {canEdit() && (
-            <Button 
-              className="absolute top-6 right-6 bg-[#e53935] hover:bg-[#c62828] text-white gap-2 shadow-lg"
-              onClick={() => setIsEditorOpen(true)}
-            >
-              <PencilSimple size={18} weight="bold" />
-              Edit Content
-            </Button>
-          )}
-          
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="relative pb-8 mt-12"
-          >
-            <h1 className="text-5xl md:text-7xl font-light text-[#e53935] tracking-[0.2em] uppercase">
-              Our Schools
-            </h1>
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 h-[3px] bg-[#e53935]"></div>
-          </motion.div>
-        </div>
-      </div>
+      <PortalBanner 
+        title="Our Schools"
+        subtitle="A network of innovative campuses designed for learning."
+        icon={Building}
+        onBack={() => navigate(-1)}
+        onEdit={() => setIsEditorOpen(true)}
+        canEdit={canEdit()}
+        className="mt-6 mb-12"
+      />
 
       {/* Main Content Container */}
-      <div className="max-w-7xl mx-auto px-4 mt-4">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 mt-4">
         
         <PageEditorControls 
           settingKey="page_our_schools"

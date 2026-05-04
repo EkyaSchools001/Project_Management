@@ -281,6 +281,7 @@ const CmrNpsDutiesPage = () => {
       schoolName={cmrNpsTeam.schoolName}
       breadcrumbPath="/campuses/cmr-nps/duties"
       accentColor={cmrNpsTeam.accentColor}
+      backgroundImage={cmrNpsTeam.heroImage}
     >
       <div className="min-h-[calc(100vh-200px)] flex flex-col relative px-4 text-left">
         {/* Leadership Banner */}

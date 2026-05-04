@@ -436,7 +436,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                                 <span className="text-[10px] text-zinc-400">Average Score</span>
                                             </div>
                                         ) : (
-                                            <span className="text-zinc-300">--</span>
+                                            <span></span>
                                         )}
                                     </TableCell>
                                     <TableCell className="text-center">
@@ -446,7 +446,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                                 <span className="text-[10px] text-zinc-400">Average Score</span>
                                             </div>
                                         ) : (
-                                            <span className="text-zinc-300">--</span>
+                                            <span></span>
                                         )}
                                     </TableCell>
                                     <TableCell className="text-center">
@@ -456,7 +456,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                                 <span className="text-[10px] text-zinc-400">Average Score</span>
                                             </div>
                                         ) : (
-                                            <span className="text-zinc-300">--</span>
+                                            <span></span>
                                         )}
                                     </TableCell>
                                     <TableCell className="text-center">
@@ -466,7 +466,7 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
                                                 <span className="text-[10px] text-zinc-400">Average Score</span>
                                             </div>
                                         ) : (
-                                            <span className="text-zinc-300">--</span>
+                                            <span></span>
                                         )}
                                     </TableCell>
                                     <TableCell>
@@ -518,3 +518,4 @@ export const EnhancedAnalyticsView: React.FC<EnhancedAnalyticsViewProps> = ({ da
         </div>
     );
 };
+

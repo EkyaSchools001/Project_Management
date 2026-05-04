@@ -7,6 +7,7 @@ on:
     paths:
       - 'backend/**'
       - 'database/**'
+      - '.github/workflows/**'
   workflow_dispatch:
 
 jobs:
@@ -46,7 +47,7 @@ jobs:
             # 5. Restarting the backend with PM2
             # We delete the existing process to ensure a clean start with the new build
             pm2 delete backend || true
-            pm2 start dist/index.js --name "backend"
+            pm2 start dist/index.js --name "backend" -i max
             pm2 save
 
             echo "--- Deployment Complete ---"

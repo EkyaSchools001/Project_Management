@@ -268,10 +268,14 @@ export function FormWorkflowsConfig() {
                                                     </SelectTrigger>
                                                     <SelectContent>
                                                         <SelectItem value="NONE">Any / Not Specified</SelectItem>
-                                                        <SelectItem disabled value="label-core" className="font-bold text-gray-800 bg-gray-50">--- Core Subjects ---</SelectItem>
-                                                        {coreSubjects.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
-                                                        <SelectItem disabled value="label-noncore" className="font-bold text-gray-800 bg-gray-50 mt-2">--- Non-Core Subjects ---</SelectItem>
-                                                        {nonCoreSubjects.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                                                        <SelectGroup>
+                                                            <SelectLabel className="font-bold text-blue-700 bg-blue-50/50 py-1.5 px-3 rounded-sm text-[10px] uppercase tracking-widest mt-2 mb-1">Core Subjects</SelectLabel>
+                                                            {coreSubjects.map(s => <SelectItem key={s} value={s} className="pl-6">{s}</SelectItem>)}
+                                                        </SelectGroup>
+                                                        <SelectGroup>
+                                                            <SelectLabel className="font-bold text-blue-700 bg-blue-50/50 py-1.5 px-3 rounded-sm text-[10px] uppercase tracking-widest mt-4 mb-1">Non-Core Subjects</SelectLabel>
+                                                            {nonCoreSubjects.map(s => <SelectItem key={s} value={s} className="pl-6">{s}</SelectItem>)}
+                                                        </SelectGroup>
                                                     </SelectContent>
                                                 </Select>
                                             </div>

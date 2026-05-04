@@ -4,7 +4,7 @@ services:
   api:
     build: .
     ports:
-      - "4000:4000"
+      - "3000:3000"
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/school_growth_hub?schema=public
       - JWT_SECRET=your-secret-key

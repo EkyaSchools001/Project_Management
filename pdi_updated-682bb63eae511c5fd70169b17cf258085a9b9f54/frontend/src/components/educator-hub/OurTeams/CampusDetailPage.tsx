@@ -54,13 +54,8 @@ export const CampusDetailPage = ({ data }: CampusDetailPageProps) => {
       breadcrumbPath={`/campuses/${slug}`}
       accentColor={highlightColor}
       onEdit={() => setIsEditorOpen(true)}
+      backgroundImage={campusData.heroImage}
     >
-      <CampusHero 
-        title={campusData.schoolName}
-        backgroundImage={campusData.heroImage}
-        accentColor={highlightColor}
-      />
-
       <PageEditorControls 
         settingKey={settingKey}
         initialData={campusData}
@@ -127,23 +122,19 @@ export const CampusDetailPage = ({ data }: CampusDetailPageProps) => {
         </div>
       </div>
 
-      {campusData.instructionCategories ? (
-        campusData.instructionCategories.map((category, index) => (
-          <InstructionList 
-            key={category.title}
-            title={category.title}
-            instructions={category.items}
-            accentColor={highlightColor}
-            backgroundColor={index % 2 === 1 ? "white" : undefined}
-          />
-        ))
-      ) : (
-        <InstructionList 
-          id="instructions"
-          instructions={campusData.instructions || []}
-          accentColor={highlightColor}
-        />
-      )}
+      {campusData.instructionCategories && 
+        campusData.instructionCategories
+          .filter(category => category.title && category.title !== "GENERAL INSTRUCTIONS")
+          .map((category, index) => (
+            <InstructionList 
+              key={category.title}
+              title={category.title}
+              instructions={category.items}
+              accentColor={highlightColor}
+              backgroundColor={index % 2 === 1 ? "white" : undefined}
+            />
+          ))
+      }
     </CampusPageLayout>
   );
 };

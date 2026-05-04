@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { 
+  BookOpen,
   Book, 
   Heart, 
   Shield, 
@@ -27,6 +28,8 @@ import { cn } from "@/lib/utils";
 import { useAuth } from "@/hooks/useAuth";
 import { settingsService } from "@/services/settingsService";
 import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdentity/PageEditorControls";
+import { PortalBanner } from "@/components/layout/PortalBanner";
+import { BookOpenText } from "@phosphor-icons/react";
 import { PencilSimple } from "@phosphor-icons/react";
 
 const EducatorGuide = () => {
@@ -65,7 +68,7 @@ const EducatorGuide = () => {
 
     dutyTitle: "DUTY OF CARE",
     dutySubtitle: "Navigating the Classroom with Confidence and Professionalism",
-    dutyQuote: '"Research confirms that the teacher makes the greatest difference in the learning success of students."',
+    dutyQuote: 'Research confirms that the teacher makes the greatest difference in the learning success of students.',
     dutyDesc: "Teaching is a physically and emotionally demanding career but also incredibly rewarding. Teachers must demonstrate professionalism, patience, responsibility, and compassion in every interaction within the classroom.",
 
     profTitle: "PROFESSIONALISM",
@@ -131,120 +134,130 @@ const EducatorGuide = () => {
   }, []);
 
   const scrollTo = (id: string) => {
+    setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 80,
-        behavior: "smooth"
-      });
+      element.scrollIntoView({ behavior: "smooth" });
+      
+      // Add highlight effect
+      element.classList.add("highlight-section");
+      setTimeout(() => {
+        element.classList.remove("highlight-section");
+      }, 3000); // Remove after 3 seconds (animation duration * 3)
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 relative flex flex-col">
-      {/* Sticky Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-black/5 px-6 py-2 overflow-x-auto scrollbar-hide shrink-0">
-        <div className="max-w-7xl mx-auto flex gap-6 whitespace-nowrap">
-          {sections.map((s) => (
-            <button
-              key={s.id}
-              onClick={() => scrollTo(s.id)}
-              className={cn(
-                "text-sm font-semibold transition-all py-2 border-b-2 px-1",
-                activeSection === s.id 
-                  ? "text-[#EA104A] border-[#EA104A]" 
-                  : "text-muted-foreground border-transparent hover:text-[#EA104A]"
-              )}
-            >
-              {s.label}
-            </button>
-          ))}
+    <div className="min-h-screen bg-slate-50 relative flex flex-col font-sans">
+      <style>
+        {`
+          @keyframes highlight-blink {
+            0% { outline: 4px solid transparent; outline-offset: 4px; border-radius: 24px; }
+            50% { outline: 4px solid #EA104A; outline-offset: 4px; border-radius: 24px; }
+            100% { outline: 4px solid transparent; outline-offset: 4px; border-radius: 24px; }
+          }
+          .highlight-section {
+            animation: highlight-blink 0.6s ease-in-out 4;
+            position: relative;
+            z-index: 10;
+          }
+        `}
+      </style>
+      {/* 1. Header Banner */}
+      <PortalBanner 
+        title={data.headerTitle}
+        subtitle={data.headerSubtitle}
+        onBack={() => navigate(-1)}
+        onEdit={() => setIsEditorOpen(true)}
+        canEdit={canEdit()}
+        icon={BookOpenText}
+        className="mt-6 mb-12"
+      />
+
+      {/* 2. Sticky Navigation Bar */}
+      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-black/5 shadow-sm px-6 py-3 overflow-x-auto scrollbar-hide shrink-0 transition-all duration-300">
+        <div className="max-w-7xl mx-auto flex gap-1 whitespace-nowrap">
+          {sections.map((s) => {
+            const active = activeSection === s.id;
+            return (
+              <button
+                key={s.id}
+                onClick={() => scrollTo(s.id)}
+                className={cn(
+                  "flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300",
+                  active 
+                    ? "bg-[#EA104A] text-white shadow-md shadow-[#EA104A]/30 scale-105" 
+                    : "text-[#666] hover:bg-black/5 hover:text-[#1A1A1A]"
+                )}
+              >
+                {s.label}
+              </button>
+            );
+          })}
         </div>
       </nav>
 
       <div className="flex-1">
-        {/* Header Banner */}
-        <header id="overview" className="bg-white border-b border-black/5 relative">
-          {canEdit() && (
-            <Button 
-              className="absolute top-6 right-6 bg-[#EA104A] hover:bg-[#C40E3E] text-white gap-2 z-10 shadow-lg font-bold"
-              onClick={() => setIsEditorOpen(true)}
-            >
-              <PencilSimple size={18} weight="bold" />
-              Edit Content
-            </Button>
-          )}
+        <PageEditorControls 
+          settingKey="hr_educator_guide"
+          initialData={data}
+          onSave={setData}
+          title="Edit Educator Guide Background"
+          isOpenExternal={isEditorOpen}
+          onOpenChangeExternal={setIsEditorOpen}
+          hideFloatingButton={true}
+          fields={[
+            { key: "headerPrefix", label: "Header Prefix", type: "input" },
+            { key: "headerTitle", label: "Header Title", type: "input" },
+            { key: "headerSubtitle", label: "Header Subtitle", type: "input" },
+            { key: "headerDesc1", label: "Header Description 1", type: "textarea" },
+            { key: "headerDesc2", label: "Header Description 2", type: "textarea" },
+            { key: "handbookTitle", label: "Handbook Title", type: "input" },
+            { key: "handbookDesc1", label: "Handbook Description 1", type: "textarea" },
+            { key: "handbookDesc2", label: "Handbook Description 2", type: "textarea" },
+            { key: "handbookBtnText", label: "Handbook Button Text", type: "input" },
+            { key: "handbookUrl", label: "Handbook URL Link", type: "input" },
+            { key: "dutyTitle", label: "Duty of Care Title", type: "input" },
+            { key: "dutySubtitle", label: "Duty of Care Subtitle", type: "input" },
+            { key: "dutyQuote", label: "Duty of Care Quote", type: "textarea" },
+            { key: "dutyDesc", label: "Duty of Care Description", type: "textarea" },
+            { key: "profTitle", label: "Professionalism Title", type: "input" },
+            { key: "profPoints", label: "Professionalism Points (1 per line)", type: "textarea" },
+            { key: "prepTitle", label: "Be Prepared Title", type: "input" },
+            { key: "prepPoints", label: "Be Prepared Points (1 per line)", type: "textarea" },
+            { key: "orgTitle", label: "Be Organized Title", type: "input" },
+            { key: "orgPoints", label: "Be Organized Points (1 per line)", type: "textarea" },
+            { key: "patTitle", label: "Be Patient Title", type: "input" },
+            { key: "patPoints", label: "Be Patient Points (1 per line)", type: "textarea" },
+            { key: "realTitle", label: "Real Person Title", type: "input" },
+            { key: "realSubtitle", label: "Real Person Subtitle", type: "input" },
+            { key: "realPoints", label: "Real Person Points (1 per line)", type: "textarea" },
+            { key: "discTitle", label: "Discipline Title", type: "input" },
+            { key: "discPoints", label: "Discipline Points (1 per line)", type: "textarea" },
+            { key: "selfCareTitle", label: "Self Care Title", type: "input" },
+            { key: "selfCareDesc", label: "Self Care Description", type: "textarea" },
+            { key: "selfCarePoints", label: "Self Care Points (1 per line)", type: "textarea" },
+            { key: "headerImgUrl", label: "Header Image URL", type: "input" },
+            { key: "dutyImgUrl", label: "Duty Image URL", type: "input" },
+            { key: "selfCareImgUrl", label: "Self Care Image URL", type: "input" },
+          ]}
+        />
 
-          <Button
-            variant="ghost"
-            onClick={() => navigate(-1)}
-            className="absolute top-6 left-10 text-[#EA104A] hover:bg-[#EA104A]/5 gap-2 z-10 font-bold"
-          >
-            <ArrowLeft size={18} />
-            <span>Back</span>
-          </Button>
-
-          <PageEditorControls 
-            settingKey="hr_educator_guide"
-            initialData={data}
-            onSave={setData}
-            title="Edit Educator Guide Background"
-            isOpenExternal={isEditorOpen}
-            onOpenChangeExternal={setIsEditorOpen}
-            hideFloatingButton={true}
-            fields={[
-              { key: "headerPrefix", label: "Header Prefix", type: "input" },
-              { key: "headerTitle", label: "Header Title", type: "input" },
-              { key: "headerSubtitle", label: "Header Subtitle", type: "input" },
-              { key: "headerDesc1", label: "Header Description 1", type: "textarea" },
-              { key: "headerDesc2", label: "Header Description 2", type: "textarea" },
-              { key: "handbookTitle", label: "Handbook Title", type: "input" },
-              { key: "handbookDesc1", label: "Handbook Description 1", type: "textarea" },
-              { key: "handbookDesc2", label: "Handbook Description 2", type: "textarea" },
-              { key: "handbookBtnText", label: "Handbook Button Text", type: "input" },
-              { key: "handbookUrl", label: "Handbook URL Link", type: "input" },
-              { key: "dutyTitle", label: "Duty of Care Title", type: "input" },
-              { key: "dutySubtitle", label: "Duty of Care Subtitle", type: "input" },
-              { key: "dutyQuote", label: "Duty of Care Quote", type: "textarea" },
-              { key: "dutyDesc", label: "Duty of Care Description", type: "textarea" },
-              { key: "profTitle", label: "Professionalism Title", type: "input" },
-              { key: "profPoints", label: "Professionalism Points (1 per line)", type: "textarea" },
-              { key: "prepTitle", label: "Be Prepared Title", type: "input" },
-              { key: "prepPoints", label: "Be Prepared Points (1 per line)", type: "textarea" },
-              { key: "orgTitle", label: "Be Organized Title", type: "input" },
-              { key: "orgPoints", label: "Be Organized Points (1 per line)", type: "textarea" },
-              { key: "patTitle", label: "Be Patient Title", type: "input" },
-              { key: "patPoints", label: "Be Patient Points (1 per line)", type: "textarea" },
-              { key: "realTitle", label: "Real Person Title", type: "input" },
-              { key: "realSubtitle", label: "Real Person Subtitle", type: "input" },
-              { key: "realPoints", label: "Real Person Points (1 per line)", type: "textarea" },
-              { key: "discTitle", label: "Discipline Title", type: "input" },
-              { key: "discPoints", label: "Discipline Points (1 per line)", type: "textarea" },
-              { key: "selfCareTitle", label: "Self Care Title", type: "input" },
-              { key: "selfCareDesc", label: "Self Care Description", type: "textarea" },
-              { key: "selfCarePoints", label: "Self Care Points (1 per line)", type: "textarea" },
-              { key: "headerImgUrl", label: "Header Image URL", type: "input" },
-              { key: "dutyImgUrl", label: "Duty Image URL", type: "input" },
-              { key: "selfCareImgUrl", label: "Self Care Image URL", type: "input" },
-            ]}
-          />
-
-          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 p-12 lg:p-20 items-center">
-            <div className="space-y-6">
-              <div className="inline-block p-1 px-3 rounded-full bg-[#EA104A]/10 text-[#EA104A] font-bold text-xs uppercase tracking-widest">
-                {data.headerPrefix}
-              </div>
-              <h1 className="text-5xl md:text-6xl font-black text-[#1A1A1A] tracking-tighter">
-                {data.headerTitle}
-              </h1>
-              <p className="text-xl md:text-2xl text-[#EA104A] font-semibold leading-tight">
-                {data.headerSubtitle}
-              </p>
-              <div className="space-y-4 text-lg text-slate-600 leading-relaxed text-justify">
-                <p>
+        <section id="overview" className="max-w-7xl mx-auto px-6 py-12 lg:py-20 scroll-mt-32">
+          <div className="flex items-center gap-3 mb-10">
+            <div className="h-8 w-1.5 bg-[#EA104A] rounded-full"></div>
+            <h2 className="text-2xl font-bold text-[#EA104A] uppercase tracking-wider">
+              Overview
+            </h2>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div className="space-y-6 text-lg text-[#1A1A1A] leading-relaxed">
+                <p className="text-left">
                   {data.headerDesc1}
                 </p>
-                <p>
+                <p className="text-left">
                   {data.headerDesc2}
                 </p>
               </div>
@@ -255,31 +268,36 @@ const EducatorGuide = () => {
                 <img 
                   src={data.headerImgUrl} 
                   alt="Classroom support" 
-                  className="w-full h-auto"
+                  className="w-full h-auto object-cover"
                 />
               </div>
             </div>
           </div>
-        </header>
+        </section>
 
         <main className="max-w-7xl mx-auto px-6 py-24 space-y-32">
           {/* Section 2 – Teacher Companion Handbook */}
-          <section id="handbook" className="scroll-mt-20">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-sm font-bold text-[#EA104A] uppercase tracking-[0.2em] mb-4">Section 2</h2>
-              <h3 className="text-4xl font-bold text-[#1A1A1A]">{data.handbookTitle}</h3>
+          <section id="handbook" className="scroll-mt-32">
+            <div className="flex items-center gap-3 mb-10">
+              <div className="h-8 w-1.5 bg-[#EA104A] rounded-full"></div>
+              <h2 className="text-2xl font-bold text-[#EA104A] uppercase tracking-wider">
+                Handbook
+              </h2>
             </div>
             
-            <Card className="border-none shadow-xl overflow-hidden bg-white">
+            <Card className="border-none shadow-xl overflow-hidden bg-white rounded-3xl">
               <div className="grid md:grid-cols-2">
                 <div className="p-10 md:p-16 space-y-8">
-                  <p className="text-lg text-[#555555] leading-relaxed whitespace-pre-wrap">
-                    {data.handbookDesc1}
-                  </p>
-                  <p className="text-lg text-[#555555] leading-relaxed whitespace-pre-wrap">
-                    {data.handbookDesc2}
-                  </p>
-                  <Button asChild className="bg-[#EA104A] hover:bg-[#C40E3E] text-white py-6 h-auto px-10 text-lg rounded-xl flex items-center gap-3 w-fit">
+                  <h3 className="text-3xl font-bold text-[#1A1A1A]">{data.handbookTitle}</h3>
+                  <div className="space-y-4">
+                    <p className="text-lg text-[#1A1A1A] leading-relaxed whitespace-pre-wrap">
+                      {data.handbookDesc1}
+                    </p>
+                    <p className="text-lg text-[#1A1A1A] leading-relaxed whitespace-pre-wrap">
+                      {data.handbookDesc2}
+                    </p>
+                  </div>
+                  <Button asChild className="bg-[#EA104A] hover:bg-[#C40E3E] text-white py-6 h-auto px-10 text-lg rounded-xl flex items-center gap-3 w-fit shadow-lg shadow-[#EA104A]/20 transition-all hover:scale-105">
                     <a href={data.handbookUrl} target="_blank" rel="noopener noreferrer">
                       <FileText size={20} />
                       {data.handbookBtnText}
@@ -300,7 +318,14 @@ const EducatorGuide = () => {
           </section>
 
           {/* Section 3 – Navigating with Confidence */}
-          <section id="confidence" className="scroll-mt-20">
+          <section id="confidence" className="scroll-mt-32">
+            <div className="flex items-center gap-3 mb-10">
+              <div className="h-8 w-1.5 bg-[#EA104A] rounded-full"></div>
+              <h2 className="text-2xl font-bold text-[#EA104A] uppercase tracking-wider">
+                Confidence
+              </h2>
+            </div>
+
             <div className="rounded-3xl overflow-hidden relative shadow-2xl h-[400px] flex items-center mb-16 border border-black/5">
               <img 
                 src={data.dutyImgUrl} 
@@ -318,7 +343,7 @@ const EducatorGuide = () => {
               <p className="text-2xl text-[#1A1A1A] font-medium italic leading-relaxed">
                 {data.dutyQuote}
               </p>
-              <p className="text-lg text-[#555555] leading-relaxed whitespace-pre-wrap">
+              <p className="text-lg text-[#1A1A1A] leading-relaxed whitespace-pre-wrap">
                 {data.dutyDesc}
               </p>
             </div>
@@ -337,7 +362,7 @@ const EducatorGuide = () => {
                {data.profPoints.split('\n').filter(p => p.trim()).map((item, idx) => (
                  <div key={idx} className="p-6 bg-white rounded-2xl border border-black/5 shadow-sm hover:shadow-card-hover transition-all flex gap-4 group">
                     <CheckCircle2 className="shrink-0 w-5 h-5 text-[#EA104A] mt-0.5 opacity-40 group-hover:opacity-100 transition-opacity" />
-                    <p className="text-[#555555] leading-relaxed">{item}</p>
+                    <p className="text-[#1A1A1A] leading-relaxed">{item}</p>
                  </div>
                ))}
             </div>
@@ -353,7 +378,7 @@ const EducatorGuide = () => {
                </div>
                <ul className="space-y-4">
                   {data.prepPoints.split('\n').filter(p => p.trim()).map((text, i) => (
-                    <li key={i} className="flex gap-3 text-[#555555] group">
+                    <li key={i} className="flex gap-3 text-[#1A1A1A] group">
                        <CaretRight size={16} className="shrink-0 mt-1 text-[#EA104A] opacity-30 group-hover:translate-x-1 transition-all" />
                        <span className="leading-relaxed">{text}</span>
                     </li>
@@ -369,7 +394,7 @@ const EducatorGuide = () => {
                </div>
                <ul className="space-y-4">
                   {data.orgPoints.split('\n').filter(p => p.trim()).map((text, i) => (
-                    <li key={i} className="flex gap-3 text-[#555555] group">
+                    <li key={i} className="flex gap-3 text-[#1A1A1A] group">
                        <CaretRight size={16} className="shrink-0 mt-1 text-[#EA104A] opacity-30 group-hover:translate-x-1 transition-all" />
                        <span className="leading-relaxed">{text}</span>
                     </li>
@@ -385,7 +410,7 @@ const EducatorGuide = () => {
                </div>
                <ul className="space-y-4">
                   {data.patPoints.split('\n').filter(p => p.trim()).map((text, i) => (
-                    <li key={i} className="flex gap-3 text-[#555555] group">
+                    <li key={i} className="flex gap-3 text-[#1A1A1A] group">
                        <CaretRight size={16} className="shrink-0 mt-1 text-[#EA104A] opacity-30 group-hover:translate-x-1 transition-all" />
                        <span className="leading-relaxed">{text}</span>
                     </li>
@@ -402,7 +427,7 @@ const EducatorGuide = () => {
                <h4 className="text-lg font-bold mb-6 text-[#1A1A1A]">{data.realSubtitle}</h4>
                <ul className="space-y-4">
                   {data.realPoints.split('\n').filter(p => p.trim()).map((text, i) => (
-                    <li key={i} className="flex gap-3 text-[#555555] group">
+                    <li key={i} className="flex gap-3 text-[#1A1A1A] group">
                        <CaretRight size={16} className="shrink-0 mt-1 text-[#EA104A] opacity-30 group-hover:translate-x-1 transition-all" />
                        <span className="leading-relaxed">{text}</span>
                     </li>
@@ -445,14 +470,14 @@ const EducatorGuide = () => {
                          <Coffee className="text-[#EA104A]" />
                          <h3 className="text-3xl font-bold tracking-tight">{data.selfCareTitle}</h3>
                       </div>
-                      <p className="text-[#555555] text-lg leading-relaxed whitespace-pre-wrap">
+                      <p className="text-[#1A1A1A] text-lg leading-relaxed whitespace-pre-wrap">
                         {data.selfCareDesc}
                       </p>
                    </div>
                    
                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       {data.selfCarePoints.split('\n').filter(p => p.trim()).map((item, i) => (
-                        <div key={i} className="flex gap-3 text-sm text-[#333333] font-medium p-4 bg-white rounded-xl shadow-sm border border-black/5 hover:border-[#EA104A]/20 transition-all">
+                        <div key={i} className="flex gap-3 text-sm text-[#1A1A1A] font-medium p-4 bg-white rounded-xl shadow-sm border border-black/5 hover:border-[#EA104A]/20 transition-all">
                            <CheckCircle2 size={18} className="text-[#EA104A] shrink-0" />
                            {item}
                         </div>

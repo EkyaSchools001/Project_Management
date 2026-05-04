@@ -78,6 +78,7 @@ export const useVoiceConversation = ({
             setTimeout(() => {
                 setIsProcessing(false);
                 setVoiceTranscript("");
+                onListeningStateChangeRef.current(false);
             }, 1000);
         }
     };
@@ -129,7 +130,6 @@ export const useVoiceConversation = ({
                     mediaRecorderRef.current.stop();
                 }
                 setIsActivelyListening(false);
-                onListeningStateChangeRef.current(false);
             }, 15000);
 
         } catch (err) {
@@ -147,7 +147,9 @@ export const useVoiceConversation = ({
         if (timerRef.current) clearTimeout(timerRef.current);
         
         setIsActivelyListening(false);
-        onListeningStateChangeRef.current(false);
+        // We don't call onListeningStateChange(false) here because we want to 
+        // keep the overlay open in "Thinking" mode during transcription.
+        // It will be closed at the end of transcribeAudio.
         window.speechSynthesis.cancel();
     }, []);
 
@@ -161,17 +163,45 @@ export const useVoiceConversation = ({
         };
     }, []);
 
-    // 6. Text-to-speech
+    // 6. Text-to-speech with robust handling for long text
     const speak = useCallback((text: string) => {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.rate = 1.0;
+        if (!text) return;
         
-        const voices = window.speechSynthesis.getVoices();
-        const femaleVoice = voices.find(v => v.name.includes('Female') || v.name.includes('Samantha') || v.name.includes('Google US English'));
-        if (femaleVoice) utterance.voice = femaleVoice;
-
-        window.speechSynthesis.speak(utterance);
+        window.speechSynthesis.cancel();
+        
+        // Clean text of common issues
+        const cleanText = text.replace(/[*_~`]/g, '').trim();
+        
+        // Split long text into manageable chunks (synthesis often fails on very long strings)
+        const chunks = cleanText.match(/[^.!?]+[.!?]+/g) || [cleanText];
+        
+        let currentChunk = 0;
+        
+        const speakNextChunk = () => {
+            if (currentChunk >= chunks.length) return;
+            
+            const utterance = new SpeechSynthesisUtterance(chunks[currentChunk].trim());
+            utterance.rate = 1.05; // Slightly faster for natural feel
+            utterance.pitch = 1.0;
+            
+            // Try to find a high-quality natural voice
+            const voices = window.speechSynthesis.getVoices();
+            const preferredVoice = voices.find(v => 
+                (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Female')) && 
+                v.lang.startsWith('en')
+            ) || voices.find(v => v.lang.startsWith('en'));
+            
+            if (preferredVoice) utterance.voice = preferredVoice;
+            
+            utterance.onend = () => {
+                currentChunk++;
+                speakNextChunk();
+            };
+            
+            window.speechSynthesis.speak(utterance);
+        };
+        
+        speakNextChunk();
     }, []);
 
     return { 

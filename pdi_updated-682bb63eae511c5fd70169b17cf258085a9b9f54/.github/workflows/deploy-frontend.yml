@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'frontend/**'
+      - '.github/workflows/**'
   workflow_dispatch:
 
 jobs:
@@ -41,7 +42,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-north-1 # Updated to match your bucket's region
+          aws-region: ap-south-2 # Matches your bucket's region (Hyderabad)
 
       - name: Deploy to S3
         run: |

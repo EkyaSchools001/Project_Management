@@ -5,11 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import {
     ChevronLeft, Loader2, Users, History as HistoryIcon,
-    Target, Wrench, BarChart3, ChevronDown, ChevronUp, X, Plus, Calendar as CalendarIcon, FileText
+    Target, Wrench, BarChart3, ChevronDown, ChevronUp, X, Plus, Calendar as CalendarIcon, FileText, MessageSquare
 } from "lucide-react";
 import TeacherSelection from "@/components/growth/TeacherSelection";
 import CoreModules from "@/components/growth/CoreModules";
-import NonCoreModules from "@/components/growth/NonCoreModules";
 import { toast } from "sonner";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
@@ -62,6 +61,10 @@ const LeaderGrowthPage = () => {
         teacherId: "",
         teacherName: "",
     });
+
+    const [isClusterOptionsOpen, setIsClusterOptionsOpen] = useState(false);
+    const [selectedCluster, setSelectedCluster] = useState<string | null>(null);
+
 
     const handleScheduleEvent = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -249,6 +252,7 @@ const LeaderGrowthPage = () => {
     }
 
     return (
+        <>
         <GrowthLayout allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN']}>
             <div className="space-y-8 animate-in fade-in duration-500">
                 {!selectedTeacher ? (
@@ -661,8 +665,40 @@ const LeaderGrowthPage = () => {
                             </div>
                         )}
 
-                        {/* ── Teachers Registry ──────────────────────────────────────────── */}
-                        <Card className="  shadow-none bg-transparent">
+                        {/* ── Filters ────────────────────────────────────────────────── */}
+                        <div className="flex flex-wrap items-center gap-8 mb-8 text-sm font-semibold text-[#1F2839]">
+                            {[
+                                { label: 'All Clusters', options: ['Cluster 1', 'Cluster 2', 'Cluster 3', 'Cluster 4', 'Cluster 5'] },
+                                { label: 'All Teacher Types', options: ['Classroom', 'Specialist', 'Assistant'] },
+                                { label: 'All Observation Types', options: ['Scheduled', 'Unscheduled', 'Quick Feedback'] },
+                                { label: 'All Statuses', options: ['Pending', 'Completed', 'Draft'] },
+                                { label: 'This Cycle', options: ['This Cycle', 'Previous Cycle', 'All Cycles'] }
+                            ].map((filter, i) => (
+                                <div key={i} className="flex items-center gap-2 cursor-pointer hover:text-primary transition-colors">
+                                    <span>{filter.label}</span>
+                                    <ChevronDown className="w-4 h-4 text-slate-400" />
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* ── Cluster Buttons ────────────────────────────────────────── */}
+                        <div className="flex flex-wrap gap-4 mb-6">
+                            {['Cluster 1', 'Cluster 2', 'Cluster 3', 'Cluster 4', 'Cluster 5'].map((cluster) => (
+                                <Button 
+                                    key={cluster}
+                                    variant="outline" 
+                                    className="flex-1 min-w-[120px] py-7 text-lg font-bold border-primary/20 bg-white hover:bg-primary/5 hover:border-primary text-primary transition-all shadow-sm rounded-xl"
+                                    onClick={() => {
+                                        setSelectedCluster(cluster);
+                                        setIsClusterOptionsOpen(true);
+                                    }}
+                                >
+                                    {cluster}
+                                </Button>
+                            ))}
+                        </div>
+
+                        <Card id="teacher-registry" className="  shadow-none bg-transparent">
                             <CardHeader className="px-0">
                                 <CardTitle className="flex items-center gap-2">
                                     <Users className="w-5 h-5 text-primary" />
@@ -818,20 +854,13 @@ const LeaderGrowthPage = () => {
 
                         <section className="space-y-6">
                             <div className="flex items-center gap-2 pb-2 border-b">
-                                <h2 className="text-xl font-semibold">Focused Observation Modules</h2>
+                                <h2 className="text-xl font-semibold">Observation Module</h2>
                             </div>
-                            {selectedTeacher.academics === 'CORE'
-                                ? <CoreModules
-                                    teacherId={selectedTeacher.id}
-                                    teacherName={selectedTeacher.fullName}
-                                    teacherEmail={selectedTeacher.email}
-                                />
-                                : <NonCoreModules
-                                    teacherId={selectedTeacher.id}
-                                    teacherName={selectedTeacher.fullName}
-                                    teacherEmail={selectedTeacher.email}
-                                />
-                            }
+                            <CoreModules
+                                teacherId={selectedTeacher.id}
+                                teacherName={selectedTeacher.fullName}
+                                teacherEmail={selectedTeacher.email}
+                            />
                         </section>
 
                         {/* Unified Observation History */}
@@ -893,159 +922,77 @@ const LeaderGrowthPage = () => {
                 )}
             </div>
 
-            {/* Schedule Event Dialog */}
-            <Dialog open={isScheduleOpen} onOpenChange={setIsScheduleOpen}>
-                <DialogContent className="max-w-2xl">
+        </GrowthLayout>
+
+            {/* Cluster Options Dialog */}
+            <Dialog open={isClusterOptionsOpen} onOpenChange={setIsClusterOptionsOpen}>
+                <DialogContent className="sm:max-w-md bg-[#fafafa]">
                     <DialogHeader>
-                        <DialogTitle>Schedule Training Event/Observations</DialogTitle>
-                        <DialogDescription>Add a new session to the training calendar for your campus.</DialogDescription>
+                        <DialogTitle className="text-2xl font-black text-primary">
+                            {selectedCluster} Options
+                        </DialogTitle>
+                        <DialogDescription className="font-medium">
+                            Choose an action for this cluster of teachers.
+                        </DialogDescription>
                     </DialogHeader>
-
-                    <form onSubmit={handleScheduleEvent} className="space-y-4">
-                        <div className="space-y-3">
-                            <Label>Entry Type</Label>
-                            <RadioGroup
-                                value={newEvent.entryType}
-                                onValueChange={(val) => setNewEvent({
-                                    ...newEvent,
-                                    entryType: val,
-                                    type: val === 'Observation' ? 'Scheduled Observations' : 'Pedagogy'
-                                })}
-                                className="flex gap-4"
-                            >
-                                <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="Training Event" id="g-type-event" />
-                                    <Label htmlFor="g-type-event" className="cursor-pointer">Training Event</Label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="Observation" id="g-type-obs" />
-                                    <Label htmlFor="g-type-obs" className="cursor-pointer">Observation</Label>
-                                </div>
-                            </RadioGroup>
-                        </div>
-
-                        <div className="space-y-2">
-                            <Label htmlFor="g-event-title">{newEvent.entryType === 'Observation' ? 'Observation Title' : 'Event Title'}</Label>
-                            <Input
-                                id="g-event-title"
-                                placeholder={newEvent.entryType === 'Observation' ? 'e.g. Peer Observation' : 'Workshop Name'}
-                                value={newEvent.title}
-                                onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-                                required
-                            />
-                        </div>
-
-                        {newEvent.entryType === 'Observation' && (
-                            <div className="space-y-2">
-                                <Label>Select Teacher</Label>
-                                <Select
-                                    value={newEvent.teacherId}
-                                    onValueChange={(val) => {
-                                        const teacher = teachers.find(t => t.id === val);
-                                        setNewEvent({ ...newEvent, teacherId: val, teacherName: teacher?.fullName || "" });
-                                    }}
-                                >
-                                    <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="Select a teacher to observe" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {teachers.map((teacher) => (
-                                            <SelectItem key={teacher.id} value={teacher.id}>
-                                                {teacher.fullName}
-                                            </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
+                    <div className="grid grid-cols-1 gap-4 py-6">
+                        <Button 
+                            variant="outline" 
+                            className="justify-start py-10 text-lg font-black gap-4 border-emerald-200 bg-white hover:bg-emerald-50 hover:border-emerald-400 text-emerald-800 transition-all rounded-2xl shadow-sm"
+                            onClick={() => {
+                                setIsClusterOptionsOpen(false);
+                                const clusterNum = selectedCluster?.replace('Cluster ', '') || '1';
+                                navigate(`/leader/observations/cluster/${clusterNum}/scheduled`);
+                            }}
+                        >
+                            <div className="p-3 bg-emerald-100 rounded-xl">
+                                <CalendarIcon className="w-6 h-6 text-emerald-600" />
                             </div>
-                        )}
-
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="space-y-2">
-                                <Label htmlFor="g-event-type">Type</Label>
-                                <Select
-                                    value={newEvent.type}
-                                    onValueChange={(val) => setNewEvent({ ...newEvent, type: val })}
-                                >
-                                    <SelectTrigger><SelectValue /></SelectTrigger>
-                                    <SelectContent>
-                                        {newEvent.entryType === 'Observation' ? (
-                                            <SelectItem value="Scheduled Observations">Scheduled Observations</SelectItem>
-                                        ) : (
-                                            <>
-                                                <SelectItem value="Pedagogy">Pedagogy</SelectItem>
-                                                <SelectItem value="Technology">Technology</SelectItem>
-                                                <SelectItem value="Assessment">Assessment</SelectItem>
-                                                <SelectItem value="Culture">Culture</SelectItem>
-                                            </>
-                                        )}
-                                    </SelectContent>
-                                </Select>
+                            <div className="text-left">
+                                <p>Scheduled Observation</p>
+                                <p className="text-xs font-medium text-emerald-600/70">Plan a future session</p>
                             </div>
-                            <div className="space-y-2">
-                                <Label>Date</Label>
-                                <Popover>
-                                    <PopoverTrigger asChild>
-                                        <Button
-                                            variant="outline"
-                                            className={cn(
-                                                "w-full justify-start text-left font-normal",
-                                                !newEvent.date && "text-muted-foreground"
-                                            )}
-                                        >
-                                            <CalendarIcon className="mr-2 h-4 w-4" />
-                                            {newEvent.date ? format(newEvent.date, "PPP") : <span>Pick a date</span>}
-                                        </Button>
-                                    </PopoverTrigger>
-                                    <PopoverContent className="w-auto p-0" align="start">
-                                        <CalendarComponent
-                                            mode="single"
-                                            selected={newEvent.date}
-                                            onSelect={(d) => d && setNewEvent({ ...newEvent, date: d })}
-                                            initialFocus
-                                        />
-                                    </PopoverContent>
-                                </Popover>
+                        </Button>
+                        
+                        <Button 
+                            variant="outline" 
+                            className="justify-start py-10 text-lg font-black gap-4 border-blue-200 bg-white hover:bg-blue-50 hover:border-blue-400 text-blue-800 transition-all rounded-2xl shadow-sm"
+                            onClick={() => {
+                                setIsClusterOptionsOpen(false);
+                                const clusterNum = selectedCluster?.replace('Cluster ', '') || '1';
+                                navigate(`/leader/observations/cluster/${clusterNum}/unscheduled`);
+                            }}
+                        >
+                            <div className="p-3 bg-blue-100 rounded-xl">
+                                <Plus className="w-6 h-6 text-blue-600" />
                             </div>
-                        </div>
+                            <div className="text-left">
+                                <p>Unscheduled Observation</p>
+                                <p className="text-xs font-medium text-blue-600/70">Start recording now</p>
+                            </div>
+                        </Button>
 
-                        <div className="space-y-2">
-                            <Label htmlFor="g-event-time">Time</Label>
-                            <Select
-                                value={newEvent.time}
-                                onValueChange={(val) => setNewEvent({ ...newEvent, time: val })}
-                            >
-                                <SelectTrigger id="g-event-time">
-                                    <SelectValue placeholder="Select Time" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {TIME_SLOTS.map((slot) => (
-                                        <SelectItem key={slot} value={slot}>
-                                            {slot}
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
-                        </div>
-
-                        <div className="space-y-2">
-                            <Label htmlFor="g-event-location">Location</Label>
-                            <Input
-                                id="g-event-location"
-                                placeholder="Room/Lab Name"
-                                value={newEvent.location}
-                                onChange={(e) => setNewEvent({ ...newEvent, location: e.target.value })}
-                                required
-                            />
-                        </div>
-
-                        <div className="flex justify-end gap-3 pt-4">
-                            <Button type="button" variant="ghost" onClick={() => setIsScheduleOpen(false)}>Cancel</Button>
-                            <Button type="submit">Schedule Event</Button>
-                        </div>
-                    </form>
+                        <Button 
+                            variant="outline" 
+                            className="justify-start py-10 text-lg font-black gap-4 border-amber-200 bg-white hover:bg-amber-50 hover:border-amber-400 text-amber-800 transition-all rounded-2xl shadow-sm"
+                            onClick={() => {
+                                setIsClusterOptionsOpen(false);
+                                const clusterNum = selectedCluster?.replace('Cluster ', '') || '1';
+                                navigate(`/leader/observations/cluster/${clusterNum}/quick-feedback`);
+                            }}
+                        >
+                            <div className="p-3 bg-amber-100 rounded-xl">
+                                <MessageSquare className="w-6 h-6 text-amber-600" />
+                            </div>
+                            <div className="text-left">
+                                <p>Quick Feedback</p>
+                                <p className="text-xs font-medium text-amber-600/70">Short professional notes</p>
+                            </div>
+                        </Button>
+                    </div>
                 </DialogContent>
             </Dialog>
-        </GrowthLayout>
+        </>
     );
 };
 

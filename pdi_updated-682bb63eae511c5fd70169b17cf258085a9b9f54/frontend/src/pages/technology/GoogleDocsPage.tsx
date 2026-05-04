@@ -3,21 +3,27 @@ import {
   ArrowRight,
   Monitor,
   CheckCircle,
-  PencilSimple
+  PencilSimple,
+  FileText
 } from '@phosphor-icons/react';
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { settingsService } from "@/services/settingsService";
 import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdentity/PageEditorControls";
+import { PortalBanner } from "@/components/layout/PortalBanner";
+import { useNavigate } from "react-router-dom";
 
 export default function GoogleDocsPage() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [data, setData] = useState({
     heroTitle: "GOOGLE DOCS",
     heroImage: "/assets/technology/google_workspace_banner.png",
     introTitle: "INTRODUCTION",
     introContent: "Google Docs is a free Google app that provides users with the ability to create, edit, and collaborate with others live on the web. It also integrates with Google Drive, Google's storage app, creating a single place for you to access your document from anywhere! To get started with Google Docs, all you need is to create a Google account.",
+    objectiveTitle: "OBJECTIVES OF THE TUTORIAL",
+    trainingTitle: "GOOGLE TRAINING ON DOCS",
     objectiveGroups1Title: "Create or Import",
     objectiveGroups1Text: "Creating a new doc | https://drive.google.com/file/d/1BnnYrajrPQ2INilcMNtTiTOLtx78HvYl/view\nImport and convert old documents to Docs | https://drive.google.com/file/d/1aZ-fcy_wD-f_sQk9j_V5qWWLnzXmohNi/view",
     objectiveGroups2Title: "Share and collaborate",
@@ -50,15 +56,6 @@ export default function GoogleDocsPage() {
 
   return (
     <div className="min-h-screen bg-white relative">
-      {canEdit() && (
-        <Button 
-          className="absolute top-6 right-6 bg-white/20 hover:bg-white/30 text-white gap-2 z-50 shadow-lg font-bold border border-white/20"
-          onClick={() => setIsEditorOpen(true)}
-        >
-          <PencilSimple size={18} weight="bold" />
-          Edit Content
-        </Button>
-      )}
 
       <PageEditorControls 
         settingKey="page_tech_google_docs"
@@ -87,29 +84,23 @@ export default function GoogleDocsPage() {
         ]}
       />
 
-      {/* Hero Banner Section */}
-      <div className="relative w-full h-[300px] overflow-hidden">
-        <img 
-          src={data.heroImage} 
-          alt="Google Docs Banner"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <div className="relative z-10 space-y-4">
-            <h1 className="text-7xl font-bold tracking-[0.15em] text-white uppercase drop-shadow-2xl">
-              {data.heroTitle}
-            </h1>
-            <div className="h-2 w-full max-w-[400px] bg-rose-500 mx-auto rounded-full shadow-lg" />
-          </div>
-        </div>
-      </div>
+      <PortalBanner 
+        title={data.heroTitle}
+        subtitle="Create, edit, and collaborate on documents in real-time with Google Docs."
+        onBack={() => navigate(-1)}
+        onEdit={() => setIsEditorOpen(true)}
+        canEdit={canEdit()}
+        icon={FileText}
+        className="mt-6 mb-12"
+      />
 
       {/* Introduction Section */}
-      <section>
-        <div className="bg-rose-500 py-10 px-8">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-white uppercase tracking-wider">{data.introTitle}</h2>
+      <section className="mb-12">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="bg-rose-500 py-10 px-8 rounded-[2rem] shadow-lg">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-4xl font-bold text-white uppercase tracking-wider">{data.introTitle}</h2>
+            </div>
           </div>
         </div>
         
@@ -121,10 +112,12 @@ export default function GoogleDocsPage() {
       </section>
 
       {/* Objectives Section */}
-      <section>
-        <div className="bg-rose-500 py-10 px-8">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-white uppercase tracking-wider">{data.objectiveTitle}</h2>
+      <section className="mb-12">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="bg-rose-500 py-10 px-8 rounded-[2rem] shadow-lg">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-4xl font-bold text-white uppercase tracking-wider">{data.objectiveTitle}</h2>
+            </div>
           </div>
         </div>
 
@@ -161,10 +154,12 @@ export default function GoogleDocsPage() {
       </section>
 
       {/* Google Training Section */}
-      <section>
-        <div className="bg-rose-500 py-10 px-8">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-white uppercase tracking-wider">{data.trainingTitle}</h2>
+      <section className="mb-12">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="bg-rose-500 py-10 px-8 rounded-[2rem] shadow-lg">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-4xl font-bold text-white uppercase tracking-wider">{data.trainingTitle}</h2>
+            </div>
           </div>
         </div>
 

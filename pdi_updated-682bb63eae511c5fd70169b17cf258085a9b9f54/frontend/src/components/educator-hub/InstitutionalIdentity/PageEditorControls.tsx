@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { settingsService } from "@/services/settingsService";
 import { uploadService } from "@/services/uploadService";
+import { getAssetUrl } from "@/lib/utils";
 
 interface Field {
   key: string;
@@ -193,7 +194,7 @@ export const PageEditorControls = ({
                 {value ? (
                   <>
                     <img 
-                      src={value.startsWith('http') ? value : `${window.location.protocol}//${window.location.host}${value}`} 
+                      src={getAssetUrl(value)} 
                       alt="Preview" 
                       className="w-full h-full object-cover" 
                     />

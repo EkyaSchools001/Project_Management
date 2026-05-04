@@ -10,9 +10,12 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { settingsService } from "@/services/settingsService";
 import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdentity/PageEditorControls";
+import { PortalBanner } from "@/components/layout/PortalBanner";
+import { useNavigate } from "react-router-dom";
 
 export default function EmailSignaturePage() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [data, setData] = useState({
     heroTitle: "EMAIL SIGNATURE",
@@ -49,15 +52,6 @@ export default function EmailSignaturePage() {
 
   return (
     <div className="min-h-screen bg-white relative">
-      {canEdit() && (
-        <Button 
-          className="absolute top-6 right-6 bg-white/20 hover:bg-white/30 text-white gap-2 z-50 shadow-lg font-bold border border-white/20"
-          onClick={() => setIsEditorOpen(true)}
-        >
-          <PencilSimple size={18} weight="bold" />
-          Edit Content
-        </Button>
-      )}
 
       <PageEditorControls 
         settingKey="page_tech_email_signature"
@@ -82,20 +76,15 @@ export default function EmailSignaturePage() {
         ]}
       />
 
-      {/* Hero Banner Section */}
-      <div className="relative w-full h-[300px] overflow-hidden bg-gradient-to-br from-[#3D1414] via-[#5C1B1B] to-[#1A0A0A]">
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px'}} />
-        </div>
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <div className="relative z-10 space-y-4 px-4">
-            <h1 className="text-6xl md:text-8xl font-bold tracking-[0.15em] text-white uppercase drop-shadow-2xl text-center">
-              {data.heroTitle}<br/><span className="text-rose-500">{data.heroAccent}</span>
-            </h1>
-            <div className="h-1.5 w-full max-w-[400px] bg-rose-500 mx-auto rounded-full shadow-lg" />
-          </div>
-        </div>
-      </div>
+      <PortalBanner 
+        title={`${data.heroTitle} ${data.heroAccent}`}
+        subtitle="Download official brand assets and set up your institutional email signature."
+        onBack={() => navigate(-1)}
+        onEdit={() => setIsEditorOpen(true)}
+        canEdit={canEdit()}
+        icon={Envelope}
+        className="mt-6 mb-12"
+      />
 
       <div className="max-w-6xl mx-auto py-20 px-8 space-y-24">
         {/* Setup Instructions */}

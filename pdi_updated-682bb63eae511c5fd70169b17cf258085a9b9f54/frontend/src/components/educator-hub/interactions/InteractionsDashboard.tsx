@@ -115,7 +115,7 @@ export function InteractionsDashboard() {
   return (
     <div className="space-y-6">
       {/* Public Interaction Link Card */}
-      <div className="rounded-2xl border border-red-100 bg-gradient-to-r from-red-50 via-white to-orange-50 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 shadow-sm">
+      <div className="rounded-[2.5rem] border border-red-100 bg-gradient-to-r from-red-50 via-white to-orange-50 p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 shadow-sm border-b-2 border-b-red-200/50">
         <div className="flex items-center gap-3 shrink-0">
           <div className="w-10 h-10 rounded-xl bg-[#EA104A] flex items-center justify-center text-white shadow-md">
             <LinkSimple weight="bold" size={20} />
@@ -148,19 +148,19 @@ export function InteractionsDashboard() {
       {/* Analytics Hook for Admins/Leaders */}
       {hasGlobalAccess && analytics && (
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card>
+          <Card className="rounded-[2.5rem]">
             <CardHeader className="pb-2"><CardTitle className="text-sm font-medium">Total Interactions</CardTitle></CardHeader>
             <CardContent><div className="text-2xl font-bold">{analytics.total}</div></CardContent>
           </Card>
-          <Card>
+          <Card className="rounded-[2.5rem]">
             <CardHeader className="pb-2"><CardTitle className="text-sm font-medium text-green-600">Resolved</CardTitle></CardHeader>
             <CardContent><div className="text-2xl font-bold">{analytics.statusCounts.resolved}</div></CardContent>
           </Card>
-          <Card>
+          <Card className="rounded-[2.5rem]">
             <CardHeader className="pb-2"><CardTitle className="text-sm font-medium text-blue-600">In Progress</CardTitle></CardHeader>
             <CardContent><div className="text-2xl font-bold">{analytics.statusCounts.inProgress}</div></CardContent>
           </Card>
-          <Card>
+          <Card className="rounded-[2.5rem]">
             <CardHeader className="pb-2"><CardTitle className="text-sm font-medium text-red-600">Unresolved</CardTitle></CardHeader>
             <CardContent><div className="text-2xl font-bold">{analytics.statusCounts.unresolved}</div></CardContent>
           </Card>
@@ -168,10 +168,10 @@ export function InteractionsDashboard() {
       )}
 
       {/* Toolbar */}
-      <div className="flex flex-col md:flex-row gap-4 justify-between items-center bg-card p-4 rounded-lg border shadow-sm">
+      <div className="flex flex-col md:flex-row gap-4 justify-between items-center bg-card p-4 rounded-[2.5rem] border shadow-sm">
         <div className="flex gap-2 w-full md:w-auto overflow-x-auto">
           <Select value={statusFilter} onValueChange={setStatusFilter}>
-            <SelectTrigger className="w-[140px]"><SelectValue placeholder="Status" /></SelectTrigger>
+            <SelectTrigger className="w-[140px] rounded-full"><SelectValue placeholder="Status" /></SelectTrigger>
             <SelectContent>
               <SelectItem value="ALL">All Statuses</SelectItem>
               <SelectItem value="RESOLVED">Resolved</SelectItem>
@@ -182,7 +182,7 @@ export function InteractionsDashboard() {
           </Select>
 
           <Select value={gradeFilter} onValueChange={setGradeFilter}>
-            <SelectTrigger className="w-[140px]"><SelectValue placeholder="Grade" /></SelectTrigger>
+            <SelectTrigger className="w-[140px] rounded-full"><SelectValue placeholder="Grade" /></SelectTrigger>
             <SelectContent>
               <SelectItem value="ALL">All Grades</SelectItem>
               <SelectItem value="Early Years">Early Years</SelectItem>
@@ -196,7 +196,7 @@ export function InteractionsDashboard() {
             <MagnifyingGlass className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
             <Input 
               placeholder="Search parent/section..." 
-              className="pl-8" 
+              className="pl-8 rounded-full" 
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -204,17 +204,17 @@ export function InteractionsDashboard() {
         </div>
 
         <div className="flex gap-2 w-full md:w-auto">
-          <Button variant="outline" onClick={exportToCSV} className="gap-2 shrink-0">
+          <Button variant="outline" onClick={exportToCSV} className="gap-2 shrink-0 rounded-full">
             <DownloadSimple weight="bold" /> Export CSV
           </Button>
-          <Button onClick={() => setIsWizardOpen(true)} className="gap-2 shrink-0">
+          <Button onClick={() => setIsWizardOpen(true)} className="gap-2 shrink-0 rounded-full">
             <Plus weight="bold" /> New Interaction
           </Button>
         </div>
       </div>
 
       {/* Data Table */}
-      <Card>
+      <Card className="rounded-[2.5rem] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
             <thead className="text-xs uppercase bg-muted text-muted-foreground border-b border-border">

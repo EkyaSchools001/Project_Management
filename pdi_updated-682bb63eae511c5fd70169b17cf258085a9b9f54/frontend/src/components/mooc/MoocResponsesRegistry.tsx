@@ -10,7 +10,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
+import { cn, formatCampus } from "@/lib/utils";
+import { Download } from 'lucide-react';
 
 interface MoocResponsesViewProps {
   refresh?: () => Promise<void>;
@@ -65,6 +66,35 @@ export const MoocResponsesView: React.FC<MoocResponsesViewProps> = ({ refresh, b
     }
   }
 
+  const exportToCSV = () => {
+    const headers = ["Teacher Name", "Email", "Campus", "Course Name", "Platform", "Hours", "Completion Date", "Status"];
+    const rows = filteredSubmissions.map(s => [
+      s.name || s.user?.fullName || "Unknown",
+      s.email || s.user?.email || "",
+      formatCampus(s.campus || s.user?.campusId) || "N/A",
+      s.courseName,
+      s.platform === 'Other' ? s.otherPlatform : s.platform,
+      s.hours,
+      new Date(s.completionDate).toLocaleDateString(),
+      s.status || 'PENDING'
+    ]);
+
+    const csvContent = [
+      headers.join(","),
+      ...rows.map(e => e.join(","))
+    ].join("\n");
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", `mooc_submissions_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const filteredSubmissions = submissions.filter(s => {
     const matchesSearch = (s.name || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
       (s.courseName || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -97,6 +127,12 @@ export const MoocResponsesView: React.FC<MoocResponsesViewProps> = ({ refresh, b
           title="Course Evidence Registry"
           subtitle="Review MOOC completions and reflection evidence"
         />
+        <div className="ml-auto">
+          <Button variant="outline" className="gap-2 rounded-xl border-primary/20 text-primary hover:bg-primary/5" onClick={exportToCSV}>
+            <Download className="w-4 h-4" />
+            Export to CSV
+          </Button>
+        </div>
       </div>
 
       <div className="flex items-center gap-3 mb-6">
@@ -162,6 +198,7 @@ export const MoocResponsesView: React.FC<MoocResponsesViewProps> = ({ refresh, b
                     <td className="p-6">
                       <p className="font-bold text-foreground">{sub.name || sub.user?.fullName}</p>
                       <p className="text-xs text-muted-foreground">{sub.email || sub.user?.email}</p>
+                      <p className="text-[10px] font-medium text-primary mt-1">{formatCampus(sub.campus || sub.user?.campusId)}</p>
                     </td>
                     <td className="p-6">
                       <p className="font-medium text-foreground">{sub.courseName}</p>
@@ -231,7 +268,7 @@ export const MoocResponsesView: React.FC<MoocResponsesViewProps> = ({ refresh, b
                 </div>
                 <div>
                   <Label className="text-muted-foreground">Campus</Label>
-                  <p className="font-medium">{selectedSubmission.campus || 'N/A'}</p>
+                  <p className="font-medium">{formatCampus(selectedSubmission.campus || selectedSubmission.user?.campusId) || 'N/A'}</p>
                 </div>
                 <div>
                   <Label className="text-muted-foreground">Course</Label>

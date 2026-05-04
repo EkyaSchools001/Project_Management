@@ -21,6 +21,8 @@ import { PencilSimple } from "@phosphor-icons/react";
 import { useAuth } from "@/hooks/useAuth";
 import { settingsService } from "@/services/settingsService";
 import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdentity/PageEditorControls";
+import { PortalBanner } from "@/components/layout/PortalBanner";
+import { ListChecks } from "@phosphor-icons/react";
 
 const SECTIONS = [
   { id: "job-description", label: "Job Description", icon: Briefcase },
@@ -58,8 +60,6 @@ export default function EducatorEssentials() {
     jd4Points: "Cultivate a safe, inclusive, and respectful classroom culture.\nEstablish clear routines and behavioural expectations.\nBuild strong, positive relationships with students, parents, and colleagues.",
     
     jd5Title: "Professional Practice",
-    jd5Points: "Actively participate in professional development and continuous learning.\nEngage in reflective practice and peer observations.\nAdhere to all school policies and uphold the professional code of conduct.",
-
     jd5Points: "Actively participate in professional development and continuous learning.\nEngage in reflective practice and peer observations.\nAdhere to all school policies and uphold the professional code of conduct.",
 
     // Dynamic Lists
@@ -166,45 +166,15 @@ export default function EducatorEssentials() {
   return (
     <div className="min-h-screen bg-[#F8F9FA] pb-24 font-sans text-[#333333]">
       {/* 1. Header Banner */}
-      <header className="bg-gradient-to-r from-[#EA104A] to-[#B80A37] text-white py-16 px-6 relative overflow-hidden shrink-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-20 -mt-20 blur-3xl mix-blend-overlay"></div>
-        <div className="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/20 hover:bg-white/30 transition-colors rounded-full text-xs font-bold tracking-widest text-white uppercase mb-6 backdrop-blur-md border border-white/20">
-              <BookOpen size={14} />
-              {data.headerBadge}
-            </div>
-            <h1 className="text-4xl md:text-5xl font-black mb-4 tracking-tight drop-shadow-sm">
-              {data.headerTitle}
-            </h1>
-            <p className="text-xl text-white/90 font-light leading-relaxed">
-              {data.headerSubtitle}
-            </p>
-          </div>
-          <div className="hidden md:flex gap-4 opacity-80 mix-blend-overlay">
-             <FileText size={100} strokeWidth={1} />
-          </div>
-        </div>
-
-        {canEdit() && (
-          <Button 
-            className="absolute top-6 right-6 bg-white hover:bg-slate-100 text-[#EA104A] gap-2 z-10 shadow-lg font-bold"
-            onClick={() => setIsEditorOpen(true)}
-          >
-            <PencilSimple size={18} weight="bold" />
-            Edit Content
-          </Button>
-        )}
-
-        <Button
-          variant="ghost"
-          onClick={() => navigate(-1)}
-          className="absolute top-6 left-6 text-white hover:bg-white/10 gap-2 z-10 font-bold underline decoration-white/30"
-        >
-          <ArrowLeft size={20} />
-          <span>Back</span>
-        </Button>
-      </header>
+      <PortalBanner 
+        title={data.headerTitle}
+        subtitle={data.headerSubtitle}
+        onBack={() => navigate(-1)}
+        onEdit={() => setIsEditorOpen(true)}
+        canEdit={canEdit()}
+        icon={ListChecks}
+        className="mt-6 mb-12"
+      />
 
       <PageEditorControls 
         settingKey="hr_educator_essentials"

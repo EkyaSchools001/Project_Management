@@ -36,7 +36,7 @@ export const createPdEntry = async (req: AuthRequest, res: Response) => {
             throw new AppError('Authentication required', 401);
         }
 
-        const { activity, hours, category, status, date } = req.body;
+        const { activity, hours, category, status, date, proofUrl } = req.body;
 
         if (!activity || !hours || !category) {
             throw new AppError('Missing required fields: activity, hours, and category are required', 400);

@@ -42,6 +42,8 @@ function normalizeRole(raw: string): string {
 // Module IDs match the moduleId column in the access matrix exactly.
 const API_MODULE_MAP: Record<string, string> = {
     // ── Core Modules (1:1 with Matrix Module IDs) ────────────────────────────
+    'dashboard': 'dashboard',
+    'overview': 'dashboard',
     'users': 'users',
     'team': 'team',
     'forms': 'forms',
@@ -178,12 +180,22 @@ export const roleModuleAuth = async (req: Request, res: Response, next: NextFunc
         if (roleKey === 'ADMIN' || roleKey === 'TESTER' || roleKey === 'LEADER') {
             if (req.method === 'POST' && req.path === '/settings/upsert') {
                 const key = req.body?.key;
-                if (key && typeof key === 'string' && (key.startsWith('page_') || key.startsWith('hr_') || key.startsWith('duty_assignments_'))) {
+                if (key && typeof key === 'string' && (
+                    key.startsWith('page_') ||
+                    key.startsWith('hr_') ||
+                    key.startsWith('duty_assignments_') ||
+                    key.startsWith('campus_content_')
+                )) {
                     return next();
                 }
             } else if (req.method === 'PUT' && req.path.startsWith('/settings/')) {
                 const key = req.path.split('/settings/')[1];
-                if (key && (key.startsWith('page_') || key.startsWith('hr_') || key.startsWith('duty_assignments_'))) {
+                if (key && (
+                    key.startsWith('page_') ||
+                    key.startsWith('hr_') ||
+                    key.startsWith('duty_assignments_') ||
+                    key.startsWith('campus_content_')
+                )) {
                     return next();
                 }
             }
@@ -235,8 +247,10 @@ export const roleModuleAuth = async (req: Request, res: Response, next: NextFunc
         }
 
         // 8. Check if this role has access
-        console.log(`[ACCESS-MATRIX-DEBUG] roleKey="${roleKey}" moduleId="${moduleId}" roles=${JSON.stringify(moduleEntry.roles)} result=${moduleEntry.roles[roleKey]}`);
-        if (moduleEntry.roles[roleKey] === true) {
+        const hasAccess = moduleEntry.roles && moduleEntry.roles[roleKey] === true;
+        console.log(`[ACCESS-MATRIX-DEBUG] roleKey="${roleKey}" moduleId="${moduleId}" roles=${JSON.stringify(moduleEntry.roles || {})} result=${hasAccess}`);
+        
+        if (hasAccess) {
             return next();
         }
 

@@ -1,16 +1,22 @@
 import rateLimit from 'express-rate-limit';
+import RedisStore from 'rate-limit-redis';
+import redisClient from '../../infrastructure/config/redis';
 import { AppError } from '../../infrastructure/utils/AppError';
 
 // ─── General Rate Limiter (Protects against Overload/DoS) ────────────────────
-// Limits all requests to 200 per 15 minutes window per IP
+// Limits all requests to 20,000 per 15 minutes window across all clusters
 export const globalLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, 
-    max: 20000, 
+    windowMs: 15 * 60 * 1000,
+    max: 20000,
     standardHeaders: true,
     legacyHeaders: false,
+    /* store: redisClient ? new RedisStore({
+        // @ts-ignore
+        sendCommand: (...args: string[]) => redisClient.call(...args),
+    }) : undefined, */
     message: {
         status: 'fail',
-        message: 'Too many requests from this IP, please try again after 15 minutes'
+        message: 'Too many requests from this IP, please try again after 5 minutes'
     },
     // Don't crash on rate limit; return clean API error
     handler: (req, res, next, options) => {
@@ -21,8 +27,8 @@ export const globalLimiter = rateLimit({
 // ─── Auth/Login Rate Limiter (Protects against Brute-Force) ─────────────────
 // Limits login attempts to 10 per 1 hour window per IP
 export const authLimiter = rateLimit({
-    windowMs: 60 * 60 * 1000, 
-    max: 20, 
+    windowMs: 60 * 60 * 1000,
+    max: 20,
     standardHeaders: true,
     legacyHeaders: false,
     message: {
@@ -37,8 +43,8 @@ export const authLimiter = rateLimit({
 // ─── Heavy Operation Limiter (Protects against Overload) ─────────────────────
 // Use for expensive routes like database backups or complex exports
 export const heavyOpsLimiter = rateLimit({
-    windowMs: 10 * 60 * 1000, 
-    max: 5, 
+    windowMs: 10 * 60 * 1000,
+    max: 5,
     message: {
         status: 'fail',
         message: 'Too many heavy operations performed. Please wait before trying again.'

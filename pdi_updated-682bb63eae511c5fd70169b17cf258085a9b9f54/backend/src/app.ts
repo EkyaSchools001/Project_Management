@@ -35,6 +35,7 @@ app.use(globalLimiter);
 app.use(helmet({
     contentSecurityPolicy: process.env.NODE_ENV === 'production' ? true : false, 
     crossOriginEmbedderPolicy: false,
+    crossOriginResourcePolicy: { policy: "cross-origin" }, // Allow images to be loaded across different origins (S3 to EC2)
     xFrameOptions: { action: 'sameorigin' },
 }));
 
@@ -48,11 +49,15 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // Serve static files from the frontend dist directory
-const distPath = path.join(__dirname, '../../frontend/dist');
+// __dirname after tsc compile = /path/to/backend/dist/src
+// so we go up 3 levels: dist/src -> dist -> backend -> root, then into frontend/dist
+const distPath = path.join(__dirname, '../..', 'frontend', 'dist');
+console.log('[Static] Serving frontend from:', distPath);
 app.use(express.static(distPath));
 
 // Serve uploaded files
 app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
+
 // Swagger Documentation
 const swaggerOptions = {
     definition: {
@@ -77,24 +82,25 @@ app.get(['/api/health', '/health'], (req: Request, res: Response) => {
     res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
-// Catch-all middleware for SPA (replaces the broken wildcard route)
-app.use((req: Request, res: Response) => {
-    // If it's an API route that wasn't caught, send 404
+// SPA Catch-all — serve index.html for all non-API routes so React Router works
+// MUST be before the global error handler
+app.use((req: Request, res: Response, next) => {
     if (req.originalUrl.startsWith('/api')) {
-        res.status(404).json({ status: 'fail', message: 'API route not found' });
-        return;
+        return next(); // let the 404 fall through to the error handler
     }
-    // Otherwise, serve the frontend index.html
     const indexPath = path.join(distPath, 'index.html');
     res.sendFile(indexPath, (err) => {
         if (err) {
-            console.error('Frontend index.html not found at:', indexPath);
-            res.status(500).send('Frontend application not built or not found. Backend API is running.');
+            console.error('[SPA] index.html not found at:', indexPath);
+            res.status(404).json({ 
+                status: 'fail', 
+                message: 'Frontend not built. Run `npm run build` in the frontend directory.' 
+            });
         }
     });
 });
 
-// Global Error Handler
+// Global Error Handler (must be last)
 app.use(globalAppErrorHandler);
 
 export default app;

@@ -7,11 +7,13 @@ import { Navigate } from "react-router-dom";
 interface GrowthLayoutProps {
     children: React.ReactNode;
     allowedRoles?: string[];
+    hideBackButton?: boolean;
 }
 
 export const GrowthLayout: React.FC<GrowthLayoutProps> = ({
     children,
-    allowedRoles
+    allowedRoles,
+    hideBackButton = false
 }) => {
     const location = useLocation();
     const { user } = useAuth();
@@ -54,7 +56,7 @@ export const GrowthLayout: React.FC<GrowthLayoutProps> = ({
     return (
         <div className="flex flex-col w-full min-h-screen">
             <div className="container mx-auto px-4 py-4">
-                <GrowthBackButton />
+                {!hideBackButton && <GrowthBackButton />}
                 {children}
             </div>
         </div>

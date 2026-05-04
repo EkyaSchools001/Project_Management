@@ -62,7 +62,7 @@ export const searchMessages = async (req: Request, res: Response) => {
         const messages = await prisma.message.findMany({
             where: {
                 chatRoomId: roomId,
-                content: { contains: q as string, mode: 'insensitive' },
+                content: { contains: q as string },
             },
             include: { sender: true },
             orderBy: { createdAt: 'desc' },
@@ -71,7 +71,7 @@ export const searchMessages = async (req: Request, res: Response) => {
         });
 
         const total = await prisma.message.count({
-            where: { chatRoomId: roomId, content: { contains: q as string, mode: 'insensitive' } }
+            where: { chatRoomId: roomId, content: { contains: q as string } }
         });
 
         res.status(200).json({ status: 'success', data: messages, total, page: Number(page), totalPages: Math.ceil(total / Number(limit)) });

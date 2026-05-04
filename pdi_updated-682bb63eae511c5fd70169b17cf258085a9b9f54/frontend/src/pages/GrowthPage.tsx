@@ -28,19 +28,18 @@ const GrowthPage = () => {
     const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
     const [selectedDomain, setSelectedDomain] = useState(searchParams.get("domain") || "all");
     const [filterType, setFilterType] = useState<'all' | 'quick'>((searchParams.get("type") as any) || 'all');
+    const [selectedRating, setSelectedRating] = useState(searchParams.get("rating") || "all");
+    const [selectedObserver, setSelectedObserver] = useState(searchParams.get("observer") || "all");
 
     // Sync state to URL
     useEffect(() => {
         const params = new URLSearchParams(searchParams);
 
-        if (searchQuery) params.set("q", searchQuery);
-        else params.delete("q");
-
-        if (selectedDomain !== 'all') params.set("domain", selectedDomain);
-        else params.delete("domain");
-
-        if (filterType !== 'all') params.set("type", filterType);
-        else params.delete("type");
+        if (searchQuery) params.set("q", searchQuery); else params.delete("q");
+        if (selectedDomain !== 'all') params.set("domain", selectedDomain); else params.delete("domain");
+        if (filterType !== 'all') params.set("type", filterType); else params.delete("type");
+        if (selectedRating !== 'all') params.set("rating", selectedRating); else params.delete("rating");
+        if (selectedObserver !== 'all') params.set("observer", selectedObserver); else params.delete("observer");
 
         setSearchParams(params, { replace: true });
     }, [searchQuery, selectedDomain, filterType, searchParams, setSearchParams]);
@@ -111,10 +110,17 @@ const GrowthPage = () => {
         return Array.from(uniqueDomains).sort();
     }, [observations]);
 
+    const observers = useMemo(() => {
+        const uniqueObservers = new Set(observations.map(obs => obs.observerName).filter(Boolean));
+        return Array.from(uniqueObservers).sort();
+    }, [observations]);
+
     const filteredObservations = useMemo(() => {
         return observations.filter(obs => {
             const matchesType = filterType === 'quick' ? (obs.type === 'Quick Feedback' || obs.domain === 'Quick Feedback') : true;
             const matchesDomain = selectedDomain === 'all' ? true : obs.domain === selectedDomain;
+            const matchesRating = selectedRating === 'all' ? true : String(Math.round(Number(obs.score) || 0)) === selectedRating;
+            const matchesObserver = selectedObserver === 'all' ? true : obs.observerName === selectedObserver;
             const searchTerm = searchQuery.toLowerCase();
             const matchesSearch = !searchQuery ||
                 obs.domain?.toLowerCase().includes(searchTerm) ||
@@ -122,14 +128,16 @@ const GrowthPage = () => {
                 (obs.learningArea || "").toLowerCase().includes(searchTerm) ||
                 (obs.notes || "").toLowerCase().includes(searchTerm);
 
-            return matchesType && matchesDomain && matchesSearch;
+            return matchesType && matchesDomain && matchesSearch && matchesRating && matchesObserver;
         });
-    }, [observations, filterType, selectedDomain, searchQuery]);
+    }, [observations, filterType, selectedDomain, searchQuery, selectedRating, selectedObserver]);
 
     const clearFilters = () => {
         setSearchQuery("");
         setSelectedDomain("all");
         setFilterType("all");
+        setSelectedRating("all");
+        setSelectedObserver("all");
     };
 
     if (loading) {
@@ -168,10 +176,10 @@ const GrowthPage = () => {
                                     <Info className="w-5 h-5 text-blue-600" />
                                 </div>
                                 <div className="space-y-1">
-                                    <h3 className="font-bold text-blue-900">Ekya Danielson Framework</h3>
+                                    <h3 className="font-bold text-blue-900">Unified Observation System</h3>
                                     <p className="text-sm text-blue-700 leading-relaxed">
-                                        This dashboard utilizes the <strong>Unified Observation, Feedback & Improvement Form</strong>.
-                                        It is a standard Danielson-based academic observation framework designed to support your professional growth through structured feedback and collaborative reflection.
+                                        This dashboard utilizes the <strong>Unified Observation System</strong>.
+                                        It is a cluster-based academic observation framework designed to support your professional growth through structured feedback and collaborative reflection.
                                     </p>
                                 </div>
                             </div>

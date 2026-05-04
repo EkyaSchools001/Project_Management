@@ -5,7 +5,7 @@ import { UsersThree } from "@phosphor-icons/react";
 
 const Interactions = () => {
   return (
-    <div className="p-6 space-y-6">
+    <div className="space-y-6 max-w-7xl mx-auto px-4 md:px-6">
       <PageHeader 
         title="Interactions" 
         subtitle="School community interactions and engagement"

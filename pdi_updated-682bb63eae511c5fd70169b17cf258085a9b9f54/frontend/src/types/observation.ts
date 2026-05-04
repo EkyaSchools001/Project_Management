@@ -36,10 +36,23 @@ export interface DanielsonIndicator {
     rating: DanielsonRatingScale;
 }
 
+export interface DanielsonParameter {
+    name: string;
+    rating: DanielsonRatingScale;
+    note?: string;
+}
+
+export interface DanielsonSubDomain {
+    id: string;
+    title: string;
+    parameters: DanielsonParameter[];
+}
+
 export interface DanielsonDomain {
     domainId: string;
     title: string;
-    indicators: DanielsonIndicator[];
+    indicators?: DanielsonIndicator[];
+    subDomains?: DanielsonSubDomain[];
     evidence: string;
 }
 
@@ -98,4 +111,10 @@ export interface Observation {
         section: string;
         learningArea: string;
     };
+    cluster?: string;
+    sessionType?: string;
+    engagementScore?: number;
+    deliveryScore?: number;
+    outcomeNotes?: string;
+    peerReview?: string;
 }

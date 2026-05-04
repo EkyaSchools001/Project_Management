@@ -25,7 +25,7 @@ async function main() {
             email,
             password: hashedPassword,
             name: 'System Admin',
-            role: 'SuperAdmin',
+            role: 'SUPER_ADMIN',
             status: 'Active',
             profile: {
                 create: {

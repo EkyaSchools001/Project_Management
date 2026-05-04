@@ -810,6 +810,10 @@ export function AdminCalendarView() {
             {/* Registrants Dialog */}
             <Dialog open={isRegistrantsOpen} onOpenChange={setIsRegistrantsOpen}>
                 <DialogContent className="sm:max-w-[700px] rounded-[2rem] overflow-hidden   shadow-2xl p-0">
+                    <DialogHeader className="sr-only">
+                        <DialogTitle>Registered Participants</DialogTitle>
+                        <DialogDescription>List of participants registered for {currentEvent?.title}</DialogDescription>
+                    </DialogHeader>
                     <div className="bg-zinc-950 text-white p-8 relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-20 translate-x-20 pointer-events-none" />
                         <div className="relative z-10">

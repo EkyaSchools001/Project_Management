@@ -24,13 +24,13 @@ Let us work together to make the learning journey of our students a meaningful o
 
 Here are a few lines, from one of W.H. Davies' poems, subtly modified to suit our profession.
 
-**What is this life if, full of care, We have no time to share and fare?**
-**No time to stand before the board And share enough for students to hoard.**
-**No time to see, when students we pass, Where simple errors are overlooked in class.**
-**No time to see the smiles and scowls, That brighten our lives or make them howl.**
-**No time to turn to events aplenty, And watch their skills, as proud faculty.**
-**No time to wait and witness their growth And rejoice in their success moving forth**
-**A poor life this is, if full of care, We have no time to share and fare.**
+What is this life if, full of care, We have no time to share and fare?
+No time to stand before the board And share enough for students to hoard.
+No time to see, when students we pass, Where simple errors are overlooked in class.
+No time to see the smiles and scowls, That brighten our lives or make them howl.
+No time to turn to events aplenty, And watch their skills, as proud faculty.
+No time to wait and witness their growth And rejoice in their success moving forth
+A poor life this is, if full of care, We have no time to share and fare.
 
 Good luck all the way!`,
     author: "Ms Malathi Balasubramanian",
@@ -60,7 +60,7 @@ Good luck all the way!`,
   instructions: [],
   instructionCategories: [
     {
-      title: "GENERAL INSTRUCTIONS",
+      title: "",
       items: [
         { id: "timings", title: "Timings - Bell Schedule", url: "#", description: "Official daily schedule of periods, breaks, and transition bells for all stages." },
         { id: "class-teacher-lists", title: "Class teachers and non-class teacher lists", url: "#", description: "Designated educators responsible for primary care and administrative support for each class." },

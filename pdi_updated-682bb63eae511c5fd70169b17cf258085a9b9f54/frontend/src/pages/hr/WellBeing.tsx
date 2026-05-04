@@ -3,7 +3,6 @@ import {
   HeartHandshake, 
   Users, 
   Brain, 
-  Heart, 
   Puzzle, 
   Facebook, 
   Twitter, 
@@ -18,6 +17,8 @@ import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdent
 import { settingsService } from "@/services/settingsService";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from '@/components/ui/button';
+import { PortalBanner } from "@/components/layout/PortalBanner";
+import { Heart } from "@phosphor-icons/react";
 
 const WellBeing = () => {
   const [isEditorOpen, setIsEditorOpen] = useState(false);
@@ -104,40 +105,15 @@ const WellBeing = () => {
         ]}
       />
 
-      <header className="relative bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 py-32 overflow-hidden flex-shrink-0">
-        <div className="absolute inset-0 flex items-center justify-center opacity-10">
-          <div className="w-[800px] h-[800px] rounded-full bg-[#EA104A] blur-[150px]"></div>
-        </div>
-        
-        {canEdit && (
-          <Button
-            onClick={() => setIsEditorOpen(true)}
-            className="absolute top-6 right-6 bg-white hover:bg-slate-50 text-[#EA104A] gap-2 z-10 shadow-lg font-bold"
-          >
-            <PencilSimple className="w-5 h-5 group-hover:rotate-12 transition-transform" weight="bold" />
-            <span>Edit Content</span>
-          </Button>
-        )}
-        
-        <Button
-          variant="ghost"
-          onClick={() => navigate(-1)}
-          className="absolute top-6 left-6 text-white hover:bg-white/10 gap-2 z-10 font-bold"
-        >
-          <ArrowLeft size={20} />
-          <span>Back</span>
-        </Button>
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center text-center">
-          <h1 className="text-6xl md:text-7xl font-black text-white tracking-tighter mb-6 relative inline-block uppercase">
-            {data.headerTitle}
-            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-2 bg-[#EA104A] rounded-full"></div>
-          </h1>
-          <p className="text-xl text-white/80 max-w-2xl mt-8 font-light">
-            {data.headerSubtitle}
-          </p>
-        </div>
-      </header>
+      <PortalBanner 
+        title={data.headerTitle}
+        subtitle={data.headerSubtitle}
+        onBack={() => navigate(-1)}
+        onEdit={() => setIsEditorOpen(true)}
+        canEdit={canEdit}
+        icon={Heart}
+        className="mt-6 mb-12"
+      />
 
       {/* Main Content Area */}
       <main className="flex-grow max-w-7xl mx-auto px-6 py-20 space-y-24">

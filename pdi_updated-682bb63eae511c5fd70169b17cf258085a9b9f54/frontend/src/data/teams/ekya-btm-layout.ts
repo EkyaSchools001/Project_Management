@@ -16,9 +16,9 @@ export const ekyaBtmLayoutTeam: SchoolTeamData = {
 
 Welcome back! I hope each of you had a restful and rejuvenating summer break. It’s always a pleasure to see the campus come alive again with your energy, warmth, and commitment.
 
-As we step into Academic Year 2025–26, we do so with great enthusiasm and a shared vision for a successful year ahead. This is a year of **consistency** — in our practices, our relationships, and our efforts. More than ever, **student retention** must remain a top priority. Each student’s experience with us should reflect the strength of our values and the impact of our work in every classroom and interaction.
+As we step into Academic Year 2025–26, we do so with great enthusiasm and a shared vision for a successful year ahead. This is a year of consistency — in our practices, our relationships, and our efforts. More than ever, student retention must remain a top priority. Each student’s experience with us should reflect the strength of our values and the impact of our work in every classroom and interaction.
 
-Let’s continue to place **student well-being**, learning, and growth at the heart of all we do. Whether through differentiated instruction, supportive conversations, or simply being present, every moment we invest in our learners counts.
+Let’s continue to place student well-being, learning, and growth at the heart of all we do. Whether through differentiated instruction, supportive conversations, or simply being present, every moment we invest in our learners counts.
 
 Thank you for the dedication you bring to our school community. I look forward to working alongside each of you as we make this year one of purpose, connection, and excellence.`,
     author: "Asha Doris",

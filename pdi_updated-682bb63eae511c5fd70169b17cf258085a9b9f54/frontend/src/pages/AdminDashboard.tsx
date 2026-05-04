@@ -44,7 +44,7 @@ import { MeetingsDashboard } from "./MeetingsDashboard";
 import { PortfolioIndex } from "./portfolio/PortfolioIndex";
 import { FestivalManagementDashboard } from "./LearningFestival/FestivalManagementDashboard";
 import { AssessmentManagementDashboard } from "@/components/assessments/AssessmentManagementDashboard";
-import { MoocResponsesView as MoocResponsesRegistry } from "@/components/mooc/MoocResponsesRegistry";
+import MoocAdminPage from "@/pages/admin/MoocAdminPage";
 import { MoocManagementView } from "./admin/MoocManagementView";
 import OKRDashboard from "./OKRDashboard";
 import SurveyPage from "./SurveyPage";
@@ -350,7 +350,7 @@ export default function AdminDashboard() {
                     </>
                 } />
                 <Route path="festival" element={<FestivalManagementDashboard />} />
-                <Route path="mooc" element={<MoocResponsesRegistry backPath="/admin" />} />
+                <Route path="mooc" element={<MoocAdminPage />} />
                 <Route path="calendar" element={<AdminCalendarView />} />
                 <Route path="hours" element={<PDHoursAnalyticsView />} />
                 <Route path="attendance" element={<AttendanceRegister />} />

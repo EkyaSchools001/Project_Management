@@ -19,20 +19,9 @@ import { MeetingMoMForm } from "./pages/MeetingMoMForm";
 import AnnouncementsPage from "./pages/AnnouncementsPage";
 import GrowthPage from "./pages/GrowthPage";
 import LeaderGrowthPage from "./pages/leader/LeaderGrowthPage";
-import AdminGrowthAnalyticsPage from "./pages/admin/AdminGrowthAnalyticsPage";
-import DanielsonFrameworkPage from "./pages/leader/DanielsonFrameworkPage";
-import QuickFeedbackPage from "./pages/leader/QuickFeedbackPage";
-import PerformingArtsObsDashboard from "./pages/leader/PerformingArtsObsDashboard";
-import PerformingArtsObsPage from "./pages/leader/PerformingArtsObsPage";
 import NotesPage from "./pages/leader/NotesPage";
-import QuickFeedbackDashboard from "./pages/leader/QuickFeedbackDashboard";
+import AdminGrowthAnalyticsPage from "./pages/admin/AdminGrowthAnalyticsPage";
 import DanielsonDashboard from "./pages/leader/DanielsonDashboard";
-import LifeSkillsObsDashboard from "./pages/leader/LifeSkillsObsDashboard";
-import LifeSkillsObsPage from "./pages/leader/LifeSkillsObsPage";
-import PEObsDashboard from "./pages/leader/PEObsDashboard";
-import PEObsPage from "./pages/leader/PEObsPage";
-import VAObsDashboard from "./pages/leader/VAObsDashboard";
-import VAObsPage from "./pages/leader/VAObsPage";
 import OKRDashboard from "./pages/OKRDashboard";
 import PublicSiteView from "./pages/PublicSiteView";
 import NotFound from "./pages/NotFound";
@@ -70,6 +59,7 @@ import EkyaBtmLayoutDutiesPage from "@/pages/educator-hub/InstitutionalIdentity/
 import CmrpuhRbrPage from "./pages/educator-hub/InstitutionalIdentity/OurTeams/CmrpuhRbrPage";
 import CmrpuhItplPage from "./pages/educator-hub/InstitutionalIdentity/OurTeams/CmrpuhItplPage";
 import CmrpuhBtmPage from "./pages/educator-hub/InstitutionalIdentity/OurTeams/CmrpuhBtmPage";
+import CmrpuByrathiPage from "./pages/educator-hub/InstitutionalIdentity/OurTeams/CmrpuByrathiPage";
 import EkyaByrathiDutiesPage from "@/pages/educator-hub/InstitutionalIdentity/OurTeams/EkyaByrathiDutiesPage";
 import CmrNpsDutiesPage from "@/pages/educator-hub/InstitutionalIdentity/OurTeams/CmrNpsDutiesPage";
 import CmrpuHrbrDutiesPage from "@/pages/educator-hub/InstitutionalIdentity/OurTeams/CmrpuHrbrDutiesPage";
@@ -102,6 +92,19 @@ import ZoomPage from "./pages/technology/ZoomPage";
 import SlackPage from "./pages/technology/SlackPage";
 import EmailSignaturePage from "./pages/technology/EmailSignaturePage";
 import EkyaversePage from "./pages/technology/EkyaversePage";
+import ObservationSchedulerPage from "./pages/leader/ObservationSchedulerPage";
+import ObservationFormPage from "./pages/leader/ObservationFormPage";
+import ObservationProgressPage from "./pages/leader/ObservationProgressPage";
+import ClusterObservationPage from "./pages/leader/ClusterObservationPage";
+import Cluster1QuickFeedbackPage from "./pages/leader/Cluster1QuickFeedbackPage";
+import Cluster1SpecialistQFForm from "./pages/leader/Cluster1SpecialistQFForm";
+import Cluster2QuickFeedbackPage from "./pages/leader/Cluster2QuickFeedbackPage";
+import Cluster2SpecialistQFForm from "./pages/leader/Cluster2SpecialistQFForm";
+import Cluster3QuickFeedbackPage from "./pages/leader/Cluster3QuickFeedbackPage";
+import Cluster3SpecialistQFForm from "./pages/leader/Cluster3SpecialistQFForm";
+import Cluster4QuickFeedbackPage from "./pages/leader/Cluster4QuickFeedbackPage";
+import Cluster4SpecialistQFForm from "./pages/leader/Cluster4SpecialistQFForm";
+import ObservationReviewPage from "./pages/leader/ObservationReviewPage";
 
 import { AuthProvider, useAuth } from "./hooks/useAuth";
 import { PermissionProvider } from "@/contexts/PermissionContext";
@@ -111,6 +114,16 @@ import { EkyaGuide } from "./components/EkyaGuide";
 import { AIProvider } from "./contexts/AIContext";
 import { DashboardLayout } from "./components/layout/DashboardLayout";
 import { TeacherProfileView } from "./components/TeacherProfileView";
+import { useLocation } from "react-router-dom";
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
+
 const queryClient = new QueryClient();
 
 const DashboardRedirect = () => {
@@ -149,6 +162,7 @@ const App = () => {
           v7_startTransition: true,
           v7_relativeSplatPath: true
         }}>
+          <ScrollToTop />
           <AIProvider>
             <AuthProvider>
               <PermissionProvider>
@@ -156,6 +170,7 @@ const App = () => {
                   <Routes>
                   <Route path="/" element={<LandingPage />} />
                   <Route path="/login" element={<Auth />} />
+                  <Route path="/in-progress" element={<ProtectedRoute allowedRoles={['TEACHER', 'LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN', 'MANAGEMENT', 'COORDINATOR', 'TESTER']}><DashboardPage><InProgress /></DashboardPage></ProtectedRoute>} />
 
                   {/* Human Resource Routes - Moved up to prevent 404 conflicts */}
                   <Route
@@ -523,110 +538,6 @@ const App = () => {
                     }
                   />
                   <Route
-                    path="/leader/danielson-framework/new"
-                    element={
-                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN']}>
-                        <DashboardPage><DanielsonFrameworkPage /></DashboardPage>
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/leader/danielson-framework/:teacherId"
-                    element={
-                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN']}>
-                        <DashboardPage><DanielsonFrameworkPage /></DashboardPage>
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/leader/quick-feedback"
-                    element={
-                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN']}>
-                        <DashboardPage><QuickFeedbackDashboard /></DashboardPage>
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/leader/quick-feedback/new"
-                    element={
-                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN']}>
-                        <DashboardPage><QuickFeedbackPage /></DashboardPage>
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/leader/quick-feedback/:teacherId"
-                    element={
-                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN']}>
-                        <DashboardPage><QuickFeedbackPage /></DashboardPage>
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/leader/performing-arts-obs"
-                    element={
-                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN']}>
-                        <DashboardPage><PerformingArtsObsDashboard /></DashboardPage>
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/leader/performing-arts-obs/new"
-                    element={
-                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN']}>
-                        <DashboardPage><PerformingArtsObsPage /></DashboardPage>
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/leader/life-skills-obs"
-                    element={
-                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN']}>
-                        <DashboardPage><LifeSkillsObsDashboard /></DashboardPage>
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/leader/life-skills-obs/new"
-                    element={
-                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN']}>
-                        <DashboardPage><LifeSkillsObsPage /></DashboardPage>
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/leader/pe-obs"
-                    element={
-                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN']}>
-                        <DashboardPage><PEObsDashboard /></DashboardPage>
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/leader/pe-obs/new"
-                    element={
-                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN']}>
-                        <DashboardPage><PEObsPage /></DashboardPage>
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/leader/va-obs"
-                    element={
-                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN']}>
-                        <DashboardPage><VAObsDashboard /></DashboardPage>
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/leader/va-obs/new"
-                    element={
-                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN']}>
-                        <DashboardPage><VAObsPage /></DashboardPage>
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
                     path="/admin/growth-analytics"
                     element={
                       <ProtectedRoute allowedRoles={['ADMIN', 'SUPERADMIN']}>
@@ -954,6 +865,14 @@ const App = () => {
                         </ProtectedRoute>
                       }
                     />
+                    <Route
+                      path="/campuses/cmrpu-byrathi"
+                      element={
+                        <ProtectedRoute allowedRoles={['TEACHER', 'LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN', 'MANAGEMENT', 'TESTER']}>
+                          <DashboardPage><CmrpuByrathiPage /></DashboardPage>
+                        </ProtectedRoute>
+                      }
+                    />
                   <Route
                     path="/educator-hub/academic-operations"
                     element={
@@ -1003,6 +922,102 @@ const App = () => {
 
                   <Route path="/dashboard" element={<DashboardRedirect />} />
                   <Route path="*" element={<NotFound />} />
+                  <Route
+                    path="/leader/observations/form/:clusterId/:teacherId/:mode"
+                    element={
+                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN', 'COORDINATOR']}>
+                        <ObservationFormPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/leader/observations/progress"
+                    element={
+                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN', 'COORDINATOR']}>
+                        <ObservationProgressPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/leader/observations/cluster/:clusterId/:type"
+                    element={
+                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN', 'COORDINATOR']}>
+                        <ClusterObservationPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/leader/cluster-1/quick-feedback/:teacherId"
+                    element={
+                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN', 'COORDINATOR']}>
+                        <DashboardPage><Cluster1QuickFeedbackPage /></DashboardPage>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/leader/cluster-1/quick-feedback-specialist/:teacherId"
+                    element={
+                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN', 'COORDINATOR']}>
+                        <DashboardPage><Cluster1SpecialistQFForm /></DashboardPage>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/leader/cluster-2/quick-feedback/:teacherId"
+                    element={
+                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN', 'COORDINATOR']}>
+                        <DashboardPage><Cluster2QuickFeedbackPage /></DashboardPage>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/leader/cluster-2/quick-feedback-specialist/:teacherId"
+                    element={
+                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN', 'COORDINATOR']}>
+                        <DashboardPage><Cluster2SpecialistQFForm /></DashboardPage>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/leader/cluster-3/quick-feedback/:teacherId"
+                    element={
+                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN', 'COORDINATOR']}>
+                        <DashboardPage><Cluster3QuickFeedbackPage /></DashboardPage>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/leader/cluster-3/quick-feedback-specialist/:teacherId"
+                    element={
+                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN', 'COORDINATOR']}>
+                        <DashboardPage><Cluster3SpecialistQFForm /></DashboardPage>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/leader/cluster-4/quick-feedback/:teacherId"
+                    element={
+                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN', 'COORDINATOR']}>
+                        <DashboardPage><Cluster4QuickFeedbackPage /></DashboardPage>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/leader/cluster-4/quick-feedback-specialist/:teacherId"
+                    element={
+                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN', 'COORDINATOR']}>
+                        <DashboardPage><Cluster4SpecialistQFForm /></DashboardPage>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/leader/observations/review/:id"
+                    element={
+                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN', 'COORDINATOR', 'TEACHER']}>
+                        <ObservationReviewPage />
+                      </ProtectedRoute>
+                    }
+                  />
                 </Routes>
                 <EkyaGuide />
               </ErrorBoundary>

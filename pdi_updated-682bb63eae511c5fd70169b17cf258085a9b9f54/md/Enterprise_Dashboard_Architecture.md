@@ -37,7 +37,7 @@ Maintaining state consistency across multiple active UI sessions requires a pub/
 *   **Backend & Gateway:** Node.js (NestJS or Express) for orchestration and BFFs. Kong API Gateway.
 *   **Event Broker:** Apache Kafka (ideal for event replay and audit-ability) or RabbitMQ (for lower latency pub/sub).
 *   **Databases:** PostgreSQL (High-integrity transactional data), ClickHouse/Snowflake (Heavy Analytics), Redis (Distributed caching & Socket sessions).
-*   **Infrastructure:** Kubernetes (Docker integration), Prometheus + Grafana (Monitoring/Observability), ELK Stack (Centralized Logging).
+*   **Infrastructure:** Kubernetes (Native/Helm integration), Prometheus + Grafana (Monitoring/Observability), ELK Stack (Centralized Logging).
 
 ## 6. Potential Risks and Mitigation Strategies
 *   **Risk: Eventual Consistency Mismatches** (UI briefly showing old data while background syncs).

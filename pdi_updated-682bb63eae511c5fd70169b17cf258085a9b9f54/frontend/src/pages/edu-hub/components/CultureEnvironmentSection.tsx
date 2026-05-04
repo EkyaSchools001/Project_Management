@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   Users, ChalkboardTeacher, Medal, Warning, UsersThree, ChatCircle, Handshake,
   Star, Rocket, Heart, FileText, TShirt, ClockCounterClockwise, UsersFour,
-  Lightbulb, PushPin, Confetti, Fire, CloudWarning, PawPrint,
+  Lightbulb, PushPin, Confetti, Fire, Mountains, PawPrint,
   Trophy, SquaresFour, Books, BookOpen, PresentationChart, IdentificationBadge,
   FacebookLogo, TwitterLogo, InstagramLogo, LinkedinLogo, QrCode, Sparkle, CaretLeft, Buildings, PencilSimple
 } from '@phosphor-icons/react';
@@ -11,32 +11,36 @@ import { Button } from '@/components/ui/button';
 import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdentity/PageEditorControls";
 import { settingsService } from "@/services/settingsService";
 import { useAuth } from "@/hooks/useAuth";
+import { PortalBanner } from '@/components/layout/PortalBanner';
+import { sanitizeContent } from "@/utils/contentSanitizer";
 
 interface PracticeCardProps {
   icon: React.ReactNode;
   title: string;
   desc: string;
-  link?: string;
 }
 
-const PracticeCard: React.FC<PracticeCardProps> = ({ icon, title, desc, link }) => (
-  <div 
-    onClick={() => link && window.open(link, '_blank')}
-    className={`bg-white rounded-2xl p-6 shadow-sm border border-primary/20 hover:shadow-xl hover:-translate-y-1 hover:border-primary/20 transition-all duration-300 group flex flex-col h-full ${link ? 'cursor-pointer' : ''}`}
-  >
-    <div className="w-14 h-14 rounded-full bg-slate-50 flex items-center justify-center mb-6 text-slate-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
-      {icon}
+const PracticeCard: React.FC<PracticeCardProps & { customLink?: string }> = ({ icon, title, desc, customLink }) => {
+  const navigate = useNavigate();
+  return (
+    <div
+      onClick={() => navigate(customLink || '/in-progress')}
+      className="bg-white rounded-2xl p-6 shadow-sm border border-primary/20 hover:shadow-xl hover:-translate-y-1 hover:border-primary/20 transition-all duration-300 group flex flex-col h-full cursor-pointer"
+    >
+      <div className="w-14 h-14 rounded-full bg-slate-50 flex items-center justify-center mb-6 text-slate-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
+        {icon}
+      </div>
+      <h3 className="text-lg font-bold text-slate-800 mb-2 group-hover:text-primary transition-colors">{title}</h3>
+      <p className="text-sm text-slate-500 font-medium leading-relaxed flex-1">{desc}</p>
     </div>
-    <h3 className="text-lg font-bold text-slate-800 mb-2 group-hover:text-primary transition-colors">{title}</h3>
-    <p className="text-sm text-slate-500 font-medium leading-relaxed flex-1">{desc}</p>
-  </div>
-);
+  );
+};
 
-export const CultureEnvironmentSection = () => {
+export const CultureEnvironmentSection = ({ hideInternalBanner = false }: { hideInternalBanner?: boolean }) => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [isEditorOpen, setIsEditorOpen] = useState(false);
-  
+
   const [data, setData] = useState({
     heroImage: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2070&auto=format&fit=crop",
     pillarTitle: "Pillar of Practice",
@@ -44,7 +48,13 @@ export const CultureEnvironmentSection = () => {
     italicTitle: "ENVIRONMENT",
     cultureIntro1: "At Ekya, we have high expectations for our students and believe creating a positive environment is essential for their success. Our community is a safe and supportive space where students can explore new ideas and discover their sense of purpose.",
     cultureIntro2: "We encourage self-managing behavior and believe that our students can positively impact the world around them as long as we work collaboratively with our parents in supporting their child's journey of growth and discovery.",
-    envIntro: "What is the physical environment we create for children? How do we create and organize spaces?"
+    envIntro: "What is the physical environment we create for children? How do we create and organize spaces?",
+    bannerSubtitle: "Our core principles, culture practices, and physical environment standards.",
+    coreSubtitle: "Core Principles",
+    coreTitle: "CARE ABOUT CULTURE",
+    envSubtitle: "Physical Spaces",
+    envTitle: "ENVIRONMENT",
+    customSections: []
   });
 
   useEffect(() => {
@@ -52,55 +62,61 @@ export const CultureEnvironmentSection = () => {
       try {
         const result = await settingsService.getSetting("page_culture_environment");
         if (result && result.value) {
-          setData(prev => ({ ...prev, ...result.value }));
+          setData(prev => sanitizeContent({ ...prev, ...result.value }));
         }
       } catch (error) {
         console.error("Failed to fetch culture content:", error);
       }
     };
     fetchData();
+
+    const handleOpenEditor = () => setIsEditorOpen(true);
+    window.addEventListener('open-culture-editor', handleOpenEditor);
+    return () => window.removeEventListener('open-culture-editor', handleOpenEditor);
   }, []);
 
   const canEdit = () => {
-    const role = user?.role?.toUpperCase() || "";
-    return role.includes("ADMIN") || role === "SUPERADMIN" || role.includes("LEADER") || role === "TESTER";
+    const role = (user?.role || "").toUpperCase();
+    const allowedRoles = ["ADMIN", "SUPERADMIN", "TESTER", "MANAGEMENT", "MANAGER", "LEADER", "COORDINATOR", "HEAD", "PRINCIPAL"];
+    const isAllowed = allowedRoles.some(r => role.includes(r));
+    return isAllowed;
   };
 
   const culturePractices = [
-    { title: "School Assembly", icon: <Users weight="duotone" className="w-7 h-7" />, desc: "Morning gathering where students and teachers connect, celebrate achievements, and build school community.", link: "https://docs.google.com/document/d/1GtI2mK1xgCW2TXhvpWrgwU32afANLUByBmRXgtbVF9s/edit?tab=t.0#" },
-    { title: "Teacher Responsibilities", icon: <ChalkboardTeacher weight="duotone" className="w-7 h-7" />, desc: "Teachers guide students academically and socially while modeling responsibility and leadership.", link: "https://docs.google.com/document/d/1fc9s_Q_7_kXJ3xTWEniFaRtSc_yRSjDV_T55B8TijVA/edit?tab=t.0#" },
-    { title: "Student Responsibilities & Awards", icon: <Medal weight="duotone" className="w-7 h-7" />, desc: "Encouraging accountability, recognizing student achievements, and celebrating effort and success.", link: "https://docs.google.com/document/d/11Ry7xeV901koJDYWzta5I48Y0ODMBwmT6NprI5uuWtE/edit?tab=t.0" },
-    { title: "Student Consequences", icon: <Warning weight="duotone" className="w-7 h-7" />, desc: "Helping students learn from mistakes through reflective discipline practices.", link: "https://docs.google.com/document/d/1EggmCSmM8RCZli90_L1BFqvOkwJECU-eOvbs3aVW_Fo/edit?tab=t.0#" },
-    { title: "Morning Meetings", icon: <UsersThree weight="duotone" className="w-7 h-7" />, desc: "Daily classroom meetings that promote connection, collaboration, and communication.", link: "https://docs.google.com/document/d/1bajQithbKqrcdlxlDpP5XuNqd58YCvOza0RXFDyXO7s/edit?tab=t.0#" },
-    { title: "Circle Time", icon: <ChatCircle weight="duotone" className="w-7 h-7" />, desc: "Structured discussions where students share experiences, build trust, and develop communication skills.", link: "https://docs.google.com/document/d/1rKT8VC4qotAJIcYIJYsKUWoUaPTqdevQypyMVTgIoR8/edit?tab=t.0" },
-    { title: "Greeting", icon: <Handshake weight="duotone" className="w-7 h-7" />, desc: "Creating a welcoming environment through respectful daily greetings between students and teachers.", link: "https://docs.google.com/document/d/1xuGYxBEDT0EwlNTQcFF-U6e_1UlO36OAgX54A_ehvto/edit?tab=t.0#" },
-    { title: "Good Things", icon: <Star weight="duotone" className="w-7 h-7" />, desc: "Celebrating positive moments, achievements, and gratitude within the classroom.", link: "https://docs.google.com/document/d/1RZMEFCzQ-yhWGjcJ9lIpiSTpCriR9rfgec52ze6Ix8M/edit?tab=t.0#" },
-    { title: "Launch", icon: <Rocket weight="duotone" className="w-7 h-7" />, desc: "Beginning the day with clear goals, enthusiasm, and purpose.", link: "https://docs.google.com/document/d/1w6iRWxmWkaIjG8yBRMQi_V9j98fD6rg3oZLeH10xjs8/edit?tab=t.0#" },
-    { title: "Affirmations", icon: <Heart weight="duotone" className="w-7 h-7" />, desc: "Encouraging students through positive statements that build confidence and resilience.", link: "https://docs.google.com/document/d/12Y4QUdvJg5gSW6sl9nhCobLFbYq6PlxaCWEFwXYQlSM/edit?tab=t.0#" },
-    { title: "Social Contract", icon: <FileText weight="duotone" className="w-7 h-7" />, desc: "Collaboratively creating classroom expectations and agreements between students and teachers.", link: "https://docs.google.com/document/d/1SgRm1b-5eFx3_S6FQKFpXkoFvcJGeQ5dugBVBE2H0lg/edit?tab=t.0" },
-    { title: "Uniforms", icon: <TShirt weight="duotone" className="w-7 h-7" />, desc: "Maintaining school identity and discipline through appropriate uniform standards.", link: "https://docs.google.com/document/d/1b9UyXW-OhGidilf4_fHeBVLi3DU2fSxiHJS3rfdNNnY/edit?tab=t.0#heading=h.oyzfurtqalvo" },
-    { title: "Class History / Transition", icon: <ClockCounterClockwise weight="duotone" className="w-7 h-7" />, desc: "Reflecting on class journeys while preparing students for transitions to the next level.", link: "https://docs.google.com/document/d/1YEdiYlwVosEvuWi0fdqGj9sycKWFPDQqeD7_u5St4SQ/edit?tab=t.0#" },
-    { title: "Parent Interactions", icon: <UsersFour weight="duotone" className="w-7 h-7" />, desc: "Building strong partnerships with parents through communication and collaboration.", link: "https://docs.google.com/document/d/1BI6gKBB_BW37aTKe3QuAvPEPsAcNpKeBx5ZIqVJGPD8/edit?tab=t.0#" },
-    { title: "Day / Days of Wonder", icon: <Lightbulb weight="duotone" className="w-7 h-7" />, desc: "Special school events that inspire curiosity, creativity, and discovery.", link: "https://docs.google.com/document/d/1Y-eMW0IsGZIt5-YPlIi459xD6KMNQpVTcMBw2WhuefU/edit?tab=t.0" },
-    { title: "Bulletin Boards / Making Learning Visible", icon: <PushPin weight="duotone" className="w-7 h-7" />, desc: "Displaying student work and learning journeys to celebrate progress and growth.", link: "https://docs.google.com/document/d/1DVu_qA5qxd6q4Ev3ypxSXpl45WqLRWi8g9QYZgQum-A/edit?tab=t.0" },
-    { title: "Annual Day", icon: <Confetti weight="duotone" className="w-7 h-7" />, desc: "School-wide celebration showcasing student talents, achievements, and performances.", link: "https://docs.google.com/document/d/1WrTIimMLJoFeX3KoJeOFiba00VBuTOvwfp0QcK7h4dY/edit?tab=t.0" },
-    { title: "Fire Safety", icon: <Fire weight="duotone" className="w-7 h-7" />, desc: "Educating students about fire safety practices and emergency response awareness.", link: "https://docs.google.com/document/d/1A-4Z1Tvz8RXO3c9rOKSJh8v1BvaQfGmW_Xxo8hz1QS0/edit?tab=t.0" },
-    { title: "Natural Disaster", icon: <CloudWarning weight="duotone" className="w-7 h-7" />, desc: "Preparing students and staff for emergency preparedness and safety protocols.", link: "https://docs.google.com/document/d/1yp3uNeYzvHrzSGvl0g0I_eSkNbxWBcnVCTe3CZ-Vj3U/edit?tab=t.0" },
-    { title: "Animal Management & Response", icon: <PawPrint weight="duotone" className="w-7 h-7" />, desc: "Ensuring safety procedures when encountering animals on or near school premises.", link: "https://docs.google.com/document/d/1cpik1pSB7ypEzlBAJQZefk93z0djNfDkfb67xkoKitI/edit?tab=t.0" },
+    { title: "School Assembly", icon: <Users weight="duotone" className="w-7 h-7" />, desc: "Morning gathering where students and teachers connect, celebrate achievements, and build school community.", customLink: "/edu-hub/culture/school-assembly" },
+    { title: "Teacher Responsibilities", icon: <ChalkboardTeacher weight="duotone" className="w-7 h-7" />, desc: "Teachers guide students academically and socially while modeling responsibility and leadership.", customLink: "/edu-hub/culture/teacher-responsibilities" },
+    { title: "Student Responsibilities & Awards", icon: <Medal weight="duotone" className="w-7 h-7" />, desc: "Encouraging accountability, recognizing student achievements, and celebrating effort and success.", customLink: "/edu-hub/culture/student-responsibilities-awards" },
+    { title: "Student Consequences", icon: <Warning weight="duotone" className="w-7 h-7" />, desc: "Helping students learn from mistakes through reflective discipline practices.", customLink: "/edu-hub/culture/student-consequences" },
+    { title: "Morning Meetings", icon: <UsersThree weight="duotone" className="w-7 h-7" />, desc: "Daily classroom meetings that promote connection, collaboration, and communication.", customLink: "/edu-hub/culture/morning-meetings" },
+    { title: "Circle Time", icon: <ChatCircle weight="duotone" className="w-7 h-7" />, desc: "Structured discussions where students share experiences, build trust, and develop communication skills.", customLink: "/edu-hub/culture/circle-time" },
+    { title: "Greeting", icon: <Handshake weight="duotone" className="w-7 h-7" />, desc: "Creating a welcoming environment through respectful daily greetings between students and teachers.", customLink: "/edu-hub/culture/greetings" },
+    { title: "Good Things", icon: <Star weight="duotone" className="w-7 h-7" />, desc: "Celebrating positive moments, achievements, and gratitude within the classroom.", customLink: "/edu-hub/culture/good-things" },
+    { title: "Launch", icon: <Rocket weight="duotone" className="w-7 h-7" />, desc: "Beginning the day with clear goals, enthusiasm, and purpose.", customLink: "/edu-hub/culture/launch" },
+    { title: "Affirmations", icon: <Heart weight="duotone" className="w-7 h-7" />, desc: "Encouraging students through positive statements that build confidence and resilience.", customLink: "/edu-hub/culture/affirmations" },
+    { title: "Social Contract", icon: <FileText weight="duotone" className="w-7 h-7" />, desc: "Collaboratively creating classroom expectations and agreements between students and teachers.", customLink: "/edu-hub/culture/social-contract" },
+    { title: "Uniforms", icon: <TShirt weight="duotone" className="w-7 h-7" />, desc: "Maintaining school identity and discipline through appropriate uniform standards.", customLink: "/edu-hub/culture/uniforms" },
+    { title: "Class History / Transition", icon: <ClockCounterClockwise weight="duotone" className="w-7 h-7" />, desc: "Reflecting on class journeys while preparing students for transitions to the next level." },
+    { title: "Parent Interactions", icon: <UsersFour weight="duotone" className="w-7 h-7" />, desc: "Building strong partnerships with parents through communication and collaboration.", customLink: "/edu-hub/culture/parent-interactions" },
+    { title: "Day / Days of Wonder", icon: <Lightbulb weight="duotone" className="w-7 h-7" />, desc: "Special school events that inspire curiosity, creativity, and discovery.", customLink: "/edu-hub/culture/days-of-wonder" },
+    { title: "Bulletin Boards / Making Learning Visible", icon: <PresentationChart weight="duotone" className="w-7 h-7" />, desc: "Making learning visible, celebrating student work, and building a vibrant school community.", customLink: "/edu-hub/culture/bulletin-boards" },
+    { title: "Annual Day", icon: <Confetti weight="duotone" className="w-7 h-7" />, desc: "School-wide celebration showcasing student talents, achievements, and performances.", customLink: "/edu-hub/culture/annual-day" },
+    { title: "Fire Safety", icon: <Fire weight="duotone" className="w-7 h-7" />, desc: "Educating students about fire safety practices and emergency response awareness.", customLink: "/edu-hub/culture/fire-safety" },
+    { title: "Natural Disaster", icon: <Mountains weight="duotone" className="w-7 h-7" />, desc: "Guidelines and protocols for ensuring safety during natural calamities.", customLink: "/edu-hub/culture/natural-disaster" },
+    { title: "Animal Management & Response", icon: <PawPrint weight="duotone" className="w-7 h-7" />, desc: "Protocols for managing and responding to animal presence on school premises safely.", customLink: "/edu-hub/culture/animal-management" },
   ];
 
   const environmentPractices = [
-    { title: "House Points", icon: <Trophy weight="duotone" className="w-7 h-7" />, desc: "Motivational reward system encouraging teamwork and positive behavior.", link: "https://docs.google.com/document/d/1CzDB-A7sC4Nu1Jz0FrhktAF_NZ1OLI-S-TXhcRCO5a0/edit?tab=t.0#" },
-    { title: "Classroom Layout", icon: <SquaresFour weight="duotone" className="w-7 h-7" />, desc: "Intentional classroom arrangement designed to promote collaboration and focus.", link: "https://docs.google.com/document/d/1B1rw79WggxBQjfxxSNhXrWceOfWSkKQLVVC_iPee1i4/edit?tab=t.0#" },
-    { title: "In-Class Shelves", icon: <Books weight="duotone" className="w-7 h-7" />, desc: "Organized storage that ensures learning materials are accessible and structured.", link: "https://docs.google.com/document/d/1V2AH03lL7lFjNY0kwVnHvmC0dqUuP0zRCg1yWLkNmF4/edit?tab=t.0#" },
-    { title: "In-Class Library", icon: <BookOpen weight="duotone" className="w-7 h-7" />, desc: "A classroom reading corner encouraging independent reading and literacy development.", link: "https://docs.google.com/document/d/1jYYHb6xeU2R0tXgzycFAr0TPbQPE47r0QERRtQ0kPlA/edit?tab=t.0#" },
-    { title: "Making Learning Visible", icon: <PresentationChart weight="duotone" className="w-7 h-7" />, desc: "Displaying student work and progress to celebrate learning journeys.", link: "https://docs.google.com/document/d/1DVu_qA5qxd6q4Ev3ypxSXpl45WqLRWi8g9QYZgQum-A/edit?tab=t.0#" },
-    { title: "Ekya Mirror", icon: <IdentificationBadge weight="duotone" className="w-7 h-7" />, desc: "Reflection spaces where students can see their progress and recognize achievements.", link: "https://docs.google.com/document/d/14-dPIVgV_HdlTWDsfgGGnkbtQOHAHxGnbTd5VEu1znk/edit?tab=t.0#" },
+    { title: "House Points", icon: <Trophy weight="duotone" className="w-7 h-7" />, desc: "Motivational reward system encouraging teamwork and positive behavior.", customLink: "/edu-hub/culture/house-points" },
+    { title: "Classroom Layout", icon: <SquaresFour weight="duotone" className="w-7 h-7" />, desc: "Designing physical classroom spaces that promote student engagement, collaboration, and learning.", customLink: "/edu-hub/culture/classroom-layout" },
+    { title: "In-Class Shelves", icon: <Books weight="duotone" className="w-7 h-7" />, desc: "Organized storage that ensures learning materials are accessible and structured.", customLink: "/edu-hub/culture/in-class-shelves" },
+    { title: "In-Class Library", icon: <BookOpen weight="duotone" className="w-7 h-7" />, desc: "A classroom reading corner encouraging independent reading and literacy development.", customLink: "/edu-hub/culture/in-class-library" },
+    { title: "Making Learning Visible", icon: <PresentationChart weight="duotone" className="w-7 h-7" />, desc: "Displaying student work and progress to celebrate learning journeys.", customLink: "/edu-hub/culture/bulletin-boards" },
+    { title: "Ekya Mirror", icon: <IdentificationBadge weight="duotone" className="w-7 h-7" />, desc: "Reflection spaces where students can see their progress and recognize achievements.", customLink: "/edu-hub/culture/ekya-mirror" },
   ];
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6] pb-12 rounded-b-[2.5rem] smooth-scroll overflow-x-hidden">
-      <PageEditorControls 
+    <div className="min-h-screen bg-[#FAF9F6] pb-20 rounded-b-[2.5rem] smooth-scroll">
+      <PageEditorControls
         settingKey="page_culture_environment"
         initialData={data}
         onSave={setData}
@@ -116,58 +132,61 @@ export const CultureEnvironmentSection = () => {
           { key: "cultureIntro1", label: "Culture Paragraph 1", type: "textarea" },
           { key: "cultureIntro2", label: "Culture Paragraph 2", type: "textarea" },
           { key: "envIntro", label: "Environment Intro Text", type: "textarea" },
+          { key: "bannerSubtitle", label: "Banner Subtitle", type: "input" },
+          { key: "coreSubtitle", label: "Core Principles Subtitle", type: "input" },
+          { key: "coreTitle", label: "Core Principles Title", type: "input" },
+          { key: "envSubtitle", label: "Environment Subtitle", type: "input" },
+          { key: "envTitle", label: "Environment Title", type: "input" },
+          { key: "section_custom", label: "Custom Sections", type: "section" },
+          {
+            key: "customSections",
+            label: "Add New Sections",
+            type: "list",
+            itemFields: [
+              { key: "title", label: "Section Title", type: "input" },
+              { key: "image", label: "Section Image", type: "image" },
+              { key: "content", label: "Section Content", type: "textarea" }
+            ]
+          }
         ]}
       />
 
-      {/* 1. Immersive Hero Banner (Premium Hub Style) */}
-      <div className="relative w-full h-[320px] overflow-hidden -mt-6 -mx-6 md:-mx-12 rounded-b-[3rem] shadow-2xl mb-16">
-        <div className="absolute inset-0 bg-slate-900">
-          <img 
-            src={data.heroImage} 
-            alt="School Culture"
-            className="w-full h-full object-cover object-[30%_center] opacity-40 mix-blend-luminosity transform scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent" />
-        </div>
-        
-        <div className="absolute inset-0 flex flex-col justify-end px-12 md:px-16 lg:px-20 xl:px-24 pb-12">
-          <div className="space-y-3 animate-in fade-in slide-in-from-bottom-6 duration-1000">
-            <div className="flex items-center gap-3 text-primary-foreground/80">
-              <Sparkle className="w-5 h-5 text-primary" weight="fill" />
-              <span className="text-xs font-black uppercase tracking-[0.3em]">{data.pillarTitle}</span>
+
+
+      {/* Hero Banner */}
+      {!hideInternalBanner && (
+        <div className="max-w-7xl mx-auto px-4 md:px-6 mt-2 relative h-[280px] md:h-[320px] overflow-hidden rounded-[2.5rem] shadow-2xl mb-16">
+          <div className="absolute inset-0 bg-slate-900">
+            <img
+              src={data.heroImage}
+              alt="School Culture"
+              className="w-full h-full object-cover object-[30%_center] opacity-40 mix-blend-luminosity transform scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent" />
+          </div>
+
+          <div className="absolute inset-0 flex flex-col justify-end pl-12 md:pl-20 lg:pl-40 pr-12 pb-20">
+            <div className="space-y-3 animate-in fade-in slide-in-from-bottom-6 duration-1000">
+              <div className="flex items-center gap-3 text-primary-foreground/80">
+                <Sparkle className="w-5 h-5 text-primary" weight="fill" />
+                <span className="text-xs font-black uppercase tracking-[0.3em]">{data.pillarTitle}</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-none uppercase">
+                {data.mainTitle} <span className="text-primary italic">{data.italicTitle}</span>
+              </h1>
+              <div className="h-1.5 w-32 bg-primary rounded-full mt-4 shadow-[0_0_20px_rgba(234,16,74,0.5)]" />
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-none uppercase">
-              {data.mainTitle} <span className="text-primary italic">{data.italicTitle}</span>
-            </h1>
-            <div className="h-1.5 w-32 bg-primary rounded-full mt-4 shadow-[0_0_20px_rgba(234,16,74,0.5)]" />
+          </div>
+
+          {/* Decorative Elements */}
+          <div className="absolute top-10 right-10 opacity-10 hidden md:block">
+            <Rocket className="w-40 h-40 text-white rotate-12" weight="duotone" />
           </div>
         </div>
-        
-        {/* Decorative Elements */}
-        <div className="absolute top-10 right-10 opacity-10 hidden md:block">
-           <Rocket className="w-40 h-40 text-white rotate-12" weight="duotone" />
-        </div>
+      )}
 
-        {canEdit() && (
-          <Button 
-            className="absolute top-10 right-10 bg-[#E63946] hover:bg-[#D62839] text-white gap-2 z-20 shadow-lg"
-            onClick={() => setIsEditorOpen(true)}
-          >
-            <PencilSimple size={18} weight="bold" />
-            Edit Content
-          </Button>
-        )}
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <Button 
-          variant="ghost" 
-          onClick={() => navigate('/edu-hub')}
-          className="mb-8 -ml-2 text-slate-400 hover:text-primary hover:bg-primary/5 gap-2 font-bold uppercase tracking-widest text-[10px]"
-        >
-          <CaretLeft weight="bold" /> Back
-        </Button>
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
 
         <div className="space-y-24">
           {/* 2. Care About Culture Section */}
@@ -177,19 +196,19 @@ export const CultureEnvironmentSection = () => {
                 <Heart className="w-6 h-6" weight="duotone" />
               </div>
               <div>
-                <h2 className="text-sm font-black text-primary tracking-[0.3em] uppercase">Core Principles</h2>
-                <h3 className="text-3xl font-bold text-slate-800 tracking-tight">CARE ABOUT CULTURE</h3>
+                <h2 className="text-sm font-black text-primary tracking-[0.3em] uppercase">{data.coreSubtitle || "Core Principles"}</h2>
+                <h3 className="text-3xl font-bold text-slate-800 tracking-tight">{data.coreTitle || "CARE ABOUT CULTURE"}</h3>
               </div>
             </div>
-            
+
             <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-primary/20 text-center relative overflow-hidden">
-               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-accent" />
-               <p className="text-xl text-slate-600 font-medium leading-relaxed mb-6 max-w-4xl mx-auto">
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-accent" />
+              <p className="text-xl text-slate-600 font-medium leading-relaxed mb-6 max-w-4xl mx-auto">
                 {data.cultureIntro1}
-               </p>
-               <p className="text-xl text-slate-600 font-medium leading-relaxed max-w-4xl mx-auto">
+              </p>
+              <p className="text-xl text-slate-600 font-medium leading-relaxed max-w-4xl mx-auto">
                 {data.cultureIntro2}
-               </p>
+              </p>
             </div>
           </section>
 
@@ -209,8 +228,8 @@ export const CultureEnvironmentSection = () => {
                 <Buildings className="w-6 h-6" weight="duotone" />
               </div>
               <div>
-                <h2 className="text-sm font-black text-primary tracking-[0.3em] uppercase">Physical Spaces</h2>
-                <h3 className="text-3xl font-bold text-slate-800 tracking-tight">ENVIRONMENT</h3>
+                <h2 className="text-sm font-black text-primary tracking-[0.3em] uppercase">{data.envSubtitle || "Physical Spaces"}</h2>
+                <h3 className="text-3xl font-bold text-slate-800 tracking-tight">{data.envTitle || "ENVIRONMENT"}</h3>
               </div>
             </div>
             <p className="text-xl text-slate-500 font-medium tracking-tight mb-12 max-w-4xl">
@@ -219,19 +238,49 @@ export const CultureEnvironmentSection = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-16">
               {environmentPractices.map((practice, idx) => (
-                 <PracticeCard key={idx} {...practice} />
+                <PracticeCard key={idx} {...practice} />
               ))}
             </div>
           </section>
+
+          {/* 5. Custom Sections */}
+          {data.customSections && data.customSections.map((section, idx) => (
+            <section key={'custom-' + idx} className="animate-in fade-in slide-in-from-bottom-8 duration-700">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+                  <Sparkle className="w-6 h-6" weight="duotone" />
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-slate-800 tracking-tight uppercase">{section.title}</h3>
+                </div>
+              </div>
+
+              {section.image && (
+                <div className="mb-8 rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-sm">
+                  <img src={section.image} alt={section.title || 'Custom Section Image'} className="w-full h-[400px] object-cover" />
+                </div>
+              )}
+
+              {section.content && (
+                <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-primary/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1.5 bg-primary/20" />
+                  <p className="text-xl text-slate-600 font-medium leading-relaxed whitespace-pre-wrap">
+                    {section.content}
+                  </p>
+                </div>
+              )}
+            </section>
+          ))}
+
         </div>
       </div>
 
       {/* 6. Footer Section */}
       <footer className="bg-slate-900 -mx-6 md:-mx-12 -mb-12 mt-12 py-16 px-6 md:px-12 text-slate-400 relative overflow-hidden rounded-b-[2.5rem]">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary" />
-        
+
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 items-center text-center md:text-left">
-          
+
           <div className="space-y-6 flex flex-col items-center md:items-start">
             <h2 className="text-2xl font-black text-white tracking-tight uppercase">Ekya <span className="text-primary italic">Schools</span></h2>
             <div className="flex gap-4">
@@ -249,21 +298,21 @@ export const CultureEnvironmentSection = () => {
               </div>
             </div>
             <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-4">
-               © Ekya Schools – Educator Hub
+              © Ekya Schools – Educator Hub
             </p>
           </div>
 
           <div className="flex justify-center">
             <div className="text-center space-y-3">
-               <span className="text-[10px] uppercase tracking-widest font-black text-slate-500 bg-white/5 px-4 py-1.5 rounded-full">Part of</span>
-               <h3 className="text-xl font-bold text-white tracking-tight">CMR Group of Institutions</h3>
+              <span className="text-[10px] uppercase tracking-widest font-black text-slate-500 bg-white/5 px-4 py-1.5 rounded-full">Part of</span>
+              <h3 className="text-xl font-bold text-white tracking-tight">CMR Group of Institutions</h3>
             </div>
           </div>
 
           <div className="flex justify-center md:justify-end">
             <div className="w-32 h-32 bg-white rounded-xl p-3 flex flex-col items-center justify-center shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
-               <QrCode className="w-full h-full text-slate-800" weight="bold" />
-               <span className="text-[8px] font-black uppercase text-slate-400 mt-1">Scan for Guide</span>
+              <QrCode className="w-full h-full text-slate-800" weight="bold" />
+              <span className="text-[8px] font-black uppercase text-slate-400 mt-1">Scan for Guide</span>
             </div>
           </div>
 

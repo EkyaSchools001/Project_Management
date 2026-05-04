@@ -105,7 +105,7 @@ export function CustomDashboardWrapper({ role, children }: CustomDashboardWrappe
     const data = widgetData[widget.id];
 
     if (widget.widgetType === 'stats') {
-      const value = data?.count ?? data?.value ?? data?.total ?? data?.hours ?? "--";
+      const value = data?.count ?? data?.value ?? data?.total ?? data?.hours ?? "";
       const subtitle = data?.subtitle ?? "Total";
       return (
         <div className="flex flex-col items-center justify-center h-full">
@@ -300,3 +300,4 @@ export function CustomDashboardWrapper({ role, children }: CustomDashboardWrappe
 }
 
 export default CustomDashboardWrapper;
+

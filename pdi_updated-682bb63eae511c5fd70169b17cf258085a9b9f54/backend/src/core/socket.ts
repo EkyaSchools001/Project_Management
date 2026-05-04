@@ -1,5 +1,7 @@
 import { Server as HttpServer } from 'http';
 import { Server, Socket } from 'socket.io';
+import { createAdapter } from '@socket.io/redis-adapter';
+import redisClient, { subClient } from '../infrastructure/config/redis';
 
 let io: Server;
 
@@ -10,6 +12,9 @@ export const initializeSocket = (server: HttpServer) => {
             methods: ["GET", "POST"]
         }
     });
+
+    // Use Redis adapter to synchronize sockets across multiple processes/instances
+    // io.adapter(createAdapter(redisClient, subClient));
 
     io.on('connection', (socket: Socket) => {
         console.log('Client connected:', socket.id);

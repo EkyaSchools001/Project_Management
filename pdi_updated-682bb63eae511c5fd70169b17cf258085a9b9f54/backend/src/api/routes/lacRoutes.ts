@@ -32,6 +32,9 @@ router.get('/teachers', restrictTo('COORDINATOR', 'LEADER', 'SCHOOL_LEADER', 'AD
 router.patch('/task/:id', restrictTo('COORDINATOR', 'LEADER', 'SCHOOL_LEADER', 'ADMIN', 'MANAGEMENT', 'SUPERADMIN', 'TESTER'), lacController.updateLacTaskStatus);
 
 // Coordinators & Leaders: Assign a task to a specific teacher
-router.post('/assign-task', restrictTo('COORDINATOR', 'LEADER', 'SCHOOL_LEADER', 'ADMIN', 'MANAGEMENT', 'SUPERADMIN'), lacController.assignLacTask);
+router.post('/assign-task', restrictTo('COORDINATOR', 'LEADER', 'SCHOOL_LEADER', 'ADMIN', 'MANAGEMENT', 'SUPERADMIN', 'TESTER'), lacController.assignLacTask);
+
+// Coordinators & Admins: Bulk import tasks
+router.post('/import', restrictTo('COORDINATOR', 'LEADER', 'SCHOOL_LEADER', 'ADMIN', 'MANAGEMENT', 'SUPERADMIN', 'TESTER'), lacController.importLacTasks);
 
 export default router;

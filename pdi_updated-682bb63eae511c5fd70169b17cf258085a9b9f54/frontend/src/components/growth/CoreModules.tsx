@@ -24,18 +24,11 @@ const CoreModules: React.FC<CoreModulesProps> = ({ teacherId, teacherName, teach
 
     const modules = [
         {
-            title: "Ekya Danielson Framework. Unified Observation, Feedback & Improvement Form",
-            description: "Standard Danielson-based academic observation framework.",
+            title: "Unified Observation System",
+            description: "Structured cluster-based observations and scheduled reviews.",
             icon: Eye,
-            path: getPath("/leader/danielson-framework"),
+            path: getPath("/leader/observations/schedule"),
             color: "bg-blue-500",
-        },
-        {
-            title: "Quick Feedback Master",
-            description: "Fast, actionable feedback loops for core academic subjects.",
-            icon: MessageSquare,
-            path: getPath("/leader/quick-feedback"),
-            color: "bg-indigo-500",
         },
     ];
 

@@ -52,128 +52,30 @@ const DEFAULT_PLATFORMS = [
 ];
 
 const formSchema = z.object({
-    // Section 1: User Details
+    // User Details (Keep for backend parity)
     email: z.string().email("Invalid email address"),
     name: z.string().min(2, "Name is required"),
     campus: z.string().min(1, "Please select a campus"),
 
-    // Section 2: Course Details
+    // Course Details (Mapped from HTML)
     courseName: z.string().min(3, "Course name is required"),
+    platform: z.string().min(1, "Please select a platform"),
+    otherPlatform: z.string().optional(),
+    endDate: z.date({
+        required_error: "Completion date is required",
+    }),
     hours: z.string().refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
         message: "Please enter a valid number of hours",
     }),
-    platform: z.string().min(1, "Please select a platform"),
-    otherPlatform: z.string().optional(),
-    startDate: z.date({
-        required_error: "Date of start is required",
-    }).refine((date) => {
-        const today = new Date();
-        today.setHours(23, 59, 59, 999);
-        return date <= today;
-    }, "Date cannot be in the future"),
-    endDate: z.date({
-        required_error: "Date of end is required",
-    }).refine((date) => {
-        const today = new Date();
-        today.setHours(23, 59, 59, 999);
-        return date <= today;
-    }, "Date cannot be in the future"),
-
-    // Section 3: Certificate / Proof
-    hasCertificate: z.enum(["yes", "no"], {
-        required_error: "Please select an option",
-    }),
+    track: z.string().min(1, "Please select a track"),
     proofLink: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
-    certificateType: z.enum(["link", "file"]).optional(),
-    certificateFile: z.string().optional(),
-    certificateFileName: z.string().optional(),
-
-    // Section 4: Reflection (Conditional)
-    keyTakeaways: z.string().optional(),
-    unansweredQuestions: z.string().optional(),
-    enjoyedMost: z.string().optional(),
-
-    // Section 5: Feedback
-    effectivenessRating: z.array(z.number()).refine((val) => val.length === 1 && val[0] >= 1 && val[0] <= 10, {
-        message: "Rating must be between 1 and 10",
-    }),
-    additionalFeedback: z.string().optional(),
-
-    // Section 6: Supporting Documents (Optional)
-    supportingDocType: z.enum(["link", "file"]).optional(),
-    supportingDocLink: z.string().url("Please enter a valid URL").optional().or(z.literal("")),
-    supportingDocFile: z.string().optional(),
-    supportingDocFileName: z.string().optional(),
+    keyTakeaways: z.string().min(10, "Please share your reflection (min 10 characters)"),
 }).superRefine((data, ctx) => {
     if (data.platform === "Other" && !data.otherPlatform) {
         ctx.addIssue({
             code: z.ZodIssueCode.custom,
             message: "Please specify the platform",
             path: ["otherPlatform"],
-        });
-    }
-
-    if (data.hasCertificate === "yes") {
-        if (!data.certificateType) {
-            ctx.addIssue({
-                code: z.ZodIssueCode.custom,
-                message: "Please select a proof type",
-                path: ["certificateType"],
-            });
-        }
-        if (data.certificateType === "link" && !data.proofLink) {
-            ctx.addIssue({
-                code: z.ZodIssueCode.custom,
-                message: "Please provide the certificate link",
-                path: ["proofLink"],
-            });
-        }
-        if (data.certificateType === "file" && !data.certificateFile) {
-            ctx.addIssue({
-                code: z.ZodIssueCode.custom,
-                message: "Please upload a certificate file",
-                path: ["certificateFile"],
-            });
-        }
-    }
-
-    if (data.hasCertificate === "no") {
-        if (!data.keyTakeaways) {
-            ctx.addIssue({
-                code: z.ZodIssueCode.custom,
-                message: "This field is mandatory as you don't have a certificate",
-                path: ["keyTakeaways"],
-            });
-        }
-        if (!data.unansweredQuestions) {
-            ctx.addIssue({
-                code: z.ZodIssueCode.custom,
-                message: "This field is mandatory as you don't have a certificate",
-                path: ["unansweredQuestions"],
-            });
-        }
-        if (!data.enjoyedMost) {
-            ctx.addIssue({
-                code: z.ZodIssueCode.custom,
-                message: "This field is mandatory as you don't have a certificate",
-                path: ["enjoyedMost"],
-            });
-        }
-    }
-
-    if (data.supportingDocType === "link" && !data.supportingDocLink) {
-        ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: "Please provide the document link",
-            path: ["supportingDocLink"],
-        });
-    }
-
-    if (data.supportingDocType === "file" && !data.supportingDocFile) {
-        ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: "Please upload a file",
-            path: ["supportingDocFile"], // This might need manual handling since it's not a standard input
         });
     }
 });
@@ -218,44 +120,26 @@ export function MoocEvidenceForm({ onCancel, onSubmitSuccess, onAutoSave, userEm
             email: initialData.email || userEmail,
             name: initialData.name || userName,
             courseName: initialData.courseName || "",
-            hours: initialData.hours !== undefined && initialData.hours !== null ? String(initialData.hours) : "",
-            platform: initialData.platform || "",
-            campus: initialData.campus || initialData.user?.campusId || "",
-            effectivenessRating: initialData.effectivenessRating ? [initialData.effectivenessRating] : [5],
-            hasCertificate: initialData.hasCertificate || "yes",
-            proofLink: initialData.proofLink || "",
+            platform: initialData.platform || "FutureLearn",
             otherPlatform: initialData.otherPlatform || "",
-            additionalFeedback: initialData.additionalFeedback || "",
-            startDate: initialData.startDate ? new Date(initialData.startDate) : new Date(),
             endDate: initialData.endDate ? new Date(initialData.endDate) : new Date(),
-            certificateType: initialData.certificateType || "link",
-            certificateFile: initialData.certificateFile || "",
-            certificateFileName: initialData.certificateFileName || "",
-            supportingDocType: initialData.supportingDocType || undefined,
-            supportingDocLink: initialData.supportingDocLink || "",
-            supportingDocFile: initialData.supportingDocFile || "",
-            supportingDocFileName: initialData.supportingDocFileName || "",
+            hours: initialData.hours !== undefined && initialData.hours !== null ? String(initialData.hours) : "",
+            track: initialData.track || "",
+            proofLink: initialData.proofLink || "",
+            keyTakeaways: initialData.keyTakeaways || "",
+            campus: initialData.campus || initialData.user?.campusId || "",
         } : {
             email: userEmail,
             name: userName,
             courseName: "",
-            hours: "",
-            platform: "",
-            campus: "",
-            effectivenessRating: [5], // Default middle value
-            hasCertificate: "yes",
-            proofLink: "",
+            platform: "FutureLearn",
             otherPlatform: "",
-            additionalFeedback: "",
-            startDate: new Date(),
             endDate: new Date(),
-            certificateType: "link",
-            certificateFile: "",
-            certificateFileName: "",
-            supportingDocType: undefined,
-            supportingDocLink: "",
-            supportingDocFile: "",
-            supportingDocFileName: "",
+            hours: "",
+            track: "",
+            proofLink: "",
+            keyTakeaways: "",
+            campus: user?.campusId || "",
         },
     });
 
@@ -272,10 +156,7 @@ export function MoocEvidenceForm({ onCancel, onSubmitSuccess, onAutoSave, userEm
         localStorageKey: `pdi_mooc_draft_${formValues.email || 'new'}`
     });
 
-    const hasCertificate = form.watch("hasCertificate");
     const selectedPlatform = form.watch("platform");
-    const certificateType = form.watch("certificateType");
-    const supportingDocType = form.watch("supportingDocType");
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, fieldName: "supportingDocFile" | "certificateFile", fileNameField: "supportingDocFileName" | "certificateFileName") => {
         const file = e.target.files?.[0];
@@ -300,8 +181,10 @@ export function MoocEvidenceForm({ onCancel, onSubmitSuccess, onAutoSave, userEm
         try {
             await moocService.submitEvidence({
                 ...values,
-                startDate: values.startDate.toISOString(),
-                endDate: values.endDate.toISOString()
+                endDate: values.endDate.toISOString(),
+                startDate: values.endDate.toISOString(), // Set same as end date for legacy compatibility
+                hasCertificate: values.proofLink ? 'yes' : 'no',
+                effectivenessRating: 5 // Default for legacy
             });
 
             toast.success("MOOC Evidence Submitted Successfully!", {
@@ -329,582 +212,243 @@ export function MoocEvidenceForm({ onCancel, onSubmitSuccess, onAutoSave, userEm
     }
 
     return (
-        <Card className="max-w-4xl mx-auto   shadow-none h-full overflow-y-auto">
-            <CardHeader className="bg-primary/5 rounded-t-xl mb-6 border-b">
-                <CardTitle className="text-2xl font-bold text-primary flex items-center justify-between">
-                    <div className="flex items-center gap-2">
+        <Card className="max-w-4xl mx-auto bg-white rounded-[2.5rem] shadow-sm border border-red-100 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1.5 bg-red-500/20" />
+            
+            <CardHeader className="bg-red-50/50 p-8 md:p-10 border-b border-red-100">
+                <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-2xl bg-red-100 flex items-center justify-center text-red-600">
                         <BookOpen className="w-6 h-6" />
-                        AY 25-26 MOOC Evidence Form
                     </div>
-                    <div className={cn(
-                        "flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300",
-                        isSaving
-                            ? "bg-amber-50 text-amber-600 border-amber-100"
-                            : "bg-emerald-50 text-emerald-600 border-emerald-100"
-                    )}>
-                        <Cloud className={cn("w-3.5 h-3.5", isSaving ? "animate-pulse fill-amber-600/20" : "fill-emerald-600/20")} />
-                        <span className="text-[10px] font-bold uppercase tracking-wider">
-                            {isSaving ? "Saving changes..." : "All changes auto-saved"}
-                        </span>
+                    <div>
+                        <h2 className="text-sm font-black text-red-500 tracking-[0.3em] uppercase">Teacher Development</h2>
+                        <CardTitle className="text-3xl font-bold text-slate-800 tracking-tight uppercase">
+                            Submit MOOC Evidence
+                        </CardTitle>
                     </div>
-                </CardTitle>
-                <CardDescription className="text-base text-muted-foreground mt-2 space-y-2">
-                    <p className="font-semibold text-foreground">Congratulations! 🎉</p>
-                    <p>We appreciate your commitment to learning and professional growth.</p>
-                    <p>Please fill out this form to record your course completion. Read the MOOC Handout instructions carefully before submission.</p>
-                    <p className="text-sm">For queries contact: <span className="text-primary font-medium">pdi@ekyaschools.com</span> via the ticketing system.</p>
+                </div>
+                <CardDescription className="text-lg text-slate-600 font-medium leading-relaxed">
+                    Attach your certificate and complete the reflection. Your reporting manager will review and approve.
+                    
+                    <div className="mt-6 p-5 bg-red-50/80 border border-red-100 rounded-3xl text-red-700 text-sm flex items-start gap-4">
+                        <div className="w-8 h-8 rounded-xl bg-red-100 flex items-center justify-center flex-none text-red-600">
+                            <span className="text-lg font-bold">!</span>
+                        </div>
+                        <div className="pt-1">
+                            <strong className="text-red-900 block mb-0.5">Submission Deadline: 30 September 2025</strong>
+                            <p className="opacity-80 font-medium">Minimum 1 MOOC per term is required for all staff members.</p>
+                        </div>
+                    </div>
                 </CardDescription>
             </CardHeader>
-            <CardContent>
+
+            <CardContent className="p-8 md:p-12 space-y-10">
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(handleSubmit, onInvalid)} className="space-y-8 pb-8">
-
-                        {/* Section 1: User Details */}
+                    <form onSubmit={form.handleSubmit(handleSubmit, onInvalid)} className="space-y-8">
+                        
                         <div className="space-y-6">
-                            <h3 className="text-lg font-semibold flex items-center gap-2 text-foreground border-l-4 border-primary pl-3">
-                                <User className="w-5 h-5 text-muted-foreground" />
-                                Personal Details
-                            </h3>
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <FormField
-                                    control={form.control}
-                                    name="email"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Email Address *</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="your.email@ekyaschools.com" {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="name"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Name *</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="Enter your full name" {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="campus"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Campus *</FormLabel>
-                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                <FormControl>
-                                                    <SelectTrigger>
-                                                        <SelectValue placeholder="Select campus" />
-                                                    </SelectTrigger>
-                                                </FormControl>
-                                                <SelectContent>
-                                                    {campuses.map((campus) => (
-                                                        <SelectItem key={campus} value={campus}>
-                                                            {campus}
-                                                        </SelectItem>
-                                                    ))}
-                                                </SelectContent>
-                                            </Select>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                            </div>
-                        </div>
+                            <FormField
+                                control={form.control}
+                                name="courseName"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel className="text-sm font-black text-slate-500 tracking-widest uppercase">Course Name</FormLabel>
+                                        <FormControl>
+                                            <Input 
+                                                placeholder="e.g. The Scientific Method" 
+                                                {...field} 
+                                                className="h-14 rounded-2xl border-slate-100 bg-slate-50/50 focus:bg-white focus:ring-red-500/20 focus:border-red-500 transition-all" 
+                                            />
+                                        </FormControl>
+                                        <FormMessage className="font-bold text-rose-500" />
+                                    </FormItem>
+                                )}
+                            />
 
-                        <Separator />
-
-                        {/* Section 2: Course Details */}
-                        <div className="space-y-6">
-                            <h3 className="text-lg font-semibold flex items-center gap-2 text-foreground border-l-4 border-primary pl-3">
-                                <BookOpen className="w-5 h-5 text-muted-foreground" />
-                                Course Details
-                            </h3>
-                            <div className="space-y-4">
-                                <FormField
-                                    control={form.control}
-                                    name="courseName"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Name of Course *</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="Enter course title" {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <div className="grid md:grid-cols-2 gap-6">
-                                    <FormField
-                                        control={form.control}
-                                        name="hours"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Number of Hours *</FormLabel>
-                                                <FormControl>
-                                                    <Input type="number" placeholder="Total course hours" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name="startDate"
-                                        render={({ field }) => (
-                                            <FormItem className="flex flex-col">
-                                                <FormLabel>Date of Start *</FormLabel>
-                                                <Popover>
-                                                    <PopoverTrigger asChild>
-                                                        <FormControl>
-                                                            <Button
-                                                                variant={"outline"}
-                                                                className={cn(
-                                                                    "w-full pl-3 text-left font-normal",
-                                                                    !field.value && "text-muted-foreground"
-                                                                )}
-                                                            >
-                                                                {field.value ? (
-                                                                    format(field.value, "PPP")
-                                                                ) : (
-                                                                    <span>Pick a date</span>
-                                                                )}
-                                                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                                                            </Button>
-                                                        </FormControl>
-                                                    </PopoverTrigger>
-                                                    <PopoverContent className="w-auto p-0" align="start">
-                                                        <Calendar
-                                                            mode="single"
-                                                            selected={field.value}
-                                                            onSelect={field.onChange}
-                                                            disabled={(date) =>
-                                                                date > new Date() || date < new Date("1900-01-01")
-                                                            }
-                                                            initialFocus
-                                                        />
-                                                    </PopoverContent>
-                                                </Popover>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name="endDate"
-                                        render={({ field }) => (
-                                            <FormItem className="flex flex-col">
-                                                <FormLabel>Date of End *</FormLabel>
-                                                <Popover>
-                                                    <PopoverTrigger asChild>
-                                                        <FormControl>
-                                                            <Button
-                                                                variant={"outline"}
-                                                                className={cn(
-                                                                    "w-full pl-3 text-left font-normal",
-                                                                    !field.value && "text-muted-foreground"
-                                                                )}
-                                                            >
-                                                                {field.value ? (
-                                                                    format(field.value, "PPP")
-                                                                ) : (
-                                                                    <span>Pick a date</span>
-                                                                )}
-                                                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                                                            </Button>
-                                                        </FormControl>
-                                                    </PopoverTrigger>
-                                                    <PopoverContent className="w-auto p-0" align="start">
-                                                        <Calendar
-                                                            mode="single"
-                                                            selected={field.value}
-                                                            onSelect={field.onChange}
-                                                            disabled={(date) =>
-                                                                date > new Date() || date < new Date("1900-01-01")
-                                                            }
-                                                            initialFocus
-                                                        />
-                                                    </PopoverContent>
-                                                </Popover>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                </div>
-
+                            <div className="grid md:grid-cols-2 gap-8">
                                 <FormField
                                     control={form.control}
                                     name="platform"
                                     render={({ field }) => (
-                                        <FormItem className="space-y-3">
-                                            <FormLabel>Platform *</FormLabel>
-                                            <FormControl>
-                                                <RadioGroup
-                                                    onValueChange={field.onChange}
-                                                    defaultValue={field.value}
-                                                    className="grid grid-cols-2 lg:grid-cols-4 gap-4"
-                                                >
-                                                    {platforms.map((platform) => (
-                                                        <FormItem key={platform} className="flex items-center space-x-3 space-y-0">
-                                                            <FormControl>
-                                                                <RadioGroupItem value={platform} />
-                                                            </FormControl>
-                                                            <FormLabel className="font-normal cursor-pointer">
-                                                                {platform}
-                                                            </FormLabel>
-                                                        </FormItem>
-                                                    ))}
-                                                </RadioGroup>
-                                            </FormControl>
-                                            <FormMessage />
+                                        <FormItem>
+                                            <FormLabel className="text-sm font-black text-slate-500 tracking-widest uppercase">Platform</FormLabel>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                <FormControl>
+                                                    <SelectTrigger className="h-14 rounded-2xl border-slate-100 bg-slate-50/50 focus:ring-red-500/20 focus:border-red-500">
+                                                        <SelectValue placeholder="Select platform" />
+                                                    </SelectTrigger>
+                                                </FormControl>
+                                                <SelectContent className="rounded-2xl border-slate-100">
+                                                    <SelectItem value="FutureLearn">FutureLearn</SelectItem>
+                                                    <SelectItem value="Coursera">Coursera</SelectItem>
+                                                    <SelectItem value="Alison">Alison</SelectItem>
+                                                    <SelectItem value="edX">edX</SelectItem>
+                                                    <SelectItem value="Schoology">Schoology</SelectItem>
+                                                    <SelectItem value="Khan Academy">Khan Academy</SelectItem>
+                                                    <SelectItem value="Other">Other</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                            <FormMessage className="font-bold text-rose-500" />
                                         </FormItem>
                                     )}
                                 />
-                                {selectedPlatform === "Other" && (
-                                    <FormField
-                                        control={form.control}
-                                        name="otherPlatform"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Specify Platform *</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder="Enter platform name" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                )}
-                            </div>
-                        </div>
 
-                        <Separator />
-
-                        {/* Section 3: Certificate / Proof */}
-                        <div className="space-y-6">
-                            <h3 className="text-lg font-semibold flex items-center gap-2 text-foreground border-l-4 border-primary pl-3">
-                                <LinkIcon className="w-5 h-5 text-muted-foreground" />
-                                Certificate & Proof
-                            </h3>
-                            <FormField
-                                control={form.control}
-                                name="hasCertificate"
-                                render={({ field }) => (
-                                    <FormItem className="space-y-3">
-                                        <FormLabel>Do you have a completion certificate? *</FormLabel>
-                                        <FormControl>
-                                            <RadioGroup
-                                                onValueChange={field.onChange}
-                                                defaultValue={field.value}
-                                                className="flex gap-4"
-                                            >
-                                                <FormItem className="flex items-center space-x-2 space-y-0">
+                                <FormField
+                                    control={form.control}
+                                    name="endDate"
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-col">
+                                            <FormLabel className="text-sm font-black text-slate-500 tracking-widest uppercase mb-2">Completion Date</FormLabel>
+                                            <Popover>
+                                                <PopoverTrigger asChild>
                                                     <FormControl>
-                                                        <RadioGroupItem value="yes" />
+                                                        <Button
+                                                            variant={"outline"}
+                                                            className={cn(
+                                                                "w-full h-14 pl-4 text-left font-medium rounded-2xl border-slate-100 bg-slate-50/50",
+                                                                !field.value && "text-muted-foreground"
+                                                            )}
+                                                        >
+                                                            {field.value ? (
+                                                                format(field.value, "PPP")
+                                                            ) : (
+                                                                <span>Pick a date</span>
+                                                            )}
+                                                            <CalendarIcon className="ml-auto h-5 w-5 text-slate-400" />
+                                                        </Button>
                                                     </FormControl>
-                                                    <FormLabel className="font-normal">Yes</FormLabel>
-                                                </FormItem>
-                                                <FormItem className="flex items-center space-x-2 space-y-0">
-                                                    <FormControl>
-                                                        <RadioGroupItem value="no" />
-                                                    </FormControl>
-                                                    <FormLabel className="font-normal">No</FormLabel>
-                                                </FormItem>
-                                            </RadioGroup>
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-
-                            {hasCertificate === "yes" && (
-                                <div className="space-y-6">
-                                    <FormField
-                                        control={form.control}
-                                        name="certificateType"
-                                        render={({ field }) => (
-                                            <FormItem className="space-y-3">
-                                                <FormLabel>Proof Type</FormLabel>
-                                                <FormControl>
-                                                    <RadioGroup
-                                                        onValueChange={field.onChange}
-                                                        defaultValue={field.value}
-                                                        className="flex gap-4"
-                                                    >
-                                                        <FormItem className="flex items-center space-x-2 space-y-0">
-                                                            <FormControl>
-                                                                <RadioGroupItem value="link" />
-                                                            </FormControl>
-                                                            <FormLabel className="font-normal cursor-pointer">Drive Link</FormLabel>
-                                                        </FormItem>
-                                                        <FormItem className="flex items-center space-x-2 space-y-0">
-                                                            <FormControl>
-                                                                <RadioGroupItem value="file" />
-                                                            </FormControl>
-                                                            <FormLabel className="font-normal cursor-pointer">File Upload</FormLabel>
-                                                        </FormItem>
-                                                    </RadioGroup>
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-
-                                    {certificateType === "link" && (
-                                        <FormField
-                                            control={form.control}
-                                            name="proofLink"
-                                            render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel>Certificate / Proof Link *</FormLabel>
-                                                    <FormDescription>
-                                                        Upload certificate or final completion screenshot to Google Drive with "Anyone with link can view" access.
-                                                    </FormDescription>
-                                                    <FormControl>
-                                                        <div className="relative">
-                                                            <LinkIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                                                            <Input className="pl-9" placeholder="https://drive.google.com/..." {...field} />
-                                                        </div>
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                    )}
-
-                                    {certificateType === "file" && (
-                                        <div className="space-y-2">
-                                            <FormLabel>Upload Certificate (Max 500KB) *</FormLabel>
-                                            <FormControl>
-                                                <div className="flex items-center gap-2">
-                                                    <Input
-                                                        type="file"
-                                                        accept=".pdf,.jpg,.jpeg,.png"
-                                                        onChange={(e) => handleFileChange(e, "certificateFile", "certificateFileName")}
-                                                        className="cursor-pointer"
+                                                </PopoverTrigger>
+                                                <PopoverContent className="w-auto p-0 rounded-3xl overflow-hidden border-slate-100" align="start">
+                                                    <Calendar
+                                                        mode="single"
+                                                        selected={field.value}
+                                                        onSelect={field.onChange}
+                                                        disabled={(date) =>
+                                                            date > new Date() || date < new Date("1900-01-01")
+                                                        }
+                                                        initialFocus
                                                     />
-                                                </div>
-                                            </FormControl>
-                                            {form.watch("certificateFileName") && (
-                                                <p className="text-sm text-muted-foreground flex items-center gap-1">
-                                                    <FileText className="w-3 h-3" />
-                                                    Selected: {form.watch("certificateFileName")}
-                                                </p>
-                                            )}
-                                            <FormMessage>
-                                                {form.formState.errors.certificateFile?.message && String(form.formState.errors.certificateFile.message)}
-                                            </FormMessage>
-                                        </div>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Section 4: Supporting Documents (Optional) */}
-                        <div className="space-y-6">
-                            <h3 className="text-lg font-semibold flex items-center gap-2 text-foreground border-l-4 border-primary pl-3">
-                                <Paperclip className="w-5 h-5 text-muted-foreground" />
-                                Supporting Documents <span className="text-xs text-muted-foreground font-normal">(Optional)</span>
-                            </h3>
-                            <FormField
-                                control={form.control}
-                                name="supportingDocType"
-                                render={({ field }) => (
-                                    <FormItem className="space-y-3">
-                                        <FormLabel>Attach additional evidence (e.g., project files, notes, screenshots)</FormLabel>
-                                        <FormControl>
-                                            <RadioGroup
-                                                onValueChange={field.onChange}
-                                                defaultValue={field.value}
-                                                className="flex gap-4"
-                                            >
-                                                <FormItem className="flex items-center space-x-2 space-y-0">
-                                                    <FormControl>
-                                                        <RadioGroupItem value="link" />
-                                                    </FormControl>
-                                                    <FormLabel className="font-normal">Drive Link</FormLabel>
-                                                </FormItem>
-                                                <FormItem className="flex items-center space-x-2 space-y-0">
-                                                    <FormControl>
-                                                        <RadioGroupItem value="file" />
-                                                    </FormControl>
-                                                    <FormLabel className="font-normal">File Upload</FormLabel>
-                                                </FormItem>
-                                            </RadioGroup>
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-
-                            {supportingDocType === "link" && (
-                                <FormField
-                                    control={form.control}
-                                    name="supportingDocLink"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Document Link</FormLabel>
-                                            <FormControl>
-                                                <div className="relative">
-                                                    <LinkIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                                                    <Input className="pl-9" placeholder="https://..." {...field} />
-                                                </div>
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                            )}
-
-                            {supportingDocType === "file" && (
-                                <div className="space-y-2">
-                                    <FormLabel>Upload File (Max 500KB)</FormLabel>
-                                    <div className="flex items-center gap-2">
-                                        <Input
-                                            type="file"
-                                            accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
-                                            onChange={(e) => handleFileChange(e, "supportingDocFile", "supportingDocFileName")}
-                                            className="cursor-pointer"
-                                        />
-                                    </div>
-                                    {form.watch("supportingDocFileName") && (
-                                        <p className="text-sm text-muted-foreground flex items-center gap-1">
-                                            <FileText className="w-3 h-3" />
-                                            Selected: {form.watch("supportingDocFileName")}
-                                        </p>
-                                    )}
-                                    <FormMessage>
-                                        {form.formState.errors.supportingDocFile?.message && String(form.formState.errors.supportingDocFile.message)}
-                                    </FormMessage>
-                                </div>
-                            )}
-                        </div>
-
-                        <Separator />
-
-                        {/* Section 5: Reflection (Conditional) */}
-                        {hasCertificate === "no" && (
-                            <div className="space-y-6 animate-in fade-in slide-in-from-top-4 duration-300">
-                                <Separator />
-                                <h3 className="text-lg font-semibold flex items-center gap-2 text-foreground border-l-4 border-warning pl-3">
-                                    <Brain className="w-5 h-5 text-muted-foreground" />
-                                    Reflection <span className="text-xs text-muted-foreground font-normal">(Required as no certificate is available)</span>
-                                </h3>
-                                <FormField
-                                    control={form.control}
-                                    name="keyTakeaways"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Three Key Takeaways from the Course *</FormLabel>
-                                            <FormControl>
-                                                <Textarea placeholder="1. ...&#10;2. ...&#10;3. ..." className="min-h-[100px]" {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="unansweredQuestions"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Two Unanswered Questions After Learning *</FormLabel>
-                                            <FormControl>
-                                                <Textarea placeholder="1. ...&#10;2. ..." className="min-h-[80px]" {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="enjoyedMost"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>One Thing You Enjoyed Most *</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="Briefly describe what you enjoyed..." {...field} />
-                                            </FormControl>
-                                            <FormMessage />
+                                                </PopoverContent>
+                                            </Popover>
+                                            <FormMessage className="font-bold text-rose-500" />
                                         </FormItem>
                                     )}
                                 />
                             </div>
-                        )}
 
-                        <Separator />
+                            <div className="grid md:grid-cols-2 gap-8">
+                                <FormField
+                                    control={form.control}
+                                    name="hours"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel className="text-sm font-black text-slate-500 tracking-widest uppercase">Duration (hours)</FormLabel>
+                                            <FormControl>
+                                                <Input 
+                                                    type="number" 
+                                                    placeholder="e.g. 8" 
+                                                    {...field} 
+                                                    className="h-14 rounded-2xl border-slate-100 bg-slate-50/50" 
+                                                />
+                                            </FormControl>
+                                            <FormMessage className="font-bold text-rose-500" />
+                                        </FormItem>
+                                    )}
+                                />
 
+                                <FormField
+                                    control={form.control}
+                                    name="track"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel className="text-sm font-black text-slate-500 tracking-widest uppercase">Your Track</FormLabel>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                <FormControl>
+                                                    <SelectTrigger className="h-14 rounded-2xl border-slate-100 bg-slate-50/50 focus:ring-red-500/20 focus:border-red-500">
+                                                        <SelectValue placeholder="Select your track" />
+                                                    </SelectTrigger>
+                                                </FormControl>
+                                                <SelectContent className="rounded-2xl border-slate-100 max-h-[300px]">
+                                                    <SelectItem value="Mandatory – Beginner">Mandatory – Beginner</SelectItem>
+                                                    <SelectItem value="Mandatory – Advanced">Mandatory – Advanced</SelectItem>
+                                                    <SelectItem value="Early Years">Early Years</SelectItem>
+                                                    <SelectItem value="Primary School">Primary School</SelectItem>
+                                                    <SelectItem value="Middle School">Middle School</SelectItem>
+                                                    <SelectItem value="Senior School">Senior School</SelectItem>
+                                                    <SelectItem value="All Teachers">All Teachers</SelectItem>
+                                                    <SelectItem value="Visual Arts">Visual Arts</SelectItem>
+                                                    <SelectItem value="Performing Arts">Performing Arts</SelectItem>
+                                                    <SelectItem value="Physical Education">Physical Education</SelectItem>
+                                                    <SelectItem value="CCG Counselors">CCG Counselors</SelectItem>
+                                                    <SelectItem value="Student Counselors">Student Counselors</SelectItem>
+                                                    <SelectItem value="School Leadership">School Leadership</SelectItem>
+                                                    <SelectItem value="HO Teams">HO Teams</SelectItem>
+                                                    <SelectItem value="General">General</SelectItem>
+                                                    <SelectItem value="Admissions Counselors">Admissions Counselors</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                            <FormMessage className="font-bold text-rose-500" />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
 
-
-                        {/* Section 6: Feedback */}
-                        <div className="space-y-6">
-                            <h3 className="text-lg font-semibold flex items-center gap-2 text-foreground border-l-4 border-primary pl-3">
-                                <Star className="w-5 h-5 text-muted-foreground" />
-                                Feedback
-                            </h3>
                             <FormField
                                 control={form.control}
-                                name="effectivenessRating"
+                                name="proofLink"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Course Effectiveness Rating (1-10)</FormLabel>
-                                        <FormDescription className="flex justify-between text-xs">
-                                            <span>1 = Not Effective</span>
-                                            <span>10 = Extremely Effective</span>
-                                        </FormDescription>
+                                        <FormLabel className="text-sm font-black text-slate-500 tracking-widest uppercase">Certificate / Evidence URL</FormLabel>
                                         <FormControl>
-                                            <div className="flex items-center gap-4">
-                                                <span className="font-bold w-6 text-center">{field.value[0]}</span>
-                                                <Slider
-                                                    min={1}
-                                                    max={10}
-                                                    step={1}
-                                                    value={field.value}
-                                                    onValueChange={field.onChange}
-                                                    className="flex-1"
+                                            <div className="relative">
+                                                <LinkIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                                                <Input 
+                                                    placeholder="Paste your certificate link here..." 
+                                                    {...field} 
+                                                    className="h-14 pl-12 rounded-2xl border-slate-100 bg-slate-50/50" 
                                                 />
                                             </div>
                                         </FormControl>
-                                        <FormMessage />
+                                        <FormMessage className="font-bold text-rose-500" />
                                     </FormItem>
                                 )}
                             />
+
                             <FormField
                                 control={form.control}
-                                name="additionalFeedback"
+                                name="keyTakeaways"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Additional Feedback (Optional)</FormLabel>
+                                        <FormLabel className="text-sm font-black text-slate-500 tracking-widest uppercase">Reflection — What did you learn? How will you apply it?</FormLabel>
                                         <FormControl>
-                                            <Textarea placeholder="Any other thoughts about the course?" {...field} />
+                                            <Textarea 
+                                                placeholder="Share your key takeaways and classroom applications..." 
+                                                className="min-h-[160px] rounded-3xl border-slate-100 bg-slate-50/50 p-6 resize-none focus:bg-white focus:ring-red-500/20 focus:border-red-500 transition-all"
+                                                {...field} 
+                                            />
                                         </FormControl>
-                                        <FormMessage />
+                                        <FormMessage className="font-bold text-rose-500" />
                                     </FormItem>
                                 )}
                             />
                         </div>
 
-                        <div className="flex items-center justify-between pt-4 border-t">
-                            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100 animate-in fade-in duration-1000">
-                                <Cloud className="w-3.5 h-3.5 fill-emerald-600/20" />
-                                <span className="text-[10px] font-bold uppercase tracking-wider">All changes auto-saved</span>
-                            </div>
-                            <div className="flex gap-3">
-                                <Button type="button" variant="outline" onClick={onCancel}>
-                                    Cancel
-                                </Button>
-                                <Button type="submit">
-                                    <CheckCircle2 className="w-4 h-4 mr-2" />
-                                    Submit Evidence
-                                </Button>
-                            </div>
+                        <div className="pt-8 flex flex-col md:flex-row gap-4 items-center border-t border-slate-100">
+                            <Button
+                                type="submit"
+                                className="w-full md:w-auto h-14 px-12 rounded-[1.25rem] bg-red-600 hover:bg-red-700 text-white font-bold text-lg shadow-xl shadow-red-200 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                            >
+                                <CheckCircle2 className="w-5 h-5 mr-2" />
+                                Submit Evidence
+                            </Button>
+                            <Button 
+                                type="button" 
+                                variant="ghost" 
+                                onClick={onCancel}
+                                className="w-full md:w-auto h-14 px-8 rounded-[1.25rem] text-slate-400 hover:text-slate-600 hover:bg-slate-100 font-bold"
+                            >
+                                Cancel
+                            </Button>
                         </div>
                     </form>
                 </Form>

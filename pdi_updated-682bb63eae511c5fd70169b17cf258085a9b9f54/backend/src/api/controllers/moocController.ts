@@ -36,10 +36,12 @@ export const submitMoocEvidence = async (req: AuthRequest, res: Response) => {
             email
         } = req.body;
 
-        const submission = await prisma.moocSubmission.create({
+        const submission = await (prisma.moocSubmission as any).create({
             data: {
                 userId,
                 courseName: courseName || 'Draft Course',
+                track: req.body.track,
+                campus: req.body.campus,
                 platform: platform || 'Draft',
                 otherPlatform,
                 hours: hours ? parseFloat(hours) : 0,
@@ -58,7 +60,7 @@ export const submitMoocEvidence = async (req: AuthRequest, res: Response) => {
                 teacherName: name,
                 teacherEmail: email,
                 status: req.body.status || 'PENDING'
-            },
+            } as any,
             include: {
                 user: {
                     select: {
@@ -79,11 +81,12 @@ export const submitMoocEvidence = async (req: AuthRequest, res: Response) => {
         }
 
         // Notify leaders about new MOOC evidence
-        if (submission.status !== 'DRAFT' && submission.user?.campusId) {
+        const sub = submission as any;
+        if (sub.status !== 'DRAFT' && sub.user?.campusId) {
             const leaders = await prisma.user.findMany({
                 where: {
                     role: { in: ['LEADER', 'SCHOOL_LEADER', 'ADMIN'] },
-                    campusId: submission.user.campusId
+                    campusId: sub.user.campusId
                 },
                 select: { id: true }
             });
@@ -92,7 +95,7 @@ export const submitMoocEvidence = async (req: AuthRequest, res: Response) => {
                 await createNotification({
                     userId: leader.id,
                     title: 'New MOOC Evidence',
-                    message: `${submission.user.fullName} has submitted evidence for "${submission.courseName}".`,
+                    message: `${sub.user.fullName} has submitted evidence for "${sub.courseName}".`,
                     type: 'INFO',
                     link: '/leader/mooc'
                 });
@@ -103,7 +106,7 @@ export const submitMoocEvidence = async (req: AuthRequest, res: Response) => {
         const routing = await getFormRouting(
             'MOOC Evidence',
             req.user?.role || 'TEACHER',
-            submission.user?.campusId || undefined,
+            sub.user?.campusId || undefined,
             undefined // Subject not applicable for MOOC evidence usually
         );
 
@@ -131,12 +134,12 @@ export const getAllMoocSubmissions = async (req: AuthRequest, res: Response) => 
 
         let submissions;
         if (role === 'TEACHER') {
-            submissions = await prisma.moocSubmission.findMany({
+            submissions = await (prisma.moocSubmission as any).findMany({
                 where: { userId },
                 orderBy: { submittedAt: 'desc' }
             });
         } else if (role === 'LEADER' || role === 'SCHOOL_LEADER') {
-            submissions = await prisma.moocSubmission.findMany({
+            submissions = await (prisma.moocSubmission as any).findMany({
                 where: { 
                     user: { campusId: req.user?.campusId },
                     status: { not: 'DRAFT' }
@@ -150,7 +153,7 @@ export const getAllMoocSubmissions = async (req: AuthRequest, res: Response) => 
             });
         } else {
             // Admins see everything (except drafts)
-            submissions = await prisma.moocSubmission.findMany({
+            submissions = await (prisma.moocSubmission as any).findMany({
                 where: {
                     status: { not: 'DRAFT' }
                 },
@@ -179,7 +182,8 @@ export const getAllMoocSubmissions = async (req: AuthRequest, res: Response) => 
         console.error('Error fetching MOOC submissions:', error);
         res.status(500).json({
             status: 'error',
-            message: 'Internal server error'
+            message: 'Internal server error',
+            details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
 };
@@ -193,7 +197,7 @@ export const updateMoocStatus = async (req: AuthRequest, res: Response) => {
             throw new AppError('Invalid status', 400);
         }
 
-        const submission = await prisma.moocSubmission.update({
+        const submission = await (prisma.moocSubmission as any).update({
             where: { id },
             data: { status },
             include: {
@@ -221,11 +225,12 @@ export const updateMoocStatus = async (req: AuthRequest, res: Response) => {
             undefined
         );
 
+        const sub2 = submission as any;
         // Persist notification for the teacher
         await createNotification({
-            userId: submission.userId,
+            userId: sub2.userId,
             title: `MOOC Submission ${status}`,
-            message: `Your evidence for "${submission.courseName}" has been ${status.toLowerCase()}.`,
+            message: `Your evidence for "${sub2.courseName}" has been ${status.toLowerCase()}.`,
             type: status === 'APPROVED' ? 'SUCCESS' : 'WARNING',
             link: routing ? `${routing.route}/mooc` : '/teacher/mooc'
         });
@@ -252,13 +257,15 @@ export const updateMoocDraft = async (req: AuthRequest, res: Response) => {
         }
         
         // Ensure user owns this draft or is an admin
-        const existing = await prisma.moocSubmission.findUnique({ where: { id } });
+        const existing: any = await (prisma.moocSubmission as any).findUnique({ where: { id } });
         if (!existing || (existing.userId !== userId && req.user?.role === 'TEACHER')) {
             throw new AppError('Unauthorized or not found', 404);
         }
 
         const {
             courseName,
+            track,
+            campus,
             platform,
             otherPlatform,
             hours,
@@ -279,10 +286,12 @@ export const updateMoocDraft = async (req: AuthRequest, res: Response) => {
             status
         } = req.body;
 
-        const submission = await prisma.moocSubmission.update({
+        const submission = await (prisma.moocSubmission as any).update({
             where: { id },
             data: {
                 ...(courseName && { courseName }),
+                ...(req.body.track && { track: req.body.track }),
+                ...(req.body.campus && { campus: req.body.campus }),
                 ...(platform && { platform }),
                 ...(otherPlatform !== undefined && { otherPlatform }),
                 ...(hours !== undefined && hours !== "" && { hours: parseFloat(hours) }),
@@ -301,7 +310,7 @@ export const updateMoocDraft = async (req: AuthRequest, res: Response) => {
                 ...(name && { teacherName: name }),
                 ...(email && { teacherEmail: email }),
                 ...(status && { status })
-            }
+            } as any
         });
 
         // Trigger websocket sync

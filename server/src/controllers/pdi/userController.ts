@@ -153,7 +153,7 @@ export const updateUser = async (req: Request, res: Response, next: NextFunction
             // Auto-update academics if not explicitly provided and role is teacher
             if (academics === undefined) {
                 const currentUser = await prisma.user.findUnique({ where: { id } });
-                if (currentUser?.role === UserRole.TeacherStaff || (role === 'TEACHER')) {
+                if (currentUser?.role === UserRole.TEACHER_CORE || (role === 'TEACHER')) {
                     updateData.academics = determineAcademicType(department);
                 }
             }

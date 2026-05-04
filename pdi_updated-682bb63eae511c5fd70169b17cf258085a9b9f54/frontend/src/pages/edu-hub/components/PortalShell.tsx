@@ -62,7 +62,7 @@ export function PortalShell({ children }: { children: ReactNode }) {
       </div>
 
       {/* Header with logo and nav */}
-      <header className="bg-white/70 backdrop-blur-xl border-b border-white/40 shadow-[0_4px_24px_rgba(247,53,88,0.02)] sticky top-0 z-50">
+      <header className="bg-white/70 backdrop-blur-xl border-b border-white/40 shadow-[0_4px_24px_rgba(247,53,88,0.02)] sticky top-[var(--global-header-height)] z-50">
         <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-primary via-accent to-rose-500 opacity-50" />
         <div className="mx-auto max-w-7xl px-6 py-4 md:px-8">
           <div className="flex items-center justify-between gap-6">

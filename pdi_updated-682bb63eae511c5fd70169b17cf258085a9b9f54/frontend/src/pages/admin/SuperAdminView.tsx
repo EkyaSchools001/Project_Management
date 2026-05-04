@@ -87,7 +87,7 @@ const coreSubjects = ["Mathematics", "Science", "English", "Social Science", "Hi
 const nonCoreSubjects = ["Life Skills", "Physical Education", "Visual Arts", "Music", "Value Education"];
 
 const getModuleCategory = (moduleId: string) => {
-    if (['okr', 'portfolio', 'superadmin'].includes(moduleId)) return 'Super Admin Console';
+    if (['okr', 'portfolio', 'superadmin', 'dashboard'].includes(moduleId)) return 'Super Admin Console';
     if (['observations', 'growth-analytics', 'goals', 'danielson', 'quick-feedback', 'performing-arts', 'life-skills', 'pe-obs', 'va-obs'].includes(moduleId)) return 'Observation & Goals';
     if (['users', 'settings', 'forms', 'team'].includes(moduleId)) return 'Administration & Settings';
     if (['courses', 'assessments', 'festival', 'mooc'].includes(moduleId)) return 'Courses';
@@ -95,7 +95,7 @@ const getModuleCategory = (moduleId: string) => {
     if (['attendance', 'meetings', 'reports', 'insights', 'survey', 'announcements', 'documents'].includes(moduleId)) return 'Operations';
     
     // educator-hub modules
-    if (['edu-hub', 'who-we-are', 'my-campus', 'teaching', 'my-classroom', 'interactions', 'tickets', 'grow', 'culture-environment', 'co-curricular'].includes(moduleId)) return 'Educator Hub';
+    if (['edu-hub', 'who-we-are', 'my-campus', 'teaching', 'my-classroom', 'interactions', 'tickets', 'grow', 'culture-environment', 'co-curricular', 'lac'].includes(moduleId)) return 'Educator Hub';
     
     // hr modules
     if (['resources', 'educator-essentials', 'educator-guide', 'wellbeing'].includes(moduleId)) return 'HR & WellBeing';
@@ -622,7 +622,7 @@ export function SuperAdminView() {
                                                                 <span className="text-[11px] font-black uppercase tracking-wider text-white">Educator Hub</span>
                                                             </div>
                                                             <div className="space-y-2">
-                                                                {['Home', 'Who we are', 'My campus', 'Teaching', 'My classroom', 'Interactions', 'Tickets', 'Grow'].map(item => (
+                                                                {['Home', 'Who we are', 'My campus', 'Teaching', 'My classroom', 'Interactions', 'Tickets', 'Grow', 'Culture & Environment', 'Co-Curricular', 'LAC'].map(item => (
                                                                     <div key={item} className="text-[10px] text-white/50 font-medium hover:text-white/80 transition-colors cursor-default whitespace-nowrap">{item}</div>
                                                                 ))}
                                                             </div>
@@ -868,10 +868,14 @@ export function SuperAdminView() {
                                                     </SelectTrigger>
                                                     <SelectContent>
                                                         <SelectItem value="NONE">Any / Not Specified</SelectItem>
-                                                        <SelectItem disabled value="label-core" className="font-bold text-gray-800 bg-gray-50">--- Core Subjects ---</SelectItem>
-                                                        {coreSubjects.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
-                                                        <SelectItem disabled value="label-noncore" className="font-bold text-gray-800 bg-gray-50 mt-2">--- Non-Core Subjects ---</SelectItem>
-                                                        {nonCoreSubjects.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                                                        <SelectGroup>
+                                                            <SelectLabel className="font-bold text-blue-700 bg-blue-50/50 py-1.5 px-3 rounded-sm text-[10px] uppercase tracking-widest mt-2 mb-1">Core Subjects</SelectLabel>
+                                                            {coreSubjects.map(s => <SelectItem key={s} value={s} className="pl-6">{s}</SelectItem>)}
+                                                        </SelectGroup>
+                                                        <SelectGroup>
+                                                            <SelectLabel className="font-bold text-blue-700 bg-blue-50/50 py-1.5 px-3 rounded-sm text-[10px] uppercase tracking-widest mt-4 mb-1">Non-Core Subjects</SelectLabel>
+                                                            {nonCoreSubjects.map(s => <SelectItem key={s} value={s} className="pl-6">{s}</SelectItem>)}
+                                                        </SelectGroup>
                                                     </SelectContent>
                                                 </Select>
                                             </div>

@@ -3,15 +3,19 @@ import {
   ArrowRight,
   Monitor,
   CheckCircle,
-  PencilSimple
+  PencilSimple,
+  VideoCamera
 } from '@phosphor-icons/react';
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { settingsService } from "@/services/settingsService";
 import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdentity/PageEditorControls";
+import { PortalBanner } from "@/components/layout/PortalBanner";
+import { useNavigate } from "react-router-dom";
 
 export default function GoogleMeetPage() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [data, setData] = useState({
     heroTitle: "GOOGLE MEET",
@@ -46,15 +50,6 @@ export default function GoogleMeetPage() {
 
   return (
     <div className="min-h-screen bg-white relative">
-      {canEdit() && (
-        <Button 
-          className="absolute top-6 right-6 bg-white/20 hover:bg-white/30 text-white gap-2 z-50 shadow-lg font-bold border border-white/20"
-          onClick={() => setIsEditorOpen(true)}
-        >
-          <PencilSimple size={18} weight="bold" />
-          Edit Content
-        </Button>
-      )}
 
       <PageEditorControls 
         settingKey="page_tech_google_meet"
@@ -77,29 +72,23 @@ export default function GoogleMeetPage() {
         ]}
       />
 
-      {/* Hero Banner Section */}
-      <div className="relative w-full h-[300px] overflow-hidden">
-        <img 
-          src={data.heroImage} 
-          alt="Google Meet Banner"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <div className="relative z-10 space-y-4">
-            <h1 className="text-7xl font-bold tracking-[0.15em] text-white uppercase drop-shadow-2xl">
-              {data.heroTitle}
-            </h1>
-            <div className="h-2 w-full max-w-[400px] bg-rose-500 mx-auto rounded-full shadow-lg" />
-          </div>
-        </div>
-      </div>
+      <PortalBanner 
+        title={data.heroTitle}
+        subtitle="Start or join secure video meetings with Hangouts Meet."
+        onBack={() => navigate(-1)}
+        onEdit={() => setIsEditorOpen(true)}
+        canEdit={canEdit()}
+        icon={VideoCamera}
+        className="mt-6 mb-12"
+      />
 
-      {/* Quick Start Section */}
-      <section>
-        <div className="bg-rose-500 py-10 px-8">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-white uppercase tracking-wider">{data.quickStartTitle}</h2>
+      {/* Introduction Section */}
+      <section className="mb-12">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="bg-rose-500 py-10 px-8 rounded-[2rem] shadow-lg">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-4xl font-bold text-white uppercase tracking-wider">{data.quickStartTitle}</h2>
+            </div>
           </div>
         </div>
         
@@ -116,10 +105,12 @@ export default function GoogleMeetPage() {
       </section>
 
       {/* Google Training Section */}
-      <section>
-        <div className="bg-rose-500 py-10 px-8">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-white uppercase tracking-wider">{data.trainingTitle}</h2>
+      <section className="mb-12">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="bg-rose-500 py-10 px-8 rounded-[2rem] shadow-lg">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-4xl font-bold text-white uppercase tracking-wider">{data.trainingTitle}</h2>
+            </div>
           </div>
         </div>
 

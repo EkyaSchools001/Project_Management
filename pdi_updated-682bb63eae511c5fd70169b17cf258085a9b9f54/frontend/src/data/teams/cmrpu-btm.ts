@@ -14,22 +14,22 @@ export const cmrpuBtmTeam: SchoolTeamData = {
     image: "/images/staff/savithri-a.jpg",
     content: `Dear Educators,
 
-**Who are you?**
-**Aren't 'You' the Great People**
-**Who takes a hand**
-**Opens a mind**
-**And touches a heart**
+Who are you?
+Aren't 'You' the Great People
+Who takes a hand
+Opens a mind
+And touches a heart
 
-**Aren't 'You' the only folks**
-**Who realize**
-**That all students will succeed**
-**Not in the same way,**
-**And not on the same day.**
+Aren't 'You' the only folks
+Who realize
+That all students will succeed
+Not in the same way,
+And not on the same day.
 
-**Aren't 'You' the magicians**
-**With your magic wands**
-**Make the lives of students**
-**Easier and more fruitful**
+Aren't 'You' the magicians
+With your magic wands
+Make the lives of students
+Easier and more fruitful
 
 With an open mind, and an open heart, I welcome you to the family of CMR, to work together as a team, to help our students who have laid their trust in us, to climb the ladder of success.
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { getAssetUrl } from "@/lib/utils";
 
 interface SchoolRowProps {
   id: string;
@@ -32,6 +33,8 @@ export const SchoolRow = ({ id, name, leftImage, rightImage, reverseLayout }: Sc
       navigate("/campuses/cmrpu-itpl");
     } else if (id === "cmrpu-btm") {
       navigate("/campuses/cmrpu-btm");
+    } else if (id === "cmrpu-byrathi") {
+      navigate("/campuses/cmrpu-byrathi");
     }
   };
   return (
@@ -49,7 +52,7 @@ export const SchoolRow = ({ id, name, leftImage, rightImage, reverseLayout }: Sc
           className="relative overflow-hidden rounded-3xl shadow-xl border border-primary/20"
         >
           <img 
-            src={leftImage} 
+            src={getAssetUrl(leftImage)} 
             alt={`${name} view 1`}
             className="w-full h-72 md:h-[320px] object-cover"
           />
@@ -78,7 +81,7 @@ export const SchoolRow = ({ id, name, leftImage, rightImage, reverseLayout }: Sc
             className="relative overflow-hidden rounded-3xl shadow-xl border border-primary/20"
           >
             <img 
-              src={rightImage} 
+              src={getAssetUrl(rightImage)} 
               alt={`${name} view 2`}
               className="w-full h-72 md:h-[320px] object-cover"
             />

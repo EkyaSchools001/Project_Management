@@ -17,9 +17,12 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { settingsService } from "@/services/settingsService";
 import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdentity/PageEditorControls";
+import { PortalBanner } from "@/components/layout/PortalBanner";
+import { useNavigate } from "react-router-dom";
 
 export default function GoogleWorkspacePage() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [data, setData] = useState({
     heroTitle: "GOOGLE WORKSPACE",
@@ -65,15 +68,6 @@ export default function GoogleWorkspacePage() {
 
   return (
     <div className="min-h-screen bg-white relative">
-      {canEdit() && (
-        <Button 
-          className="absolute top-6 right-6 bg-white/20 hover:bg-white/30 text-white gap-2 z-50 shadow-lg font-bold border border-white/20"
-          onClick={() => setIsEditorOpen(true)}
-        >
-          <PencilSimple size={18} weight="bold" />
-          Edit Content
-        </Button>
-      )}
 
       <PageEditorControls 
         settingKey="page_tech_google_workspace"
@@ -94,23 +88,15 @@ export default function GoogleWorkspacePage() {
         ]}
       />
 
-      {/* Hero Banner Section */}
-      <div className="relative w-full h-[300px] overflow-hidden">
-        <img 
-          src={data.heroImage} 
-          alt="Google Workspace Banner"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <div className="relative z-10 space-y-4">
-            <h1 className="text-7xl font-bold tracking-[0.15em] text-white uppercase drop-shadow-2xl text-center px-4">
-              {data.heroTitle}
-            </h1>
-            <div className="h-2 w-full max-w-[400px] bg-rose-500 mx-auto rounded-full shadow-lg" />
-          </div>
-        </div>
-      </div>
+      <PortalBanner 
+        title={data.heroTitle}
+        subtitle="Access all your essential Google Workspace tools and tutorials."
+        onBack={() => navigate(-1)}
+        onEdit={() => setIsEditorOpen(true)}
+        canEdit={canEdit()}
+        icon={GoogleDriveLogo}
+        className="mt-6 mb-12"
+      />
 
       {/* Intro Section */}
       <section className="max-w-6xl mx-auto px-8 py-16 space-y-8">
@@ -126,9 +112,11 @@ export default function GoogleWorkspacePage() {
       </section>
 
       {/* Tutorials Banner */}
-      <div className="bg-rose-500 py-10 px-8 text-center text-white">
-        <h2 className="text-4xl font-bold uppercase tracking-wider mb-2">{data.tutorialsTitle}</h2>
-        <p className="text-xs font-semibold opacity-90 uppercase">{data.tutorialsSubtitle}</p>
+      <div className="max-w-7xl mx-auto px-4 md:px-6 mb-12">
+        <div className="bg-rose-500 py-10 px-8 rounded-[2rem] shadow-lg text-center text-white">
+          <h2 className="text-4xl font-bold uppercase tracking-wider mb-2">{data.tutorialsTitle}</h2>
+          <p className="text-xs font-semibold opacity-90 uppercase">{data.tutorialsSubtitle}</p>
+        </div>
       </div>
 
       {/* Tutorials Grid */}

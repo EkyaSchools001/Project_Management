@@ -76,10 +76,10 @@ export const updateLacTaskStatus = async (req: Request, res: Response, next: Nex
 
         const taskStatus = await prisma.lacTaskStatus.upsert({
             where: {
-                taskId_campusId_teacherId: {
+                taskId_teacherId_campusId: {
                     taskId: id as string,
-                    campusId: campusUuid,
-                    teacherId: teacherId as string
+                    teacherId: teacherId as string,
+                    campusId: campusUuid
                 }
             },
             update: {
@@ -351,7 +351,7 @@ export const getLacTeachers = async (req: Request, res: Response, next: NextFunc
         const { campusId } = req.query;
         const user = (req as any).user;
 
-        const isSuperUser = ['SUPERADMIN', 'MANAGEMENT', 'ADMIN'].includes(user.role);
+        const isSuperUser = ['SUPERADMIN', 'MANAGEMENT', 'ADMIN', 'TESTER'].includes(user.role);
         const isSchoolScoped = ['COORDINATOR', 'SCHOOL_LEADER', 'LEADER'].includes(user.role);
 
         const campuses = await prisma.lacCampus.findMany();
@@ -415,6 +415,78 @@ export const getLacTeachers = async (req: Request, res: Response, next: NextFunc
         res.status(200).json({
             status: 'success',
             data: formatted
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const importLacTasks = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { tasks } = req.body; 
+        const user = (req as any).user;
+
+        if (!Array.isArray(tasks)) {
+            return next(new AppError('tasks must be an array', 400));
+        }
+
+        const results: any[] = [];
+        for (const t of tasks) {
+            if (!t.subject || !t.task || !t.campusId) continue;
+
+            // Find or create subject
+            let subject = await prisma.lacSubject.findUnique({ where: { name: t.subject } });
+            if (!subject) {
+                subject = await prisma.lacSubject.create({ data: { name: t.subject } });
+            }
+
+            // Resolve campus UUID
+            const campusUuid = await getTargetCampusUuid(t.campusId);
+            if (!campusUuid) continue;
+
+            // Create task
+            const newTask = await prisma.lacTask.create({
+                data: {
+                    subjectId: subject.id,
+                    campusId: campusUuid,
+                    unit: t.unit || 'General',
+                    task: t.task,
+                    type: t.type || 'Standard',
+                    mode: t.mode || 'N/A',
+                    week: parseInt(t.week) || 1,
+                    weekCheck: false
+                }
+            });
+
+            // Optional: Assign to teacher if email provided
+            if (t.teacherEmail) {
+                const teacher = await prisma.user.findUnique({ where: { email: t.teacherEmail } });
+                if (teacher) {
+                    await prisma.lacTaskStatus.upsert({
+                        where: {
+                            taskId_teacherId_campusId: {
+                                taskId: newTask.id,
+                                teacherId: teacher.id,
+                                campusId: campusUuid
+                            }
+                        },
+                        update: {}, // Keep existing status if already assigned
+                        create: {
+                            taskId: newTask.id,
+                            teacherId: teacher.id,
+                            campusId: campusUuid,
+                            status: 'Pending'
+                        }
+                    });
+                }
+            }
+            results.push(newTask);
+        }
+
+        res.status(201).json({
+            status: 'success',
+            message: `Successfully imported ${results.length} tasks`,
+            data: results
         });
     } catch (error) {
         next(error);

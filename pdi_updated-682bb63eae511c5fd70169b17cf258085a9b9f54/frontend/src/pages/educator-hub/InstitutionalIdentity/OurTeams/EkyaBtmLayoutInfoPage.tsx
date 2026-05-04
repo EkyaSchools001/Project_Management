@@ -13,7 +13,7 @@ const EkyaBtmLayoutInfoPage = () => {
       breadcrumbPath="/campuses/ekya-btm-layout/info"
       accentColor={ekyaBtmLayoutTeam.accentColor}
     >
-      <div className="max-w-7xl mx-auto px-4 py-12 space-y-24">
+      <div className="max-w-7xl mx-auto px-4 py-8 space-y-12">
         <section className="text-center space-y-6">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/5 rounded-full text-primary font-black uppercase tracking-widest text-[10px]">
             <Buildings size={16} weight="bold" />

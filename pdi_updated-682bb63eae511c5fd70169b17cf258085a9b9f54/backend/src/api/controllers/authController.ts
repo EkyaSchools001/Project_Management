@@ -12,7 +12,7 @@ const signToken = (id: string, role: string, fullName: string, campusId?: string
     const secret = process.env.JWT_SECRET;
     if (!secret || secret === 'secret') {
         if (process.env.NODE_ENV === 'production') {
-            throw new Error('JWT_SECRET must be set in production environment.');
+            throw new AppError('JWT_SECRET must be set in production environment.', 500);
         }
         console.warn('⚠️ WARNING: Using insecure default JWT_SECRET. Set JWT_SECRET in .env for production.');
     }

@@ -59,32 +59,34 @@ const SchoolPrayerPage = () => {
   return (
     <div className="min-h-screen bg-white pb-24">
       {/* HEADER SECTION */}
-      <div className="relative w-full h-64 flex flex-col items-center justify-center bg-white overflow-hidden border-b">
-        <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+      <div className="max-w-7xl mx-auto px-4 md:px-6 mt-6">
+        <div className="relative h-52 flex flex-col items-center justify-center bg-[#EA104A] overflow-hidden rounded-[2.5rem] shadow-xl">
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
         <div className="relative z-10 text-center">
-          <h1 className="text-4xl md:text-6xl font-black text-[#1F2839] tracking-widest uppercase">
+          <h1 className="text-4xl md:text-6xl font-black text-white tracking-widest uppercase">
             School Prayer
           </h1>
-          <div className="mt-4 h-1.5 w-64 bg-[#E63946] mx-auto rounded-full"></div>
+          <div className="mt-4 h-1.5 w-32 bg-white mx-auto rounded-full shadow-[0_0_20px_rgba(255,255,255,0.3)]"></div>
         </div>
         
-        <Button 
-          variant="ghost" 
-          className="absolute top-6 left-6 text-gray-600 hover:bg-gray-100 gap-2 border border-gray-200 z-10"
+        <button 
           onClick={() => navigate(-1)}
+          className="absolute top-10 left-10 p-2.5 rounded-xl bg-white/10 backdrop-blur-md text-white border border-white/20 hover:bg-white/20 hover:scale-105 transition-all group flex items-center gap-3 px-6 shadow-2xl z-20"
         >
-          <CaretLeft size={20} /> Back
-        </Button>
+          <CaretLeft weight="bold" className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+          <span className="text-[10px] font-black uppercase tracking-[0.2em]">Back</span>
+        </button>
 
         {canEdit() && (
           <Button 
-            className="absolute top-6 right-6 bg-[#E63946] hover:bg-[#D62839] text-white gap-2 z-10 shadow-lg"
+            className="absolute top-10 right-10 bg-white/10 hover:bg-white/20 text-white gap-2 border border-white/20 shadow-lg z-20"
             onClick={() => setIsEditorOpen(true)}
           >
             <PencilSimple size={18} weight="bold" />
             Edit Content
           </Button>
         )}
+        </div>
       </div>
 
       <PageEditorControls 
@@ -102,7 +104,7 @@ const SchoolPrayerPage = () => {
       />
 
       {/* CONTENT SECTION */}
-      <div className="max-w-4xl mx-auto px-6 py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-20 bg-white">
         <div className="flex flex-col items-center text-center space-y-8">
           <div className="p-4 bg-[#FEE2E2] rounded-full mb-4">
             <HandsPraying size={48} className="text-[#E63946]" weight="duotone" />

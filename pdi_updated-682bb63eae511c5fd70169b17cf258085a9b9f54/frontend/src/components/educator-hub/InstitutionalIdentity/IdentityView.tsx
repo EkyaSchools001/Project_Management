@@ -131,7 +131,7 @@ export const InstitutionalIdentityView = ({ canEdit }: InstitutionalIdentityView
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-bold font-montserrat text-[#1F2839]">Institutional Essence</h2>

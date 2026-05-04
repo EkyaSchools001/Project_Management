@@ -184,7 +184,7 @@ export function EkyaGuide() {
                 toast.success(`${formType.replace('_', ' ')} posted successfully!`);
                 setMessages(prev => [...prev, { 
                     role: 'assistant', 
-                    content: `Done! I've successfully saved that **${formType.toLowerCase().replace('_', ' ')}** to the database for you.`,
+                    content: `Done! I've successfully saved that ${formType.toLowerCase().replace('_', ' ')} to the database for you.`,
                     type: 'TEXT' 
                 }]);
             }
@@ -339,7 +339,7 @@ export function EkyaGuide() {
         }, 1500);
     };
 
-    const handleSendMessage = async (textOverride?: string) => {
+    const handleSendMessage = async (textOverride?: string, isVoice: boolean = false) => {
         const userMessage = textOverride || chatInput.trim();
         if (!userMessage.trim()) return;
 
@@ -347,7 +347,6 @@ export function EkyaGuide() {
         const newMessage: AiraMessage = { role: 'user', content: userMessage, type: 'TEXT' };
         setMessages(prev => [...prev, newMessage]);
         setSearchQuery("");
-        setChatInput("");
 
         // FAST-TRACK NAVIGATION: Match direct voice commands locally to skip AI delay
         if (isVoiceModeEnabled) {
@@ -372,7 +371,7 @@ export function EkyaGuide() {
                 if (keywords.some(k => lowerMsg.includes(k))) {
                     console.log("Aira: Fast-Track Navigation triggered for:", path);
                     const pageName = keywords[0].charAt(0).toUpperCase() + keywords[0].slice(1);
-                    const navMessage = `Sure! I'm taking you to **${pageName}** now.`;
+                    const navMessage = `Sure! I'm taking you to ${pageName} now.`;
                     setMessages(prev => [...prev, { role: 'assistant', content: navMessage, type: 'TEXT' }]);
                     setView('chat');
                     speak(`Sure! I'm taking you to ${pageName} now.`);
@@ -496,20 +495,26 @@ export function EkyaGuide() {
             if (response.data?.status === 'success') {
                 const aiData = response.data.data;
                 
-                // Handle Auto-Navigation
-                if (aiData.type === 'NAVIGATE') {
-                    console.log("Aira: Auto-Navigation detected for target:", aiData.payload.route);
-                    const destName = aiData.payload.title || aiData.payload.route;
-                    const navConfirm = `I've taken you to **${destName}**. Let me know if you need anything else!`;
+                // Handle Auto-Navigation (Directly takes user to requested page)
+                if (aiData.type === 'NAVIGATE' || aiData.type === 'NAV_PREVIEW') {
+                    console.log("Aira: Auto-Navigation triggered for:", aiData.payload.route);
+                    const destName = aiData.payload.destinationTitle || aiData.payload.title || "the page";
+                    const navConfirm = `Sure! I'm taking you to ${destName} now.`;
+                    
                     setMessages(prev => [...prev, { role: 'assistant', content: navConfirm, type: 'TEXT' }]);
-                    if (isVoiceModeEnabled) {
-                        speak(`I've taken you to ${destName}.`);
+                    
+                    if (isVoiceModeEnabled || isVoice) {
+                        speak(`Sure! I'm taking you to ${destName} now.`);
                     }
-                    // Delay navigation so user sees the confirmation
+                    
+                    // Direct navigation with a slightly shorter delay for better feel
                     setTimeout(() => {
                         navigate(aiData.payload.route);
                         setIsOpen(false);
-                    }, 1500);
+                    }, 1200);
+                    
+                    // If it was a NAVIGATE type, we don't need to show the card anymore
+                    if (aiData.type === 'NAVIGATE') return; 
                 }
 
                 setMessages(prev => [...prev, { 
@@ -519,9 +524,9 @@ export function EkyaGuide() {
                     payload: aiData.payload
                 }]);
 
-                // VOICE RESPONSE: Speak if voice mode is enabled
-                if (isVoiceModeEnabled && aiData.content) {
-                    speak(aiData.content.replace(/<[^>]*>/g, '')); // Strip HTML for synthesis
+                // VOICE RESPONSE: Speak if voice mode is enabled OR if this was a voice command
+                if ((isVoiceModeEnabled || isVoice) && aiData.content) {
+                    speak(aiData.content.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ')); // Clean HTML & entities
                 }
             }
         } catch (error: any) {
@@ -529,7 +534,7 @@ export function EkyaGuide() {
             const serverErr = error?.response?.data?.message || 'I\'m sorry, I encountered an error. Please try again later.';
             setMessages(prev => [...prev, { role: 'assistant', content: serverErr, type: 'TEXT' }]);
 
-            if (isVoiceModeEnabled) speak("I encountered an error. Please try again.");
+            if (isVoiceModeEnabled || isVoice) speak("I encountered an error. Please try again.");
         } finally {
             setIsAILoading(false);
         }
@@ -559,7 +564,7 @@ export function EkyaGuide() {
 
         // Default: Send to AI for processing with a tiny delay to allow the "Typing" feel
         setTimeout(() => {
-            handleSendMessage(text);
+            handleSendMessage(text, true); // Mark as voice command
         }, 150);
     };
 
@@ -805,11 +810,16 @@ export function EkyaGuide() {
                             
                             {!isProcessing && (
                                 <Button 
-                                    variant="ghost"
-                                    onClick={() => { stopListening(); setIsAiraListening(false); }}
-                                    className="mt-8 text-white/40 hover:text-white hover:bg-white/10 rounded-full px-8 text-xs font-bold uppercase tracking-widest border border-white/20"
+                                    variant="outline"
+                                    onClick={(e) => { 
+                                        e.stopPropagation();
+                                        stopListening(); 
+                                        // Force state sync if hook is delayed
+                                        setIsAiraListening(false);
+                                    }}
+                                    className="mt-8 bg-white/10 hover:bg-white/20 text-white border-white/30 rounded-full px-10 py-6 h-auto text-sm font-black uppercase tracking-[0.2em] shadow-xl backdrop-blur-md transition-all active:scale-95"
                                 >
-                                    Tap to Stop
+                                    TAP TO STOP
                                 </Button>
                             )}
                         </div>
@@ -1031,7 +1041,7 @@ export function EkyaGuide() {
                                                             onComplete={(observation) => {
                                                                 setMessages(prev => [...prev, { 
                                                                     role: 'assistant', 
-                                                                    content: `✅ Observation submitted successfully for **${observation.teacher}**!`, 
+                                                                    content: `✅ Observation submitted successfully for ${observation.teacher}!`, 
                                                                     type: 'TEXT' 
                                                                 }]);
                                                                 toast.success("Observation Logged!");

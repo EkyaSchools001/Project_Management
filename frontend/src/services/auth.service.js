@@ -69,6 +69,11 @@ export const authService = {
     },
 
     getMe: async () => {
+        const token = tokenService.getToken();
+        if (token && token.startsWith('mock-token-')) {
+            const user = tokenService.getUser();
+            if (user) return user;
+        }
         const response = await api.get('/auth/me');
         return response.data;
     },
@@ -174,6 +179,11 @@ export const authService = {
             const { password: _, ...userWithoutPassword } = user;
             tokenService.setToken('mock-token-' + user.id, false);
             tokenService.setUser(userWithoutPassword);
+            
+            const mockExpiry = new Date();
+            mockExpiry.setHours(mockExpiry.getHours() + 24);
+            tokenService.setTokenExpiry(mockExpiry.toISOString());
+            
             return userWithoutPassword;
         }
         throw new Error('Invalid credentials');

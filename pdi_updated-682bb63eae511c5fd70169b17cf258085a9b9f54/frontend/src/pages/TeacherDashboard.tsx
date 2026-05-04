@@ -148,6 +148,7 @@ import TeacherAttendance from "@/pages/TeacherAttendance";
 import SurveyPage from "@/pages/SurveyPage";
 import { LearningFestivalPage } from './LearningFestival/LearningFestivalPage';
 import { FestivalApplicationForm } from './LearningFestival/FestivalApplicationForm';
+import MoocAdminPage from "@/pages/admin/MoocAdminPage";
 
 // Removed local Observation interface in favor of shared type
 
@@ -199,8 +200,9 @@ const DashboardOverview = ({
 
   const futureEvents = events.filter(e => 
     !isPastEvent(e.date) && 
-    (!e.entryType || !e.entryType.toLowerCase().includes('observation')) &&
-    (!e.type || !e.type.toLowerCase().includes('observation'))
+    ((!e.entryType || !e.entryType.toLowerCase().includes('observation')) &&
+    (!e.type || !e.type.toLowerCase().includes('observation')) || 
+    (e.teacherId === user?.id))
   ).sort((a, b) => {
     try {
       return parse(a.date, "MMM d, yyyy", new Date()).getTime() - parse(b.date, "MMM d, yyyy", new Date()).getTime();
@@ -846,7 +848,7 @@ function ObservationsView({
                         {obs.score}
                       </div>
                     ) : (
-                      <span className="text-zinc-300">--</span>
+                      <span></span>
                     )}
                   </TableCell>
                   <TableCell className="p-6">
@@ -1397,12 +1399,12 @@ function CalendarView({
   const eventTypes = Array.from(new Set(events.map(e => e.topic || e.type).filter(Boolean)));
   const eventCampuses = Array.from(new Set(events.map(e => e.schoolId || e.campusId || e.location).filter(Boolean)));
   const filteredEvents = events.filter(e => {
-    // Exclude observations from sessions list
+    // Exclude observations from sessions list UNLESS it's for this teacher specifically
     const isObservation = 
         (e.entryType && e.entryType.toLowerCase().includes('observation')) || 
         (e.type && e.type.toLowerCase().includes('observation'));
     
-    if (isObservation) return false;
+    if (isObservation && e.teacherId !== user?.id) return false;
 
     const matchesSearch = e.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (e.topic || "").toLowerCase().includes(searchQuery.toLowerCase());
@@ -1507,6 +1509,14 @@ function CalendarView({
                       </span>
                       <span className="font-mono text-white text-sm bg-accent/20 px-2 py-0.5 rounded-md">
                         {events.filter((t: any) => (t.topic || t.type) === 'Culture').length}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between p-3 rounded-xl bg-rose-500/5 border border-rose-500/10">
+                      <span className="flex items-center gap-3 text-sm text-zinc-300">
+                        <span className="w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.6)]"></span> Observation
+                      </span>
+                      <span className="font-mono text-white text-sm bg-rose-500/20 px-2 py-0.5 rounded-md">
+                        {events.filter((t: any) => (t.entryType === 'Observation' || (t.type || '').toLowerCase().includes('observation')) && t.teacherId === user?.id).length}
                       </span>
                     </div>
                   </div>
@@ -1682,7 +1692,12 @@ function CalendarView({
                           </span>
                         </td>
                         <td className="px-8 py-7 text-right">
-                          {session.isRegistered ? (
+                          {session.entryType === 'Observation' || (session.type || '').toLowerCase().includes('observation') ? (
+                            <div className="flex items-center justify-end gap-2 text-rose-500 font-bold">
+                              <Calendar className="w-5 h-5" />
+                              Scheduled
+                            </div>
+                          ) : session.isRegistered ? (
                             <div className="flex items-center justify-end gap-2 text-emerald-600 font-bold">
                               <CheckCircle2 className="w-5 h-5" />
                               Registered
@@ -2156,13 +2171,53 @@ function CourseCard({ course, onEnrollSuccess }: { course: any, onEnrollSuccess?
   );
 }
 
-function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, upcomingEvents: any[], onRegister: (id: string) => void }) {
+function PDHoursView({ pdHours, upcomingEvents, onRegister, onRefresh }: { pdHours: any, upcomingEvents: any[], onRegister: (id: string) => void, onRefresh?: () => void }) {
   const { user } = useAuth();
   const userName = user?.fullName || "Teacher";
   const [selectedCampus, setSelectedCampus] = useState<string>("all");
   const [selectedActivity, setSelectedActivity] = useState<any | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | "all">("all");
   const [isEmailing, setIsEmailing] = useState(false);
+  const [isManualModalOpen, setIsManualModalOpen] = useState(false);
+  const [manualData, setManualData] = useState({
+    activity: '',
+    hours: '',
+    category: 'General',
+    date: new Date().toISOString().split('T')[0],
+    proofUrl: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmitManual = async () => {
+    if (!manualData.activity || !manualData.hours) {
+      toast.error("Please fill in activity and hours");
+      return;
+    }
+    try {
+      setIsSubmitting(true);
+      const res = await api.post('/pd/entries', {
+        ...manualData,
+        hours: Number(manualData.hours)
+      });
+      if (res.data.status === 'success') {
+        toast.success("Professional development hour recorded!");
+        setIsManualModalOpen(false);
+        setManualData({
+          activity: '',
+          hours: '',
+          category: 'General',
+          date: new Date().toISOString().split('T')[0],
+          proofUrl: ''
+        });
+        if (onRefresh) onRefresh();
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to record PD hour");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const categories = Array.from(new Set(pdHours.history.map((h: any) => h.category).filter(Boolean)));
 
@@ -2420,6 +2475,15 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+            <Button 
+              variant="default" 
+              size="sm" 
+              className="gap-2 bg-indigo-600 hover:bg-indigo-700 text-white"
+              onClick={() => setIsManualModalOpen(true)}
+            >
+              <PlusCircle className="w-4 h-4" />
+              Add Manual Activity
+            </Button>
             <Button variant="outline" size="sm" className="gap-2" onClick={handleExportPDF}>
               <Download className="w-4 h-4" />
               Export PDF
@@ -2556,6 +2620,23 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
                         <p className="text-lg font-bold text-foreground">{selectedActivity.activity}</p>
                       </div>
 
+                      {selectedActivity.proofUrl && (
+                        <div className="space-y-2">
+                          <Label className="text-xs text-zinc-900 font-semibold uppercase tracking-wider">Proof / Evidence</Label>
+                          <div className="flex items-center gap-2">
+                            <a 
+                              href={selectedActivity.proofUrl} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/10 text-primary font-bold text-sm hover:bg-primary/20 transition-colors"
+                            >
+                              <ExternalLink className="w-4 h-4" />
+                              View Certificate/Proof
+                            </a>
+                          </div>
+                        </div>
+                      )}
+
                       <div className="space-y-2">
                         <Label className="text-xs text-zinc-900 font-semibold uppercase tracking-wider">Category</Label>
                         <div>
@@ -2602,6 +2683,93 @@ function PDHoursView({ pdHours, upcomingEvents, onRegister }: { pdHours: any, up
           </Dialog>
         )
       }
+      {/* Manual PD Entry Modal */}
+      <Dialog open={isManualModalOpen} onOpenChange={setIsManualModalOpen}>
+        <DialogContent className="sm:max-w-md bg-background shadow-2xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <PlusCircle className="w-5 h-5 text-indigo-600" />
+              Add External PD Activity
+            </DialogTitle>
+            <DialogDescription>
+              Record professional development hours completed outside the PDI platform.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="activity">Activity Name</Label>
+              <Input 
+                id="activity" 
+                placeholder="e.g. Cambridge Certificate, Workshop, etc."
+                value={manualData.activity}
+                onChange={(e) => setManualData({...manualData, activity: e.target.value})}
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="hours">Hours</Label>
+                <Input 
+                  id="hours" 
+                  type="number" 
+                  placeholder="2.5"
+                  value={manualData.hours}
+                  onChange={(e) => setManualData({...manualData, hours: e.target.value})}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="category">Category / Block</Label>
+                <Select value={manualData.category} onValueChange={(v) => setManualData({...manualData, category: v})}>
+                  <SelectTrigger id="category">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Orientation">Orientation</SelectItem>
+                    <SelectItem value="Instructional Tools">Instructional Tools</SelectItem>
+                    <SelectItem value="Pedagogy">Pedagogy</SelectItem>
+                    <SelectItem value="Leadership">Leadership</SelectItem>
+                    <SelectItem value="External">External Certification</SelectItem>
+                    <SelectItem value="General">General</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="date">Date Completed</Label>
+              <Input 
+                id="date" 
+                type="date"
+                value={manualData.date}
+                onChange={(e) => setManualData({...manualData, date: e.target.value})}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="proofUrl" className="flex items-center gap-2">
+                Proof URL (Certificate/Evidence Link)
+                <span className="text-[10px] text-zinc-900 font-normal">(Optional)</span>
+              </Label>
+              <Input 
+                id="proofUrl" 
+                placeholder="https://example.com/certificate.pdf"
+                value={manualData.proofUrl}
+                onChange={(e) => setManualData({...manualData, proofUrl: e.target.value})}
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="ghost" onClick={() => setIsManualModalOpen(false)}>Cancel</Button>
+            <Button onClick={handleSubmitManual} disabled={isSubmitting} className="bg-indigo-600 hover:bg-indigo-700 text-white">
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Recording...
+                </>
+              ) : "Record Activity"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <ScrollToTop />
     </div >
   );
 }
@@ -2660,7 +2828,7 @@ export default function TeacherDashboard() {
   const [courses, setCourses] = useState<any[]>([]);
   const [enrolledCourses, setEnrolledCourses] = useState<any[]>([]);
   const [observations, setObservations] = useState<Observation[]>([]);
-  const [pdHours, setPdHours] = useState({
+  const [pdHours, setPdHours] = useState<any>({
     total: 0,
     target: 30, // overall target
     categories: [
@@ -3064,7 +3232,7 @@ export default function TeacherDashboard() {
         <Route path="meetings/:meetingId/mom" element={<ModuleGuard role={role} isModuleEnabled={isModuleEnabled} modulePath="meetings"><MeetingMoMForm /></ModuleGuard>} />
         <Route path="meetings/:meetingId" element={<ModuleGuard role={role} isModuleEnabled={isModuleEnabled} modulePath="meetings"><MeetingMoMForm /></ModuleGuard>} />
         <Route path="courses/*" element={<ModuleGuard role={role} isModuleEnabled={isModuleEnabled} modulePath="courses"><CoursesModule courses={courses} enrolledCourses={enrolledCourses} /></ModuleGuard>} />
-        <Route path="mooc" element={<ModuleGuard role={role} isModuleEnabled={isModuleEnabled} modulePath="courses"><MoocEvidencePage /></ModuleGuard>} />
+        <Route path="mooc" element={<ModuleGuard role={role} isModuleEnabled={isModuleEnabled} modulePath="courses"><MoocAdminPage /></ModuleGuard>} />
         <Route path="festival" element={<ModuleGuard role={role} isModuleEnabled={isModuleEnabled} modulePath="festival"><LearningFestivalPage /></ModuleGuard>} />
         <Route path="festival/:id/apply" element={<ModuleGuard role={role} isModuleEnabled={isModuleEnabled} modulePath="festival"><FestivalApplicationForm /></ModuleGuard>} />
         <Route path="festival/:id/application" element={<ModuleGuard role={role} isModuleEnabled={isModuleEnabled} modulePath="festival"><FestivalApplicationForm /></ModuleGuard>} />
@@ -3659,4 +3827,5 @@ function ObservationDetailView({ observations }: { observations: Observation[] }
     </div>
   );
 }
+
 

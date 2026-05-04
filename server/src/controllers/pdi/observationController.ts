@@ -14,9 +14,9 @@ export const getAllObservations = async (req: Request, res: Response, next: Next
         let filter: any = {};
 
         // RBAC logic: Teachers only see their own
-        if (authReq.user?.role === UserRole.TeacherStaff) {
+        if (authReq.user?.role === UserRole.TEACHER_CORE) {
             filter = { teacherId: authReq.user.id };
-        } else if (authReq.user?.role === UserRole.SuperAdmin) {
+        } else if (authReq.user?.role === UserRole.SUPER_ADMIN) {
             // Superadmins see everything
             filter = {};
         } else if (authReq.user) {
@@ -117,7 +117,7 @@ export const createObservation = async (req: Request, res: Response, next: NextF
                             email: data.teacherEmail,
                             fullName: data.teacher || 'Manual Entry Teacher',
                             passwordHash: await bcrypt.hash('Teacher@123', 10), // Default passwordHash
-                            role: UserRole.TeacherStaff
+                            role: UserRole.TEACHER_CORE
                         }
                     });
                     teacherId = newTeacher.id;
@@ -274,7 +274,7 @@ export const updateObservation = async (req: Request, res: Response, next: NextF
 
         // If user is a teacher, they can only update THEIR OWN observation
         // and only reflection-related fields
-        if (userRole === UserRole.TeacherStaff) {
+        if (userRole === UserRole.TEACHER_CORE) {
             if (existingObservation.teacherId !== currentUserId) {
                 return next(new AppError('You are not authorized to update this reflection', 403));
             }

@@ -37,6 +37,20 @@ export const getAllTrainingEvents = async (req: AuthRequest, res: Response) => {
                     }
                 ]
             };
+        } else if (req.user?.role === 'TEACHER') {
+            filter = {
+                OR: [
+                    { 
+                        NOT: { 
+                            OR: [
+                                { entryType: 'Observation' },
+                                { type: { contains: 'Observation' } }
+                            ]
+                        }
+                    },
+                    { teacherId: req.user.id }
+                ]
+            };
         }
 
         const events = await prisma.trainingEvent.findMany({

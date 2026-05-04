@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useTenantContext } from '../components/TenantProvider';
+import api from '../../../services/api';
 
 export const useCurrentTenant = () => {
     const { tenant, setTenant, isLoading } = useTenantContext();
@@ -18,20 +19,13 @@ export const useTenantSettings = (tenantId) => {
         setError(null);
 
         try {
-            const token = localStorage.getItem('accessToken');
-            const response = await fetch(`/api/v1/tenants/${tenantId}/settings`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                }
-            });
+            const response = await api.get(`/tenants/${tenantId}/settings`);
 
-            if (!response.ok) {
+            if (response.data?.status !== 'success' && !response.data) {
                 throw new Error('Failed to fetch settings');
             }
 
-            const data = await response.json();
-            setSettings(data);
+            setSettings(response.data.data || response.data);
         } catch (err) {
             setError(err);
         } finally {
@@ -44,17 +38,9 @@ export const useTenantSettings = (tenantId) => {
     }, [fetchSettings]);
 
     const updateSetting = async (key, value) => {
-        const token = localStorage.getItem('accessToken');
-        const response = await fetch(`/api/v1/tenants/${tenantId}/settings`, {
-            method: 'PUT',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ [key]: value })
-        });
+        const response = await api.put(`/tenants/${tenantId}/settings`, { [key]: value });
 
-        if (!response.ok) {
+        if (response.data?.status !== 'success' && !response.data) {
             throw new Error('Failed to update setting');
         }
 
@@ -85,26 +71,20 @@ export const useTenantList = () => {
         setError(null);
 
         try {
-            const token = localStorage.getItem('accessToken');
-            const params = new URLSearchParams();
-            if (options?.status) params.append('status', options.status);
-            if (options?.search) params.append('search', options.search);
-            if (options?.page) params.append('page', String(options.page));
-            if (options?.limit) params.append('limit', String(options.limit));
+            const params = {};
+            if (options?.status) params.status = options.status;
+            if (options?.search) params.search = options.search;
+            if (options?.page) params.page = options.page;
+            if (options?.limit) params.limit = options.limit;
 
-            const response = await fetch(`/api/v1/tenants?${params}`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                }
-            });
+            const response = await api.get(`/tenants`, { params });
 
-            if (!response.ok) {
+            if (response.data?.status !== 'success' && !response.data) {
                 throw new Error('Failed to fetch tenants');
             }
 
-            const data = await response.json();
-            setTenants(data.tenants || []);
+            const data = response.data.data || response.data;
+            setTenants(data.tenants || data || []);
             return data;
         } catch (err) {
             setError(err);

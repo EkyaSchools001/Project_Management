@@ -46,9 +46,9 @@ const TeamsVisionPage = () => {
 
   return (
     <div className="min-h-screen bg-[#FAF9F6] pb-24">
-      {/* HERO SECTION */}
-      <div 
-        className="relative w-full h-[450px] flex flex-col items-center justify-center bg-[#1F2839] overflow-hidden"
+      <div className="max-w-7xl mx-auto px-4 md:px-6 mt-6">
+        <div 
+          className="relative h-[320px] flex flex-col items-center justify-center bg-[#1F2839] overflow-hidden rounded-[3rem] shadow-2xl transition-all duration-700"
         style={data.heroImage ? {
           backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${data.heroImage})`,
           backgroundSize: 'cover',
@@ -66,26 +66,27 @@ const TeamsVisionPage = () => {
             The Teams Behind <br/> The Vision
           </h1>
           <p className="text-white/80 text-xl font-medium tracking-[0.3em] uppercase mt-4">People Dedicated to Success</p>
-          <div className="mt-8 h-1.5 w-32 bg-[#E63946] mx-auto rounded-full"></div>
+          <div className="mt-8 h-1.5 w-32 bg-[#EA104A] mx-auto rounded-full shadow-[0_0_20px_rgba(234,16,74,0.5)]"></div>
         </motion.div>
         
-        <Button 
-          variant="ghost" 
-          className="absolute top-8 left-8 text-white hover:bg-white/10 gap-2 z-10 font-bold uppercase tracking-widest bg-black/20 backdrop-blur-md px-6 py-6 rounded-full"
+        <button 
           onClick={() => navigate(-1)}
+          className="absolute top-12 left-12 p-2.5 rounded-full bg-black/20 backdrop-blur-md text-white border border-white/20 hover:bg-white/40 hover:scale-105 transition-all group flex items-center gap-3 px-6 shadow-2xl z-20"
         >
-          <CaretLeft size={24} weight="bold" /> Back
-        </Button>
+          <CaretLeft weight="bold" className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+          <span className="text-[11px] font-black uppercase tracking-[0.2em]">Back</span>
+        </button>
 
         {canEdit() && (
           <Button 
-            className="absolute top-8 right-8 bg-[#E63946] hover:bg-[#D62839] text-white gap-2 z-10 shadow-xl px-6 py-6 rounded-full font-bold uppercase tracking-widest"
+            className="absolute top-12 right-12 bg-[#EA104A] hover:bg-[#D61040] text-white gap-2 z-20 shadow-xl px-6 py-6 rounded-full font-bold uppercase tracking-widest"
             onClick={() => setIsEditorOpen(true)}
           >
             <PencilSimple size={20} weight="bold" />
             Edit
           </Button>
         )}
+        </div>
       </div>
 
       <PageEditorControls 
@@ -104,7 +105,7 @@ const TeamsVisionPage = () => {
       />
 
       {/* CONTENT SECTIONS */}
-      <div className="max-w-5xl mx-auto px-6 -mt-20 relative z-20 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 -mt-20 relative z-20 space-y-12">
 
         {/* TEAMS CARD */}
         <motion.div 

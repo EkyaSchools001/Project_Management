@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,7 +12,7 @@ import {
     Users, BookOpen, Target, Settings, MessageSquare, Tag,
     ChevronLeft, ChevronRight, Save, Eye, CheckCircle2,
     AlertCircle, Sparkles, ClipboardCheck, Layout, Star,
-    Check, ChevronsUpDown, Search, Cloud
+    Check, ChevronsUpDown, Search, Cloud, PenTool, TrendingUp
 } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
@@ -20,12 +20,12 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "
 import { cn } from "@/lib/utils";
 import { Observation, DanielsonRatingScale, DanielsonDomain } from "@/types/observation";
 import { toast } from "sonner";
-import { useEffect } from "react";
 import { templateService } from "@/services/templateService";
 import { CAMPUS_OPTIONS } from "@/lib/constants";
 import api from "@/lib/api";
 import { useAutoSave } from "@/hooks/useAutoSave";
 import { useAIContext } from "@/contexts/AIContext";
+import { useAuth } from "@/hooks/useAuth";
 import { ObservationReport } from "@/components/growth/ObservationReport";
 
 interface UnifiedObservationFormProps {
@@ -35,73 +35,145 @@ interface UnifiedObservationFormProps {
     initialData?: Partial<Observation>;
     teachers?: { id: string; name: string; role?: string; email?: string; academics?: string; campus?: string; department?: string }[];
     readOnly?: boolean;
+    cluster?: string;
 }
 
 const RATING_SCALE: DanielsonRatingScale[] = ["Basic", "Developing", "Effective", "Highly Effective", "Not Observed"];
 
-const DOMAINS: { id: string; title: string; subtitle: string; indicators: string[] }[] = [
+const DOMAINS: { 
+    id: string; 
+    title: string; 
+    subtitle: string; 
+    cluster: string;
+    subDomains: {
+        id: string;
+        title: string;
+        parameters: {
+            name: string;
+            description: string;
+            lookFors: string;
+        }[];
+    }[];
+}[] = [
     {
-        id: "3A",
-        title: "3A. Planning & Preparation",
-        subtitle: "Live the Lesson",
-        indicators: [
-            "Demonstrating Knowledge of Content and Pedagogy",
-            "Demonstrating Knowledge of Students",
-            "Demonstrating Knowledge of Resources",
-            "Designing a Microplan",
-            "Using Student Assessments"
+        id: "C1",
+        cluster: "1",
+        title: "Cluster:1 - Planning & Preparation",
+        subtitle: "Planning & Preparation",
+        subDomains: [
+            {
+                id: "1a",
+                title: "1a - Applying Knowledge of Content and Pedagogy",
+                parameters: [
+                    {
+                        name: "Content Knowledge",
+                        description: "Demonstrates strong content knowledge",
+                        lookFors: "Content presented is accurate; Connections to real-world contexts are included; Links to other disciplines are visible."
+                    },
+                    {
+                        name: "Relevant Usage of Tools",
+                        description: "Appropriate tools are selected to support teaching and learning",
+                        lookFors: "Reference to use of tools in the plan: Culture tools to build classroom culture; Instructional tools to engage students in learning."
+                    },
+                    {
+                        name: "Purposeful Questioning",
+                        description: "Questioning is planned to support student thinking and engagement",
+                        lookFors: "Questions: Include recall and understanding checks; Facilitate student to connect ideas, generate new ideas and spark thinking."
+                    }
+                ]
+            },
+            {
+                id: "1b",
+                title: "1b - Knowing and Valuing Students",
+                parameters: [
+                    {
+                        name: "Differentiated Plan",
+                        description: "Planning accounts for diverse student needs and readiness levels",
+                        lookFors: "Support or scaffolds are planned for learners who need them; Extensions are planned for advanced learners."
+                    }
+                ]
+            },
+            {
+                id: "1c",
+                title: "1c - Setting Instructional Outcomes",
+                parameters: [
+                    {
+                        name: "Well-Defined Learning Outcomes",
+                        description: "Learning outcomes are clearly defined and promote meaningful student learning",
+                        lookFors: "Outcomes: Require higher-order thinking or application; Include elements of collaboration, care, or connection [SEL]; Require student communication (oral/written/visual)."
+                    },
+                    {
+                        name: "Alignment of Tasks to Outcomes",
+                        description: "Planned tasks are aligned to the stated learning outcomes",
+                        lookFors: "Tasks: Are aligned to the learning outcomes; Reflect appropriate level of intellectual challenge; Matches for the grade level."
+                    }
+                ]
+            },
+            {
+                id: "1d",
+                title: "1d - Using Resources Effectively",
+                parameters: [
+                    {
+                        name: "Purposeful Use of Resources",
+                        description: "Resources are selected to support learning and student engagement",
+                        lookFors: "Resources (PPTs, maps, manipulatives, texts): Support thinking and understanding; Promote student independence or ownership."
+                    }
+                ]
+            },
+            {
+                id: "1e",
+                title: "1e - Planning Coherent Instruction",
+                parameters: [
+                    {
+                        name: "Clear Lesson Flow",
+                        description: "Plans lessons with clear and coherent flow",
+                        lookFors: "Timing for activities is realistic; Activities progress logically."
+                    },
+                    {
+                        name: "Instructions and Task Design",
+                        description: "Instructions and tasks are designed to support student learning",
+                        lookFors: "Tasks facilitate application, analysis, evaluation and other higher-order skills; Differentiation is built into tasks."
+                    }
+                ]
+            }
         ]
     },
     {
-        id: "3B1",
-        title: "3B1. Classroom Practice",
-        subtitle: "Care about Culture",
-        indicators: [
-            "Creating an Environment of Respect and Rapport",
-            "Establishing a Culture for Learning",
-            "Managing Classroom Procedures",
-            "Managing Student Behaviour"
+        id: "C2",
+        cluster: "2",
+        title: "Cluster:2 - Classroom Environment",
+        subtitle: "Classroom Environment",
+        subDomains: [
+            {
+                id: "2a",
+                title: "2a - Creating an Environment of Respect and Rapport",
+                parameters: [
+                    {
+                        name: "Teacher Interaction with Students",
+                        description: "Interactions are friendly and demonstrate general caring and respect",
+                        lookFors: "Teacher responds to student interests; Humor is used appropriately; Physical proximity is used to connect."
+                    }
+                ]
+            }
         ]
     },
     {
-        id: "3B2",
-        title: "3B2. Classroom Practice",
-        subtitle: "Instruct to Inspire",
-        indicators: [
-            "Communicating with Students",
-            "Using Questioning and Discussion Techniques and Learning Tools",
-            "Engages in Student Learning",
-            "Demonstrating Flexibility and Responsiveness"
-        ]
-    },
-    {
-        id: "3B3",
-        title: "3B3. Classroom Practice",
-        subtitle: "Authentic Assessments",
-        indicators: [
-            "Using Assessments in Instruction"
-        ]
-    },
-    {
-        id: "3B4",
-        title: "3B4. Classroom Practice",
-        subtitle: "Engaging Environment",
-        indicators: [
-            "Organizing Physical Space",
-            "Cleanliness",
-            "Use of Boards"
-        ]
-    },
-    {
-        id: "3C",
-        title: "3C. Professional Practice",
-        subtitle: "Professional Ethics",
-        indicators: [
-            "Reflecting on Teaching",
-            "Maintaining Accurate Records",
-            "Communicating with Families",
-            "Participating in a Professional Community",
-            "Growing and Developing Professionally"
+        id: "C3",
+        cluster: "3",
+        title: "Cluster:3 - Instruction",
+        subtitle: "Instruction",
+        subDomains: [
+            {
+                id: "3a",
+                title: "3a - Communicating with Students",
+                parameters: [
+                    {
+                        name: "Clarity of Communication",
+                        description: "Teacher's explanation of content is clear and uses appropriate language",
+                        lookFors: "Spoken and written language is clear; Teacher uses correct vocabulary; Content is accessible to all students."
+                    }
+                ]
+            }
         ]
     }
 ];
@@ -109,21 +181,45 @@ const DOMAINS: { id: string; title: string; subtitle: string; indicators: string
 const SPECIALIST_DOMAINS = [
     {
         id: "S1",
+        cluster: "Specialist",
         title: "S1. Specialized Instruction & Skills",
         subtitle: "Skill-Based Pedagogy",
-        indicators: [
-            "Skill-Based Pedagogy",
-            "Use of Specialist Resources",
-            "Safety & Procedure Management"
+        subDomains: [
+            {
+                id: "S1a",
+                title: "Skill-Based Pedagogy",
+                parameters: [
+                    {
+                        name: "Technique & Form",
+                        description: "Demonstrates correct technique",
+                        lookFors: "Modeling of form; Corrective feedback provided."
+                    },
+                    {
+                        name: "Resource Usage",
+                        description: "Uses specialized tools effectively",
+                        lookFors: "Safe handling; Proper setup."
+                    }
+                ]
+            }
         ]
     },
     {
         id: "S2",
-        title: "S2. Student Engagement & Artistic/Physical Expression",
+        cluster: "Specialist",
+        title: "S2. Student Engagement",
         subtitle: "Authentic Expression",
-        indicators: [
-            "Engaging Diverse Talent",
-            "Feedback on Skill Development"
+        subDomains: [
+            {
+                id: "S2a",
+                title: "Authentic Expression",
+                parameters: [
+                    {
+                        name: "Student Ownership",
+                        description: "Students take ownership of their practice",
+                        lookFors: "Independent work; Creative choices."
+                    }
+                ]
+            }
         ]
     }
 ];
@@ -178,12 +274,24 @@ const LEARNING_AREA_CATEGORIES = [
 const ALL_LEARNING_AREAS = LEARNING_AREA_CATEGORIES.flatMap(cat => cat.options);
 
 
-import { useAuth } from "@/hooks/useAuth";
+
+interface ExtendedObservation extends Partial<Observation> {
+    block: string;
+    grade: string;
+    section: string;
+    focusArea?: string;
+    cluster: string;
+    sessionType: string;
+    engagementScore: number;
+    deliveryScore: number;
+    outcomeNotes: string;
+    peerReview: string;
+}
 
 export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initialData = {}, teachers, readOnly }: UnifiedObservationFormProps) {
     const { user } = useAuth();
     const [step, setStep] = useState(1);
-    const [dynamicDomains, setDynamicDomains] = useState(DOMAINS);
+    const [dynamicDomains, setDynamicDomains] = useState<any[]>(DOMAINS);
     const [dynamicRoutines, setDynamicRoutines] = useState(ROUTINES);
     const [dynamicCultureTools, setDynamicCultureTools] = useState(CULTURE_TOOLS);
     const [dynamicInstructionalTools, setDynamicInstructionalTools] = useState(INSTRUCTIONAL_TOOLS);
@@ -202,16 +310,23 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
     const [currentNote, setCurrentNote] = useState("");
 
     // Internal state uses flattened classroom fields for stability
-    const [formData, setFormData] = useState<Partial<Observation> & { block: string; grade: string; section: string; focusArea?: string }>(() => {
+    const [formData, setFormData] = useState<ExtendedObservation>(() => {
         const obs = {
             id: Math.random().toString(36).substr(2, 9),
             date: new Date().toISOString().split('T')[0],
             observerRole: initialData.observerRole || "Head of School",
-            focusArea: (initialData as any).focusArea || "",
             domains: initialData.domains || DOMAINS.map(d => ({
                 domainId: d.id,
                 title: d.title,
-                indicators: d.indicators.map(i => ({ name: i, rating: "Not Observed" })),
+                subDomains: d.subDomains.map(sd => ({
+                    id: sd.id,
+                    title: sd.title,
+                    parameters: sd.parameters.map(p => ({
+                        name: p.name,
+                        rating: "Not Observed",
+                        note: ""
+                    }))
+                })),
                 evidence: ""
             })),
             routines: initialData.routines || [],
@@ -238,10 +353,16 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
             block: initialData.classroom?.block || "",
             grade: initialData.classroom?.grade || "",
             section: initialData.classroom?.section || "",
+            cluster: initialData.cluster || "1",
+            sessionType: (initialData as any).sessionType || "Lecture",
+            engagementScore: (initialData as any).engagementScore || 0,
+            deliveryScore: (initialData as any).deliveryScore || 0,
+            outcomeNotes: (initialData as any).outcomeNotes || "",
+            peerReview: (initialData as any).peerReview || "",
             ...initialData,
             learningArea: initialData.learningArea || initialData.classroom?.learningArea || ""
         };
-        return obs as Partial<Observation> & { block: string; grade: string; section: string };
+        return obs as ExtendedObservation;
     });
 
     const { isSaving } = useAutoSave({
@@ -373,7 +494,8 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                         id: d.domainId,
                         title: d.title,
                         subtitle: "",
-                        indicators: d.indicators.map(i => i.name)
+                        cluster: (initialData as any).cluster || "1",
+                        subDomains: (d as any).subDomains || []
                     })));
                 }
             }
@@ -418,9 +540,9 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
 
 
 
-    const updateField = <K extends keyof (Partial<Observation> & { block: string; grade: string; section: string; focusArea: string })>(
+    const updateField = <K extends keyof ExtendedObservation>(
         field: K,
-        value: (Partial<Observation> & { block: string; grade: string; section: string; focusArea: string })[K]
+        value: ExtendedObservation[K]
     ) => {
         setFormData(prev => {
             if (prev[field] === value) return prev;
@@ -428,7 +550,7 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
         });
     };
 
-    const updateMultipleFields = (updates: Partial<typeof formData>) => {
+    const updateMultipleFields = (updates: Partial<ExtendedObservation>) => {
         setFormData(prev => ({ ...prev, ...updates }));
     };
 
@@ -446,7 +568,15 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                 domains: targetDomains.map(d => ({
                     domainId: d.id,
                     title: d.title,
-                    indicators: d.indicators.map(i => ({ name: i, rating: "Not Observed" })),
+                    subDomains: (d as any).subDomains.map((sd: any) => ({
+                        id: sd.id,
+                        title: sd.title,
+                        parameters: sd.parameters.map((p: any) => ({
+                            name: p.name,
+                            rating: "Not Observed",
+                            note: ""
+                        }))
+                    })),
                     evidence: ""
                 }))
             }));
@@ -473,21 +603,49 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
         }
     };
 
-    const updateIndicatorRating = (domainId: string, indicatorName: string, rating: DanielsonRatingScale) => {
+    const updateIndicatorRating = (domainId: string, subDomainId: string, parameterName: string, rating: DanielsonRatingScale) => {
         setFormData(prev => {
-            const domain = prev.domains?.find(d => d.domainId === domainId);
-            if (!domain) return prev;
+            const updatedDomains = prev.domains?.map(d => {
+                if (d.domainId !== domainId) return d;
 
-            const indicator = domain.indicators.find(i => i.name === indicatorName);
-            if (indicator?.rating === rating) return prev;
+                const updatedSubDomains = (d as any).subDomains?.map((sd: any) => {
+                    if (sd.id !== subDomainId) return sd;
 
-            return {
-                ...prev,
-                domains: prev.domains?.map(d => d.domainId === domainId ? {
-                    ...d,
-                    indicators: d.indicators.map(i => i.name === indicatorName ? { ...i, rating } : i)
-                } : d)
-            };
+                    const updatedParameters = sd.parameters?.map((p: any) => {
+                        if (p.name !== parameterName) return p;
+                        return { ...p, rating };
+                    });
+
+                    return { ...sd, parameters: updatedParameters };
+                });
+
+                return { ...d, subDomains: updatedSubDomains };
+            });
+
+            return { ...prev, domains: updatedDomains };
+        });
+    };
+
+    const updateParameterNote = (domainId: string, subDomainId: string, parameterName: string, note: string) => {
+        setFormData(prev => {
+            const updatedDomains = prev.domains?.map(d => {
+                if (d.domainId !== domainId) return d;
+
+                const updatedSubDomains = (d as any).subDomains?.map((sd: any) => {
+                    if (sd.id !== subDomainId) return sd;
+
+                    const updatedParameters = sd.parameters?.map((p: any) => {
+                        if (p.name !== parameterName) return p;
+                        return { ...p, note };
+                    });
+
+                    return { ...sd, parameters: updatedParameters };
+                });
+
+                return { ...d, subDomains: updatedSubDomains };
+            });
+
+            return { ...prev, domains: updatedDomains };
         });
     };
 
@@ -581,14 +739,15 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
             let totalPoints = 0;
             let observedCount = 0;
             formData.domains?.forEach(d => {
-                d.indicators.forEach(i => {
-                    if (i.rating !== "Not Observed") {
-                        observedCount++;
-                        if (i.rating === "Highly Effective") totalPoints += 4;
-                        else if (i.rating === "Effective") totalPoints += 3;
-                        else if (i.rating === "Developing") totalPoints += 2;
-                        else if (i.rating === "Basic") totalPoints += 1;
-                    }
+                (d as any).subDomains?.forEach((sd: any) => {
+                    sd.parameters?.forEach((p: any) => {
+                        if (p.rating !== "Not Observed") {
+                            observedCount++;
+                            if (p.rating === "Highly Effective" || p.rating === "Effective") totalPoints += 4;
+                            else if (p.rating === "Developing") totalPoints += 2;
+                            else if (p.rating === "Basic") totalPoints += 1;
+                        }
+                    });
                 });
             });
             const scoreValue = observedCount > 0 ? Number((totalPoints / observedCount).toFixed(1)) : 0;
@@ -849,6 +1008,25 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                                     </div>
                                 </div>
 
+                                <div className="space-y-4">
+                                    <Label className="text-sm font-bold capitalize tracking-wider text-muted-foreground">Session Type *</Label>
+                                    <div className="flex flex-wrap gap-4">
+                                        {["Lecture", "Workshop", "Lab", "Activity"].map(type => (
+                                            <div
+                                                key={type}
+                                                className={cn(
+                                                    "flex items-center gap-2 px-4 py-2 rounded-xl border-2 cursor-pointer transition-all",
+                                                    formData.sessionType === type ? "border-primary bg-primary/5 text-primary" : "border-muted-foreground/10 hover:border-primary/40"
+                                                )}
+                                                onClick={() => !readOnly && updateField("sessionType", type)}
+                                            >
+                                                <div className={cn("w-3 h-3 rounded-full border-2", formData.sessionType === type ? "bg-primary border-primary" : "border-muted-foreground/20")} />
+                                                <span className="font-bold text-sm">{type}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
                                 <div className="grid md:grid-cols-2 gap-8">
                                     <div className="space-y-2">
                                         <Label className="text-sm font-bold capitalize tracking-wider text-muted-foreground">Grade *</Label>
@@ -935,21 +1113,14 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                                                                 key={la}
                                                                 value={la}
                                                                 onSelect={(currentValue) => {
-                                                                    // Command component value is lowercase
                                                                     const matchedArea = ALL_LEARNING_AREAS.find(
                                                                         opt => opt.toLowerCase() === currentValue.toLowerCase()
                                                                     ) || currentValue;
-
                                                                     updateField("learningArea", matchedArea === formData.learningArea ? "" : matchedArea);
                                                                     setOpenLA(false);
                                                                 }}
                                                             >
-                                                                <Check
-                                                                    className={cn(
-                                                                        "mr-2 h-4 w-4",
-                                                                        formData.learningArea === la ? "opacity-100" : "opacity-0"
-                                                                    )}
-                                                                />
+                                                                <Check className={cn("mr-2 h-4 w-4", formData.learningArea === la ? "opacity-100" : "opacity-0")} />
                                                                 {la}
                                                             </CommandItem>
                                                         ))}
@@ -959,22 +1130,80 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                                         </PopoverContent>
                                     </Popover>
                                 </div>
+
+                                 {/* Cluster 3+ Advanced Metrics */}
+                                {Number(formData.cluster) >= 3 && (
+                                    <div className="grid md:grid-cols-2 gap-8 pt-4 animate-in slide-in-from-top-2 duration-300">
+                                        <div className="space-y-2">
+                                            <Label className="text-sm font-bold capitalize tracking-wider text-muted-foreground flex items-center gap-2">
+                                                <Target className="w-4 h-4 text-primary" /> Engagement Metric (1-10)
+                                            </Label>
+                                            <Input
+                                                type="number" min="0" max="10"
+                                                value={formData.engagementScore}
+                                                onChange={(e) => updateField("engagementScore", Number(e.target.value))}
+                                                className="h-12 text-base rounded-xl border-muted-foreground/20"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label className="text-sm font-bold capitalize tracking-wider text-muted-foreground flex items-center gap-2">
+                                                <Layout className="w-4 h-4 text-primary" /> Delivery Metric (1-10)
+                                            </Label>
+                                            <Input
+                                                type="number" min="0" max="10"
+                                                value={formData.deliveryScore}
+                                                onChange={(e) => updateField("deliveryScore", Number(e.target.value))}
+                                                className="h-12 text-base rounded-xl border-muted-foreground/20"
+                                            />
+                                        </div>
+                                    </div>
+                                )}
+
+                                <div className="space-y-4 pt-6 border-t border-dashed border-muted-foreground/20">
+                                    <Label className="text-sm font-bold capitalize tracking-wider text-muted-foreground flex items-center gap-2">
+                                        <PenTool className="w-4 h-4 text-primary" /> Observation Running Notes
+                                    </Label>
+                                    <Textarea
+                                        placeholder="Add real-time notes here during the observation..."
+                                        className="min-h-[200px] p-4 text-base rounded-2xl border-muted-foreground/10 bg-slate-50/30"
+                                        value={(formData as any).runningNotes || ""}
+                                        onChange={(e) => updateField("runningNotes" as any, e.target.value)}
+                                        readOnly={readOnly}
+                                    />
+                                </div>
+
+                                <div className="space-y-4 pt-6">
+                                    <Label className="text-sm font-bold capitalize tracking-wider text-muted-foreground flex items-center gap-2">
+                                        <Cloud className="w-4 h-4 text-primary" /> Evidence Upload (Optional)
+                                    </Label>
+                                    <div className="p-8 border-2 border-dashed border-muted-foreground/20 rounded-[2rem] flex flex-col items-center justify-center gap-4 bg-slate-50/50 hover:bg-slate-50 transition-colors cursor-pointer group">
+                                        <div className="w-16 h-16 rounded-full bg-primary/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                            <Cloud className="w-8 h-8 text-primary/40" />
+                                        </div>
+                                        <div className="text-center">
+                                            <p className="font-bold text-sm">Click or drag to upload files</p>
+                                            <p className="text-xs text-muted-foreground mt-1 uppercase tracking-widest font-black opacity-50">Images, PDFs, or Videos</p>
+                                        </div>
+                                        <Input type="file" className="hidden" id="evidence-upload" />
+                                        <Button type="button" variant="outline" size="sm" onClick={() => document.getElementById('evidence-upload')?.click()} className="rounded-full px-6 font-bold">Choose Files</Button>
+                                    </div>
+                                </div>
                             </CardContent>
                         </Card>
                     </div>
                 )}
-
                 {/* Step 3: Danielson Ratings */}
                 {step === 3 && (
                     <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                        {dynamicDomains.map((domain, idx) => (
+                        {dynamicDomains
+                            .filter(d => d.cluster === formData.cluster)
+                            .map((domain, idx) => (
                             <DomainSection
                                 key={domain.id}
                                 domain={domain}
-                                idx={idx}
                                 readOnly={readOnly}
                                 updateIndicatorRating={updateIndicatorRating}
-                                updateDomainEvidence={updateDomainEvidence}
+                                updateParameterNote={updateParameterNote}
                                 formData={formData}
                             />
                         ))}
@@ -1185,12 +1414,140 @@ export function UnifiedObservationForm({ onSubmit, onAutoSave, onCancel, initial
                                 </div>
 
                                 <div className="space-y-4">
-                                    <Label className="text-sm font-bold capitalize tracking-wider text-muted-foreground flex items-center gap-2">
-                                        <MessageSquare className="w-4 h-4 text-primary" /> Observer's Feedback
-                                    </Label>
+                                        {/* Glows & Grows Table */}
+                                        <div className="rounded-3xl border-2 border-primary/10 overflow-hidden mb-10 shadow-xl bg-white">
+                                            <div className="grid grid-cols-2 bg-primary/5 border-b-2 border-primary/10">
+                                                <div className="p-4 text-center font-black uppercase tracking-widest text-emerald-700 flex items-center justify-center gap-2">
+                                                    <Star className="w-5 h-5" /> Glows
+                                                </div>
+                                                <div className="p-4 text-center font-black uppercase tracking-widest text-amber-700 border-l-2 border-primary/10 flex items-center justify-center gap-2">
+                                                    <TrendingUp className="w-5 h-5" /> Grows
+                                                </div>
+                                            </div>
+                                            <div className="divide-y-2 divide-primary/5">
+                                                {DOMAINS.find(d => d.cluster === formData.cluster)?.subDomains.map((sd) => (
+                                                    <div key={sd.id} className="grid grid-cols-2">
+                                                        <div className="p-4 text-xs font-bold text-muted-foreground border-r-2 border-primary/5 flex items-center gap-2">
+                                                            <div className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+                                                            {sd.title}
+                                                        </div>
+                                                        <div className="p-4 text-xs font-bold text-muted-foreground flex items-center gap-2">
+                                                            <div className="w-2 h-2 rounded-full bg-amber-500 shrink-0" />
+                                                            {sd.title}
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                                <div className="grid grid-cols-2 bg-slate-50/50">
+                                                    <div className="p-4">
+                                                        <Label className="text-[10px] font-black uppercase tracking-widest text-emerald-800 mb-2 block">What Worked Well?</Label>
+                                                        <Textarea 
+                                                            placeholder="Key strengths observed..." 
+                                                            className="min-h-[80px] bg-transparent border-emerald-200/50 focus:border-emerald-500 text-sm"
+                                                            value={formData.strengths}
+                                                            onChange={(e) => updateField("strengths", e.target.value)}
+                                                        />
+                                                    </div>
+                                                    <div className="p-4 border-l-2 border-primary/5">
+                                                        <Label className="text-[10px] font-black uppercase tracking-widest text-amber-800 mb-2 block">What Need Strengthening?</Label>
+                                                        <Textarea 
+                                                            placeholder="Key areas for improvement..." 
+                                                            className="min-h-[80px] bg-transparent border-amber-200/50 focus:border-amber-500 text-sm"
+                                                            value={formData.areasOfGrowth}
+                                                            onChange={(e) => updateField("areasOfGrowth", e.target.value)}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="p-8 bg-slate-50 rounded-[2.5rem] border-2 border-dashed border-primary/20 mb-10">
+                                            <div className="flex items-center gap-3 mb-6">
+                                                <PenTool className="w-6 h-6 text-primary" />
+                                                <h3 className="text-lg font-black tracking-tight">Select Suggested Actions</h3>
+                                            </div>
+                                            <div className="flex flex-col gap-4 text-sm font-bold text-slate-600 italic">
+                                                <div className="flex flex-wrap items-center gap-3">
+                                                    There is scope for the teacher to work on 
+                                                    <Input 
+                                                        className="w-full md:w-[300px] h-10 bg-white border-b-2 border-x-0 border-t-0 border-primary rounded-none px-2 italic font-black text-primary"
+                                                        placeholder="________________________"
+                                                        value={formData.actionStep}
+                                                        onChange={(e) => updateField("actionStep" as any, e.target.value)}
+                                                    />
+                                                    by 
+                                                    <Input 
+                                                        type="date"
+                                                        className="w-full md:w-[200px] h-10 bg-white border-b-2 border-x-0 border-t-0 border-primary rounded-none px-2 italic font-black text-primary"
+                                                        value={(formData as any).followUpDate || ""}
+                                                        onChange={(e) => updateField("followUpDate" as any, e.target.value)}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex justify-between items-center">
+                                            <Label className="text-sm font-bold capitalize tracking-wider text-muted-foreground flex items-center gap-2">
+                                                <MessageSquare className="w-4 h-4 text-primary" /> Observer's Feedback
+                                            </Label>
+                                            {!readOnly && (
+                                                <Button
+                                                    type="button"
+                                                    variant="outline"
+                                                    size="sm"
+                                                    onClick={async () => {
+                                                        try {
+                                                            toast.loading("Antigravity AI is generating feedback...");
+                                                            const res = await api.post('/ai/generate', {
+                                                                prompt: `You are an expert academic evaluator and instructional coach.
+Your task is to generate clear, actionable, and structured feedback based on the input provided. 
+
+Context:
+- Cluster: ${formData.cluster}
+- Session Type: ${formData.sessionType}
+- Subject/Topic: ${formData.learningArea}
+- Instructor Name: ${formData.teacher}
+- Feedback Inputs: Strengths: ${formData.strengths}, Areas of Growth: ${formData.areasOfGrowth}, Evidence: ${formData.domains?.map(d => (d as any).subDomains?.map((sd: any) => sd.parameters.map((p: any) => `${p.name}: ${p.rating} ${p.note}`)).flat()).flat().join('. ')}
+
+Instructions:
+1. Analyze the input deeply — identify patterns, strengths, and gaps.
+2. Do NOT repeat raw responses. Interpret them.
+3. Generate feedback in the following structured format:
+
+### 1. Overall Performance Summary
+### 2. Key Strengths
+### 3. Areas for Improvement
+### 4. Learner Experience Insights
+### 5. Priority Recommendations
+### 6. Suggested Next Steps
+
+Tone Guidelines: Professional, constructive, supportive.
+Output Constraints: 200–300 words.`,
+                                                                stream: false
+                                                            });
+                                                            
+                                                            const feedback = res.data?.data?.response || res.data?.response;
+                                                            if (feedback) {
+                                                                updateField("feedback", feedback);
+                                                                toast.dismiss();
+                                                                toast.success("AI feedback generated successfully!");
+                                                            } else {
+                                                                throw new Error("No feedback generated");
+                                                            }
+                                                        } catch (err) {
+                                                            toast.dismiss();
+                                                            toast.error("Failed to generate AI feedback");
+                                                            console.error(err);
+                                                        }
+                                                    }}
+                                                    className="gap-2 text-xs font-bold bg-primary/5 text-primary hover:bg-primary/10 border-primary/20"
+                                                >
+                                                    <Sparkles className="w-3.5 h-3.5" /> Generate AI Feedback
+                                                </Button>
+                                            )}
+                                        </div>
                                     <Textarea
                                         placeholder="Consolidated feedback for the teacher..."
-                                        className="min-h-[120px] p-4 text-base rounded-2xl border-muted-foreground/10"
+                                        className="min-h-[250px] p-4 text-base rounded-2xl border-muted-foreground/10 bg-slate-50/30"
                                         value={formData.feedback}
                                         onChange={(e) => updateField("feedback", e.target.value)}
                                         readOnly={readOnly}
@@ -1347,63 +1704,117 @@ const MultiSelectSection = ({ title, items, field, formData, setMultiSelect, rea
     </Card>
 );
 
-const DomainSection = ({ domain, idx, readOnly, updateIndicatorRating, updateDomainEvidence, formData }: any) => (
-    <Card key={domain.id} className="shadow-xl overflow-hidden">
-        <CardHeader className="bg-primary/5 py-6">
-            <div className="flex justify-between items-start">
+const DomainSection = ({ domain, readOnly, updateIndicatorRating, updateParameterNote, formData }: any) => {
+    return (
+        <Card className="shadow-2xl overflow-hidden border-none rounded-[2rem] bg-background/50 backdrop-blur-xl">
+            <CardHeader className="bg-gradient-to-r from-primary/10 to-transparent py-8 px-10">
                 <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center font-bold text-primary">
-                        {idx + 1}
+                    <div className="w-14 h-14 rounded-3xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20">
+                        <BookOpen className="w-7 h-7" />
                     </div>
                     <div>
-                        <CardTitle className="text-xl">{domain.title}</CardTitle>
-                        <CardDescription className="font-bold text-primary capitalize text-xs tracking-widest">{domain.subtitle}</CardDescription>
+                        <CardTitle className="text-2xl font-black tracking-tight">{domain.title}</CardTitle>
+                        <CardDescription className="font-bold text-primary/60 uppercase tracking-[0.2em] text-xs">
+                            Performance Standards & Look-fors
+                        </CardDescription>
                     </div>
                 </div>
-            </div>
-        </CardHeader>
-        <CardContent className="p-8 space-y-10">
-            {domain.indicators.map((indicator: string, iIdx: number) => (
-                <div key={indicator} className="space-y-4">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                        <Label className="text-base font-bold flex-1 leading-tight">
-                            <span className="text-primary/40 mr-2">3.{domain.id}.{iIdx + 1}</span>
-                            {indicator}
-                        </Label>
-                        <div className="flex flex-wrap gap-2">
-                            {RATING_SCALE.map(rating => (
-                                <button
-                                    key={rating}
-                                    type="button"
-                                    disabled={readOnly}
-                                    onClick={() => updateIndicatorRating(domain.id, indicator, rating)}
-                                    className={cn(
-                                        "px-3 py-1.5 rounded-lg text-xs font-bold transition-all border",
-                                        formData.domains?.find((d: any) => d.domainId === domain.id)?.indicators.find((i: any) => i.name === indicator)?.rating === rating
-                                            ? "bg-primary text-white border-primary shadow-lg shadow-primary/20 scale-105"
-                                            : "bg-background text-muted-foreground border-muted-foreground/10 hover:border-primary/40 hover:bg-primary/5",
-                                        readOnly && "cursor-default scale-100 opacity-80"
-                                    )}
-                                >
-                                    {rating}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="h-px bg-muted-foreground/5" />
-                </div>
-            ))}
+            </CardHeader>
+            <CardContent className="p-0">
+                <div className="overflow-x-auto">
+                    <table className="w-full border-collapse">
+                        <thead>
+                            <tr className="bg-muted/50 text-muted-foreground">
+                                <th className="p-4 text-left text-xs font-black uppercase tracking-widest border-b border-muted-foreground/10">Parameter</th>
+                                <th className="p-4 text-left text-xs font-black uppercase tracking-widest border-b border-muted-foreground/10">Description</th>
+                                <th className="p-4 text-left text-xs font-black uppercase tracking-widest border-b border-muted-foreground/10">Look Fors</th>
+                                <th className="p-4 text-center text-xs font-black uppercase tracking-widest border-b border-muted-foreground/10">Yes</th>
+                                <th className="p-4 text-center text-xs font-black uppercase tracking-widest border-b border-muted-foreground/10">Partially Seen</th>
+                                <th className="p-4 text-center text-xs font-black uppercase tracking-widest border-b border-muted-foreground/10">Not Seen</th>
+                                <th className="p-4 text-center text-xs font-black uppercase tracking-widest border-b border-muted-foreground/10">N/A</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {domain.subDomains.map((sd: any) => (
+                                <React.Fragment key={sd.id}>
+                                    <tr className="bg-primary/5">
+                                        <td colSpan={7} className="p-4 font-black text-sm text-primary uppercase tracking-widest border-b border-primary/10">
+                                            Sub Domain: {sd.title}
+                                        </td>
+                                    </tr>
+                                    {sd.parameters.map((p: any) => {
+                                        const currentRating = formData.domains
+                                            ?.find((d: any) => d.domainId === domain.id)
+                                            ?.subDomains.find((s: any) => s.id === sd.id)
+                                            ?.parameters.find((param: any) => param.name === p.name);
+                                        
+                                        const rating = currentRating?.rating || "Not Observed";
 
-            <div className="space-y-3 pt-4">
-                <Label className="text-sm font-bold capitalize tracking-wider text-muted-foreground">Share evidences for your rating ({domain.id}) *</Label>
-                <Textarea
-                    placeholder="Provide specific evidence observed mapping to the indicators above..."
-                    className="min-h-[100px] bg-muted/20 border-muted-foreground/10 p-4 focus:ring-4 focus:ring-primary/10 rounded-xl transition-all"
-                    value={formData.domains?.find((d: any) => d.domainId === domain.id)?.evidence || ""}
-                    onChange={(e) => updateDomainEvidence(domain.id, e.target.value)}
-                    readOnly={readOnly}
-                />
-            </div>
-        </CardContent>
-    </Card>
-);
+                                        return (
+                                            <React.Fragment key={p.name}>
+                                                <tr className="hover:bg-muted/30 transition-colors border-b border-muted-foreground/5">
+                                                    <td className="p-4 font-bold text-sm align-top w-[150px]">{p.name}</td>
+                                                    <td className="p-4 text-sm text-muted-foreground align-top w-[200px]">{p.description}</td>
+                                                    <td className="p-4 text-xs italic text-muted-foreground/70 align-top max-w-[300px]">
+                                                        <div className="flex items-start gap-2">
+                                                            <AlertCircle className="w-3 h-3 mt-0.5 shrink-0" />
+                                                            {p.lookFors}
+                                                        </div>
+                                                    </td>
+                                                    {["Effective", "Developing", "Basic", "Not Observed"].map((r, i) => {
+                                                        const label = r === "Effective" ? "Yes" : 
+                                                                      r === "Developing" ? "Partially Seen" : 
+                                                                      r === "Basic" ? "Not Seen" : "N/A";
+                                                        
+                                                        return (
+                                                            <td key={r} className="p-4 text-center align-top">
+                                                                <button
+                                                                    type="button"
+                                                                    disabled={readOnly}
+                                                                    onClick={() => updateIndicatorRating(domain.id, sd.id, p.name, r as any)}
+                                                                    className={cn(
+                                                                        "w-6 h-6 rounded-lg border-2 transition-all mx-auto flex items-center justify-center",
+                                                                        rating === r 
+                                                                            ? "bg-primary border-primary text-white shadow-lg shadow-primary/20" 
+                                                                            : "border-muted-foreground/20 hover:border-primary/40"
+                                                                    )}
+                                                                >
+                                                                    {rating === r && <Check className="w-4 h-4" />}
+                                                                </button>
+                                                                <span className="text-[10px] font-bold mt-1 block uppercase text-muted-foreground/50">{label}</span>
+                                                            </td>
+                                                        );
+                                                    })}
+                                                </tr>
+                                                {rating === "Developing" && (
+                                                    <tr className="bg-amber-500/5">
+                                                        <td colSpan={7} className="p-4">
+                                                            <div className="flex items-start gap-3 bg-white/50 p-4 rounded-2xl border border-amber-500/20 shadow-inner">
+                                                                <PenTool className="w-4 h-4 text-amber-600 mt-1" />
+                                                                <div className="flex-1">
+                                                                    <Label className="text-[10px] font-black uppercase tracking-widest text-amber-700 mb-2 block">What Needs Strengthening? (Max 1 Line)</Label>
+                                                                    <Input 
+                                                                        placeholder="Enter strengthening point..." 
+                                                                        className="h-10 text-sm bg-transparent border-none focus-visible:ring-0 p-0"
+                                                                        value={currentRating?.note || ""}
+                                                                        onChange={(e) => {
+                                                                            updateParameterNote(domain.id, sd.id, p.name, e.target.value);
+                                                                        }}
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                )}
+                                            </React.Fragment>
+                                        );
+                                    })}
+                                </React.Fragment>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </CardContent>
+        </Card>
+    );
+};

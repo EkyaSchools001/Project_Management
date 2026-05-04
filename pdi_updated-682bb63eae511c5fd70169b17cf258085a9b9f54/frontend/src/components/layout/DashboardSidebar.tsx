@@ -113,6 +113,31 @@ export function DashboardSidebar({
           subModules: eduHubSubModules,
         },
         {
+          title: "HR & WellBeing",
+          icon: UsersThree,
+          subModules: [
+            { title: "Resources", path: "/hr/resources" },
+            { title: "Educator Essentials", path: "/hr/educator-essentials" },
+            { title: "Educator Guide", path: "/hr/educator-guide" },
+            { title: "WellBeing", path: "/hr/wellbeing" },
+          ],
+        },
+        {
+          title: "Technology",
+          icon: Desktop,
+          subModules: [
+            { title: "Tech Sites", path: "/technology/tech-sites-login", icon: Link },
+            { title: "GreytHR", path: "/technology/greythr" },
+            { title: "Schoology", path: "/technology/schoology" },
+            { title: "Google Workspace", path: "/technology/google-workspace" },
+            { title: "Zoom", path: "/technology/zoom" },
+            { title: "Slack", path: "/technology/slack" },
+            { title: "Email Signature Templates", path: "/technology/email-signature-templates" },
+            { title: "Ekyaverse-Neverskip", path: "/technology/ekyaverse" },
+            { title: "Audit & Reports", path: "/technology/audit" },
+          ],
+        },
+        {
           title: "Dashboard",
           icon: SquaresFour,
           subModules: [
@@ -160,31 +185,6 @@ export function DashboardSidebar({
           title: "Records",
           icon: ClipboardText,
           subModules: [{ title: "Attendance", path: "/teacher/attendance" }],
-        },
-        {
-          title: "HR & WellBeing",
-          icon: UsersThree,
-          subModules: [
-            { title: "Resources", path: "/hr/resources" },
-            { title: "Educator Essentials", path: "/hr/educator-essentials" },
-            { title: "Educator Guide", path: "/hr/educator-guide" },
-            { title: "WellBeing", path: "/hr/wellbeing" },
-          ],
-        },
-        {
-          title: "Technology",
-          icon: Desktop,
-          subModules: [
-            { title: "Tech Sites", path: "/technology/tech-sites-login", icon: Link },
-            { title: "GreytHR", path: "/technology/greythr" },
-            { title: "Schoology", path: "/technology/schoology" },
-            { title: "Google Workspace", path: "/technology/google-workspace" },
-            { title: "Zoom", path: "/technology/zoom" },
-            { title: "Slack", path: "/technology/slack" },
-            { title: "Email Signature Templates", path: "/technology/email-signature-templates" },
-            { title: "Ekyaverse-Neverskip", path: "/technology/ekyaverse" },
-            { title: "Audit & Reports", path: "/technology/audit" },
-          ],
         },
         {
           title: "Profile",
@@ -235,6 +235,31 @@ export function DashboardSidebar({
           title: "Educator Hub",
           icon: Lightning,
           subModules: eduHubSubModules,
+        },
+        {
+          title: "HR & WellBeing",
+          icon: UsersThree,
+          subModules: [
+            { title: "Resources", path: "/hr/resources" },
+            { title: "Educator Essentials", path: "/hr/educator-essentials" },
+            { title: "Educator Guide", path: "/hr/educator-guide" },
+            { title: "WellBeing", path: "/hr/wellbeing" },
+          ],
+        },
+        {
+          title: "Technology",
+          icon: Desktop,
+          subModules: [
+            { title: "Tech Sites", path: "/technology/tech-sites-login", icon: Link },
+            { title: "GreytHR", path: "/technology/greythr" },
+            { title: "Schoology", path: "/technology/schoology" },
+            { title: "Google Workspace", path: "/technology/google-workspace" },
+            { title: "Zoom", path: "/technology/zoom" },
+            { title: "Slack", path: "/technology/slack" },
+            { title: "Email Signature Templates", path: "/technology/email-signature-templates" },
+            { title: "Ekyaverse-Neverskip", path: "/technology/ekyaverse" },
+            { title: "Audit & Reports", path: "/technology/audit" },
+          ],
         },
         {
           title: "Dashboard",
@@ -294,6 +319,16 @@ export function DashboardSidebar({
             { title: "Settings", path: "/leader/settings" },
           ],
         },
+      ];
+    }
+
+    if (isAdmin || isSuperAdmin) {
+      const baseNav: SidebarModule[] = [
+        {
+          title: "Educator Hub",
+          icon: Lightning,
+          subModules: eduHubSubModules,
+        },
         {
           title: "HR & WellBeing",
           icon: UsersThree,
@@ -318,16 +353,6 @@ export function DashboardSidebar({
             { title: "Ekyaverse-Neverskip", path: "/technology/ekyaverse" },
             { title: "Audit & Reports", path: "/technology/audit" },
           ],
-        },
-      ];
-    }
-
-    if (isAdmin || isSuperAdmin) {
-      const baseNav: SidebarModule[] = [
-        {
-          title: "Educator Hub",
-          icon: Lightning,
-          subModules: eduHubSubModules,
         },
         {
           title: "Dashboard",
@@ -400,6 +425,18 @@ export function DashboardSidebar({
             { title: "Announcements", path: "/announcements", badge: unreadAnnouncements },
           ],
         },
+      );
+
+      return baseNav;
+    }
+
+    if (isCoordinator) {
+      return [
+        {
+          title: "Educator Hub",
+          icon: Lightning,
+          subModules: eduHubSubModules,
+        },
         {
           title: "HR & WellBeing",
           icon: UsersThree,
@@ -424,18 +461,6 @@ export function DashboardSidebar({
             { title: "Ekyaverse-Neverskip", path: "/technology/ekyaverse" },
             { title: "Audit & Reports", path: "/technology/audit" },
           ],
-        },
-      );
-
-      return baseNav;
-    }
-
-    if (isCoordinator) {
-      return [
-        {
-          title: "Educator Hub",
-          icon: Lightning,
-          subModules: eduHubSubModules,
         },
         {
           title: "Dashboard",
@@ -492,6 +517,16 @@ export function DashboardSidebar({
             { title: "Announcements", path: "/announcements", badge: unreadAnnouncements },
           ],
         },
+      ];
+    }
+
+    if (isManagement) {
+      return [
+        {
+          title: "Educator Hub",
+          icon: Lightning,
+          subModules: eduHubSubModules,
+        },
         {
           title: "HR & WellBeing",
           icon: UsersThree,
@@ -516,16 +551,6 @@ export function DashboardSidebar({
             { title: "Ekyaverse-Neverskip", path: "/technology/ekyaverse" },
             { title: "Audit & Reports", path: "/technology/audit" },
           ],
-        },
-      ];
-    }
-
-    if (isManagement) {
-      return [
-        {
-          title: "Educator Hub",
-          icon: Lightning,
-          subModules: eduHubSubModules,
         },
         {
           title: "Dashboard",
@@ -578,31 +603,7 @@ export function DashboardSidebar({
             { title: "Announcements", path: "/announcements", badge: unreadAnnouncements },
           ],
         },
-        {
-          title: "HR & WellBeing",
-          icon: UsersThree,
-          subModules: [
-            { title: "Resources", path: "/hr/resources" },
-            { title: "Educator Essentials", path: "/hr/educator-essentials" },
-            { title: "Educator Guide", path: "/hr/educator-guide" },
-            { title: "WellBeing", path: "/hr/wellbeing" },
-          ],
-        },
-        {
-          title: "Technology",
-          icon: Desktop,
-          subModules: [
-            { title: "Tech Sites", path: "/technology/tech-sites-login", icon: Link },
-            { title: "GreytHR", path: "/technology/greythr" },
-            { title: "Schoology", path: "/technology/schoology" },
-            { title: "Google Workspace", path: "/technology/google-workspace" },
-            { title: "Zoom", path: "/technology/zoom" },
-            { title: "Slack", path: "/technology/slack" },
-            { title: "Email Signature Templates", path: "/technology/email-signature-templates" },
-            { title: "Ekyaverse-Neverskip", path: "/technology/ekyaverse" },
-            { title: "Audit & Reports", path: "/technology/audit" },
-          ],
-        },
+
       ];
     }
 
@@ -735,7 +736,7 @@ export function DashboardSidebar({
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto p-3 space-y-2 scrollbar-hide">
+      <nav className="flex-1 overflow-y-auto p-3 pt-4 space-y-2 scrollbar-hide">
         {filteredNav.map((module) => (
           <SidebarAccordionItem
             key={module.title}

@@ -27,7 +27,7 @@ import { ScrollToTop } from "@/components/ui/ScrollToTop";
 import api from "@/lib/api";
 import { getSocket } from "@/lib/socket";
 import { CAMPUS_OPTIONS } from "@/lib/constants";
-import { formatRole, cn } from "@/lib/utils";
+import { formatRole, cn, formatCampus } from "@/lib/utils";
 
 
 interface User {
@@ -279,7 +279,7 @@ export function UserManagementView() {
                                                 </SelectTrigger>
                                                 <SelectContent>
                                                     {CAMPUS_OPTIONS.map(c => (
-                                                        <SelectItem key={c} value={c}>{c}</SelectItem>
+                                                        <SelectItem key={c} value={c}>{formatCampus(c)}</SelectItem>
                                                     ))}
                                                 </SelectContent>
                                             </Select>
@@ -345,7 +345,7 @@ export function UserManagementView() {
                                                     </SelectTrigger>
                                                     <SelectContent>
                                                         {CAMPUS_OPTIONS.map(c => (
-                                                            <SelectItem key={c} value={c}>{c}</SelectItem>
+                                                            <SelectItem key={c} value={c}>{formatCampus(c)}</SelectItem>
                                                         ))}
                                                     </SelectContent>
                                                 </Select>
@@ -514,7 +514,7 @@ export function UserManagementView() {
                         <SelectContent>
                             <SelectItem value="all">All Campuses</SelectItem>
                             {uniqueCampuses.map(campus => (
-                                <SelectItem key={campus} value={campus}>{campus}</SelectItem>
+                                <SelectItem key={campus} value={campus}>{formatCampus(campus)}</SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
@@ -571,7 +571,7 @@ export function UserManagementView() {
                                                     )}
                                                 </div>
                                             </TableCell>
-                                            <TableCell className="text-muted-foreground">{user.campusId || "N/A"}</TableCell>
+                                            <TableCell className="text-muted-foreground">{formatCampus(user.campusId) || "N/A"}</TableCell>
                                             <TableCell>
                                                 <Badge className={cn(
                                                     "px-3 py-1 rounded-full font-black text-[10px] tracking-widest uppercase border-none text-white shadow-sm",

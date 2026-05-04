@@ -42,6 +42,13 @@ const PermissionContext = createContext<PermissionContextType | undefined>(undef
 // Module IDs must match both the backend API_MODULE_MAP and the SuperAdmin UI.
 // eslint-disable-next-line react-refresh/only-export-components
 export const defaultAccessMatrix: PermissionSetting[] = [
+    // ── Core Dashboards ──────────────────────────────────────────────────────
+    { moduleId: 'admin', moduleName: 'Super Admin Console', roles: { SUPERADMIN: true, ADMIN: true, LEADER: false, MANAGEMENT: false, COORDINATOR: false, TEACHER: false, TESTER: false } },
+    { moduleId: 'leader', moduleName: 'Leader Dashboard', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, COORDINATOR: true, TEACHER: false, TESTER: false } },
+    { moduleId: 'management', moduleName: 'Management Dashboard', roles: { SUPERADMIN: true, ADMIN: true, LEADER: false, MANAGEMENT: true, COORDINATOR: false, TEACHER: false, TESTER: false } },
+    { moduleId: 'teacher', moduleName: 'Teacher Dashboard', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'coordinator', moduleName: 'Coordinator Dashboard', roles: { SUPERADMIN: true, ADMIN: true, LEADER: false, MANAGEMENT: false, COORDINATOR: true, TEACHER: false, TESTER: false } },
+
     // ── Core Administration ──────────────────────────────────────────────────
     { moduleId: 'users', moduleName: 'User Management', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, COORDINATOR: false, TEACHER: false, TESTER: false } },
     { moduleId: 'team', moduleName: 'Team Overview', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: false, COORDINATOR: true, TEACHER: false, TESTER: false } },
@@ -72,21 +79,8 @@ export const defaultAccessMatrix: PermissionSetting[] = [
     { moduleId: 'insights', moduleName: 'Data Insights', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
     { moduleId: 'assessments', moduleName: 'Assessments', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
 
-    // ── Operations & Engagement ──────────────────────────────────────────────
-    { moduleId: 'attendance', moduleName: 'Attendance', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
-    { moduleId: 'meetings', moduleName: 'Meetings', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
-    { moduleId: 'announcements', moduleName: 'Announcements', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
-    { moduleId: 'survey', moduleName: 'Surveys', roles: { SUPERADMIN: true, ADMIN: true, LEADER: false, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
-    { moduleId: 'documents', moduleName: 'Documents', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
-    { moduleId: 'inst_identity', moduleName: 'Institutional Identity', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
-    { moduleId: 'acad_ops', moduleName: 'Academic Operations', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
-    { moduleId: 'peda_learn', moduleName: 'Pedagogy & Learning', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
-    { moduleId: 'prof_dev', moduleName: 'Professional Development', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
-    { moduleId: 'mgmt_support', moduleName: 'Management & Support', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
-    { moduleId: 'ai_assistant', moduleName: 'Ekya AI Assistant', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
-
-    // ── Educator Hub ──────────────────────────────────────────────────────────
-    { moduleId: 'edu-hub', moduleName: 'Home (Edu Hub)', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    // ── Educator Hub (Unified Section) ───────────────────────────────────────
+    { moduleId: 'edu-hub', moduleName: 'Home', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
     { moduleId: 'who-we-are', moduleName: 'Who we are', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
     { moduleId: 'my-campus', moduleName: 'My campus', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
     { moduleId: 'teaching', moduleName: 'Teaching', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
@@ -94,6 +88,8 @@ export const defaultAccessMatrix: PermissionSetting[] = [
     { moduleId: 'interactions', moduleName: 'Interactions', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
     { moduleId: 'tickets', moduleName: 'Tickets', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
     { moduleId: 'grow', moduleName: 'Grow', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'lac', moduleName: 'LAC (Checklist)', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'culture-environment', moduleName: 'Culture & Environment', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
 
     // ── HR & WellBeing ────────────────────────────────────────────────────────
     { moduleId: 'resources', moduleName: 'Resources', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
@@ -111,14 +107,32 @@ export const defaultAccessMatrix: PermissionSetting[] = [
     { moduleId: 'email-signature', moduleName: 'Email Signature Templates', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
     { moduleId: 'ekyaverse', moduleName: 'Ekyaverse-Neverskip', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
     { moduleId: 'audit-reports', moduleName: 'Audit & Reports', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
-    { moduleId: 'lac', moduleName: 'LAC (Checklist)', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
-    { moduleId: 'culture-environment', moduleName: 'Culture & Environment', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+
+    // ── Operations & Engagement ──────────────────────────────────────────────
+    { moduleId: 'attendance', moduleName: 'Attendance', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'meetings', moduleName: 'Meetings', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'announcements', moduleName: 'Announcements', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'survey', moduleName: 'Surveys', roles: { SUPERADMIN: true, ADMIN: true, LEADER: false, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'documents', moduleName: 'Documents', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'inst_identity', moduleName: 'Institutional Identity', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'acad_ops', moduleName: 'Academic Operations', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'peda_learn', moduleName: 'Pedagogy & Learning', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'prof_dev', moduleName: 'Professional Development', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'mgmt_support', moduleName: 'Management & Support', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
+    { moduleId: 'ai_assistant', moduleName: 'Ekya AI Assistant', roles: { SUPERADMIN: true, ADMIN: true, LEADER: true, MANAGEMENT: true, COORDINATOR: true, TEACHER: true, TESTER: true } },
 ];
 
 // ─── Frontend Path → Module ID Mapping ───────────────────────────────────────
 // Maps sidebar/route path segments to the moduleId in the matrix.
 // Must cover ALL path segments used by DashboardSidebar + ModuleGuard.
 const FRONTEND_MODULE_MAP: Record<string, string> = {
+    // ── Root Dashboards ──────────────────────────────────────────────────────
+    'admin': 'admin',
+    'leader': 'leader',
+    'management': 'management',
+    'teacher': 'teacher',
+    'coordinator': 'coordinator',
+
     // ── Core Modules (1:1 with Matrix Module IDs) ────────────────────────────
     'users': 'users',
     'team': 'team',

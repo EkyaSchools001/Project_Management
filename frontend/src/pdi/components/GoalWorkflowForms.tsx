@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '@pdi/lib/api';
 import { useAuth } from '@pdi/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
@@ -678,7 +678,7 @@ export const GoalWorkflowForms = ({ goal, role, onComplete, onClose }: GoalWorkf
                                 </div>
                             )
                         }
-                    </div >
+                    </div>
                 );
             }
 

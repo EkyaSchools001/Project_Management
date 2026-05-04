@@ -42,7 +42,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
         const defaultPath =
             (user.role === 'ADMIN' || user.role === 'SUPERADMIN') ? '/admin' :
                 (user.role === 'LEADER' || user.role === 'SCHOOL_LEADER') ? '/leader' :
-                    (user.role === 'MANAGEMENT') ? '/management' : '/teacher';
+                    (user.role === 'MANAGEMENT') ? '/management' :
+                        (user.role === 'TESTER') ? '/edu-hub' : '/teacher';
 
         return <Navigate to={defaultPath} replace />;
     }

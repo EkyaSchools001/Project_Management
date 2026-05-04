@@ -81,10 +81,15 @@ export const PmsService = {
     },
 
     // Task Methods
-    async getTasks(projectId: string) {
+    async getTasks(filters?: { projectId?: string; status?: any; assigneeId?: string }) {
         try {
+            const whereClause: any = {};
+            if (filters?.projectId) whereClause.projectId = filters.projectId;
+            if (filters?.status) whereClause.status = filters.status;
+            if (filters?.assigneeId) whereClause.assigneeId = filters.assigneeId;
+
             return await prisma.task.findMany({
-                where: { projectId },
+                where: whereClause,
                 include: {
                     assignee: {
                         select: { 
@@ -105,7 +110,10 @@ export const PmsService = {
             });
         } catch (error) {
             console.error('DB Error in getTasks, falling back to mocks:', error.message);
-            return MOCK_TASKS.filter(t => t.projectId === projectId);
+            let mocks = MOCK_TASKS;
+            if (filters?.projectId) mocks = mocks.filter(t => t.projectId === filters.projectId);
+            if (filters?.status) mocks = mocks.filter(t => t.status === filters.status);
+            return mocks;
         }
     },
 

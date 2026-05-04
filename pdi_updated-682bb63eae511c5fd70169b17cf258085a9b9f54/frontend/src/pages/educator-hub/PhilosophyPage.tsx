@@ -1,9 +1,9 @@
 import React from "react";
-import { 
-  Eye, 
-  RocketLaunch, 
-  Brain, 
-  Heart, 
+import {
+  Eye,
+  RocketLaunch,
+  Brain,
+  Heart,
   HandWaving,
   CaretLeft,
   PencilSimple
@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdentity/PageEditorControls";
 import { settingsService } from "@/services/settingsService";
 import { useAuth } from "@/hooks/useAuth";
+import { PortalBanner } from "@/components/layout/PortalBanner";
 
 const PhilosophyPage = () => {
   const navigate = useNavigate();
@@ -55,44 +56,17 @@ const PhilosophyPage = () => {
 
   return (
     <div className="min-h-screen bg-white pb-24">
-      {/* HEADER SECTION */}
-      <div 
-        className="relative w-full h-80 flex flex-col items-center justify-center bg-gradient-to-r from-[#5D4037] to-[#8D6E63] overflow-hidden transition-all duration-700"
-        style={data.heroImage ? {
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${data.heroImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        } : {}}
-      >
-        {!data.heroImage && <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/dark-leather.png')]"></div>}
-        
-        <div className="relative z-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white tracking-widest uppercase mb-2">
-            Philosophy
-          </h1>
-          <div className="mt-4 h-1.5 w-24 bg-[#D32F2F] mx-auto rounded-full"></div>
-        </div>
-        
-        <Button 
-          variant="ghost" 
-          className="absolute top-6 left-6 text-white hover:bg-white/10 gap-2 z-10"
-          onClick={() => navigate(-1)}
-        >
-          <CaretLeft size={20} /> Back
-        </Button>
+      <PortalBanner 
+        title="Philosophy"
+        subtitle="Our vision, mission, and core habits of mind."
+        onBack={() => navigate(-1)}
+        onEdit={() => setIsEditorOpen(true)}
+        canEdit={canEdit()}
+        backgroundImage={data.heroImage}
+        className="mt-6 mb-16"
+      />
 
-        {canEdit() && (
-          <Button 
-            className="absolute top-6 right-6 bg-[#E63946] hover:bg-[#D62839] text-white gap-2 z-10 shadow-lg"
-            onClick={() => setIsEditorOpen(true)}
-          >
-            <PencilSimple size={18} weight="bold" />
-            Edit Content
-          </Button>
-        )}
-      </div>
-
-      <PageEditorControls 
+      <PageEditorControls
         settingKey="page_philosophy"
         initialData={data}
         onSave={setData}
@@ -112,12 +86,12 @@ const PhilosophyPage = () => {
       />
 
       {/* VISION & MISSION SECTION */}
-      <div className="max-w-7xl mx-auto px-6 py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-10 bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="flex justify-center items-center relative h-[300px]">
             <div className="absolute w-64 h-64 rounded-full border-[12px] border-[#009688]/20 -translate-x-12"></div>
             <div className="absolute w-64 h-64 rounded-full border-[12px] border-[#D32F2F]/20 translate-x-12"></div>
-            
+
             <div className="relative z-10 flex gap-8">
               <div className="w-24 h-24 rounded-full bg-[#009688] flex items-center justify-center shadow-lg transform -rotate-12">
                 <Eye size={48} color="white" weight="duotone" />
@@ -131,19 +105,19 @@ const PhilosophyPage = () => {
           <div className="space-y-12">
             <div>
               <h2 className="text-[#009688] text-3xl font-bold tracking-tight mb-4 flex items-center gap-3">
-                <span className="w-8 h-1 bg-[#009688]"></span> VISION
+                VISION
               </h2>
               <p className="text-xl text-gray-700 font-medium leading-relaxed">
-                "{data.vision}"
+                {data.vision}
               </p>
             </div>
 
             <div>
               <h2 className="text-[#D32F2F] text-3xl font-bold tracking-tight mb-4 flex items-center gap-3">
-                <span className="w-8 h-1 bg-[#D32F2F]"></span> MISSION
+                MISSION
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed italic">
-                "{data.mission}"
+                {data.mission}
               </p>
             </div>
           </div>
@@ -157,7 +131,7 @@ const PhilosophyPage = () => {
             Habits
           </h2>
           <p className="max-w-3xl mx-auto text-xl font-medium leading-relaxed opacity-90">
-            "{data.habitsIntro}"
+            {data.habitsIntro}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">

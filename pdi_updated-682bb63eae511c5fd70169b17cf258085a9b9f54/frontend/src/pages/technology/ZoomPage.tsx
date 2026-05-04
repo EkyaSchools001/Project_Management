@@ -17,9 +17,12 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { settingsService } from "@/services/settingsService";
 import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdentity/PageEditorControls";
+import { PortalBanner } from "@/components/layout/PortalBanner";
+import { useNavigate } from "react-router-dom";
 
 export default function ZoomPage() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [data, setData] = useState({
     heroTitle: "ZOOM",
@@ -58,15 +61,6 @@ export default function ZoomPage() {
 
   return (
     <div className="min-h-screen bg-white pb-20 relative">
-      {canEdit() && (
-        <Button 
-          className="absolute top-6 right-6 bg-white/20 hover:bg-white/30 text-white gap-2 z-50 shadow-lg font-bold border border-white/20"
-          onClick={() => setIsEditorOpen(true)}
-        >
-          <PencilSimple size={18} weight="bold" />
-          Edit Content
-        </Button>
-      )}
 
       <PageEditorControls 
         settingKey="page_tech_zoom"
@@ -92,20 +86,15 @@ export default function ZoomPage() {
         ]}
       />
 
-      {/* Hero Banner Section */}
-      <div className="relative w-full h-[300px] overflow-hidden bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-600">
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px'}} />
-        </div>
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <div className="relative z-10 space-y-4">
-            <h1 className="text-8xl font-bold tracking-[0.2em] text-white uppercase drop-shadow-2xl">
-              {data.heroTitle}
-            </h1>
-            <div className="h-2 w-full max-w-[300px] bg-rose-500 mx-auto rounded-full shadow-lg" />
-          </div>
-        </div>
-      </div>
+      <PortalBanner 
+        title={data.heroTitle}
+        subtitle={data.introContent.split('.')[0] + '.'}
+        onBack={() => navigate(-1)}
+        onEdit={() => setIsEditorOpen(true)}
+        canEdit={canEdit()}
+        icon={VideoCamera}
+        className="mt-6 mb-12"
+      />
 
       <div className="max-w-6xl mx-auto px-8 py-16 space-y-24">
         {/* Intro */}

@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "@pdi/hooks/useAuth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@pdi/components/ui/card";
@@ -161,16 +161,16 @@ const GrowthPage = () => {
 
                 <div className="grid gap-8">
                     {/* Information Card about the Framework */}
-                    <Card className="  shadow-sm bg-blue-50/50 border border-blue-100">
-                        <CardContent className="p-6">
-                            <div className="flex gap-4">
-                                <div className="p-2 rounded-lg bg-blue-100 h-fit">
-                                    <Info className="w-5 h-5 text-blue-600" />
+                    <Card className="shadow-sm bg-primary/[0.03] border border-primary/10">
+                        <CardContent className="p-8">
+                            <div className="flex gap-6">
+                                <div className="p-3 rounded-2xl bg-primary/10 h-fit border border-primary/20 shadow-sm">
+                                    <Info className="w-6 h-6 text-primary" />
                                 </div>
-                                <div className="space-y-1">
-                                    <h3 className="font-bold text-blue-900">Ekya Danielson Framework</h3>
-                                    <p className="text-sm text-blue-700 leading-relaxed">
-                                        This dashboard utilizes the <strong>Unified Observation, Feedback & Improvement Form</strong>.
+                                <div className="space-y-2">
+                                    <h3 className="text-sm font-black uppercase tracking-[0.2em] text-foreground">Ekya Danielson Framework</h3>
+                                    <p className="text-sm text-muted-foreground leading-relaxed font-medium">
+                                        This dashboard utilizes the <strong className="text-primary">Unified Observation, Feedback & Improvement Form</strong>.
                                         It is a standard Danielson-based academic observation framework designed to support your professional growth through structured feedback and collaborative reflection.
                                     </p>
                                 </div>
@@ -178,49 +178,49 @@ const GrowthPage = () => {
                         </CardContent>
                     </Card>
 
-                    <section className="space-y-4">
-                        <div className="flex items-center justify-between">
-                            <h2 className="text-xl font-semibold flex items-center gap-2">
-                                <Eye className="w-5 h-5 text-primary" />
+                    <section className="space-y-6">
+                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                            <h2 className="text-xl font-black uppercase tracking-tight flex items-center gap-3">
+                                <Eye className="w-6 h-6 text-primary" />
                                 My Submissions
                             </h2>
-                            <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-                                <div className="relative w-full md:w-64">
-                                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                            <div className="flex flex-col md:flex-row items-center gap-4 w-full lg:w-auto">
+                                <div className="relative w-full md:w-80">
+                                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                                     <Input
                                         placeholder="Search subject, observer..."
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
-                                        className="pl-9 h-10 rounded-xl"
+                                        className="pl-12 h-12 rounded-2xl border-border bg-card text-[10px] font-bold uppercase tracking-widest focus-visible:ring-primary/20"
                                     />
                                 </div>
                                 <Select value={selectedDomain} onValueChange={setSelectedDomain}>
-                                    <SelectTrigger className="w-full md:w-48 h-10 rounded-xl">
+                                    <SelectTrigger className="w-full md:w-64 h-12 rounded-2xl border-border bg-card text-[10px] font-black uppercase tracking-widest focus:ring-primary/20 transition-all">
                                         <SelectValue placeholder="Domain" />
                                     </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="all">All Domains</SelectItem>
+                                    <SelectContent className="rounded-2xl border-border shadow-xl">
+                                        <SelectItem value="all" className="text-[10px] font-black uppercase tracking-widest py-3">All Domains</SelectItem>
                                         {domains.map(d => (
-                                            <SelectItem key={d} value={d}>{d}</SelectItem>
+                                            <SelectItem key={d} value={d} className="text-[10px] font-black uppercase tracking-widest py-3">{d}</SelectItem>
                                         ))}
                                     </SelectContent>
                                 </Select>
-                                <div className="flex items-center gap-2">
+                                <div className="flex items-center gap-3 bg-muted/50 p-1 rounded-2xl border border-border">
                                     <Button
-                                        variant={filterType === 'all' ? 'default' : 'outline'}
+                                        variant={filterType === 'all' ? 'default' : 'ghost'}
                                         size="sm"
                                         onClick={() => setFilterType('all')}
-                                        className="rounded-full h-9"
+                                        className={`rounded-xl h-10 px-6 text-[9px] font-black uppercase tracking-widest transition-all ${filterType === 'all' ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'text-muted-foreground hover:bg-background'}`}
                                     >
                                         All
                                     </Button>
                                     <Button
-                                        variant={filterType === 'quick' ? 'secondary' : 'outline'}
+                                        variant={filterType === 'quick' ? 'default' : 'ghost'}
                                         size="sm"
                                         onClick={() => setFilterType('quick')}
-                                        className={cn("rounded-full h-9 gap-2", filterType === 'quick' && "bg-indigo-100 text-indigo-700 border-indigo-200 hover:bg-indigo-200")}
+                                        className={`rounded-xl h-10 px-6 text-[9px] font-black uppercase tracking-widest transition-all gap-2 ${filterType === 'quick' ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'text-muted-foreground hover:bg-background'}`}
                                     >
-                                        <MessageSquare className="w-4 h-4" />
+                                        <MessageSquare className="w-3.5 h-3.5" />
                                         Quick
                                     </Button>
                                 </div>
@@ -229,15 +229,17 @@ const GrowthPage = () => {
                                         variant="ghost"
                                         size="sm"
                                         onClick={clearFilters}
-                                        className="h-9 gap-2 text-muted-foreground hover:text-foreground"
+                                        className="h-10 px-4 gap-2 text-[9px] font-black uppercase tracking-widest text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all"
                                     >
                                         <X className="w-4 h-4" />
-                                        Clear
+                                        Reset
                                     </Button>
                                 )}
-                                <Badge variant="outline" className="font-medium whitespace-nowrap">
-                                    {filteredObservations.length} Results
-                                </Badge>
+                                <div className="px-4 py-2 bg-primary/5 border border-primary/10 rounded-xl">
+                                    <span className="text-[9px] font-black uppercase tracking-widest text-primary">
+                                        {filteredObservations.length} Results
+                                    </span>
+                                </div>
                             </div>
                         </div>
 

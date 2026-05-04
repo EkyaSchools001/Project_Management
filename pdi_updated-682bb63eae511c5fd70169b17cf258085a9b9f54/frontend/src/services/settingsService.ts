@@ -1,4 +1,5 @@
 import api from '@/lib/api';
+import { sanitizeContent } from '@/utils/contentSanitizer';
 
 export interface SystemSetting {
     id: string;
@@ -12,24 +13,29 @@ export const settingsService = {
     // Get all settings
     getAllSettings: async () => {
         const response = await api.get('/settings');
-        return response.data.data.settings.map((s: any) => ({
-            ...s,
-            value: JSON.parse(s.value)
-        }));
+        return response.data.data.settings.map((s: any) => {
+            const parsedValue = JSON.parse(s.value);
+            return {
+                ...s,
+                value: sanitizeContent(parsedValue)
+            };
+        });
     },
 
     // Get a single setting by key
     getSetting: async (key: string) => {
         const response = await api.get(`/settings/${key}`);
+        const parsedValue = JSON.parse(response.data.data.setting.value);
         return {
             ...response.data.data.setting,
-            value: JSON.parse(response.data.data.setting.value)
+            value: sanitizeContent(parsedValue)
         };
     },
 
     // Upsert a setting
     upsertSetting: async (key: string, value: any) => {
-        const response = await api.post('/settings/upsert', { key, value });
+        const sanitizedValue = sanitizeContent(value);
+        const response = await api.post('/settings/upsert', { key, value: sanitizedValue });
         return response.data.data.setting;
     },
 

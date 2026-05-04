@@ -6,15 +6,19 @@ import {
   CaretLeft,
   CaretRight,
   MagnifyingGlassPlus,
-  PencilSimple
+  PencilSimple,
+  Globe
 } from '@phosphor-icons/react';
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { settingsService } from "@/services/settingsService";
 import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdentity/PageEditorControls";
+import { PortalBanner } from "@/components/layout/PortalBanner";
+import { useNavigate } from "react-router-dom";
 
 export default function EkyaversePage() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [data, setData] = useState({
     heroTitle: "EKYAVERSE - ",
@@ -48,15 +52,6 @@ export default function EkyaversePage() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] relative">
-      {canEdit() && (
-        <Button 
-          className="absolute top-6 right-6 bg-white/20 hover:bg-white/30 text-white gap-2 z-50 shadow-lg font-bold border border-white/20"
-          onClick={() => setIsEditorOpen(true)}
-        >
-          <PencilSimple size={18} weight="bold" />
-          Edit Content
-        </Button>
-      )}
 
       <PageEditorControls 
         settingKey="page_tech_ekyaverse"
@@ -78,33 +73,26 @@ export default function EkyaversePage() {
         ]}
       />
 
-      {/* Hero Banner Section */}
-      <div className="relative w-full h-[350px] overflow-hidden">
-        <div className="absolute inset-0 bg-[#075985]">
-          <div 
-            className="absolute inset-0 opacity-40 bg-cover bg-center mix-blend-overlay" 
-            style={{ backgroundImage: `url('${data.heroBgImage}')` }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-        </div>
-        
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <div className="relative z-10 space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-1000">
-            <h1 className="text-6xl md:text-8xl font-black tracking-tight text-white uppercase drop-shadow-2xl">
-              {data.heroTitle}<span className="text-rose-500">{data.heroTitleAccent}</span>
-            </h1>
-            <div className="h-1.5 w-full max-w-[500px] bg-rose-500 mx-auto rounded-full shadow-lg" />
-          </div>
-        </div>
-      </div>
+      <PortalBanner 
+        title={`${data.heroTitle}${data.heroTitleAccent}`}
+        subtitle="Core school management system for attendance, grades, and records."
+        onBack={() => navigate(-1)}
+        onEdit={() => setIsEditorOpen(true)}
+        canEdit={canEdit()}
+        icon={Globe}
+        className="mt-6 mb-12"
+      />
 
       {/* Tutorial Section Header */}
-      <div className="bg-[#EA104A] py-8 shadow-xl relative z-20">
-        <div className="max-w-7xl mx-auto px-8 flex items-center justify-center">
-          <h2 className="text-4xl font-black text-white uppercase tracking-[0.3em] flex items-center gap-4">
-            <Presentation weight="fill" className="w-10 h-10" />
-            {data.tutorialHeader}
-          </h2>
+      <div className="max-w-7xl mx-auto px-4 md:px-6 mb-12">
+        <div className="bg-[#EA104A] py-8 rounded-[2rem] shadow-xl relative z-20 overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1),transparent)]" />
+          <div className="flex items-center justify-center relative z-10">
+            <h2 className="text-4xl font-black text-white uppercase tracking-[0.3em] flex items-center gap-4">
+              <Presentation weight="fill" className="w-10 h-10" />
+              {data.tutorialHeader}
+            </h2>
+          </div>
         </div>
       </div>
 

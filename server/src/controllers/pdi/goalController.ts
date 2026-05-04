@@ -13,9 +13,9 @@ export const getAllGoals = async (req: Request, res: Response, next: NextFunctio
     try {
         const authReq = req as AuthRequest;
         let filter: any = {};
-        if (authReq.user?.role === UserRole.TeacherStaff) {
+        if (authReq.user?.role === UserRole.TEACHER_CORE) {
             filter.teacherId = authReq.user.id;
-        } else if (authReq.user?.role === UserRole.LEADER || authReq.user?.role === UserRole.SCHOOL_LEADER) {
+        } else if (authReq.user?.role === UserRole.HOS) {
             filter.OR = [
                 { campus: authReq.user.campusId },
                 { teacher: { campusId: authReq.user.campusId } }
@@ -68,7 +68,7 @@ export const createGoal = async (req: Request, res: Response, next: NextFunction
         const data = result.data;
         let teacherId = data.teacherId;
 
-        if (authReq.user?.role !== UserRole.TeacherStaff && !teacherId && data.teacherEmail) {
+        if (authReq.user?.role !== UserRole.TEACHER_CORE && !teacherId && data.teacherEmail) {
             const targetTeacher = await prisma.user.findUnique({ where: { email: data.teacherEmail } });
             if (targetTeacher) {
                 teacherId = targetTeacher.id;
@@ -78,7 +78,7 @@ export const createGoal = async (req: Request, res: Response, next: NextFunction
         }
 
         if (!teacherId) {
-            if (authReq.user?.role === UserRole.TeacherStaff) {
+if (authReq.user?.role === UserRole.TEACHER_CORE) {
                 teacherId = authReq.user.id;
             } else {
                 return next(new AppError('A valid teacherId or teacherEmail is required', 400));
@@ -114,7 +114,7 @@ export const createGoal = async (req: Request, res: Response, next: NextFunction
         }
 
         // Notify teacher if goal was assigned by someone else and it's not a draft
-        if (authReq.user?.role !== UserRole.TeacherStaff && newGoal.status !== 'DRAFT') {
+        if (authReq.user?.role !== UserRole.TEACHER_CORE && newGoal.status !== 'DRAFT') {
             await createNotification({
                 userId: teacherId,
                 title: 'New Goal Assigned',
@@ -142,7 +142,7 @@ export const updateGoal = async (req: Request, res: Response, next: NextFunction
         const existing = await prisma.goal.findUnique({ where: { id } });
         if (!existing) return next(new AppError('Goal not found', 404));
 
-        if (authReq.user?.role === UserRole.TeacherStaff && existing.teacherId !== authReq.user.id) {
+        if (authReq.user?.role === UserRole.TEACHER_CORE && existing.teacherId !== authReq.user.id) {
             return next(new AppError('Access denied', 403));
         }
 
@@ -169,7 +169,7 @@ export const updateGoal = async (req: Request, res: Response, next: NextFunction
         }
 
         // Notify teacher if goal was updated by someone else (e.g. by Leader/Admin)
-        if (authReq.user?.role !== UserRole.TeacherStaff) {
+        if (authReq.user?.role !== UserRole.TEACHER_CORE) {
             await createNotification({
                 userId: updated.teacherId,
                 title: 'Goal Updated',
@@ -266,7 +266,7 @@ export const submitSelfReflection = async (req: Request, res: Response, next: Ne
         // Notify HOS
         const teacher = await prisma.user.findUnique({ where: { id: goal.teacherId } });
         if (teacher?.campusId) {
-            const hos = await prisma.user.findFirst({ where: { role: UserRole.LEADER, campusId: teacher.campusId } });
+            const hos = await prisma.user.findFirst({ where: { role: UserRole.HOS, campusId: teacher.campusId } });
             if (hos) {
                 await createNotification({
                     userId: hos.id,
@@ -382,7 +382,7 @@ export const getGoalAnalyticsDashboard = async (req: Request, res: Response, nex
         const campusId = req.query.campusId as string | undefined;
 
         let filter: any = {};
-        if (authReq.user?.role === UserRole.LEADER || authReq.user?.role === UserRole.SCHOOL_LEADER) {
+        if (authReq.user?.role === UserRole.HOS) {
             filter = { OR: [{ campus: authReq.user.campusId }, { teacher: { campusId: authReq.user.campusId } }] };
         } else if (campusId) {
             filter = { OR: [{ campus: campusId }, { teacher: { campusId: campusId } }] };
@@ -418,7 +418,7 @@ export const getGoalAnalyticsDashboard = async (req: Request, res: Response, nex
 export const notifyWindowOpen = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const teachers = await prisma.user.findMany({
-            where: { role: UserRole.TeacherStaff },
+            where: { role: UserRole.TEACHER_CORE },
             select: { id: true }
         });
 
@@ -450,7 +450,7 @@ export const requestWindowOpen = async (req: Request, res: Response, next: NextF
         // Find admins to notify
         const admins = await prisma.user.findMany({
             where: {
-                role: { in: [UserRole.Admin, UserRole.SuperAdmin] }
+                role: { in: [UserRole.SUPER_ADMIN, UserRole.MANAGEMENT] }
             },
             select: { id: true }
         });

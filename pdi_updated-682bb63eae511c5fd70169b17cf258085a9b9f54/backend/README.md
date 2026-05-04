@@ -1,17 +1,6 @@
 # School Growth Hub Backend Setup
 
-## 🚀 Quick Start (Docker)
-The easiest way to get the environment running is with Docker:
-
-```bash
-docker-compose up --build
-```
-
-This will spin up:
-- The Backend API on `http://localhost:4000`
-- A PostgreSQL 15 database on `http://localhost:5432`
-
-## 🛠 Manual Installation
+## 🛠 Setup & Installation
 
 1. **Install dependencies**:
    ```bash

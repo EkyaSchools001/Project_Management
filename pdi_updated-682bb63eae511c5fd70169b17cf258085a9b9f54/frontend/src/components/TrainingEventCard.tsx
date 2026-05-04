@@ -14,6 +14,8 @@ interface TrainingEventCardProps {
     topic: string;
     spotsLeft: number;
     isRegistered?: boolean;
+    entryType?: string;
+    type?: string;
   };
   onRegister?: () => void;
   className?: string;
@@ -23,8 +25,8 @@ export function TrainingEventCard({ event, onRegister, className }: TrainingEven
   return (
     <div className={cn("bg-card rounded-[2rem] p-8 border border-muted/20 shadow-xl space-y-6 transition-all hover:shadow-2xl", className)}>
       <div className="flex items-start justify-between">
-        <Badge variant="secondary" className="bg-info/10 text-info border-none px-4 py-1.5 rounded-xl text-xs font-bold capitalize tracking-wider">
-          {event.topic || (event as any).type}
+        <Badge variant="secondary" className={cn("border-none px-4 py-1.5 rounded-xl text-xs font-bold capitalize tracking-wider", (event.entryType === 'Observation' || (event.type || '').toLowerCase().includes('observation')) ? "bg-rose-500/10 text-rose-500" : "bg-info/10 text-info")}>
+          {event.entryType === 'Observation' ? 'Observation' : (event.topic || event.type)}
         </Badge>
       </div>
 
@@ -58,7 +60,12 @@ export function TrainingEventCard({ event, onRegister, className }: TrainingEven
       </div>
 
       <div className="pt-6 border-t border-muted/50">
-        {event.isRegistered ? (
+        {event.entryType === 'Observation' || (event.type || '').toLowerCase().includes('observation') ? (
+          <Button variant="outline" className="w-full h-14 rounded-2xl text-lg font-bold border-2 border-rose-500 text-rose-500 cursor-default" disabled>
+            <Calendar className="mr-2 w-6 h-6" />
+            Scheduled
+          </Button>
+        ) : event.isRegistered ? (
           <Button variant="outline" className="w-full h-14 rounded-2xl text-lg font-bold border-2 border-emerald-500 text-emerald-600 cursor-default" disabled>
             <CheckCircle2 className="mr-2 w-6 h-6" />
             Registered

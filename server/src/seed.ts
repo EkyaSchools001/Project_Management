@@ -64,7 +64,7 @@ async function main() {
             email: 'superadmin@ekyaschools.com',
             name: 'Super Admin',
             password: hashedPassword,
-            role: UserRole.SuperAdmin,
+            role: UserRole.SUPER_ADMIN,
             schoolId: school1.id,
         }
     });
@@ -79,7 +79,7 @@ async function main() {
             email: 'director@ekyaschools.com',
             name: 'Director',
             password: hashedPassword,
-            role: UserRole.ManagementAdmin,
+            role: UserRole.MANAGEMENT,
             schoolId: school1.id,
         }
     });
@@ -92,7 +92,7 @@ async function main() {
             email: 'admin@ekyaschools.com',
             name: 'Admin User',
             password: hashedPassword,
-            role: UserRole.Admin,
+            role: UserRole.ADMIN_OPS,
             departmentId: deptTech.id,
             schoolId: school1.id,
         }
@@ -106,7 +106,7 @@ async function main() {
             email: 'teacher@ekyaschools.com',
             name: 'Teacher Staff',
             password: hashedPassword,
-            role: UserRole.TeacherStaff,
+            role: UserRole.TEACHER_CORE,
             departmentId: deptTech.id,
             schoolId: school1.id,
         }

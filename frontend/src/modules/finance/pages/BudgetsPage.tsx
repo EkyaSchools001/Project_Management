@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Plus, Search, Filter } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import api from '../../../services/api';
 import { BudgetCard } from '../components/BudgetCard';
 import { BudgetForm } from '../components/BudgetForm';
 
@@ -31,12 +32,9 @@ export default function BudgetsPage() {
 
   const fetchBudgets = async () => {
     try {
-      const response = await fetch('/api/v1/finance/budgets', {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-      });
-      const result = await response.json();
-      if (result.status === 'success') {
-        setBudgets(result.data);
+      const response = await api.get('/finance/budgets');
+      if (response.data && response.data.status === 'success') {
+        setBudgets(response.data.data);
       }
     } catch (error) {
       console.error('Failed to fetch budgets:', error);
@@ -47,16 +45,8 @@ export default function BudgetsPage() {
 
   const handleCreateBudget = async (data: any) => {
     try {
-      const response = await fetch('/api/v1/finance/budgets', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify(data)
-      });
-      const result = await response.json();
-      if (result.status === 'success') {
+      const response = await api.post('/finance/budgets', data);
+      if (response.data && response.data.status === 'success') {
         setShowForm(false);
         fetchBudgets();
       }

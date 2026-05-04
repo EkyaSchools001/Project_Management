@@ -8,7 +8,7 @@ async function backfill() {
         return;
     }
 
-    const tasks = await prisma.lacTask.findMany({ where: { campusId: null } });
+    const tasks = await prisma.lacTask.findMany({ where: { campusId: null as any } });
     for (const task of tasks) {
         await prisma.lacTask.update({
             where: { id: task.id },

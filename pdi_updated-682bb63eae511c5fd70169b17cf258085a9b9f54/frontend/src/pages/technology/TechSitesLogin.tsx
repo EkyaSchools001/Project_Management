@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { settingsService } from "@/services/settingsService";
 import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdentity/PageEditorControls";
+import { PortalBanner } from "@/components/layout/PortalBanner";
+import { useNavigate } from "react-router-dom";
 
 interface TechSite {
   name: string;
@@ -96,17 +98,19 @@ export default function TechSitesLogin() {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-slate-50/50 relative">
-      {canEdit() && (
-        <Button 
-          className="absolute top-6 right-6 bg-white/20 hover:bg-white/30 text-white gap-2 z-50 shadow-lg font-bold border border-white/20"
-          onClick={() => setIsEditorOpen(true)}
-        >
-          <PencilSimple size={18} weight="bold" />
-          Edit Content
-        </Button>
-      )}
+      <PortalBanner 
+        title={`${data.title}${data.titleAccent}`}
+        subtitle={data.subtitle}
+        onBack={() => navigate(-1)}
+        onEdit={() => setIsEditorOpen(true)}
+        canEdit={canEdit()}
+        icon={Monitor}
+        className="mt-6 mb-12"
+      />
 
       <PageEditorControls 
         settingKey="page_tech_sites_login"
@@ -124,38 +128,6 @@ export default function TechSitesLogin() {
           { key: "sitesText", label: "Sites List (Name | URL | Desc)", type: "textarea" },
         ]}
       />
-
-      {/* Hero Section with Banner */}
-      <div className="relative h-[300px] w-full overflow-hidden bg-[#1E293B]">
-        {/* Background Mesh/Gradient Fallback */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 opacity-90" />
-        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
-        
-        <img 
-          src={data.bannerUrl} 
-          alt=""
-          className="w-full h-full object-cover opacity-40 mix-blend-overlay"
-          onError={(e) => (e.currentTarget.style.display = 'none')}
-        />
-
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1E293B] via-transparent to-transparent" />
-        
-        <div className="absolute inset-0 flex flex-col justify-end px-8 pb-12 max-w-7xl mx-auto">
-          <div className="space-y-4 animate-in fade-in slide-in-from-bottom-5 duration-700">
-            <div className="flex items-center gap-4 text-white">
-               <div className="p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl">
-                 <Monitor className="w-8 h-8 text-white" weight="duotone" />
-               </div>
-               <h1 className="text-5xl font-black tracking-tight text-white uppercase">
-                 {data.title}<span className="text-blue-400">{data.titleAccent}</span>
-               </h1>
-            </div>
-            <p className="text-lg text-slate-300 max-w-2xl font-medium leading-relaxed">
-              {data.subtitle}
-            </p>
-          </div>
-        </div>
-      </div>
 
       <div className="max-w-7xl mx-auto px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">

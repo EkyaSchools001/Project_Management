@@ -1,0 +1,902 @@
+
+<h2 class="sr-only">MOOC Module — Ekya Teacher Platform, role-aware, v3</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',system-ui,sans-serif}
+.shell{display:flex;min-height:100vh;background:#f8f9fa}
+.sb{display:none !important}
+.topbar{display:none !important}
+.sb-logo{padding:12px 14px;border-bottom:1px solid #2e1f3e}
+.sb-logo b{color:#fff;font-size:13px;font-weight:600}
+.sb-logo b em{color:#e84393;font-style:normal}
+.sb-logo small{display:block;font-size:10px;color:#7a6a8a;margin-top:1px}
+.sb-usr{padding:9px 14px;border-bottom:1px solid #2e1f3e}
+.sb-un{font-size:12px;font-weight:500;color:#fff}
+.sb-ur{font-size:10px;color:#9b8aaa;margin-top:1px}
+.sb-bx{display:inline-block;font-size:9px;font-weight:700;padding:1px 6px;border-radius:3px;margin-top:3px}
+.sb-sec{font-size:9px;color:#5a4a6a;text-transform:uppercase;letter-spacing:.8px;padding:8px 14px 2px;font-weight:600}
+.sb-row{padding:6px 14px;font-size:12px;color:#b8a8c8;cursor:pointer;border-left:2px solid transparent;display:flex;align-items:center;justify-content:space-between}
+.sb-row:hover{background:#2a1a3a;color:#fff}
+.sb-row.on{background:#e84393;color:#fff;border-left-color:#fff}
+.sb-row .ar{font-size:10px;color:#5a4a6a}
+.rs{padding:7px 10px;background:#0f0a1a;border-top:1px solid #2e1f3e;margin-top:auto}
+.rs-lbl{font-size:9px;color:#5a4a6a;text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px;font-weight:600}
+.rs-sel{width:100%;background:#1a1025;color:#e8d8f8;border:1px solid #3e2e4e;border-radius:5px;padding:4px 7px;font-size:11px;cursor:pointer}
+/* MAIN */
+.mn{flex:1;min-width:0;display:flex;flex-direction:column;background:#f4f5f7}
+.topbar{background:#fff;border-bottom:1px solid #e8e8ee;padding:0 16px;height:44px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.tb-srch{display:flex;align-items:center;gap:5px;background:#f4f5f7;border-radius:20px;padding:4px 12px;font-size:11px;color:#999}
+.tb-r{display:flex;align-items:center;gap:12px;font-size:11px;color:#555}
+.av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700}
+.cnt{flex:1;min-width:0;padding:24px}
+/* ROLE INFO */
+.ri{background:#fff;border:1px solid #e8e8ee;border-radius:16px;padding:16px;margin-bottom:20px;display:flex;align-items:center;gap:12px;box-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1)}
+.ri-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.ri-t{font-size:14px;font-weight:600;color:#1a1025}
+.ri-d{font-size:12px;color:#666;margin-top:2px}
+.ri-sc{font-size:11px;font-weight:600;padding:4px 12px;border-radius:24px;white-space:nowrap;flex-shrink:0}
+/* PAGE HEADER */
+.ph h1{font-size:24px;font-weight:800;color:#1a1025;letter-spacing:-0.02em}
+.ph p{font-size:14px;color:#666;margin-top:4px}
+.bc{font-size:12px;color:#ea104a;margin-bottom:8px;font-weight:600}
+/* TABS */
+.tab-bar{display:flex;gap:20px;margin:20px 0 24px;border-bottom:1px solid #e8e8ee}
+.tab-btn{padding:12px 4px;font-size:14px;font-weight:700;cursor:pointer;color:#888;border:none;border-bottom:3px solid transparent;background:none;transition:all 0.2s;white-space:nowrap}
+.tab-btn.on{color:#ea104a;border-bottom-color:#ea104a}
+.tab-btn:hover:not(.on){color:#1a1025}
+.tab-btn.on[data-tab="browse"] { outline: 1px solid #ea104a; outline-offset: 4px; border-radius: 4px; border-bottom: none; }
+
+/* STATS */
+.sg{display:grid;gap:9px;margin-bottom:13px}
+.sc{background:#fff;border-radius:12px;padding:16px 20px;border:1px solid #e8e8ee;box-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1)}
+.sc-n{font-size:24px;font-weight:800;color:#1a1025;line-height:1}
+.sc-l{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;font-weight:700}
+/* FILTER BAR */
+.fb{display:flex;gap:7px;margin-bottom:11px;align-items:center;flex-wrap:wrap}
+.fb input{padding:10px 16px;border:1px solid #e2e8f0;border-radius:8px;font-size:14px;color:#333;background:#fff;min-width:0;flex:1}
+.fb input:focus{outline:none;border-color:#e84393}
+.fb select{padding:10px 14px;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;color:#555;background:#fff;cursor:pointer;flex-shrink:0}
+.fb select:focus{outline:none;border-color:#e84393}
+/* TABLE — key fix: no overflow hidden, let it scroll */
+.tw{background:#fff;border-radius:24px;border:1px solid #e8e8ee;overflow:hidden;box-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1)}
+.tw-top{padding:20px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e8e8ee;flex-shrink:0}
+.tw-top h3{font-size:16px;font-weight:800;color:#1a1025}
+.tbl-scroll{overflow-x:auto;width:100%}
+table{width:100%;border-collapse:collapse;min-width:620px}
+thead th{padding:16px 24px;text-align:left;font-size:11px;color:#1a1025;font-weight:900;text-transform:uppercase;letter-spacing:0.2em;border-bottom:1px solid #f1f5f9;background:#f8fafc;white-space:nowrap}
+tbody td{padding:20px 24px;border-bottom:1px solid #f1f5f9;font-size:14px;vertical-align:middle}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:#f1f5f9/50}
+.pill{border:1px solid #ddd;border-radius:20px;padding:2px 8px;font-size:10px;color:#555;display:inline-block;white-space:nowrap}
+.cert{color:#ea104a;font-size:11px;text-decoration:none;white-space:nowrap}
+.s-app{background:#1a1025;color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px;display:inline-block;white-space:nowrap}
+.s-pen{background:#ff9800;color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px;display:inline-block;white-space:nowrap}
+.s-rej{background:#e53935;color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px;display:inline-block;white-space:nowrap}
+.btn{font-size:10px;padding:3px 9px;border-radius:20px;cursor:pointer;border:1px solid #ddd;background:#fff;color:#555;white-space:nowrap}
+.btn:hover{border-color:#ea104a;color:#ea104a}
+.btn-gr{border-color:#2e7d32;color:#2e7d32;background:#f1fff3}
+.btn-gr:hover{background:#2e7d32;color:#fff;border-color:#2e7d32}
+.btn-rd{border-color:#c00;color:#c00;background:#fff5f5}
+.btn-rd:hover{background:#c00;color:#fff}
+.btn-pk{background:#ea104a;color:#fff;border:none;border-radius:12px;padding:12px 24px;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 6px -1px rgba(234, 16, 74, 0.2)}
+.btn-pk:hover{transform:translateY(-1px);box-shadow:0 10px 15px -3px rgba(234, 16, 74, 0.3)}
+.btn-exp{border:1px solid #ea104a;color:#ea104a;border-radius:12px;padding:8px 16px;font-size:13px;background:#fff;cursor:pointer;font-weight:600;transition:all 0.2s}
+/* COURSE CARDS */
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.cc{background:#fff;border:1px solid #e8e8ee;border-radius:12px;padding:16px;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;gap:8px;box-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05)}
+.cc:hover{border-color:#ea104a;transform:translateY(-2px);box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1)}
+.cc-ttl{font-size:14px;font-weight:700;color:#1a1025;line-height:1.4}
+.cc-plt{font-size:12px;color:#666}
+.cc-ft{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:8px;border-top:1px solid #f8f9fa}
+.cc-hr{font-size:11px;color:#888;font-weight:600}
+.tg-m{background:#fff1f2;color:#ea104a;font-size:10px;font-weight:700;padding:4px 8px;border-radius:6px;width:fit-content;text-transform:uppercase;letter-spacing:0.02em}
+.tg-o{background:#f0fdf4;color:#16a34a;font-size:10px;font-weight:700;padding:4px 8px;border-radius:6px;width:fit-content;text-transform:uppercase;letter-spacing:0.02em}
+
+/* FORM */
+.fc{background:#fff;border-radius:8px;border:1px solid #e8e8ee;padding:16px;max-width:500px}
+.fc h3{font-size:14px;font-weight:600;color:#1a1025;margin-bottom:2px}
+.fc-sub{font-size:11px;color:#888;margin-bottom:11px;line-height:1.5}
+.fg{margin-bottom:10px}
+.fg label{display:block;font-size:10px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.fg input,.fg select,.fg textarea{width:100%;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:12px;color:#333;background:#fff}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:#ea104a}
+.fg textarea{height:72px;resize:vertical}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.ib{background:#fff1f2;border-left:3px solid #ea104a;border-radius:0 6px 6px 0;padding:8px 11px;font-size:11px;color:#ea104a;line-height:1.6;margin-bottom:11px}
+/* TRACK GRID */
+.tkg{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px}
+.tkt{background:#fff;border:1px solid #e8e8ee;border-radius:8px;padding:10px;cursor:pointer}
+.tkt:hover{border-color:#ea104a}
+.tkt-n{font-size:19px;font-weight:700;color:#1a1025}
+.tkt-l{font-size:10px;color:#888;margin-top:1px;line-height:1.3}
+/* PROGRESS */
+.pb-w{height:5px;background:#eee;border-radius:3px;overflow:hidden;margin-top:3px}
+.pb{height:100%;background:#ea104a;border-radius:3px}
+.prog-c{background:#fff;border:1px solid #e8e8ee;border-radius:8px;padding:13px;margin-bottom:11px}
+/* DENIED */
+.denied{background:#fff5f5;border:1px solid #fcc;border-radius:8px;padding:36px;text-align:center}
+.denied .di{font-size:30px;margin-bottom:8px}
+.denied h3{font-size:14px;font-weight:600;color:#c00;margin-bottom:4px}
+.denied p{font-size:12px;color:#888;line-height:1.6}
+/* MSG */
+.msg-ok{background:#f1fff3;color:#2e7d32;padding:8px 11px;border-radius:6px;font-size:12px;margin-top:9px}
+.msg-err{background:#fff5f5;color:#c00;padding:8px 11px;border-radius:6px;font-size:12px;margin-top:9px}
+/* MODAL */
+.m-ov{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px;backdrop-filter:blur(4px)}
+.m-ct{background:#fff;border-radius:24px;width:100%;max-width:500px;overflow:hidden;box-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);animation:m-in 0.3s cubic-bezier(0.16, 1, 0.3, 1)}
+@keyframes m-in{from{transform:translateY(10px) scale(0.98);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
+.m-h{padding:24px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between;background:#fff}
+.m-h h3{font-size:18px;font-weight:800;color:#1a1025;letter-spacing:-0.02em}
+.m-b{padding:24px;max-height:75vh;overflow-y:auto}
+.m-f{padding:16px 24px;border-top:1px solid #f1f5f9;text-align:right;background:#fff}
+.m-cl{font-size:24px;color:#94a3b8;cursor:pointer;line-height:1;transition:color 0.2s}
+.m-cl:hover{color:#ea104a}
+.dl{display:grid;grid-template-columns:120px 1fr;gap:12px;margin-bottom:16px;align-items:baseline}
+.dl-dt{font-size:10px;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:0.1em}
+.dl-dd{font-size:14px;color:#1a1025;font-weight:600}
+</style>
+
+<div class="shell">
+<!-- SIDEBAR -->
+<div class="sb">
+  <div class="sb-logo"><b><em>Teacher</em> Platform</b><small>Ekya Schools ERP</small></div>
+  <div class="sb-usr">
+    <div class="sb-un" id="sb-nm">Admin User</div>
+    <div class="sb-ur" id="sb-ur">Super Admin</div>
+    <span class="sb-bx" id="sb-bx" style="background:#FAECE7;color:#712B13">SA</span>
+  </div>
+  <div class="sb-sec">Educator Hub</div>
+  <div class="sb-row">Dashboard <span class="ar">›</span></div>
+  <div class="sb-row">Observation &amp; Goals <span class="ar">›</span></div>
+  <div class="sb-row">User &amp; Forms <span class="ar">›</span></div>
+  <div class="sb-sec">Courses</div>
+  <div class="sb-row">Course Catalogue</div>
+  <div class="sb-row">Assessments</div>
+  <div class="sb-row on" id="sb-mooc">MOOC Evidence</div>
+  <div class="sb-sec" id="sb-adm-lbl" style="display:none">Admin</div>
+  <div class="sb-row" id="sb-usr-mgmt" style="display:none">User Management</div>
+  <div class="sb-row" id="sb-rpts" style="display:none">Reports &amp; Analytics</div>
+  <div class="sb-sec">Training</div>
+  <div class="sb-row">PD Sessions <span class="ar">›</span></div>
+  <div class="sb-row">HR &amp; Wellbeing <span class="ar">›</span></div>
+  <div class="rs" style="display:none">
+    <div class="rs-lbl">🔀 Switch role (demo)</div>
+    <select class="rs-sel" onchange="switchRole(this.value)">
+      <optgroup label="Leadership">
+        <option value="super_admin">Super Admin</option>
+        <option value="management">Management / Director</option>
+        <option value="hos">Head of School (HoS)</option>
+        <option value="coordinator">Coordinator</option>
+      </optgroup>
+      <optgroup label="Academic Staff">
+        <option value="teacher_core">Teacher — Core</option>
+        <option value="teacher_senior">Advance Faculty</option>
+        <option value="teacher_pe">PE Specialist</option>
+        <option value="teacher_va">VA Specialist</option>
+        <option value="teacher_counselor">Behavioural Counselor</option>
+        <option value="teacher_parttime">Part-time Teacher</option>
+      </optgroup>
+      <optgroup label="Non-Teaching">
+        <option value="admin_ops">Admin — Operations</option>
+        <option value="admin_hr">Admin — HR</option>
+        <option value="admin_it">Admin — IT</option>
+        <option value="librarian">Librarian</option>
+      </optgroup>
+      <optgroup label="Stakeholders">
+        <option value="parent">Parent / Guardian</option>
+        <option value="student">Student</option>
+      </optgroup>
+    </select>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="mn">
+  <div class="topbar">
+    <div class="tb-srch">🔍 Search navigation...</div>
+    <div class="tb-r">
+      <span>📄 Documents</span>
+      <span>📋 Blogs</span>
+      <span>🔔</span>
+      <div class="av" id="top-av" style="background:#e84393;color:#fff">SA</div>
+    </div>
+  </div>
+  <div class="cnt">
+    <div class="bc">← Course Evidence Registry</div>
+    <div class="ph">
+      <h1 id="pg-h1">Course Evidence Registry</h1>
+      <p id="pg-sub">Review MOOC completions and reflection evidence</p>
+    </div>
+    <!-- ROLE INFO BAR -->
+    <div class="ri">
+      <div class="ri-av" id="ri-av" style="background:#FAECE7;color:#712B13">SA</div>
+      <div style="flex:1;min-width:0">
+        <div class="ri-t" id="ri-t">Super Admin — Full system access</div>
+        <div class="ri-d" id="ri-d">View all campuses · Approve/reject evidence · Manage all settings · Export data</div>
+      </div>
+      <span class="ri-sc" id="ri-sc" style="background:#FAECE7;color:#712B13">Scope: System</span>
+    </div>
+    <!-- TABS -->
+    <div class="tab-bar" id="tab-bar"></div>
+    <!-- CONTENT -->
+    <div id="tab-cnt"></div>
+  </div>
+</div>
+</div>
+
+<!-- VIEW MODAL -->
+<div id="v-mod" class="m-ov" onclick="if(event.target===this)closeMod()">
+  <div class="m-ct">
+    <div class="m-h">
+      <h3>Submission Details</h3>
+      <span class="m-cl" onclick="closeMod()">&times;</span>
+    </div>
+    <div class="m-b" id="m-body">
+      <!-- Dynamic content -->
+    </div>
+    <div class="m-f">
+      <button class="btn-pk" onclick="closeMod()" style="padding:10px 24px; font-size:12px; border-radius:12px">Close View</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const RC={
+  super_admin:{label:'Super Admin',short:'SA',color:'#712B13',bg:'#FAECE7',scope:'System-wide',fam:'leadership',
+    desc:'View all campuses · Approve/reject evidence · Manage all settings · Export data',
+    tabs:['team','registry','browse','tracks'],approve:true,export:true,allCamp:true,submit:false,team:true,
+    camps:['CMRNPS','EITPL','EBYR','EBTM','ENICE'],uname:'Admin User',urole:'Super Admin',deny:false,dtrack:''},
+  management:{label:'Management / Director',short:'MD',color:'#085041',bg:'#E1F5EE',scope:'System read-only',fam:'leadership',
+    desc:'View all campus MOOC data · Analytics only · Cannot approve or edit',
+    tabs:['team','registry','browse'],approve:false,export:true,allCamp:true,submit:false,team:true,
+    camps:['CMRNPS','EITPL','EBYR','EBTM','ENICE'],uname:'Director',urole:'Management',deny:false,dtrack:''},
+  cluster_head:{label:'Cluster Head',short:'CH',color:'#0C447C',bg:'#E6F1FB',scope:'Multiple Campuses',fam:'leadership',
+    desc:'Oversee multiple campus MOOC data · Team progress · Analytics',
+    tabs:['team','registry','browse'],approve:true,export:true,allCamp:true,submit:false,team:true,
+    camps:['CMRNPS','EITPL','EBYR','EBTM','ENICE'],uname:'Cluster Head',urole:'Cluster Head',deny:false,dtrack:''},
+  academic_director:{label:'Academic Director',short:'AD',color:'#3C3489',bg:'#EEEDFE',scope:'System-wide',fam:'leadership',
+    desc:'System-wide academic MOOC oversight · Team progress',
+    tabs:['team','registry','browse'],approve:true,export:true,allCamp:true,submit:false,team:true,
+    camps:['CMRNPS','EITPL','EBYR','EBTM','ENICE'],uname:'Academic Director',urole:'Academic Director',deny:false,dtrack:''},
+  leader:{label:'School Leader',short:'RL',color:'#712B13',bg:'#FAECE7',scope:'Campus: Ekya Nice',fam:'leadership',
+    desc:'Own campus submissions · Approve / reject · View team progress',
+    tabs:['team','registry','browse'],approve:true,export:true,allCamp:false,submit:false,team:true,
+    camps:['Ekya Nice'],uname:'Rohit School Leader',urole:'School Leader',deny:false,dtrack:''},
+  school_leader:{label:'School Leader',short:'RL',color:'#712B13',bg:'#FAECE7',scope:'Campus: Ekya Nice',fam:'leadership',
+    desc:'Own campus submissions · Approve / reject · View team progress',
+    tabs:['team','registry','browse'],approve:true,export:true,allCamp:false,submit:false,team:true,
+    camps:['Ekya Nice'],uname:'Rohit School Leader',urole:'School Leader',deny:false,dtrack:''},
+
+  hos:{label:'Head of School',short:'RL',color:'#712B13',bg:'#FAECE7',scope:'Campus: Ekya Nice',fam:'leadership',
+    desc:'Own campus submissions · Approve / reject · View team progress',
+    tabs:['team','registry','browse'],approve:true,export:true,allCamp:false,submit:false,team:true,
+    camps:['Ekya Nice'],uname:'Rohit School Leader',urole:'Head of School',deny:false,dtrack:''},
+  coordinator:{label:'Coordinator',short:'CR',color:'#27500A',bg:'#EAF3DE',scope:'Section: Grade 6',fam:'leadership',
+    desc:'Section submissions · Approve · Submit own MOOC · Team progress',
+    tabs:['team','registry','mymooc','browse'],approve:true,export:false,allCamp:false,submit:true,team:true,
+    camps:['Ekya Nice'],uname:'Grade 6 Coord',urole:'Coordinator, Grade 6',deny:false,dtrack:''},
+  teacher_core:{label:'Teacher — Core',short:'TC',color:'#444441',bg:'#F1EFE8',scope:'Own classes',fam:'academic',
+    desc:'Submit MOOC evidence · Track own progress · Browse all courses',
+    tabs:['mymooc','submit','browse'],approve:false,export:false,allCamp:false,submit:true,team:false,
+    camps:['Ekya Nice'],uname:'Priya Sharma',urole:'Core Teacher, Primary',deny:false,dtrack:''},
+  teacher_senior:{label:'Advance Faculty',short:'AF',color:'#3C3489',bg:'#EEEDFE',scope:'Own classes',fam:'academic',
+    desc:'Submit MOOC evidence · Advanced mandatory list · Senior courses',
+    tabs:['mymooc','submit','browse'],approve:false,export:false,allCamp:false,submit:true,team:false,
+    camps:['Ekya Nice'],uname:'Binesh Thomas',urole:'Advance Faculty, Chemistry',deny:false,dtrack:'Senior School'},
+  teacher_pe:{label:'PE Specialist',short:'PE',color:'#085041',bg:'#E1F5EE',scope:'Own classes',fam:'academic',
+    desc:'Submit MOOC evidence · Physical Education track courses',
+    tabs:['mymooc','submit','browse'],approve:false,export:false,allCamp:false,submit:true,team:false,
+    camps:['Ekya Nice'],uname:'Santhosh S',urole:'PE Specialist, Gr 4–12',deny:false,dtrack:'Physical Education'},
+  teacher_va:{label:'VA Specialist',short:'VA',color:'#712B13',bg:'#FAECE7',scope:'Own classes',fam:'academic',
+    desc:'Submit MOOC evidence · Visual Arts track courses',
+    tabs:['mymooc','submit','browse'],approve:false,export:false,allCamp:false,submit:true,team:false,
+    camps:['EBTM'],uname:'Karthik E',urole:'VA Specialist, Makery',deny:false,dtrack:'Visual Arts'},
+  teacher_counselor:{label:'Behavioural Counselor',short:'BC',color:'#0C447C',bg:'#E6F1FB',scope:'Own students',fam:'academic',
+    desc:'Submit MOOC evidence · Student Counselors track',
+    tabs:['mymooc','submit','browse'],approve:false,export:false,allCamp:false,submit:true,team:false,
+    camps:['EBTM'],uname:'Sangeeta Saxena',urole:'Behavioural Counselor',deny:false,dtrack:'Student Counselors'},
+  teacher_parttime:{label:'Part-time Teacher',short:'PT',color:'#633806',bg:'#FAEEDA',scope:'Own subject',fam:'academic',
+    desc:'Submit own MOOC evidence · Limited course list · No HR access',
+    tabs:['mymooc','submit','browse'],approve:false,export:false,allCamp:false,submit:true,team:false,
+    camps:['EBYR'],uname:'Sujimol Thomas',urole:'Part-time Teacher, French',deny:false,dtrack:''},
+  admin_ops:{label:'Admin — Operations',short:'AO',color:'#0C447C',bg:'#E6F1FB',scope:'Campus: Ekya Nice',fam:'nonteaching',
+    desc:'View staff MOOC completion for operational planning. Read-only.',
+    tabs:['registry'],approve:false,export:false,allCamp:false,submit:false,team:false,
+    camps:['Ekya Nice'],uname:'Campus Admin',urole:'Admin – Operations',deny:false,dtrack:'',readOnly:true},
+  admin_hr:{label:'Admin — HR',short:'HR',color:'#3C3489',bg:'#EEEDFE',scope:'Campus: EBTM',fam:'nonteaching',
+    desc:'View MOOC completion for HR / PD compliance records. Can export.',
+    tabs:['registry'],approve:false,export:true,allCamp:false,submit:false,team:false,
+    camps:['EBTM'],uname:'HR Executive',urole:'Admin – HR',deny:false,dtrack:'',readOnly:true},
+  admin_it:{label:'Admin — IT / System',short:'IT',color:'#712B13',bg:'#FAECE7',scope:'System config',fam:'nonteaching',
+    desc:'System-wide audit view. Configure MOOC module. No submission.',
+    tabs:['registry'],approve:false,export:true,allCamp:true,submit:false,team:false,
+    camps:['Ekya Nice','EITPL','EBYR','EBTM','ENICE'],uname:'IT Admin',urole:'Admin – IT',deny:false,dtrack:'',readOnly:true},
+  librarian:{label:'Librarian',short:'LB',color:'#444441',bg:'#F1EFE8',scope:'Campus: Ekya Nice',fam:'nonteaching',
+    desc:'Submit own MOOC evidence only. No access to other staff records.',
+    tabs:['mymooc','submit','browse'],approve:false,export:false,allCamp:false,submit:true,team:false,
+    camps:['Ekya Nice'],uname:'Librarian Ekya Nice',urole:'Librarian',deny:false,dtrack:''},
+  parent:{label:'Parent / Guardian',short:'PG',color:'#72243E',bg:'#FBEAF0',scope:'Own child',fam:'stakeholder',
+    desc:'MOOC module is for staff professional development only.',
+    tabs:[],approve:false,export:false,allCamp:false,submit:false,team:false,
+    camps:['Ekya Nice'],uname:'Sample Parent',urole:'Parent / Guardian',deny:true,dtrack:''},
+  student:{label:'Student',short:'ST',color:'#633806',bg:'#FAEEDA',scope:'Own record',fam:'stakeholder',
+    desc:'MOOC module is for staff professional development only.',
+    tabs:[],approve:false,export:false,allCamp:false,submit:false,team:false,
+    camps:['Ekya Nice'],uname:'Sample Student',urole:'Student, Grade 7',deny:true,dtrack:''},
+};
+
+const TRK=[
+  {n:'Mandatory – Beginner',cnt:11,c:'#c0246e',bg:'#fde8f1'},
+  {n:'Mandatory – Advanced',cnt:3,c:'#c0246e',bg:'#fde8f1'},
+  {n:'Early Years',cnt:30,c:'#1565c0',bg:'#e3f2fd'},
+  {n:'Primary School',cnt:19,c:'#2e7d32',bg:'#e8f5e9'},
+  {n:'Middle School',cnt:28,c:'#e65100',bg:'#fff3e0'},
+  {n:'Senior School',cnt:18,c:'#2e7d32',bg:'#e8f5e9'},
+  {n:'All Teachers',cnt:27,c:'#4527a0',bg:'#ede7f6'},
+  {n:'Visual Arts',cnt:11,c:'#ad1457',bg:'#fce4ec'},
+  {n:'Performing Arts',cnt:18,c:'#c0246e',bg:'#fde8f1'},
+  {n:'Physical Education',cnt:12,c:'#00695c',bg:'#e0f2f1'},
+  {n:'CCG Counselors',cnt:8,c:'#1565c0',bg:'#e3f2fd'},
+  {n:'Student Counselors',cnt:27,c:'#4527a0',bg:'#ede7f6'},
+  {n:'School Leadership',cnt:17,c:'#37474f',bg:'#eceff1'},
+  {n:'HO Teams',cnt:18,c:'#e65100',bg:'#fff3e0'},
+  {n:'General',cnt:16,c:'#555',bg:'#f5f5f5'},
+  {n:'Admissions Counselors',cnt:6,c:'#bf360c',bg:'#fbe9e7'},
+];
+
+const CRS=[
+  {t:'The Scientific Method',tr:'Mandatory – Beginner',pl:'Schoology',h:5,nat:'Mandatory'},
+  {t:'Making Reading Meaningful',tr:'Mandatory – Beginner',pl:'Schoology',h:8,nat:'Mandatory'},
+  {t:'What Even Is Art?',tr:'Mandatory – Beginner',pl:'Schoology',h:6,nat:'Mandatory'},
+  {t:'UbD 101: Section 1',tr:'Mandatory – Beginner',pl:'Schoology',h:16,nat:'Mandatory'},
+  {t:'Singapore Math Teacher Course',tr:'Mandatory – Beginner',pl:'Schoology',h:6,nat:'Mandatory'},
+  {t:'How To Teach Poetry Effectively',tr:'Mandatory – Beginner',pl:'Schoology',h:5,nat:'Mandatory'},
+  {t:'Introduction to Psychology',tr:'Mandatory – Advanced',pl:'Coursera',h:14,nat:'Mandatory'},
+  {t:'Power and Foreign Policy in IR',tr:'Mandatory – Advanced',pl:'Coursera',h:16,nat:'Mandatory'},
+  {t:'Designing Play-Based Learning',tr:'Early Years',pl:'FutureLearn',h:8,nat:'Optional'},
+  {t:'Montessori Teaching Fundamentals',tr:'Early Years',pl:'Alison',h:2,nat:'Optional'},
+  {t:'Global Perspectives on Primary Ed',tr:'Primary School',pl:'Open University',h:9,nat:'Optional'},
+  {t:'An Introduction to Oracy',tr:'Primary School',pl:'FutureLearn',h:50,nat:'Optional'},
+  {t:'Classroom Management Fundamentals',tr:'Middle School',pl:'Alison',h:3,nat:'Optional'},
+  {t:'Introduction to Mathematical Thinking',tr:'Middle School',pl:'Coursera',h:380,nat:'Optional'},
+  {t:'Genomics for Educators',tr:'Middle School',pl:'FutureLearn',h:36,nat:'Optional'},
+  {t:'Supporting Students with Dyslexia',tr:'Senior School',pl:'FutureLearn',h:8,nat:'Optional'},
+  {t:'Generative AI in Higher Education',tr:'Senior School',pl:'FutureLearn',h:6,nat:'Optional'},
+  {t:'Introduction to Statistics',tr:'Senior School',pl:'Coursera',h:14,nat:'Optional'},
+  {t:'Child Protection for Teachers',tr:'All Teachers',pl:'FutureLearn',h:2,nat:'Optional'},
+  {t:'Reflective Thinking',tr:'All Teachers',pl:'FutureLearn',h:8,nat:'Optional'},
+  {t:'Mindful Wellbeing for Teachers',tr:'All Teachers',pl:'FutureLearn',h:16,nat:'Optional'},
+  {t:'Introduction to Generative AI',tr:'All Teachers',pl:'Google',h:1,nat:'Optional'},
+  {t:'Art & Activity: Interactive Strategies',tr:'Visual Arts',pl:'Coursera',h:17,nat:'Optional'},
+  {t:'Modern Art & Ideas',tr:'Visual Arts',pl:'Coursera',h:13,nat:'Optional'},
+  {t:'Graphic Design',tr:'Visual Arts',pl:'Coursera',h:25,nat:'Optional'},
+  {t:'Seeing Through Photographs',tr:'Visual Arts',pl:'Coursera',h:17,nat:'Optional'},
+  {t:'Introduction to Performance Studies',tr:'Performing Arts',pl:'Coursera',h:25,nat:'Optional'},
+  {t:'Introduction to Classical Music',tr:'Performing Arts',pl:'Coursera',h:65,nat:'Optional'},
+  {t:'First Aid for Sports',tr:'Physical Education',pl:'Alison',h:3,nat:'Optional'},
+  {t:'Diploma in Sports Coaching',tr:'Physical Education',pl:'Alison',h:12,nat:'Optional'},
+  {t:'Sports and Exercise Psychology',tr:'Physical Education',pl:'Alison',h:4,nat:'Optional'},
+  {t:'Teaching Foundational Movements',tr:'Physical Education',pl:'PLT4M',h:1,nat:'Optional'},
+  {t:'Career Decisions: Insight to Impact',tr:'CCG Counselors',pl:'Coursera',h:10,nat:'Optional'},
+  {t:'Introduction to Counselling Skills',tr:'Student Counselors',pl:'FutureLearn',h:10,nat:'Optional'},
+  {t:'Diploma in Mental Health',tr:'Student Counselors',pl:'Alison',h:12,nat:'Optional'},
+  {t:'Psychological First Aid',tr:'Student Counselors',pl:'Coursera',h:6,nat:'Optional'},
+  {t:'People Management Skills',tr:'School Leadership',pl:'FutureLearn',h:8,nat:'Optional'},
+  {t:'Educational Leadership: Schools',tr:'School Leadership',pl:'FutureLearn',h:6,nat:'Optional'},
+  {t:'Foundations of Project Management',tr:'HO Teams',pl:'FutureLearn',h:6,nat:'Optional'},
+  {t:'Google AI Essentials',tr:'HO Teams',pl:'Coursera',h:8,nat:'Optional'},
+  {t:'Mindshift: Break Through Obstacles',tr:'General',pl:'Coursera',h:10,nat:'Optional'},
+  {t:'AI For Everyone',tr:'General',pl:'Coursera',h:6,nat:'Optional'},
+  {t:'Sales and Negotiation Skills',tr:'Admissions Counselors',pl:'Alison',h:3,nat:'Optional'},
+];
+
+let REG=[
+  {nm:'Taniya Tiwary',em:'taniyat@ekyaschools.com',cp:'Ekya Nice',rl:'Teacher — Core',tr:'Primary School',cr:'Teaching English Language & Literacy',pl:'FutureLearn',dt:'10/04/2026',h:19,st:'Approved'},
+  {nm:'Ankita Prakash',em:'ankitap@ekyaschools.com',cp:'Ekya Nice',rl:'Teacher — Core',tr:'Middle School',cr:'Teaching Mathematics for Understanding',pl:'FutureLearn',dt:'20/03/2026',h:20,st:'Approved'},
+  {nm:'Teacher Three',em:'teacher3@eitpl.com',cp:'EITPL',rl:'Advance Faculty',tr:'Senior School',cr:'Teaching English Language & Literacy',pl:'FutureLearn',dt:'15/12/2025',h:18,st:'Approved'},
+  {nm:'Teacher Two',em:'teacher2@eitpl.com',cp:'EITPL',rl:'Teacher — Core',tr:'Middle School',cr:'Teaching Mathematics for Understanding',pl:'edX',dt:'15/12/2025',h:15,st:'Approved'},
+  {nm:'Teacher One',em:'teacher1@ebtm.com',cp:'EBTM',rl:'Teacher — Core',tr:'Senior School',cr:'Science of Teaching and Learning',pl:'Coursera',dt:'15/12/2025',h:20,st:'Approved'},
+  {nm:'Priya Sharma',em:'priya.s@cmrnps.com',cp:'Ekya Nice',rl:'Teacher — Core',tr:'Primary School',cr:'The Scientific Method',pl:'Schoology',dt:'28/03/2026',h:5,st:'Rejected'},
+  {nm:'Arun Kumar',em:'arun.k@eitpl.com',cp:'EITPL',rl:'Advance Faculty',tr:'Senior School',cr:'Introduction to Psychology',pl:'Coursera',dt:'10/04/2026',h:14,st:'Pending'},
+  {nm:'Santhosh S',em:'santhoshs@cmrnps.com',cp:'Ekya Nice',rl:'PE Specialist',tr:'Physical Education',cr:'Diploma in Sports Coaching',pl:'Alison',dt:'05/04/2026',h:12,st:'Pending'},
+];
+
+let curRole='super_admin';
+let activeTab='';
+
+function tc(n){const t=TRK.find(x=>x.n===n);return t?{c:t.c,bg:t.bg}:{c:'#888',bg:'#f5f5f5'};}
+
+function switchRole(role){
+  console.log("Switching to role:", role);
+  if (!role) role = 'teacher_core';
+  
+  let key = role.toLowerCase().trim();
+  
+  // Explicit Mappings for Platform Roles
+  const mapping = {
+    'superadmin': 'super_admin',
+    'admin': 'super_admin',
+    'hos': 'hos',
+    'leader': 'leader',
+    'school_leader': 'school_leader',
+    'coordinator': 'coordinator',
+    'teacher': 'teacher_core',
+    'teacher_core': 'teacher_core',
+    'management': 'management',
+    'director': 'management',
+    'cluster_head': 'cluster_head',
+    'academic_director': 'academic_director'
+  };
+  
+  if (mapping[key]) {
+    key = mapping[key];
+  }
+  
+  if (!RC[key]) {
+    console.warn("Role key not found in RC:", key, "falling back to teacher_core");
+    key = 'teacher_core';
+  }
+  
+  curRole = key;
+  const r = RC[key];
+  if (!r) return;
+  
+  // Sidebar (if exists - since we hid it)
+  const nmEl = document.getElementById('sb-nm');
+  if (nmEl) nmEl.textContent = r.uname;
+  const urEl = document.getElementById('sb-ur');
+  if (urEl) urEl.textContent = r.urole;
+  const bxEl = document.getElementById('sb-bx');
+  if (bxEl) { bxEl.textContent = r.short; bxEl.style.background = r.bg; bxEl.style.color = r.color; }
+  // Top avatar
+  const av=document.getElementById('top-av');
+  if (av) { av.textContent=r.short;av.style.background=r.bg;av.style.color=r.color; }
+  // Admin nav
+  const isLead = r.fam === 'leadership';
+  const isIT = key === 'admin_it';
+  const admLbl = document.getElementById('sb-adm-lbl');
+  if (admLbl) admLbl.style.display = (isLead || isIT) ? 'block' : 'none';
+  const usrMgmt = document.getElementById('sb-usr-mgmt');
+  if (usrMgmt) usrMgmt.style.display = (key === 'super_admin' || isIT) ? 'flex' : 'none';
+  const rpts = document.getElementById('sb-rpts');
+  if (rpts) rpts.style.display = isLead ? 'flex' : 'none';
+
+  // Role info bar
+  const riav = document.getElementById('ri-av');
+  if (riav) { riav.textContent = r.short; riav.style.background = r.bg; riav.style.color = r.color; }
+  const rit = document.getElementById('ri-t');
+  if (rit) rit.textContent = r.label + ' — ' + (r.deny ? 'No access' : { leadership: 'Leadership access', academic: 'Educator access', nonteaching: 'Staff view', stakeholder: 'No access' }[r.fam]);
+  const rid = document.getElementById('ri-d');
+  if (rid) rid.textContent = r.desc;
+  const risc = document.getElementById('ri-sc');
+  if (risc) { risc.textContent = 'Scope: ' + r.scope; risc.style.background = r.bg; risc.style.color = r.color; }
+
+  // Page title
+  const pgh1 = document.getElementById('pg-h1');
+  if (pgh1) pgh1.textContent = r.deny ? 'Access Restricted' : r.tabs.includes('mymooc') && !r.tabs.includes('registry') ? 'My MOOC Learning' : 'Course Evidence Registry';
+  const pgsub = document.getElementById('pg-sub');
+  if (pgsub) pgsub.textContent = r.deny ? 'This module is not available for your role' : r.tabs.includes('mymooc') && !r.tabs.includes('registry') ? 'Submit and track your professional development courses' : 'Review MOOC completions and reflection evidence';
+  
+  buildTabs();
+}
+
+function buildTabs(){
+  const r=RC[curRole];
+  const bar=document.getElementById('tab-bar');
+  if(r.deny||r.tabs.length===0){
+    bar.innerHTML='';
+    document.getElementById('tab-cnt').innerHTML=`<div class="denied"><div class="di">🔒</div><h3>Access Restricted</h3><p>The MOOC Evidence module is for school staff professional development only.<br><strong>${r.label}</strong> does not have access to this module.</p></div>`;
+    return;
+  }
+  const labels={registry:'Evidence Registry',browse:'Browse MOOCs',tracks:'By Track',mymooc:'My MOOCs',submit:'Submit Evidence',team:'Team Progress'};
+  bar.innerHTML=r.tabs.map((t,i)=>`<button class="tab-btn${i===0?' on':''}" data-tab="${t}" onclick="goTab('${t}',this)">${labels[t]}</button>`).join('');
+  // Render first tab immediately
+  doRender(r.tabs[0]);
+}
+
+function goTab(t,btn){
+  document.querySelectorAll('.tab-bar .tab-btn').forEach(b=>b.classList.toggle('on',b===btn));
+  doRender(t);
+}
+
+function doRender(t){
+  activeTab=t;
+  const el=document.getElementById('tab-cnt');
+  if(t==='registry') el.innerHTML=buildRegistry();
+  else if(t==='browse') el.innerHTML=buildBrowse();
+  else if(t==='tracks') el.innerHTML=buildTracks();
+  else if(t==='mymooc') el.innerHTML=buildMyMooc();
+  else if(t==='submit') el.innerHTML=buildSubmit();
+  else if(t==='team') el.innerHTML=buildTeam();
+  // Wire up live filters after render
+  if(t==='registry') wireReg();
+  if(t==='browse') wireBrowse();
+}
+
+/* ── REGISTRY ── */
+function buildRegistry(){
+  const r=RC[curRole];
+  let data=r.allCamp?REG:REG.filter(x=>r.camps.includes(x.cp));
+  return `
+  <div class="fb">
+    <input type="text" id="rq" placeholder="🔍  Search submissions..." style="min-width:140px">
+    ${r.allCamp?`<select id="rc"><option value="">Campus: All</option>${['Ekya Nice','EITPL','EBYR','EBTM','ENICE'].map(c=>`<option>${c}</option>`).join('')}</select>`:`<span class="pill">${r.camps[0]}</span>`}
+    <select id="rp"><option value="">Platform: All</option>${['FutureLearn','Coursera','edX','Alison','Schoology'].map(p=>`<option>${p}</option>`).join('')}</select>
+    <select id="rs"><option value="">Status: All</option><option>Approved</option><option>Pending</option><option>Rejected</option></select>
+    ${r.export?`<button class="btn-exp" onclick="doExport()">⬇ Export</button>`:''}
+  </div>
+  <div class="tw">
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr>
+          <th>Teacher Profile</th>
+          ${r.allCamp?'<th>Campus</th>':''}
+          <th>Course Details</th>
+          <th>Platform</th>
+          <th>Completion</th>
+          <th>Evidence</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr></thead>
+        <tbody id="reg-tb">${regRows(data,r)}</tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+function regRows(data,r){
+  if(!data.length)return`<tr><td colspan="8" style="text-align:center;padding:22px;color:#bbb;font-size:12px">No submissions found</td></tr>`;
+  return data.map(x=>`<tr>
+    <td><div style="font-weight:600;font-size:12px">${x.nm}</div><div style="font-size:10px;color:#999">${x.em}</div></td>
+    ${r.allCamp?`<td><span class="pill">${x.cp}</span></td>`:''}
+    <td><div style="font-weight:500;font-size:12px;max-width:150px">${x.cr}</div><div style="font-size:10px;color:#999">${x.h}h · ${x.tr}</div></td>
+    <td><span class="pill">${x.pl}</span></td>
+    <td style="font-size:11px;color:#555;white-space:nowrap">${x.dt}</td>
+    <td><a class="cert" href="#">🔗 Certificate</a></td>
+    <td><span class="${x.st==='Approved'?'s-app':x.st==='Pending'?'s-pen':'s-rej'}">${x.st.toUpperCase()}</span></td>
+    <td style="white-space:nowrap">${r.approve&&x.st==='Pending'
+      ?`<button class="btn btn-gr" onclick="doApp(this,'${x.nm}','Approved')">✓ Approve</button> <button class="btn btn-rd" onclick="doApp(this,'${x.nm}','Rejected')">✗ Reject</button>`
+      :`<button class="btn" onclick="doView('${x.nm}')">👁 View</button>`}
+    </td>
+  </tr>`).join('');
+}
+
+function wireReg(){
+  const r=RC[curRole];
+  const run=()=>{
+    const q=(document.getElementById('rq')?.value||'').toLowerCase();
+    const cp=document.getElementById('rc')?.value||'';
+    const pl=document.getElementById('rp')?.value||'';
+    const st=document.getElementById('rs')?.value||'';
+    let d=r.allCamp?REG:REG.filter(x=>r.camps.includes(x.cp));
+    d=d.filter(x=>(!q||x.nm.toLowerCase().includes(q)||x.cr.toLowerCase().includes(q))&&(!cp||x.cp===cp)&&(!pl||x.pl===pl)&&(!st||x.st===st));
+    const tb=document.getElementById('reg-tb');if(tb)tb.innerHTML=regRows(d,r);
+  };
+  ['rq','rc','rp','rs'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){el.addEventListener('input',run);el.addEventListener('change',run);}
+  });
+}
+
+function doApp(btn,nm,st){
+  const rec=REG.find(x=>x.nm===nm);if(rec)rec.st=st;
+  const row=btn.closest('tr');
+  row.querySelector('td:nth-last-child(2)').innerHTML=`<span class="${st==='Approved'?'s-app':'s-rej'}">${st.toUpperCase()}</span>`;
+  row.querySelector('td:last-child').innerHTML=`<button class="btn" onclick="doView('${nm}')">👁 View</button>`;
+}
+
+/* ── BROWSE ── */
+function buildBrowse(){
+  const r=RC[curRole];
+  const dt=r.dtrack||'';
+  let list=CRS;
+  if(dt) list=CRS.filter(c=>c.tr===dt||c.tr.startsWith('Mandatory')||c.tr==='All Teachers');
+  const trOpts=[...new Set(list.map(c=>c.tr))];
+  return `
+  <div class="sg" style="grid-template-columns:repeat(4,1fr)">
+    <div class="sc"><div class="sc-l">Courses visible</div><div class="sc-n">${list.length}</div></div>
+    <div class="sc"><div class="sc-l">Term 1 deadline</div><div class="sc-n" style="font-size:16px">30 Sep</div></div>
+    <div class="sc"><div class="sc-l">Mandatory</div><div class="sc-n">${list.filter(c=>c.nat==='Mandatory').length}</div></div>
+    <div class="sc"><div class="sc-l">Free platforms</div><div class="sc-n">8+</div></div>
+  </div>
+  <div class="fb">
+    <input type="text" id="bq" placeholder="🔍  Search courses..." style="min-width:130px">
+    <select id="btr"><option value="">All tracks</option>${trOpts.map(t=>`<option${t===dt?' selected':''}>${t}</option>`).join('')}</select>
+    <select id="bty"><option value="">All types</option><option>Mandatory</option><option>Optional</option></select>
+  </div>
+  <div class="cg" id="cg">${cCards(list,r)}</div>`;
+}
+
+function cCards(list,r){
+  if(!list.length)return`<div style="grid-column:1/-1;text-align:center;padding:28px;color:#bbb;font-size:12px">No courses match your search.</div>`;
+  return list.map(c=>{const tk=tc(c.tr);return`<div class="cc">
+    <span class="${c.nat==='Mandatory'?'tg-m':'tg-o'}">${c.nat}</span>
+    <div class="cc-ttl">${c.t}</div>
+    <div class="cc-plt">${c.pl}</div>
+    <div class="cc-ft">
+      <span style="font-size:9px;font-weight:600;padding:2px 6px;border-radius:3px;background:${tk.bg};color:${tk.c}">${c.tr}</span>
+      <span class="cc-hr">${c.h}h</span>
+    </div>
+  </div>`;}).join('');
+}
+
+function wireBrowse(){
+  const r=RC[curRole];
+  const run=()=>{
+    const q=(document.getElementById('bq')?.value||'').toLowerCase();
+    const tr=document.getElementById('btr')?.value||'';
+    const ty=document.getElementById('bty')?.value||'';
+    let list=CRS;
+    if(r.dtrack) list=CRS.filter(c=>c.tr===r.dtrack||c.tr.startsWith('Mandatory')||c.tr==='All Teachers');
+    list=list.filter(c=>(!q||c.t.toLowerCase().includes(q))&&(!tr||c.tr===tr)&&(!ty||c.nat===ty));
+    const g=document.getElementById('cg');if(g)g.innerHTML=cCards(list,r);
+  };
+  ['bq','btr','bty'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){el.addEventListener('input',run);el.addEventListener('change',run);}
+  });
+}
+
+/* ── TRACKS ── */
+function buildTracks(){
+  return `<p style="font-size:12px;color:#888;margin-bottom:11px">Click any track to browse its courses</p>
+  <div class="tkg">${TRK.map(t=>`<div class="tkt" onclick="jumpTrack('${t.n}')">
+    <div class="tkt-n">${t.cnt}</div>
+    <div class="tkt-l">${t.n}</div>
+    <div style="height:3px;border-radius:2px;background:${t.c};opacity:.3;margin-top:7px;width:${Math.min(100,t.cnt*3)}%"></div>
+  </div>`).join('')}</div>`;
+}
+
+function jumpTrack(name){
+  const r=RC[curRole];
+  if(!r.tabs.includes('browse'))return;
+  const btn=document.querySelector(`.tab-bar .tab-btn[data-tab="browse"]`);
+  if(btn){document.querySelectorAll('.tab-bar .tab-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');}
+  document.getElementById('tab-cnt').innerHTML=buildBrowse();
+  setTimeout(()=>{
+    const sel=document.getElementById('btr');
+    if(sel){sel.value=name;sel.dispatchEvent(new Event('change'));}
+    wireBrowse();
+  },0);
+}
+
+/* ── MY MOOC ── */
+function buildMyMooc(){
+  const r=RC[curRole];
+  const mine=REG.filter(x=>x.nm===r.uname||x.nm.startsWith(r.uname.split(' ')[0]));
+  const hrs=mine.reduce((s,x)=>s+x.h,0);
+  const met=mine.length>=1;
+  return `
+  <div class="sg" style="grid-template-columns:repeat(3,1fr)">
+    <div class="sc"><div class="sc-l">Submitted</div><div class="sc-n">${mine.length}</div></div>
+    <div class="sc"><div class="sc-l">Hours logged</div><div class="sc-n">${hrs}</div></div>
+    <div class="sc"><div class="sc-l">Term 1 target</div><div class="sc-n" style="color:${met?'#2e7d32':'#e84393'}">${met?'✓ Met':'0 / 1'}</div></div>
+  </div>
+  <div class="prog-c">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px">
+      <div style="font-size:13px;font-weight:600;color:#1a1025">Term 1 — Deadline 30 Sep 2025</div>
+      <span style="font-size:11px;color:#888">${mine.length} of 1 required</span>
+    </div>
+    <div class="pb-w"><div class="pb" style="width:${Math.min(100,mine.length*100)}%"></div></div>
+    <div style="margin-top:11px">
+      <button class="btn-pk" onclick="goToSubmit()">+ Log New MOOC</button>
+    </div>
+  </div>
+  ${mine.length?`<div class="tw"><div class="tw-top"><h3>My Submissions</h3></div>
+  <div class="tbl-scroll"><table>
+    <thead><tr><th>Course</th><th>Platform</th><th>Track</th><th>Date</th><th>Hours</th><th>Status</th></tr></thead>
+    <tbody>${mine.map(x=>`<tr>
+      <td style="font-weight:500;max-width:160px">${x.cr}</td>
+      <td><span class="pill">${x.pl}</span></td>
+      <td style="font-size:11px;color:#666">${x.tr}</td>
+      <td style="font-size:11px;color:#555;white-space:nowrap">${x.dt}</td>
+      <td>${x.h}h</td>
+      <td><span class="${x.st==='Approved'?'s-app':x.st==='Pending'?'s-pen':'s-rej'}">${x.st.toUpperCase()}</span></td>
+    </tr>`).join('')}</tbody>
+  </table></div></div>`
+  :`<div style="padding:26px;text-align:center;color:#bbb;font-size:12px;background:#fff;border-radius:8px;border:1px solid #e8e8ee">No submissions yet. Click &ldquo;+ Log New MOOC&rdquo; to get started.</div>`}`;
+}
+
+function goToSubmit(){
+  const r=RC[curRole];
+  if(!r.tabs.includes('submit'))return;
+  const btn=document.querySelector(`.tab-bar .tab-btn[data-tab="submit"]`);
+  if(btn){document.querySelectorAll('.tab-bar .tab-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');}
+  document.getElementById('tab-cnt').innerHTML=buildSubmit();
+}
+
+/* ── SUBMIT ── */
+function buildSubmit(){
+  return `<div class="fc">
+    <h3>Submit MOOC Completion Evidence</h3>
+    <div class="fc-sub">Attach your certificate and complete the reflection. Your reporting manager will review and approve.</div>
+    <div class="ib">ℹ️ <strong>Deadline: 30 September 2025</strong> — Minimum 1 MOOC per term required for all staff.</div>
+    <div class="fg"><label>Course Name</label><input type="text" id="ev-nm" placeholder="e.g. The Scientific Method"></div>
+    <div class="fr">
+      <div class="fg"><label>Platform</label><select id="ev-pl"><option>FutureLearn</option><option>Coursera</option><option>Alison</option><option>edX</option><option>Schoology</option><option>Khan Academy</option><option>Other</option></select></div>
+      <div class="fg"><label>Completion Date</label><input type="date" id="ev-dt"></div>
+    </div>
+    <div class="fr">
+      <div class="fg"><label>Duration (hours)</label><input type="number" id="ev-hr" placeholder="e.g. 8" min="1"></div>
+      <div class="fg"><label>Your Track</label><select id="ev-tr">${TRK.map(t=>`<option>${t.n}</option>`).join('')}</select></div>
+    </div>
+    <div class="fg"><label>Certificate / Evidence URL</label><input type="text" id="ev-ct" placeholder="Paste your certificate link..."></div>
+    <div class="fg"><label>Reflection — What did you learn? How will you apply it?</label><textarea id="ev-rf" placeholder="Share your key takeaways..."></textarea></div>
+    <button class="btn-pk" onclick="doSubmit()">Submit Evidence</button>
+    <div id="ev-msg"></div>
+  </div>`;
+}
+
+function doSubmit(){
+  const nm=document.getElementById('ev-nm')?.value.trim();
+  const dt=document.getElementById('ev-dt')?.value;
+  const hr=parseInt(document.getElementById('ev-hr')?.value)||0;
+  const msg=document.getElementById('ev-msg');
+  if(!nm||!dt||!hr){if(msg){msg.className='msg-err';msg.textContent='Please fill in course name, date and hours.';}return;}
+  const r=RC[curRole];
+  const d=new Date(dt);
+  const fmt=`${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
+  REG.unshift({nm:r.uname,em:'user@ekyaschools.com',cp:r.camps[0],rl:r.label,tr:document.getElementById('ev-tr')?.value||'',cr:nm,pl:document.getElementById('ev-pl')?.value||'FutureLearn',dt:fmt,h:hr,st:'Pending'});
+  if(msg){msg.className='msg-ok';msg.innerHTML='✓ Submitted successfully! Pending review by your reporting manager.';}
+}
+
+/* ── TEAM ── */
+function buildTeam(){
+  const r=RC[curRole];
+  let data=REG.filter(x=>r.camps.includes(x.cp));
+  const app=data.filter(x=>x.st==='Approved').length;
+  const pen=data.filter(x=>x.st==='Pending').length;
+  return `
+  <div class="sg" style="grid-template-columns:repeat(4,1fr)">
+    <div class="sc"><div class="sc-l">Total submissions</div><div class="sc-n">${data.length}</div></div>
+    <div class="sc"><div class="sc-l">Approved</div><div class="sc-n" style="color:#2e7d32">${app}</div></div>
+    <div class="sc"><div class="sc-l">Pending review</div><div class="sc-n" style="color:#ff9800">${pen}</div></div>
+    <div class="sc"><div class="sc-l">Campus</div><div class="sc-n" style="font-size:14px">${r.camps[0]}</div></div>
+  </div>
+  <div class="tw">
+    <div class="tw-top"><h3>Team MOOC Progress — ${r.camps[0]}</h3>${r.export?`<button class="btn-exp" onclick="doExport()">⬇ Export</button>`:''}</div>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th>Staff Member</th><th>Role</th><th>Course</th><th>Platform</th><th>Hours</th><th>Status</th>${r.approve?'<th>Action</th>':''}</tr></thead>
+      <tbody>${data.map(x=>`<tr>
+        <td><div style="font-weight:600;font-size:12px">${x.nm}</div><div style="font-size:10px;color:#999">${x.em}</div></td>
+        <td style="font-size:11px;color:#666">${x.rl}</td>
+        <td style="font-size:11px;max-width:140px">${x.cr}</td>
+        <td><span class="pill">${x.pl}</span></td>
+        <td>${x.h}h</td>
+        <td><span class="${x.st==='Approved'?'s-app':x.st==='Pending'?'s-pen':'s-rej'}">${x.st.toUpperCase()}</span></td>
+        ${r.approve?`<td style="white-space:nowrap">${x.st==='Pending'
+          ?`<button class="btn btn-gr" onclick="doTeamApp(this,'${x.nm}','Approved')">✓ Approve</button> <button class="btn btn-rd" onclick="doTeamApp(this,'${x.nm}','Rejected')">✗ Reject</button>`
+          :`<button class="btn" onclick="doView('${x.nm}')">👁 View</button>`}</td>`:''}
+      </tr>`).join('')}</tbody>
+    </table></div>
+  </div>`;
+}
+
+function doTeamApp(btn,nm,st){
+  const rec=REG.find(x=>x.nm===nm);if(rec)rec.st=st;
+  const row=btn.closest('tr');
+  const cells=row.querySelectorAll('td');
+  cells[cells.length-2].innerHTML=`<span class="${st==='Approved'?'s-app':'s-rej'}">${st.toUpperCase()}</span>`;
+  cells[cells.length-1].innerHTML=`<button class="btn" onclick="doView('${nm}')">👁 View</button>`;
+}
+
+function doView(nm) {
+  const x = REG.find(item => item.nm === nm);
+  if (!x) return;
+  const r = RC[curRole];
+  
+  const body = document.getElementById('m-body');
+  body.innerHTML = `
+    <div class="dl">
+      <div class="dl-dt">Staff Member</div>
+      <div class="dl-dd" style="color:#ea104a">${x.nm}</div>
+    </div>
+    <div class="dl">
+      <div class="dl-dt">Email</div>
+      <div class="dl-dd">${x.em}</div>
+    </div>
+    <div class="dl">
+      <div class="dl-dt">Campus</div>
+      <div class="dl-dd">${x.cp}</div>
+    </div>
+    <div class="dl">
+      <div class="dl-dt">Role</div>
+      <div class="dl-dd">${x.rl}</div>
+    </div>
+    <div style="height:1px; background:#f1f5f9; margin:20px 0"></div>
+    <div class="dl">
+      <div class="dl-dt">Course</div>
+      <div class="dl-dd">${x.cr}</div>
+    </div>
+    <div class="dl">
+      <div class="dl-dt">Platform</div>
+      <div class="dl-dd"><span class="pill">${x.pl}</span></div>
+    </div>
+    <div class="dl">
+      <div class="dl-dt">Track</div>
+      <div class="dl-dd">${x.tr}</div>
+    </div>
+    <div class="dl">
+      <div class="dl-dt">Duration</div>
+      <div class="dl-dd">${x.h} Hours</div>
+    </div>
+    <div class="dl">
+      <div class="dl-dt">Status</div>
+      <div class="dl-dd"><span id="m-st" class="${x.st==='Approved'?'s-app':x.st==='Pending'?'s-pen':'s-rej'}">${x.st.toUpperCase()}</span></div>
+    </div>
+    <div style="height:1px; background:#f1f5f9; margin:20px 0"></div>
+    <div style="margin-bottom:16px">
+      <div class="dl-dt" style="margin-bottom:8px">Reflection Key Takeaways</div>
+      <div style="font-size:13px; color:#475569; line-height:1.6; background:#f8fafc; padding:16px; border-radius:16px; border:1px solid #f1f5f9; font-style:italic">
+        "The course provided deep insights into modern pedagogical strategies. I learned how to structure collaborative learning sessions and implement real-time feedback loops in my classroom. This will significantly improve student engagement during core subject blocks."
+      </div>
+    </div>
+    <div>
+      <div class="dl-dt" style="margin-bottom:8px">Evidence Document</div>
+      <a href="#" class="cert" style="font-size:13px; font-weight:700; display:inline-flex; align-items:center; gap:8px; background:#fff1f2; padding:8px 16px; border-radius:12px; border:1px solid #fecaca">
+        <span>🔗</span> View Verified Certificate
+      </a>
+    </div>
+  `;
+  
+  const footer = document.querySelector('.m-f');
+  if (r.approve && x.st === 'Pending') {
+    footer.innerHTML = `
+      <button class="btn btn-rd" onclick="doModAction('${x.nm}','Rejected')" style="padding:10px 24px; font-size:12px; border-radius:12px; margin-right:8px">✗ Reject Evidence</button>
+      <button class="btn btn-gr" onclick="doModAction('${x.nm}','Approved')" style="padding:10px 24px; font-size:12px; border-radius:12px">✓ Approve Evidence</button>
+    `;
+  } else {
+    footer.innerHTML = `
+      <button class="btn-pk" onclick="closeMod()" style="padding:10px 24px; font-size:12px; border-radius:12px">Close View</button>
+    `;
+  }
+  
+  document.getElementById('v-mod').style.display = 'flex';
+}
+
+function doModAction(nm, st) {
+  const rec = REG.find(x => x.nm === nm);
+  if (rec) rec.st = st;
+  
+  // Update UI in background (registry or team view)
+  if (activeTab === 'registry') {
+    const r = RC[curRole];
+    let d = r.allCamp ? REG : REG.filter(x => r.camps.includes(x.cp));
+    const tb = document.getElementById('reg-tb'); if (tb) tb.innerHTML = regRows(d, r);
+  } else if (activeTab === 'team') {
+    document.getElementById('tab-cnt').innerHTML = buildTeam();
+  }
+  
+  closeMod();
+  // Show a mini toast or just let the table update speak for itself
+}
+
+function closeMod() {
+  document.getElementById('v-mod').style.display = 'none';
+}
+
+function doExport() {
+  const r = RC[curRole];
+  const data = r.allCamp ? REG : REG.filter(x => r.camps.includes(x.cp));
+  
+  let csv = 'Name,Email,Campus,Role,Course,Platform,Hours,Date,Status\n';
+  data.forEach(x => {
+    csv += `"${x.nm}","${x.em}","${x.cp}","${x.rl}","${x.cr}","${x.pl}","${x.h}","${x.dt}","${x.st}"\n`;
+  });
+  
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.setAttribute('hidden', '');
+  a.setAttribute('href', url);
+  a.setAttribute('download', `mooc_export_${r.camps[0] || 'all'}.csv`);
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+// ── INIT — must run after DOM is ready ──
+// Read role from URL
+const urlParams = new URLSearchParams(window.location.search);
+const userRole = urlParams.get('role') || 'super_admin';
+switchRole(userRole);
+</script>

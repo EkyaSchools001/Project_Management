@@ -110,6 +110,9 @@
     --sen-bg: #F8FAFC;
     --beyond: #F59E0B;
     --beyond-bg: #FFFBEB;
+    
+    /* ── Sticky Header Offset ── */
+    --global-header-height: 0px;
   }
 
   .dark {

@@ -179,21 +179,23 @@ export default function Schools() {
 
             <div className="space-y-40">
                 <AnimatePresence mode="wait">
-                    {(filter === 'all' || filter === 'progressive') && (
-                        <motion.div key="progressive" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                            {renderSection('Strategic Cluster Alpha', SCHOOLS.progressive)}
-                        </motion.div>
-                    )}
-                    {(filter === 'all' || filter === 'icse_cbse') && (
-                        <motion.div key="icse_cbse" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={filter === 'all' ? 'pt-40' : ''}>
-                            {renderSection('Regulatory Control Node', SCHOOLS.icse_cbse)}
-                        </motion.div>
-                    )}
-                    {(filter === 'all' || filter === 'purpose_based') && (
-                        <motion.div key="purpose_based" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={filter === 'all' ? 'pt-40' : ''}>
-                            {renderSection('Specialized Operational Node', SCHOOLS.purpose_based)}
-                        </motion.div>
-                    )}
+                    <motion.div key={filter} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                        {(filter === 'all' || filter === 'progressive') && (
+                            <div>
+                                {renderSection('Strategic Cluster Alpha', SCHOOLS.progressive)}
+                            </div>
+                        )}
+                        {(filter === 'all' || filter === 'icse_cbse') && (
+                            <div className={filter === 'all' ? 'pt-40' : ''}>
+                                {renderSection('Regulatory Control Node', SCHOOLS.icse_cbse)}
+                            </div>
+                        )}
+                        {(filter === 'all' || filter === 'purpose_based') && (
+                            <div className={filter === 'all' ? 'pt-40' : ''}>
+                                {renderSection('Specialized Operational Node', SCHOOLS.purpose_based)}
+                            </div>
+                        )}
+                    </motion.div>
                 </AnimatePresence>
             </div>
         </motion.div>

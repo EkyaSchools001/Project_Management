@@ -21,10 +21,10 @@ async function main() {
 
     // Create some English tasks
     const tasks = [
-        { subjectId: subject.id, unit: 'Unit 1: Grammar', task: 'Review Nouns', type: 'Formative', mode: 'Offline', week: 1, weekCheck: true },
-        { subjectId: subject.id, unit: 'Unit 1: Grammar', task: 'Quiz on Nouns', type: 'Summative', mode: 'Online', week: 2, weekCheck: true },
-        { subjectId: subject.id, unit: 'Unit 2: Literature', task: 'Read Chapter 1', type: 'Reading', mode: 'Offline', week: 3, weekCheck: true },
-        { subjectId: subject.id, unit: 'Unit 2: Literature', task: 'Essay Writing', type: 'Formative', mode: 'Offline', week: 4, weekCheck: true },
+        { subjectId: subject.id, campusId: campusId, unit: 'Unit 1: Grammar', task: 'Review Nouns', type: 'Formative', mode: 'Offline', week: 1, weekCheck: true },
+        { subjectId: subject.id, campusId: campusId, unit: 'Unit 1: Grammar', task: 'Quiz on Nouns', type: 'Summative', mode: 'Online', week: 2, weekCheck: true },
+        { subjectId: subject.id, campusId: campusId, unit: 'Unit 2: Literature', task: 'Read Chapter 1', type: 'Reading', mode: 'Offline', week: 3, weekCheck: true },
+        { subjectId: subject.id, campusId: campusId, unit: 'Unit 2: Literature', task: 'Essay Writing', type: 'Formative', mode: 'Offline', week: 4, weekCheck: true },
     ];
 
     const createdTasks: any[] = [];
@@ -43,7 +43,7 @@ async function main() {
     for (const task of createdTasks) {
         await prisma.lacTaskStatus.upsert({
             where: {
-                taskId_campusId_teacherId: {
+                taskId_teacherId_campusId: {
                     taskId: task.id,
                     campusId: campusId,
                     teacherId: teacherId

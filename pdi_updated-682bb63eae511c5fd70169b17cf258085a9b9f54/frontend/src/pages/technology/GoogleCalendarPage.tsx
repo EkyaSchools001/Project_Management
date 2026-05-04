@@ -3,21 +3,27 @@ import {
   ArrowRight,
   Monitor,
   CheckCircle,
-  PencilSimple
+  PencilSimple,
+  CalendarBlank
 } from '@phosphor-icons/react';
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { settingsService } from "@/services/settingsService";
 import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdentity/PageEditorControls";
+import { PortalBanner } from "@/components/layout/PortalBanner";
+import { useNavigate } from "react-router-dom";
 
 export default function GoogleCalendarPage() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [data, setData] = useState({
     heroTitle: "GOOGLE CALENDAR",
     heroImage: "/assets/technology/google_workspace_banner.png",
     introTitle: "INTRODUCTION",
     introContent: "Google Calendar is a Google App that is a great resource to use to manage your everyday tasks and activities. It integrates with your Gmail and other Google Apps so you are always on task and have your schedule!",
+    objectiveTitle: "OBJECTIVES OF THE TUTORIAL",
+    trainingTitle: "GOOGLE TRAINING ON CALENDAR",
     objectiveGroups1Title: "Schedule events",
     objectiveGroups1Text: "Create an event | https://drive.google.com/file/d/1eutSyW5VmiT4ByO0X0GDROK47EFhz1DZ/view\nInvite guests | https://drive.google.com/file/d/125W2ik73cgfanTA_faJPBzt6fzMOIAkF/view\nAdd event details, video conferencing, and attachments | https://drive.google.com/file/d/1FfUETtldH9Hg1_ugv0LKOtSoeRc2AG8E/view\nSave and update events | https://drive.google.com/file/d/1CbfrrgpOgz9uSivqQd2Fmg823owsfUaz/view",
     objectiveGroups2Title: "Share and view calendars",
@@ -46,15 +52,6 @@ export default function GoogleCalendarPage() {
 
   return (
     <div className="min-h-screen bg-white relative">
-      {canEdit() && (
-        <Button 
-          className="absolute top-6 right-6 bg-white/20 hover:bg-white/30 text-white gap-2 z-50 shadow-lg font-bold border border-white/20"
-          onClick={() => setIsEditorOpen(true)}
-        >
-          <PencilSimple size={18} weight="bold" />
-          Edit Content
-        </Button>
-      )}
 
       <PageEditorControls 
         settingKey="page_tech_google_calendar"
@@ -79,29 +76,23 @@ export default function GoogleCalendarPage() {
         ]}
       />
 
-      {/* Hero Banner Section */}
-      <div className="relative w-full h-[300px] overflow-hidden">
-        <img 
-          src={data.heroImage} 
-          alt="Google Calendar Banner"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <div className="relative z-10 space-y-4">
-            <h1 className="text-7xl font-bold tracking-[0.15em] text-white uppercase drop-shadow-2xl">
-              {data.heroTitle}
-            </h1>
-            <div className="h-2 w-full max-w-[400px] bg-rose-500 mx-auto rounded-full shadow-lg" />
-          </div>
-        </div>
-      </div>
+      <PortalBanner 
+        title={data.heroTitle}
+        subtitle="Manage your tasks, activities, and schedule efficiently with Google Calendar."
+        onBack={() => navigate(-1)}
+        onEdit={() => setIsEditorOpen(true)}
+        canEdit={canEdit()}
+        icon={CalendarBlank}
+        className="mt-6 mb-12"
+      />
 
       {/* Introduction Section */}
-      <section>
-        <div className="bg-rose-500 py-10 px-8">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-white uppercase tracking-wider">{data.introTitle}</h2>
+      <section className="mb-12">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="bg-rose-500 py-10 px-8 rounded-[2rem] shadow-lg">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-4xl font-bold text-white uppercase tracking-wider">{data.introTitle}</h2>
+            </div>
           </div>
         </div>
         
@@ -113,10 +104,12 @@ export default function GoogleCalendarPage() {
       </section>
 
       {/* Objectives Section */}
-      <section>
-        <div className="bg-rose-500 py-10 px-8">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-white uppercase tracking-wider">{data.objectiveTitle}</h2>
+      <section className="mb-12">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="bg-rose-500 py-10 px-8 rounded-[2rem] shadow-lg">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-4xl font-bold text-white uppercase tracking-wider">{data.objectiveTitle}</h2>
+            </div>
           </div>
         </div>
 
@@ -153,10 +146,12 @@ export default function GoogleCalendarPage() {
       </section>
 
       {/* Google Training Section */}
-      <section>
-        <div className="bg-rose-500 py-10 px-8">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-white uppercase tracking-wider">{data.trainingTitle}</h2>
+      <section className="mb-12">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="bg-rose-500 py-10 px-8 rounded-[2rem] shadow-lg">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-4xl font-bold text-white uppercase tracking-wider">{data.trainingTitle}</h2>
+            </div>
           </div>
         </div>
 

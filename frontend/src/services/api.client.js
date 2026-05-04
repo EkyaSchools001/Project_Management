@@ -33,6 +33,7 @@ api.interceptors.request.use(
             config.url = config.url.substring(1);
         }
         const token = sessionStorage.getItem('auth_token') || localStorage.getItem('auth_token');
+        console.log(`[API Request] ${config.method?.toUpperCase()} ${config.url}`, { hasToken: !!token });
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
@@ -60,7 +61,7 @@ api.interceptors.response.use(
             isRefreshing = true;
 
             try {
-                const refreshToken = localStorage.getItem('auth_refresh_token');
+                const refreshToken = sessionStorage.getItem('auth_refresh_token') || localStorage.getItem('auth_refresh_token');
                 if (refreshToken) {
                     const response = await axios.post(`${API_BASE_URL}/auth/refresh`, { refreshToken });
                     const { token } = response.data;

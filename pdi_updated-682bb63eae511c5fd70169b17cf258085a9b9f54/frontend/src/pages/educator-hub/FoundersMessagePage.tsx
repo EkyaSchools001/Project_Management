@@ -5,6 +5,8 @@ import { ArrowLeft, PencilSimple } from "@phosphor-icons/react";
 import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdentity/PageEditorControls";
 import { settingsService } from "@/services/settingsService";
 import { useAuth } from "@/hooks/useAuth";
+import { PortalBanner } from "@/components/layout/PortalBanner";
+import { UserCircle } from "@phosphor-icons/react";
 
 const FoundersMessagePage = () => {
   const navigate = useNavigate();
@@ -43,38 +45,17 @@ const FoundersMessagePage = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 pb-24">
-      {/* HEADER SECTION - Solid Red */}
-      <div className="relative bg-[#D32F2F] text-white py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center space-y-3">
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            className="text-white hover:bg-white/10 mb-4 items-center gap-2 self-start absolute top-6 left-6"
-            onClick={() => navigate(-1)}
-          >
-            <ArrowLeft className="w-4 h-4" /> Back to Identity
-          </Button>
+      <PortalBanner 
+        title="Founder’s Message"
+        subtitle={data.heroSubtitle}
+        icon={UserCircle}
+        onBack={() => navigate(-1)}
+        onEdit={() => setIsEditorOpen(true)}
+        canEdit={canEdit()}
+        className="mt-6 mb-12"
+      />
 
-          {canEdit() && (
-            <Button 
-              className="absolute top-6 right-6 bg-white/10 hover:bg-white/20 text-white gap-2 border border-white/20 shadow-lg"
-              onClick={() => setIsEditorOpen(true)}
-            >
-              <PencilSimple size={18} weight="bold" />
-              Edit Content
-            </Button>
-          )}
-
-          <h1 className="text-4xl md:text-5xl font-black tracking-tight uppercase">
-            FOUNDER’S MESSAGE
-          </h1>
-          <p className="text-lg md:text-xl font-medium opacity-90">
-            {data.heroSubtitle}
-          </p>
-        </div>
-      </div>
-
-      <PageEditorControls 
+      <PageEditorControls
         settingKey="page_founders_message"
         initialData={data}
         onSave={setData}
@@ -94,19 +75,19 @@ const FoundersMessagePage = () => {
       {/* MAIN CONTENT SECTION */}
       <div className="max-w-6xl mx-auto px-6 -mt-8">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-10 border border-slate-200">
-          
+
           {/* LEFT COLUMN: Profile (40%) */}
           <div className="lg:col-span-4 bg-slate-50 p-8 flex flex-col items-center text-center border-b lg:border-b-0 lg:border-r border-slate-200">
             <div className="relative mt-8">
               <div className="w-56 h-72 rounded-2xl overflow-hidden shadow-lg border-4 border-white">
-                <img 
-                  src={data.profileImage} 
-                  alt={data.name} 
+                <img
+                  src={data.profileImage}
+                  alt={data.name}
                   className="w-full h-full object-cover"
                 />
               </div>
             </div>
-            
+
             <div className="mt-8 space-y-1">
               <h2 className="text-2xl font-bold text-slate-800">
                 {data.name}
@@ -122,9 +103,9 @@ const FoundersMessagePage = () => {
           {/* RIGHT COLUMN: Message (60%) */}
           <div className="lg:col-span-6 p-10 lg:p-14 space-y-6 text-slate-700 leading-relaxed font-normal">
             <p className="text-lg font-semibold text-slate-900 italic mb-8">
-              "Dear Educators,"
+              Dear Educators,
             </p>
-            
+
             {data.message.split("\n\n").map((para, i) => (
               <p key={i}>{para}</p>
             ))}

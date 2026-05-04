@@ -50,7 +50,7 @@ export const register = async (req: Request, res: Response) => {
                 email: email.toLowerCase(),
                 password: hashedPassword,
                 name,
-                role: role || 'TeacherStaff',
+                role: role || 'TEACHER_CORE',
                 profile: {
                     create: {
                         firstName: name.split(' ')[0],
@@ -459,7 +459,7 @@ export const getMe = async (req: AuthRequest, res: Response) => {
 
         if (!user) {
             // Handle mock users in dev
-            if (req.user?.id?.startsWith('u-') || req.user?.id === 'mock-id') {
+            if (req.user?.isMock || req.user?.id?.startsWith('u-') || req.user?.id === 'mock-id') {
                 return res.json({
                     id: req.user.id,
                     email: req.user.email || 'mock@ekyaschools.com',
@@ -870,7 +870,7 @@ export const googleOAuth = async (req: Request, res: Response) => {
                         email: googleUser.email,
                         name: googleUser.name || 'User',
                         password: await bcrypt.hash(Math.random().toString(36), 12),
-                        role: 'TeacherStaff',
+                        role: 'TEACHER_CORE',
                         profile: {
                             create: {
                                 avatar: googleUser.picture,
@@ -1021,7 +1021,7 @@ export const microsoftOAuth = async (req: Request, res: Response) => {
                         email: msUser.mail || msUser.userPrincipalName,
                         name: msUser.displayName || 'User',
                         password: await bcrypt.hash(Math.random().toString(36), 12),
-                        role: 'TeacherStaff',
+                        role: 'TEACHER_CORE',
                         profile: {
                             create: {
                                 firstName: msUser.givenName,

@@ -565,43 +565,43 @@ function DashboardOverview({
 
   return (
     <div className="space-y-8 animate-in fade-in duration-700">
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-slate-900 p-8 md:p-12 mb-8 shadow-2xl">
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-white p-8 md:p-12 mb-8 shadow-[0_20px_50px_rgba(0,0,0,0.04)] border border-primary/5">
         {/* Background decorative elements */}
-        <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-72 h-72 bg-indigo-500/20 rounded-full blur-[80px]" />
+        <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-primary/[0.03] rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-72 h-72 bg-primary/[0.02] rounded-full blur-[80px]" />
 
         <div className="relative z-10 flex flex-col xl:flex-row xl:items-center justify-between gap-8">
           <div className="space-y-4">
-            <div className="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
+            <div className="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-primary/[0.05] border border-primary/10 backdrop-blur-md">
               <ShieldCheck className="w-4 h-4 text-primary animate-pulse" />
-              <span className="text-[10px] font-bold tracking-[0.2em] text-white/80">Leadership Dashboard</span>
-              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-500/20 border border-emerald-500/30">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-                <span className="text-[9px] font-black text-emerald-400 tracking-widest uppercase">Live Sync</span>
+              <span className="text-[10px] font-black tracking-[0.2em] text-primary uppercase">Leadership Dashboard</span>
+              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+                <span className="text-[9px] font-black text-emerald-600 tracking-widest uppercase">Live Sync</span>
               </div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
-              Welcome back, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400">{(userName || "").split(' ')[0]}!</span>
+            <h1 className="text-4xl md:text-6xl font-black text-foreground tracking-tight leading-tight">
+              Welcome back, <span className="text-primary">{(userName || "").split(' ')[0]}!</span>
             </h1>
-            <p className="text-slate-400 text-lg font-medium max-w-2xl leading-relaxed">
-              {selectedCampus === 'all' ? "Oversee team performance across respective campus." : `Performance overview for ${selectedCampus}.`}
-              <span className="text-white font-bold ml-1">Track growth, mentor teachers, and drive excellence.</span>
+            <p className="text-muted-foreground text-lg font-medium max-w-2xl leading-relaxed">
+              {selectedCampus === 'all' ? "Oversee team performance across your respective campus." : `Performance overview for ${selectedCampus}.`}
+              <span className="text-foreground font-black ml-1">Track growth, mentor teachers, and drive excellence.</span>
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-4">
             {availableCampuses.length > 1 && (
               <Select value={selectedCampus} onValueChange={setSelectedCampus}>
-                <SelectTrigger className="w-full sm:w-[220px] h-14 rounded-2xl border-white/10 bg-white/5 backdrop-blur-xl text-white font-bold text-base hover:bg-white/10 transition-all">
+                <SelectTrigger className="w-full sm:w-[240px] h-14 rounded-2xl border-primary/10 bg-white shadow-xl shadow-primary/5 text-foreground font-black text-xs uppercase tracking-widest hover:bg-primary/[0.02] transition-all">
                   <div className="flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-primary" />
+                    <MapPin className="w-4 h-4 text-primary" weight="fill" />
                     <SelectValue placeholder="Select Campus" />
                   </div>
                 </SelectTrigger>
-                <SelectContent className="rounded-2xl border-white/10 bg-slate-900/95 backdrop-blur-2xl text-white">
-                  <SelectItem value="all" className="focus:bg-white/10 focus:text-white">All Assigned Schools</SelectItem>
+                <SelectContent className="rounded-[2rem] border-primary/10 bg-white shadow-2xl p-2">
+                  <SelectItem value="all" className="rounded-xl py-3 text-[10px] font-black uppercase tracking-widest focus:bg-primary/5 focus:text-primary">All Assigned Schools</SelectItem>
                   {availableCampuses.map(c => (
-                    <SelectItem key={c} value={c} className="focus:bg-white/10 focus:text-white">{c}</SelectItem>
+                    <SelectItem key={c} value={c} className="rounded-xl py-3 text-[10px] font-black uppercase tracking-widest focus:bg-primary/5 focus:text-primary">{c}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -654,28 +654,28 @@ function DashboardOverview({
       {/* Key PDI Modules Section */}
       <div className="space-y-6 mb-8">
         <div className="flex items-center gap-3">
-          <div className="w-1.5 h-8 rounded-full bg-indigo-500 shadow-[0_0_15px_rgba(79,70,229,0.3)]"></div>
+          <div className="w-1.5 h-8 rounded-full bg-primary shadow-[0_0_15px_rgba(234,16,74,0.3)]"></div>
           <h2 className="text-2xl font-black text-foreground tracking-tight">Key PDI Modules</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {isModuleEnabled('/departments/pd/edu-hub/culture-environment', role) && (
             <Card 
-              className="group cursor-pointer border-none shadow-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white overflow-hidden rounded-[2rem] transition-all hover:scale-[1.02]"
+              className="group cursor-pointer border border-primary/10 shadow-[0_20px_50px_rgba(0,0,0,0.03)] bg-white overflow-hidden rounded-[2.5rem] transition-all hover:scale-[1.02] hover:shadow-xl"
               onClick={() => navigate("/departments/pd/edu-hub/culture-environment")}
             >
-              <CardContent className="p-8 relative">
-                <div className="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
+              <CardContent className="p-10 relative">
+                <div className="absolute -right-6 -top-6 w-32 h-32 bg-primary/[0.03] rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
                 <div className="flex items-start justify-between">
-                  <div className="space-y-4">
-                    <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-xl flex items-center justify-center border border-white/20">
-                      <ShieldCheck className="w-8 h-8 text-white" />
+                  <div className="space-y-5">
+                    <div className="w-16 h-16 rounded-2xl bg-primary/5 flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                      <ShieldCheck className="w-8 h-8 text-primary group-hover:text-white" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-black">Culture & Environment</h3>
-                      <p className="text-emerald-50/80 font-medium mt-1">Institutional standards and classroom excellence.</p>
+                      <h3 className="text-2xl font-black text-foreground">Culture & Environment</h3>
+                      <p className="text-muted-foreground font-medium mt-1">Institutional standards and classroom excellence.</p>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-6 h-6 text-white/60 group-hover:text-white transition-colors" />
+                  <ArrowUpRight className="w-6 h-6 text-primary opacity-40 group-hover:opacity-100 transition-opacity" />
                 </div>
               </CardContent>
             </Card>
@@ -683,22 +683,22 @@ function DashboardOverview({
 
           {isModuleEnabled('/departments/pd/edu-hub/lac', role) && (
             <Card 
-              className="group cursor-pointer border-none shadow-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white overflow-hidden rounded-[2rem] transition-all hover:scale-[1.02]"
+              className="group cursor-pointer border border-primary/10 shadow-[0_20px_50px_rgba(0,0,0,0.03)] bg-white overflow-hidden rounded-[2.5rem] transition-all hover:scale-[1.02] hover:shadow-xl"
               onClick={() => navigate("/departments/pd/edu-hub/lac")}
             >
-              <CardContent className="p-8 relative">
-                <div className="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
+              <CardContent className="p-10 relative">
+                <div className="absolute -right-6 -top-6 w-32 h-32 bg-primary/[0.03] rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
                 <div className="flex items-start justify-between">
-                  <div className="space-y-4">
-                    <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-xl flex items-center justify-center border border-white/20">
-                      <ClipboardCheck className="w-8 h-8 text-white" />
+                  <div className="space-y-5">
+                    <div className="w-16 h-16 rounded-2xl bg-primary/5 flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                      <ClipboardCheck className="w-8 h-8 text-primary group-hover:text-white" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-black">LAC</h3>
-                      <p className="text-indigo-50/80 font-medium mt-1">Learning Accountability Checklist & curriculum tracking.</p>
+                      <h3 className="text-2xl font-black text-foreground">LAC</h3>
+                      <p className="text-muted-foreground font-medium mt-1">Learning Accountability Checklist & tracking.</p>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-6 h-6 text-white/60 group-hover:text-white transition-colors" />
+                  <ArrowUpRight className="w-6 h-6 text-primary opacity-40 group-hover:opacity-100 transition-opacity" />
                 </div>
               </CardContent>
             </Card>
@@ -720,68 +720,68 @@ function DashboardOverview({
             </Button>
           </div>
 
-          <Card className="border-none shadow-2xl bg-white overflow-hidden rounded-[2.5rem]">
-            <ScrollArea className="h-[400px]">
+          <Card className="border border-primary/5 shadow-[0_20px_50px_rgba(0,0,0,0.03)] bg-white overflow-hidden rounded-[2.5rem]">
+            <ScrollArea className="h-[450px]">
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
-                    <tr className="bg-zinc-50/80 hover:bg-zinc-50/80 border-b border-zinc-100">
-                      <th className="p-6 text-[10px] font-black tracking-[0.2em] text-zinc-900 w-16 uppercase">#</th>
-                      <th className="p-6 text-[10px] font-black tracking-[0.2em] text-zinc-900 uppercase">
+                    <tr className="bg-primary/[0.02] border-b border-primary/5">
+                      <th className="p-6 text-[10px] font-black tracking-[0.2em] text-muted-foreground w-16 uppercase">#</th>
+                      <th className="p-6 text-[10px] font-black tracking-[0.2em] text-muted-foreground uppercase">
                         <div className="flex items-center gap-1.5">
                           <span>Teacher Profile</span>
                           <select 
-                            className="text-[10px] font-bold border border-zinc-200 rounded-md px-1 py-0.5 bg-white text-zinc-600 cursor-pointer hover:border-primary focus:outline-none focus:ring-1 focus:ring-primary normal-case tracking-normal"
+                            className="text-[10px] font-black border border-primary/10 rounded-lg px-2 py-1 bg-white text-primary cursor-pointer hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 normal-case tracking-widest shadow-sm"
                             value={roleFilter}
                             onChange={(e) => setRoleFilter(e.target.value)}
                             onClick={(e) => e.stopPropagation()}
                           >
-                            <option value="all">All Roles</option>
+                            <option value="all">ALL ROLES</option>
                             {allRoles.map(r => (
-                              <option key={String(r)} value={String(r)}>{formatRole(String(r))}</option>
+                              <option key={String(r)} value={String(r)}>{formatRole(String(r)).toUpperCase()}</option>
                             ))}
                           </select>
                         </div>
                       </th>
-                      <th className="p-6 text-[10px] font-black tracking-[0.2em] text-zinc-900 text-center uppercase">Observations</th>
-                      <th className="p-6 text-[10px] font-black tracking-[0.2em] text-zinc-900 uppercase">Last Seen</th>
-                      <th className="p-6 text-[10px] font-black tracking-[0.2em] text-zinc-900 text-center uppercase">Growth Index</th>
+                      <th className="p-6 text-[10px] font-black tracking-[0.2em] text-muted-foreground text-center uppercase">Observations</th>
+                      <th className="p-6 text-[10px] font-black tracking-[0.2em] text-muted-foreground uppercase">Last Cycle</th>
+                      <th className="p-6 text-[10px] font-black tracking-[0.2em] text-muted-foreground text-center uppercase">Growth Index</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-zinc-100">
+                  <tbody className="divide-y divide-primary/5">
                     {filteredTeamOverview.map((member, index) => (
-                      <tr key={member.id} className="group hover:bg-primary/5 transition-all duration-300">
-                        <td className="p-6 text-xs font-bold text-zinc-600">{index + 1}</td>
+                      <tr key={member.id} className="group hover:bg-primary/[0.02] transition-all duration-300">
+                        <td className="p-6 text-xs font-black text-muted-foreground">{index + 1}</td>
                         <td className="p-6">
                           <div className="flex items-center gap-4">
-                            <div className="w-14 h-14 rounded-2xl bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-900 font-bold text-xl shadow-sm group-hover:scale-105 group-hover:bg-primary/10 group-hover:text-primary group-hover:border-primary/20 transition-all duration-300">
+                            <div className="w-14 h-14 rounded-2xl bg-primary/5 border border-primary/10 flex items-center justify-center text-primary font-black text-xl shadow-sm group-hover:scale-105 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                               {(member.name || "?").charAt(0)}
                             </div>
                             <div>
-                              <p className="font-black text-zinc-900 text-lg group-hover:text-primary transition-colors">{member.name}</p>
-                              <p className="text-xs text-zinc-600 font-bold tracking-wider">{formatRole(member.role)}</p>
+                              <p className="font-black text-foreground text-lg group-hover:text-primary transition-colors">{member.name}</p>
+                              <p className="text-[10px] text-muted-foreground font-black uppercase tracking-widest">{formatRole(member.role)}</p>
                             </div>
                           </div>
                         </td>
                         <td className="p-6 text-center">
-                          <span className="inline-flex items-center justify-center min-w-[3rem] h-10 px-4 rounded-xl bg-zinc-50 text-zinc-900 font-black text-sm border border-zinc-100 group-hover:bg-white group-hover:border-primary/20 transition-all">
+                          <span className="inline-flex items-center justify-center min-w-[3rem] h-10 px-4 rounded-xl bg-primary/5 text-primary font-black text-xs border border-primary/10 group-hover:bg-white group-hover:shadow-lg transition-all">
                             {member.observations}
                           </span>
                         </td>
                         <td className="p-6">
                           <div className="flex flex-col">
-                            <span className="text-zinc-900 font-bold">{member.lastObserved}</span>
-                            <span className="text-[10px] text-zinc-600 font-bold capitalize tracking-wider">Formal Cycle</span>
+                            <span className="text-foreground font-black text-sm">{member.lastObserved}</span>
+                            <span className="text-[9px] text-muted-foreground font-black uppercase tracking-widest">Formal Assessment</span>
                           </div>
                         </td>
                         <td className="p-6 text-center">
                           <div className={cn(
-                            "inline-flex items-center justify-center w-14 h-14 rounded-2xl font-black text-base border shadow-sm transition-transform group-hover:scale-110",
+                            "inline-flex items-center justify-center w-14 h-14 rounded-2xl font-black text-lg border shadow-sm transition-transform group-hover:scale-110",
                             member.avgScore >= 4
-                              ? "bg-emerald-50 text-emerald-600 border-emerald-100 shadow-emerald-100"
+                              ? "bg-emerald-50 text-emerald-600 border-emerald-100"
                               : member.avgScore >= 3
-                                ? "bg-amber-50 text-amber-600 border-amber-100 shadow-amber-100"
-                                : "bg-rose-50 text-rose-600 border-rose-100 shadow-rose-100"
+                                ? "bg-amber-50 text-amber-600 border-amber-100"
+                                : "bg-primary/5 text-primary border-primary/10"
                           )}>
                             {member.avgScore}
                           </div>
@@ -912,85 +912,86 @@ function TeamManagementView({
         />
       </div>
 
-      <Card className="  shadow-xl bg-white">
-        <CardHeader className="border-b bg-muted/20">
-          <CardTitle>Teacher Registry</CardTitle>
-          <CardDescription>Comprehensive list of teaching staff and their current standing.</CardDescription>
+      <Card className="border border-primary/5 shadow-[0_20px_50px_rgba(0,0,0,0.03)] bg-white overflow-hidden rounded-[2.5rem]">
+        <CardHeader className="border-b border-primary/5 bg-primary/[0.01] p-8">
+          <CardTitle className="text-2xl font-black text-foreground uppercase tracking-tight">Teacher Registry</CardTitle>
+          <CardDescription className="text-muted-foreground font-medium">Comprehensive list of teaching staff and their current standing.</CardDescription>
         </CardHeader>
         <CardContent className="p-0">
-          <ScrollArea className="h-[500px]">
+          <ScrollArea className="h-[550px]">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="bg-muted/30 border-b">
-                    <th className="text-left p-6 text-sm font-bold tracking-wider text-zinc-900 uppercase w-16">#</th>
-                    <th className="text-left p-6 text-sm font-bold tracking-wider text-zinc-900 uppercase">Teacher Profile</th>
-                    <th className="text-left p-6 text-sm font-bold tracking-wider text-zinc-900 uppercase">Specialization</th>
-                    <th className="text-left p-6 text-sm font-bold tracking-wider text-zinc-900 uppercase">Observation Cycle</th>
-                    <th className="text-left p-6 text-sm font-bold tracking-wider text-zinc-900 uppercase">Score</th>
-                    <th className="text-right p-6 text-sm font-bold tracking-wider text-zinc-900 uppercase">Actions</th>
+                  <tr className="bg-primary/[0.02] border-b border-primary/5">
+                    <th className="text-left p-6 text-[10px] font-black tracking-[0.2em] text-muted-foreground uppercase w-16">#</th>
+                    <th className="text-left p-6 text-[10px] font-black tracking-[0.2em] text-muted-foreground uppercase">Teacher Profile</th>
+                    <th className="text-left p-6 text-[10px] font-black tracking-[0.2em] text-muted-foreground uppercase">Specialization</th>
+                    <th className="text-left p-6 text-[10px] font-black tracking-[0.2em] text-muted-foreground uppercase">Observation Cycle</th>
+                    <th className="text-left p-6 text-[10px] font-black tracking-[0.2em] text-muted-foreground uppercase text-center">Score</th>
+                    <th className="text-right p-6 text-[10px] font-black tracking-[0.2em] text-muted-foreground uppercase">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-muted-foreground/10">
+                <tbody className="divide-y divide-primary/5">
                   {filteredTeam.map((member, index) => (
-                    <tr key={member.id} className="hover:bg-primary/5 transition-colors group">
-                      <td className="p-6 text-sm font-bold text-zinc-600">
+                    <tr key={member.id} className="hover:bg-primary/[0.01] transition-all duration-300 group">
+                      <td className="p-6 text-xs font-black text-muted-foreground">
                         {index + 1}
                       </td>
                       <td className="p-6">
                         <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary font-bold text-lg border border-primary/20 shadow-inner">
+                          <div className="w-14 h-14 rounded-2xl bg-primary/5 flex items-center justify-center text-primary font-black text-xl border border-primary/10 shadow-sm group-hover:scale-105 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                             {(member.name || "?").charAt(0)}
                           </div>
                           <div>
-                            <p className="font-bold text-foreground group-hover:text-primary transition-colors">{member.name}</p>
+                            <p className="font-black text-foreground text-lg group-hover:text-primary transition-colors">{member.name}</p>
+                            <p className="text-[10px] text-muted-foreground font-black uppercase tracking-widest">Educator Profile</p>
                           </div>
                         </div>
                       </td>
                       <td className="p-6">
-                        <span className="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold bg-muted text-zinc-600 border border-muted-foreground/10">
+                        <span className="inline-flex items-center px-4 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest bg-primary/5 text-primary border border-primary/10">
                           {member.role}
                         </span>
                       </td>
                       <td className="p-6">
-                        <div className="space-y-2">
-                          <div className="flex justify-between text-xs font-bold">
-                            <span className="text-zinc-600 font-bold">Progress</span>
+                        <div className="space-y-3 w-40">
+                          <div className="flex justify-between text-[10px] font-black uppercase tracking-widest">
+                            <span className="text-muted-foreground">Progress</span>
                             <span className="text-primary">{Math.round((member.observations / 10) * 100)}%</span>
                           </div>
-                          <Progress value={(member.observations / 10) * 100} className="h-1.5 w-32" />
-                          <p className="text-xs text-zinc-900 font-bold mt-1">Last: <span className="font-bold text-zinc-950">{member.lastObserved}</span></p>
+                          <Progress value={(member.observations / 10) * 100} className="h-1.5" />
+                          <p className="text-[10px] text-muted-foreground font-black uppercase tracking-widest mt-1">Last: <span className="text-foreground">{member.lastObserved}</span></p>
                         </div>
                       </td>
-                      <td className="p-6">
-                        <div className="flex items-center gap-3">
+                      <td className="p-6 text-center">
+                        <div className="flex items-center justify-center">
                           <div className={cn(
-                            "w-12 h-12 rounded-xl flex flex-col items-center justify-center font-bold border shadow-sm",
-                            member.avgScore >= 4 ? "bg-success/10 text-success border-success/20" : "bg-warning/10 text-warning border-warning/20"
+                            "w-14 h-14 rounded-2xl flex flex-col items-center justify-center font-black border shadow-sm transition-transform group-hover:scale-110",
+                            member.avgScore >= 4 ? "bg-emerald-50 text-emerald-600 border-emerald-100" : "bg-primary/5 text-primary border-primary/10"
                           )}>
                             <span className="text-lg">{member.avgScore}</span>
-                            <span className="text-[10px] capitalize opacity-60">Avg</span>
+                            <span className="text-[8px] uppercase opacity-60 tracking-tighter">Avg</span>
                           </div>
                         </div>
                       </td>
                       <td className="p-6 text-right">
-                        <div className="flex items-center justify-end gap-2">
-                          <Button variant="ghost" size="sm" className="h-10 px-4 gap-2 hover:bg-primary/10 hover:text-primary" onClick={() => navigate(`/leader/team/${member.id}`)}>
-                            <Eye className="w-4 h-4" />
-                            View Details
-                          </Button>
-                        </div>
+                        <Button variant="ghost" size="sm" className="h-12 px-6 gap-3 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-primary/5 hover:text-primary transition-all" onClick={() => navigate(`/leader/team/${member.id}`)}>
+                          <Eye className="w-4 h-4" />
+                          View Details
+                        </Button>
                       </td>
                     </tr>
                   ))}
                   {filteredTeam.length === 0 && (
                     <tr>
-                      <td colSpan={6} className="p-20 text-center">
-                        <div className="flex flex-col items-center justify-center space-y-4 grayscale opacity-40">
-                          <Users className="w-16 h-16" />
+                      <td colSpan={6} className="p-32 text-center">
+                        <div className="flex flex-col items-center justify-center space-y-4 opacity-40">
+                          <div className="p-6 rounded-full bg-primary/5">
+                            <Users className="w-16 h-16 text-primary" />
+                          </div>
                           <div className="space-y-1">
-                            <p className="text-xl font-bold">No teachers found</p>
-                            <p className="text-zinc-900 font-bold">Try adjusting your search query</p>
+                            <p className="text-xl font-black text-foreground uppercase tracking-tight">No teachers found</p>
+                            <p className="text-sm text-muted-foreground font-medium">Try adjusting your search query or campus filter</p>
                           </div>
                         </div>
                       </td>
@@ -1145,82 +1146,85 @@ function PDParticipationView({ team, training }: { team: any[], training: any[] 
       </div>
 
       {/* Leaderboard & Upcoming Trainings Data Split */}
-      <div className="grid lg:grid-cols-3 gap-6">
-        <Card className="lg:col-span-1 shadow-xl bg-gradient-to-br from-indigo-900 via-slate-900 to-slate-950 text-white overflow-hidden relative border-none">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -translate-y-10 translate-x-10 pointer-events-none" />
-          <CardHeader className="border-b border-white/10 pb-4 relative z-10">
-            <CardTitle className="flex items-center gap-2 text-white">
-              <Trophy className="w-5 h-5 text-yellow-500" />
+      {/* Leaderboard & Upcoming Trainings Data Split */}
+      <div className="grid lg:grid-cols-3 gap-8">
+
+        <Card className="lg:col-span-1 shadow-2xl bg-white overflow-hidden relative border border-primary/10 rounded-[2.5rem]">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-primary/[0.03] rounded-full blur-3xl -translate-y-10 translate-x-10 pointer-events-none" />
+          <CardHeader className="border-b border-primary/5 pb-6 bg-primary/[0.02]">
+            <CardTitle className="flex items-center gap-3 text-foreground font-black uppercase tracking-tight">
+              <div className="p-2 rounded-xl bg-primary/10">
+                <Trophy className="w-5 h-5 text-primary" />
+              </div>
               Teacher Leaderboard
             </CardTitle>
-            <CardDescription className="text-slate-400">Top performers by Training hours completed.</CardDescription>
+            <CardDescription className="text-muted-foreground font-medium">Top performers by TD hours completed.</CardDescription>
           </CardHeader>
-          <CardContent className="p-0 relative z-10">
-            <div className="divide-y divide-white/10">
+          <CardContent className="p-0">
+            <div className="divide-y divide-primary/5">
               {pdTeam.sort((a, b) => (b.pdHours || 0) - (a.pdHours || 0)).slice(0, 5).map((member, idx) => (
-                <div key={member.id} className="p-4 flex items-center justify-between hover:bg-white/5 transition-colors">
-                  <div className="flex items-center gap-3">
+                <div key={member.id} className="p-6 flex items-center justify-between hover:bg-primary/[0.01] transition-colors group">
+                  <div className="flex items-center gap-4">
                     <div className={cn(
-                      "w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs ring-2 ring-offset-2 ring-offset-slate-900",
-                      idx === 0 ? "bg-yellow-500 text-white ring-yellow-500/50" :
-                        idx === 1 ? "bg-slate-300 text-slate-800 ring-slate-300/50" :
-                          idx === 2 ? "bg-amber-700 text-white ring-amber-700/50" : "bg-slate-800 text-slate-400 ring-slate-800/20"
+                      "w-10 h-10 rounded-2xl flex items-center justify-center font-black text-sm shadow-sm transition-transform group-hover:scale-110",
+                      idx === 0 ? "bg-primary text-white" :
+                        idx === 1 ? "bg-primary/20 text-primary" :
+                          idx === 2 ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"
                     )}>
                       {idx + 1}
                     </div>
                     <div>
-                      <p className="font-bold text-sm tracking-tight">{member.name}</p>
-                      <p className="text-[10px] text-zinc-900 capitalize font-black">{member.role}</p>
+                      <p className="font-black text-foreground text-sm tracking-tight group-hover:text-primary transition-colors">{member.name}</p>
+                      <p className="text-[10px] text-muted-foreground font-black uppercase tracking-widest">{member.role}</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-lg font-black text-primary tracking-tighter">{member.pdHours}h</p>
-                    <p className="text-[10px] text-zinc-900 font-bold capitalize whitespace-nowrap">Completed</p>
+                    <p className="text-xl font-black text-primary tracking-tighter">{member.pdHours}h</p>
+                    <p className="text-[9px] text-muted-foreground font-black uppercase tracking-widest">Completed</p>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="p-4 bg-white/5 flex justify-center">
-              <Button variant="link" className="text-slate-400 hover:text-white text-xs gap-2" onClick={() => {
-                // Focus on the registry table
+            <div className="p-4 bg-primary/[0.02] flex justify-center">
+              <Button variant="ghost" className="text-primary font-black text-[10px] uppercase tracking-[0.2em] gap-2 hover:bg-primary/5" onClick={() => {
                 const element = document.getElementById('staff-td-registry');
                 element?.scrollIntoView({ behavior: 'smooth' });
               }}>
-                View All Community Ranks
-                <ChevronRight className="w-3 h-3" />
+                View Full Community Ranks
+                <ChevronRight className="w-4 h-4" />
               </Button>
             </div>
           </CardContent>
         </Card>
 
         <div className="lg:col-span-2 space-y-6">
-          <Card className="  shadow-xl bg-white">
-            <CardHeader className="border-b bg-muted/20 pb-4">
-              <CardTitle>Upcoming Trainings (Whole School)</CardTitle>
-              <CardDescription>Scheduled TD training sessions.</CardDescription>
+          <Card className="border border-primary/5 shadow-[0_20px_50px_rgba(0,0,0,0.03)] bg-white overflow-hidden rounded-[2.5rem]">
+            <CardHeader className="border-b border-primary/5 bg-primary/[0.01] p-6">
+              <CardTitle className="text-xl font-black text-foreground uppercase tracking-tight">Upcoming Trainings</CardTitle>
+              <CardDescription className="text-muted-foreground font-medium">Whole-school professional development sessions.</CardDescription>
             </CardHeader>
             <CardContent className="p-0">
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-muted/30">
-                      <TableHead className="py-4 px-6 text-xs font-bold capitalize tracking-wider text-zinc-900">Training</TableHead>
-                      <TableHead className="py-4 px-6 text-xs font-bold capitalize tracking-wider text-zinc-900">Date</TableHead>
-                      <TableHead className="py-4 px-6 text-xs font-bold capitalize tracking-wider text-zinc-900">Registrants</TableHead>
+                    <TableRow className="bg-primary/[0.02] border-b border-primary/5 hover:bg-primary/[0.02]">
+                      <TableHead className="py-4 px-6 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Training Session</TableHead>
+                      <TableHead className="py-4 px-6 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Scheduled Date</TableHead>
+                      <TableHead className="py-4 px-6 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Registrants</TableHead>
                     </TableRow>
                   </TableHeader>
-                  <TableBody className="divide-y divide-muted-foreground/10">
+                  <TableBody className="divide-y divide-primary/5">
                     {upcomingTrainings.length > 0 ? upcomingTrainings.slice(0, 5).map(event => (
-                      <TableRow key={event.id} className="hover:bg-primary/5 transition-colors">
-                        <TableCell className="p-6 font-bold text-foreground">{event.title}</TableCell>
-                        <TableCell className="p-6 text-zinc-600 whitespace-nowrap">{event.date}</TableCell>
+                      <TableRow key={event.id} className="hover:bg-primary/[0.01] transition-all duration-300">
+                        <TableCell className="p-6 font-black text-foreground">{event.title}</TableCell>
+                        <TableCell className="p-6 text-muted-foreground font-medium whitespace-nowrap">{event.date}</TableCell>
                         <TableCell className="p-6">
-                          <Badge variant="secondary" className="font-bold">{event.registrants?.length || 0} Registered</Badge>
+                          <Badge className="bg-primary/5 text-primary border-primary/10 rounded-lg font-black text-[9px] uppercase tracking-widest px-3 py-1">{event.registrants?.length || 0} ENROLLED</Badge>
                         </TableCell>
                       </TableRow>
                     )) : (
                       <TableRow>
-                        <TableCell colSpan={3} className="text-center py-8 text-zinc-900 font-bold">No upcoming trainings.</TableCell>
+                        <TableCell colSpan={3} className="text-center py-12 text-muted-foreground font-black uppercase tracking-widest text-xs">No upcoming sessions</TableCell>
                       </TableRow>
                     )}
                   </TableBody>
@@ -1229,36 +1233,36 @@ function PDParticipationView({ team, training }: { team: any[], training: any[] 
             </CardContent>
           </Card>
 
-          <Card className="  shadow-xl bg-white">
-            <CardHeader className="border-b bg-muted/20 pb-4">
-              <CardTitle>Campus Training Attendance</CardTitle>
-              <CardDescription>Attendance percentage for past sessions.</CardDescription>
+          <Card className="border border-primary/5 shadow-[0_20px_50px_rgba(0,0,0,0.03)] bg-white overflow-hidden rounded-[2.5rem]">
+            <CardHeader className="border-b border-primary/5 bg-primary/[0.01] p-6">
+              <CardTitle className="text-xl font-black text-foreground uppercase tracking-tight">Attendance Metrics</CardTitle>
+              <CardDescription className="text-muted-foreground font-medium">Engagement across recent Teacher Development modules.</CardDescription>
             </CardHeader>
             <CardContent className="p-0">
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-muted/30">
-                      <TableHead className="py-4 px-6 text-xs font-bold capitalize tracking-wider text-zinc-900">Training Session</TableHead>
-                      <TableHead className="py-4 px-6 text-xs font-bold capitalize tracking-wider text-zinc-900">Date</TableHead>
-                      <TableHead className="py-4 px-6 text-xs font-bold capitalize tracking-wider text-right text-zinc-900">Registrants</TableHead>
+                    <TableRow className="bg-primary/[0.02] border-b border-primary/5 hover:bg-primary/[0.02]">
+                      <TableHead className="py-4 px-6 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Recent Session</TableHead>
+                      <TableHead className="py-4 px-6 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Date</TableHead>
+                      <TableHead className="py-4 px-6 text-[10px] font-black uppercase tracking-widest text-right text-muted-foreground">Engagement</TableHead>
                     </TableRow>
                   </TableHeader>
-                  <TableBody className="divide-y divide-muted-foreground/10">
+                  <TableBody className="divide-y divide-primary/5">
                     {pastTrainings.length > 0 ? pastTrainings.slice(0, 5).map(event => {
                       const count = event.registrants?.length || 0;
                       return (
-                        <TableRow key={event.id} className="hover:bg-primary/5 transition-colors">
-                          <TableCell className="p-6 font-bold text-foreground">{event.title}</TableCell>
-                          <TableCell className="p-6 text-zinc-600 whitespace-nowrap">{event.date}</TableCell>
-                          <TableCell className="p-6 text-right font-black text-primary text-lg">
-                            {count}
+                        <TableRow key={event.id} className="hover:bg-primary/[0.01] transition-all duration-300">
+                          <TableCell className="p-6 font-black text-foreground">{event.title}</TableCell>
+                          <TableCell className="p-6 text-muted-foreground font-medium whitespace-nowrap">{event.date}</TableCell>
+                          <TableCell className="p-6 text-right">
+                            <span className="text-2xl font-black text-primary tracking-tighter">{count}</span>
                           </TableCell>
                         </TableRow>
                       );
                     }) : (
                       <TableRow>
-                        <TableCell colSpan={3} className="text-center py-8 text-zinc-900 font-bold">No past trainings recorded.</TableCell>
+                        <TableCell colSpan={3} className="text-center py-12 text-muted-foreground font-black uppercase tracking-widest text-xs">No past data available</TableCell>
                       </TableRow>
                     )}
                   </TableBody>
@@ -2424,7 +2428,7 @@ function PDCalendarView({
           </div>
         </DialogContent>
       </Dialog>
-    </div >
+    </div>
   );
 }
 
@@ -3288,7 +3292,7 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
             </table>
           </div>
         </CardContent>
-      </Card >
+      </Card>
 
       {selectedGoal && (
         <GoalWorkflowForms
@@ -3302,7 +3306,7 @@ function TeacherGoalsView({ goals }: { goals: Goal[] }) {
         />
       )
       }
-    </div >
+    </div>
   );
 }
 

@@ -115,7 +115,7 @@ export const NotificationBell: React.FC = () => {
                 <Button variant="ghost" size="icon" className="relative hover:bg-primary/5">
                     <Bell className="w-5 h-5 text-gray-500" />
                     {unreadCount > 0 && (
-                        <Badge variant="destructive" className="absolute -top-1 -right-1 px-1.5 py-0.5 text-[10px] min-w-[1.2rem] flex justify-center items-center h-4 bg-red-500 border-2 border-white">
+                        <Badge variant="destructive" className="absolute top-0 right-0 px-1.5 py-0.5 text-[10px] min-w-[1.2rem] flex justify-center items-center h-4 bg-red-500 border-2 border-white translate-x-1/4 -translate-y-1/4">
                             {unreadCount > 9 ? '9+' : unreadCount}
                         </Badge>
                     )}

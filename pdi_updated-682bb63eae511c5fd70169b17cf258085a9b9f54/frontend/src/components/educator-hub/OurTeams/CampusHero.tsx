@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { getAssetUrl } from "@/lib/utils";
 
 interface CampusHeroProps {
   title: string;
@@ -13,7 +14,7 @@ export const CampusHero = ({ title, backgroundImage, accentColor = "#E63946" }: 
       {/* Background Image with Overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-center transition-transform duration-[2s]"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
+        style={{ backgroundImage: `url(${getAssetUrl(backgroundImage)})` }}
       />
       <div className="absolute inset-0 bg-black/40" />
       

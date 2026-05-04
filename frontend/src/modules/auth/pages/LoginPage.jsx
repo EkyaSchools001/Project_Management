@@ -17,7 +17,10 @@ export default function LoginPage() {
     const [twoFactorError, setTwoFactorError] = useState('');
     const [verifying2FA, setVerifying2FA] = useState(false);
 
-    if (user) return <Navigate to="/" replace />;
+    // All test roles redirect directly to the teacher dashboard
+    const getLandingPath = (_role) => '/departments/pd/teacher';
+
+    if (user) return <Navigate to={getLandingPath(user.role)} replace />;
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -26,7 +29,7 @@ export default function LoginPage() {
 
         try {
             const result = await login(credentials.email, credentials.password, rememberMe);
-            if (!result.requires2FA) navigate('/');
+            if (!result.requires2FA) navigate(getLandingPath(result?.user?.role || ''));
         } catch (err) {
             setError('Invalid credentials. Please check your email and password.');
         } finally {
@@ -40,8 +43,8 @@ export default function LoginPage() {
         setVerifying2FA(true);
 
         try {
-            await verify2FA(twoFactorCode);
-            navigate('/');
+            const result = await verify2FA(twoFactorCode);
+            navigate(getLandingPath(result?.user?.role || user?.role || ''));
         } catch (err) {
             setTwoFactorError('Invalid code. Please check your email.');
         } finally {

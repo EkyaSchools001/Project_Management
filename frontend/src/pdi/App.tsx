@@ -60,11 +60,23 @@ const DashboardRedirect = () => {
   const { user } = useAuth();
   if (!user) return <Navigate to="/login" replace />;
   const role = user.role?.toUpperCase();
-  if (role === 'ADMIN' || role === 'SUPERADMIN') return <Navigate to="/admin" replace />;
-  if (role === 'LEADER' || role === 'SCHOOL_LEADER') return <Navigate to="/leader" replace />;
+
+  // Super Admin / Admin
+  if (role === 'SUPER_ADMIN' || role === 'ADMIN' || role === 'SUPERADMIN' ||
+      role === 'ADMIN_OPS' || role === 'ADMIN_FINANCE' || role === 'ADMIN_HR' || role === 'ADMIN_IT') {
+    return <Navigate to="/admin" replace />;
+  }
+  // School Leaders / Coordinators → Leader dashboard
+  if (role === 'HOS' || role === 'LEADER' || role === 'SCHOOL_LEADER' || role === 'COORDINATOR') {
+    return <Navigate to="/leader" replace />;
+  }
+  // Management
   if (role === 'MANAGEMENT') return <Navigate to="/management" replace />;
+
+  // All Teachers and support staff → Teacher dashboard
   return <Navigate to="/teacher" replace />;
 };
+
 
 const DashboardPage = ({ children }: { children: React.ReactNode }) => {
   const { user } = useAuth();
@@ -99,7 +111,7 @@ const App = () => {
                   <Route
                     path="/teacher/*"
                     element={
-                      <ProtectedRoute allowedRoles={['TEACHER', 'ADMIN', 'SUPERADMIN']}>
+                      <ProtectedRoute allowedRoles={['TEACHER', 'ADMIN', 'SUPERADMIN', 'SUPER_ADMIN', 'TEACHER_CORE', 'TEACHER_SPECIALIST', 'TEACHER_SENIOR', 'TEACHER_PARTTIME', 'LIBRARIAN', 'NURSE', 'SUPPORT_STAFF']}>
                         <TeacherDashboard />
                       </ProtectedRoute>
                     }
@@ -108,7 +120,7 @@ const App = () => {
                   <Route
                     path="/leader/*"
                     element={
-                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN']}>
+                      <ProtectedRoute allowedRoles={['LEADER', 'SCHOOL_LEADER', 'ADMIN', 'SUPERADMIN', 'SUPER_ADMIN', 'HOS', 'COORDINATOR', 'MANAGEMENT']}>
                         <LeaderDashboard />
                       </ProtectedRoute>
                     }
@@ -117,7 +129,7 @@ const App = () => {
                   <Route
                     path="/admin/*"
                     element={
-                      <ProtectedRoute allowedRoles={['ADMIN', 'SUPERADMIN']}>
+                      <ProtectedRoute allowedRoles={['ADMIN', 'SUPERADMIN', 'SUPER_ADMIN', 'ADMIN_OPS', 'ADMIN_FINANCE', 'ADMIN_HR', 'ADMIN_IT']}>
                         <LeaderDashboard />
                       </ProtectedRoute>
                     }
@@ -126,7 +138,7 @@ const App = () => {
                   <Route
                     path="/management/*"
                     element={
-                      <ProtectedRoute allowedRoles={['MANAGEMENT', 'SUPERADMIN']}>
+                      <ProtectedRoute allowedRoles={['MANAGEMENT', 'SUPERADMIN', 'SUPER_ADMIN']}>
                         <ManagementDashboard />
                       </ProtectedRoute>
                     }
@@ -442,14 +454,14 @@ const App = () => {
                   <Route path="/dashboard" element={<DashboardRedirect />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
-              </ErrorBoundary >
-            </PermissionProvider >
+              </ErrorBoundary>
+            </PermissionProvider>
             <EkyaGuide />
-          </AuthProvider >
+          </AuthProvider>
         </AIProvider>
-      </BrowserRouter >
-    </TooltipProvider >
-  </QueryClientProvider >
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
 </GoogleOAuthProvider>
   );
 };

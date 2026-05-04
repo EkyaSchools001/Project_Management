@@ -22,6 +22,8 @@ export function FinancialChart({ type, data, title }: FinancialChartProps) {
 
     const dpr = window.devicePixelRatio || 1;
     const rect = canvas.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
+    
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
     ctx.scale(dpr, dpr);
@@ -33,9 +35,9 @@ export function FinancialChart({ type, data, title }: FinancialChartProps) {
 
     ctx.clearRect(0, 0, width, height);
 
-    const maxValue = Math.max(...data.values) * 1.1;
+    const maxValue = Math.max(...data.values, 1) * 1.1;
     const minValue = 0;
-    const range = maxValue - minValue;
+    const range = maxValue - minValue || 1;
 
     data.values.forEach((value, index) => {
       const barHeight = (value / range) * (height - padding * 2);

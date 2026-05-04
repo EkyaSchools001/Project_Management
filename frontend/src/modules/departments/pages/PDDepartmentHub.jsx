@@ -13,6 +13,7 @@ import { AIProvider } from '@pdi/contexts/AIContext';
 import ErrorBoundary from '@pdi/components/ErrorBoundary';
 import { useAuth } from '@/modules/auth/authContext';
 import { DashboardLayout } from '@pdi/components/layout/DashboardLayout';
+import PDIProtectedRoute from '@pdi/components/ProtectedRoute';
 
 // ---- Full PDI page imports ------------------------------------------------
 import TeacherDashboard from '@pdi/pages/TeacherDashboard';
@@ -141,8 +142,12 @@ const pdiQueryClient = new QueryClient();
 /** Normalise SchoolOS role → PDI canonical role string */
 function normalisePDIRole(role) {
     const r = (role || '').toUpperCase();
-    if (r === 'TEACHERSTAFF' || r === 'TEACHER_STAFF') return 'TEACHER';
-    if (r === 'SCHOOL_LEADER') return 'SCHOOL_LEADER';
+    // All teacher variants → TEACHER
+    if (r === 'TEACHERSTAFF' || r === 'TEACHER_STAFF' ||
+        r === 'TEACHER_CORE' || r === 'TEACHER_SPECIALIST' ||
+        r === 'TEACHER_SENIOR' || r === 'TEACHER_PARTTIME' ||
+        r === 'LIBRARIAN' || r === 'NURSE' || r === 'SUPPORT_STAFF') return 'TEACHER';
+    if (r === 'HOS' || r === 'SCHOOL_LEADER') return 'SCHOOL_LEADER';
     if (r === 'LEADER') return 'LEADER';
     if (r === 'ADMIN') return 'ADMIN';
     if (r === 'SUPERADMIN' || r === 'SUPER_ADMIN') return 'SUPERADMIN';
@@ -196,206 +201,206 @@ export default function PDDepartmentHub() {
                 <Route index element={<Navigate to={roleDefaultPath(role)} replace />} />
 
                 {/* ── Dashboard routes (Internal layout) ── */}
-                <Route path="teacher/*" element={<TeacherDashboard />} />
-                <Route path="leader/*"  element={<LeaderDashboard />} />
-                <Route path="admin/*"   element={<LeaderDashboard />} />
-                <Route path="management/*" element={<ManagementDashboard />} />
-                <Route path="coordinator/*" element={<CoordinatorDashboard />} />
+                <Route path="teacher/*" element={<PDIProtectedRoute><TeacherDashboard /></PDIProtectedRoute>} />
+                <Route path="leader/*"  element={<PDIProtectedRoute><LeaderDashboard /></PDIProtectedRoute>} />
+                <Route path="admin/*"   element={<PDIProtectedRoute><LeaderDashboard /></PDIProtectedRoute>} />
+                <Route path="management/*" element={<PDIProtectedRoute><ManagementDashboard /></PDIProtectedRoute>} />
+                <Route path="coordinator/*" element={<PDIProtectedRoute><CoordinatorDashboard /></PDIProtectedRoute>} />
 
                 {/* ── Shell-wrapped routes (Need shared layout) ── */}
                 <Route element={<PDIShell role={role} user={user} />}>
                     {/* Shared module routes */}
-                    <Route path="growth"                      element={<GrowthPage />} />
-                    <Route path="leader/growth"               element={<LeaderGrowthPage />} />
-                    <Route path="leader/growth/:teacherId"    element={<LeaderGrowthPage />} />
-                    <Route path="admin/growth-analytics"      element={<AdminGrowthAnalyticsPage />} />
+                    <Route path="growth"                      element={<PDIProtectedRoute><GrowthPage /></PDIProtectedRoute>} />
+                    <Route path="leader/growth"               element={<PDIProtectedRoute><LeaderGrowthPage /></PDIProtectedRoute>} />
+                    <Route path="leader/growth/:teacherId"    element={<PDIProtectedRoute><LeaderGrowthPage /></PDIProtectedRoute>} />
+                    <Route path="admin/growth-analytics"      element={<PDIProtectedRoute><AdminGrowthAnalyticsPage /></PDIProtectedRoute>} />
                     
                     {/* Observations (leader) */}
-                    <Route path="leader/danielson-framework"          element={<DanielsonDashboard />} />
-                    <Route path="leader/danielson-framework/new"      element={<DanielsonFrameworkPage />} />
-                    <Route path="leader/danielson-framework/:teacherId" element={<DanielsonFrameworkPage />} />
-                    <Route path="leader/quick-feedback"               element={<QuickFeedbackDashboard />} />
-                    <Route path="leader/quick-feedback/new"           element={<QuickFeedbackPage />} />
-                    <Route path="leader/quick-feedback/:teacherId"    element={<QuickFeedbackPage />} />
-                    <Route path="leader/performing-arts-obs"          element={<PerformingArtsObsDashboard />} />
-                    <Route path="leader/performing-arts-obs/new"      element={<PerformingArtsObsPage />} />
-                    <Route path="leader/life-skills-obs"              element={<LifeSkillsObsDashboard />} />
-                    <Route path="leader/life-skills-obs/new"          element={<LifeSkillsObsPage />} />
-                    <Route path="leader/pe-obs"                       element={<PEObsDashboard />} />
-                    <Route path="leader/pe-obs/new"                   element={<PEObsPage />} />
-                    <Route path="leader/va-obs"                       element={<VAObsDashboard />} />
-                    <Route path="leader/va-obs/new"                   element={<VAObsPage />} />
-                    <Route path="leader/notes"                        element={<NotesPage />} />
+                    <Route path="leader/danielson-framework"          element={<PDIProtectedRoute><DanielsonDashboard /></PDIProtectedRoute>} />
+                    <Route path="leader/danielson-framework/new"      element={<PDIProtectedRoute><DanielsonFrameworkPage /></PDIProtectedRoute>} />
+                    <Route path="leader/danielson-framework/:teacherId" element={<PDIProtectedRoute><DanielsonFrameworkPage /></PDIProtectedRoute>} />
+                    <Route path="leader/quick-feedback"               element={<PDIProtectedRoute><QuickFeedbackDashboard /></PDIProtectedRoute>} />
+                    <Route path="leader/quick-feedback/new"           element={<PDIProtectedRoute><QuickFeedbackPage /></PDIProtectedRoute>} />
+                    <Route path="leader/quick-feedback/:teacherId"    element={<PDIProtectedRoute><QuickFeedbackPage /></PDIProtectedRoute>} />
+                    <Route path="leader/performing-arts-obs"          element={<PDIProtectedRoute><PerformingArtsObsDashboard /></PDIProtectedRoute>} />
+                    <Route path="leader/performing-arts-obs/new"      element={<PDIProtectedRoute><PerformingArtsObsPage /></PDIProtectedRoute>} />
+                    <Route path="leader/life-skills-obs"              element={<PDIProtectedRoute><LifeSkillsObsDashboard /></PDIProtectedRoute>} />
+                    <Route path="leader/life-skills-obs/new"          element={<PDIProtectedRoute><LifeSkillsObsPage /></PDIProtectedRoute>} />
+                    <Route path="leader/pe-obs"                       element={<PDIProtectedRoute><PEObsDashboard /></PDIProtectedRoute>} />
+                    <Route path="leader/pe-obs/new"                   element={<PDIProtectedRoute><PEObsPage /></PDIProtectedRoute>} />
+                    <Route path="leader/va-obs"                       element={<PDIProtectedRoute><VAObsDashboard /></PDIProtectedRoute>} />
+                    <Route path="leader/va-obs/new"                   element={<PDIProtectedRoute><VAObsPage /></PDIProtectedRoute>} />
+                    <Route path="leader/notes"                        element={<PDIProtectedRoute><NotesPage /></PDIProtectedRoute>} />
 
                     {/* Meetings */}
-                    <Route path="meetings"               element={<MeetingsDashboard />} />
-                    <Route path="meetings/:meetingId"    element={<MeetingMoMForm />} />
-                    <Route path="meetings/:meetingId/mom" element={<MeetingMoMForm />} />
+                    <Route path="meetings"               element={<PDIProtectedRoute><MeetingsDashboard /></PDIProtectedRoute>} />
+                    <Route path="meetings/:meetingId"    element={<PDIProtectedRoute><MeetingMoMForm /></PDIProtectedRoute>} />
+                    <Route path="meetings/:meetingId/mom" element={<PDIProtectedRoute><MeetingMoMForm /></PDIProtectedRoute>} />
 
                     {/* Portfolio */}
-                    <Route path="portfolio"              element={<PortfolioIndex />} />
-                    <Route path="portfolio/:teacherId"   element={<TeacherPortfolio />} />
-                    <Route path="teacher/portfolio"      element={<TeacherPortfolio />} />
+                    <Route path="portfolio"              element={<PDIProtectedRoute><PortfolioIndex /></PDIProtectedRoute>} />
+                    <Route path="portfolio/:teacherId"   element={<PDIProtectedRoute><TeacherPortfolio /></PDIProtectedRoute>} />
+                    <Route path="teacher/portfolio"      element={<PDIProtectedRoute><TeacherPortfolio /></PDIProtectedRoute>} />
 
                     {/* Announcements / OKR / Survey */}
-                    <Route path="announcements"          element={<AnnouncementsPage />} />
-                    <Route path="okr"                    element={<OKRDashboard />} />
-                    <Route path="survey"                 element={<SurveyPage />} />
+                    <Route path="announcements"          element={<PDIProtectedRoute><AnnouncementsPage /></PDIProtectedRoute>} />
+                    <Route path="okr"                    element={<PDIProtectedRoute><OKRDashboard /></PDIProtectedRoute>} />
+                    <Route path="survey"                 element={<PDIProtectedRoute><SurveyPage /></PDIProtectedRoute>} />
 
                     {/* Learning Festival */}
-                    <Route path="festival"               element={<FestivalManagementDashboard />} />
-                    <Route path="festival/page"          element={<LearningFestivalPage />} />
+                    <Route path="festival"               element={<PDIProtectedRoute><FestivalManagementDashboard /></PDIProtectedRoute>} />
+                    <Route path="festival/page"          element={<PDIProtectedRoute><LearningFestivalPage /></PDIProtectedRoute>} />
 
                     {/* Documents & Attendance */}
-                    <Route path="documents"              element={<AdminDocumentManagement />} />
-                    <Route path="attendance"             element={<AttendanceRegister />} />
-                    <Route path="attendance/:id"         element={<EventAttendanceView />} />
+                    <Route path="documents"              element={<PDIProtectedRoute><AdminDocumentManagement /></PDIProtectedRoute>} />
+                    <Route path="attendance"             element={<PDIProtectedRoute><AttendanceRegister /></PDIProtectedRoute>} />
+                    <Route path="attendance/:id"         element={<PDIProtectedRoute><EventAttendanceView /></PDIProtectedRoute>} />
 
                     {/* Leader sub-pages */}
-                    <Route path="leader/performance"     element={<LeaderPerformanceAnalytics />} />
-                    <Route path="leader/goals"           element={<AdminGoalsView />} />
-                    <Route path="leader/insights"        element={<LearningInsightsView />} />
-                    <Route path="leader/participation"   element={<PDHoursAnalyticsView />} />
-                    <Route path="leader/courses"         element={<CourseManagementView />} />
-                    <Route path="leader/courses/assessments" element={<InProgress />} />
-                    <Route path="leader/mooc"            element={<MoocManagementView />} />
-                    <Route path="leader/hours"           element={<PDHoursAnalyticsView />} />
-                    <Route path="leader/reports"         element={<AdminReportsView />} />
-                    <Route path="leader/survey"          element={<SurveyPage />} />
-                    <Route path="leader/meetings"        element={<MeetingsDashboard />} />
-                    <Route path="leader/meetings/:meetingId" element={<MeetingMoMForm />} />
-                    <Route path="leader/team"            element={<TeamMembersPage />} />
-                    <Route path="leader/users"           element={<UserManagementView />} />
-                    <Route path="leader/forms"           element={<FormTemplatesView />} />
-                    <Route path="leader/settings"        element={<SystemSettingsView />} />
-                    <Route path="leader/calendar"        element={<AdminCalendarView />} />
-                    <Route path="leader/attendance"      element={<AttendanceRegister />} />
-                    <Route path="leader/festival"        element={<LearningFestivalPage />} />
+                    <Route path="leader/performance"     element={<PDIProtectedRoute><LeaderPerformanceAnalytics /></PDIProtectedRoute>} />
+                    <Route path="leader/goals"           element={<PDIProtectedRoute><AdminGoalsView /></PDIProtectedRoute>} />
+                    <Route path="leader/insights"        element={<PDIProtectedRoute><LearningInsightsView /></PDIProtectedRoute>} />
+                    <Route path="leader/participation"   element={<PDIProtectedRoute><PDHoursAnalyticsView /></PDIProtectedRoute>} />
+                    <Route path="leader/courses"         element={<PDIProtectedRoute><CourseManagementView /></PDIProtectedRoute>} />
+                    <Route path="leader/courses/assessments" element={<PDIProtectedRoute><InProgress /></PDIProtectedRoute>} />
+                    <Route path="leader/mooc"            element={<PDIProtectedRoute><MoocManagementView /></PDIProtectedRoute>} />
+                    <Route path="leader/hours"           element={<PDIProtectedRoute><PDHoursAnalyticsView /></PDIProtectedRoute>} />
+                    <Route path="leader/reports"         element={<PDIProtectedRoute><AdminReportsView /></PDIProtectedRoute>} />
+                    <Route path="leader/survey"          element={<PDIProtectedRoute><SurveyPage /></PDIProtectedRoute>} />
+                    <Route path="leader/meetings"        element={<PDIProtectedRoute><MeetingsDashboard /></PDIProtectedRoute>} />
+                    <Route path="leader/meetings/:meetingId" element={<PDIProtectedRoute><MeetingMoMForm /></PDIProtectedRoute>} />
+                    <Route path="leader/team"            element={<PDIProtectedRoute><TeamMembersPage /></PDIProtectedRoute>} />
+                    <Route path="leader/users"           element={<PDIProtectedRoute><UserManagementView /></PDIProtectedRoute>} />
+                    <Route path="leader/forms"           element={<PDIProtectedRoute><FormTemplatesView /></PDIProtectedRoute>} />
+                    <Route path="leader/settings"        element={<PDIProtectedRoute><SystemSettingsView /></PDIProtectedRoute>} />
+                    <Route path="leader/calendar"        element={<PDIProtectedRoute><AdminCalendarView /></PDIProtectedRoute>} />
+                    <Route path="leader/attendance"      element={<PDIProtectedRoute><AttendanceRegister /></PDIProtectedRoute>} />
+                    <Route path="leader/festival"        element={<PDIProtectedRoute><LearningFestivalPage /></PDIProtectedRoute>} />
 
                     {/* Admin sub-pages */}
-                    <Route path="admin/goals"            element={<AdminGoalsView />} />
-                    <Route path="admin/reports"          element={<AdminReportsView />} />
-                    <Route path="admin/calendar"         element={<AdminCalendarView />} />
-                    <Route path="admin/hours"            element={<PDHoursAnalyticsView />} />
-                    <Route path="admin/users"            element={<UserManagementView />} />
-                    <Route path="admin/forms"            element={<FormTemplatesView />} />
-                    <Route path="admin/settings"         element={<SystemSettingsView />} />
-                    <Route path="admin/superadmin"       element={<SuperAdminView />} />
-                    <Route path="admin/courses"          element={<CourseManagementView />} />
-                    <Route path="admin/courses/assessments" element={<InProgress />} />
-                    <Route path="admin/festival"         element={<FestivalManagementDashboard />} />
-                    <Route path="admin/mooc"             element={<MoocManagementView />} />
-                    <Route path="admin/meetings"         element={<MeetingsDashboard />} />
-                    <Route path="admin/meetings/:meetingId" element={<MeetingMoMForm />} />
-                    <Route path="admin/survey"           element={<SurveyPage />} />
-                    <Route path="admin/attendance"       element={<AttendanceRegister />} />
+                    <Route path="admin/goals"            element={<PDIProtectedRoute><AdminGoalsView /></PDIProtectedRoute>} />
+                    <Route path="admin/reports"          element={<PDIProtectedRoute><AdminReportsView /></PDIProtectedRoute>} />
+                    <Route path="admin/calendar"         element={<PDIProtectedRoute><AdminCalendarView /></PDIProtectedRoute>} />
+                    <Route path="admin/hours"            element={<PDIProtectedRoute><PDHoursAnalyticsView /></PDIProtectedRoute>} />
+                    <Route path="admin/users"            element={<PDIProtectedRoute><UserManagementView /></PDIProtectedRoute>} />
+                    <Route path="admin/forms"            element={<PDIProtectedRoute><FormTemplatesView /></PDIProtectedRoute>} />
+                    <Route path="admin/settings"         element={<PDIProtectedRoute><SystemSettingsView /></PDIProtectedRoute>} />
+                    <Route path="admin/superadmin"       element={<PDIProtectedRoute><SuperAdminView /></PDIProtectedRoute>} />
+                    <Route path="admin/courses"          element={<PDIProtectedRoute><CourseManagementView /></PDIProtectedRoute>} />
+                    <Route path="admin/courses/assessments" element={<PDIProtectedRoute><InProgress /></PDIProtectedRoute>} />
+                    <Route path="admin/festival"         element={<PDIProtectedRoute><FestivalManagementDashboard /></PDIProtectedRoute>} />
+                    <Route path="admin/mooc"             element={<PDIProtectedRoute><MoocManagementView /></PDIProtectedRoute>} />
+                    <Route path="admin/meetings"         element={<PDIProtectedRoute><MeetingsDashboard /></PDIProtectedRoute>} />
+                    <Route path="admin/meetings/:meetingId" element={<PDIProtectedRoute><MeetingMoMForm /></PDIProtectedRoute>} />
+                    <Route path="admin/survey"           element={<PDIProtectedRoute><SurveyPage /></PDIProtectedRoute>} />
+                    <Route path="admin/attendance"       element={<PDIProtectedRoute><AttendanceRegister /></PDIProtectedRoute>} />
 
                     {/* Management sub-pages (shell-wrapped variants) */}
-                    <Route path="management/growth-analytics" element={<ManagementGrowthAnalyticsPage />} />
-                    <Route path="management/goals"       element={<ManagementGoalsView />} />
-                    <Route path="management/pdi-health"  element={<ManagementInsightsView />} />
-                    <Route path="management/hours"       element={<PDHoursAnalyticsView />} />
-                    <Route path="management/meetings"    element={<MeetingsDashboard />} />
-                    <Route path="management/survey"      element={<SurveyPage />} />
-                    <Route path="management/attendance"  element={<AttendanceRegister />} />
-                    <Route path="management/courses/assessments" element={<InProgress />} />
-                    <Route path="management/campus-performance" element={<AdminReportsView />} />
-                    <Route path="management/pd-impact"   element={<PDHoursAnalyticsView />} />
-                    <Route path="management/training-analytics" element={<PDHoursAnalyticsView />} />
+                    <Route path="management/growth-analytics" element={<PDIProtectedRoute><ManagementGrowthAnalyticsPage /></PDIProtectedRoute>} />
+                    <Route path="management/goals"       element={<PDIProtectedRoute><ManagementGoalsView /></PDIProtectedRoute>} />
+                    <Route path="management/pdi-health"  element={<PDIProtectedRoute><ManagementInsightsView /></PDIProtectedRoute>} />
+                    <Route path="management/hours"       element={<PDIProtectedRoute><PDHoursAnalyticsView /></PDIProtectedRoute>} />
+                    <Route path="management/meetings"    element={<PDIProtectedRoute><MeetingsDashboard /></PDIProtectedRoute>} />
+                    <Route path="management/survey"      element={<PDIProtectedRoute><SurveyPage /></PDIProtectedRoute>} />
+                    <Route path="management/attendance"  element={<PDIProtectedRoute><AttendanceRegister /></PDIProtectedRoute>} />
+                    <Route path="management/courses/assessments" element={<PDIProtectedRoute><InProgress /></PDIProtectedRoute>} />
+                    <Route path="management/campus-performance" element={<PDIProtectedRoute><AdminReportsView /></PDIProtectedRoute>} />
+                    <Route path="management/pd-impact"   element={<PDIProtectedRoute><PDHoursAnalyticsView /></PDIProtectedRoute>} />
+                    <Route path="management/training-analytics" element={<PDIProtectedRoute><PDHoursAnalyticsView /></PDIProtectedRoute>} />
 
                     {/* Teacher sub-pages */}
-                    <Route path="teacher/observations"  element={<GrowthPage />} />
-                    <Route path="teacher/goals"         element={<AdminGoalsView />} />
-                    <Route path="teacher/courses"       element={<CourseManagementView />} />
-                    <Route path="teacher/courses/assessments" element={<InProgress />} />
-                    <Route path="teacher/festival"      element={<LearningFestivalPage />} />
-                    <Route path="teacher/mooc"          element={<MoocManagementView />} />
-                    <Route path="teacher/calendar"      element={<AdminCalendarView />} />
-                    <Route path="teacher/hours"         element={<PDHoursAnalyticsView />} />
-                    <Route path="teacher/meetings"      element={<MeetingsDashboard />} />
-                    <Route path="teacher/meetings/:meetingId" element={<MeetingMoMForm />} />
-                    <Route path="teacher/survey"        element={<SurveyPage />} />
-                    <Route path="teacher/attendance"    element={<TeacherAttendance />} />
-                    <Route path="teacher/profile"       element={<InProgress />} />
-                    <Route path="teacher/documents"     element={<AdminDocumentManagement />} />
+                    <Route path="teacher/observations"  element={<PDIProtectedRoute><GrowthPage /></PDIProtectedRoute>} />
+                    <Route path="teacher/goals"         element={<PDIProtectedRoute><AdminGoalsView /></PDIProtectedRoute>} />
+                    <Route path="teacher/courses"       element={<PDIProtectedRoute><CourseManagementView /></PDIProtectedRoute>} />
+                    <Route path="teacher/courses/assessments" element={<PDIProtectedRoute><InProgress /></PDIProtectedRoute>} />
+                    <Route path="teacher/festival"      element={<PDIProtectedRoute><LearningFestivalPage /></PDIProtectedRoute>} />
+                    <Route path="teacher/mooc"          element={<PDIProtectedRoute><MoocManagementView /></PDIProtectedRoute>} />
+                    <Route path="teacher/calendar"      element={<PDIProtectedRoute><AdminCalendarView /></PDIProtectedRoute>} />
+                    <Route path="teacher/hours"         element={<PDIProtectedRoute><PDHoursAnalyticsView /></PDIProtectedRoute>} />
+                    <Route path="teacher/meetings"      element={<PDIProtectedRoute><MeetingsDashboard /></PDIProtectedRoute>} />
+                    <Route path="teacher/meetings/:meetingId" element={<PDIProtectedRoute><MeetingMoMForm /></PDIProtectedRoute>} />
+                    <Route path="teacher/survey"        element={<PDIProtectedRoute><SurveyPage /></PDIProtectedRoute>} />
+                    <Route path="teacher/attendance"    element={<PDIProtectedRoute><TeacherAttendance /></PDIProtectedRoute>} />
+                    <Route path="teacher/profile"       element={<PDIProtectedRoute><InProgress /></PDIProtectedRoute>} />
+                    <Route path="teacher/documents"     element={<PDIProtectedRoute><AdminDocumentManagement /></PDIProtectedRoute>} />
 
                     {/* Educator Hub & Campus Routes */}
-                    <Route path="edu-hub/*"             element={<EduHubIndex />} />
-                    <Route path="edu-hub/my-duties"     element={<MyDutiesPage />} />
-                    <Route path="educator-hub/institutional-identity" element={<InstitutionalIdentity />} />
-                    <Route path="educator-hub/institutional-identity/legacy" element={<LegacyPage />} />
-                    <Route path="educator-hub/institutional-identity/teams-vision" element={<TeamsVisionPage />} />
-                    <Route path="educator-hub/institutional-identity/philosophy" element={<PhilosophyPage />} />
-                    <Route path="educator-hub/institutional-identity/prayer" element={<SchoolPrayerPage />} />
-                    <Route path="educator-hub/institutional-identity/founders-message" element={<FoundersMessagePage />} />
-                    <Route path="educator-hub/institutional-identity/schools" element={<OurSchoolsPage />} />
-                    <Route path="educator-hub/institutional-identity/our-teams/cmr-nps" element={<CMRNPSPage />} />
-                    <Route path="campuses/cmr-nps/info" element={<CMRNPSInfoPage />} />
-                    <Route path="campuses/cmr-nps/duties" element={<CmrNpsDutiesPage />} />
+                    <Route path="edu-hub/*"             element={<PDIProtectedRoute><EduHubIndex /></PDIProtectedRoute>} />
+                    <Route path="edu-hub/my-duties"     element={<PDIProtectedRoute><MyDutiesPage /></PDIProtectedRoute>} />
+                    <Route path="educator-hub/institutional-identity" element={<PDIProtectedRoute><InstitutionalIdentity /></PDIProtectedRoute>} />
+                    <Route path="educator-hub/institutional-identity/legacy" element={<PDIProtectedRoute><LegacyPage /></PDIProtectedRoute>} />
+                    <Route path="educator-hub/institutional-identity/teams-vision" element={<PDIProtectedRoute><TeamsVisionPage /></PDIProtectedRoute>} />
+                    <Route path="educator-hub/institutional-identity/philosophy" element={<PDIProtectedRoute><PhilosophyPage /></PDIProtectedRoute>} />
+                    <Route path="educator-hub/institutional-identity/prayer" element={<PDIProtectedRoute><SchoolPrayerPage /></PDIProtectedRoute>} />
+                    <Route path="educator-hub/institutional-identity/founders-message" element={<PDIProtectedRoute><FoundersMessagePage /></PDIProtectedRoute>} />
+                    <Route path="educator-hub/institutional-identity/schools" element={<PDIProtectedRoute><OurSchoolsPage /></PDIProtectedRoute>} />
+                    <Route path="educator-hub/institutional-identity/our-teams/cmr-nps" element={<PDIProtectedRoute><CMRNPSPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/cmr-nps/info" element={<PDIProtectedRoute><CMRNPSInfoPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/cmr-nps/duties" element={<PDIProtectedRoute><CmrNpsDutiesPage /></PDIProtectedRoute>} />
 
-                    <Route path="campuses/ekya-byrathi" element={<EkyaByrathiPage />} />
-                    <Route path="campuses/ekya-byrathi/info" element={<EkyaByrathiInfoPage />} />
-                    <Route path="campuses/ekya-byrathi/duties" element={<EkyaByrathiDutiesPage />} />
+                    <Route path="campuses/ekya-byrathi" element={<PDIProtectedRoute><EkyaByrathiPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/ekya-byrathi/info" element={<PDIProtectedRoute><EkyaByrathiInfoPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/ekya-byrathi/duties" element={<PDIProtectedRoute><EkyaByrathiDutiesPage /></PDIProtectedRoute>} />
 
-                    <Route path="campuses/ekya-btm-layout" element={<EkyaBtmLayoutPage />} />
-                    <Route path="campuses/ekya-btm-layout/info" element={<EkyaBtmLayoutInfoPage />} />
-                    <Route path="campuses/ekya-btm-layout/duties" element={<EkyaBtmLayoutDutiesPage />} />
+                    <Route path="campuses/ekya-btm-layout" element={<PDIProtectedRoute><EkyaBtmLayoutPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/ekya-btm-layout/info" element={<PDIProtectedRoute><EkyaBtmLayoutInfoPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/ekya-btm-layout/duties" element={<PDIProtectedRoute><EkyaBtmLayoutDutiesPage /></PDIProtectedRoute>} />
 
-                    <Route path="campuses/ekya-itpl" element={<EkyaItplPage />} />
-                    <Route path="campuses/ekya-itpl/info" element={<EkyaItplInfoPage />} />
-                    <Route path="campuses/ekya-itpl/duties" element={<EkyaItplDutiesPage />} />
+                    <Route path="campuses/ekya-itpl" element={<PDIProtectedRoute><EkyaItplPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/ekya-itpl/info" element={<PDIProtectedRoute><EkyaItplInfoPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/ekya-itpl/duties" element={<PDIProtectedRoute><EkyaItplDutiesPage /></PDIProtectedRoute>} />
 
-                    <Route path="campuses/ekya-jp-nagar" element={<EkyaJpNagarPage />} />
-                    <Route path="campuses/ekya-jp-nagar/info" element={<EkyaJpNagarInfoPage />} />
-                    <Route path="campuses/ekya-jp-nagar/duties" element={<EkyaJpNagarDutiesPage />} />
+                    <Route path="campuses/ekya-jp-nagar" element={<PDIProtectedRoute><EkyaJpNagarPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/ekya-jp-nagar/info" element={<PDIProtectedRoute><EkyaJpNagarInfoPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/ekya-jp-nagar/duties" element={<PDIProtectedRoute><EkyaJpNagarDutiesPage /></PDIProtectedRoute>} />
 
-                    <Route path="campuses/ekya-nice-road" element={<EkyaNiceRoadPage />} />
-                    <Route path="campuses/ekya-nice-road/info" element={<EkyaNiceRoadInfoPage />} />
-                    <Route path="campuses/ekya-nice-road/duties" element={<EkyaNiceRoadDutiesPage />} />
+                    <Route path="campuses/ekya-nice-road" element={<PDIProtectedRoute><EkyaNiceRoadPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/ekya-nice-road/info" element={<PDIProtectedRoute><EkyaNiceRoadInfoPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/ekya-nice-road/duties" element={<PDIProtectedRoute><EkyaNiceRoadDutiesPage /></PDIProtectedRoute>} />
 
-                    <Route path="campuses/cmrpu-hrbr" element={<CmrpuhRbrPage />} />
-                    <Route path="campuses/cmrpu-hrbr/info" element={<CmrpuhRbrInfoPage />} />
-                    <Route path="campuses/cmrpu-hrbr/duties" element={<CmrpuHrbrDutiesPage />} />
+                    <Route path="campuses/cmrpu-hrbr" element={<PDIProtectedRoute><CmrpuhRbrPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/cmrpu-hrbr/info" element={<PDIProtectedRoute><CmrpuhRbrInfoPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/cmrpu-hrbr/duties" element={<PDIProtectedRoute><CmrpuHrbrDutiesPage /></PDIProtectedRoute>} />
 
-                    <Route path="campuses/cmrpu-itpl" element={<CmrpuhItplPage />} />
-                    <Route path="campuses/cmrpu-itpl/info" element={<CmrpuhItplInfoPage />} />
-                    <Route path="campuses/cmrpu-itpl/duties" element={<CmrpuItplDutiesPage />} />
+                    <Route path="campuses/cmrpu-itpl" element={<PDIProtectedRoute><CmrpuhItplPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/cmrpu-itpl/info" element={<PDIProtectedRoute><CmrpuhItplInfoPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/cmrpu-itpl/duties" element={<PDIProtectedRoute><CmrpuItplDutiesPage /></PDIProtectedRoute>} />
 
-                    <Route path="campuses/cmrpu-btm" element={<CmrpuhBtmPage />} />
-                    <Route path="campuses/cmrpu-btm/info" element={<CmrpuhBtmInfoPage />} />
-                    <Route path="campuses/cmrpu-btm/duties" element={<CmrpuBtmDutiesPage />} />
+                    <Route path="campuses/cmrpu-btm" element={<PDIProtectedRoute><CmrpuhBtmPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/cmrpu-btm/info" element={<PDIProtectedRoute><CmrpuhBtmInfoPage /></PDIProtectedRoute>} />
+                    <Route path="campuses/cmrpu-btm/duties" element={<PDIProtectedRoute><CmrpuBtmDutiesPage /></PDIProtectedRoute>} />
 
-                    <Route path="educator-hub/academic-operations" element={<AcademicOperations />} />
-                    <Route path="educator-hub/pedagogy-learning" element={<PedagogyLearning />} />
-                    <Route path="educator-hub/professional-development" element={<ProfessionalDevelopment />} />
-                    <Route path="educator-hub/interactions" element={<Interactions />} />
-                    <Route path="educator-hub/management-support" element={<ManagementSupport />} />
+                    <Route path="educator-hub/academic-operations" element={<PDIProtectedRoute><AcademicOperations /></PDIProtectedRoute>} />
+                    <Route path="educator-hub/pedagogy-learning" element={<PDIProtectedRoute><PedagogyLearning /></PDIProtectedRoute>} />
+                    <Route path="educator-hub/professional-development" element={<PDIProtectedRoute><ProfessionalDevelopment /></PDIProtectedRoute>} />
+                    <Route path="educator-hub/interactions" element={<PDIProtectedRoute><Interactions /></PDIProtectedRoute>} />
+                    <Route path="educator-hub/management-support" element={<PDIProtectedRoute><ManagementSupport /></PDIProtectedRoute>} />
 
                     {/* HR & Wellbeing Routes */}
-                    <Route path="hr/resources" element={<ResourcesHub />} />
-                    <Route path="hr/educator-guide" element={<EducatorGuide />} />
-                    <Route path="hr/educator-essentials" element={<EducatorEssentials />} />
-                    <Route path="hr/wellbeing" element={<WellBeing />} />
-                    <Route path="hr/*" element={<InProgress />} />
+                    <Route path="hr/resources" element={<PDIProtectedRoute><ResourcesHub /></PDIProtectedRoute>} />
+                    <Route path="hr/educator-guide" element={<PDIProtectedRoute><EducatorGuide /></PDIProtectedRoute>} />
+                    <Route path="hr/educator-essentials" element={<PDIProtectedRoute><EducatorEssentials /></PDIProtectedRoute>} />
+                    <Route path="hr/wellbeing" element={<PDIProtectedRoute><WellBeing /></PDIProtectedRoute>} />
+                    <Route path="hr/*" element={<PDIProtectedRoute><InProgress /></PDIProtectedRoute>} />
 
                     {/* Technology Routes */}
-                    <Route path="technology/tech-sites-login" element={<TechSitesLogin />} />
-                    <Route path="technology/greythr" element={<GreytHRPage />} />
-                    <Route path="technology/schoology" element={<SchoologyPage />} />
-                    <Route path="technology/google-workspace" element={<GoogleWorkspacePage />} />
-                    <Route path="technology/google-forms" element={<GoogleFormsPage />} />
-                    <Route path="technology/google-slides" element={<GoogleSlidesPage />} />
-                    <Route path="technology/google-sheets" element={<GoogleSheetsPage />} />
-                    <Route path="technology/google-docs" element={<GoogleDocsPage />} />
-                    <Route path="technology/google-calendar" element={<GoogleCalendarPage />} />
-                    <Route path="technology/google-hangouts-meet" element={<GoogleMeetPage />} />
-                    <Route path="technology/google-mail" element={<GoogleMailPage />} />
-                    <Route path="technology/zoom" element={<ZoomPage />} />
-                    <Route path="technology/slack" element={<SlackPage />} />
-                    <Route path="technology/email-signature-templates" element={<EmailSignaturePage />} />
-                    <Route path="technology/ekyaverse" element={<EkyaversePage />} />
-                    <Route path="technology/audit" element={<InProgress />} />
-                    <Route path="technology/*" element={<InProgress />} />
+                    <Route path="technology/tech-sites-login" element={<PDIProtectedRoute><TechSitesLogin /></PDIProtectedRoute>} />
+                    <Route path="technology/greythr" element={<PDIProtectedRoute><GreytHRPage /></PDIProtectedRoute>} />
+                    <Route path="technology/schoology" element={<PDIProtectedRoute><SchoologyPage /></PDIProtectedRoute>} />
+                    <Route path="technology/google-workspace" element={<PDIProtectedRoute><GoogleWorkspacePage /></PDIProtectedRoute>} />
+                    <Route path="technology/google-forms" element={<PDIProtectedRoute><GoogleFormsPage /></PDIProtectedRoute>} />
+                    <Route path="technology/google-slides" element={<PDIProtectedRoute><GoogleSlidesPage /></PDIProtectedRoute>} />
+                    <Route path="technology/google-sheets" element={<PDIProtectedRoute><GoogleSheetsPage /></PDIProtectedRoute>} />
+                    <Route path="technology/google-docs" element={<PDIProtectedRoute><GoogleDocsPage /></PDIProtectedRoute>} />
+                    <Route path="technology/google-calendar" element={<PDIProtectedRoute><GoogleCalendarPage /></PDIProtectedRoute>} />
+                    <Route path="technology/google-hangouts-meet" element={<PDIProtectedRoute><GoogleMeetPage /></PDIProtectedRoute>} />
+                    <Route path="technology/google-mail" element={<PDIProtectedRoute><GoogleMailPage /></PDIProtectedRoute>} />
+                    <Route path="technology/zoom" element={<PDIProtectedRoute><ZoomPage /></PDIProtectedRoute>} />
+                    <Route path="technology/slack" element={<PDIProtectedRoute><SlackPage /></PDIProtectedRoute>} />
+                    <Route path="technology/email-signature-templates" element={<PDIProtectedRoute><EmailSignaturePage /></PDIProtectedRoute>} />
+                    <Route path="technology/ekyaverse" element={<PDIProtectedRoute><EkyaversePage /></PDIProtectedRoute>} />
+                    <Route path="technology/audit" element={<PDIProtectedRoute><InProgress /></PDIProtectedRoute>} />
+                    <Route path="technology/*" element={<PDIProtectedRoute><InProgress /></PDIProtectedRoute>} />
 
                     {/* Catch-all — must be last */}
                     <Route path="*" element={<InProgress />} />

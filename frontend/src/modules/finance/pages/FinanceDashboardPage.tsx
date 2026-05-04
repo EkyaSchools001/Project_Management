@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { DollarSign, Receipt, FileText, TrendingUp, Plus, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import api from '../../../services/api';
 import { BudgetCard } from '../components/BudgetCard';
 import { ExpenseList } from '../components/ExpenseList';
 import { InvoiceCard } from '../components/InvoiceCard';
@@ -27,12 +28,9 @@ export default function FinanceDashboardPage() {
 
   const fetchDashboardData = async () => {
     try {
-      const response = await fetch('/api/v1/finance/dashboard', {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-      });
-      const result = await response.json();
-      if (result.status === 'success') {
-        setData(result.data);
+      const response = await api.get('/finance/dashboard');
+      if (response.data && response.data.status === 'success') {
+        setData(response.data.data);
       }
     } catch (error) {
       console.error('Failed to fetch dashboard:', error);

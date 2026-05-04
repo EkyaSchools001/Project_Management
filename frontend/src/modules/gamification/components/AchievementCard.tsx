@@ -20,43 +20,43 @@ export function AchievementCard({ achievement, earned = false, onClick }) {
   return (
     <Card 
       className={`
-        relative p-5 rounded-2xl border transition-all duration-300 cursor-pointer group
+        relative p-5 rounded-[1.5rem] border transition-all duration-500 cursor-pointer group shadow-sm
         ${earned 
-          ? 'bg-gradient-to-br from-[#161B22] to-[#1a1f28] border-[#ef4444]/30 hover:border-[#ef4444]/60' 
-          : 'bg-[#161B22] border-white/5 hover:border-white/20'
+          ? 'bg-card border-primary/30 hover:border-primary hover:shadow-lg' 
+          : 'bg-card border-border hover:border-primary/20 hover:bg-muted'
         }
       `}
       onClick={onClick}
     >
       <div className="flex items-start gap-4">
         <div className={`
-          w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0
-          ${earned ? 'bg-[#ef4444]/20' : 'bg-white/5'}
+          w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0 transition-all duration-500
+          ${earned ? 'bg-primary/10 shadow-inner' : 'bg-muted'}
         `}>
           {icon}
-          {!earned && <Lock size={16} className="absolute text-foreground/20" />}
+          {!earned && <Lock size={16} className="absolute text-muted-foreground/20" />}
         </div>
 
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 pt-1">
           <div className="flex items-start justify-between gap-2">
-            <h3 className={`font-bold text-sm truncate ${earned ? 'text-foreground' : 'text-foreground/60'}`}>
+            <h3 className={`font-black text-sm uppercase tracking-tight truncate ${earned ? 'text-foreground' : 'text-muted-foreground'}`}>
               {achievement.name}
             </h3>
-            {earned && <Check size={16} className="text-[#ef4444] shrink-0" />}
+            {earned && <div className="w-5 h-5 rounded-full bg-success flex items-center justify-center shadow-sm"><Check size={12} className="text-white" /></div>}
           </div>
           
-          <p className={`text-xs mt-1 ${earned ? 'text-foreground/60' : 'text-foreground/40'} line-clamp-2`}>
+          <p className={`text-[11px] font-bold mt-1 ${earned ? 'text-muted-foreground' : 'text-muted-foreground/40'} line-clamp-2`}>
             {achievement.description}
           </p>
 
-          <div className="flex items-center justify-between mt-3">
-            <div className="flex items-center gap-1.5">
-              <Star size={12} className="text-[#ef4444]" />
-              <span className="text-xs font-bold text-[#ef4444]">{achievement.points} pts</span>
+          <div className="flex items-center justify-between mt-4">
+            <div className="flex items-center gap-1.5 bg-primary/5 px-2 py-0.5 rounded-lg border border-primary/10">
+              <Star size={12} className="text-primary fill-primary/20" />
+              <span className="text-[10px] font-black text-primary tracking-widest">{achievement.points} PTS</span>
             </div>
             
             {!earned && achievement.criteria && (
-              <span className="text-[10px] text-foreground/30">
+              <span className="text-[9px] font-black text-muted-foreground/40 uppercase tracking-widest">
                 {JSON.parse(achievement.criteria).type === 'level' && `Reach level ${JSON.parse(achievement.criteria).value}`}
                 {JSON.parse(achievement.criteria).type === 'badges' && `Earn ${JSON.parse(achievement.criteria).value} badges`}
                 {JSON.parse(achievement.criteria).type === 'points' && `Earn ${JSON.parse(achievement.criteria).value} points`}

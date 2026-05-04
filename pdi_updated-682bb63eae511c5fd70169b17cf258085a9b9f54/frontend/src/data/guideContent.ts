@@ -371,8 +371,80 @@ export const guideArticles: GuideArticle[] = [
         <li>Enter your new password in the Security section and click <strong>Save Changes</strong>.</li>
       </ol>
     `
+  },
+  // --- NEW PLATFORM ROUTES (TRAINING DATA) ---
+  {
+    id: "hr-resources",
+    title: "HR Resources Hub",
+    keywords: ["hr", "resources", "human resources", "staff hub", "documents", "policies"],
+    route: "/hr/resources",
+    content: "The HR Resources Hub contains all institutional policies, staff handbooks, and official documents."
+  },
+  {
+    id: "hr-wellbeing",
+    title: "Educator Well-Being",
+    keywords: ["wellbeing", "health", "mental health", "support", "teacher care"],
+    route: "/hr/wellbeing",
+    content: "Resources and support systems dedicated to the physical and mental well-being of our educators."
+  },
+  {
+    id: "tech-schoology",
+    title: "Schoology Integration",
+    keywords: ["schoology", "lms", "learning management", "classroom", "online classes"],
+    route: "/technology/schoology",
+    content: "Access and manage your Schoology classroom directly from the PDI platform."
+  },
+  {
+    id: "tech-google-workspace",
+    title: "Google Workspace Hub",
+    keywords: ["google", "workspace", "drive", "docs", "sheets", "slides", "forms", "meet", "calendar"],
+    route: "/technology/google-workspace",
+    content: "A centralized location for all Google Workspace tools including Docs, Sheets, Slides, and Calendar."
+  },
+  {
+    id: "tech-greythr",
+    title: "GreytHR Payroll & Leave",
+    keywords: ["greythr", "payroll", "payslip", "leave", "attendance", "salary"],
+    route: "/technology/greythr",
+    content: "Direct access to GreytHR for managing your leave, viewing payslips, and tracking attendance."
+  },
+  {
+    id: "tech-ekyaverse",
+    title: "Ekyaverse (The Metaverse)",
+    keywords: ["ekyaverse", "metaverse", "vr", "virtual", "3d classroom"],
+    route: "/technology/ekyaverse",
+    content: "Explore the virtual learning landscape of Ekyaverse, our institutional metaverse."
+  },
+  {
+    id: "campus-cmr-nps",
+    title: "CMR NPS Campus Info",
+    keywords: ["cmr nps", "campus", "school info", "cmr", "nps"],
+    route: "/campuses/cmr-nps/info",
+    content: "Detailed information, vision, and leadership specific to the CMR NPS campus."
+  },
+  {
+    id: "campus-ekya-byrathi",
+    title: "Ekya Byrathi Campus Info",
+    keywords: ["byrathi", "ekya byrathi", "campus", "school info"],
+    route: "/campuses/ekya-byrathi/info",
+    content: "Detailed information, vision, and leadership specific to the Ekya Byrathi campus."
+  },
+  {
+    id: "meeting-dashboard",
+    title: "Meetings & MoM Dashboard",
+    keywords: ["meetings", "mom", "minutes of meeting", "agenda", "schedule meeting"],
+    route: "/meetings",
+    content: "Track upcoming meetings, view agendas, and manage Minutes of Meetings (MoM)."
+  },
+  {
+    id: "portfolio-directory",
+    title: "Staff Portfolio Directory",
+    keywords: ["portfolios", "staff directory", "teacher records", "profiles"],
+    route: "/portfolio",
+    content: "Browse and search through the professional growth portfolios of all campus staff."
   }
 ];
+
 
 // Helper to search articles
 export function searchGuide(query: string, userRole?: string): GuideArticle[] {

@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { useState, useEffect } from 'react';
 import { Plus } from 'lucide-react';
+import api from '../../../services/api';
 import { ExpenseList } from '../components/ExpenseList';
 import { ExpenseForm } from '../components/ExpenseForm';
 
@@ -34,22 +35,15 @@ export default function ExpensesPage() {
   const fetchData = async () => {
     try {
       const [expensesRes, budgetsRes] = await Promise.all([
-        fetch('/api/v1/finance/expenses', {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-        }),
-        fetch('/api/v1/finance/budgets', {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-        })
+        api.get('/finance/expenses'),
+        api.get('/finance/budgets')
       ]);
 
-      const expensesResult = await expensesRes.json();
-      const budgetsResult = await budgetsRes.json();
-
-      if (expensesResult.status === 'success') {
-        setExpenses(expensesResult.data);
+      if (expensesRes.data && expensesRes.data.status === 'success') {
+        setExpenses(expensesRes.data.data);
       }
-      if (budgetsResult.status === 'success') {
-        setBudgets(budgetsResult.data.map((b: any) => ({ id: b.id, name: b.name })));
+      if (budgetsRes.data && budgetsRes.data.status === 'success') {
+        setBudgets(budgetsRes.data.data.map((b: any) => ({ id: b.id, name: b.name })));
       }
     } catch (error) {
       console.error('Failed to fetch data:', error);
@@ -60,16 +54,8 @@ export default function ExpensesPage() {
 
   const handleCreateExpense = async (data: any) => {
     try {
-      const response = await fetch('/api/v1/finance/expenses', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify(data)
-      });
-      const result = await response.json();
-      if (result.status === 'success') {
+      const response = await api.post('/finance/expenses', data);
+      if (response.data && response.data.status === 'success') {
         setShowForm(false);
         fetchData();
       }
@@ -80,16 +66,8 @@ export default function ExpensesPage() {
 
   const handleUpdateExpense = async (id: string, data: any) => {
     try {
-      const response = await fetch(`/api/v1/finance/expenses/${id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify(data)
-      });
-      const result = await response.json();
-      if (result.status === 'success') {
+      const response = await api.patch(`/finance/expenses/${id}`, data);
+      if (response.data && response.data.status === 'success') {
         setSelectedExpense(null);
         fetchData();
       }

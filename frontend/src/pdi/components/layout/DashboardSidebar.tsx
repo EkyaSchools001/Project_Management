@@ -36,6 +36,8 @@ import { Button } from "../ui/button";
 import { useAccessControl } from "@pdi/hooks/useAccessControl";
 import { SidebarAccordionItem, SidebarModule } from "./SidebarAccordionItem";
 import { Input } from "../ui/input";
+import { useAuth } from "@pdi/hooks/useAuth";
+import { SignOut } from "@phosphor-icons/react";
 
 interface DashboardSidebarProps {
   role: Role;
@@ -57,11 +59,25 @@ export function DashboardSidebar({
   isHoverMode = false
 }: DashboardSidebarProps) {
   const { isModuleEnabled } = useAccessControl();
+  const { user, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   const [unreadAnnouncements, setUnreadAnnouncements] = useState(0);
   const [openModule, setOpenModule] = useState<string | null>("Dashboard");
+
+  // Only SUPERADMIN may switch domain; everyone else gets logged out
+  const isSuperAdminUser = (user?.role || '').toUpperCase() === 'SUPER_ADMIN' ||
+    (user?.role || '').toUpperCase() === 'SUPERADMIN';
+
+  const handleFooterAction = async () => {
+    if (isSuperAdminUser) {
+      navigate('/', { replace: true });
+    } else {
+      await logout();
+      navigate('/login', { replace: true });
+    }
+  };
 
 
 
@@ -666,48 +682,51 @@ export function DashboardSidebar({
   return (
     <aside
       className={cn(
-        "h-screen bg-sidebar shadow-xl print:hidden flex flex-col overflow-hidden",
+        "h-screen bg-white border-r border-primary/5 shadow-[20px_0_50px_-20px_rgba(0,0,0,0.05)] print:hidden flex flex-col overflow-hidden",
         isHoverMode
           ? "w-full"
           : cn(
             "fixed left-0 top-0 z-[60] transition-all duration-300 ease-out",
             collapsed
               ? isMobile
-                ? "-translate-x-full w-64"
-                : "w-16 translate-x-0"
-              : "translate-x-0 w-64"
+                ? "-translate-x-full w-72"
+                : "w-20 translate-x-0"
+              : "translate-x-0 w-72"
           )
       )}
     >
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-sidebar-border h-16 shrink-0 relative">
+      <div className="flex items-center justify-between p-6 h-24 shrink-0 relative">
         {/* Collapsed: just the icon, centered */}
         <div
           className={cn(
-            "absolute left-1/2 -translate-x-1/2 transition-all duration-200",
+            "absolute left-1/2 -translate-x-1/2 transition-all duration-300",
             collapsed && !isMobile ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"
           )}
         >
-          <div className="bg-sidebar-primary p-2 rounded-lg">
-            <GraduationCap className="w-5 h-5 text-sidebar-primary-foreground" weight={"fill" as any} />
+          <div className="bg-primary shadow-lg shadow-primary/20 p-2.5 rounded-2xl rotate-3 hover:rotate-0 transition-transform">
+            <GraduationCap className="w-6 h-6 text-white" weight={"fill" as any} />
           </div>
         </div>
 
         {/* Expanded: logo + platform name */}
         <div
           className={cn(
-            "flex items-center gap-2 min-w-0 flex-1 pr-2 transition-all duration-200",
+            "flex items-center gap-4 min-w-0 flex-1 transition-all duration-300",
             collapsed && !isMobile
-              ? "opacity-0 translate-x-[-8px] pointer-events-none"
+              ? "opacity-0 translate-x-[-20px] pointer-events-none"
               : "opacity-100 translate-x-0 delay-[120ms]"
           )}
         >
-          <div className="p-2 rounded-lg bg-sidebar-primary shrink-0">
-            <GraduationCap className="w-5 h-5 text-sidebar-primary-foreground" weight={"fill" as any} />
+          <div className="p-3 rounded-2xl bg-primary shadow-lg shadow-primary/20 shrink-0 rotate-3 group-hover:rotate-0 transition-transform">
+            <GraduationCap className="w-6 h-6 text-white" weight={"fill" as any} />
           </div>
-          <span className="font-semibold text-sidebar-foreground truncate text-sm whitespace-nowrap">
-            <span className="text-[#EA104A]">Teacher</span> Platform
-          </span>
+          <div className="flex flex-col">
+            <span className="text-[10px] font-black text-primary uppercase tracking-[0.3em] leading-none mb-1">Academic</span>
+            <span className="font-black text-foreground truncate text-lg tracking-tighter leading-none">
+              PLATFORM
+            </span>
+          </div>
         </div>
 
         {/* Collapse toggle – only in non-hover mode */}
@@ -717,14 +736,14 @@ export function DashboardSidebar({
             size="icon"
             onClick={onToggle}
             className={cn(
-              "text-sidebar-foreground hover:bg-sidebar-accent shrink-0",
-              collapsed && !isMobile && "absolute -right-3 top-20 bg-sidebar border border-sidebar-border rounded-full shadow-md z-50 h-6 w-6"
+              "text-muted-foreground hover:text-primary hover:bg-primary/5 shrink-0 transition-all rounded-xl",
+              collapsed && !isMobile && "absolute -right-3 top-24 bg-white border border-primary/10 rounded-full shadow-xl z-50 h-8 w-8"
             )}
           >
             {isMobile ? (
-              <X className="w-5 h-5" />
+              <X className="w-6 h-6" />
             ) : (
-              <CaretLeft className={cn("w-4 h-4 transition-transform duration-300", collapsed && "rotate-180")} weight={"bold" as any} />
+              <CaretLeft className={cn("w-5 h-5 transition-transform duration-500", collapsed && "rotate-180")} weight={"bold" as any} />
             )}
           </Button>
         )}
@@ -733,20 +752,20 @@ export function DashboardSidebar({
       {/* User Info – fades in after expansion */}
       <div
         className={cn(
-          "border-b border-sidebar-border overflow-hidden transition-all duration-300",
+          "overflow-hidden transition-all duration-500",
           collapsed && !isMobile || searchQuery
             ? "max-h-0 opacity-0 py-0"
-            : "max-h-24 opacity-100 p-4 delay-[140ms]"
+            : "max-h-32 opacity-100 px-8 py-4 delay-[140ms]"
         )}
       >
-        <p className="font-medium text-sidebar-foreground truncate text-sm">{userName}</p>
-        <div className="mt-2">
-          <RoleBadge role={role} />
+        <div className="p-4 rounded-3xl bg-primary/[0.03] border border-primary/5">
+            <p className="font-black text-foreground truncate text-xs uppercase tracking-widest mb-2">{userName}</p>
+            <RoleBadge role={role} />
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto p-3 space-y-2 scrollbar-hide">
+      <nav className="flex-1 overflow-y-auto px-4 py-2 space-y-1.5 scrollbar-hide">
         {filteredNav.map((module) => (
           <SidebarAccordionItem
             key={module.title}
@@ -760,24 +779,30 @@ export function DashboardSidebar({
       </nav>
 
       {/* Footer */}
-      <div className="p-3 border-t border-sidebar-border shrink-0">
+      <div className="p-6 shrink-0">
         <button
-          onClick={() => navigate('/', { replace: true })}
+          onClick={handleFooterAction}
           className={cn(
-            "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors group overflow-hidden text-left",
-            "text-sidebar-foreground hover:bg-sidebar-accent"
+            "w-full flex items-center gap-4 px-4 py-4 rounded-2xl transition-all group overflow-hidden text-left",
+            isSuperAdminUser
+              ? "text-muted-foreground hover:text-primary hover:bg-primary/5 hover:shadow-inner"
+              : "text-muted-foreground hover:text-destructive hover:bg-destructive/5 hover:shadow-inner"
           )}
         >
-          <ArrowUUpLeft className="w-5 h-5 shrink-0 group-hover:-translate-x-1 transition-transform duration-300" weight={"bold" as any} />
+          {isSuperAdminUser ? (
+            <ArrowUUpLeft className="w-5 h-5 shrink-0 group-hover:-translate-x-1 transition-transform duration-300" weight={"bold" as any} />
+          ) : (
+            <SignOut className="w-5 h-5 shrink-0 group-hover:-translate-x-1 transition-transform duration-300" weight={"bold" as any} />
+          )}
           <span
             className={cn(
-              "text-sm font-medium whitespace-nowrap transition-all duration-200",
+              "text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap transition-all duration-300",
               collapsed && !isMobile
-                ? "opacity-0 -translate-x-2 w-0"
+                ? "opacity-0 -translate-x-4 w-0"
                 : "opacity-100 translate-x-0 delay-[130ms]"
             )}
           >
-            Main Dashboard
+            {isSuperAdminUser ? 'Switch Domain' : 'Logout'}
           </span>
         </button>
       </div>

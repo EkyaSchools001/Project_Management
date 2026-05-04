@@ -43,56 +43,69 @@ export function ChallengeCard({ challenge, userProgress = null, onJoin, onViewDe
   return (
     <Card 
       className={`
-        relative p-5 rounded-2xl border transition-all duration-300 cursor-pointer
-        ${isActive ? 'bg-[#161B22] border-[#ef4444]/20 hover:border-[#ef4444]/40' : 'bg-[#161B22] border-white/5'}
+        relative p-6 rounded-3xl border transition-all duration-500 cursor-pointer shadow-sm group
+        ${isActive 
+          ? 'bg-card border-primary/20 hover:border-primary/40 hover:shadow-lg' 
+          : 'bg-card border-border opacity-70'
+        }
       `}
       onClick={onViewDetails}
     >
-      <div className="flex items-start gap-4">
+      <div className="flex items-start gap-5">
         <div className={`
-          w-14 h-14 rounded-xl flex items-center justify-center text-3xl shrink-0
-          ${isActive ? 'bg-[#ef4444]/20' : 'bg-white/5'}
+          w-16 h-16 rounded-2xl flex items-center justify-center text-3xl shrink-0 transition-all duration-500 relative
+          ${isActive ? 'bg-primary/10 shadow-inner' : 'bg-muted'}
         `}>
           {icon}
-          {!isActive && <div className="absolute inset-0 bg-backgroundlack/60 rounded-xl flex items-center justify-center"><Clock size={20} className="text-foreground/40" /></div>}
+          {!isActive && (
+            <div className="absolute inset-0 bg-background/60 rounded-2xl flex items-center justify-center backdrop-blur-[1px]">
+              <Clock size={24} className="text-muted-foreground/40" />
+            </div>
+          )}
         </div>
 
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 pt-1">
           <div className="flex items-start justify-between gap-2">
-            <h3 className="font-bold text-foreground">{challenge.name}</h3>
-            {isCompleted && <Check size={18} className="text-[#ef4444] shrink-0" />}
+            <h3 className="font-black text-foreground uppercase tracking-tight truncate">{challenge.name}</h3>
+            {isCompleted && (
+              <div className="w-6 h-6 rounded-full bg-success flex items-center justify-center shadow-sm">
+                <Check size={14} className="text-white" />
+              </div>
+            )}
           </div>
           
-          <p className="text-xs text-foreground/50 mt-1 line-clamp-2">
+          <p className="text-[11px] font-bold text-muted-foreground mt-1 line-clamp-2 leading-tight">
             {challenge.description}
           </p>
 
-          <div className="flex items-center gap-4 mt-3">
-            <div className="flex items-center gap-1 text-foreground/40">
-              <Users size={12} />
-              <span className="text-[10px]">{challenge.participantCount}/{challenge.maxParticipants || '∞'}</span>
+          <div className="flex items-center flex-wrap gap-4 mt-4">
+            <div className="flex items-center gap-1.5 text-muted-foreground">
+              <Users size={12} className="text-primary" />
+              <span className="text-[10px] font-black uppercase tracking-widest">{challenge.participantCount}/{challenge.maxParticipants || '∞'}</span>
             </div>
-            <div className="flex items-center gap-1 text-[#ef4444]">
-              <Gift size={12} />
-              <span className="text-xs font-bold">{challenge.points} pts</span>
+            <div className="flex items-center gap-1.5 bg-primary/5 px-2 py-0.5 rounded-lg border border-primary/10">
+              <Gift size={12} className="text-primary" />
+              <span className="text-[10px] font-black text-primary tracking-widest">{challenge.points} PTS</span>
             </div>
             {isActive && (
-              <div className="flex items-center gap-1 text-foreground/40">
-                <Clock size={12} />
-                <span className="text-[10px]">{daysLeft}d left</span>
+              <div className="flex items-center gap-1.5 text-muted-foreground">
+                <Clock size={12} className="text-warning" />
+                <span className="text-[10px] font-black uppercase tracking-widest">{daysLeft}D Left</span>
               </div>
             )}
           </div>
 
           {isJoined && (
-            <div className="mt-4 space-y-2">
-              <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                <div 
-                  className={`h-full rounded-full transition-all duration-500 ${isCompleted ? 'bg-[#ef4444]' : 'bg-[#ef4444]/50'}`}
-                  style={{ width: `${progress}%` }}
+            <div className="mt-6 space-y-2">
+              <div className="h-2 bg-muted rounded-full overflow-hidden border border-border shadow-inner">
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: `${progress}%` }}
+                  transition={{ duration: 1 }}
+                  className={`h-full rounded-full transition-all duration-500 ${isCompleted ? 'bg-success' : 'bg-primary'}`}
                 />
               </div>
-              <p className="text-[10px] text-foreground/40 text-right">{progress.toFixed(0)}% complete</p>
+              <p className="text-[9px] font-black text-muted-foreground uppercase tracking-[0.2em] text-right">{progress.toFixed(0)}% Complete</p>
             </div>
           )}
 
@@ -100,9 +113,10 @@ export function ChallengeCard({ challenge, userProgress = null, onJoin, onViewDe
             <Button 
               onClick={(e) => { e.stopPropagation(); handleJoin(); }}
               disabled={joining}
-              className="mt-4 bg-[#ef4444] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#a6e600]"
+              className="mt-5 w-full bg-primary text-white font-black text-[10px] uppercase tracking-widest hover:bg-primary/90 rounded-xl h-10 shadow-lg shadow-primary/20"
             >
-              {joining ? 'Joining...' : 'Join Challenge'}
+              {joining ? 'Processing...' : 'Participate Now'}
+              {!joining && <Play size={12} className="ml-2 fill-white" />}
             </Button>
           )}
         </div>

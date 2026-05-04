@@ -8,14 +8,18 @@ export default function AISuggestions({ types = ['task', 'project', 'workload'] 
     const [loading, setLoading] = useState(true);
     const [dismissed, setDismissed] = useState(new Set());
 
+    const { user } = useAuth();
+
     useEffect(() => {
-        loadSuggestions();
-    }, []);
+        if (user?.id) {
+            loadSuggestions();
+        }
+    }, [user?.id]);
 
     const loadSuggestions = async () => {
         try {
             setLoading(true);
-            const data = await aiService.getSuggestions('current-user', types);
+            const data = await aiService.getSuggestions(user?.id || 'current-user', types);
             setSuggestions(data || []);
         } catch (err) {
             console.error('Failed to load suggestions:', err);

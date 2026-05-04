@@ -47,24 +47,24 @@ export function Leaderboard({ limit = 10, showPeriodSelector = true, onViewAll }
   };
 
   return (
-    <Card className="bg-[#161B22] border-white/5 p-6 rounded-2xl">
-      <div className="flex items-center justify-between mb-6">
+    <Card className="bg-card border-border p-6 rounded-2xl shadow-sm">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-[#ef4444]/10 rounded-xl flex items-center justify-center">
-            <Trophy size={20} className="text-[#ef4444]" />
+          <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center border border-primary/20">
+            <Trophy size={20} className="text-primary" />
           </div>
-          <h2 className="text-lg font-bold text-foreground">Leaderboard</h2>
+          <h2 className="text-lg font-black text-foreground uppercase tracking-tight">Leaderboard</h2>
         </div>
         
         {showPeriodSelector && (
-          <div className="flex bg-white/5 rounded-lg p-1">
+          <div className="flex bg-muted p-1 rounded-xl border border-border shadow-inner">
             {periodOptions.map(opt => (
               <button
                 key={opt.value}
                 onClick={() => setPeriod(opt.value)}
                 className={`
-                  px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-md transition-all
-                  ${period === opt.value ? 'bg-[#ef4444] text-black' : 'text-foreground/40 hover:text-foreground'}
+                  px-4 py-1.5 text-[10px] font-black uppercase tracking-wider rounded-lg transition-all
+                  ${period === opt.value ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'text-muted-foreground hover:text-foreground'}
                 `}
               >
                 {opt.label}
@@ -76,42 +76,42 @@ export function Leaderboard({ limit = 10, showPeriodSelector = true, onViewAll }
 
       {loading ? (
         <div className="flex items-center justify-center py-12">
-          <div className="w-6 h-6 border-2 border-[#ef4444] border-t-transparent rounded-full animate-spin" />
+          <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
         </div>
       ) : entries.length === 0 ? (
-        <div className="text-center py-12 text-foreground/40 text-sm">
-          No leaderboard data available
+        <div className="text-center py-12 text-muted-foreground font-bold text-sm">
+          No records found for this period
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-2">
           {entries.map((entry, index) => (
             <div 
               key={entry.userId}
               className={`
-                flex items-center gap-4 p-3 rounded-xl transition-all cursor-pointer group
-                ${entry.isCurrentUser ? 'bg-[#ef4444]/10 border border-[#ef4444]/30' : 'hover:bg-white/5'}
+                flex items-center gap-4 p-4 rounded-2xl transition-all cursor-pointer group
+                ${entry.isCurrentUser ? 'bg-primary/5 border border-primary/20' : 'hover:bg-muted border border-transparent'}
               `}
             >
               <div className="w-8 flex justify-center">
                 {getRankDisplay(entry.rank)}
               </div>
 
-              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-foreground font-bold text-sm">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-500 to-red-600 flex items-center justify-center text-white font-black text-sm shadow-md">
                 {entry.userName?.charAt(0).toUpperCase() || '?'}
               </div>
 
               <div className="flex-1 min-w-0">
-                <p className="font-bold text-sm text-foreground truncate">
+                <p className="font-black text-sm text-foreground truncate">
                   {entry.userName}
                 </p>
-                <p className="text-[10px] text-foreground/40">Level {entry.level}</p>
+                <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Level {entry.level}</p>
               </div>
 
               <div className="text-right">
-                <p className="font-black text-lg text-[#ef4444]">
+                <p className="font-black text-lg text-primary tracking-tighter">
                   {entry.score.toLocaleString()}
                 </p>
-                <p className="text-[10px] text-foreground/40">points</p>
+                <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">pts</p>
               </div>
             </div>
           ))}
@@ -121,7 +121,7 @@ export function Leaderboard({ limit = 10, showPeriodSelector = true, onViewAll }
       {onViewAll && (
         <button 
           onClick={onViewAll}
-          className="w-full mt-4 py-3 flex items-center justify-center gap-2 text-xs font-bold text-foreground/60 hover:text-[#ef4444] transition-colors"
+          className="w-full mt-6 py-4 flex items-center justify-center gap-2 text-xs font-black text-muted-foreground uppercase tracking-[0.2em] hover:text-primary transition-all border-t border-border"
         >
           View Full Leaderboard
           <ChevronRight size={14} />

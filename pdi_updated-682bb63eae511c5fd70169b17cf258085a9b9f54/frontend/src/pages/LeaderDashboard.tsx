@@ -8,7 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { AssessmentManagementDashboard } from "@/components/assessments/AssessmentManagementDashboard";
 import { useAccessControl } from "@/hooks/useAccessControl";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
-import { formatRole } from "@/lib/utils";
+import { formatRole, formatCampus } from "@/lib/utils";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { QuickActionButtons } from "@/components/QuickActionButtons";
 import { StatCard } from "@/components/StatCard";
@@ -81,7 +81,7 @@ import { ManagementInsightsView } from "./management/ManagementInsightsView";
 import { ManagementGoalsView } from "./management/ManagementGoalsView";
 import { FestivalManagementDashboard } from "./LearningFestival/FestivalManagementDashboard";
 import { LearningFestivalPage } from "./LearningFestival/LearningFestivalPage";
-import { MoocResponsesView as MoocResponsesRegistry } from "@/components/mooc/MoocResponsesRegistry";
+import MoocAdminPage from "@/pages/admin/MoocAdminPage";
 
 export default function LeaderDashboard() {
   const { user } = useAuth();
@@ -466,8 +466,8 @@ export default function LeaderDashboard() {
         <Route path="hours" element={<PDHoursAnalyticsView />} />
         <Route path="calendar" element={<PDCalendarView training={training} setTraining={setTraining} team={team} role={role} />} />
         <Route path="calendar/propose" element={<ProposeCourseView setTraining={setTraining} />} />
-        <Route path="calendar/responses" element={<MoocResponsesRegistry refresh={fetchMoocSubmissions} backPath={['ADMIN', 'SUPERADMIN'].includes(role) ? '/admin' : '/leader/calendar'} />} />
-        <Route path="mooc" element={<MoocResponsesRegistry refresh={fetchMoocSubmissions} backPath={['ADMIN', 'SUPERADMIN'].includes(role) ? '/admin' : '/leader/calendar'} />} />
+        <Route path="calendar/responses" element={<MoocAdminPage />} />
+        <Route path="mooc" element={<MoocAdminPage />} />
         
         <Route path="meetings" element={<MeetingsDashboard />} />
         <Route path="meetings/create" element={<CreateMeetingForm />} />
@@ -580,7 +580,7 @@ function DashboardOverview({
               Welcome back, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400">{userName.split(' ')[0]}!</span>
             </h1>
             <p className="text-slate-400 text-lg font-medium max-w-2xl leading-relaxed">
-              {selectedCampus === 'all' ? "Oversee team performance across respective campus." : `Performance overview for ${selectedCampus}.`}
+              {selectedCampus === 'all' ? "Oversee team performance across respective campus." : `Performance overview for ${formatCampus(selectedCampus)}.`}
               <span className="text-white font-bold ml-1">Track growth, mentor teachers, and drive excellence.</span>
             </p>
           </div>
@@ -597,7 +597,7 @@ function DashboardOverview({
                 <SelectContent className="rounded-2xl border-white/10 bg-slate-900/95 backdrop-blur-2xl text-white">
                   <SelectItem value="all" className="focus:bg-white/10 focus:text-white">All Assigned Schools</SelectItem>
                   {availableCampuses.map(c => (
-                    <SelectItem key={c} value={c} className="focus:bg-white/10 focus:text-white">{c}</SelectItem>
+                    <SelectItem key={c} value={c} className="focus:bg-white/10 focus:text-white">{formatCampus(c)}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>

@@ -59,11 +59,12 @@ export const deleteProject = async (req: AuthRequest, res: Response) => {
 
 export const getTasks = async (req: AuthRequest, res: Response) => {
     try {
-        const { projectId } = req.query;
-        if (!projectId) {
-            return res.status(400).json({ error: 'Project ID is required' });
-        }
-        const tasks = await PmsService.getTasks(projectId as string);
+        const { projectId, status, assigneeId } = req.query;
+        const tasks = await PmsService.getTasks({
+            projectId: projectId as string,
+            status: status as string,
+            assigneeId: assigneeId as string
+        });
         res.json({ status: 'success', data: tasks });
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch tasks' });

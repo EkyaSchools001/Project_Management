@@ -7,6 +7,7 @@ import { Menu, GraduationCap, Book, FileCheck, Search } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "../ui/button";
 import { NotificationBell } from "../notifications/NotificationBell";
+import { ProfileTrigger } from "../profile/ProfileTrigger";
 import { Input } from "../ui/input";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -30,6 +31,11 @@ export function DashboardLayout({ children, role, userName }: DashboardLayoutPro
 
 
 
+  // Update global header height for sticky offsets
+  useEffect(() => {
+    document.documentElement.style.setProperty('--global-header-height', isMobile ? '64px' : '80px');
+  }, [isMobile]);
+
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -50,7 +56,7 @@ export function DashboardLayout({ children, role, userName }: DashboardLayoutPro
   const mainOffset = isMobile ? "ml-0" : hovered ? "ml-64" : "ml-16";
 
   return (
-    <div className="min-h-screen bg-background flex flex-col md:flex-row overflow-x-hidden">
+    <div className="min-h-screen bg-background flex flex-col md:flex-row">
       {/* Mobile Header */}
       <div className="md:hidden flex items-center justify-between p-4 border-b border-sidebar-border bg-sidebar h-16 sticky top-0 z-50">
         <div className="flex items-center gap-2 min-w-0 pr-2">
@@ -80,6 +86,7 @@ export function DashboardLayout({ children, role, userName }: DashboardLayoutPro
             <Book className="w-4 h-4" />
           </Button>
           <NotificationBell />
+          <ProfileTrigger />
           <Button
             variant="ghost"
             size="icon"
@@ -135,48 +142,50 @@ export function DashboardLayout({ children, role, userName }: DashboardLayoutPro
 
       <main
         className={cn(
-          "flex-1 transition-all duration-300 min-h-screen overflow-x-hidden print:ml-0 flex flex-col",
+          "flex-1 transition-all duration-300 min-h-screen print:ml-0 flex flex-col",
           mainOffset
         )}
       >
         {!isMobile && (
-          <header className="h-14 border-b border-white/10 bg-white/40 backdrop-blur-xl flex items-center justify-between px-8 sticky top-0 z-40 w-full shrink-0 shadow-sm transition-all duration-300 gap-4">
-            <div className="flex-1" />
+          <header className="h-20 border-b border-slate-200/60 bg-white/80 backdrop-blur-2xl flex items-center justify-between px-8 sticky top-0 z-40 w-full shrink-0 shadow-sm transition-all duration-300 gap-8">
+            <div className="flex-1 flex items-center gap-4">
+              <div className="w-[3px] h-6 bg-primary rounded-full hidden lg:block" />
+              <h2 className="text-[11px] font-black text-slate-800 uppercase tracking-[0.4em] whitespace-nowrap">Educator Hub</h2>
+            </div>
 
-            <div className="flex-[2] max-w-md relative">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+            <div className="flex-[3] max-w-xl relative group">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 group-focus-within:text-primary transition-colors" />
               <Input
                 placeholder="Search navigation..."
-                className="pl-9 h-9 bg-white/50 border-muted/20 text-xs focus-visible:ring-primary shadow-sm w-full transition-all focus-visible:ring-2"
+                className="pl-12 h-11 bg-slate-50/50 border-slate-200 text-sm rounded-full focus-visible:ring-primary/20 shadow-sm w-full transition-all focus-visible:ring-2 focus-visible:bg-white focus-visible:border-primary/30"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
 
             <div className="flex-1 flex items-center justify-end gap-3">
-
-
               <Button
                 variant="outline"
                 size="sm"
-                className="gap-2 h-9 border-muted/20 hover:bg-white/50"
+                className="gap-2.5 h-11 border-slate-200 bg-white hover:bg-slate-50 hover:border-primary/20 rounded-full shadow-sm px-6 transition-all"
                 asChild
               >
                 <Link to={getDocumentsPath()}>
                   <FileCheck className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium">Documents</span>
+                  <span className="text-sm font-bold text-slate-700">Documents</span>
                 </Link>
               </Button>
               <Button
                 variant="outline"
                 size="sm"
-                className="gap-2 h-9 border-muted/20 hover:bg-white/50"
+                className="gap-2.5 h-11 border-slate-200 bg-white hover:bg-slate-50 hover:border-primary/20 rounded-full shadow-sm px-6 transition-all"
                 onClick={() => window.open('https://pdi.ekyaschools.com/education-blogs/', '_blank')}
               >
                 <Book className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium">Blogs</span>
+                <span className="text-sm font-bold text-slate-700">Blogs</span>
               </Button>
               <NotificationBell />
+              <ProfileTrigger />
             </div>
           </header>
         )}

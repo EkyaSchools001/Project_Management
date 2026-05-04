@@ -30,7 +30,9 @@ const getApiUrl = () => {
 };
 
 const API_URL = getApiUrl();
+export const BASE_URL = API_URL.replace('/api/v1/', '').replace(/\/$/, '');
 console.log('--- DEBUG API URL ---', API_URL);
+console.log('--- BASE URL ---', BASE_URL);
 console.log('--- VITE_API_URL ---', import.meta.env.VITE_API_URL);
 
 const api: AxiosInstance = axios.create({

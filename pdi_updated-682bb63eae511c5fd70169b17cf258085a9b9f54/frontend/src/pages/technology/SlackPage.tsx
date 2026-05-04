@@ -10,9 +10,12 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { settingsService } from "@/services/settingsService";
 import { PageEditorControls } from "@/components/educator-hub/InstitutionalIdentity/PageEditorControls";
+import { PortalBanner } from "@/components/layout/PortalBanner";
+import { useNavigate } from "react-router-dom";
 
 export default function SlackPage() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [data, setData] = useState({
     heroTitle: "SLACK",
@@ -43,15 +46,6 @@ export default function SlackPage() {
 
   return (
     <div className="min-h-screen bg-white relative">
-      {canEdit() && (
-        <Button 
-          className="absolute top-6 right-6 bg-white/20 hover:bg-white/30 text-white gap-2 z-50 shadow-lg font-bold border border-white/20"
-          onClick={() => setIsEditorOpen(true)}
-        >
-          <PencilSimple size={18} weight="bold" />
-          Edit Content
-        </Button>
-      )}
 
       <PageEditorControls 
         settingKey="page_tech_slack"
@@ -70,20 +64,15 @@ export default function SlackPage() {
         ]}
       />
 
-      {/* Hero Banner Section */}
-      <div className="relative w-full h-[300px] overflow-hidden bg-gradient-to-br from-[#4A154B] via-[#611f69] to-[#36C5F0]">
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px'}} />
-        </div>
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <div className="relative z-10 space-y-4">
-            <h1 className="text-8xl font-bold tracking-[0.2em] text-white uppercase drop-shadow-2xl">
-              {data.heroTitle}
-            </h1>
-            <div className="h-2 w-full max-w-[300px] bg-white opacity-50 mx-auto rounded-full shadow-lg" />
-          </div>
-        </div>
-      </div>
+      <PortalBanner 
+        title={data.heroTitle}
+        subtitle={data.introQuote.split('.')[0] + '.'}
+        onBack={() => navigate(-1)}
+        onEdit={() => setIsEditorOpen(true)}
+        canEdit={canEdit()}
+        icon={SlackLogo}
+        className="mt-6 mb-12"
+      />
 
       <div className="max-w-6xl mx-auto px-8 py-20 space-y-24">
         {/* Introduction */}
@@ -94,20 +83,19 @@ export default function SlackPage() {
         </section>
 
         {/* Quick Start Guide */}
-        <section>
-          <div className="bg-rose-500 py-10 px-8 rounded-t-3xl shadow-lg">
-            <div className="max-w-6xl mx-auto text-center">
+        <section className="mb-12">
+          <div className="max-w-7xl mx-auto px-4 md:px-6">
+            <div className="bg-rose-500 py-10 px-8 rounded-t-[2rem] shadow-lg text-center">
               <h2 className="text-4xl font-bold text-white uppercase tracking-wider">{data.guideSectionTitle}</h2>
             </div>
-          </div>
-          
-          <div className="bg-white border-x border-b border-slate-100 rounded-b-3xl shadow-xl overflow-hidden group">
-            <a 
-              href={data.guideLinkUrl} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex flex-col items-center p-20 space-y-12 transition-all hover:bg-slate-50"
-            >
+            
+            <div className="bg-white border-x border-b border-slate-100 rounded-b-[2rem] shadow-xl overflow-hidden group">
+              <a 
+                href={data.guideLinkUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex flex-col items-center p-20 space-y-12 transition-all hover:bg-slate-50"
+              >
               <div className="relative w-48 h-48 flex items-center justify-center">
                 <div className="absolute inset-0 bg-[#4A154B] rounded-3xl rotate-6 group-hover:rotate-12 transition-transform opacity-10" />
                 <SlackLogo className="w-40 h-40 text-[#4A154B] relative z-10" weight="fill" />
@@ -118,6 +106,7 @@ export default function SlackPage() {
                 </h3>
               </div>
             </a>
+          </div>
           </div>
         </section>
       </div>

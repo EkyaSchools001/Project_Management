@@ -460,3 +460,163 @@ export const getObservationById = async (req: Request, res: Response, next: Next
     }
 };
 
+
+export const getClusters = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const clusters = await prisma.cluster.findMany({
+            include: {
+                domains: {
+                    include: {
+                        subdomains: {
+                            include: {
+                                parameters: true
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        res.status(200).json({ status: 'success', data: { clusters } });
+    } catch (err) {
+        next(err);
+    }
+};
+
+export const getClusterById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { number } = req.params;
+        const cluster = await prisma.cluster.findUnique({
+            where: { number: parseInt(number as string) },
+            include: {
+                domains: {
+                    include: {
+                        subdomains: {
+                            include: {
+                                parameters: true
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        if (!cluster) return next(new AppError('Cluster not found', 404));
+
+        res.status(200).json({ status: 'success', data: { cluster } });
+    } catch (err) {
+        next(err);
+    }
+};
+
+export const createSchedule = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const data = req.body;
+        const schedule = await prisma.observationSchedule.create({
+            data: {
+                teacherId: data.teacherId,
+                observerId: data.observerId,
+                clusterNumber: parseInt(data.clusterNumber),
+                scheduledDate: new Date(data.scheduledDate),
+                startTime: data.startTime,
+                grade: data.grade,
+                section: data.section,
+                subject: data.subject,
+                status: 'SCHEDULED'
+            }
+        });
+
+        res.status(201).json({ status: 'success', data: { schedule } });
+    } catch (err) {
+        next(err);
+    }
+};
+
+export const getSchedules = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const authReq = req as AuthRequest;
+        let filter: any = {};
+
+        if (authReq.user?.role === 'TEACHER') {
+            filter = { teacherId: authReq.user.id };
+        } else if (authReq.user?.role !== 'SUPERADMIN' && authReq.user?.role !== 'ADMIN') {
+            // For campus-specific roles
+            filter = { teacher: { campusId: authReq.user?.campusId } };
+        }
+
+        const schedules = await prisma.observationSchedule.findMany({
+            where: filter,
+            include: {
+                teacher: { select: { fullName: true, id: true, campusId: true } },
+                observer: { select: { fullName: true, id: true } }
+            },
+            orderBy: { scheduledDate: 'desc' }
+        });
+
+        res.status(200).json({ status: 'success', data: { schedules } });
+    } catch (err) {
+        next(err);
+    }
+};
+
+export const submitStructuredObservation = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const authReq = req as AuthRequest;
+        const { clusterNumber, scheduleId, metadata, responses, stats } = req.body;
+
+        // 1. Get schedule info
+        const schedule = await prisma.observationSchedule.findUnique({
+            where: { id: scheduleId },
+            include: { teacher: true }
+        });
+
+        if (!schedule) return next(new AppError('Schedule not found', 404));
+
+        // 2. Create the main Observation record
+        const observation = await prisma.observation.create({
+            data: {
+                teacherId: schedule.teacherId,
+                observerId: authReq.user?.id || '',
+                scheduleId: scheduleId,
+                date: metadata.date,
+                domain: `Cluster ${clusterNumber}`,
+                score: stats.yes, // Overall score based on % Yes
+                notes: metadata.runningNotes,
+                actionStep: metadata.actionStep,
+                status: 'SUBMITTED',
+                campus: schedule.teacher.campusId,
+                grade: metadata.grade,
+                section: metadata.section,
+                learningArea: metadata.learningArea,
+                strengths: metadata.glows,
+                areasOfGrowth: metadata.grows,
+                tools: metadata.toolsObserved,
+                routines: metadata.routinesProcedures,
+                otherComment: metadata.additionalComments,
+                createdAt: new Date()
+            }
+        });
+
+        // 3. Create structured responses
+        const responseData = Object.entries(responses).map(([paramId, res]: any) => ({
+            observationId: observation.id,
+            parameterId: paramId,
+            rating: res.rating,
+            comment: res.comment
+        }));
+
+        await prisma.observationResponse.createMany({
+            data: responseData
+        });
+
+        // 4. Update schedule status
+        await prisma.observationSchedule.update({
+            where: { id: scheduleId },
+            data: { status: 'SUBMITTED' }
+        });
+
+        res.status(201).json({ status: 'success', data: { observation } });
+    } catch (err) {
+        next(err);
+    }
+};

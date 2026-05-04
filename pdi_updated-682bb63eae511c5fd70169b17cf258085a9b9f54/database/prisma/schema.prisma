@@ -5,7 +5,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url      = "file:../dev.db"
 }
 
 model User {
@@ -62,6 +62,8 @@ model User {
   postOrientationAssessments   PostOrientationAssessment[]
   surveyResponses              SurveyResponse[]
   lacStatuses                  LacTaskStatus[]
+  sentSchedules                ObservationSchedule[]         @relation("ObserverSchedule")
+  receivedSchedules            ObservationSchedule[]         @relation("TeacherSchedule")
 
   @@index([academics])
 }
@@ -185,6 +187,9 @@ model Observation {
   teacher            User                @relation("Teacher", fields: [teacherId], references: [id])
   observer           User                @relation("Observer", fields: [observerId], references: [id])
   domainRatings      ObservationDomain[]
+  responses          ObservationResponse[]
+  scheduleId         String?             @unique
+  schedule           ObservationSchedule? @relation("ScheduleToObservation", fields: [scheduleId], references: [id])
 }
 
 model ObservationDomain {
@@ -321,6 +326,8 @@ model MoocSubmission {
   id                  String   @id @default(uuid())
   userId              String
   courseName          String
+  track               String?
+  campus              String?
   platform            String
   otherPlatform       String?
   hours               Float
@@ -910,4 +917,78 @@ model LacTaskStatus {
   @@index([teacherId])
   @@index([campusId])
   @@index([status])
+}
+model Cluster {
+  id          String    @id @default(uuid())
+  number      Int       @unique
+  name        String
+  description String?
+  domains     Domain[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Domain {
+  id          String      @id @default(uuid())
+  clusterId   String
+  name        String
+  description String?
+  order       Int         @default(0)
+  cluster     Cluster     @relation(fields: [clusterId], references: [id], onDelete: Cascade)
+  subdomains  Subdomain[]
+}
+
+model Subdomain {
+  id          String      @id @default(uuid())
+  domainId    String
+  code        String      // 1a, 1b...
+  title       String
+  description String?
+  order       Int         @default(0)
+  domain      Domain      @relation(fields: [domainId], references: [id], onDelete: Cascade)
+  parameters  Parameter[]
+}
+
+model Parameter {
+  id                      String                @id @default(uuid())
+  subdomainId             String
+  name                    String
+  description             String?
+  lookFors                String?
+  requiresCommentIfPartial Boolean               @default(true)
+  order                   Int                   @default(0)
+  subdomain               Subdomain             @relation(fields: [subdomainId], references: [id], onDelete: Cascade)
+  responses               ObservationResponse[]
+}
+
+model ObservationSchedule {
+  id            String        @id @default(uuid())
+  teacherId     String
+  observerId    String
+  clusterNumber Int
+  scheduledDate DateTime
+  startTime     String
+  endTime       String?
+  grade         String?
+  section       String?
+  subject       String?
+  campusId      String?
+  status        String        @default("SCHEDULED") // SCHEDULED, IN_PROGRESS, SUBMITTED, REVIEWED
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  teacher       User          @relation("TeacherSchedule", fields: [teacherId], references: [id])
+  observer      User          @relation("ObserverSchedule", fields: [observerId], references: [id])
+  observation   Observation?  @relation("ScheduleToObservation")
+}
+
+model ObservationResponse {
+  id            String      @id @default(uuid())
+  observationId String
+  parameterId   String
+  rating        String      // YES, PARTIAL, NOT_SEEN, NA
+  comment       String?
+  observation   Observation @relation(fields: [observationId], references: [id], onDelete: Cascade)
+  parameter     Parameter   @relation(fields: [parameterId], references: [id])
+
+  @@unique([observationId, parameterId])
 }

@@ -158,7 +158,7 @@ export default function AnalyticsPage() {
                         </div>
                     </div>
                     <div className="h-[350px] sm:h-[450px] w-full relative z-10 mt-10">
-                        <ResponsiveContainer width="100%" height="100%">
+                        <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
                             <AreaChart data={performanceData}>
                                 <defs>
                                     <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
@@ -207,7 +207,7 @@ export default function AnalyticsPage() {
                         <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mt-2">Resource allocation by instructional HQ</p>
                     </div>
                     <div className="h-[350px] sm:h-[450px] w-full flex items-center justify-center relative z-10">
-                        <ResponsiveContainer width="100%" height="100%">
+                        <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
                             <PieChart>
                                 <Pie
                                     data={distributionData}

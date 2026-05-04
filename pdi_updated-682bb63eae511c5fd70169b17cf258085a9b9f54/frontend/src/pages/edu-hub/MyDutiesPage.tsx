@@ -139,7 +139,7 @@ const MyDutiesPage = () => {
                             <div className="flex flex-col">
                                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Duration</span>
                                 <span className="font-bold text-slate-700">
-                                    {duty.startDate || "?"} — {duty.endDate || "Ongoing"}
+                                    {duty.startDate || "?"} - {duty.endDate || "Ongoing"}
                                 </span>
                             </div>
                         </div>

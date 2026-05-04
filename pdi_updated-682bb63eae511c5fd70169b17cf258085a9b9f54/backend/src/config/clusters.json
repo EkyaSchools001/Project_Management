@@ -1,0 +1,172 @@
+[
+  {
+    "number": 1,
+    "name": "Planning & Preparation",
+    "domains": [
+      {
+        "name": "Cluster 1: Planning & Preparation",
+        "subdomains": [
+          {
+            "code": "1a",
+            "title": "Applying Knowledge of Content and Pedagogy",
+            "parameters": [
+              {
+                "name": "Content Knowledge",
+                "description": "Demonstrates strong content knowledge",
+                "lookFors": "Content presented is accurate; Connections to real-world contexts are included; Links to other disciplines are visible."
+              },
+              {
+                "name": "Relevant Usage of Tools",
+                "description": "Appropriate tools are selected to support teaching and learning",
+                "lookFors": "Reference to use of tools in the plan: Culture tools to build classroom culture; Instructional tools to engage students in learning."
+              }
+            ]
+          },
+          {
+            "code": "1b",
+            "title": "Knowing and Valuing Students",
+            "parameters": [
+              {
+                "name": "Differentiated Plan",
+                "description": "Planning accounts for diverse student needs and readiness levels",
+                "lookFors": "Support or scaffolds are planned for learners who need them; Extensions are planned for advanced learners."
+              }
+            ]
+          },
+          {
+            "code": "1c",
+            "title": "Setting Instructional Outcomes",
+            "parameters": [
+              {
+                "name": "Clarity of Outcomes",
+                "description": "Outcomes are clear, written in student-friendly language",
+                "lookFors": "Outcomes represent high expectations; Outcomes are measurable and observable."
+              }
+            ]
+          },
+          {
+            "code": "1d",
+            "title": "Knowing and Using Resources",
+            "parameters": [
+              {
+                "name": "Selection of Resources",
+                "description": "Resources are aligned with instructional outcomes",
+                "lookFors": "Resources are appropriate for student ages and backgrounds; Digital resources are integrated effectively."
+              }
+            ]
+          },
+          {
+            "code": "1e",
+            "title": "Designing Coherent Instruction",
+            "parameters": [
+              {
+                "name": "Learning Activities",
+                "description": "Activities are highly relevant and engaging",
+                "lookFors": "Activities follow a logical sequence; Students have choices in how they learn."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 2,
+    "name": "Classroom Environment",
+    "domains": [
+      {
+        "name": "Cluster 2: Classroom Environment",
+        "subdomains": [
+          {
+            "code": "2a",
+            "title": "Creating an Environment of Respect and Rapport",
+            "parameters": [
+              {
+                "name": "Teacher Interaction",
+                "description": "Interactions are friendly and demonstrate caring",
+                "lookFors": "Teacher responds to student interests; Humor is used appropriately; Body language is positive."
+              }
+            ]
+          },
+          {
+            "code": "2b",
+            "title": "Establishing a Culture for Learning",
+            "parameters": [
+              {
+                "name": "Importance of Content",
+                "description": "Teacher conveys enthusiasm for the subject",
+                "lookFors": "Teacher demonstrates that the work is important; Students are proud of their work."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 3,
+    "name": "Learning Engagement",
+    "domains": [
+      {
+        "name": "Cluster 3: Learning Engagement",
+        "subdomains": [
+          {
+            "code": "3a",
+            "title": "Communicating with Students",
+            "parameters": [
+              {
+                "name": "Clarity of Purpose",
+                "description": "Purpose of the lesson is clearly communicated",
+                "lookFors": "Teacher explains the 'why' behind activities; Instructions are clear and step-by-step."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 4,
+    "name": "Professional Responsibility",
+    "domains": [
+      {
+        "name": "Cluster 4: Professional Responsibility",
+        "subdomains": [
+          {
+            "code": "4a",
+            "title": "Reflecting on Teaching",
+            "parameters": [
+              {
+                "name": "Accuracy of Reflection",
+                "description": "Teacher makes accurate assessment of lesson effectiveness",
+                "lookFors": "Teacher identifies specific evidence of student learning; Teacher suggests ways to improve the lesson."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 5,
+    "name": "Leadership & Growth",
+    "domains": [
+      {
+        "name": "Cluster 5: Leadership & Growth",
+        "subdomains": [
+          {
+            "code": "5a",
+            "title": "Contributing to the School",
+            "parameters": [
+              {
+                "name": "Collaboration with Colleagues",
+                "description": "Participates actively in professional learning communities",
+                "lookFors": "Teacher shares resources with others; Teacher contributes to school-wide initiatives."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

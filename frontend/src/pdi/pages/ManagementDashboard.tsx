@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import api from "@pdi/lib/api";
 import { useAuth } from "@pdi/hooks/useAuth";
@@ -77,95 +77,142 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
     }, [selectedCampus, campusData]);
 
     return (
-        <div className="space-y-8 animate-in fade-in duration-700">
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-slate-900 p-8 md:p-12 mb-8 shadow-2xl">
-                <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
-                <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-72 h-72 bg-indigo-500/20 rounded-full blur-[80px]" />
+        <div className="space-y-12 animate-in fade-in duration-700 pb-20">
+            {/* Header Section */}
+            <div className="relative overflow-hidden rounded-[2.5rem] bg-white p-10 md:p-14 mb-8 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-primary/5">
+                <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-primary/[0.03] rounded-full blur-[100px]" />
+                <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-72 h-72 bg-primary/[0.02] rounded-full blur-[80px]" />
 
-                <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
-                    <div className="space-y-4">
-                        <div className="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
+                <div className="relative z-10 flex flex-col xl:flex-row xl:items-center justify-between gap-10">
+                    <div className="space-y-6">
+                        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-xl bg-primary/5 border border-primary/10 shadow-sm">
                             <ShieldCheck className="w-4 h-4 text-primary" />
-                            <span className="text-[10px] font-bold tracking-[0.2em] text-white/80 uppercase">Management Console</span>
-                            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-500/20 border border-emerald-500/30">
-                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-                                <span className="text-[9px] font-black text-emerald-400 tracking-widest uppercase">Live Sync</span>
+                            <span className="text-[10px] font-black tracking-[0.2em] text-primary uppercase">Management Command Console</span>
+                            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-emerald-50 border border-emerald-100">
+                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                                <span className="text-[9px] font-black text-emerald-600 tracking-widest uppercase">Live Intelligence</span>
                             </div>
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">
-                            Hi, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400">{userName.split(' ')[0]}</span>
+                        <h1 className="text-5xl md:text-6xl font-black text-foreground tracking-tighter leading-tight">
+                            Hi, <span className="text-primary">{userName.split(' ')[0]}</span>
                         </h1>
-                        <p className="text-slate-400 text-lg font-medium max-w-xl leading-relaxed">
-                            A strategic overview of Teacher Development progress across the organization.
+                        <p className="text-muted-foreground text-xl font-medium max-w-2xl leading-relaxed">
+                            A strategic overview of Teacher Development progress and instructional excellence across the strategic network.
                         </p>
                     </div>
-                    <div className="flex gap-4">
+                    <div className="flex flex-col sm:flex-row gap-4">
+                        <Button className="h-16 px-10 rounded-[1.5rem] bg-primary hover:bg-primary/90 text-white font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl shadow-primary/20 transition-all active:scale-95 group" onClick={() => navigate('growth-analytics')}>
+                            <TrendingUp className="w-5 h-5 mr-3 group-hover:translate-y-[-2px] transition-transform" />
+                            Executive Analytics
+                        </Button>
+                        <Button variant="outline" className="h-16 px-10 rounded-[1.5rem] border-primary/10 bg-white text-primary font-black text-[11px] uppercase tracking-[0.2em] hover:bg-primary/5 transition-all shadow-xl shadow-primary/5 active:scale-95" onClick={() => navigate('pdi-health')}>
+                            <BarChart2 className="w-5 h-5 mr-3" />
+                            Network Health
+                        </Button>
                     </div>
                 </div>
             </div>
 
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 px-2">
                 <div>
-                    <h2 className="text-2xl font-black text-slate-800 tracking-tight">Executive Campus KPIs</h2>
-                    <p className="text-zinc-900 text-sm font-medium">Real-time performance metrics across the network</p>
+                    <h2 className="text-3xl font-black text-foreground tracking-tight uppercase">Executive Campus KPIs</h2>
+                    <p className="text-muted-foreground text-sm font-medium mt-1">Real-time performance metrics across the institutional network</p>
                 </div>
-                <Select value={selectedCampus} onValueChange={setSelectedCampus}>
-                    <SelectTrigger className="w-[200px] bg-white border-slate-200 shadow-sm h-11 rounded-xl">
-                        <SelectValue placeholder="All Campuses" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="all">All Campuses</SelectItem>
-                        {CAMPUS_OPTIONS.map(c => (
-                            <SelectItem key={c} value={c}>{c}</SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
+                <div className="flex items-center gap-4 bg-white p-2 rounded-2xl shadow-sm border border-primary/5">
+                    <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest ml-4">Selected Hub</span>
+                    <Select value={selectedCampus} onValueChange={setSelectedCampus}>
+                        <SelectTrigger className="w-[220px] h-12 rounded-xl border-none bg-primary/5 text-primary font-black text-[10px] uppercase tracking-widest">
+                            <SelectValue placeholder="All Campuses" />
+                        </SelectTrigger>
+                        <SelectContent className="rounded-2xl border-primary/10 shadow-2xl p-2">
+                            <SelectItem value="all" className="rounded-xl font-black text-[10px] uppercase tracking-widest focus:bg-primary/5 focus:text-primary py-3">All Campuses</SelectItem>
+                            {CAMPUS_OPTIONS.map(c => (
+                                <SelectItem key={c} value={c} className="rounded-xl font-black text-[10px] uppercase tracking-widest focus:bg-primary/5 focus:text-primary py-3">{c}</SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-8 pb-12">
+            <div className="grid grid-cols-1 gap-10">
                 {filteredCampusData.map((data, idx) => (
-                    <Card key={idx} className="shadow-2xl overflow-hidden rounded-[2.5rem] bg-white border-transparent hover:shadow-primary/10 transition-shadow duration-500">
-                        <CardHeader className="bg-slate-50/50 border-b pb-6 px-8">
-                            <CardTitle className="text-2xl flex items-center justify-between text-slate-800">
-                                <span className="font-black bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-slate-500">{data.campus}</span>
-                                <Badge className="bg-white border text-primary shadow-sm hover:bg-white">{data.campus} Performance</Badge>
-                            </CardTitle>
+                    <Card key={idx} className="rounded-[2.5rem] border-primary/5 shadow-[0_20px_50px_rgba(0,0,0,0.03)] bg-white overflow-hidden group hover:shadow-[0_30px_70px_rgba(0,0,0,0.06)] transition-all duration-700">
+                        <CardHeader className="p-10 border-b border-primary/5 bg-primary/[0.01]">
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-5">
+                                    <div className="w-14 h-14 rounded-2xl bg-primary/5 flex items-center justify-center border border-primary/10 group-hover:scale-110 transition-transform duration-500">
+                                        <Building2 className="w-7 h-7 text-primary" />
+                                    </div>
+                                    <div>
+                                        <CardTitle className="text-2xl font-black uppercase tracking-tight text-foreground">{data.campus}</CardTitle>
+                                        <p className="font-black text-[10px] uppercase tracking-widest text-muted-foreground mt-1">Operational Excellence Score</p>
+                                    </div>
+                                </div>
+                                <Badge className="bg-primary/5 text-primary border-primary/10 text-[9px] h-7 px-4 font-black uppercase tracking-widest rounded-lg">
+                                    {data.campus} Performance Index
+                                </Badge>
+                            </div>
                         </CardHeader>
-                        <CardContent className="p-8">
-                            <div className="grid grid-cols-2 lg:grid-cols-5 gap-6">
+                        <CardContent className="p-10">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                                 {/* Metric 1 */}
-                                <div className="space-y-2 p-4 rounded-3xl bg-amber-50/50 border border-amber-100/50 hover:bg-amber-100/50 transition-colors">
-                                    <div className="text-[10px] font-bold text-amber-700 uppercase tracking-widest flex items-center gap-1.5"><Book className="w-3 h-3" /> Post-Orientation</div>
-                                    <div className="text-3xl font-black text-amber-950">{data.postOrientation}%</div>
-                                    <div className="text-xs text-amber-950 font-bold">Avg Assessment Score</div>
+                                <div className="p-6 rounded-[2rem] bg-white border border-primary/5 shadow-sm hover:border-primary/20 hover:bg-primary/[0.01] transition-all group/metric">
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <div className="w-8 h-8 rounded-xl bg-primary/5 flex items-center justify-center">
+                                            <Book className="w-4 h-4 text-primary" />
+                                        </div>
+                                        <span className="text-[9px] font-black text-muted-foreground uppercase tracking-widest">Orientation</span>
+                                    </div>
+                                    <div className="text-4xl font-black text-foreground tracking-tighter group-hover/metric:text-primary transition-colors">{data.postOrientation}%</div>
+                                    <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mt-2">Avg Assessment</p>
                                 </div>
                                 
                                 {/* Metric 2 */}
-                                <div className="space-y-2 p-4 rounded-3xl bg-blue-50/50 border border-blue-100/50 hover:bg-blue-100/50 transition-colors">
-                                    <div className="text-[10px] font-bold text-blue-700 uppercase tracking-widest flex items-center gap-1.5"><Target className="w-3 h-3" /> Instr. Tools</div>
-                                    <div className="text-3xl font-black text-blue-950">{data.instructionalTools}%</div>
-                                    <div className="text-xs text-blue-950 font-bold">Avg Implementation Score</div>
+                                <div className="p-6 rounded-[2rem] bg-white border border-primary/5 shadow-sm hover:border-primary/20 hover:bg-primary/[0.01] transition-all group/metric">
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <div className="w-8 h-8 rounded-xl bg-primary/5 flex items-center justify-center">
+                                            <Target className="w-4 h-4 text-primary" />
+                                        </div>
+                                        <span className="text-[9px] font-black text-muted-foreground uppercase tracking-widest">Instructional</span>
+                                    </div>
+                                    <div className="text-4xl font-black text-foreground tracking-tighter group-hover/metric:text-primary transition-colors">{data.instructionalTools}%</div>
+                                    <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mt-2">Implementation</p>
                                 </div>
 
                                 {/* Metric 3 */}
-                                <div className="space-y-2 p-4 rounded-3xl bg-purple-50/50 border border-purple-100/50 hover:bg-purple-100/50 transition-colors">
-                                    <div className="text-[10px] font-bold text-purple-700 uppercase tracking-widest flex items-center gap-1.5"><Zap className="w-3 h-3" /> PD Feedback</div>
-                                    <div className="text-3xl font-black text-purple-950">{data.pdFeedback}/5</div>
-                                    <div className="text-xs text-purple-950 font-bold">Avg Training Rating</div>
+                                <div className="p-6 rounded-[2rem] bg-white border border-primary/5 shadow-sm hover:border-primary/20 hover:bg-primary/[0.01] transition-all group/metric">
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <div className="w-8 h-8 rounded-xl bg-primary/5 flex items-center justify-center">
+                                            <Zap className="w-4 h-4 text-primary" />
+                                        </div>
+                                        <span className="text-[9px] font-black text-muted-foreground uppercase tracking-widest">PD Feedback</span>
+                                    </div>
+                                    <div className="text-4xl font-black text-foreground tracking-tighter group-hover/metric:text-primary transition-colors">{data.pdFeedback}/5</div>
+                                    <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mt-2">Avg Rating</p>
                                 </div>
 
                                 {/* Metric 4 */}
-                                <div className="space-y-2 p-4 rounded-3xl bg-emerald-50/50 border border-emerald-100/50 hover:bg-emerald-100/50 transition-colors">
-                                    <div className="text-[10px] font-bold text-emerald-700 uppercase tracking-widest flex items-center gap-1.5"><BarChart2 className="w-3 h-3" /> Observations</div>
-                                    <div className="text-3xl font-black text-emerald-950">{data.obsCompletion}%</div>
-                                    <div className="text-xs text-emerald-950 font-bold">Completion Rate</div>
+                                <div className="p-6 rounded-[2rem] bg-white border border-primary/5 shadow-sm hover:border-primary/20 hover:bg-primary/[0.01] transition-all group/metric">
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <div className="w-8 h-8 rounded-xl bg-primary/5 flex items-center justify-center">
+                                            <BarChart2 className="w-4 h-4 text-primary" />
+                                        </div>
+                                        <span className="text-[9px] font-black text-muted-foreground uppercase tracking-widest">Observations</span>
+                                    </div>
+                                    <div className="text-4xl font-black text-foreground tracking-tighter group-hover/metric:text-primary transition-colors">{data.obsCompletion}%</div>
+                                    <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mt-2">Completion Rate</p>
                                 </div>
 
                                 {/* Metric 5 */}
-                                <div className="space-y-2 p-4 rounded-3xl bg-rose-50/50 border border-rose-100/50 hover:bg-rose-100/50 transition-colors">
-                                    <div className="text-[10px] font-bold text-rose-700 uppercase tracking-widest flex items-center gap-1.5"><Users className="w-3 h-3" /> Leadership</div>
-                                    <div className="text-3xl font-black text-rose-950">{data.surveySupport}/5</div>
-                                    <div className="text-xs text-rose-950 font-bold">PD Survey Support Score</div>
+                                <div className="p-6 rounded-[2rem] bg-white border border-primary/5 shadow-sm hover:border-primary/20 hover:bg-primary/[0.01] transition-all group/metric">
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <div className="w-8 h-8 rounded-xl bg-primary/5 flex items-center justify-center">
+                                            <Users className="w-4 h-4 text-primary" />
+                                        </div>
+                                        <span className="text-[9px] font-black text-muted-foreground uppercase tracking-widest">Leadership</span>
+                                    </div>
+                                    <div className="text-4xl font-black text-foreground tracking-tighter group-hover/metric:text-primary transition-colors">{data.surveySupport}/5</div>
+                                    <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mt-2">Support Score</p>
                                 </div>
                             </div>
                         </CardContent>
@@ -175,6 +222,7 @@ const DashboardOverview = ({ stats, userName }: { stats: any, userName: string }
         </div>
     );
 };
+
 
 function PlaceholderView({ title, icon: Icon }: { title: string; icon: any }) {
     const navigate = useNavigate();

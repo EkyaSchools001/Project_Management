@@ -76,10 +76,10 @@
   --color-slate-950: var(--color-zinc-950);
 }
 
-/* ─── PROFESSIONAL LIGHT MODE (DEFAULT) ────────────────────────────────────────── */
+/* ─── TEACHER DEVELOPMENT THEME (PROFESSIONAL LIGHT - RED) ───────────────────── */
 :root {
-  /* Core backgrounds — Clean Alabaster/White */
-  --background:         0 0% 98%;         /* #FAFAFA */
+  /* Core backgrounds — Clean Education White */
+  --background:         0 0% 99%;         /* #FAFAFA */
   --foreground:         240 10% 15%;      /* #222225 */
 
   --card:               0 0% 100%;        /* #FFFFFF */
@@ -88,21 +88,24 @@
   --popover:            0 0% 100%;
   --popover-foreground: 240 10% 15%;
 
-  /* Primary — Professional Rose/Red */
-  --primary:            346 84% 50%;      
+  /* Primary — Professional Education Red */
+  --primary:            346 84% 50%;      /* #E11D48 */
   --primary-foreground: 0 0% 100%;
 
-  /* Secondary — subtle light gray */
+  /* Secondary — Soft Gray/Blue */
   --secondary:          240 5% 92%;
   --secondary-foreground: 240 10% 25%;
 
   /* Muted */
-  --muted:              240 5% 94%;
+  --muted:              240 5% 96%;
   --muted-foreground:   240 5% 45%;
 
   /* Accent */
-  --accent:             346 84% 97%;      /* very light rose */
+  --accent:             346 84% 97%;      /* very light red */
   --accent-foreground:  346 84% 50%;
+
+  /* Success — Growth Green */
+  --success:            142 71% 45%;
 
   /* Danger */
   --destructive:        0 84% 60%;
@@ -112,7 +115,7 @@
   --border:             240 5% 85%;
   --input:              240 5% 85%;
   --ring:               346 84% 50%;
-  --radius:             0.75rem;
+  --radius:             1rem;
 
   /* Sidebar */
   --sidebar-background: 0 0% 100%;
@@ -125,7 +128,6 @@
   --sidebar-ring:       346 84% 50%;
 
   /* Custom semantic colors */
-  --success:            346 84% 50%;
   --warning:            38 92% 50%;
   --info:               199 89% 48%;
 }

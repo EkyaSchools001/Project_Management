@@ -52,7 +52,8 @@ export const authenticate = async (req: AuthRequest, res: Response, next: NextFu
                 name: 'Mock User',
                 role: 'SuperAdmin', // Grant high privileges for dev
                 status: 'Active',
-                permissions: ['*'] // Allow everything
+                permissions: ['*'], // Allow everything
+                isMock: true
             };
             req.sessionId = 'mock-session-id';
             return next();

@@ -71,6 +71,9 @@ jobs:
             echo "🗄️ Applying database schema (prisma db push)..."
             npx prisma db push --accept-data-loss
 
+            echo "🌱 Seeding the database..."
+            npx ts-node prisma/seed_all.ts
+
             echo "♻️ Restarting backend with PM2..."
             if pm2 describe schoolos-backend > /dev/null 2>&1; then
               pm2 restart schoolos-backend --update-env

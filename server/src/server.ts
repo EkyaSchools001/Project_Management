@@ -3,7 +3,7 @@ import { Server } from 'socket.io';
 import { app } from './app';
 import { initializeSocket } from './socket/index';
 
-const PORT = process.env.PORT || 8888;
+const PORT = process.env.PORT || 3000;
 const server = http.createServer(app);
 
 const io = new Server(server, {

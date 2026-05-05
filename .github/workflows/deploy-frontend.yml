@@ -74,10 +74,15 @@ jobs:
             --content-type "text/html"
 
       - name: 🔄 Invalidate CloudFront cache
-        if: secrets.CLOUDFRONT_DISTRIBUTION_ID != ''
+        env:
+          CF_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
         run: |
+          if [ -z "$CF_ID" ]; then
+            echo "No CloudFront Distribution ID provided. Skipping invalidation."
+            exit 0
+          fi
           INVALIDATION_ID=$(aws cloudfront create-invalidation \
-            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --distribution-id $CF_ID \
             --paths "/*" \
             --query 'Invalidation.Id' \
             --output text)

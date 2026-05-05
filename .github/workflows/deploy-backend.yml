@@ -14,7 +14,7 @@ concurrency:
 
 env:
   NODE_VERSION: '20'
-  APP_DIR: /home/ubuntu/schoolos
+  APP_DIR: /home/ubuntu/Project_Management
 
 jobs:
   deploy-backend:

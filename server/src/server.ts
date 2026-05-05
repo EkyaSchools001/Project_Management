@@ -16,5 +16,5 @@ const io = new Server(server, {
 initializeSocket(io);
 
 server.listen(PORT, () => {
-    console.log(`🚀 SchoolOS Server active on port ${PORT}`);
+    console.log(`🚀 SchoolOS Server active on port ${PORT} [Deployed via CI/CD]`);
 });

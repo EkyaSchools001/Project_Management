@@ -1,5 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+
+console.log("SchoolOS Frontend starting...");
 import './index.css'
 import App from './App.jsx'
 import { InstallPWA } from './components/common/InstallPWA'
